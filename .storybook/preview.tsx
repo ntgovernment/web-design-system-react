@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react";
 import { useEffect } from 'react';
+import React from 'react';
 
 // Load Bootstrap CSS from CDN
 const loadBootstrapCSS = () => {
@@ -11,8 +12,8 @@ const loadBootstrapCSS = () => {
   document.head.appendChild(link);
 };
 
-// HTML Decorator to view code as HTML
-const withHTMLCode = (Story, context) => {
+// HTML Decorator to view code as HTML and ensure Bootstrap is loaded
+const withHTMLCode = (Story: any) => {
   useEffect(() => {
     loadBootstrapCSS();
   }, []);
@@ -36,6 +37,14 @@ const preview: Preview = {
     docs: {
       source: {
         type: 'dynamic',
+      },
+    },
+    // Show HTML in docs
+    html: {
+      prettier: {
+        tabWidth: 2,
+        useTabs: false,
+        htmlWhitespaceSensitivity: 'strict',
       },
     },
   },
