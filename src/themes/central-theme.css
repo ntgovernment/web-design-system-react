@@ -1,0 +1,66 @@
+/**
+ * NTG Central Theme
+ * CSS Variables with central- prefix
+ * Based on design tokens from Figma
+ * Extends Bootstrap 5.3 CSS variables
+ */
+
+:root {
+  /* NTG Central Brand Colors */
+  --central-primary: #0d6efd;
+  --central-secondary: #6c757d;
+  --central-success: #198754;
+  --central-info: #0dcaf0;
+  --central-warning: #ffc107;
+  --central-danger: #dc3545;
+  --central-light: #f8f9fa;
+  --central-dark: #212529;
+
+  /* NTG Central Extended Colors */
+  --central-primary-dark: #0a58ca;
+  --central-primary-light: #3d8bfd;
+  --central-accent: #fd7e14;
+  --central-accent-light: #fd9843;
+  
+  /* Typography */
+  --central-font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  --central-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --central-font-size-base: 1rem;
+  --central-font-weight-normal: 400;
+  --central-font-weight-bold: 700;
+  --central-line-height-base: 1.5;
+
+  /* Spacing */
+  --central-spacer-1: 0.25rem;
+  --central-spacer-2: 0.5rem;
+  --central-spacer-3: 1rem;
+  --central-spacer-4: 1.5rem;
+  --central-spacer-5: 3rem;
+
+  /* Border */
+  --central-border-radius: 0.375rem;
+  --central-border-radius-sm: 0.25rem;
+  --central-border-radius-lg: 0.5rem;
+  --central-border-width: 1px;
+  --central-border-color: #dee2e6;
+
+  /* Shadows */
+  --central-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --central-box-shadow-sm: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.075);
+  --central-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* Apply NTG Central theme to Bootstrap variables */
+:root {
+  --bs-primary: var(--central-primary);
+  --bs-secondary: var(--central-secondary);
+  --bs-success: var(--central-success);
+  --bs-info: var(--central-info);
+  --bs-warning: var(--central-warning);
+  --bs-danger: var(--central-danger);
+  --bs-light: var(--central-light);
+  --bs-dark: var(--central-dark);
+  
+  --bs-body-font-family: var(--central-font-family-sans-serif);
+  --bs-border-radius: var(--central-border-radius);
+}

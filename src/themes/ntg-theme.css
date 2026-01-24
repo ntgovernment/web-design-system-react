@@ -1,0 +1,66 @@
+/**
+ * NT.GOV.AU Theme
+ * CSS Variables with ntg- prefix
+ * Based on design tokens from Figma
+ * Extends Bootstrap 5.3 CSS variables
+ */
+
+:root {
+  /* NT.GOV.AU Brand Colors */
+  --ntg-primary: #003366;
+  --ntg-secondary: #6c757d;
+  --ntg-success: #28a745;
+  --ntg-info: #17a2b8;
+  --ntg-warning: #ffc107;
+  --ntg-danger: #dc3545;
+  --ntg-light: #f8f9fa;
+  --ntg-dark: #343a40;
+
+  /* NT.GOV.AU Extended Colors */
+  --ntg-primary-dark: #002244;
+  --ntg-primary-light: #004488;
+  --ntg-accent: #00a3e0;
+  --ntg-accent-light: #66ccff;
+  
+  /* Typography */
+  --ntg-font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  --ntg-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --ntg-font-size-base: 1rem;
+  --ntg-font-weight-normal: 400;
+  --ntg-font-weight-bold: 700;
+  --ntg-line-height-base: 1.5;
+
+  /* Spacing */
+  --ntg-spacer-1: 0.25rem;
+  --ntg-spacer-2: 0.5rem;
+  --ntg-spacer-3: 1rem;
+  --ntg-spacer-4: 1.5rem;
+  --ntg-spacer-5: 3rem;
+
+  /* Border */
+  --ntg-border-radius: 0.375rem;
+  --ntg-border-radius-sm: 0.25rem;
+  --ntg-border-radius-lg: 0.5rem;
+  --ntg-border-width: 1px;
+  --ntg-border-color: #dee2e6;
+
+  /* Shadows */
+  --ntg-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --ntg-box-shadow-sm: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.075);
+  --ntg-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* Apply NT.GOV.AU theme to Bootstrap variables */
+:root {
+  --bs-primary: var(--ntg-primary);
+  --bs-secondary: var(--ntg-secondary);
+  --bs-success: var(--ntg-success);
+  --bs-info: var(--ntg-info);
+  --bs-warning: var(--ntg-warning);
+  --bs-danger: var(--ntg-danger);
+  --bs-light: var(--ntg-light);
+  --bs-dark: var(--ntg-dark);
+  
+  --bs-body-font-family: var(--ntg-font-family-sans-serif);
+  --bs-border-radius: var(--ntg-border-radius);
+}

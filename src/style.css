@@ -1,0 +1,7 @@
+/**
+ * Main stylesheet for NT Government Web Design System
+ * Import this file to get the base theme
+ */
+
+/* Import NT.GOV.AU theme by default */
+@import './themes/ntg-theme.css';
