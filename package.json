@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "description": "Component library and themes for NT Government websites and intranets",
   "type": "module",
-  "main": "./dist/web-design-system.umd.js",
-  "module": "./dist/web-design-system.es.js",
+  "main": "./dist/components.min.js",
+  "module": "./dist/components.min.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/web-design-system.es.js",
-      "require": "./dist/web-design-system.umd.js"
+      "import": "./dist/components.min.js",
+      "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/style.css"
+    "./components.min.css": "./dist/components.min.css",
+    "./ntg-theme.min.css": "./dist/ntg-theme.min.css",
+    "./central-theme.min.css": "./dist/central-theme.min.css"
   },
   "files": [
     "dist"
@@ -21,7 +23,7 @@
     "tokens:validate": "node scripts/validate-tokens.js",
     "tokens:build": "node scripts/build-tokens.js",
     "prebuild": "npm run generate-story-data",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node scripts/build-dist.js",
     "preview": "vite preview",
     "generate-story-data": "node .storybook/generate-story-data.js",
     "prestorybook": "npm run generate-story-data",

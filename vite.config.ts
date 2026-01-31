@@ -9,15 +9,18 @@ export default defineConfig({
     react(),
     dts({
       insertTypesEntry: true,
+      exclude: ['**/*.stories.tsx', 'src/demo/**/*'],
     }),
   ],
   build: {
     target: "es2020",
+    minify: true,
+    cssMinify: true,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "WebDesignSystem",
-      formats: ["es", "umd"],
-      fileName: (format) => `web-design-system.${format}.js`,
+      formats: ["es"],
+      fileName: () => "components.min.js",
     },
     rollupOptions: {
       external: ["react", "react-dom"],
@@ -27,7 +30,7 @@ export default defineConfig({
           "react-dom": "ReactDOM",
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") return "style.css";
+          if (assetInfo.name === "style.css") return "components.min.css";
           return assetInfo.name || "asset";
         },
       },

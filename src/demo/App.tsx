@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { Alert } from '../components/Alert';
@@ -6,10 +6,17 @@ import { Alert } from '../components/Alert';
 function App() {
   const [theme, setTheme] = useState<'ntg' | 'central'>('ntg');
 
+  useEffect(() => {
+    // Set initial theme on mount
+    document.documentElement.setAttribute('data-theme', 'ntg');
+  }, []);
+
   const toggleTheme = () => {
-    setTheme(theme === 'ntg' ? 'central' : 'ntg');
-    // In a real implementation, you would dynamically load the theme CSS
-    document.documentElement.setAttribute('data-theme', theme === 'ntg' ? 'central' : 'ntg');
+    const newTheme = theme === 'ntg' ? 'central' : 'ntg';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    // Note: Currently both themes define :root variables, so switching requires
+    // dynamically loading different CSS files. This is a placeholder for future implementation.
   };
 
   return (

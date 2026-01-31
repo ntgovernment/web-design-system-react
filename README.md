@@ -18,13 +18,25 @@ A modern component library and theme system for NT Government websites and intra
 npm install @ntgovernment/web-design-system
 ```
 
+## Distribution Files
+
+After building (`npm run build`), the `dist/` folder contains:
+
+- **components.min.js** - Minified ES module bundle of all React components (23KB)
+- **components.min.css** - Component-specific styles (currently uses Bootstrap classes)
+- **ntg-theme.min.css** - Minified NT.GOV.AU theme with CSS variables (11KB)
+- **central-theme.min.css** - Minified NTG Central theme with CSS variables (12KB)
+- **index.html** - Demo page showcasing all components with theme switching
+- **index.d.ts** - TypeScript type definitions
+
 ## Usage
 
 ### Basic Usage
 
 ```tsx
-import { Button, Card, Alert } from '@ntgovernment/web-design-system';
-import '@ntgovernment/web-design-system/style.css';
+import { Button, Card, Alert, Icon } from '@ntgovernment/web-design-system';
+import '@ntgovernment/web-design-system/components.min.css';
+import '@ntgovernment/web-design-system/ntg-theme.min.css'; // or central-theme.min.css
 
 function App() {
   return (
@@ -34,6 +46,7 @@ function App() {
         <p>This is a card component</p>
       </Card>
       <Alert variant="success">Operation successful!</Alert>
+      <Icon icon="fa-light fa-heart" color="#dc3545" size="2rem" />
     </div>
   );
 }
