@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Switching Demo - NT.GOV Design System</title>
+
+    <!-- Import theme CSS - will be swapped dynamically -->
+    <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./grid.css">
+    <link rel="stylesheet" href="./typography.css">
+    <link rel="stylesheet" href="./base-variables.css">
+    <link rel="stylesheet" href="./ntg-theme.css" id="theme-css">
+
+    <style>
+        /* Demo styles using UNPREFIXED semantic variables */
+        body {
+            margin: 0;
+            padding: 2rem;
+            background: var(--clr-bg-default);
+            color: var(--clr-text-default);
+            font-family: var(--type-font-default);
+            font-size: var(--type-desktop-body-default-size);
+        }
+
+        .demo-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .theme-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--clr-bg-shade);
+            padding: 1rem;
+            border: 2px solid var(--clr-border-strong-01);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-switcher h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: var(--type-desktop-h6-size);
+            color: var(--clr-text-default);
+        }
+
+        .theme-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--clr-border-strong-01);
+            background: var(--clr-action-secondary);
+            color: var(--clr-text-default);
+            cursor: pointer;
+            border-radius: 0.25rem;
+            font-family: var(--type-font-default);
+            font-size: var(--type-desktop-button-default-size);
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--clr-action-hover);
+            color: var(--clr-text-inverse);
+            border-color: var(--clr-action-hover);
+        }
+
+        .btn.active {
+            background: var(--clr-action-primary);
+            color: var(--clr-text-inverse);
+            border-color: var(--clr-action-primary);
+        }
+
+        .card {
+            background: var(--clr-bg-shade);
+            border: 1px solid var(--clr-border-subtle);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card h2 {
+            margin: 0 0 1rem 0;
+            color: var(--clr-text-emphasis);
+            font-size: var(--type-desktop-h2-size);
+        }
+
+        .card p {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        .card a {
+            color: var(--clr-link-default);
+            text-decoration: var(--type-link-default-decoration);
+        }
+
+        .card a:hover {
+            color: var(--clr-link-hover);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .status-card {
+            padding: 1rem;
+            border-radius: 0.25rem;
+            border-left: 4px solid;
+        }
+
+        .status-info {
+            background: var(--clr-status-info-bg);
+            border-color: var(--clr-status-info);
+            color: var(--clr-status-info);
+        }
+
+        .status-success {
+            background: var(--clr-status-success-bg);
+            border-color: var(--clr-status-success);
+            color: var(--clr-status-success);
+        }
+
+        .status-warning {
+            background: var(--clr-status-warning-bg);
+            border-color: var(--clr-status-warning);
+            color: var(--clr-status-warning);
+        }
+
+        .status-danger {
+            background: var(--clr-status-danger-bg);
+            border-color: var(--clr-status-danger);
+            color: var(--clr-status-danger);
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid var(--clr-border-subtle);
+            border-radius: 0.25rem;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        .variable-list {
+            font-family: monospace;
+            font-size: 0.875rem;
+            background: var(--clr-bg-dark);
+            color: var(--clr-text-inverse);
+            padding: 1rem;
+            border-radius: 0.25rem;
+            overflow-x: auto;
+        }
+
+        .variable-list code {
+            color: var(--clr-text-inverse);
+        }
+
+        .hero {
+            background: var(--clr-bg-accent);
+            color: var(--clr-text-inverse);
+            padding: 3rem 2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .hero h1 {
+            margin: 0 0 1rem 0;
+            font-size: var(--type-desktop-h1-size);
+        }
+
+        .hero p {
+            font-size: var(--type-desktop-body-default-size);
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="theme-switcher">
+        <h3>Select Theme</h3>
+        <div class="theme-buttons">
+            <button class="btn active" data-theme="ntg">NT.GOV.AU</button>
+            <button class="btn" data-theme="central">NTG Central</button>
+        </div>
+        <p style="margin: 0.5rem 0 0 0; font-size: 0.75rem; color: var(--clr-text-muted);">
+            Current: <strong id="current-theme">NT.GOV.AU</strong>
+        </p>
+    </div>
+
+    <div class="demo-container">
+        <div class="hero">
+            <h1>Theme Switching Demo</h1>
+            <p>Click the theme buttons above to see the design system adapt in real-time</p>
+        </div>
+
+        <div class="card">
+            <h2>🎨 About Dual-Variable System</h2>
+            <p>
+                This demo showcases the <strong>dual-variable system</strong> that allows seamless theme switching.
+                All components use <strong>unprefixed semantic variables</strong> like
+                <code>var(--clr-bg-default)</code>
+                which automatically reference the active theme's values.
+            </p>
+            <p>
+                Learn more in the <a href="./THEME_SWITCHING.md">Theme Switching Guide</a>.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🔤 Typography Showcase</h2>
+            <p style="font-size: var(--type-desktop-h1-size); margin: 0.5rem 0;">Heading 1 Style</p>
+            <p style="font-size: var(--type-desktop-h2-size); margin: 0.5rem 0;">Heading 2 Style</p>
+            <p style="font-size: var(--type-desktop-h3-size); margin: 0.5rem 0;">Heading 3 Style</p>
+            <p style="font-size: var(--type-desktop-body-default-size);">
+                Body text using <code>--type-desktop-body-default-size</code>. Notice how the font family changes
+                between themes: <strong style="font-family: var(--type-font-default);" id="font-name">Lato</strong>
+                for NT.GOV.AU and <strong>Roboto</strong> for NTG Central.
+            </p>
+            <p style="font-size: var(--type-desktop-body-sm-size); color: var(--clr-text-muted);">
+                Smaller text using <code>--type-desktop-body-sm-size</code>
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🎨 Color Variables</h2>
+            <p>Background: <span class="color-swatch"
+                    style="background: var(--clr-bg-default);"></span><code>--clr-bg-default</code></p>
+            <p>Primary Action: <span class="color-swatch"
+                    style="background: var(--clr-action-primary);"></span><code>--clr-action-primary</code></p>
+            <p>Accent: <span class="color-swatch"
+                    style="background: var(--clr-bg-accent);"></span><code>--clr-bg-accent</code></p>
+            <p>Text Emphasis: <span class="color-swatch"
+                    style="background: var(--clr-text-emphasis);"></span><code>--clr-text-emphasis</code></p>
+            <p>Link Default: <span class="color-swatch"
+                    style="background: var(--clr-link-default);"></span><code>--clr-link-default</code></p>
+        </div>
+
+        <div class="card">
+            <h2>📊 Status Messages</h2>
+            <div class="status-grid">
+                <div class="status-card status-info">
+                    <strong>Information</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Using --clr-status-info</p>
+                </div>
+                <div class="status-card status-success">
+                    <strong>Success</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Using --clr-status-success</p>
+                </div>
+                <div class="status-card status-warning">
+                    <strong>Warning</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Using --clr-status-warning</p>
+                </div>
+                <div class="status-card status-danger">
+                    <strong>Danger</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem;">Using --clr-status-danger</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💻 Variable Reference</h2>
+            <p>This entire page uses unprefixed semantic variables. Here's an example:</p>
+            <div class="variable-list">
+                <code>.button {
+  background: var(--clr-action-primary);
+  color: var(--clr-text-inverse);
+  border: 2px solid var(--clr-border-strong-01);
+  font-size: var(--type-desktop-button-default-size);
+}
+
+.card {
+  background: var(--clr-bg-shade);
+  color: var(--clr-text-default);
+  border: 1px solid var(--clr-border-subtle);
+}</code>
+            </div>
+            <p style="margin-top: 1rem;">
+                <strong>82 semantic variables</strong> available across:
+                <br>• 52 color variables (<code>--clr-*</code>)
+                <br>• 30 typography variables (<code>--type-*</code>)
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🚀 How It Works</h2>
+            <ol style="line-height: 1.8;">
+                <li>Each theme file defines <strong>both prefixed and unprefixed</strong> variables</li>
+                <li>Unprefixed variables reference prefixed ones:
+                    <code>--clr-bg-default: var(--ntg-clr-bg-default)</code></li>
+                <li>Switching themes swaps the CSS file, changing all variable references at once</li>
+                <li>Components use unprefixed variables, making them <strong>theme-agnostic</strong></li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Theme switching logic
+        const themeButtons = document.querySelectorAll('[data-theme]');
+        const themeLink = document.getElementById('theme-css');
+        const currentThemeDisplay = document.getElementById('current-theme');
+        const fontNameDisplay = document.getElementById('font-name');
+
+        let currentTheme = 'ntg';
+
+        themeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme;
+
+                // Update active button
+                themeButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Switch theme CSS file
+                themeLink.href = `./${theme}-theme.css`;
+
+                // Update display
+                currentTheme = theme;
+                const themeName = theme === 'ntg' ? 'NT.GOV.AU' : 'NTG Central';
+                const fontName = theme === 'ntg' ? 'Lato' : 'Roboto';
+
+                currentThemeDisplay.textContent = themeName;
+                fontNameDisplay.textContent = fontName;
+
+                console.log(`✅ Theme switched to: ${themeName}`);
+                console.log(`   Font family: ${fontName}`);
+                console.log(`   CSS file: ${theme}-theme.css`);
+            });
+        });
+
+        // Log available semantic variables on load
+        console.log('🎨 Theme Switching Demo Loaded');
+        console.log('📋 Available semantic variables:');
+        console.log('   • 52 color variables (--clr-*)');
+        console.log('   • 30 typography variables (--type-*)');
+        console.log('   • Total: 82 variables');
+        console.log('\n💡 Try switching themes using the buttons!');
+    </script>
+</body>
+
+</html>
