@@ -2,6 +2,11 @@ import type { Preview, Decorator } from "@storybook/react";
 import { useEffect } from "react";
 import React from "react";
 
+// Suppress React act() warnings in Storybook
+if (typeof globalThis !== "undefined") {
+  globalThis.IS_REACT_ACT_ENVIRONMENT = false;
+}
+
 // Load Bootstrap CSS from CDN
 const loadBootstrapCSS = () => {
   const link = document.createElement("link");

@@ -1,4 +1,156 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import type { Plugin } from "vite";
+import { readFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load static story data
+const storyDataPath = join(__dirname, "story-data.json");
+let storyData: any;
+try {
+  storyData = JSON.parse(readFileSync(storyDataPath, "utf-8"));
+} catch (error) {
+  console.warn(
+    "Warning: story-data.json not found. Run: node .storybook/generate-story-data.js",
+  );
+  storyData = { components: {} };
+}
+
+interface StoryModule {
+  default: {
+    component: any;
+    title: string;
+  };
+  [key: string]: any;
+}
+
+function htmlApiPlugin(): Plugin {
+  // Simple HTML template generators for each component
+  const generateHTML = (componentName: string, props: any): string => {
+    switch (componentName) {
+      case "Alert":
+        return `<div class="alert alert-${props.variant || "primary"}${props.dismissible ? " alert-dismissible fade show" : ""}" role="alert">
+  ${props.children || "Alert message"}${props.dismissible ? '\n  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' : ""}
+</div>`;
+
+      case "Button":
+        const size = props.size ? ` btn-${props.size}` : "";
+        return `<button type="button" class="btn btn-${props.variant || "primary"}${size}">${props.children || "Button"}</button>`;
+
+      case "Card":
+        return `<div class="card"${props.style ? ` style="${props.style}"` : ""}>
+  ${props.image ? `<img src="${props.image}" class="card-img-top" alt="${props.imageAlt || "Card image"}" />` : ""}
+  <div class="card-body">
+    ${props.title ? `<h5 class="card-title">${props.title}</h5>` : ""}
+    ${props.text ? `<p class="card-text">${props.text}</p>` : ""}
+    ${props.children || ""}
+  </div>
+</div>`;
+
+      default:
+        return `<div>Unknown component: ${componentName}</div>`;
+    }
+  };
+
+  return {
+    name: "storybook-html-api",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        // Handle OPTIONS for CORS preflight
+        if (req.method === "OPTIONS") {
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+          res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+          res.statusCode = 204;
+          res.end();
+          return;
+        }
+
+        // List all available components and stories
+        if (req.url === "/api/html") {
+          const catalog: Record<string, string[]> = {};
+
+          Object.entries(storyData.components).forEach(
+            ([component, data]: [string, any]) => {
+              catalog[component] = Object.keys(data.stories);
+            },
+          );
+
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader("Content-Type", "application/json");
+          res.end(
+            JSON.stringify(
+              {
+                components: catalog,
+                usage:
+                  "GET /api/html/:component/:story to get HTML for a specific story",
+                generated: storyData.generated,
+              },
+              null,
+              2,
+            ),
+          );
+          return;
+        }
+
+        // Match /api/html/:component/:story
+        const match = req.url?.match(/^\/api\/html\/([^\/]+)\/([^\/]+)$/);
+
+        if (!match) {
+          return next();
+        }
+
+        const [, componentName, storyName] = match;
+
+        // Look up story in static data
+        const componentData = storyData.components[componentName];
+
+        if (!componentData) {
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "application/json");
+          res.end(
+            JSON.stringify({
+              error: "Component not found",
+              component: componentName,
+              available: Object.keys(storyData.components),
+            }),
+          );
+          return;
+        }
+
+        const story = componentData.stories[storyName];
+
+        if (!story) {
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "application/json");
+          res.end(
+            JSON.stringify({
+              error: "Story not found",
+              component: componentName,
+              story: storyName,
+              available: Object.keys(componentData.stories),
+            }),
+          );
+          return;
+        }
+
+        // Generate HTML using template function
+        const html = generateHTML(componentName, story.args);
+
+        // Set CORS headers for external access
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
+
+        res.end(html);
+      });
+    },
+  };
+}
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -14,6 +166,12 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: true,
+  },
+  async viteFinal(config) {
+    // Add custom HTML API plugin
+    config.plugins = config.plugins || [];
+    config.plugins.push(htmlApiPlugin());
+    return config;
   },
 };
 export default config;
