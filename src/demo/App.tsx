@@ -15,8 +15,18 @@ function App() {
     const newTheme = theme === 'ntg' ? 'central' : 'ntg';
     setTheme(newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
-    // Note: Currently both themes define :root variables, so switching requires
-    // dynamically loading different CSS files. This is a placeholder for future implementation.
+    
+    // Swap Bootstrap typography override CSS
+    const typographyLink = document.getElementById('bootstrap-typography-css') as HTMLLinkElement;
+    if (typographyLink) {
+      typographyLink.href = `/src/typography/bootstrap-${newTheme}.css`;
+    }
+    
+    // Swap theme CSS
+    const themeLink = document.getElementById('theme-css') as HTMLLinkElement;
+    if (themeLink) {
+      themeLink.href = `/src/themes/${newTheme}-theme.css`;
+    }
   };
 
   return (
@@ -89,24 +99,40 @@ function App() {
           <div className="col-md-6">
             <Card title="NT.GOV.AU Theme (ntg- prefix)">
               <ul className="list-unstyled">
-                <li><code>--ntg-primary</code>: #003366</li>
-                <li><code>--ntg-secondary</code>: #6c757d</li>
-                <li><code>--ntg-accent</code>: #00a3e0</li>
-                <li><code>--ntg-success</code>: #28a745</li>
+                <li><code>--ntg-type-font-default</code>: Lato</li>
+                <li><code>--ntg-clr-action-pirmary</code>: #1f1f5f</li>
+                <li><code>--ntg-clr-link-hover</code>: #c33826</li>
+                <li><code>--ntg-success-03-d</code>: #107810</li>
               </ul>
             </Card>
           </div>
           <div className="col-md-6">
             <Card title="NTG Central Theme (central- prefix)">
               <ul className="list-unstyled">
-                <li><code>--central-primary</code>: #0d6efd</li>
-                <li><code>--central-secondary</code>: #6c757d</li>
-                <li><code>--central-accent</code>: #fd7e14</li>
-                <li><code>--central-success</code>: #198754</li>
+                <li><code>--central-type-font-default</code>: Roboto</li>
+                <li><code>--central-clr-action-pirmary</code>: Theme primary</li>
+                <li><code>--central-clr-link-hover</code>: Theme hover</li>
+                <li><code>--central-success-03-d</code>: Theme success</li>
               </ul>
             </Card>
           </div>
         </div>
+      </section>
+
+      <section className="mb-5">
+        <h2>Bootstrap Typography</h2>
+        <Card title="Typography Examples">
+          <h1>Heading 1 - Uses theme font</h1>
+          <h2>Heading 2 - Uses theme font</h2>
+          <h3>Heading 3 - Uses theme font</h3>
+          <h4>Heading 4 - Uses theme font</h4>
+          <h5>Heading 5 - Uses theme font</h5>
+          <h6>Heading 6 - Uses theme font</h6>
+          <p className="lead">This is lead text. It stands out from regular paragraphs.</p>
+          <p>This is regular body text. The font family changes with the theme: <strong>NTG uses Lato</strong>, <strong>Central uses Roboto</strong>.</p>
+          <p>Here's a <a href="#typography">link with theme colors</a> that uses theme-specific hover states.</p>
+          <p><small className="text-muted">Small muted text using theme text colors.</small></p>
+        </Card>
       </section>
     </div>
   );

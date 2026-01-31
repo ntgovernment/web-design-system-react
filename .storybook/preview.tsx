@@ -27,6 +27,22 @@ const loadFontAwesome = () => {
   document.head.appendChild(script);
 };
 
+// Load Bootstrap Typography Override (theme-specific)
+const loadBootstrapTypography = (theme: string) => {
+  // Remove existing Bootstrap typography override if present
+  const existingTypography = document.getElementById("bootstrap-typography-css");
+  if (existingTypography) {
+    existingTypography.remove();
+  }
+
+  // Add theme-specific Bootstrap typography override
+  const typographyOverride = document.createElement("link");
+  typographyOverride.id = "bootstrap-typography-css";
+  typographyOverride.rel = "stylesheet";
+  typographyOverride.href = new URL(`../src/typography/bootstrap-${theme}.css`, import.meta.url).href;
+  document.head.appendChild(typographyOverride);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -83,6 +99,7 @@ const withHTMLCode: Decorator = (Story, context) => {
   useEffect(() => {
     loadBootstrapCSS();
     loadFontAwesome();
+    loadBootstrapTypography(theme);
     loadThemeCSS(theme);
   }, [theme]);
 
