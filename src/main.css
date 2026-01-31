@@ -1,0 +1,13 @@
+/**
+ * Main stylesheet for the component library
+ * This file can be imported to get base styles
+ */
+
+/* Import default NT.GOV.AU theme */
+@import './themes/ntg-theme.css';
+
+/* Additional global styles can be added here */
+body {
+  margin: 0;
+  padding: 0;
+}
