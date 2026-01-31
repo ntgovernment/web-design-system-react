@@ -1,11 +1,20 @@
 /**
- * Bootstrap Typography Overrides - Central Australia Theme
+ * Bootstrap Typography Overrides - NTG Central Theme
  * 
- * This file maps Bootstrap CSS variables to Central theme design tokens.
+ * ⚠️ AUTO-GENERATED FILE - DO NOT EDIT MANUALLY ⚠️
+ * 
+ * This file maps Bootstrap CSS variables to NTG Central theme design tokens.
  * Load order: Bootstrap CDN → this file → central-theme.css
  * 
  * Purpose: Connect Bootstrap's typography system to theme-specific values
- * for seamless theme switching with Roboto font and Central color palette.
+ * for seamless theme switching.
+ * 
+ * To regenerate:
+ * 1. Update design-tokens/tokens.json
+ * 2. Run: npm run tokens:build
+ * 
+ * Generated: 2026-01-31T14:41:27.548Z
+ * Source: Figma Design Tokens
  */
 
 :root {
@@ -32,20 +41,20 @@
   --bs-link-decoration: var(--central-type-link-default-decoration);
   
   /* Bootstrap Reboot uses RGB variants - Override Strategy Layer 1 */
-  --bs-link-color-rgb: 16, 32, 64;      /* #102040 (central-blue-04) */
-  --bs-link-hover-color-rgb: 32, 136, 32; /* #208820 (central-green-03) */
+  --bs-link-color-rgb: var(--central-clr-link-default-rgb);
+  --bs-link-hover-color-rgb: var(--central-clr-link-hover-rgb);
   
   /* ===== COLORS ===== */
   
-  /* Primary Brand Colors mapped to Central palette */
+  /* Primary Brand Colors mapped to NTG Central palette */
   --bs-primary: var(--central-clr-action-pirmary);
-  --bs-secondary: var(--central-neutrals-06);
-  --bs-success: var(--central-success-03);
-  --bs-info: var(--central-info-03);
-  --bs-warning: var(--central-warning-03);
-  --bs-danger: var(--central-danger-03);
-  --bs-light: var(--central-neutrals-01);
-  --bs-dark: var(--central-blue-04);
+  --bs-secondary: var(--central-neutral-06);
+  --bs-success: var(--central-success-03-d);
+  --bs-info: var(--central-info-03-d);
+  --bs-warning: var(--central-warning-03-d);
+  --bs-danger: var(--central-danger-03-d);
+  --bs-light: var(--central-neutral-01);
+  --bs-dark: var(--central-blue-03-d);
   
   /* Emphasis Colors */
   --bs-emphasis-color: var(--central-clr-text-emphasis);
@@ -59,12 +68,12 @@
   --bs-border-color: var(--central-clr-border-subtle);
   
   /* Focus Ring */
-  --bs-focus-ring-color: rgba(228, 112, 36, 0.25); /* central-orange-02 with opacity */
+  --bs-focus-ring-color: rgba(236, 140, 88, 0.25); /* central-orange-02 with opacity */
   
   /* ===== COMPONENT-SPECIFIC ===== */
   
   /* Code */
-  --bs-code-color: var(--central-danger-03);
+  --bs-code-color: var(--central-coral-03-d);
   
   /* Highlight/Mark */
   --bs-highlight-color: var(--central-clr-text-default);
@@ -76,7 +85,7 @@
   --bs-warning-bg-subtle: var(--central-warning-01);
   --bs-danger-bg-subtle: var(--central-danger-01);
   
-  /* Border Radius - Central theme styling */
+  /* Border Radius - NTG Central uses sharp corners for buttons */
   --bs-border-radius: var(--central-radii-sm);
   --bs-border-radius-sm: var(--central-radii-none);
   --bs-border-radius-lg: var(--central-radii-md);

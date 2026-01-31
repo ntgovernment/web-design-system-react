@@ -1,11 +1,20 @@
 /**
  * Bootstrap Typography Overrides - NT.GOV.AU Theme
  * 
- * This file maps Bootstrap CSS variables to NTG theme design tokens.
+ * ⚠️ AUTO-GENERATED FILE - DO NOT EDIT MANUALLY ⚠️
+ * 
+ * This file maps Bootstrap CSS variables to NT.GOV.AU theme design tokens.
  * Load order: Bootstrap CDN → this file → ntg-theme.css
  * 
  * Purpose: Connect Bootstrap's typography system to theme-specific values
- * for seamless theme switching with Lato font and NTG color palette.
+ * for seamless theme switching.
+ * 
+ * To regenerate:
+ * 1. Update design-tokens/tokens.json
+ * 2. Run: npm run tokens:build
+ * 
+ * Generated: 2026-01-31T14:41:27.533Z
+ * Source: Figma Design Tokens
  */
 
 :root {
@@ -32,12 +41,12 @@
   --bs-link-decoration: var(--ntg-type-link-default-decoration);
   
   /* Bootstrap Reboot uses RGB variants - Override Strategy Layer 1 */
-  --bs-link-color-rgb: 31, 31, 95;        /* #1F1F5F (ntg-blue-03-d) */
-  --bs-link-hover-color-rgb: 195, 56, 38; /* #C33826 (ntg-ochre-02-d) */
+  --bs-link-color-rgb: var(--ntg-clr-link-default-rgb);
+  --bs-link-hover-color-rgb: var(--ntg-clr-link-hover-rgb);
   
   /* ===== COLORS ===== */
   
-  /* Primary Brand Colors mapped to NTG palette */
+  /* Primary Brand Colors mapped to NT.GOV.AU palette */
   --bs-primary: var(--ntg-clr-action-pirmary);
   --bs-secondary: var(--ntg-neutral-06);
   --bs-success: var(--ntg-success-03-d);
@@ -76,7 +85,7 @@
   --bs-warning-bg-subtle: var(--ntg-warning-01);
   --bs-danger-bg-subtle: var(--ntg-danger-01);
   
-  /* Border Radius - NTG uses sharp corners for buttons */
+  /* Border Radius - NT.GOV.AU uses sharp corners for buttons */
   --bs-border-radius: var(--ntg-radii-sm);
   --bs-border-radius-sm: var(--ntg-radii-none);
   --bs-border-radius-lg: var(--ntg-radii-md);

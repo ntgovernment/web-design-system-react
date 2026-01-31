@@ -78,6 +78,57 @@ function processColor(value) {
   return value;
 }
 
+// Helper to convert hex color to RGB triplet
+function hexToRgb(hex) {
+  // Remove # if present
+  hex = hex.replace(/^#/, '');
+  
+  // Handle 8-digit hex (with alpha)
+  if (hex.length === 8) {
+    hex = hex.slice(0, 6);
+  }
+  
+  // Parse RGB components
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  
+  return { r, g, b, triplet: `${r}, ${g}, ${b}` };
+}
+
+// Helper to resolve color variable references to final hex value
+function resolveColorValue(tokenPath, themeData) {
+  const parts = tokenPath.split('.');
+  let current = themeData;
+  
+  // Navigate through the token path
+  for (const part of parts) {
+    if (!current || typeof current !== 'object') return null;
+    current = current[part];
+  }
+  
+  // If we found a token object, get its value
+  if (current && typeof current === 'object' && current.value !== undefined) {
+    let value = current.value;
+    
+    // If it's a reference, resolve it recursively
+    if (typeof value === 'string' && value.startsWith('{') && value.endsWith('}')) {
+      // Remove braces and clean up the reference
+      const ref = value.slice(1, -1)
+        .replace(/^primitives\.(ntg|central)\./, '') // Remove primitives.ntg. or primitives.central.
+        .replace(/\s*\(d\)/g, '-d')  // Convert (d) to -d
+        .replace(/\s+d$/g, '-d')     // Convert " d" at end to -d
+        .replace(/\s+/g, '.');       // Replace remaining spaces with dot for navigation
+      return resolveColorValue(ref, themeData);
+    }
+    
+    // Return the final color value
+    return processColor(value);
+  }
+  
+  return null;
+}
+
 // Helper to process dimension values
 function processDimension(value) {
   const num = parseFloat(value);
@@ -849,10 +900,76 @@ if (value && typeof value === 'object') {
     });
   }
   
+  // Add regular variables and generate RGB components for colors
+  const rgbComponents = [];
+  
   variables.forEach(v => {
     const comment = v.description ? `  /* ${v.description} */\n` : '';
     cssLines.push(`${comment}  ${v.name}: ${v.value};`);
+    
+    // If this is a color value (hex format), generate RGB components
+    if (typeof v.value === 'string' && v.value.match(/^#[0-9a-f]{6}$/i)) {
+      const rgb = hexToRgb(v.value);
+      rgbComponents.push({
+        name: `${v.name}-r`,
+        value: rgb.r,
+        description: null
+      });
+      rgbComponents.push({
+        name: `${v.name}-g`,
+        value: rgb.g,
+        description: null
+      });
+      rgbComponents.push({
+        name: `${v.name}-b`,
+        value: rgb.b,
+        description: null
+      });
+      rgbComponents.push({
+        name: `${v.name}-rgb`,
+        value: `var(${v.name}-r), var(${v.name}-g), var(${v.name}-b)`,
+        description: null
+      });
+    }
+    // If this is a var() reference to another color, also generate RGB components
+    else if (typeof v.value === 'string' && v.value.match(/^var\(--[^)]+\)$/)) {
+      // Extract the referenced variable name
+      const refMatch = v.value.match(/^var\((--[^)]+)\)$/);
+      if (refMatch) {
+        const refVarName = refMatch[1];
+        // Generate RGB components that reference the primitive's RGB components
+        rgbComponents.push({
+          name: `${v.name}-r`,
+          value: `var(${refVarName}-r)`,
+          description: null
+        });
+        rgbComponents.push({
+          name: `${v.name}-g`,
+          value: `var(${refVarName}-g)`,
+          description: null
+        });
+        rgbComponents.push({
+          name: `${v.name}-b`,
+          value: `var(${refVarName}-b)`,
+          description: null
+        });
+        rgbComponents.push({
+          name: `${v.name}-rgb`,
+          value: `var(${v.name}-r), var(${v.name}-g), var(${v.name}-b)`,
+          description: null
+        });
+      }
+    }
   });
+  
+  // Add RGB component variables
+  if (rgbComponents.length > 0) {
+    cssLines.push('');
+    cssLines.push('  /* RGB components for color variables */');
+    rgbComponents.forEach(v => {
+      cssLines.push(`  ${v.name}: ${v.value};`);
+    });
+  }
   
   // Add unprefixed semantic variables that reference prefixed ones
   const semanticVars = extractSemanticVariables(variables, prefix);
@@ -870,6 +987,175 @@ if (value && typeof value === 'object') {
   const css = header + '\n' + cssLines.join('\n') + footer;
   
   return { css, variables, fontFamilies };
+}
+
+/**
+ * Generate Bootstrap Typography Override CSS
+ * 
+ * Creates Bootstrap-specific CSS variable overrides that bridge Bootstrap's
+ * CSS variable system with the design token architecture.
+ * 
+ * Key features:
+ * - Extracts RGB color values for Bootstrap's rgba() usage
+ * - Maps typography tokens to --bs-* variables
+ * - Includes theme-specific font families
+ * - Adds direct element overrides for maximum specificity
+ * 
+ * @param {string} themeName - Display name (e.g., "NT.GOV.AU")
+ * @param {object} themeData - Complete theme token data
+ * @param {string} prefix - Variable prefix (e.g., "ntg", "central")
+ * @returns {string} Complete Bootstrap override CSS content
+ */
+function generateBootstrapCSS(themeName, themeData, prefix) {
+  // Resolve link colors to hex values
+  const linkDefaultHex = resolveColorValue('clr.link.default', themeData);
+  const linkHoverHex = resolveColorValue('clr.link.hover', themeData);
+  
+  // Convert to RGB triplets
+  const linkDefaultRgb = linkDefaultHex ? hexToRgb(linkDefaultHex) : null;
+  const linkHoverRgb = linkHoverHex ? hexToRgb(linkHoverHex) : null;
+  
+  // Get primitive color names for comments
+  const linkDefaultToken = themeData.clr?.link?.default?.value || '';
+  const linkHoverToken = themeData.clr?.link?.hover?.value || '';
+  const linkDefaultName = linkDefaultToken ? linkDefaultToken.replace(/[{}]/g, '').split('.').pop().replace(/\s+/g, '-').replace(/\(d\)/g, '-d') : '';
+  const linkHoverName = linkHoverToken ? linkHoverToken.replace(/[{}]/g, '').split('.').pop().replace(/\s+/g, '-').replace(/\(d\)/g, '-d') : '';
+  
+  const header = `/**
+ * Bootstrap Typography Overrides - ${themeName} Theme
+ * 
+ * ⚠️ AUTO-GENERATED FILE - DO NOT EDIT MANUALLY ⚠️
+ * 
+ * This file maps Bootstrap CSS variables to ${themeName} theme design tokens.
+ * Load order: Bootstrap CDN → this file → ${prefix}-theme.css
+ * 
+ * Purpose: Connect Bootstrap's typography system to theme-specific values
+ * for seamless theme switching.
+ * 
+ * To regenerate:
+ * 1. Update design-tokens/tokens.json
+ * 2. Run: npm run tokens:build
+ * 
+ * Generated: ${new Date().toISOString()}
+ * Source: Figma Design Tokens
+ */
+
+:root {
+  /* ===== TYPOGRAPHY ===== */
+  
+  /* Font Families */
+  --bs-font-sans-serif: var(--${prefix}-type-font-default), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --bs-body-font-family: var(--${prefix}-type-font-default), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  /* Body Typography */
+  --bs-body-font-size: var(--${prefix}-type-desktop-body-default-size);
+  --bs-body-font-weight: var(--type-body-default-weight);
+  --bs-body-line-height: var(--type-body-default-lh);
+  --bs-body-color: var(--${prefix}-clr-text-default);
+  --bs-body-bg: var(--${prefix}-clr-bg-default);
+  
+  /* Headings */
+  --bs-heading-color: var(--${prefix}-clr-text-default);
+  --bs-headings-font-weight: var(--type-heading-h2-weight);
+  
+  /* Links */
+  --bs-link-color: var(--${prefix}-clr-link-default);
+  --bs-link-hover-color: var(--${prefix}-clr-link-hover);
+  --bs-link-decoration: var(--${prefix}-type-link-default-decoration);
+  
+  /* Bootstrap Reboot uses RGB variants - Override Strategy Layer 1 */`;
+  
+  const rgbVars = `
+  --bs-link-color-rgb: var(--${prefix}-clr-link-default-rgb);
+  --bs-link-hover-color-rgb: var(--${prefix}-clr-link-hover-rgb);`;
+  
+  const colorSection = `
+  
+  /* ===== COLORS ===== */
+  
+  /* Primary Brand Colors mapped to ${themeName} palette */
+  --bs-primary: var(--${prefix}-clr-action-pirmary);
+  --bs-secondary: var(--${prefix}-neutral-06);
+  --bs-success: var(--${prefix}-success-03-d);
+  --bs-info: var(--${prefix}-info-03-d);
+  --bs-warning: var(--${prefix}-warning-03-d);
+  --bs-danger: var(--${prefix}-danger-03-d);
+  --bs-light: var(--${prefix}-neutral-01);
+  --bs-dark: var(--${prefix}-blue-03-d);
+  
+  /* Emphasis Colors */
+  --bs-emphasis-color: var(--${prefix}-clr-text-emphasis);
+  --bs-secondary-color: var(--${prefix}-clr-text-muted);
+  
+  /* Background Colors */
+  --bs-secondary-bg: var(--${prefix}-clr-bg-shade-alt);
+  --bs-tertiary-bg: var(--${prefix}-clr-bg-shade);
+  
+  /* Border Colors */
+  --bs-border-color: var(--${prefix}-clr-border-subtle);
+  
+  /* Focus Ring */
+  --bs-focus-ring-color: rgba(236, 140, 88, 0.25); /* ${prefix}-orange-02 with opacity */
+  
+  /* ===== COMPONENT-SPECIFIC ===== */
+  
+  /* Code */
+  --bs-code-color: var(--${prefix}-coral-03-d);
+  
+  /* Highlight/Mark */
+  --bs-highlight-color: var(--${prefix}-clr-text-default);
+  --bs-highlight-bg: var(--${prefix}-warning-01);
+  
+  /* Status/Alert Backgrounds */
+  --bs-info-bg-subtle: var(--${prefix}-info-01);
+  --bs-success-bg-subtle: var(--${prefix}-success-01);
+  --bs-warning-bg-subtle: var(--${prefix}-warning-01);
+  --bs-danger-bg-subtle: var(--${prefix}-danger-01);
+  
+  /* Border Radius - ${themeName} uses sharp corners for buttons */
+  --bs-border-radius: var(--${prefix}-radii-sm);
+  --bs-border-radius-sm: var(--${prefix}-radii-none);
+  --bs-border-radius-lg: var(--${prefix}-radii-md);
+}
+
+/* Inline Link Typography - Figma Spec Compliance */
+/* Override Strategy Layer 3: Direct element override for maximum specificity */
+a {
+  color: var(--${prefix}-clr-link-default);
+  font-size: var(--type-link-default-size);
+  font-weight: var(--type-link-default-weight);
+  line-height: var(--type-link-default-lh);
+  letter-spacing: var(--type-link-default-ls);
+}
+
+a:hover {
+  color: var(--${prefix}-clr-link-hover);
+  text-decoration: none;
+}
+
+a:focus,
+a:focus-visible {
+  background: var(--${prefix}-clr-focus-focus);
+  border-bottom: 4px solid var(--${prefix}-clr-border-strong-01);
+  text-decoration: none;
+  outline: none;
+}
+
+/* Mobile Typography Adjustments */
+@media (max-width: 768px) {
+  :root {
+    --bs-body-font-size: var(--${prefix}-type-mobile-body-default-size);
+    --bs-body-line-height: var(--type-mobile-body-default-lh);
+  }
+  
+  a {
+    font-size: var(--type-mobile-link-default-size);
+    line-height: var(--type-mobile-link-default-lh);
+  }
+}
+`;
+  
+  return header + rgbVars + colorSection;
 }
 
 // Build common tokens file
@@ -973,6 +1259,34 @@ try {
   process.exit(1);
 }
 
+// Build Bootstrap typography overrides
+try {
+  console.log('\n📦 Building Bootstrap typography overrides...');
+  
+  // NTG Bootstrap overrides
+  const ntgBootstrapData = {
+    ...tokens.primitives?.ntg,
+    ...tokens.themes?.ntg
+  };
+  const ntgBootstrapCSS = generateBootstrapCSS('NT.GOV.AU', ntgBootstrapData, 'ntg');
+  const ntgBootstrapPath = join(rootDir, 'src/typography/bootstrap-ntg.css');
+  writeFileSync(ntgBootstrapPath, ntgBootstrapCSS, 'utf-8');
+  console.log('  ✓ Generated src/typography/bootstrap-ntg.css');
+  
+  // Central Bootstrap overrides
+  const centralBootstrapData = {
+    ...tokens.primitives?.central,
+    ...tokens.themes?.central
+  };
+  const centralBootstrapCSS = generateBootstrapCSS('NTG Central', centralBootstrapData, 'central');
+  const centralBootstrapPath = join(rootDir, 'src/typography/bootstrap-central.css');
+  writeFileSync(centralBootstrapPath, centralBootstrapCSS, 'utf-8');
+  console.log('  ✓ Generated src/typography/bootstrap-central.css');
+} catch (error) {
+  console.error('  ❌ Failed to generate Bootstrap typography overrides:', error.message);
+  process.exit(1);
+}
+
 console.log('\n✅ Design tokens successfully built!');
 console.log('\nGenerated files:');
 console.log('  - src/themes/common.css (shared tokens)');
@@ -981,4 +1295,6 @@ console.log('  - src/themes/typography.css (theme-agnostic fonts)');
 console.log('  - src/themes/base-variables.css (unprefixed semantic variables)');
 console.log('  - src/themes/ntg-theme.css (NT.GOV.AU theme)');
 console.log('  - src/themes/central-theme.css (NTG Central theme)');
+console.log('  - src/typography/bootstrap-ntg.css (Bootstrap overrides for NTG)');
+console.log('  - src/typography/bootstrap-central.css (Bootstrap overrides for Central)');
 console.log('\n💡 Remember to commit the generated CSS files to version control.\n');
