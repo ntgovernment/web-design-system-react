@@ -1,19 +1,21 @@
-import type { Preview } from "@storybook/react";
-import { useEffect } from 'react';
-import React from 'react';
+import type { Preview, Decorator } from "@storybook/react";
+import { useEffect } from "react";
+import React from "react";
 
 // Load Bootstrap CSS from CDN
 const loadBootstrapCSS = () => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
-  link.integrity = 'sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH';
-  link.crossOrigin = 'anonymous';
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href =
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css";
+  link.integrity =
+    "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH";
+  link.crossOrigin = "anonymous";
   document.head.appendChild(link);
 };
 
 // HTML Decorator to view code as HTML and ensure Bootstrap is loaded
-const withHTMLCode = (Story: any) => {
+const withHTMLCode: Decorator = (Story) => {
   useEffect(() => {
     loadBootstrapCSS();
   }, []);
@@ -36,7 +38,7 @@ const preview: Preview = {
     },
     docs: {
       source: {
-        type: 'dynamic',
+        type: "dynamic",
       },
     },
     // Show HTML in docs
@@ -44,7 +46,7 @@ const preview: Preview = {
       prettier: {
         tabWidth: 2,
         useTabs: false,
-        htmlWhitespaceSensitivity: 'strict',
+        htmlWhitespaceSensitivity: "strict",
       },
     },
   },
