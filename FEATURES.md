@@ -12,15 +12,30 @@ A modern, production-ready component library built with Vite, React, TypeScript,
 - **Bootstrap 5.3.3** - Via CDN with CSS variables support
 
 ### 2. Dual Theme System
+
+**Automated Design Token Workflow:**
+- Design tokens exported from Figma as JSON
+- Style Dictionary transforms tokens into CSS custom properties
+- Automated generation on every build
+- Version-controlled token source of truth
+
 - **NT.GOV.AU Theme** - CSS variables with `ntg-` prefix
   - Primary: #003366 (NT Government blue)
   - Accent: #00a3e0
-  - Fully customizable via CSS variables
+  - Fully customizable via design tokens
   
 - **NTG Central Theme** - CSS variables with `central-` prefix
   - Primary: #0d6efd (Bootstrap blue)
   - Accent: #fd7e14 (Orange)
-  - Fully customizable via CSS variables
+  - Fully customizable via design tokens
+
+**Design Token Features:**
+- Single source of truth in `design-tokens/tokens.json`
+- Automated CSS generation via Style Dictionary
+- Bootstrap 5.3 CSS variable integration
+- Validation scripts for token structure
+- Build-time transformation
+- 4000+ token definitions from Figma
 
 ### 3. Component Library
 Three fully functional, documented components:

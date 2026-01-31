@@ -85,6 +85,12 @@ The components are designed to work with Bootstrap 5.3 loaded from CDN. Add this
 # Install dependencies
 npm install
 
+# Validate design tokens
+npm run tokens:validate
+
+# Generate theme CSS from design tokens
+npm run tokens:build
+
 # Start development server
 npm run dev
 
@@ -97,6 +103,17 @@ npm run build
 # Build Storybook
 npm run build-storybook
 ```
+
+### Design Token Workflow
+
+This project uses an automated design token system:
+
+1. **Source**: Design tokens are exported from Figma as `design-tokens/tokens.json`
+2. **Transform**: Style Dictionary converts tokens to CSS custom properties
+3. **Output**: Generated theme files in `src/themes/`
+4. **Integration**: Vite bundles the CSS into the final library
+
+See [design-tokens/README.md](design-tokens/README.md) for detailed workflow documentation.
 
 ## Deployment to Squiz DXP Component Services
 
@@ -181,11 +198,37 @@ You can create custom themes by defining CSS variables:
 
 ### Figma Design Tokens
 
-Themes are based on design tokens from Figma. To update:
+Themes are based on design tokens exported from Figma and automatically transformed into CSS.
 
-1. Export design tokens from Figma
-2. Update the theme files in `src/themes/`
-3. Rebuild the library
+#### Token Workflow
+
+1. **Export from Figma**: Export design tokens as JSON from your Figma design file
+2. **Update tokens**: Replace `design-tokens/tokens.json` with the new export
+3. **Generate CSS**: Run `npm run tokens:build` to transform tokens into CSS
+4. **Rebuild library**: Run `npm run build`
+
+#### Token Commands
+
+```bash
+# Validate token structure
+npm run tokens:validate
+
+# Generate CSS from tokens
+npm run tokens:build
+
+# Build library (includes token generation)
+npm run build
+```
+
+#### Automated Generation
+
+Theme CSS files in `src/themes/` are automatically generated from design tokens:
+- `ntg-theme.css` - Generated from NTG theme tokens
+- `central-theme.css` - Generated from Central theme tokens
+
+⚠️ **Do not edit theme CSS files manually**. All changes should be made in `design-tokens/tokens.json`.
+
+For more details, see [design-tokens/README.md](design-tokens/README.md).
 
 ## Components
 

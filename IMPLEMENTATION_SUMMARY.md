@@ -44,9 +44,59 @@ Create a latest Vite + React + TypeScript component library that can be deployed
 
 **Features:**
 - Prefix-based namespacing prevents conflicts
-- Based on design tokens (ready for Figma integration)
+- **Automated from Figma design tokens** via Style Dictionary
 - Extends Bootstrap 5.3 CSS variables
 - Easy to switch between themes
+- Single source of truth in `design-tokens/tokens.json`
+
+### 3.1. Design Token System (NEW)
+
+**Automated Token Workflow:**
+- **Style Dictionary** - Industry-standard token transformation tool
+- **Source**: 4433-line `design-tokens/tokens.json` from Figma export
+- **Transform**: Automated CSS generation via build scripts
+- **Output**: Theme CSS files with proper variable naming
+- **Validation**: Token structure validation script
+
+**Infrastructure:**
+```
+design-tokens/
+├── tokens.json                        # Source tokens from Figma (4433 lines)
+├── config/
+│   └── style-dictionary.config.js    # Transform configuration
+└── README.md                          # Token workflow documentation
+
+scripts/
+├── build-tokens.js                    # Token → CSS transformation
+└── validate-tokens.js                 # Token structure validation
+
+src/themes/
+├── ntg-theme.css                     # ⚠️ AUTO-GENERATED
+├── central-theme.css                 # ⚠️ AUTO-GENERATED
+└── README.md                         # Usage documentation
+```
+
+**Build Integration:**
+```bash
+npm run tokens:validate  # Validate token structure
+npm run tokens:build     # Generate CSS from tokens
+npm run build            # Includes token generation (via prebuild)
+```
+
+**Token Categories:**
+- **Grid**: Breakpoint definitions and layout system
+- **Font**: Typography scales for desktop and mobile
+- **Effects**: Shadows, focus states, elevation
+- **Primitives**: Foundation colors for both themes
+- **Themes**: Semantic color mappings (ntg, central)
+- **Typography**: Complete type system
+
+**Custom Transforms:**
+- Figma color format → standard hex (#ffffffff → #ffffff)
+- Dimensions → rem/px conversion
+- Shadow objects → CSS shadow values
+- Font weights → numeric values
+- Token references → CSS variable references
 
 ### 4. Storybook Setup
 - **Version**: Storybook 7.6.21
@@ -108,6 +158,14 @@ web-design-system/
 ├── .storybook/              # Storybook configuration
 │   ├── main.ts             # Storybook setup
 │   └── preview.tsx         # Bootstrap CDN loader & decorators
+├── design-tokens/          # Design token system (NEW)
+│   ├── tokens.json         # Source tokens from Figma (4433 lines)
+│   ├── config/
+│   │   └── style-dictionary.config.js
+│   └── README.md
+├── scripts/                # Build automation (NEW)
+│   ├── build-tokens.js
+│   └── validate-tokens.js
 ├── src/
 │   ├── components/          # React components
 │   │   ├── Alert/
@@ -122,9 +180,10 @@ web-design-system/
 │   │       ├── Card.tsx
 │   │       ├── Card.stories.tsx
 │   │       └── index.ts
-│   ├── themes/              # Theme CSS files
-│   │   ├── ntg-theme.css   # NT.GOV.AU theme
-│   │   └── central-theme.css # NTG Central theme
+│   ├── themes/              # Theme CSS files (AUTO-GENERATED)
+│   │   ├── ntg-theme.css   # Generated from tokens
+│   │   ├── central-theme.css # Generated from tokens
+│   │   └── README.md       # Theme documentation
 │   ├── demo/               # Demo application
 │   │   ├── App.tsx
 │   │   └── main.tsx
@@ -154,7 +213,16 @@ web-design-system/
 ### Why Bootstrap from CDN?
 - Reduces bundle size significantly
 - Better browser caching
-- Easier to update Bootstrap independently
+- Easier tyle Dictionary? (NEW)
+- Industry standard for design token transformation
+- Platform-agnostic (outputs CSS, SCSS, JS, JSON, etc.)
+- Custom transforms for Figma token format
+- Handles complex token references and aliases
+- Integrates seamlessly with Vite build process
+- Maintains single source of truth from Figma
+- Active community and extensive documentation
+
+### Why Sto update Bootstrap independently
 - CSS variables allow theming without rebuild
 
 ### Why CSS Variables?

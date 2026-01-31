@@ -18,6 +18,9 @@
   ],
   "scripts": {
     "dev": "vite",
+    "tokens:validate": "node scripts/validate-tokens.js",
+    "tokens:build": "node scripts/build-tokens.js",
+    "prebuild": "npm run tokens:build",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "generate-story-data": "node .storybook/generate-story-data.js",
@@ -48,9 +51,10 @@
     "eslint": "^9.17.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
-    "globals": "^15.13.0",
     "eslint-plugin-storybook": "^0.12.0",
+    "globals": "^15.13.0",
     "storybook": "8.6.15",
+    "style-dictionary": "^5.2.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.2.5"
