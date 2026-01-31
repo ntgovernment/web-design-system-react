@@ -96,6 +96,15 @@ export const Links: Story = {
         <a href="#typography">Link with default styling</a>
       </p>
       <p>
+        <a href="#visited-demo" style={{ color: 'var(--clr-link-visited)' }}>
+          Visited link (styled to demonstrate visited state)
+        </a>
+      </p>
+      <p className="text-muted small">
+        Note: Click a link to trigger the visited state. Visited links use a distinct purple color 
+        to indicate previously visited pages, following web accessibility best practices.
+      </p>
+      <p>
         <a href="#typography" className="link-primary">Primary link</a>{' '}
         <a href="#typography" className="link-secondary">Secondary link</a>{' '}
         <a href="#typography" className="link-success">Success link</a>{' '}

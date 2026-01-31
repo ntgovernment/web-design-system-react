@@ -13,7 +13,7 @@
  * 1. Update design-tokens/tokens.json
  * 2. Run: npm run tokens:build
  * 
- * Generated: 2026-01-31T14:41:27.533Z
+ * Generated: 2026-01-31T15:05:03.913Z
  * Source: Figma Design Tokens
  */
 
@@ -112,6 +112,10 @@ a:focus-visible {
   border-bottom: 4px solid var(--ntg-clr-border-strong-01);
   text-decoration: none;
   outline: none;
+}
+
+a:visited {
+  color: var(--ntg-clr-link-visited);
 }
 
 /* Mobile Typography Adjustments */

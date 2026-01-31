@@ -1141,6 +1141,10 @@ a:focus-visible {
   outline: none;
 }
 
+a:visited {
+  color: var(--${prefix}-clr-link-visited);
+}
+
 /* Mobile Typography Adjustments */
 @media (max-width: 768px) {
   :root {
