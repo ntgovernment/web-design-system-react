@@ -49,6 +49,45 @@ const preview: Preview = {
         htmlWhitespaceSensitivity: "strict",
       },
     },
+    // Strict WCAG AAA accessibility testing
+    a11y: {
+      config: {
+        rules: [
+          // Enable strict color contrast checking (WCAG AAA)
+          {
+            id: "color-contrast",
+            enabled: true,
+          },
+          // Ensure all interactive elements have accessible names
+          {
+            id: "label",
+            enabled: true,
+          },
+          // Check for proper ARIA usage
+          {
+            id: "aria-valid-attr-value",
+            enabled: true,
+          },
+          {
+            id: "aria-required-attr",
+            enabled: true,
+          },
+          // Ensure proper heading hierarchy
+          {
+            id: "heading-order",
+            enabled: true,
+          },
+          // Validate landmark regions
+          {
+            id: "region",
+            enabled: true,
+          },
+        ],
+      },
+      // Run on active story only for performance
+      element: "#storybook-root",
+      manual: false,
+    },
   },
   decorators: [withHTMLCode],
 };
