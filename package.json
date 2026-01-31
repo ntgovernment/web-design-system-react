@@ -20,7 +20,6 @@
     "dev": "vite",
     "tokens:validate": "node scripts/validate-tokens.js",
     "tokens:build": "node scripts/build-tokens.js",
-    "prebuild": "npm run tokens:build",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "generate-story-data": "node .storybook/generate-story-data.js",

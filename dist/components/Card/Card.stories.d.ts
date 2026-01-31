@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/react';
 declare const meta: {
     title: string;
-    component: ({ title, children, footer, variant, }: import('./Card').CardProps) => import("react/jsx-runtime").JSX.Element;
+    component: ({ title, children, footer, variant, icon, }: import('./Card').CardProps) => import("react/jsx-runtime").JSX.Element;
     parameters: {
         layout: string;
     };
@@ -13,3 +13,5 @@ export declare const Basic: Story;
 export declare const WithFooter: Story;
 export declare const PrimaryVariant: Story;
 export declare const AllVariants: Story;
+export declare const WithIcon: Story;
+export declare const IconCards: Story;

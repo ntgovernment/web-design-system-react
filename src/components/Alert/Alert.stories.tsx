@@ -59,3 +59,42 @@ export const AllVariants: Story = {
     </div>
   ),
 };
+
+export const WithIcon: Story = {
+  args: {
+    variant: 'success',
+    icon: 'fa-solid fa-circle-check',
+    children: 'Your action was successful!',
+  },
+};
+
+export const ContextualIcons: Story = {
+  args: {
+    children: 'Alert content',
+  },
+  render: () => (
+    <div className="d-flex flex-column gap-2">
+      <Alert variant="success" icon="fa-solid fa-circle-check">
+        Success! Your changes have been saved.
+      </Alert>
+      <Alert variant="danger" icon="fa-solid fa-circle-exclamation">
+        Error! There was a problem with your request.
+      </Alert>
+      <Alert variant="warning" icon="fa-solid fa-triangle-exclamation">
+        Warning! Please review your information before proceeding.
+      </Alert>
+      <Alert variant="info" icon="fa-solid fa-circle-info">
+        Info: You can now access the new features.
+      </Alert>
+    </div>
+  ),
+};
+
+export const DismissibleWithIcon: Story = {
+  args: {
+    variant: 'warning',
+    icon: 'fa-solid fa-triangle-exclamation',
+    dismissible: true,
+    children: 'This is a dismissible alert with an icon. Click the × to close it.',
+  },
+};

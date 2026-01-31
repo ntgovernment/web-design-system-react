@@ -16,8 +16,12 @@ export interface CardProps {
      * Card variant
      */
     variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+    /**
+     * FontAwesome icon class (e.g., 'fa-solid fa-chart-line')
+     */
+    icon?: string;
 }
 /**
  * Card component for displaying content
  */
-export declare const Card: ({ title, children, footer, variant, }: CardProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Card: ({ title, children, footer, variant, icon, }: CardProps) => import("react/jsx-runtime").JSX.Element;

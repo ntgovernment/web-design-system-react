@@ -16,7 +16,7 @@ export interface ButtonProps {
   /**
    * Button contents
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * Optional click handler
    */
@@ -25,6 +25,18 @@ export interface ButtonProps {
    * Button type
    */
   type?: 'button' | 'submit' | 'reset';
+  /**
+   * FontAwesome icon class (e.g., 'fa-solid fa-home')
+   */
+  icon?: string;
+  /**
+   * Icon position relative to text
+   */
+  iconPosition?: 'left' | 'right';
+  /**
+   * Accessible label (required for icon-only buttons)
+   */
+  'aria-label'?: string;
 }
 
 /**
@@ -37,6 +49,8 @@ export const Button = ({
   children,
   onClick,
   type = 'button',
+  icon,
+  iconPosition = 'left',
   ...props
 }: ButtonProps) => {
   const sizeClass = size ? `btn-${size}` : '';
@@ -50,7 +64,13 @@ export const Button = ({
       onClick={onClick}
       {...props}
     >
+      {icon && iconPosition === 'left' && (
+        <i className={`${icon} ${children ? 'me-2' : ''}`} aria-hidden="true"></i>
+      )}
       {children}
+      {icon && iconPosition === 'right' && (
+        <i className={`${icon} ${children ? 'ms-2' : ''}`} aria-hidden="true"></i>
+      )}
     </button>
   );
 };

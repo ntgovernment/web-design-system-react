@@ -72,6 +72,48 @@ The components are designed to work with Bootstrap 5.3 loaded from CDN. Add this
 >
 ```
 
+### FontAwesome Icons
+
+The library uses FontAwesome for icons. Add the FontAwesome Kit to your HTML:
+
+```html
+<script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+```
+
+#### Using Icons in Components
+
+Components support FontAwesome icons via the `icon` prop:
+
+```tsx
+import { Button, Alert, Card } from '@ntgovernment/web-design-system';
+
+// Button with icon
+<Button variant="primary" icon="fa-solid fa-home" iconPosition="left">
+  Home
+</Button>
+
+// Icon-only button (requires aria-label for accessibility)
+<Button variant="primary" icon="fa-solid fa-search" aria-label="Search" />
+
+// Alert with icon
+<Alert variant="success" icon="fa-solid fa-circle-check">
+  Your changes have been saved!
+</Alert>
+
+// Card with icon in header
+<Card title="Dashboard" icon="fa-solid fa-chart-line">
+  View your analytics
+</Card>
+```
+
+#### Icon Props
+
+- **Button**: `icon` (icon class), `iconPosition` ('left' | 'right')
+- **Alert**: `icon` (icon class)
+- **Card**: `icon` (icon class, displayed in header)
+
+All icon classes should follow FontAwesome's naming convention (e.g., `fa-solid fa-home`, `fa-regular fa-user`).
+
 ## Development
 
 ### Prerequisites
@@ -234,9 +276,17 @@ For more details, see [design-tokens/README.md](design-tokens/README.md).
 
 ### Available Components
 
-- **Button**: Configurable button component with multiple variants
-- **Card**: Container component for content
-- **Alert**: Alert/notification component
+- **Button**: Configurable button component with multiple variants and icon support
+  - Props: `variant`, `size`, `disabled`, `icon`, `iconPosition`, `aria-label`
+  - Supports FontAwesome icons in left/right positions or icon-only mode
+  
+- **Card**: Container component for content with optional icon in header
+  - Props: `title`, `variant`, `footer`, `icon`
+  - Icon appears before the card title
+  
+- **Alert**: Alert/notification component with contextual icon support
+  - Props: `variant`, `dismissible`, `onDismiss`, `icon`
+  - Icons help communicate alert context (success, warning, error, info)
 
 More components will be added over time.
 

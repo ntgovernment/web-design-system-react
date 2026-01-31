@@ -17,6 +17,10 @@ export interface AlertProps {
    * On dismiss callback
    */
   onDismiss?: () => void;
+  /**
+   * FontAwesome icon class (e.g., 'fa-solid fa-circle-check')
+   */
+  icon?: string;
 }
 
 /**
@@ -27,6 +31,7 @@ export const Alert = ({
   children,
   dismissible = false,
   onDismiss,
+  icon,
 }: AlertProps) => {
   const alertClass = dismissible 
     ? `alert alert-${variant} alert-dismissible fade show`
@@ -34,6 +39,7 @@ export const Alert = ({
 
   return (
     <div className={alertClass} role="alert">
+      {icon && <i className={`${icon} me-2`} aria-hidden="true"></i>}
       {children}
       {dismissible && (
         <button

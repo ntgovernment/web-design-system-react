@@ -16,8 +16,12 @@ export interface AlertProps {
      * On dismiss callback
      */
     onDismiss?: () => void;
+    /**
+     * FontAwesome icon class (e.g., 'fa-solid fa-circle-check')
+     */
+    icon?: string;
 }
 /**
  * Alert component for displaying important messages
  */
-export declare const Alert: ({ variant, children, dismissible, onDismiss, }: AlertProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Alert: ({ variant, children, dismissible, onDismiss, icon, }: AlertProps) => import("react/jsx-runtime").JSX.Element;

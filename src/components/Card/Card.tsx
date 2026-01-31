@@ -17,6 +17,10 @@ export interface CardProps {
    * Card variant
    */
   variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  /**
+   * FontAwesome icon class (e.g., 'fa-solid fa-chart-line')
+   */
+  icon?: string;
 }
 
 /**
@@ -27,6 +31,7 @@ export const Card = ({
   children,
   footer,
   variant,
+  icon,
 }: CardProps) => {
   const cardClass = variant ? `card text-bg-${variant}` : 'card';
 
@@ -34,7 +39,10 @@ export const Card = ({
     <div className={cardClass}>
       {title && (
         <div className="card-header">
-          <h5 className="card-title mb-0">{title}</h5>
+          <h5 className="card-title mb-0">
+            {icon && <i className={`${icon} me-2`} aria-hidden="true"></i>}
+            {title}
+          </h5>
         </div>
       )}
       <div className="card-body">

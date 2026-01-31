@@ -38,24 +38,65 @@ function extractStoryData() {
       // Extract story exports and their args using regex
       const stories = {};
 
-      // Match: export const StoryName: Story = { args: {...} }
-      const storyRegex =
-        /export const (\w+):\s*Story\s*=\s*\{[^}]*args:\s*\{([^}]+)\}/g;
+      // Match: export const StoryName: Story = { ... }
+      const storyExportRegex = /export const (\w+):\s*Story\s*=\s*\{/g;
       let match;
 
-      while ((match = storyRegex.exec(content)) !== null) {
+      while ((match = storyExportRegex.exec(content)) !== null) {
         const storyName = match[1];
-        const argsStr = match[2];
-
-        // Parse args (simple key: value extraction)
-        const args = {};
-        const argMatches = argsStr.matchAll(/(\w+):\s*['"]([^'"]+)['"]/g);
-
-        for (const argMatch of argMatches) {
-          args[argMatch[1]] = argMatch[2];
+        const startPos = match.index + match[0].length;
+        
+        // Find the matching closing brace for this story object
+        let braceCount = 1;
+        let endPos = startPos;
+        let inString = false;
+        let stringChar = null;
+        
+        for (let i = startPos; i < content.length && braceCount > 0; i++) {
+          const char = content[i];
+          const prevChar = i > 0 ? content[i - 1] : '';
+          
+          // Handle strings
+          if ((char === '"' || char === "'" || char === '`') && prevChar !== '\\') {
+            if (!inString) {
+              inString = true;
+              stringChar = char;
+            } else if (char === stringChar) {
+              inString = false;
+              stringChar = null;
+            }
+          }
+          
+          if (!inString) {
+            if (char === '{') braceCount++;
+            if (char === '}') braceCount--;
+          }
+          
+          if (braceCount === 0) {
+            endPos = i;
+            break;
+          }
         }
-
-        stories[storyName] = { args };
+        
+        const storyContent = content.substring(startPos, endPos);
+        
+        // Extract args from the story content
+        const argsMatch = storyContent.match(/args:\s*\{([^}]*)\}/s);
+        if (argsMatch) {
+          const argsStr = argsMatch[1];
+          const args = {};
+          
+          // Parse args (simple key: value extraction for strings)
+          const argMatches = argsStr.matchAll(/(\w+):\s*['"]([^'"]+)['"]/g);
+          
+          for (const argMatch of argMatches) {
+            args[argMatch[1]] = argMatch[2];
+          }
+          
+          if (Object.keys(args).length > 0) {
+            stories[storyName] = { args };
+          }
+        }
       }
 
       if (Object.keys(stories).length > 0) {

@@ -19,10 +19,19 @@ const loadBootstrapCSS = () => {
   document.head.appendChild(link);
 };
 
+// Load FontAwesome Kit
+const loadFontAwesome = () => {
+  const script = document.createElement("script");
+  script.src = "https://kit.fontawesome.com/9bf658a5c7.js";
+  script.crossOrigin = "anonymous";
+  document.head.appendChild(script);
+};
+
 // HTML Decorator to view code as HTML and ensure Bootstrap is loaded
 const withHTMLCode: Decorator = (Story) => {
   useEffect(() => {
     loadBootstrapCSS();
+    loadFontAwesome();
   }, []);
 
   return (

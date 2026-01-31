@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/react';
 declare const meta: {
     title: string;
-    component: ({ variant, children, dismissible, onDismiss, }: import('./Alert').AlertProps) => import("react/jsx-runtime").JSX.Element;
+    component: ({ variant, children, dismissible, onDismiss, icon, }: import('./Alert').AlertProps) => import("react/jsx-runtime").JSX.Element;
     parameters: {
         layout: string;
     };
@@ -14,3 +14,6 @@ export declare const Success: Story;
 export declare const Danger: Story;
 export declare const Dismissible: Story;
 export declare const AllVariants: Story;
+export declare const WithIcon: Story;
+export declare const ContextualIcons: Story;
+export declare const DismissibleWithIcon: Story;

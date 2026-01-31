@@ -30,6 +30,25 @@
           "args": {
             "children": "Alert content"
           }
+        },
+        "WithIcon": {
+          "args": {
+            "variant": "success",
+            "icon": "fa-solid fa-circle-check",
+            "children": "Your action was successful!"
+          }
+        },
+        "ContextualIcons": {
+          "args": {
+            "children": "Alert content"
+          }
+        },
+        "DismissibleWithIcon": {
+          "args": {
+            "variant": "warning",
+            "icon": "fa-solid fa-triangle-exclamation",
+            "children": "This is a dismissible alert with an icon. Click the × to close it."
+          }
         }
       },
       "file": "src/components/Alert/Alert.stories.tsx"
@@ -64,6 +83,28 @@
           "args": {
             "children": "Button"
           }
+        },
+        "WithIconLeft": {
+          "args": {
+            "variant": "primary",
+            "icon": "fa-solid fa-home",
+            "iconPosition": "left",
+            "children": "Home"
+          }
+        },
+        "WithIconRight": {
+          "args": {
+            "variant": "primary",
+            "icon": "fa-solid fa-arrow-right",
+            "iconPosition": "right",
+            "children": "Next"
+          }
+        },
+        "IconOnly": {
+          "args": {
+            "variant": "primary",
+            "icon": "fa-solid fa-search"
+          }
         }
       },
       "file": "src/components/Button/Button.stories.tsx"
@@ -93,10 +134,22 @@
           "args": {
             "children": "Card content"
           }
+        },
+        "WithIcon": {
+          "args": {
+            "title": "Analytics",
+            "icon": "fa-solid fa-chart-line",
+            "children": "View your analytics dashboard and track your progress."
+          }
+        },
+        "IconCards": {
+          "args": {
+            "children": "Card content"
+          }
         }
       },
       "file": "src/components/Card/Card.stories.tsx"
     }
   },
-  "generated": "2026-01-31T09:24:14.810Z"
+  "generated": "2026-01-31T11:53:20.326Z"
 }

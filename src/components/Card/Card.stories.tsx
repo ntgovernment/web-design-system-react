@@ -76,3 +76,51 @@ export const AllVariants: Story = {
     </div>
   ),
 };
+
+export const WithIcon: Story = {
+  args: {
+    title: 'Analytics',
+    icon: 'fa-solid fa-chart-line',
+    children: 'View your analytics dashboard and track your progress.',
+  },
+};
+
+export const IconCards: Story = {
+  args: {
+    children: 'Card content',
+  },
+  render: () => (
+    <div className="row g-3">
+      <div className="col-md-4">
+        <Card title="Dashboard" icon="fa-solid fa-chart-pie" variant="primary">
+          Overview of your key metrics and performance indicators.
+        </Card>
+      </div>
+      <div className="col-md-4">
+        <Card title="Users" icon="fa-solid fa-users" variant="success">
+          Manage user accounts and permissions.
+        </Card>
+      </div>
+      <div className="col-md-4">
+        <Card title="Settings" icon="fa-solid fa-cog" variant="info">
+          Configure your application preferences.
+        </Card>
+      </div>
+      <div className="col-md-4">
+        <Card title="Reports" icon="fa-solid fa-file-alt" variant="secondary">
+          Generate and download detailed reports.
+        </Card>
+      </div>
+      <div className="col-md-4">
+        <Card title="Security" icon="fa-solid fa-shield-alt" variant="warning">
+          Review security settings and access logs.
+        </Card>
+      </div>
+      <div className="col-md-4">
+        <Card title="Alerts" icon="fa-solid fa-bell" variant="danger">
+          View system notifications and alerts.
+        </Card>
+      </div>
+    </div>
+  ),
+};
