@@ -18,7 +18,7 @@ export interface CardProps {
    */
   variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
   /**
-   * FontAwesome icon class (e.g., 'fa-solid fa-chart-line')
+   * FontAwesome icon class (e.g., 'fa-light fa-chart-line')
    */
   icon?: string;
 }

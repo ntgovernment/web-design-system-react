@@ -18,7 +18,7 @@ export interface AlertProps {
    */
   onDismiss?: () => void;
   /**
-   * FontAwesome icon class (e.g., 'fa-solid fa-circle-check')
+   * FontAwesome icon class (e.g., 'fa-light fa-circle-check')
    */
   icon?: string;
 }

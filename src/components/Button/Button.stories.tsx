@@ -73,7 +73,7 @@ export const AllVariants: Story = {
 export const WithIconLeft: Story = {
   args: {
     variant: 'primary',
-    icon: 'fa-solid fa-home',
+    icon: 'fa-light fa-home',
     iconPosition: 'left',
     children: 'Home',
   },
@@ -82,7 +82,7 @@ export const WithIconLeft: Story = {
 export const WithIconRight: Story = {
   args: {
     variant: 'primary',
-    icon: 'fa-solid fa-arrow-right',
+    icon: 'fa-light fa-arrow-right',
     iconPosition: 'right',
     children: 'Next',
   },
@@ -91,7 +91,7 @@ export const WithIconRight: Story = {
 export const IconOnly: Story = {
   args: {
     variant: 'primary',
-    icon: 'fa-solid fa-search',
+    icon: 'fa-light fa-search',
     'aria-label': 'Search',
   },
 };
@@ -99,13 +99,13 @@ export const IconOnly: Story = {
 export const IconButtons: Story = {
   render: () => (
     <div className="d-flex gap-2 flex-wrap">
-      <Button variant="primary" icon="fa-solid fa-home" iconPosition="left">Home</Button>
-      <Button variant="success" icon="fa-solid fa-check" iconPosition="left">Confirm</Button>
-      <Button variant="danger" icon="fa-solid fa-trash" iconPosition="left">Delete</Button>
-      <Button variant="info" icon="fa-solid fa-download" iconPosition="left">Download</Button>
-      <Button variant="warning" icon="fa-solid fa-exclamation-triangle" iconPosition="left">Warning</Button>
-      <Button variant="secondary" icon="fa-solid fa-arrow-left" iconPosition="left">Back</Button>
-      <Button variant="primary" icon="fa-solid fa-arrow-right" iconPosition="right">Next</Button>
+      <Button variant="primary" icon="fa-light fa-home" iconPosition="left">Home</Button>
+      <Button variant="success" icon="fa-light fa-check" iconPosition="left">Confirm</Button>
+      <Button variant="danger" icon="fa-light fa-trash" iconPosition="left">Delete</Button>
+      <Button variant="info" icon="fa-light fa-download" iconPosition="left">Download</Button>
+      <Button variant="warning" icon="fa-light fa-exclamation-triangle" iconPosition="left">Warning</Button>
+      <Button variant="secondary" icon="fa-light fa-arrow-left" iconPosition="left">Back</Button>
+      <Button variant="primary" icon="fa-light fa-arrow-right" iconPosition="right">Next</Button>
     </div>
   ),
 };
@@ -113,12 +113,12 @@ export const IconButtons: Story = {
 export const IconOnlyButtons: Story = {
   render: () => (
     <div className="d-flex gap-2 flex-wrap">
-      <Button variant="primary" icon="fa-solid fa-search" aria-label="Search" />
-      <Button variant="secondary" icon="fa-solid fa-cog" aria-label="Settings" />
-      <Button variant="success" icon="fa-solid fa-plus" aria-label="Add" />
-      <Button variant="danger" icon="fa-solid fa-times" aria-label="Close" />
-      <Button variant="info" icon="fa-solid fa-info-circle" aria-label="Information" />
-      <Button variant="warning" icon="fa-solid fa-edit" aria-label="Edit" />
+      <Button variant="primary" icon="fa-light fa-search" aria-label="Search" />
+      <Button variant="secondary" icon="fa-light fa-cog" aria-label="Settings" />
+      <Button variant="success" icon="fa-light fa-plus" aria-label="Add" />
+      <Button variant="danger" icon="fa-light fa-times" aria-label="Close" />
+      <Button variant="info" icon="fa-light fa-info-circle" aria-label="Information" />
+      <Button variant="warning" icon="fa-light fa-edit" aria-label="Edit" />
     </div>
   ),
 };

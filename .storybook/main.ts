@@ -50,6 +50,14 @@ function htmlApiPlugin(): Plugin {
   </div>
 </div>`;
 
+      case "Icon":
+        const iconStyle = [
+          props.color && props.color !== 'inherit' ? `color: ${props.color}` : '',
+          props.size ? `font-size: ${props.size}` : ''
+        ].filter(Boolean).join('; ');
+        
+        return `<i class="${props.icon}${props.className ? ' ' + props.className : ''}"${iconStyle ? ` style="${iconStyle}"` : ''}${props.ariaHidden !== false ? ' aria-hidden="true"' : ''}${props.ariaLabel ? ` aria-label="${props.ariaLabel}"` : ''}></i>`;
+
       default:
         return `<div>Unknown component: ${componentName}</div>`;
     }

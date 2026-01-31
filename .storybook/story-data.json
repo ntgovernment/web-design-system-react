@@ -34,7 +34,7 @@
         "WithIcon": {
           "args": {
             "variant": "success",
-            "icon": "fa-solid fa-circle-check",
+            "icon": "fa-light fa-circle-check",
             "children": "Your action was successful!"
           }
         },
@@ -46,7 +46,7 @@
         "DismissibleWithIcon": {
           "args": {
             "variant": "warning",
-            "icon": "fa-solid fa-triangle-exclamation",
+            "icon": "fa-light fa-triangle-exclamation",
             "children": "This is a dismissible alert with an icon. Click the × to close it."
           }
         }
@@ -87,7 +87,7 @@
         "WithIconLeft": {
           "args": {
             "variant": "primary",
-            "icon": "fa-solid fa-home",
+            "icon": "fa-light fa-home",
             "iconPosition": "left",
             "children": "Home"
           }
@@ -95,7 +95,7 @@
         "WithIconRight": {
           "args": {
             "variant": "primary",
-            "icon": "fa-solid fa-arrow-right",
+            "icon": "fa-light fa-arrow-right",
             "iconPosition": "right",
             "children": "Next"
           }
@@ -103,7 +103,7 @@
         "IconOnly": {
           "args": {
             "variant": "primary",
-            "icon": "fa-solid fa-search"
+            "icon": "fa-light fa-search"
           }
         }
       },
@@ -138,7 +138,7 @@
         "WithIcon": {
           "args": {
             "title": "Analytics",
-            "icon": "fa-solid fa-chart-line",
+            "icon": "fa-light fa-chart-line",
             "children": "View your analytics dashboard and track your progress."
           }
         },
@@ -149,7 +149,60 @@
         }
       },
       "file": "src/components/Card/Card.stories.tsx"
+    },
+    "Icon": {
+      "stories": {
+        "Default": {
+          "args": {
+            "icon": "fa-light fa-circle-check"
+          }
+        },
+        "WithColor": {
+          "args": {
+            "icon": "fa-light fa-heart",
+            "color": "#dc3545"
+          }
+        },
+        "WithSize": {
+          "args": {
+            "icon": "fa-light fa-star",
+            "color": "#ffc107",
+            "size": "2rem"
+          }
+        },
+        "WithSpacing": {
+          "args": {
+            "icon": "fa-light fa-home"
+          }
+        },
+        "AllLightIcons": {
+          "args": {
+            "icon": "fa-light fa-home"
+          }
+        },
+        "ColoredIcons": {
+          "args": {
+            "icon": "fa-light fa-circle-check"
+          }
+        },
+        "Sizes": {
+          "args": {
+            "icon": "fa-light fa-heart"
+          }
+        },
+        "RegularIcons": {
+          "args": {
+            "icon": "fa-regular fa-circle"
+          }
+        },
+        "StatusIcons": {
+          "args": {
+            "icon": "fa-light fa-circle-check"
+          }
+        }
+      },
+      "file": "src/components/Icon/Icon.stories.tsx"
     }
   },
-  "generated": "2026-01-31T11:53:20.326Z"
+  "generated": "2026-01-31T12:31:47.251Z"
 }

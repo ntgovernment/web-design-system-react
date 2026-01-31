@@ -25,7 +25,7 @@ export interface ButtonProps {
      */
     type?: 'button' | 'submit' | 'reset';
     /**
-     * FontAwesome icon class (e.g., 'fa-solid fa-home')
+     * FontAwesome icon class (e.g., 'fa-light fa-home')
      */
     icon?: string;
     /**
