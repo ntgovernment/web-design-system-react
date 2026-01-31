@@ -58,6 +58,34 @@ bootstrapFiles.forEach((filename) => {
   }
 });
 
+// Copy and minify Button component CSS files
+const buttonDir = join(rootDir, 'src', 'components', 'Button');
+const buttonFiles = [
+  'Button.css',
+  'Button-ntg.css',
+  'Button-central.css',
+];
+
+console.log('📦 Processing Button component styles...');
+buttonFiles.forEach((filename) => {
+  const srcPath = join(buttonDir, filename);
+  const destPath = join(distDir, filename);
+  
+  if (existsSync(srcPath)) {
+    const css = readFileSync(srcPath, 'utf-8');
+    const minified = minifyCSS(css);
+    writeFileSync(destPath, minified);
+    
+    const originalSize = (css.length / 1024).toFixed(2);
+    const minifiedSize = (minified.length / 1024).toFixed(2);
+    const savings = ((1 - minified.length / css.length) * 100).toFixed(1);
+    
+    console.log(`  ✓ ${filename} (${originalSize}KB → ${minifiedSize}KB, -${savings}%)`);
+  } else {
+    console.warn(`  ⚠ Warning: ${filename} not found`);
+  }
+});
+
 // Minify theme files
 const themeFiles = [
   { src: 'ntg-theme.css', dest: 'ntg-theme.min.css' },
@@ -91,6 +119,9 @@ console.log('   • index.js                - Bundled React app');
 console.log('   • index.css               - Bundled component styles');
 console.log('   • bootstrap-ntg.css       - Bootstrap overrides for NT.GOV.AU');
 console.log('   • bootstrap-central.css   - Bootstrap overrides for NTG Central');
+console.log('   • Button.css              - Common button styles');
+console.log('   • Button-ntg.css          - Button overrides for NT.GOV.AU');
+console.log('   • Button-central.css      - Button overrides for NTG Central');
 console.log('   • ntg-theme.min.css       - Minified NT.GOV.AU theme');
 console.log('   • central-theme.min.css   - Minified NTG Central theme');
 console.log('\n🚀 To test: npm run preview or open dist/index.html in a browser');

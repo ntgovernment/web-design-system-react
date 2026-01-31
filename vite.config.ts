@@ -28,6 +28,18 @@ function copyThemeFiles() {
         }
       });
       
+      // Copy component CSS files (Button styles - will be minified by build-dist.js)
+      const srcComponents = resolve(__dirname, 'src/components/Button');
+      const componentFiles = ['Button.css', 'Button-ntg.css', 'Button-central.css'];
+      componentFiles.forEach(file => {
+        const src = resolve(srcComponents, file);
+        const dest = resolve(dist, file);
+        if (existsSync(src)) {
+          copyFileSync(src, dest);
+          console.log(`✓ Copied ${file} to dist/`);
+        }
+      });
+      
       // Copy theme files (will be minified by build-dist.js)
       const themeFiles = ['ntg-theme.css', 'central-theme.css'];
       themeFiles.forEach(file => {

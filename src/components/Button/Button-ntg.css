@@ -1,0 +1,22 @@
+/**
+ * Button Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common button styles are defined in Button.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus box-shadow color (NT.GOV.AU blue: rgba(31, 31, 95, 0.25))
+ * - Semantic variable definitions using ntg-prefixed tokens
+ */
+
+/* NT.GOV.AU theme-specific semantic variables */
+:root {
+  --clr-text-subtle: var(--ntg-neutral-06);
+  --radii-button: var(--ntg-radii-button);
+  --bs-btn-focus-box-shadow-rgb: 31, 31, 95;
+}
+
+/* NT.GOV.AU specific focus box-shadow */
+:root {
+  --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(31, 31, 95, 0.25);
+}

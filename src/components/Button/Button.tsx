@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button variant
    */
@@ -10,22 +10,6 @@ export interface ButtonProps {
    */
   size?: 'sm' | 'lg';
   /**
-   * Is this the button disabled?
-   */
-  disabled?: boolean;
-  /**
-   * Button contents
-   */
-  children?: React.ReactNode;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
-  /**
-   * Button type
-   */
-  type?: 'button' | 'submit' | 'reset';
-  /**
    * FontAwesome icon class (e.g., 'fa-light fa-home')
    */
   icon?: string;
@@ -33,10 +17,6 @@ export interface ButtonProps {
    * Icon position relative to text
    */
   iconPosition?: 'left' | 'right';
-  /**
-   * Accessible label (required for icon-only buttons)
-   */
-  'aria-label'?: string;
 }
 
 /**
@@ -51,10 +31,11 @@ export const Button = ({
   type = 'button',
   icon,
   iconPosition = 'left',
+  className: customClassName,
   ...props
 }: ButtonProps) => {
   const sizeClass = size ? `btn-${size}` : '';
-  const className = `btn btn-${variant} ${sizeClass}`.trim();
+  const className = `btn btn-${variant} ${sizeClass} ${customClassName || ''}`.trim();
 
   return (
     <button

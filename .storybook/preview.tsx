@@ -43,6 +43,38 @@ const loadBootstrapTypography = (theme: string) => {
   document.head.appendChild(typographyOverride);
 };
 
+// Load Button Component Common Styles (theme-agnostic)
+const loadButtonCommonStyles = () => {
+  // Remove existing common Button CSS if present
+  const existingCommon = document.getElementById("button-common-css");
+  if (existingCommon) {
+    existingCommon.remove();
+  }
+
+  // Add common Button CSS (only once)
+  const buttonCommonCSS = document.createElement("link");
+  buttonCommonCSS.id = "button-common-css";
+  buttonCommonCSS.rel = "stylesheet";
+  buttonCommonCSS.href = new URL("../src/components/Button/Button.css", import.meta.url).href;
+  document.head.appendChild(buttonCommonCSS);
+};
+
+// Load Button Component Styles (theme-specific overrides)
+const loadButtonStyles = (theme: string) => {
+  // Remove existing theme-specific Button CSS if present
+  const existingButton = document.getElementById("button-theme-css");
+  if (existingButton) {
+    existingButton.remove();
+  }
+
+  // Add theme-specific Button CSS overrides
+  const buttonCSS = document.createElement("link");
+  buttonCSS.id = "button-theme-css";
+  buttonCSS.rel = "stylesheet";
+  buttonCSS.href = new URL(`../src/components/Button/Button-${theme}.css`, import.meta.url).href;
+  document.head.appendChild(buttonCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -90,6 +122,15 @@ const loadThemeCSS = (theme: string) => {
   themeCSS.rel = "stylesheet";
   themeCSS.href = new URL(`../src/themes/${theme}-theme.css`, import.meta.url).href;
   document.head.appendChild(themeCSS);
+
+  // Load component styles (Button CSS with Bootstrap variable overrides)
+  if (!document.getElementById("component-styles-css")) {
+    const componentStylesCSS = document.createElement("link");
+    componentStylesCSS.id = "component-styles-css";
+    componentStylesCSS.rel = "stylesheet";
+    componentStylesCSS.href = new URL("../src/style.css", import.meta.url).href;
+    document.head.appendChild(componentStylesCSS);
+  }
 };
 
 // HTML Decorator to view code as HTML and ensure Bootstrap is loaded
@@ -99,8 +140,10 @@ const withHTMLCode: Decorator = (Story, context) => {
   useEffect(() => {
     loadBootstrapCSS();
     loadFontAwesome();
+    loadThemeCSS(theme);  // Load theme CSS FIRST (defines --clr-* variables)
     loadBootstrapTypography(theme);
-    loadThemeCSS(theme);
+    loadButtonCommonStyles();  // Load common Button CSS (uses semantic variables)
+    loadButtonStyles(theme);  // Load theme-specific Button CSS overrides LAST
   }, [theme]);
 
   return (
@@ -155,7 +198,7 @@ const preview: Preview = {
           'Design System',
           ['Typography', 'Icon'],
           'Components',
-          ['Alert', 'Button', 'Card'],
+          ['Button', 'Alert', 'Card'],
         ],
       },
     },

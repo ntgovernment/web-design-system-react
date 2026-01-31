@@ -1,0 +1,22 @@
+/**
+ * Button Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common button styles are defined in Button.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus box-shadow color (Central blue: rgba(16, 32, 64, 0.25))
+ * - Semantic variable definitions using central-prefixed tokens
+ */
+
+/* NTG Central theme-specific semantic variables */
+:root {
+  --clr-text-subtle: var(--central-neutral-06);
+  --radii-button: var(--central-radii-button);
+  --bs-btn-focus-box-shadow-rgb: 16, 32, 64;
+}
+
+/* NTG Central specific focus box-shadow */
+:root {
+  --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(16, 32, 64, 0.25);
+}

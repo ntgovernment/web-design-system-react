@@ -46,6 +46,51 @@ function App() {
       </div>
 
       <section className="mb-5">
+        <h2>Buttons - Figma Spec</h2>
+        <p className="text-muted mb-3">
+          Primary buttons use: 24px horizontal padding, 16px vertical padding, Lato 700, 16px size/line-height
+        </p>
+        <div className="mb-4">
+          <h3 className="h5">All Variants</h3>
+          <div className="d-flex gap-2 flex-wrap">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="success">Success</Button>
+            <Button variant="danger">Danger</Button>
+            <Button variant="warning">Warning</Button>
+            <Button variant="info">Info</Button>
+            <Button variant="light">Light</Button>
+            <Button variant="dark">Dark</Button>
+          </div>
+        </div>
+        <div className="mb-4">
+          <h3 className="h5">Sizes</h3>
+          <div className="d-flex gap-2 flex-wrap align-items-center">
+            <Button variant="primary" size="lg">Large Button</Button>
+            <Button variant="primary">Default Button</Button>
+            <Button variant="primary" size="sm">Small Button</Button>
+          </div>
+        </div>
+        <div className="mb-4">
+          <h3 className="h5">With Icons</h3>
+          <div className="d-flex gap-2 flex-wrap">
+            <Button variant="primary" icon="fa-light fa-home" iconPosition="left">Home</Button>
+            <Button variant="success" icon="fa-light fa-check" iconPosition="left">Confirm</Button>
+            <Button variant="danger" icon="fa-light fa-trash" iconPosition="left">Delete</Button>
+            <Button variant="primary" icon="fa-light fa-arrow-right" iconPosition="right">Next</Button>
+            <Button variant="primary" icon="fa-light fa-search" aria-label="Search" />
+          </div>
+        </div>
+        <div>
+          <h3 className="h5">Outline Variants</h3>
+          <div className="d-flex gap-2 flex-wrap">
+            <button className="btn btn-outline-primary">Outline Primary</button>
+            <button className="btn btn-outline-secondary">Outline Secondary</button>
+          </div>
+        </div>
+      </section>
+
+      <section className="mb-5">
         <h2>Bootstrap Typography</h2>
         <Card title="Typography Examples">
           <h1>Heading 1 - Uses theme font</h1>
@@ -103,25 +148,6 @@ function App() {
               </ul>
             </Card>
           </div>
-        </div>
-      </section>
-
-      <section className="mb-5">
-        <h2>Buttons</h2>
-        <div className="d-flex gap-2 flex-wrap mb-3">
-          <Button variant="primary">Primary</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="success">Success</Button>
-          <Button variant="danger">Danger</Button>
-          <Button variant="warning">Warning</Button>
-          <Button variant="info">Info</Button>
-          <Button variant="light">Light</Button>
-          <Button variant="dark">Dark</Button>
-        </div>
-        <div className="d-flex gap-2 flex-wrap">
-          <Button variant="primary" size="lg">Large Button</Button>
-          <Button variant="primary">Default Button</Button>
-          <Button variant="primary" size="sm">Small Button</Button>
         </div>
       </section>
 

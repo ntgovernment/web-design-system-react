@@ -122,3 +122,85 @@ export const IconOnlyButtons: Story = {
     </div>
   ),
 };
+
+export const CustomizedWithCSSVars: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
+      <div>
+        <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Extra Large Padding</h4>
+        <Button 
+          variant="primary"
+          style={{
+            '--bs-btn-padding-x': '48px',
+            '--bs-btn-padding-y': '20px',
+            '--bs-btn-font-size': '18px'
+          } as React.CSSProperties}
+        >
+          Extra Large Button
+        </Button>
+      </div>
+      
+      <div>
+        <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Custom Colors</h4>
+        <Button 
+          variant="primary"
+          style={{
+            '--bs-btn-bg': '#8b5cf6',
+            '--bs-btn-border-color': '#8b5cf6',
+            '--bs-btn-hover-bg': '#7c3aed',
+            '--bs-btn-hover-border-color': '#7c3aed',
+            '--bs-btn-active-bg': '#6d28d9',
+            '--bs-btn-active-border-color': '#6d28d9',
+          } as React.CSSProperties}
+        >
+          Purple Button
+        </Button>
+      </div>
+      
+      <div>
+        <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Pill-Shaped (Override NTG Theme)</h4>
+        <Button 
+          variant="primary"
+          style={{
+            '--bs-btn-border-radius': '50rem'
+          } as React.CSSProperties}
+        >
+          Pill Button
+        </Button>
+      </div>
+      
+      <div>
+        <h4 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Custom Border</h4>
+        <Button 
+          variant="primary"
+          style={{
+            '--bs-btn-border-width': '3px',
+            '--bs-btn-border-color': '#dc3545',
+            '--bs-btn-bg': 'transparent',
+            '--bs-btn-color': '#dc3545',
+            '--bs-btn-hover-bg': '#dc3545',
+            '--bs-btn-hover-color': 'white'
+          } as React.CSSProperties}
+        >
+          Custom Border
+        </Button>
+      </div>
+      
+      <div style={{ marginTop: '8px', padding: '16px', background: '#f8f9fa', borderRadius: '8px', maxWidth: '600px' }}>
+        <p style={{ margin: 0, fontSize: '13px', lineHeight: '1.6' }}>
+          <strong>💡 Tip:</strong> All buttons use Bootstrap 5.3's CSS variables approach. 
+          You can customize padding, colors, borders, typography, and more at runtime without 
+          modifying component code. See <code>CSS_VARIABLES.md</code> for complete documentation.
+        </p>
+      </div>
+    </div>
+  ),
+  parameters: {
+    layout: 'padded',
+    docs: {
+      description: {
+        story: 'Demonstrates runtime customization using Bootstrap CSS variables. Override `--bs-btn-*` variables inline or via CSS classes to create custom button styles without modifying the component.',
+      },
+    },
+  },
+};
