@@ -16,16 +16,21 @@ function App() {
     setTheme(newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
     
+    // Use environment-aware paths
+    const isDev = import.meta.env.DEV;
+    const typographyPath = isDev ? `/src/typography/bootstrap-${newTheme}.css` : `bootstrap-${newTheme}.css`;
+    const themePath = isDev ? `/src/themes/${newTheme}-theme.css` : `${newTheme}-theme.min.css`;
+    
     // Swap Bootstrap typography override CSS
     const typographyLink = document.getElementById('bootstrap-typography-css') as HTMLLinkElement;
     if (typographyLink) {
-      typographyLink.href = `/src/typography/bootstrap-${newTheme}.css`;
+      typographyLink.href = typographyPath;
     }
     
     // Swap theme CSS
     const themeLink = document.getElementById('theme-css') as HTMLLinkElement;
     if (themeLink) {
-      themeLink.href = `/src/themes/${newTheme}-theme.css`;
+      themeLink.href = themePath;
     }
   };
 
