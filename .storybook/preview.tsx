@@ -27,12 +27,64 @@ const loadFontAwesome = () => {
   document.head.appendChild(script);
 };
 
+// Load theme CSS files
+const loadThemeCSS = (theme: string) => {
+  // Remove existing theme CSS if present
+  const existingTheme = document.getElementById("theme-css");
+  if (existingTheme) {
+    existingTheme.remove();
+  }
+
+  // Load common CSS files (only once)
+  if (!document.getElementById("common-css")) {
+    const commonCSS = document.createElement("link");
+    commonCSS.id = "common-css";
+    commonCSS.rel = "stylesheet";
+    commonCSS.href = new URL("../src/themes/common.css", import.meta.url).href;
+    document.head.appendChild(commonCSS);
+  }
+
+  if (!document.getElementById("grid-css")) {
+    const gridCSS = document.createElement("link");
+    gridCSS.id = "grid-css";
+    gridCSS.rel = "stylesheet";
+    gridCSS.href = new URL("../src/themes/grid.css", import.meta.url).href;
+    document.head.appendChild(gridCSS);
+  }
+
+  if (!document.getElementById("typography-css")) {
+    const typographyCSS = document.createElement("link");
+    typographyCSS.id = "typography-css";
+    typographyCSS.rel = "stylesheet";
+    typographyCSS.href = new URL("../src/themes/typography.css", import.meta.url).href;
+    document.head.appendChild(typographyCSS);
+  }
+
+  if (!document.getElementById("base-variables-css")) {
+    const baseVariablesCSS = document.createElement("link");
+    baseVariablesCSS.id = "base-variables-css";
+    baseVariablesCSS.rel = "stylesheet";
+    baseVariablesCSS.href = new URL("../src/themes/base-variables.css", import.meta.url).href;
+    document.head.appendChild(baseVariablesCSS);
+  }
+
+  // Add theme-specific CSS
+  const themeCSS = document.createElement("link");
+  themeCSS.id = "theme-css";
+  themeCSS.rel = "stylesheet";
+  themeCSS.href = new URL(`../src/themes/${theme}-theme.css`, import.meta.url).href;
+  document.head.appendChild(themeCSS);
+};
+
 // HTML Decorator to view code as HTML and ensure Bootstrap is loaded
-const withHTMLCode: Decorator = (Story) => {
+const withHTMLCode: Decorator = (Story, context) => {
+  const theme = context.globals.theme || "ntg";
+
   useEffect(() => {
     loadBootstrapCSS();
     loadFontAwesome();
-  }, []);
+    loadThemeCSS(theme);
+  }, [theme]);
 
   return (
     <div>
@@ -42,6 +94,22 @@ const withHTMLCode: Decorator = (Story) => {
 };
 
 const preview: Preview = {
+  globalTypes: {
+    theme: {
+      name: "Theme",
+      description: "Global theme for components",
+      defaultValue: "ntg",
+      toolbar: {
+        icon: "paintbrush",
+        items: [
+          { value: "ntg", title: "NT.GOV.AU", icon: "circle" },
+          { value: "central", title: "NTG Central", icon: "circlehollow" },
+        ],
+        showName: true,
+        dynamicTitle: true,
+      },
+    },
+  },
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
