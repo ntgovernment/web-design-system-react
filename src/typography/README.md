@@ -66,6 +66,82 @@ Proper CSS cascade is critical for theme switching to work correctly:
 | `--bs-danger` | `--{theme}-danger-03-d` | Danger alerts, error states |
 | `--bs-border-color` | `--{theme}-clr-border-subtle` | Component borders |
 
+## Bootstrap Reboot Override Strategy
+
+Bootstrap 5.3's `_reboot.scss` defines baseline element styles using **RGB CSS variables**, not standard hex color variables. This requires a multi-layer override strategy to ensure theme colors apply correctly.
+
+### The Problem
+
+Bootstrap's link styles use RGB triplets with opacity control:
+
+```scss
+// Bootstrap's _reboot.scss
+a {
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  
+  &:hover {
+    --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+  }
+}
+```
+
+Notice it uses `--bs-link-color-rgb` (not `--bs-link-color`). Simply setting `--bs-link-color` won't work.
+
+### The Solution: Multi-Layer Override
+
+Our override files use **three layers** to ensure maximum compatibility:
+
+#### Layer 1: RGB Color Variables (Primary)
+```css
+:root {
+  /* NTG Theme */
+  --bs-link-color-rgb: 31, 31, 95;        /* #1F1F5F → RGB triplet */
+  --bs-link-hover-color-rgb: 195, 56, 38; /* #C33826 → RGB triplet */
+}
+```
+
+These RGB triplets directly override what Bootstrap Reboot uses.
+
+#### Layer 2: Base Color Variables (Fallback)
+```css
+:root {
+  --bs-link-color: var(--ntg-clr-link-default);
+  --bs-link-hover-color: var(--ntg-clr-link-hover);
+}
+```
+
+Some Bootstrap components (not Reboot) may reference the base hex variables.
+
+#### Layer 3: Direct Element Override (Maximum Specificity)
+```css
+a {
+  color: var(--ntg-clr-link-default); /* Explicit override */
+}
+
+a:hover {
+  color: var(--ntg-clr-link-hover);
+}
+```
+
+Directly sets colors on anchor elements to ensure theme colors always apply.
+
+### RGB Conversion Reference
+
+| Theme | Color | Hex | RGB Triplet |
+|-------|-------|-----|-------------|
+| NTG Link Default | `ntg-blue-03-d` | `#1F1F5F` | `31, 31, 95` |
+| NTG Link Hover | `ntg-ochre-02-d` | `#C33826` | `195, 56, 38` |
+| Central Link Default | `central-blue-04` | `#102040` | `16, 32, 64` |
+| Central Link Hover | `central-green-03` | `#208820` | `32, 136, 32` |
+
+### Why Three Layers?
+
+1. **RGB variables** handle Bootstrap Reboot's rgba() usage
+2. **Base variables** handle other Bootstrap components
+3. **Direct overrides** provide final specificity guarantee
+
+This defensive approach ensures theme colors work regardless of Bootstrap's internal implementation changes.
+
 ## Theme Switching Implementation
 
 ### In HTML/Demo Pages

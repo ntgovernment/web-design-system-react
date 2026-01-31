@@ -31,6 +31,10 @@
   --bs-link-hover-color: var(--ntg-clr-link-hover);
   --bs-link-decoration: var(--ntg-type-link-default-decoration);
   
+  /* Bootstrap Reboot uses RGB variants - Override Strategy Layer 1 */
+  --bs-link-color-rgb: 31, 31, 95;        /* #1F1F5F (ntg-blue-03-d) */
+  --bs-link-hover-color-rgb: 195, 56, 38; /* #C33826 (ntg-ochre-02-d) */
+  
   /* ===== COLORS ===== */
   
   /* Primary Brand Colors mapped to NTG palette */
@@ -78,10 +82,38 @@
   --bs-border-radius-lg: var(--ntg-radii-md);
 }
 
+/* Inline Link Typography - Figma Spec Compliance */
+/* Override Strategy Layer 3: Direct element override for maximum specificity */
+a {
+  color: var(--ntg-clr-link-default);
+  font-size: var(--type-link-default-size);
+  font-weight: var(--type-link-default-weight);
+  line-height: var(--type-link-default-lh);
+  letter-spacing: var(--type-link-default-ls);
+}
+
+a:hover {
+  color: var(--ntg-clr-link-hover);
+  text-decoration: none;
+}
+
+a:focus,
+a:focus-visible {
+  background: var(--ntg-clr-focus-focus);
+  border-bottom: 4px solid var(--ntg-clr-border-strong-01);
+  text-decoration: none;
+  outline: none;
+}
+
 /* Mobile Typography Adjustments */
 @media (max-width: 768px) {
   :root {
     --bs-body-font-size: var(--ntg-type-mobile-body-default-size);
     --bs-body-line-height: var(--type-mobile-body-default-lh);
+  }
+  
+  a {
+    font-size: var(--type-mobile-link-default-size);
+    line-height: var(--type-mobile-link-default-lh);
   }
 }

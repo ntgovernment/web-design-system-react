@@ -148,6 +148,17 @@ const preview: Preview = {
         htmlWhitespaceSensitivity: "strict",
       },
     },
+    // Story ordering: Design System (Typography, Icons) first, then Components
+    options: {
+      storySort: {
+        order: [
+          'Design System',
+          ['Typography', 'Icon'],
+          'Components',
+          ['Alert', 'Button', 'Card'],
+        ],
+      },
+    },
     // Strict WCAG AAA accessibility testing
     a11y: {
       config: {
