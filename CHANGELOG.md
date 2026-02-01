@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Image Component**: Responsive image component with Bootstrap styling integration
+  - Responsive fluid images (max-width: 100%, height: auto) enabled by default
+  - Thumbnail styling with borders, padding, shadows using design tokens
+  - Border radius variants (sm, md, lg, circle) with theme-aware values
+  - Automatic semantic `<figure>` wrapper when caption is provided
+  - Design token integration for all styling (borders, shadows, spacing, radii)
+  - Theme-aware border radius and caption colors for NTG and Central themes
+  - Support for native HTML img attributes (srcSet, sizes, loading)
+  - WCAG AAA compliant with required alt text
+  - Asset folder structure for development placeholders (src/assets/images/)
+  - TypeScript type declarations for image imports (.webp, .png, .jpg, .jpeg)
+  - 11 comprehensive Storybook stories showcasing all variants
+  - Complete documentation with accessibility guidelines
+  - Integration with demo page and theme switching
 - **Callout Component**: Informational message component with prominent left border
   - Clean, structured layout with heading and content text
   - Design token-based spacing (--sp-xl for padding, --sp-md and --sp-xs for gaps)

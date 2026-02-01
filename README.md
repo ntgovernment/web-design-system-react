@@ -39,6 +39,7 @@ import {
   Card,
   Notification,
   Icon,
+  Image,
 } from "@ntgovernment/web-design-system";
 import "@ntgovernment/web-design-system/components.min.css";
 import "@ntgovernment/web-design-system/ntg-theme.min.css"; // or central-theme.min.css
@@ -56,6 +57,12 @@ function App() {
         message="Operation completed successfully!"
       />
       <Icon icon="fa-light fa-heart" color="#dc3545" size="2rem" />
+      <Image
+        src="/path/to/image.jpg"
+        alt="Description"
+        caption="Image caption"
+        thumbnail={true}
+      />
     </div>
   );
 }
@@ -511,9 +518,25 @@ For more details, see [design-tokens/README.md](design-tokens/README.md).
 - **Card**: Container component for content with optional icon in header
   - Props: `title`, `variant`, `footer`, `icon`
   - Icon appears before the card title
-- **Alert**: Alert/notification component with contextual icon support
-  - Props: `variant`, `dismissible`, `onDismiss`, `icon`
+- **Notification**: Alert/notification component with contextual icon support
+  - Props: `variant`, `title`, `message`
   - Icons help communicate alert context (success, warning, error, info)
+- **Image**: Responsive image component with Bootstrap styling
+  - Props: `src`, `alt`, `fluid`, `thumbnail`, `rounded`, `caption`
+  - Supports thumbnail borders, rounded corners, and figure captions
+  - Auto-wraps in semantic `<figure>` when caption is provided
+- **Tag**: Status indicator component with color variants
+  - Props: `variant`, `label`
+  - 6 color variants for different statuses
+- **Pill**: Removable tag/filter component
+  - Props: `label`, `onRemove`
+  - Click-to-remove functionality
+- **Callout**: Informational callout component
+  - Props: `heading`, `content`
+  - Prominent left border for emphasis
+- **Icon**: FontAwesome icon wrapper component
+  - Props: `icon`, `color`, `size`
+  - Accessibility features built-in
 
 More components will be added over time.
 

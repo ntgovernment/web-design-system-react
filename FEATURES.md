@@ -56,6 +56,19 @@ Fully functional, documented components:
 - Full TypeScript types
 - WCAG AAA compliant
 
+#### Image Component
+
+- Responsive images with fluid sizing
+- Thumbnail styling with borders, padding, and shadows
+- Border radius variants (sm, md, lg, circle)
+- Automatic figure wrapper with captions
+- Design token integration for all styling
+- Theme-aware border radius and colors
+- Full TypeScript types
+- Semantic HTML with `<figure>` and `<figcaption>`
+- WCAG AAA compliant with required alt text
+- Support for native image attributes (srcSet, sizes, loading)
+
 #### Tag Component
 
 - 6 color variants (default, grey, green, blue, warning, red)
@@ -74,18 +87,27 @@ Fully functional, documented components:
 
 #### Button Component
 
-- Multiple variants (primary, secondary, success, danger, warning, info, light, dark, link)
-- Size options (small, default, large)
+- Multiple variants (primary, secondary, tertiary)
+- Size options (small, default)
+- Icon support (left, right, icon-only)
 - Full TypeScript types
-- Bootstrap 5.3 classes
+- Bootstrap 5.3 classes with design token overrides
 
 #### Card Component
 
 - Title, body, and footer sections
+- Icon support in header
 - Variant support for theming
 - Flexible content
 - Responsive layout
 - Full TypeScript types
+
+#### Callout Component
+
+- Heading and content props
+- Prominent left border
+- Flexible layout
+- Theme-aware styling
 - Full TypeScript types
 
 #### Icon Component

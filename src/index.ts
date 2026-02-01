@@ -20,5 +20,8 @@ export type { PillProps } from "./components/Pill";
 export { Notification } from "./components/Notification";
 export type { NotificationProps } from "./components/Notification";
 
+export { Image } from "./components/Image";
+export type { ImageProps } from "./components/Image";
+
 // Import styles
 import "./style.css";

@@ -1,0 +1,36 @@
+/**
+ * Image Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common image styles are defined in Image.css.
+ * 
+ * Theme-specific customizations:
+ * - Border radius values using central-prefixed tokens
+ * - Caption color customizations
+ */
+
+/* NTG Central theme-specific border radius using theme tokens */
+.img-thumbnail {
+  border-radius: var(--central-radii-sm);
+}
+
+.rounded-sm {
+  border-radius: var(--central-radii-sm) !important;
+}
+
+.rounded-md {
+  border-radius: var(--central-radii-md) !important;
+}
+
+.rounded-lg {
+  border-radius: var(--central-radii-md) !important;
+}
+
+.rounded-circle {
+  border-radius: var(--central-radii-lg) !important;
+}
+
+/* NTG Central theme-specific caption styling */
+.figure-caption {
+  color: var(--central-neutral-06);
+}

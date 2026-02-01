@@ -188,6 +188,76 @@
       },
       "file": "src/components/Icon/Icon.stories.tsx"
     },
+    "Image": {
+      "stories": {
+        "Basic": {
+          "args": {
+            "alt": "Placeholder image demonstrating basic responsive image"
+          }
+        },
+        "WithCaption": {
+          "args": {
+            "alt": "Landscape photography of the Northern Territory",
+            "caption": "A scenic view showcasing the natural beauty of the Northern Territory"
+          }
+        },
+        "Thumbnail": {
+          "args": {
+            "alt": "Image with thumbnail styling"
+          }
+        },
+        "ThumbnailWithCaption": {
+          "args": {
+            "alt": "Darwin waterfront at sunset",
+            "caption": "Darwin waterfront featuring modern infrastructure and recreational spaces"
+          }
+        },
+        "RoundedSmall": {
+          "args": {
+            "alt": "Image with small border radius",
+            "rounded": "sm"
+          }
+        },
+        "RoundedMedium": {
+          "args": {
+            "alt": "Image with medium border radius",
+            "rounded": "md"
+          }
+        },
+        "RoundedLarge": {
+          "args": {
+            "alt": "Image with large border radius",
+            "rounded": "lg"
+          }
+        },
+        "RoundedCircle": {
+          "args": {
+            "alt": "Circular image for profile or avatar",
+            "rounded": "circle",
+            "width": "200px",
+            "height": "200px",
+            "objectFit": "cover"
+          }
+        },
+        "NonFluid": {
+          "args": {
+            "alt": "Fixed-width image",
+            "width": "300px"
+          }
+        },
+        "AllVariants": {
+          "args": {
+            "alt": "Placeholder image"
+          }
+        },
+        "CombinedStyles": {
+          "args": {
+            "alt": "Placeholder image"
+          }
+        }
+      },
+      "file": "src/components/Image/Image.stories.tsx"
+    },
     "Notification": {
       "stories": {
         "Default": {
@@ -324,5 +394,5 @@
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-01T13:10:42.779Z"
+  "generated": "2026-02-01T14:53:53.268Z"
 }

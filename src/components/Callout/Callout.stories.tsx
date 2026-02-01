@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Callout } from "./Callout";
 
 const meta = {
-  title: " ⭐ Recent/Callout",
+  title: "Components/Callout",
   component: Callout,
   parameters: {
     layout: "padded",

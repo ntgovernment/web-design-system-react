@@ -3,6 +3,7 @@
 ## Project: NT Government Web Design System
 
 ### Objective
+
 Create a latest Vite + React + TypeScript component library that can be deployed in Squiz DXP Component Services, with Bootstrap 5.3 from CDN and custom NT Government themes.
 
 ---
@@ -10,6 +11,7 @@ Create a latest Vite + React + TypeScript component library that can be deployed
 ## ✅ Requirements Completed
 
 ### 1. Vite + React + TypeScript Component Library
+
 - **Vite 5.4.21** - Fast, modern build tool
 - **React 18.2** - Latest stable React version
 - **TypeScript 5.3.3** - Full type safety throughout
@@ -17,6 +19,7 @@ Create a latest Vite + React + TypeScript component library that can be deployed
 - **Output Formats**: ES modules + UMD for maximum compatibility
 
 ### 2. Bootstrap 5.3 Integration
+
 - **CDN Reference** - Bootstrap 5.3.3 loaded from jsDelivr CDN
 - **CSS Variables Support** - Utilizing Bootstrap's CSS custom properties
 - **No Build Dependency** - Bootstrap loaded at runtime for better caching
@@ -25,24 +28,21 @@ Create a latest Vite + React + TypeScript component library that can be deployed
 ### 3. Theme System with CSS Variables
 
 #### NT.GOV.AU Theme (`ntg-` prefix)
+
 ```css
---ntg-primary: #003366
---ntg-secondary: #6c757d
---ntg-accent: #00a3e0
---ntg-success: #28a745
-// ... and more
+--ntg-primary: #003366 --ntg-secondary: #6c757d --ntg-accent: #00a3e0
+  --ntg-success: #28a745; // ... and more
 ```
 
 #### NTG Central Theme (`central-` prefix)
+
 ```css
---central-primary: #0d6efd
---central-secondary: #6c757d
---central-accent: #fd7e14
---central-success: #198754
-// ... and more
+--central-primary: #0d6efd --central-secondary: #6c757d
+  --central-accent: #fd7e14 --central-success: #198754; // ... and more
 ```
 
 **Features:**
+
 - Prefix-based namespacing prevents conflicts
 - **Automated from Figma design tokens** via Style Dictionary
 - Extends Bootstrap 5.3 CSS variables
@@ -52,6 +52,7 @@ Create a latest Vite + React + TypeScript component library that can be deployed
 ### 3.1. Design Token System (NEW)
 
 **Automated Token Workflow:**
+
 - **Style Dictionary** - Industry-standard token transformation tool
 - **Source**: 4433-line `design-tokens/tokens.json` from Figma export
 - **Transform**: Automated CSS generation via build scripts
@@ -59,6 +60,7 @@ Create a latest Vite + React + TypeScript component library that can be deployed
 - **Validation**: Token structure validation script
 
 **Infrastructure:**
+
 ```
 design-tokens/
 ├── tokens.json                        # Source tokens from Figma (4433 lines)
@@ -77,6 +79,7 @@ src/themes/
 ```
 
 **Build Integration:**
+
 ```bash
 npm run tokens:validate  # Validate token structure
 npm run tokens:build     # Generate CSS from tokens
@@ -84,6 +87,7 @@ npm run build            # Includes token generation (via prebuild)
 ```
 
 **Token Categories:**
+
 - **Grid**: Breakpoint definitions and layout system
 - **Font**: Typography scales for desktop and mobile
 - **Effects**: Shadows, focus states, elevation
@@ -92,6 +96,7 @@ npm run build            # Includes token generation (via prebuild)
 - **Typography**: Complete type system
 
 **Custom Transforms:**
+
 - Figma color format → standard hex (#ffffffff → #ffffff)
 - Dimensions → rem/px conversion
 - Shadow objects → CSS shadow values
@@ -99,6 +104,7 @@ npm run build            # Includes token generation (via prebuild)
 - Token references → CSS variable references
 
 ### 4. Storybook Setup
+
 - **Version**: Storybook 7.6.21
 - **Framework**: React + Vite integration
 - **Features**:
@@ -111,38 +117,84 @@ npm run build            # Includes token generation (via prebuild)
 
 ### 5. Component Library
 
-#### Three Example Components:
+#### Eight Production Components:
 
 **Button Component**
-- Multiple variants (primary, secondary, success, danger, warning, info, light, dark, link)
-- Size options (sm, default, lg)
-- Disabled state
+
+- Multiple variants (primary, secondary, tertiary)
+- Size options (sm, default)
+- Icon support (left, right, icon-only)
 - Full TypeScript props interface
 - Storybook stories with all variants
 
 **Card Component**
+
 - Title, body, and footer sections
+- Icon support in header
 - Variant support for theming
 - Flexible content rendering
 - TypeScript props interface
 - Comprehensive Storybook stories
 
-**Alert Component**
-- Multiple variants matching theme
-- Dismissible functionality
-- Clean, accessible markup
+**Notification Component**
+
+- 4 status variants (info, success, warning, danger)
+- Auto-assigned FontAwesome Light icons
+- Structured title and message props
+- Non-dismissible design
+- Design token-based styling
 - TypeScript props interface
-- Interactive Storybook examples
+
+**Image Component**
+
+- Responsive images with fluid sizing
+- Thumbnail styling with borders and shadows
+- Border radius variants (sm, md, lg, circle)
+- Automatic figure/figcaption wrapper
+- Design token integration
+- Theme-aware styling
+- Full TypeScript props interface
+- 11 Storybook stories
+
+**Tag Component**
+
+- 6 color variants
+- Uppercase typography
+- Theme-aware colors
+- TypeScript props interface
+
+**Pill Component**
+
+- Removable filter component
+- Click-to-remove functionality
+- Theme-aware styling
+- TypeScript props interface
+
+**Callout Component**
+
+- Heading and content props
+- Prominent left border
+- Theme-aware styling
+- TypeScript props interface
+
+**Icon Component**
+
+- FontAwesome wrapper
+- Size and color customization
+- Accessibility features
+- TypeScript props interface
 
 ### 6. Squiz DXP Deployment Ready
 
 **Build Artifacts:**
+
 - `web-design-system.es.js` (22 KB) - ES module format
 - `web-design-system.umd.js` (15 KB) - UMD format
 - `style.css` (1.4 KB) - Compiled theme CSS
 - `index.d.ts` - TypeScript declarations
 
 **Documentation:**
+
 - Comprehensive README.md
 - Detailed SQUIZ_DXP_DEPLOYMENT.md guide
 - Step-by-step Matrix upload instructions
@@ -167,19 +219,37 @@ web-design-system/
 │   ├── build-tokens.js
 │   └── validate-tokens.js
 ├── src/
+│   ├── assets/             # Development assets
+│   │   └── images/
+│   │       ├── placeholder.webp
+│   │       └── index.ts
 │   ├── components/          # React components
-│   │   ├── Alert/
-│   │   │   ├── Alert.tsx
-│   │   │   ├── Alert.stories.tsx
-│   │   │   └── index.ts
 │   │   ├── Button/
 │   │   │   ├── Button.tsx
+│   │   │   ├── Button.css
+│   │   │   ├── Button-ntg.css
+│   │   │   ├── Button-central.css
 │   │   │   ├── Button.stories.tsx
+│   │   │   ├── README.md
 │   │   │   └── index.ts
-│   │   └── Card/
-│   │       ├── Card.tsx
-│   │       ├── Card.stories.tsx
-│   │       └── index.ts
+│   │   ├── Card/
+│   │   │   ├── Card.tsx
+│   │   │   ├── Card.stories.tsx
+│   │   │   ├── README.md
+│   │   │   └── index.ts
+│   │   ├── Image/
+│   │   │   ├── Image.tsx
+│   │   │   ├── Image.css
+│   │   │   ├── Image-ntg.css
+│   │   │   ├── Image-central.css
+│   │   │   ├── Image.stories.tsx
+│   │   │   ├── README.md
+│   │   │   └── index.ts
+│   │   ├── Notification/
+│   │   ├── Tag/
+│   │   ├── Pill/
+│   │   ├── Callout/
+│   │   └── Icon/
 │   ├── themes/              # Theme CSS files (AUTO-GENERATED)
 │   │   ├── ntg-theme.css   # Generated from tokens
 │   │   ├── central-theme.css # Generated from tokens
@@ -204,6 +274,7 @@ web-design-system/
 ## 🛠️ Technical Decisions
 
 ### Why Vite?
+
 - Lightning-fast HMR for development
 - Optimized production builds
 - Native ES modules support
@@ -211,6 +282,7 @@ web-design-system/
 - Simple configuration
 
 ### Why Bootstrap from CDN?
+
 - Reduces bundle size significantly
 - Better browser caching
 - Easier tyle Dictionary? (NEW)
@@ -223,15 +295,18 @@ web-design-system/
 - Active community and extensive documentation
 
 ### Why Sto update Bootstrap independently
+
 - CSS variables allow theming without rebuild
 
 ### Why CSS Variables?
+
 - Dynamic theming without rebuilding
 - Easy customization for different brands
 - Browser-native feature (good support)
 - Namespace prefixes prevent conflicts
 
 ### Why Storybook?
+
 - Industry standard for component libraries
 - Excellent documentation capabilities
 - Visual testing
@@ -243,34 +318,52 @@ web-design-system/
 ## 🚀 Usage Examples
 
 ### Install Package
+
 ```bash
 npm install @ntgovernment/web-design-system
 ```
 
 ### Import Components
+
 ```tsx
-import { Button, Card, Alert } from '@ntgovernment/web-design-system';
-import '@ntgovernment/web-design-system/style.css';
+import {
+  Button,
+  Card,
+  Image,
+  Notification,
+} from "@ntgovernment/web-design-system";
+import "@ntgovernment/web-design-system/style.css";
 
 function App() {
   return (
     <div>
       <Button variant="primary">Click me</Button>
       <Card title="Welcome">Content here</Card>
-      <Alert variant="success">Success!</Alert>
+      <Image
+        src="/photo.jpg"
+        alt="Description"
+        caption="Image caption"
+        thumbnail={true}
+      />
+      <Notification
+        variant="success"
+        title="Success"
+        message="Operation completed!"
+      />
     </div>
   );
 }
 ```
 
 ### Add Bootstrap CDN
+
 ```html
-<link 
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-  rel="stylesheet" 
-  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
   crossorigin="anonymous"
->
+/>
 ```
 
 ---
@@ -282,14 +375,15 @@ function App() {
 - **CSS Bundle**: 1.44 KB (0.59 KB gzipped)
 - **Build Time**: ~3.4 seconds
 - **TypeScript**: Zero errors
-- **Components**: 3 (Button, Card, Alert)
-- **Storybook Stories**: 15+ stories across all components
+- **Components**: 8 (Button, Card, Image, Notification, Tag, Pill, Callout, Icon)
+- **Storybook Stories**: 58 stories across all components
 
 ---
 
 ## ✅ Testing & Verification
 
 ### Build Testing
+
 - ✅ Library builds successfully
 - ✅ TypeScript compilation passes
 - ✅ Both ES and UMD formats generated
@@ -297,6 +391,7 @@ function App() {
 - ✅ Type declarations generated
 
 ### Runtime Testing
+
 - ✅ Demo app runs successfully
 - ✅ All components render correctly
 - ✅ Bootstrap styles apply properly
@@ -304,6 +399,7 @@ function App() {
 - ✅ Component props are type-safe
 
 ### Storybook Testing
+
 - ✅ Storybook starts without errors
 - ✅ All stories load and display
 - ✅ Controls work for all props
@@ -315,18 +411,21 @@ function App() {
 ## 🎯 Deployment Readiness
 
 ### For Squiz DXP:
+
 1. Build artifacts are in `dist/` folder
 2. Detailed deployment guide provided
 3. Example Component Service templates included
 4. Matrix asset structure documented
 
 ### For NPM:
+
 1. Package.json properly configured
 2. Main/module entry points set
 3. Files array includes only dist
 4. Types exported correctly
 
 ### For CDN:
+
 1. UMD bundle can be loaded via script tag
 2. Global variable exposed (WebDesignSystem)
 3. Standalone CSS file included
@@ -347,6 +446,7 @@ function App() {
 ## 🎨 Future Enhancements
 
 Potential additions (not in current scope):
+
 - Additional components (Form, Modal, Navbar, etc.)
 - Unit tests (Jest/Vitest)
 - E2E tests (Playwright/Cypress)

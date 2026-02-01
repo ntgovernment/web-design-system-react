@@ -27,6 +27,11 @@ import "../src/components/Callout/Callout.css";
 import "../src/components/Callout/Callout-ntg.css";
 import "../src/components/Callout/Callout-central.css";
 
+// Import Image CSS files to ensure Vite processes them
+import "../src/components/Image/Image.css";
+import "../src/components/Image/Image-ntg.css";
+import "../src/components/Image/Image-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -189,6 +194,25 @@ const loadCalloutStyles = (theme: string) => {
   document.head.appendChild(calloutCSS);
 };
 
+// Load Image Component Styles (theme-specific overrides)
+const loadImageStyles = (theme: string) => {
+  // Remove existing theme-specific Image CSS if present
+  const existingImage = document.getElementById("image-theme-css");
+  if (existingImage) {
+    existingImage.remove();
+  }
+
+  // Add theme-specific Image CSS overrides
+  const imageCSS = document.createElement("link");
+  imageCSS.id = "image-theme-css";
+  imageCSS.rel = "stylesheet";
+  imageCSS.href = new URL(
+    `../src/components/Image/Image-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(imageCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -282,6 +306,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadPillStyles(theme); // Load theme-specific Pill CSS overrides
     loadNotificationStyles(theme); // Load theme-specific Notification CSS overrides
     loadCalloutStyles(theme); // Load theme-specific Callout CSS overrides
+    loadImageStyles(theme); // Load theme-specific Image CSS overrides
   }, [theme]);
 
   return (
@@ -334,9 +359,9 @@ const preview: Preview = {
       storySort: {
         order: [
           "⭐ Recent",
-          ["Callout"],
+          ["Image"],
           "Components",
-          ["Notification", "Pill", "Button", "Card", "Tag"],
+          ["Notification", "Pill", "Button", "Card", "Tag", "Callout"],
           "Design System",
           ["Typography", "Icon"],
         ],

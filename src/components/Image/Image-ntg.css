@@ -1,0 +1,36 @@
+/**
+ * Image Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common image styles are defined in Image.css.
+ * 
+ * Theme-specific customizations:
+ * - Border radius values using ntg-prefixed tokens
+ * - Caption color customizations
+ */
+
+/* NT.GOV.AU theme-specific border radius using theme tokens */
+.img-thumbnail {
+  border-radius: var(--ntg-radii-sm);
+}
+
+.rounded-sm {
+  border-radius: var(--ntg-radii-sm) !important;
+}
+
+.rounded-md {
+  border-radius: var(--ntg-radii-md) !important;
+}
+
+.rounded-lg {
+  border-radius: var(--ntg-radii-md) !important;
+}
+
+.rounded-circle {
+  border-radius: var(--ntg-radii-lg) !important;
+}
+
+/* NT.GOV.AU theme-specific caption styling */
+.figure-caption {
+  color: var(--ntg-neutral-06);
+}

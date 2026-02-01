@@ -5,6 +5,8 @@ import { Callout } from "../components/Callout";
 import { Tag } from "../components/Tag";
 import { Pill } from "../components/Pill";
 import { Notification } from "../components/Notification";
+import { Image } from "../components/Image";
+import placeholderImage from "../assets/images/placeholder.webp";
 
 function App() {
   const [theme, setTheme] = useState<"ntg" | "central">("ntg");
@@ -34,6 +36,7 @@ function App() {
       const calloutThemePath = `/src/components/Callout/Callout-${newTheme}.css?v=${timestamp}`;
       const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;
       const pillThemePath = `/src/components/Pill/Pill-${newTheme}.css?v=${timestamp}`;
+      const imageThemePath = `/src/components/Image/Image-${newTheme}.css?v=${timestamp}`;
 
       // Helper function to reload a stylesheet
       const reloadStylesheet = (id: string, href: string) => {
@@ -55,6 +58,7 @@ function App() {
       reloadStylesheet("callout-theme-css", calloutThemePath);
       reloadStylesheet("tag-theme-css", tagThemePath);
       reloadStylesheet("pill-theme-css", pillThemePath);
+      reloadStylesheet("image-theme-css", imageThemePath);
     } else {
       // Production: swap complete theme bundle (includes all dependencies)
       const themePath = `${newTheme}-theme.min.css`;
@@ -80,6 +84,59 @@ function App() {
           <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
         </p>
       </div>
+
+      <section className="mb-5">
+        <h2>Image</h2>
+        <p className="text-muted mb-3">
+          Responsive image component with optional thumbnail styling, border
+          radius variants, and semantic figure support with captions.
+        </p>
+        <div className="row g-4">
+          <div className="col-md-6">
+            <h3 className="h5">Basic Responsive</h3>
+            <Image src={placeholderImage} alt="Basic responsive image" />
+          </div>
+          <div className="col-md-6">
+            <h3 className="h5">With Caption</h3>
+            <Image
+              src={placeholderImage}
+              alt="Darwin waterfront at sunset"
+              caption="Darwin waterfront featuring modern infrastructure and recreational spaces"
+            />
+          </div>
+          <div className="col-md-6">
+            <h3 className="h5">Thumbnail Style</h3>
+            <Image
+              src={placeholderImage}
+              alt="Thumbnail styled image"
+              thumbnail={true}
+            />
+          </div>
+          <div className="col-md-6">
+            <h3 className="h5">Rounded Variants</h3>
+            <div className="d-flex gap-3">
+              <Image
+                src={placeholderImage}
+                alt="Small rounded"
+                rounded="sm"
+                style={{ width: "120px" }}
+              />
+              <Image
+                src={placeholderImage}
+                alt="Medium rounded"
+                rounded="md"
+                style={{ width: "120px" }}
+              />
+              <Image
+                src={placeholderImage}
+                alt="Circle"
+                rounded="circle"
+                style={{ width: "100px", height: "100px", objectFit: "cover" }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="mb-5">
         <h2>Callout</h2>
