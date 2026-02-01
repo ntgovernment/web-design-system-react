@@ -55,6 +55,7 @@ function App() {
           <div className="d-flex gap-2 flex-wrap">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
+            <Button variant="tertiary">Tertiary</Button>
           </div>
         </div>
         <div className="mb-4">
@@ -69,6 +70,7 @@ function App() {
           <div className="d-flex gap-2 flex-wrap">
             <Button variant="primary" icon="fa-light fa-home" iconPosition="left">Home</Button>
             <Button variant="secondary" icon="fa-light fa-arrow-left" iconPosition="left">Back</Button>
+            <Button variant="tertiary" icon="fa-light fa-cog" iconPosition="left">Settings</Button>
             <Button variant="primary" icon="fa-light fa-arrow-right" iconPosition="right">Next</Button>
             <Button variant="primary" icon="fa-light fa-search" aria-label="Search" />
           </div>

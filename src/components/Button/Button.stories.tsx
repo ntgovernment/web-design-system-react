@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary'],
+      options: ['primary', 'secondary', 'tertiary'],
     },
     size: {
       control: 'select',
@@ -37,6 +37,13 @@ export const Secondary: Story = {
   },
 };
 
+export const Tertiary: Story = {
+  args: {
+    variant: 'tertiary',
+    children: 'Button',
+  },
+};
+
 export const Small: Story = {
   args: {
     size: 'sm',
@@ -52,6 +59,7 @@ export const AllVariants: Story = {
     <div className="d-flex gap-2 flex-wrap">
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
+      <Button variant="tertiary">Tertiary</Button>
     </div>
   ),
 };
@@ -88,6 +96,7 @@ export const IconButtons: Story = {
       <Button variant="primary" icon="fa-light fa-home" iconPosition="left">Home</Button>
       <Button variant="primary" icon="fa-light fa-download" iconPosition="left">Download</Button>
       <Button variant="secondary" icon="fa-light fa-arrow-left" iconPosition="left">Back</Button>
+      <Button variant="tertiary" icon="fa-light fa-cog" iconPosition="left">Settings</Button>
       <Button variant="primary" icon="fa-light fa-arrow-right" iconPosition="right">Next</Button>
     </div>
   ),
@@ -102,6 +111,7 @@ export const IconOnlyButtons: Story = {
     <div className="d-flex gap-2 flex-wrap">
       <Button variant="primary" icon="fa-light fa-search" aria-label="Search" />
       <Button variant="secondary" icon="fa-light fa-cog" aria-label="Settings" />
+      <Button variant="tertiary" icon="fa-light fa-filter" aria-label="Filter" />
       <Button variant="primary" icon="fa-light fa-plus" aria-label="Add" />
       <Button variant="secondary" icon="fa-light fa-times" aria-label="Close" />
       <Button variant="primary" icon="fa-light fa-info-circle" aria-label="Information" />

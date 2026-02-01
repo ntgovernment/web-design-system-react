@@ -68,7 +68,7 @@
 /* Secondary button variant */
 .btn-secondary {
   --bs-btn-border-width: var(--border-width-md);
-  --bs-btn-color: var(--clr-text-default);
+  --bs-btn-color: var(--clr-link-default);
   --bs-btn-bg: var(--clr-action-secondary);
   --bs-btn-border-color: var(--clr-border-strong-01);
   --bs-btn-hover-color: var(--clr-text-inverse);
@@ -80,5 +80,22 @@
   --bs-btn-active-border-width: 0;
   --bs-btn-disabled-color: var(--clr-text-muted);
   --bs-btn-disabled-bg: var(--clr-action-disabled);
-  --bs-btn-disabled-border-color: var(--clr-action-disabled);
+  --bs-btn-disabled-border-color: var(--clr-border-subtle);
+}
+
+/* Tertiary button variant */
+.btn-tertiary {
+  --bs-btn-border-width: 0;
+  --bs-btn-color: var(--clr-link-default);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: var(--clr-link-hover);
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: var(--clr-link-pressed);
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-color: var(--clr-text-muted);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
 }

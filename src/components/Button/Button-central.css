@@ -35,3 +35,10 @@
   --bs-btn-hover-bg: var(--clr-action-secondary);
   --bs-btn-hover-border-color: var(--clr-border-strong-01);
 }
+
+.btn-tertiary:focus:not(:hover),
+.btn-tertiary:focus-visible:not(:hover) {
+  --bs-btn-hover-color: var(--clr-link-default);
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+}
