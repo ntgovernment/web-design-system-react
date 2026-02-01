@@ -1,58 +1,5 @@
 {
   "components": {
-    "Alert": {
-      "stories": {
-        "Primary": {
-          "args": {
-            "variant": "primary",
-            "children": "This is a primary alert—check it out!"
-          }
-        },
-        "Success": {
-          "args": {
-            "variant": "success",
-            "children": "This is a success alert—check it out!"
-          }
-        },
-        "Danger": {
-          "args": {
-            "variant": "danger",
-            "children": "This is a danger alert—check it out!"
-          }
-        },
-        "Dismissible": {
-          "args": {
-            "variant": "warning",
-            "children": "This is a dismissible alert. Click the × to close it."
-          }
-        },
-        "AllVariants": {
-          "args": {
-            "children": "Alert content"
-          }
-        },
-        "WithIcon": {
-          "args": {
-            "variant": "success",
-            "icon": "fa-light fa-circle-check",
-            "children": "Your action was successful!"
-          }
-        },
-        "ContextualIcons": {
-          "args": {
-            "children": "Alert content"
-          }
-        },
-        "DismissibleWithIcon": {
-          "args": {
-            "variant": "warning",
-            "icon": "fa-light fa-triangle-exclamation",
-            "children": "This is a dismissible alert with an icon. Click the × to close it."
-          }
-        }
-      },
-      "file": "src/components/Alert/Alert.stories.tsx"
-    },
     "Button": {
       "stories": {
         "Primary": {
@@ -206,6 +153,60 @@
       },
       "file": "src/components/Icon/Icon.stories.tsx"
     },
+    "Notification": {
+      "stories": {
+        "Default": {
+          "args": {
+            "variant": "info",
+            "title": "Information alert",
+            "message": "Your application has been submitted for review. You will receive an email notification once the review process is complete. This typically takes 2-3 business days."
+          }
+        },
+        "Success": {
+          "args": {
+            "variant": "success",
+            "title": "Success notification",
+            "message": "Your action was completed successfully. All changes have been saved and are now live."
+          }
+        },
+        "Warning": {
+          "args": {
+            "variant": "warning",
+            "title": "Warning notification",
+            "message": "Please review the following information carefully before proceeding. Some actions may be irreversible."
+          }
+        },
+        "Danger": {
+          "args": {
+            "variant": "danger",
+            "title": "Error notification",
+            "message": "An error has occurred while processing your request. Please try again or contact support if the issue persists."
+          }
+        },
+        "AllVariants": {
+          "args": {
+            "variant": "info",
+            "title": "Information alert",
+            "message": "Callout content."
+          }
+        },
+        "LongContent": {
+          "args": {
+            "variant": "info",
+            "title": "Extended information notification with a longer title",
+            "message": "This is a notification with significantly longer content to demonstrate how the component handles text wrapping and maintains readability. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque. Praesent posuere lobortis purus, ac laoreet est volutpat in. Sed vehicula mauris vel diam ornare, vel hendrerit eros consectetur. Nullam facilisis nisi vitae massa fermentum, at aliquet dolor venenatis. Curabitur hendrerit massa at tellus scelerisque, non mollis dui tincidunt."
+          }
+        },
+        "ShortContent": {
+          "args": {
+            "variant": "success",
+            "title": "Saved",
+            "message": "Your changes have been saved."
+          }
+        }
+      },
+      "file": "src/components/Notification/Notification.stories.tsx"
+    },
     "Pill": {
       "stories": {
         "Default": {
@@ -288,5 +289,5 @@
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-01T07:59:31.512Z"
+  "generated": "2026-02-01T11:42:51.183Z"
 }

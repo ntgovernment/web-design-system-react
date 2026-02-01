@@ -12,14 +12,15 @@ The design system uses Bootstrap's comprehensive typography system with two them
 
 ### Font Families
 
-| Theme | Font Family | Usage |
-|-------|-------------|-------|
-| **NTG (NT.GOV.AU)** | Lato | Sans-serif font for NT.GOV.AU websites |
-| **Central (NTG Central)** | Roboto | Sans-serif font for NTG Central/intranet |
+| Theme                     | Font Family | Usage                                    |
+| ------------------------- | ----------- | ---------------------------------------- |
+| **NTG (NT.GOV.AU)**       | Lato        | Sans-serif font for NT.GOV.AU websites   |
+| **Central (NTG Central)** | Roboto      | Sans-serif font for NTG Central/intranet |
 
 ### Font Loading
 
 Fonts are loaded via Google Fonts CDN in the theme-specific typography files:
+
 - `src/typography/typography-ntg.css` - Loads Lato for NTG theme
 - `src/typography/typography-central.css` - Loads Roboto for Central theme
 
@@ -30,12 +31,18 @@ The design system follows Bootstrap's typography hierarchy:
 ### Headings
 
 ```html
-<h1>Heading 1</h1>  <!-- 2.5rem / 40px -->
-<h2>Heading 2</h2>  <!-- 2rem / 32px -->
-<h3>Heading 3</h3>  <!-- 1.75rem / 28px -->
-<h4>Heading 4</h4>  <!-- 1.5rem / 24px -->
-<h5>Heading 5</h5>  <!-- 1.25rem / 20px -->
-<h6>Heading 6</h6>  <!-- 1rem / 16px -->
+<h1>Heading 1</h1>
+<!-- 2.5rem / 40px -->
+<h2>Heading 2</h2>
+<!-- 2rem / 32px -->
+<h3>Heading 3</h3>
+<!-- 1.75rem / 28px -->
+<h4>Heading 4</h4>
+<!-- 1.5rem / 24px -->
+<h5>Heading 5</h5>
+<!-- 1.25rem / 20px -->
+<h6>Heading 6</h6>
+<!-- 1rem / 16px -->
 ```
 
 ### Display Headings
@@ -43,31 +50,42 @@ The design system follows Bootstrap's typography hierarchy:
 For larger, more prominent headings:
 
 ```html
-<h1 class="display-1">Display 1</h1>  <!-- 5rem / 80px -->
-<h1 class="display-2">Display 2</h1>  <!-- 4.5rem / 72px -->
-<h1 class="display-3">Display 3</h1>  <!-- 4rem / 64px -->
-<h1 class="display-4">Display 4</h1>  <!-- 3.5rem / 56px -->
-<h1 class="display-5">Display 5</h1>  <!-- 3rem / 48px -->
-<h1 class="display-6">Display 6</h1>  <!-- 2.5rem / 40px -->
+<h1 class="display-1">Display 1</h1>
+<!-- 5rem / 80px -->
+<h1 class="display-2">Display 2</h1>
+<!-- 4.5rem / 72px -->
+<h1 class="display-3">Display 3</h1>
+<!-- 4rem / 64px -->
+<h1 class="display-4">Display 4</h1>
+<!-- 3.5rem / 56px -->
+<h1 class="display-5">Display 5</h1>
+<!-- 3rem / 48px -->
+<h1 class="display-6">Display 6</h1>
+<!-- 2.5rem / 40px -->
 ```
 
 ### Body Text
 
 ```html
-<p>Default paragraph text</p>           <!-- 1rem / 16px -->
-<p class="lead">Lead paragraph</p>       <!-- 1.25rem / 20px, lighter weight -->
-<small>Small text</small>                <!-- 0.875rem / 14px -->
+<p>Default paragraph text</p>
+<!-- 1rem / 16px -->
+<p class="lead">Lead paragraph</p>
+<!-- 1.25rem / 20px, lighter weight -->
+<small>Small text</small>
+<!-- 0.875rem / 14px -->
 ```
 
 ## Theme-Specific Typography
 
 ### NTG Theme (Lato)
+
 - **Font**: Lato (Google Fonts)
 - **Weights**: 300 (Light), 400 (Regular), 700 (Bold), 900 (Black)
 - **Character**: Clean, professional, official government aesthetic
 - **Used for**: NT.GOV.AU websites and official government communications
 
 ### Central Theme (Roboto)
+
 - **Font**: Roboto (Google Fonts)
 - **Weights**: 300 (Light), 400 (Regular), 500 (Medium), 700 (Bold)
 - **Character**: Modern, geometric, readable
@@ -84,12 +102,8 @@ function MyPage() {
   return (
     <div>
       <h1>Page Title</h1>
-      <p class="lead">
-        This is a lead paragraph with larger, lighter text.
-      </p>
-      <p>
-        Regular paragraph text with automatic styling from Bootstrap.
-      </p>
+      <p class="lead">This is a lead paragraph with larger, lighter text.</p>
+      <p>Regular paragraph text with automatic styling from Bootstrap.</p>
       <h2>Section Heading</h2>
       <p>
         More content with <strong>bold text</strong> and <em>italic text</em>.
@@ -258,6 +272,7 @@ Bootstrap's typography scales automatically on different screen sizes. You can a
 ## Best Practices
 
 ### Heading Hierarchy
+
 - Use only one `<h1>` per page (typically the page title)
 - Don't skip heading levels (e.g., don't jump from `<h2>` to `<h4>`)
 - Use headings for structure, not styling (use classes for visual appearance)
@@ -275,7 +290,9 @@ Bootstrap's typography scales automatically on different screen sizes. You can a
 ```
 
 ### Semantic HTML
+
 Use semantic elements appropriately:
+
 - `<p>` for paragraphs
 - `<strong>` for importance (renders bold)
 - `<em>` for emphasis (renders italic)
@@ -283,12 +300,14 @@ Use semantic elements appropriately:
 - `<code>` for code snippets
 
 ### Accessibility
+
 - Ensure sufficient color contrast (WCAG AA minimum: 4.5:1 for normal text, 3:1 for large text)
 - Don't rely solely on color to convey meaning
 - Use relative units (rem, em) instead of fixed pixel sizes for better scalability
 - Provide alternative text for visual-only content
 
 ### Line Length
+
 For optimal readability, limit line length to 50-75 characters. Use container widths or CSS to control:
 
 ```html
@@ -302,12 +321,14 @@ For optimal readability, limit line length to 50-75 characters. Use container wi
 The typography system uses CSS variables from the design token system. Key variables include:
 
 ### Font Families
+
 ```css
---ntg-font-family-primary: 'Lato', sans-serif;
---central-font-family-primary: 'Roboto', sans-serif;
+--ntg-font-family-primary: "Lato", sans-serif;
+--central-font-family-primary: "Roboto", sans-serif;
 ```
 
 ### Font Weights
+
 ```css
 --ntg-font-weight-light: 300;
 --ntg-font-weight-regular: 400;
@@ -316,6 +337,7 @@ The typography system uses CSS variables from the design token system. Key varia
 ```
 
 ### Font Sizes
+
 ```css
 --bs-body-font-size: 1rem;
 --bs-h1-font-size: 2.5rem;
@@ -352,7 +374,7 @@ Navigate to **Design System > Typography** to see all typography styles in actio
 Typography styles are automatically applied to component content:
 
 ```tsx
-import { Card, Alert } from '@ntgovernment/web-design-system';
+import { Card, Notification } from '@ntgovernment/web-design-system';
 
 <Card title="Card Title">
   <h3>Heading in Card</h3>
@@ -362,9 +384,11 @@ import { Card, Alert } from '@ntgovernment/web-design-system';
   </ul>
 </Card>
 
-<Alert variant="info">
-  <strong>Note:</strong> This is <em>important</em> information.
-</Alert>
+<Notification
+  variant="info"
+  title="Note"
+  message="This is important information with standard typography."
+/>
 ```
 
 ## Related Documentation
@@ -377,6 +401,7 @@ import { Card, Alert } from '@ntgovernment/web-design-system';
 ## Browser Support
 
 Typography styles work in all modern browsers:
+
 - Chrome/Edge (latest)
 - Firefox (latest)
 - Safari (latest)

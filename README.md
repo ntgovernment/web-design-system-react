@@ -34,9 +34,14 @@ After building (`npm run build`), the `dist/` folder contains:
 ### Basic Usage
 
 ```tsx
-import { Button, Card, Alert, Icon } from '@ntgovernment/web-design-system';
-import '@ntgovernment/web-design-system/components.min.css';
-import '@ntgovernment/web-design-system/ntg-theme.min.css'; // or central-theme.min.css
+import {
+  Button,
+  Card,
+  Notification,
+  Icon,
+} from "@ntgovernment/web-design-system";
+import "@ntgovernment/web-design-system/components.min.css";
+import "@ntgovernment/web-design-system/ntg-theme.min.css"; // or central-theme.min.css
 
 function App() {
   return (
@@ -45,7 +50,11 @@ function App() {
       <Card title="Welcome">
         <p>This is a card component</p>
       </Card>
-      <Alert variant="success">Operation successful!</Alert>
+      <Notification
+        variant="success"
+        title="Success"
+        message="Operation completed successfully!"
+      />
       <Icon icon="fa-light fa-heart" color="#dc3545" size="2rem" />
     </div>
   );
@@ -57,7 +66,9 @@ function App() {
 The library includes two pre-configured themes:
 
 #### NT.GOV.AU Theme (Default)
+
 Uses CSS variables with `ntg-` prefix:
+
 ```css
 --ntg-primary: #003366;
 --ntg-secondary: #6c757d;
@@ -65,7 +76,9 @@ Uses CSS variables with `ntg-` prefix:
 ```
 
 #### NTG Central Theme
+
 Uses CSS variables with `central-` prefix:
+
 ```css
 --central-primary: #0d6efd;
 --central-secondary: #6c757d;
@@ -77,12 +90,12 @@ Uses CSS variables with `central-` prefix:
 The components are designed to work with Bootstrap 5.3 loaded from CDN. Add this to your HTML:
 
 ```html
-<link 
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-  rel="stylesheet" 
-  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
   crossorigin="anonymous"
->
+/>
 ```
 
 ### FontAwesome Icons
@@ -90,7 +103,10 @@ The components are designed to work with Bootstrap 5.3 loaded from CDN. Add this
 The library uses FontAwesome for icons. Add the FontAwesome Kit to your HTML:
 
 ```html
-<script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+<script
+  src="https://kit.fontawesome.com/9bf658a5c7.js"
+  crossorigin="anonymous"
+></script>
 ```
 
 #### Using Icons in Components
@@ -98,7 +114,7 @@ The library uses FontAwesome for icons. Add the FontAwesome Kit to your HTML:
 Components support FontAwesome icons via the `icon` prop:
 
 ```tsx
-import { Button, Alert, Card } from '@ntgovernment/web-design-system';
+import { Button, Notification, Card } from '@ntgovernment/web-design-system';
 
 // Button with icon
 <Button variant="primary" icon="fa-solid fa-home" iconPosition="left">
@@ -108,10 +124,12 @@ import { Button, Alert, Card } from '@ntgovernment/web-design-system';
 // Icon-only button (requires aria-label for accessibility)
 <Button variant="primary" icon="fa-solid fa-search" aria-label="Search" />
 
-// Alert with icon
-<Alert variant="success" icon="fa-solid fa-circle-check">
-  Your changes have been saved!
-</Alert>
+// Notification with auto-assigned icon
+<Notification
+  variant="success"
+  title="Success"
+  message="Your changes have been saved!"
+/>
 
 // Card with icon in header
 <Card title="Dashboard" icon="fa-solid fa-chart-line">
@@ -122,7 +140,7 @@ import { Button, Alert, Card } from '@ntgovernment/web-design-system';
 #### Icon Props
 
 - **Button**: `icon` (icon class), `iconPosition` ('left' | 'right')
-- **Alert**: `icon` (icon class)
+- **Notification**: Auto-assigned icons based on variant (uses FontAwesome Light)
 - **Card**: `icon` (icon class, displayed in header)
 
 All icon classes should follow FontAwesome's naming convention (e.g., `fa-solid fa-home`, `fa-regular fa-user`).
@@ -154,15 +172,16 @@ Story IDs are generated from the story title and name. Format: `{title}--{name}`
 
 **Examples:**
 
-| Component | Story Name | Story ID |
-|-----------|------------|----------|
-| Button | Primary | `components-button--primary` |
-| Button | Secondary | `components-button--secondary` |
-| Alert | Success | `components-alert--success` |
-| Card | With Footer | `components-card--with-footer` |
-| Icon | Basic Icon | `components-icon--basic-icon` |
+| Component | Story Name  | Story ID                       |
+| --------- | ----------- | ------------------------------ |
+| Button    | Primary     | `components-button--primary`   |
+| Button    | Secondary   | `components-button--secondary` |
+| Alert     | Success     | `components-alert--success`    |
+| Card      | With Footer | `components-card--with-footer` |
+| Icon      | Basic Icon  | `components-icon--basic-icon`  |
 
 You can also find story IDs in:
+
 - `.storybook/story-data.json` (generated catalog)
 - Storybook URL bar when viewing a story
 - Storybook's "Docs" tab
@@ -173,12 +192,12 @@ You can also find story IDs in:
 
 ```javascript
 // Fetch rendered HTML for a component
-fetch('http://localhost:6006/api/html?storyId=components-button--primary')
-  .then(response => response.text())
-  .then(html => {
+fetch("http://localhost:6006/api/html?storyId=components-button--primary")
+  .then((response) => response.text())
+  .then((html) => {
     console.log(html);
     // Insert into your application
-    document.getElementById('container').innerHTML = html;
+    document.getElementById("container").innerHTML = html;
   });
 ```
 
@@ -208,10 +227,12 @@ The HTML API is designed for Squiz Matrix integration:
 
 <script>
   // Fetch component HTML from Storybook instance
-  fetch('https://your-storybook-instance.com/api/html?storyId=components-button--primary')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('button-container').innerHTML = html;
+  fetch(
+    "https://your-storybook-instance.com/api/html?storyId=components-button--primary",
+  )
+    .then((response) => response.text())
+    .then((html) => {
+      document.getElementById("button-container").innerHTML = html;
     });
 </script>
 ```
@@ -257,6 +278,7 @@ The complete catalog of available stories is in `.storybook/story-data.json`:
 ```
 
 This file is automatically generated and updated whenever you run:
+
 - `npm run generate-story-data`
 - `npm run build`
 - `npm run storybook`
@@ -266,7 +288,7 @@ This file is automatically generated and updated whenever you run:
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Setup
@@ -303,7 +325,6 @@ The project includes several npm scripts for development, building, and testing:
 - **`npm run dev`** - Start Vite development server with hot module replacement (HMR)
   - URL: `http://localhost:5173`
   - Watches files for changes and rebuilds automatically
-  
 - **`npm run storybook`** - Start Storybook development server
   - URL: `http://localhost:6006`
   - Interactive component documentation and playground
@@ -316,12 +337,10 @@ The project includes several npm scripts for development, building, and testing:
   - Builds with Vite
   - Runs post-build optimization (`build-dist.js`)
   - Automatically runs `prebuild` hook first
-  
 - **`npm run build-storybook`** - Build static Storybook site
   - Output: `storybook-static/`
   - Can be deployed as static website
   - Automatically runs `prebuild-storybook` hook first
-  
 - **`npm run preview`** - Preview production build locally
   - Serves the built `dist/` folder
   - Useful for testing before deployment
@@ -332,7 +351,6 @@ The project includes several npm scripts for development, building, and testing:
   - Checks `design-tokens/tokens.json` for errors
   - Validates token format and required fields
   - Run before `tokens:build`
-  
 - **`npm run tokens:build`** - Generate CSS from design tokens
   - Uses Style Dictionary to transform tokens
   - Outputs to `src/themes/`
@@ -364,7 +382,7 @@ See [design-tokens/README.md](design-tokens/README.md) for detailed workflow doc
 
 ## Deployment to Squiz DXP Component Services
 
-This library is designed to be deployed as Component Services in Squiz DXP. 
+This library is designed to be deployed as Component Services in Squiz DXP.
 
 ### Build for Production
 
@@ -373,6 +391,7 @@ npm run build
 ```
 
 This creates:
+
 - `dist/web-design-system.es.js` - ES module format
 - `dist/web-design-system.umd.js` - UMD format for broader compatibility
 - `dist/style.css` - Compiled styles
@@ -382,10 +401,10 @@ This creates:
 
 1. **Build the library**: Run `npm run build`
 2. **Upload to Squiz Matrix**: Upload the `dist` directory contents to Matrix
-3. **Reference in Component Services**: 
+3. **Reference in Component Services**:
    ```html
    <script type="module" src="/path/to/web-design-system.es.js"></script>
-   <link rel="stylesheet" href="/path/to/style.css">
+   <link rel="stylesheet" href="/path/to/style.css" />
    ```
 4. **Use components**: Components are available as React components
 
@@ -394,17 +413,20 @@ This creates:
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="%globals_asset_url:YOUR_STYLE_ASSET_ID%">
-</head>
-<body>
-  <div id="root"></div>
-  <script type="module">
-    import { Button } from '%globals_asset_url:YOUR_JS_ASSET_ID%';
-    // Your component code here
-  </script>
-</body>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="%globals_asset_url:YOUR_STYLE_ASSET_ID%" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      import { Button } from "%globals_asset_url:YOUR_JS_ASSET_ID%";
+      // Your component code here
+    </script>
+  </body>
 </html>
 ```
 
@@ -421,6 +443,7 @@ Visit `http://localhost:6006` to view the component library.
 ### HTML Code View
 
 Storybook is configured with a decorator that shows the HTML output of components. This helps with:
+
 - Verifying Bootstrap class names
 - Understanding component structure
 - Debugging styling issues
@@ -436,7 +459,7 @@ You can create custom themes by defining CSS variables:
   /* Your custom theme variables */
   --custom-primary: #yourcolor;
   --custom-secondary: #yourcolor;
-  
+
   /* Map to Bootstrap variables */
   --bs-primary: var(--custom-primary);
   --bs-secondary: var(--custom-secondary);
@@ -470,6 +493,7 @@ npm run build
 #### Automated Generation
 
 Theme CSS files in `src/themes/` are automatically generated from design tokens:
+
 - `ntg-theme.css` - Generated from NTG theme tokens
 - `central-theme.css` - Generated from Central theme tokens
 
@@ -484,11 +508,9 @@ For more details, see [design-tokens/README.md](design-tokens/README.md).
 - **Button**: Configurable button component with multiple variants and icon support
   - Props: `variant`, `size`, `disabled`, `icon`, `iconPosition`, `aria-label`
   - Supports FontAwesome icons in left/right positions or icon-only mode
-  
 - **Card**: Container component for content with optional icon in header
   - Props: `title`, `variant`, `footer`, `icon`
   - Icon appears before the card title
-  
 - **Alert**: Alert/notification component with contextual icon support
   - Props: `variant`, `dismissible`, `onDismiss`, `icon`
   - Icons help communicate alert context (success, warning, error, info)
@@ -535,15 +557,15 @@ More components will be added over time.
 
 The NT Government Web Design System supports all modern browsers:
 
-| Browser | Version | Support |
-|---------|---------|----------|
-| **Chrome** | Latest 2 versions | ✅ Fully supported |
-| **Edge** | Latest 2 versions | ✅ Fully supported |
-| **Firefox** | Latest 2 versions | ✅ Fully supported |
-| **Safari** | Latest 2 versions | ✅ Fully supported |
-| **iOS Safari** | Latest 2 versions | ✅ Fully supported |
-| **Chrome Mobile** | Latest version | ✅ Fully supported |
-| **Internet Explorer** | All versions | ❌ Not supported |
+| Browser               | Version           | Support            |
+| --------------------- | ----------------- | ------------------ |
+| **Chrome**            | Latest 2 versions | ✅ Fully supported |
+| **Edge**              | Latest 2 versions | ✅ Fully supported |
+| **Firefox**           | Latest 2 versions | ✅ Fully supported |
+| **Safari**            | Latest 2 versions | ✅ Fully supported |
+| **iOS Safari**        | Latest 2 versions | ✅ Fully supported |
+| **Chrome Mobile**     | Latest version    | ✅ Fully supported |
+| **Internet Explorer** | All versions      | ❌ Not supported   |
 
 ### Browser Requirements
 
@@ -555,6 +577,7 @@ The NT Government Web Design System supports all modern browsers:
 ### Testing
 
 Components are tested in:
+
 - Chrome (primary development browser)
 - Firefox
 - Safari
@@ -570,13 +593,17 @@ Components are tested in:
 **Problem**: Components appear unstyled or have broken layout.
 
 **Solutions**:
+
 1. Ensure Bootstrap 5.3.3 CSS is loaded:
    ```html
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link
+     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+     rel="stylesheet"
+   />
    ```
 2. Load theme CSS after Bootstrap:
    ```html
-   <link rel="stylesheet" href="./ntg-theme.min.css">
+   <link rel="stylesheet" href="./ntg-theme.min.css" />
    ```
 3. Check browser console for CSS loading errors
 
@@ -585,9 +612,13 @@ Components are tested in:
 **Problem**: Icons show as empty squares or missing.
 
 **Solutions**:
+
 1. Verify FontAwesome kit is loaded:
    ```html
-   <script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+   <script
+     src="https://kit.fontawesome.com/9bf658a5c7.js"
+     crossorigin="anonymous"
+   ></script>
    ```
 2. Check icon class names are correct (e.g., `fa-solid fa-home`, not `fa-home`)
 3. Ensure internet connection (FontAwesome loads from CDN)
@@ -597,6 +628,7 @@ Components are tested in:
 **Problem**: TypeScript errors when importing components.
 
 **Solutions**:
+
 1. Ensure types are exported: `import type { ButtonProps } from '@ntgovernment/web-design-system'`
 2. Check `dist/index.d.ts` exists after building
 3. Verify `types` field in package.json points to correct file
@@ -606,6 +638,7 @@ Components are tested in:
 **Problem**: Theme colors not showing, components use default Bootstrap colors.
 
 **Solutions**:
+
 1. Load theme CSS file (`ntg-theme.min.css` or `central-theme.min.css`)
 2. Ensure theme CSS loads after Bootstrap CSS
 3. Check browser DevTools to verify CSS variables are defined
@@ -616,6 +649,7 @@ Components are tested in:
 **Problem**: `npm run build` fails.
 
 **Solutions**:
+
 1. Run `npm run tokens:validate` first to check token structure
 2. Delete `node_modules` and run `npm install` again
 3. Check Node.js version (18+ required)
@@ -626,6 +660,7 @@ Components are tested in:
 **Problem**: `npm run storybook` fails or shows errors.
 
 **Solutions**:
+
 1. Delete `.storybook/story-data.json` and regenerate: `npm run generate-story-data`
 2. Clear Storybook cache: Delete `node_modules/.cache/storybook`
 3. Verify port 6006 is not in use
@@ -636,6 +671,7 @@ Components are tested in:
 **Problem**: Modified tokens don't appear in generated CSS.
 
 **Solutions**:
+
 1. Run `npm run tokens:validate` to check for JSON errors
 2. Run `npm run tokens:build` to regenerate CSS
 3. Check `src/themes/` for updated files

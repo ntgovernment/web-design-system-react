@@ -17,6 +17,11 @@ import "../src/components/Pill/Pill.css";
 import "../src/components/Pill/Pill-ntg.css";
 import "../src/components/Pill/Pill-central.css";
 
+// Import Notification CSS files to ensure Vite processes them
+import "../src/components/Notification/Notification.css";
+import "../src/components/Notification/Notification-ntg.css";
+import "../src/components/Notification/Notification-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -139,6 +144,27 @@ const loadPillStyles = (theme: string) => {
   document.head.appendChild(pillCSS);
 };
 
+// Load Notification Component Styles (theme-specific overrides)
+const loadNotificationStyles = (theme: string) => {
+  // Remove existing theme-specific Notification CSS if present
+  const existingNotification = document.getElementById(
+    "notification-theme-css",
+  );
+  if (existingNotification) {
+    existingNotification.remove();
+  }
+
+  // Add theme-specific Notification CSS overrides
+  const notificationCSS = document.createElement("link");
+  notificationCSS.id = "notification-theme-css";
+  notificationCSS.rel = "stylesheet";
+  notificationCSS.href = new URL(
+    `../src/components/Notification/Notification-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(notificationCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -230,6 +256,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadButtonStyles(theme); // Load theme-specific Button CSS overrides LAST
     loadTagStyles(theme); // Load theme-specific Tag CSS overrides
     loadPillStyles(theme); // Load theme-specific Pill CSS overrides
+    loadNotificationStyles(theme); // Load theme-specific Notification CSS overrides
   }, [theme]);
 
   return (
@@ -282,7 +309,7 @@ const preview: Preview = {
       storySort: {
         order: [
           "Components",
-          ["Pill", "Button", "Alert", "Card", "Tag"],
+          ["Notification", "Pill", "Button", "Card", "Tag"],
           "Design System",
           ["Typography", "Icon"],
         ],

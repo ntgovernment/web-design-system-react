@@ -16,7 +16,7 @@ A simple, lightweight component for displaying status indicators, categories, la
 ### Basic Example
 
 ```tsx
-import { Tag } from '@nt-web-design-system/components';
+import { Tag } from "@nt-web-design-system/components";
 
 function MyComponent() {
   return (
@@ -43,6 +43,7 @@ function MyComponent() {
 ### Common Use Cases
 
 **Status Indicators:**
+
 ```tsx
 <Tag variant="green">Published</Tag>
 <Tag variant="warning">Under Review</Tag>
@@ -50,6 +51,7 @@ function MyComponent() {
 ```
 
 **Categories:**
+
 ```tsx
 <Tag variant="blue">News</Tag>
 <Tag variant="default">Events</Tag>
@@ -57,6 +59,7 @@ function MyComponent() {
 ```
 
 **Priority Levels:**
+
 ```tsx
 <Tag variant="red">High Priority</Tag>
 <Tag variant="warning">Medium Priority</Tag>
@@ -69,8 +72,8 @@ function MyComponent() {
 <Tag variant="green" className="me-2">
   Active
 </Tag>
-<Tag 
-  variant="blue" 
+<Tag
+  variant="blue"
   style={{ marginLeft: '8px' }}
 >
   Featured
@@ -79,19 +82,21 @@ function MyComponent() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'grey' \| 'green' \| 'blue' \| 'warning' \| 'red'` | `'default'` | The visual style variant of the tag |
-| `children` | `React.ReactNode` | - | The content to display inside the tag |
-| `className` | `string` | - | Additional CSS class names |
-| `...props` | `React.HTMLAttributes<HTMLSpanElement>` | - | All standard HTML span attributes are supported |
+| Prop        | Type                                                             | Default     | Description                                     |
+| ----------- | ---------------------------------------------------------------- | ----------- | ----------------------------------------------- |
+| `variant`   | `'default' \| 'grey' \| 'green' \| 'blue' \| 'warning' \| 'red'` | `'default'` | The visual style variant of the tag             |
+| `children`  | `React.ReactNode`                                                | -           | The content to display inside the tag           |
+| `className` | `string`                                                         | -           | Additional CSS class names                      |
+| `...props`  | `React.HTMLAttributes<HTMLSpanElement>`                          | -           | All standard HTML span attributes are supported |
 
 ## Accessibility
 
 ### Color Contrast
+
 All tag variants meet WCAG AAA color contrast requirements for readability across both NTG and Central themes.
 
 ### Semantic HTML
+
 Tags use semantic `<span>` elements with descriptive class names. For screen readers, ensure the tag content is meaningful:
 
 ```tsx
@@ -106,6 +111,7 @@ Tags use semantic `<span>` elements with descriptive class names. For screen rea
 ```
 
 ### Keyboard Navigation
+
 Tags are non-interactive by default. If you need clickable tags, wrap them in a button or link:
 
 ```tsx
@@ -121,6 +127,7 @@ Tags are non-interactive by default. If you need clickable tags, wrap them in a 
 The Tag component uses the following design tokens:
 
 **Typography:**
+
 - `--type-uppercase-small-size`: Font size (0.75rem / 12px)
 - `--type-uppercase-small-weight`: Font weight (700)
 - `--type-uppercase-small-lh`: Line height (1rem / 16px)
@@ -129,11 +136,13 @@ The Tag component uses the following design tokens:
 - `--type-font-default`: Font family (Lato)
 
 **Spacing:**
+
 - `--sp-xxs`: Vertical padding (4px)
 - `--sp-xs`: Horizontal padding (8px)
 - `--radii-sm`: Border radius (4px)
 
 **Colors (variant-specific):**
+
 - Default: `--clr-bg-shade`, `--clr-text-default`, `--clr-border-subtle`
 - Grey: `--ntg-neutral-02`, `--ntg-neutral-08`, `--ntg-neutral-04`
 - Green: `--clr-status-success-bg`, `--clr-status-success`
@@ -146,12 +155,14 @@ The Tag component uses the following design tokens:
 You can customize tag appearance using CSS variables:
 
 ```tsx
-<Tag 
+<Tag
   variant="green"
-  style={{
-    '--sp-xs': '12px',
-    '--radii-sm': '8px',
-  } as React.CSSProperties}
+  style={
+    {
+      "--sp-xs": "12px",
+      "--radii-sm": "8px",
+    } as React.CSSProperties
+  }
 >
   Custom Padding
 </Tag>
@@ -175,6 +186,7 @@ The component generates the following CSS class structure:
 ```
 
 Available classes:
+
 - `.tag` - Base tag styles
 - `.tag-default` - Default variant
 - `.tag-grey` - Grey variant
@@ -193,9 +205,7 @@ Available classes:
     <h5 className="mb-0">Document Title</h5>
     <Tag variant="green">Published</Tag>
   </div>
-  <div className="card-body">
-    Card content...
-  </div>
+  <div className="card-body">Card content...</div>
 </div>
 ```
 
@@ -204,12 +214,10 @@ Available classes:
 ```tsx
 <ul className="list-group">
   <li className="list-group-item d-flex justify-content-between align-items-center">
-    Item 1
-    <Tag variant="blue">New</Tag>
+    Item 1<Tag variant="blue">New</Tag>
   </li>
   <li className="list-group-item d-flex justify-content-between align-items-center">
-    Item 2
-    <Tag variant="warning">Updated</Tag>
+    Item 2<Tag variant="warning">Updated</Tag>
   </li>
 </ul>
 ```
@@ -230,12 +238,13 @@ Available classes:
 - [Design Tokens](../../../design-tokens/README.md)
 - [Typography](../../../src/themes/README.md)
 - [Theme Switching](../../../src/themes/THEME_SWITCHING.md)
-- [Alert Component](../Alert/README.md) - Related component with similar variant system
+- [Notification Component](../Notification/README.md) - Related component with status variants
 - [Button Component](../Button/README.md) - Interactive component patterns
 
 ## Browser Support
 
 The Tag component supports all modern browsers:
+
 - Chrome/Edge (latest)
 - Firefox (latest)
 - Safari (latest)

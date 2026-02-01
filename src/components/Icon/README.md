@@ -194,12 +194,15 @@ The Icon component is used internally by other design system components:
 <Button iconRight="fa-light fa-arrow-right" label="Next" />
 ```
 
-### Alert Component
+### Notification Component
 
 ```tsx
-<Alert variant="success" icon="fa-light fa-circle-check">
-  Success message
-</Alert>
+<Notification
+  variant="success"
+  title="Success"
+  message="Your changes have been saved successfully."
+/>
+// Note: Notification auto-assigns icons based on variant
 ```
 
 ### Card Component
@@ -234,5 +237,5 @@ The Icon component supports all modern browsers that support:
 ## Related Components
 
 - [Button](../Button/README.md) - Uses Icon for button icons
-- [Alert](../Alert/README.md) - Uses Icon for alert icons
+- [Notification](../Notification/README.md) - Auto-assigns icons based on status
 - [Card](../Card/README.md) - Uses Icon for card header icons

@@ -4,17 +4,21 @@
  */
 
 /* Import default NT.GOV.AU theme */
-@import './themes/ntg-theme.css';
+@import "./themes/ntg-theme.css";
 
 /* Import Button component common styles */
-@import './components/Button/Button.css';
+@import "./components/Button/Button.css";
 
 /* Import Button theme-specific styles (default to NTG) */
-@import './components/Button/Button-ntg.css';
+@import "./components/Button/Button-ntg.css";
 
 /* Import Tag component styles */
-@import './components/Tag/Tag.css';
-@import './components/Tag/Tag-ntg.css';
+@import "./components/Tag/Tag.css";
+@import "./components/Tag/Tag-ntg.css";
+
+/* Import Notification component styles */
+@import "./components/Notification/Notification.css";
+@import "./components/Notification/Notification-ntg.css";
 
 /* Additional global styles can be added here */
 body {

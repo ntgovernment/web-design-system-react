@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
-import { Alert } from "../components/Alert";
 import { Tag } from "../components/Tag";
 import { Pill } from "../components/Pill";
+import { Notification } from "../components/Notification";
 
 function App() {
   const [theme, setTheme] = useState<"ntg" | "central">("ntg");
@@ -77,6 +77,36 @@ function App() {
           <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
         </p>
       </div>
+
+      <section className="mb-5">
+        <h2>Notifications</h2>
+        <p className="text-muted mb-3">
+          Notification components for displaying informational callouts with
+          status indicators and left accent bars.
+        </p>
+        <div className="d-flex flex-column gap-3">
+          <Notification
+            variant="info"
+            title="Information alert"
+            message="Your application has been submitted for review. You will receive an email notification once the review process is complete."
+          />
+          <Notification
+            variant="success"
+            title="Success notification"
+            message="Your action was completed successfully. All changes have been saved and are now live."
+          />
+          <Notification
+            variant="warning"
+            title="Warning notification"
+            message="Please review the following information carefully before proceeding. Some actions may be irreversible."
+          />
+          <Notification
+            variant="danger"
+            title="Error notification"
+            message="An error has occurred while processing your request. Please try again or contact support."
+          />
+        </div>
+      </section>
 
       <section className="mb-5">
         <h2>Pills</h2>
@@ -274,18 +304,6 @@ function App() {
               </ul>
             </Card>
           </div>
-        </div>
-      </section>
-
-      <section className="mb-5">
-        <h2>Alerts</h2>
-        <div className="d-flex flex-column gap-2">
-          <Alert variant="primary">This is a primary alert!</Alert>
-          <Alert variant="success">This is a success alert!</Alert>
-          <Alert variant="danger">This is a danger alert!</Alert>
-          <Alert variant="warning" dismissible>
-            This is a dismissible warning alert!
-          </Alert>
         </div>
       </section>
 

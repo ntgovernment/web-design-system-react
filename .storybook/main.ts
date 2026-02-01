@@ -31,11 +31,6 @@ function htmlApiPlugin(): Plugin {
   // Simple HTML template generators for each component
   const generateHTML = (componentName: string, props: any): string => {
     switch (componentName) {
-      case "Alert":
-        return `<div class="alert alert-${props.variant || "primary"}${props.dismissible ? " alert-dismissible fade show" : ""}" role="alert">
-  ${props.children || "Alert message"}${props.dismissible ? '\n  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' : ""}
-</div>`;
-
       case "Button":
         const size = props.size ? ` btn-${props.size}` : "";
         return `<button type="button" class="btn btn-${props.variant || "primary"}${size}">${props.children || "Button"}</button>`;
@@ -52,11 +47,15 @@ function htmlApiPlugin(): Plugin {
 
       case "Icon":
         const iconStyle = [
-          props.color && props.color !== 'inherit' ? `color: ${props.color}` : '',
-          props.size ? `font-size: ${props.size}` : ''
-        ].filter(Boolean).join('; ');
-        
-        return `<i class="${props.icon}${props.className ? ' ' + props.className : ''}"${iconStyle ? ` style="${iconStyle}"` : ''}${props.ariaHidden !== false ? ' aria-hidden="true"' : ''}${props.ariaLabel ? ` aria-label="${props.ariaLabel}"` : ''}></i>`;
+          props.color && props.color !== "inherit"
+            ? `color: ${props.color}`
+            : "",
+          props.size ? `font-size: ${props.size}` : "",
+        ]
+          .filter(Boolean)
+          .join("; ");
+
+        return `<i class="${props.icon}${props.className ? " " + props.className : ""}"${iconStyle ? ` style="${iconStyle}"` : ""}${props.ariaHidden !== false ? ' aria-hidden="true"' : ""}${props.ariaLabel ? ` aria-label="${props.ariaLabel}"` : ""}></i>`;
 
       default:
         return `<div>Unknown component: ${componentName}</div>`;

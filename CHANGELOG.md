@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- **Notification Component**: Status callout component with structured content layout
+  - 4 status variants (info, success, warning, danger) with auto-assigned FontAwesome Light icons
+  - Distinctive 8px left accent bar for visual emphasis
+  - Structured API with separate title and message props
+  - Optional title with smart gap handling (no gap when title is empty)
+  - Design token-based sizing (--sp-xxl for icon container, --sp-xl for icon font size)
+  - Non-dismissible by design for persistent status messages
+  - WCAG AAA compliant with proper ARIA roles
+  - Theme-aware color adaptation for NTG and Central themes
+  - Storybook stories with interactive demos
+  - Comprehensive documentation and usage examples
 - **Tag Component**: Simple status indicator component with 6 color variants (default, grey, green, blue, warning, red)
   - Uppercase typography using design token system
   - Theme-aware color adaptation for NTG and Central themes
@@ -20,12 +32,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive documentation for HTML API feature
 
 ### Changed
+
+- **Component Removal**: Removed Alert component in favor of the new Notification component for better design consistency
 - Updated LICENSE from GPL v3 to MIT for broader compatibility
 - Enhanced main README with complete npm scripts documentation and HTML API section
 
 ## [0.1.0] - 2026-02-01
 
 ### Added
+
 - Initial release of NT Government Web Design System
 - React component library with TypeScript support
 - Four production-ready components:
@@ -84,6 +99,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Keyboard navigation support
 
 ### Build Scripts
+
 - `npm run dev` - Start Vite development server
 - `npm run build` - Build library for production
 - `npm run tokens:validate` - Validate design token structure
@@ -94,6 +110,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `npm run preview` - Preview production build
 
 ### Documentation
+
 - README.md - Main project documentation with setup and usage
 - Component documentation with usage examples and API references
 - Design token workflow documentation with debugging guide
@@ -102,23 +119,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bootstrap typography integration guide
 
 ### Dependencies
+
 **Production:**
+
 - react ^18.3.1
 - react-dom ^18.3.1
 
 **Development:**
+
 - vite ^6.0.7
 - typescript ^5.7.2
 - @vitejs/plugin-react ^4.3.3
 - storybook 8.6.15
 - style-dictionary ^5.2.0
 - eslint ^9.17.0
-- @typescript-eslint/* ^8.20.0
+- @typescript-eslint/\* ^8.20.0
 
 ### License
+
 - MIT License
 
 ### Browser Support
+
 - Chrome/Edge (latest)
 - Firefox (latest)
 - Safari (latest)
@@ -132,17 +154,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Going forward, releases will follow this structure:
 
 ### Major Version (X.0.0)
+
 - Breaking changes
 - Major new features
 - Significant refactoring
 
 ### Minor Version (0.X.0)
+
 - New components
 - New features (backward compatible)
 - Enhancements to existing components
 - New design tokens or theme updates
 
 ### Patch Version (0.0.X)
+
 - Bug fixes
 - Documentation updates
 - Performance improvements
