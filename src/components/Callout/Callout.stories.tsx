@@ -35,7 +35,7 @@ export const Default: Story = {
   args: {
     heading: "Callout heading",
     content:
-      "Callout content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque. Praesent posuere lobortis purus, ac laoreet est volutpat in.",
+      "This component displays important information with a distinct left border for visual emphasis. Use callouts to highlight tips, notices, or key information that users should pay attention to.",
   },
 };
 
@@ -46,7 +46,7 @@ export const LongContent: Story = {
   args: {
     heading: "Important Notice",
     content:
-      "This is a callout with a much longer content section to demonstrate how the component handles text wrapping and maintains readability. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque. Praesent posuere lobortis purus, ac laoreet est volutpat in. Sed euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.",
+      "This callout demonstrates how the component gracefully handles longer content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography across all viewport sizes. Use callouts to highlight important information, tips, or notices that users should pay attention to without being as urgent as notifications. The component's design ensures that even lengthy content remains accessible and easy to read, with consistent spacing and a clear visual hierarchy that guides users through the information effectively.",
   },
 };
 

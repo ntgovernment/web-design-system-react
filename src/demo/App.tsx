@@ -92,7 +92,7 @@ function App() {
             heading="Quick Tip"
             content="This is a shorter callout with minimal content to demonstrate the component's flexibility."
           />
-          <Callout content="This callout has no heading, just content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque." />
+          <Callout content="This callout demonstrates the component with content only, showing how it works without a heading for simpler informational messages." />
         </div>
       </section>
 

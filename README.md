@@ -707,9 +707,12 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for de
 - Component development guidelines
 - Design token modifications
 - Documentation requirements
+- Content standards and guidelines
 - Testing procedures
 - Pull request process
 - Commit message guidelines
+
+**Important**: All examples and documentation must follow our [Content Standards](CONTENT_STANDARDS.md) - never use Lorem ipsum placeholder text. Use meaningful, contextual content that demonstrates realistic use cases.
 
 ### Quick Contribution Guide
 
@@ -720,6 +723,8 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for de
 5. Run `npm run build` to ensure no errors
 6. Commit with conventional commit format: `feat: add new component`
 7. Push to your fork and create a pull request
+
+**Important**: Never use Lorem ipsum placeholder text in stories, examples, or documentation. Use meaningful, contextual content that demonstrates realistic use cases. See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed content guidelines.
 
 For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 

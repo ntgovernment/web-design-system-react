@@ -62,7 +62,7 @@ The component also accepts all standard HTML `div` attributes through prop sprea
 ```tsx
 <Callout
   heading="Privacy Notice"
-  content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque. Praesent posuere lobortis purus, ac laoreet est volutpat in. Sed euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl."
+  content="This callout demonstrates how the component gracefully handles longer content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography across all viewport sizes. Use callouts to highlight important information, tips, or notices that users should pay attention to without being as urgent as notifications."
 />
 ```
 

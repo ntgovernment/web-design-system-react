@@ -1,22 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
 /**
  * Typography system showcasing Bootstrap typography components with theme-specific
  * font families (Lato for NTG, Roboto for Central) and design token integration.
- * 
+ *
  * Use the theme switcher in the toolbar to see font and color changes.
  */
 const meta = {
-  title: 'Design System/Typography',
+  title: "Design System/Typography",
   parameters: {
-    layout: 'padded',
+    layout: "padded",
     docs: {
       description: {
-        component: 'Bootstrap typography customized with design tokens. Switch themes to see Lato (NTG) vs Roboto (Central) fonts.',
+        component:
+          "Bootstrap typography customized with design tokens. Switch themes to see Lato (NTG) vs Roboto (Central) fonts.",
       },
     },
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
 } satisfies Meta;
 
 export default meta;
@@ -36,7 +37,7 @@ export const Headings: Story = {
 };
 
 export const HeadingClasses: Story = {
-  name: 'Heading Classes (.h1-.h6)',
+  name: "Heading Classes (.h1-.h6)",
   render: () => (
     <div>
       <p className="h1">Heading 1 class</p>
@@ -66,19 +67,22 @@ export const BodyText: Story = {
   render: () => (
     <div>
       <p>
-        This is default body text. The font family changes based on the active theme:
-        <strong> NTG theme uses Lato</strong>, while <strong>Central theme uses Roboto</strong>.
+        This is default body text. The font family changes based on the active
+        theme:
+        <strong> NTG theme uses Lato</strong>, while{" "}
+        <strong>Central theme uses Roboto</strong>.
       </p>
       <p className="lead">
-        This is lead text. It stands out from regular paragraphs and is useful for
-        introductions or highlighting important content.
+        This is lead text. It stands out from regular paragraphs and is useful
+        for introductions or highlighting important content.
       </p>
       <p>
-        You can also use <mark>marked text</mark> to highlight specific parts, or make text{' '}
-        <small className="text-muted">small and muted</small> for secondary information.
+        You can also use <mark>marked text</mark> to highlight specific parts,
+        or make text <small className="text-muted">small and muted</small> for
+        secondary information.
       </p>
       <p>
-        <strong>This is bold text.</strong> <em>This is italic text.</em>{' '}
+        <strong>This is bold text.</strong> <em>This is italic text.</em>{" "}
         <u>This is underlined text.</u>
       </p>
     </div>
@@ -89,31 +93,46 @@ export const Links: Story = {
   render: () => (
     <div>
       <p>
-        This is a paragraph with a <a href="#typography">standard link</a>. Hover over it
-        to see the theme-specific hover color.
+        This is a paragraph with a <a href="#typography">standard link</a>.
+        Hover over it to see the theme-specific hover color.
       </p>
       <p>
         <a href="#typography">Link with default styling</a>
       </p>
       <p>
-        <a href="#visited-demo" style={{ color: 'var(--clr-link-visited)' }}>
+        <a href="#visited-demo" style={{ color: "var(--clr-link-visited)" }}>
           Visited link (styled to demonstrate visited state)
         </a>
       </p>
       <p className="text-muted small">
-        Note: Click a link to trigger the visited state. Visited links use a distinct purple color 
-        to indicate previously visited pages, following web accessibility best practices.
+        Note: Click a link to trigger the visited state. Visited links use a
+        distinct purple color to indicate previously visited pages, following
+        web accessibility best practices.
       </p>
       <p>
-        <a href="#typography" className="link-primary">Primary link</a>{' '}
-        <a href="#typography" className="link-secondary">Secondary link</a>{' '}
-        <a href="#typography" className="link-success">Success link</a>{' '}
-        <a href="#typography" className="link-danger">Danger link</a>{' '}
-        <a href="#typography" className="link-warning">Warning link</a>{' '}
-        <a href="#typography" className="link-info">Info link</a>
+        <a href="#typography" className="link-primary">
+          Primary link
+        </a>{" "}
+        <a href="#typography" className="link-secondary">
+          Secondary link
+        </a>{" "}
+        <a href="#typography" className="link-success">
+          Success link
+        </a>{" "}
+        <a href="#typography" className="link-danger">
+          Danger link
+        </a>{" "}
+        <a href="#typography" className="link-warning">
+          Warning link
+        </a>{" "}
+        <a href="#typography" className="link-info">
+          Info link
+        </a>
       </p>
       <p className="bg-dark p-3 rounded">
-        <a href="#typography" className="text-white">Link on dark background</a>
+        <a href="#typography" className="text-white">
+          Link on dark background
+        </a>
       </p>
     </div>
   ),
@@ -127,7 +146,8 @@ export const Lists: Story = {
         <ul>
           <li>First item</li>
           <li>Second item</li>
-          <li>Third item
+          <li>
+            Third item
             <ul>
               <li>Nested item 1</li>
               <li>Nested item 2</li>
@@ -191,7 +211,7 @@ export const Blockquote: Story = {
 };
 
 export const TextUtilities: Story = {
-  name: 'Text Utilities',
+  name: "Text Utilities",
   render: () => (
     <div>
       <p className="text-start">Start aligned text.</p>
@@ -230,7 +250,7 @@ export const TextColors: Story = {
 };
 
 export const AllTypographyElements: Story = {
-  name: 'All Typography Elements',
+  name: "All Typography Elements",
   render: () => (
     <div className="container">
       <section className="mb-5">
@@ -247,24 +267,24 @@ export const AllTypographyElements: Story = {
         <h2 className="mb-3">Display Headings</h2>
         <h1 className="display-4">Display Heading</h1>
         <p className="lead">
-          This is a lead paragraph. It stands out from regular paragraphs and draws
-          attention to important content.
+          This is a lead paragraph. It stands out from regular paragraphs and
+          draws attention to important content.
         </p>
       </section>
 
       <section className="mb-5">
         <h2 className="mb-3">Body Text</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-          erat a ante. This paragraph demonstrates the default body text styling.
-          <strong>The font family changes with the theme:</strong> NTG uses Lato,
-          Central uses Roboto.
+          This is a sample paragraph demonstrating the default body text styling
+          and how it appears with the current theme.{" "}
+          <strong>The font family changes with the theme:</strong> NTG uses
+          Lato, Central uses Roboto.
         </p>
         <p>
-          You can use inline elements like <a href="#typography">links</a>,{' '}
-          <strong>strong text</strong>, <em>emphasized text</em>,{' '}
-          <mark>highlighted text</mark>, <del>deleted text</del>,{' '}
-          <ins>inserted text</ins>, <small>small text</small>, and{' '}
+          You can use inline elements like <a href="#typography">links</a>,{" "}
+          <strong>strong text</strong>, <em>emphasized text</em>,{" "}
+          <mark>highlighted text</mark>, <del>deleted text</del>,{" "}
+          <ins>inserted text</ins>, <small>small text</small>, and{" "}
           <code>inline code</code>.
         </p>
       </section>
@@ -310,14 +330,23 @@ export const AllTypographyElements: Story = {
             <strong>Current Theme Typography:</strong>
           </p>
           <ul className="mb-0">
-            <li>Font Family: <code>var(--bs-body-font-family)</code></li>
-            <li>Font Size: <code>var(--bs-body-font-size)</code></li>
-            <li>Font Weight: <code>var(--bs-body-font-weight)</code></li>
-            <li>Line Height: <code>var(--bs-body-line-height)</code></li>
+            <li>
+              Font Family: <code>var(--bs-body-font-family)</code>
+            </li>
+            <li>
+              Font Size: <code>var(--bs-body-font-size)</code>
+            </li>
+            <li>
+              Font Weight: <code>var(--bs-body-font-weight)</code>
+            </li>
+            <li>
+              Line Height: <code>var(--bs-body-line-height)</code>
+            </li>
           </ul>
           <p className="mt-3 mb-0">
             <small className="text-muted">
-              Switch themes using the toolbar to see Lato (NTG) vs Roboto (Central)
+              Switch themes using the toolbar to see Lato (NTG) vs Roboto
+              (Central)
             </small>
           </p>
         </div>

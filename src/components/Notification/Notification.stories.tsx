@@ -119,7 +119,7 @@ export const LongContent: Story = {
     variant: "info",
     title: "Extended information notification with a longer title",
     message:
-      "This is a notification with significantly longer content to demonstrate how the component handles text wrapping and maintains readability. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque. Praesent posuere lobortis purus, ac laoreet est volutpat in. Sed vehicula mauris vel diam ornare, vel hendrerit eros consectetur. Nullam facilisis nisi vitae massa fermentum, at aliquet dolor venenatis. Curabitur hendrerit massa at tellus scelerisque, non mollis dui tincidunt.",
+      "This notification demonstrates how the component handles extended content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography. When displaying detailed information, the component ensures users can easily read and understand the message without compromising the design integrity. Use longer notifications when you need to provide detailed context or instructions about system status, user actions, or important updates. The notification system is designed to accommodate varying content lengths while maintaining consistent visual presentation across all variants.",
   },
 };
 

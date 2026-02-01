@@ -228,10 +228,46 @@ Fix any linting errors or provide justification for exceptions.
 
    export const Default: Story = {
      args: {
-       // Default props
+       // Default props with meaningful content (see Content Guidelines below)
      },
    };
    ```
+
+   **Content Guidelines for Stories**:
+
+   ⚠️ **Never use Lorem ipsum placeholder text** in stories or examples. Always use relevant, meaningful content that:
+   - Describes the component's purpose or function
+   - Demonstrates realistic use cases
+   - Helps developers understand when to use the component
+   - Provides context-appropriate examples
+
+   **Examples**:
+
+   ```typescript
+   // ❌ BAD - Generic placeholder text
+   export const Default: Story = {
+     args: {
+       title: "Sample Title",
+       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+     },
+   };
+
+   // ✅ GOOD - Meaningful, contextual content
+   export const Default: Story = {
+     args: {
+       title: "Information Notice",
+       content:
+         "This component displays important information with a distinct left border for visual emphasis. Use callouts to highlight tips, notices, or key information that users should pay attention to.",
+     },
+   };
+   ```
+
+   This guideline applies to:
+   - All Storybook story examples
+   - Component README files
+   - Demo applications
+   - Documentation code snippets
+   - Test cases and mock data
 
 5. **Update Storybook configuration** in `.storybook/preview.tsx`:
 
@@ -386,6 +422,7 @@ All changes must include appropriate documentation updates:
 - **CHANGELOG.md**: For all user-facing changes
 - **Storybook**: Stories demonstrating functionality
 - **Inline comments**: For complex logic
+- **Content Standards**: Follow [CONTENT_STANDARDS.md](CONTENT_STANDARDS.md) - no Lorem ipsum placeholder text
 
 ### Documentation Style
 
@@ -395,6 +432,63 @@ All changes must include appropriate documentation updates:
 - Document edge cases and limitations
 - Use proper Markdown formatting
 - Link to related documentation
+- **Never use Lorem ipsum**: Use meaningful, contextual content in all examples
+
+### Content Guidelines
+
+**No Lorem Ipsum Placeholder Text**
+
+All examples, stories, and documentation must use meaningful, relevant content instead of Lorem ipsum placeholder text.
+
+**Why?**
+
+- Helps developers understand component purpose and usage
+- Demonstrates realistic use cases
+- Improves documentation clarity and usefulness
+- Makes examples more accessible and professional
+- Aids AI coding agents in understanding context
+
+**What to use instead:**
+
+| Component Type | Good Content Examples                                                                       |
+| -------------- | ------------------------------------------------------------------------------------------- |
+| Callouts       | "This component displays important information with a distinct left border..."              |
+| Notifications  | "Your application has been submitted for review. You will receive an email notification..." |
+| Buttons        | "Submit Form", "Save Changes", "Download Report"                                            |
+| Cards          | "Analytics Dashboard", "View your analytics and track your progress"                        |
+| Typography     | "This demonstrates the default body text styling with the current theme..."                 |
+
+**For longer content:**
+
+- Describe the component's text-wrapping behavior
+- Explain the use case or purpose
+- Provide realistic scenario examples
+- Maintain professional, clear language
+
+**Examples:**
+
+```tsx
+// ❌ AVOID
+<Notification
+  title="Notification"
+  message="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+/>
+
+// ✅ PREFER
+<Notification
+  title="Success"
+  message="Your changes have been saved successfully. All updates are now live."
+/>
+```
+
+This guideline applies to:
+
+- Storybook stories (`.stories.tsx` files)
+- Component README examples
+- Demo applications (`src/demo/`)
+- Documentation snippets
+- Test fixtures and mock data
+- API response examples
 
 ## Testing
 
