@@ -1,32 +1,32 @@
-import React from 'react';
+import React from "react";
 
 export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * The visual style variant of the tag
    * @default 'default'
    */
-  variant?: 'default' | 'grey' | 'green' | 'blue' | 'warning' | 'red';
-  
+  variant?: "default" | "grey" | "green" | "blue" | "warning" | "red";
+
   /**
-   * The content to display inside the tag
+   * The text label to display inside the tag
    */
-  children?: React.ReactNode;
+  label: string;
 }
 
 /**
  * Tag component for displaying status indicators, categories, or labels
  */
 export const Tag = ({
-  variant = 'default',
-  children,
+  variant = "default",
+  label,
   className,
   ...props
 }: TagProps) => {
-  const tagClass = `tag tag-${variant}${className ? ` ${className}` : ''}`;
-  
+  const tagClass = `tag tag-${variant}${className ? ` ${className}` : ""}`;
+
   return (
     <span className={tagClass} {...props}>
-      {children}
+      {label}
     </span>
   );
 };

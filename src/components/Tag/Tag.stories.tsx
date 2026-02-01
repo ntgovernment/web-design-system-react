@@ -1,22 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Tag } from './Tag';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Tag } from "./Tag";
 
 const meta = {
-  title: 'Components/Tag',
+  title: "Components/Tag",
   component: Tag,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['default', 'grey', 'green', 'blue', 'warning', 'red'],
-      description: 'The visual style variant of the tag',
+      control: "select",
+      options: ["default", "grey", "green", "blue", "warning", "red"],
+      description: "The visual style variant of the tag",
     },
-    children: {
-      control: 'text',
-      description: 'The content to display inside the tag',
+    label: {
+      control: "text",
+      description: "The text label to display inside the tag",
     },
   },
 } satisfies Meta<typeof Tag>;
@@ -29,8 +29,8 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    variant: 'default',
-    children: 'Default',
+    variant: "default",
+    label: "Default",
   },
 };
 
@@ -39,8 +39,8 @@ export const Default: Story = {
  */
 export const Grey: Story = {
   args: {
-    variant: 'grey',
-    children: 'Grey',
+    variant: "grey",
+    label: "Grey",
   },
 };
 
@@ -49,8 +49,8 @@ export const Grey: Story = {
  */
 export const Green: Story = {
   args: {
-    variant: 'green',
-    children: 'Green',
+    variant: "green",
+    label: "Green",
   },
 };
 
@@ -59,8 +59,8 @@ export const Green: Story = {
  */
 export const Blue: Story = {
   args: {
-    variant: 'blue',
-    children: 'Blue',
+    variant: "blue",
+    label: "Blue",
   },
 };
 
@@ -69,8 +69,8 @@ export const Blue: Story = {
  */
 export const Warning: Story = {
   args: {
-    variant: 'warning',
-    children: 'Warning',
+    variant: "warning",
+    label: "Warning",
   },
 };
 
@@ -79,8 +79,8 @@ export const Warning: Story = {
  */
 export const Red: Story = {
   args: {
-    variant: 'red',
-    children: 'Red',
+    variant: "red",
+    label: "Red",
   },
 };
 
@@ -88,14 +88,17 @@ export const Red: Story = {
  * All variants displayed together for comparison
  */
 export const AllVariants: Story = {
+  args: {
+    label: "Tag",
+  },
   render: () => (
     <div className="d-flex gap-2 align-items-center flex-wrap">
-      <Tag variant="default">Default</Tag>
-      <Tag variant="grey">Grey</Tag>
-      <Tag variant="green">Green</Tag>
-      <Tag variant="blue">Blue</Tag>
-      <Tag variant="warning">Warning</Tag>
-      <Tag variant="red">Red</Tag>
+      <Tag variant="default" label="Default" />
+      <Tag variant="grey" label="Grey" />
+      <Tag variant="green" label="Green" />
+      <Tag variant="blue" label="Blue" />
+      <Tag variant="warning" label="Warning" />
+      <Tag variant="red" label="Red" />
     </div>
   ),
 };
@@ -104,14 +107,17 @@ export const AllVariants: Story = {
  * Example usage in context - showing tags with different content lengths
  */
 export const VariousLabels: Story = {
+  args: {
+    label: "Tag",
+  },
   render: () => (
     <div className="d-flex gap-2 align-items-center flex-wrap">
-      <Tag variant="green">Active</Tag>
-      <Tag variant="blue">New</Tag>
-      <Tag variant="warning">Pending Review</Tag>
-      <Tag variant="red">Urgent</Tag>
-      <Tag variant="grey">Archived</Tag>
-      <Tag variant="default">Draft</Tag>
+      <Tag variant="green" label="Active" />
+      <Tag variant="blue" label="New" />
+      <Tag variant="warning" label="Pending Review" />
+      <Tag variant="red" label="Urgent" />
+      <Tag variant="grey" label="Archived" />
+      <Tag variant="default" label="Draft" />
     </div>
   ),
 };

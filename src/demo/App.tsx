@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react';
-import { Button } from '../components/Button';
-import { Card } from '../components/Card';
-import { Alert } from '../components/Alert';
-import { Tag } from '../components/Tag';
+import { useState, useEffect } from "react";
+import { Button } from "../components/Button";
+import { Card } from "../components/Card";
+import { Alert } from "../components/Alert";
+import { Tag } from "../components/Tag";
 
 function App() {
-  const [theme, setTheme] = useState<'ntg' | 'central'>('ntg');
+  const [theme, setTheme] = useState<"ntg" | "central">("ntg");
 
   useEffect(() => {
     // Set initial theme on mount
-    document.documentElement.setAttribute('data-theme', 'ntg');
+    document.documentElement.setAttribute("data-theme", "ntg");
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'ntg' ? 'central' : 'ntg';
+    const newTheme = theme === "ntg" ? "central" : "ntg";
     setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-    
+    document.documentElement.setAttribute("data-theme", newTheme);
+
     // Use environment-aware paths for complete theme bundle
     const isDev = import.meta.env.DEV;
-    
+
     // In dev mode, we need to load individual files since bundles don't exist yet
     // In production, we use the complete minified theme bundles
     if (isDev) {
@@ -30,29 +30,29 @@ function App() {
       const themePath = `/src/themes/${newTheme}-theme.css?v=${timestamp}`;
       const buttonThemePath = `/src/components/Button/Button-${newTheme}.css?v=${timestamp}`;
       const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;
-      
+
       // Helper function to reload a stylesheet
       const reloadStylesheet = (id: string, href: string) => {
         const existing = document.getElementById(id);
         if (existing) {
           existing.remove();
         }
-        const link = document.createElement('link');
+        const link = document.createElement("link");
         link.id = id;
-        link.rel = 'stylesheet';
+        link.rel = "stylesheet";
         link.href = href;
         document.head.appendChild(link);
       };
-      
+
       // Reload all theme-specific stylesheets
-      reloadStylesheet('bootstrap-typography-css', typographyPath);
-      reloadStylesheet('theme-css', themePath);
-      reloadStylesheet('button-theme-css', buttonThemePath);
-      reloadStylesheet('tag-theme-css', tagThemePath);
+      reloadStylesheet("bootstrap-typography-css", typographyPath);
+      reloadStylesheet("theme-css", themePath);
+      reloadStylesheet("button-theme-css", buttonThemePath);
+      reloadStylesheet("tag-theme-css", tagThemePath);
     } else {
       // Production: swap complete theme bundle (includes all dependencies)
       const themePath = `${newTheme}-theme.min.css`;
-      const themeLink = document.getElementById('theme-css') as HTMLLinkElement;
+      const themeLink = document.getElementById("theme-css") as HTMLLinkElement;
       if (themeLink) {
         themeLink.href = themePath;
       }
@@ -65,30 +65,35 @@ function App() {
         <h1>NT Government Web Design System</h1>
         <p className="lead">Demo of Component Library with Bootstrap 5.3</p>
         <Button variant="secondary" onClick={toggleTheme}>
-          Switch to {theme === 'ntg' ? 'NTG Central' : 'NT.GOV.AU'} Theme
+          Switch to {theme === "ntg" ? "NTG Central" : "NT.GOV.AU"} Theme
         </Button>
-        <p className="mt-2 text-muted">Current theme: <strong>{theme === 'ntg' ? 'NT.GOV.AU' : 'NTG Central'}</strong></p>
+        <p className="mt-2 text-muted">
+          Current theme:{" "}
+          <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
+        </p>
       </div>
 
       <section className="mb-5">
         <h2>Tags</h2>
         <p className="text-muted mb-3">
-          Tag components for status indicators, categories, and labels with 6 color variants
+          Tag components for status indicators, categories, and labels with 6
+          color variants
         </p>
         <div className="d-flex gap-2 flex-wrap">
-          <Tag variant="default">Default</Tag>
-          <Tag variant="grey">Grey</Tag>
-          <Tag variant="green">Green</Tag>
-          <Tag variant="blue">Blue</Tag>
-          <Tag variant="warning">Warning</Tag>
-          <Tag variant="red">Red</Tag>
+          <Tag variant="default" label="Default" />
+          <Tag variant="grey" label="Grey" />
+          <Tag variant="green" label="Green" />
+          <Tag variant="blue" label="Blue" />
+          <Tag variant="warning" label="Warning" />
+          <Tag variant="red" label="Red" />
         </div>
       </section>
 
       <section className="mb-5">
         <h2>Buttons - Figma Spec</h2>
         <p className="text-muted mb-3">
-          Primary buttons use: 24px horizontal padding, 16px vertical padding, Lato 700, 16px size/line-height
+          Primary buttons use: 24px horizontal padding, 16px vertical padding,
+          Lato 700, 16px size/line-height
         </p>
         <div className="mb-4">
           <h3 className="h5">All Variants</h3>
@@ -102,24 +107,56 @@ function App() {
           <h3 className="h5">Sizes</h3>
           <div className="d-flex gap-2 flex-wrap align-items-center">
             <Button variant="primary">Default Button</Button>
-            <Button variant="primary" size="sm">Small Button</Button>
+            <Button variant="primary" size="sm">
+              Small Button
+            </Button>
           </div>
         </div>
         <div className="mb-4">
           <h3 className="h5">With Icons</h3>
           <div className="d-flex gap-2 flex-wrap">
-            <Button variant="primary" icon="fa-light fa-home" iconPosition="left">Home</Button>
-            <Button variant="secondary" icon="fa-light fa-arrow-left" iconPosition="left">Back</Button>
-            <Button variant="tertiary" icon="fa-light fa-cog" iconPosition="left">Settings</Button>
-            <Button variant="primary" icon="fa-light fa-arrow-right" iconPosition="right">Next</Button>
-            <Button variant="primary" icon="fa-light fa-search" aria-label="Search" />
+            <Button
+              variant="primary"
+              icon="fa-light fa-home"
+              iconPosition="left"
+            >
+              Home
+            </Button>
+            <Button
+              variant="secondary"
+              icon="fa-light fa-arrow-left"
+              iconPosition="left"
+            >
+              Back
+            </Button>
+            <Button
+              variant="tertiary"
+              icon="fa-light fa-cog"
+              iconPosition="left"
+            >
+              Settings
+            </Button>
+            <Button
+              variant="primary"
+              icon="fa-light fa-arrow-right"
+              iconPosition="right"
+            >
+              Next
+            </Button>
+            <Button
+              variant="primary"
+              icon="fa-light fa-search"
+              aria-label="Search"
+            />
           </div>
         </div>
         <div>
           <h3 className="h5">Outline Variants</h3>
           <div className="d-flex gap-2 flex-wrap">
             <button className="btn btn-outline-primary">Outline Primary</button>
-            <button className="btn btn-outline-secondary">Outline Secondary</button>
+            <button className="btn btn-outline-secondary">
+              Outline Secondary
+            </button>
           </div>
         </div>
       </section>
@@ -133,17 +170,30 @@ function App() {
           <h4>Heading 4 - Uses theme font</h4>
           <h5>Heading 5 - Uses theme font</h5>
           <h6>Heading 6 - Uses theme font</h6>
-          <p className="lead">This is lead text. It stands out from regular paragraphs.</p>
-          <p>This is regular body text. The font family changes with the theme: <strong>NTG uses Lato</strong>, <strong>Central uses Roboto</strong>.</p>
-          <p>Here's a <a href="#typography">link with theme colors</a> that uses theme-specific hover states.</p>
-          <p><small className="text-muted">Small muted text using theme text colors.</small></p>
+          <p className="lead">
+            This is lead text. It stands out from regular paragraphs.
+          </p>
+          <p>
+            This is regular body text. The font family changes with the theme:{" "}
+            <strong>NTG uses Lato</strong>, <strong>Central uses Roboto</strong>
+            .
+          </p>
+          <p>
+            Here's a <a href="#typography">link with theme colors</a> that uses
+            theme-specific hover states.
+          </p>
+          <p>
+            <small className="text-muted">
+              Small muted text using theme text colors.
+            </small>
+          </p>
         </Card>
       </section>
 
       <section className="mb-5">
         <h2>Icons (FontAwesome)</h2>
         <Card title="Icon Examples">
-          <div className="d-flex gap-3 flex-wrap" style={{ fontSize: '2rem' }}>
+          <div className="d-flex gap-3 flex-wrap" style={{ fontSize: "2rem" }}>
             <i className="fa-thin fa-house" title="Home"></i>
             <i className="fa-thin fa-user" title="User"></i>
             <i className="fa-thin fa-heart" title="Heart"></i>
@@ -155,7 +205,9 @@ function App() {
             <i className="fa-thin fa-search" title="Search"></i>
             <i className="fa-thin fa-cog" title="Settings"></i>
           </div>
-          <p className="mt-3 mb-0"><small className="text-muted">Icons inherit theme text color</small></p>
+          <p className="mt-3 mb-0">
+            <small className="text-muted">Icons inherit theme text color</small>
+          </p>
         </Card>
       </section>
 
@@ -165,20 +217,36 @@ function App() {
           <div className="col-md-6">
             <Card title="NT.GOV.AU Theme (ntg- prefix)">
               <ul className="list-unstyled">
-                <li><code>--ntg-type-font-default</code>: Lato</li>
-                <li><code>--ntg-clr-action-pirmary</code>: #1f1f5f</li>
-                <li><code>--ntg-clr-link-hover</code>: #c33826</li>
-                <li><code>--ntg-success-03-d</code>: #107810</li>
+                <li>
+                  <code>--ntg-type-font-default</code>: Lato
+                </li>
+                <li>
+                  <code>--ntg-clr-action-pirmary</code>: #1f1f5f
+                </li>
+                <li>
+                  <code>--ntg-clr-link-hover</code>: #c33826
+                </li>
+                <li>
+                  <code>--ntg-success-03-d</code>: #107810
+                </li>
               </ul>
             </Card>
           </div>
           <div className="col-md-6">
             <Card title="NTG Central Theme (central- prefix)">
               <ul className="list-unstyled">
-                <li><code>--central-type-font-default</code>: Roboto</li>
-                <li><code>--central-clr-action-pirmary</code>: Theme primary</li>
-                <li><code>--central-clr-link-hover</code>: Theme hover</li>
-                <li><code>--central-success-03-d</code>: Theme success</li>
+                <li>
+                  <code>--central-type-font-default</code>: Roboto
+                </li>
+                <li>
+                  <code>--central-clr-action-pirmary</code>: Theme primary
+                </li>
+                <li>
+                  <code>--central-clr-link-hover</code>: Theme hover
+                </li>
+                <li>
+                  <code>--central-success-03-d</code>: Theme success
+                </li>
               </ul>
             </Card>
           </div>
@@ -191,7 +259,9 @@ function App() {
           <Alert variant="primary">This is a primary alert!</Alert>
           <Alert variant="success">This is a success alert!</Alert>
           <Alert variant="danger">This is a danger alert!</Alert>
-          <Alert variant="warning" dismissible>This is a dismissible warning alert!</Alert>
+          <Alert variant="warning" dismissible>
+            This is a dismissible warning alert!
+          </Alert>
         </div>
       </section>
 
@@ -209,8 +279,8 @@ function App() {
             </Card>
           </div>
           <div className="col-md-4">
-            <Card 
-              title="Card with Footer" 
+            <Card
+              title="Card with Footer"
               footer={<Button variant="primary">Action</Button>}
             >
               <p>This card has a footer with a button.</p>
