@@ -1,0 +1,72 @@
+/**
+ * Tag Component - Base Styles
+ * 
+ * Simple label component for status indicators, categories, and metadata.
+ * Uses design tokens for typography, spacing, and colors.
+ */
+
+@import '../../themes/typography.css';
+@import '../../themes/typography-literals.css';
+
+.tag {
+  /* Typography - uppercase small tokens */
+  font-size: var(--type-uppercase-small-size);
+  font-weight: var(--type-uppercase-small-weight);
+  line-height: var(--type-uppercase-small-lh);
+  letter-spacing: var(--type-uppercase-small-ls);
+  text-transform: var(--literal-text-transform-uppercase-small);
+  font-family: var(--type-font-default);
+  
+  /* Spacing */
+  padding: var(--sp-xxs) var(--sp-xs);
+  
+  /* Display */
+  display: inline-block;
+  border-radius: 0;
+  
+  /* Default for consistency */
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Default variant - neutral/subtle */
+.tag-default {
+  background-color: var(--clr-bg-default);
+  color: var(--clr-text-default);
+  border: 1px solid var(--clr-border-subtle);
+}
+
+/* Grey variant - muted neutral */
+.tag-grey {
+  background-color: var(--ntg-neutral-02);
+  color: var(--ntg-neutral-08);
+  border: 1px solid var(--clr-border-subtle);
+}
+
+/* Green variant - success/positive */
+.tag-green {
+  background-color: var(--clr-status-success-bg);
+  color: var(--clr-status-success);
+  border: none;
+}
+
+/* Blue variant - informational */
+.tag-blue {
+  background-color: var(--clr-status-info-bg);
+  color: var(--clr-status-info);
+  border: none;
+}
+
+/* Warning variant - caution/attention */
+.tag-warning {
+  background-color: var(--clr-status-warning-bg);
+  color: var(--clr-status-warning);
+  border: none;
+}
+
+/* Red variant - danger/error */
+.tag-red {
+  background-color: var(--clr-status-danger-bg);
+  color: var(--clr-status-danger);
+  border: none;
+}

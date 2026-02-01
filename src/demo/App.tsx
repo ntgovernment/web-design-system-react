@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { Alert } from '../components/Alert';
+import { Tag } from '../components/Tag';
 
 function App() {
   const [theme, setTheme] = useState<'ntg' | 'central'>('ntg');
@@ -23,33 +24,31 @@ function App() {
     // In production, we use the complete minified theme bundles
     if (isDev) {
       // Development: swap individual CSS files
-      const typographyPath = `/src/typography/bootstrap-${newTheme}.css`;
-      const themePath = `/src/themes/${newTheme}-theme.css`;
-      const buttonThemePath = `/src/components/Button/Button-${newTheme}.css`;
+      // Add timestamp to force reload and bypass cache
+      const timestamp = new Date().getTime();
+      const typographyPath = `/src/typography/typography-${newTheme}.css?v=${timestamp}`;
+      const themePath = `/src/themes/${newTheme}-theme.css?v=${timestamp}`;
+      const buttonThemePath = `/src/components/Button/Button-${newTheme}.css?v=${timestamp}`;
+      const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;
       
-      // Update or create links for dev mode
-      let typographyLink = document.getElementById('bootstrap-typography-css') as HTMLLinkElement;
-      if (!typographyLink) {
-        typographyLink = document.createElement('link');
-        typographyLink.id = 'bootstrap-typography-css';
-        typographyLink.rel = 'stylesheet';
-        document.head.appendChild(typographyLink);
-      }
-      typographyLink.href = typographyPath;
+      // Helper function to reload a stylesheet
+      const reloadStylesheet = (id: string, href: string) => {
+        const existing = document.getElementById(id);
+        if (existing) {
+          existing.remove();
+        }
+        const link = document.createElement('link');
+        link.id = id;
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      };
       
-      let buttonThemeLink = document.getElementById('button-theme-css') as HTMLLinkElement;
-      if (!buttonThemeLink) {
-        buttonThemeLink = document.createElement('link');
-        buttonThemeLink.id = 'button-theme-css';
-        buttonThemeLink.rel = 'stylesheet';
-        document.head.appendChild(buttonThemeLink);
-      }
-      buttonThemeLink.href = buttonThemePath;
-      
-      const themeLink = document.getElementById('theme-css') as HTMLLinkElement;
-      if (themeLink) {
-        themeLink.href = themePath;
-      }
+      // Reload all theme-specific stylesheets
+      reloadStylesheet('bootstrap-typography-css', typographyPath);
+      reloadStylesheet('theme-css', themePath);
+      reloadStylesheet('button-theme-css', buttonThemePath);
+      reloadStylesheet('tag-theme-css', tagThemePath);
     } else {
       // Production: swap complete theme bundle (includes all dependencies)
       const themePath = `${newTheme}-theme.min.css`;
@@ -70,6 +69,21 @@ function App() {
         </Button>
         <p className="mt-2 text-muted">Current theme: <strong>{theme === 'ntg' ? 'NT.GOV.AU' : 'NTG Central'}</strong></p>
       </div>
+
+      <section className="mb-5">
+        <h2>Tags</h2>
+        <p className="text-muted mb-3">
+          Tag components for status indicators, categories, and labels with 6 color variants
+        </p>
+        <div className="d-flex gap-2 flex-wrap">
+          <Tag variant="default">Default</Tag>
+          <Tag variant="grey">Grey</Tag>
+          <Tag variant="green">Green</Tag>
+          <Tag variant="blue">Blue</Tag>
+          <Tag variant="warning">Warning</Tag>
+          <Tag variant="red">Red</Tag>
+        </div>
+      </section>
 
       <section className="mb-5">
         <h2>Buttons - Figma Spec</h2>

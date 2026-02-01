@@ -20,8 +20,8 @@ The design system uses Bootstrap's comprehensive typography system with two them
 ### Font Loading
 
 Fonts are loaded via Google Fonts CDN in the theme-specific typography files:
-- `src/typography/bootstrap-ntg.css` - Loads Lato for NTG theme
-- `src/typography/bootstrap-central.css` - Loads Roboto for Central theme
+- `src/typography/typography-ntg.css` - Loads Lato for NTG theme
+- `src/typography/typography-central.css` - Loads Roboto for Central theme
 
 ## Typography Scale
 

@@ -1,0 +1,12 @@
+/**
+ * Tag Component - Central Theme Overrides
+ * 
+ * Theme-specific customizations for the Central design system.
+ * Adjusts colors, borders, and other properties to match Central brand.
+ */
+
+/* Theme-specific adjustments can be added here as needed */
+/* The base Tag.css uses design tokens that are theme-aware */
+
+/* Central theme uses the brand colors defined in central-theme.css */
+/* Status colors automatically inherit from --central-clr-status-* tokens */

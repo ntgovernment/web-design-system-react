@@ -8,15 +8,16 @@
  * 1. Update design-tokens/tokens.json
  * 2. Run: npm run tokens:build
  * 
- * Import order: common.css → grid.css → typography.css → theme
+ * Import order: common.css → grid.css → typography.css → typography-literals.css → theme
  * 
- * Generated: 2026-02-01T00:57:27.251Z
+ * Generated: 2026-02-01T05:41:33.119Z
  * Source: Figma Design Tokens
  */
 
 @import './common.css';
 @import './grid.css';
 @import './typography.css';
+@import './typography-literals.css';
 
 :root {
   --central-blue-02: #606a80;

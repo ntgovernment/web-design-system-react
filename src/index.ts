@@ -11,5 +11,8 @@ export type { AlertProps } from './components/Alert';
 export { Icon } from './components/Icon';
 export type { IconProps } from './components/Icon';
 
+export { Tag } from './components/Tag';
+export type { TagProps } from './components/Tag';
+
 // Import styles
 import './style.css';

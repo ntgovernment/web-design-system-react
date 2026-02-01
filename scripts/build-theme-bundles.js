@@ -55,6 +55,7 @@ const cssOrder = [
 // Component CSS files (currently only Button)
 const componentCSS = [
   { path: join(rootDir, 'src', 'components', 'Button', 'Button.css'), name: 'Button.css' },
+  { path: join(rootDir, 'src', 'components', 'Tag', 'Tag.css'), name: 'Tag.css' },
 ];
 
 // Theme configurations
@@ -63,16 +64,18 @@ const themes = [
     name: 'ntg',
     displayName: 'NT.GOV.AU',
     themeFile: join(rootDir, 'src', 'themes', 'ntg-theme.css'),
-    bootstrapFile: join(rootDir, 'src', 'typography', 'bootstrap-ntg.css'),
+    bootstrapFile: join(rootDir, 'src', 'typography', 'typography-ntg.css'),
     buttonTheme: join(rootDir, 'src', 'components', 'Button', 'Button-ntg.css'),
+    tagTheme: join(rootDir, 'src', 'components', 'Tag', 'Tag-ntg.css'),
     outputFile: 'ntg-theme.min.css',
   },
   {
     name: 'central',
     displayName: 'NTG Central',
     themeFile: join(rootDir, 'src', 'themes', 'central-theme.css'),
-    bootstrapFile: join(rootDir, 'src', 'typography', 'bootstrap-central.css'),
+    bootstrapFile: join(rootDir, 'src', 'typography', 'typography-central.css'),
     buttonTheme: join(rootDir, 'src', 'components', 'Button', 'Button-central.css'),
+    tagTheme: join(rootDir, 'src', 'components', 'Tag', 'Tag-central.css'),
     outputFile: 'central-theme.min.css',
   },
 ];
@@ -115,6 +118,11 @@ themes.forEach(theme => {
   const buttonThemeContent = readCSSFile(theme.buttonTheme);
   if (buttonThemeContent) {
     cssBundle += `/* Button-${theme.name}.css */\n${buttonThemeContent}\n\n`;
+  }
+  
+  const tagThemeContent = readCSSFile(theme.tagTheme);
+  if (tagThemeContent) {
+    cssBundle += `/* Tag-${theme.name}.css */\n${tagThemeContent}\n\n`;
   }
   
   // Minify the bundle

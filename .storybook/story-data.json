@@ -207,7 +207,48 @@
         }
       },
       "file": "src/components/Icon/Icon.stories.tsx"
+    },
+    "Tag": {
+      "stories": {
+        "Default": {
+          "args": {
+            "variant": "default",
+            "children": "Default"
+          }
+        },
+        "Grey": {
+          "args": {
+            "variant": "grey",
+            "children": "Grey"
+          }
+        },
+        "Green": {
+          "args": {
+            "variant": "green",
+            "children": "Green"
+          }
+        },
+        "Blue": {
+          "args": {
+            "variant": "blue",
+            "children": "Blue"
+          }
+        },
+        "Warning": {
+          "args": {
+            "variant": "warning",
+            "children": "Warning"
+          }
+        },
+        "Red": {
+          "args": {
+            "variant": "red",
+            "children": "Red"
+          }
+        }
+      },
+      "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-01T04:29:01.197Z"
+  "generated": "2026-02-01T06:00:06.898Z"
 }

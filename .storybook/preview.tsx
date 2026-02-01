@@ -7,6 +7,11 @@ import "../src/components/Button/Button.css";
 import "../src/components/Button/Button-ntg.css";
 import "../src/components/Button/Button-central.css";
 
+// Import Tag CSS files to ensure Vite processes them
+import "../src/components/Tag/Tag.css";
+import "../src/components/Tag/Tag-ntg.css";
+import "../src/components/Tag/Tag-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -44,7 +49,7 @@ const loadBootstrapTypography = (theme: string) => {
   const typographyOverride = document.createElement("link");
   typographyOverride.id = "bootstrap-typography-css";
   typographyOverride.rel = "stylesheet";
-  typographyOverride.href = new URL(`../src/typography/bootstrap-${theme}.css`, import.meta.url).href;
+  typographyOverride.href = new URL(`../src/typography/typography-${theme}.css`, import.meta.url).href;
   document.head.appendChild(typographyOverride);
 };
 
@@ -80,6 +85,22 @@ const loadButtonStyles = (theme: string) => {
   document.head.appendChild(buttonCSS);
 };
 
+// Load Tag Component Styles (theme-specific overrides)
+const loadTagStyles = (theme: string) => {
+  // Remove existing theme-specific Tag CSS if present
+  const existingTag = document.getElementById("tag-theme-css");
+  if (existingTag) {
+    existingTag.remove();
+  }
+
+  // Add theme-specific Tag CSS overrides
+  const tagCSS = document.createElement("link");
+  tagCSS.id = "tag-theme-css";
+  tagCSS.rel = "stylesheet";
+  tagCSS.href = new URL(`../src/components/Tag/Tag-${theme}.css`, import.meta.url).href;
+  document.head.appendChild(tagCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -111,6 +132,14 @@ const loadThemeCSS = (theme: string) => {
     typographyCSS.rel = "stylesheet";
     typographyCSS.href = new URL("../src/themes/typography.css", import.meta.url).href;
     document.head.appendChild(typographyCSS);
+  }
+
+  if (!document.getElementById("typography-literals-css")) {
+    const typographyLiteralsCSS = document.createElement("link");
+    typographyLiteralsCSS.id = "typography-literals-css";
+    typographyLiteralsCSS.rel = "stylesheet";
+    typographyLiteralsCSS.href = new URL("../src/themes/typography-literals.css", import.meta.url).href;
+    document.head.appendChild(typographyLiteralsCSS);
   }
 
   if (!document.getElementById("base-variables-css")) {
@@ -149,6 +178,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadBootstrapTypography(theme);
     loadButtonCommonStyles();  // Load common Button CSS (uses semantic variables)
     loadButtonStyles(theme);  // Load theme-specific Button CSS overrides LAST
+    loadTagStyles(theme);  // Load theme-specific Tag CSS overrides
   }, [theme]);
 
   return (

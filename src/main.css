@@ -12,6 +12,10 @@
 /* Import Button theme-specific styles (default to NTG) */
 @import './components/Button/Button-ntg.css';
 
+/* Import Tag component styles */
+@import './components/Tag/Tag.css';
+@import './components/Tag/Tag-ntg.css';
+
 /* Additional global styles can be added here */
 body {
   margin: 0;

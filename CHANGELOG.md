@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Tag Component**: Simple status indicator component with 6 color variants (default, grey, green, blue, warning, red)
+  - Uppercase typography using design token system
+  - Theme-aware color adaptation for NTG and Central themes
+  - WCAG AAA compliant color contrast
+  - Storybook stories with interactive demos
+  - Comprehensive documentation and usage examples
 - Component-specific README files for Button, Card, Alert, and Typography components
 - CONTRIBUTING.md with development guidelines and contribution process
 - CHANGELOG.md to track version history

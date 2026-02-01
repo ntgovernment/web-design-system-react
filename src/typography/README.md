@@ -8,13 +8,13 @@ Bootstrap 5.3+ uses CSS custom properties (`--bs-*` variables) that can be overr
 
 ## Files
 
-### `bootstrap-ntg.css`
+### `typography-ntg.css`
 Bootstrap variable overrides for the **NT.GOV.AU theme**:
 - Font family: **Lato**
 - Color palette: NTG blue, orange, ochre
 - Design language: Sharp corners, bold accents
 
-### `bootstrap-central.css`
+### `typography-central.css`
 Bootstrap variable overrides for the **Central Australia theme**:
 - Font family: **Roboto**
 - Color palette: Central blues, warm tones
@@ -29,7 +29,7 @@ Proper CSS cascade is critical for theme switching to work correctly:
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 2. Typography override (theme-specific Bootstrap vars) -->
-<link id="bootstrap-typography-css" href="./typography/bootstrap-ntg.css" rel="stylesheet">
+<link id="bootstrap-typography-css" href="./typography/typography-ntg.css" rel="stylesheet">
 
 <!-- 3. Theme CSS (theme-specific design tokens) -->
 <link id="theme-css" href="./themes/ntg-theme.css" rel="stylesheet">
@@ -169,7 +169,7 @@ Import both files dynamically or use a theme provider:
 ```tsx
 // .storybook/preview.tsx
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../src/typography/bootstrap-ntg.css'; // or bootstrap-central.css
+import '../src/typography/typography-ntg.css'; // or typography-central.css
 import '../src/themes/ntg-theme.css';
 ```
 
@@ -193,13 +193,13 @@ To add additional Bootstrap variable mappings:
 
 1. Identify the Bootstrap CSS variable from [Bootstrap docs](https://getbootstrap.com/docs/5.3/customize/css-variables/)
 2. Find the corresponding design token in `design-tokens/tokens.json`
-3. Add the mapping to **both** `bootstrap-ntg.css` AND `bootstrap-central.css`
+3. Add the mapping to **both** `typography-ntg.css` AND `typography-central.css`
 4. Test with theme switching enabled
 
 ### Example: Adding Display Heading Support
 
 ```css
-/* In both bootstrap-ntg.css and bootstrap-central.css */
+/* In both typography-ntg.css and typography-central.css */
 :root {
   --bs-display-font-weight: 700;
   --bs-display-line-height: 1.2;

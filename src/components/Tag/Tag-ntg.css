@@ -1,0 +1,19 @@
+/**
+ * Tag Component - NT.GOV.AU Theme Overrides
+ * 
+ * Theme-specific customizations for the NTG design system.
+ * Adjusts colors, borders, and other properties to match NTG brand.
+ */
+
+/* Theme-specific adjustments can be added here as needed */
+/* The base Tag.css uses design tokens that are theme-aware */
+
+/* Ensure proper contrast for NTG neutral colors */
+.tag-grey {
+  background-color: var(--ntg-neutral-02);
+  color: var(--ntg-neutral-08);
+  border-color: var(--ntg-neutral-04);
+}
+
+/* NTG theme uses the brand colors defined in ntg-theme.css */
+/* Status colors automatically inherit from --ntg-clr-status-* tokens */
