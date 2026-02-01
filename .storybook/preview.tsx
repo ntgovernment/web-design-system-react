@@ -12,6 +12,11 @@ import "../src/components/Tag/Tag.css";
 import "../src/components/Tag/Tag-ntg.css";
 import "../src/components/Tag/Tag-central.css";
 
+// Import Pill CSS files to ensure Vite processes them
+import "../src/components/Pill/Pill.css";
+import "../src/components/Pill/Pill-ntg.css";
+import "../src/components/Pill/Pill-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -40,7 +45,9 @@ const loadFontAwesome = () => {
 // Load Bootstrap Typography Override (theme-specific)
 const loadBootstrapTypography = (theme: string) => {
   // Remove existing Bootstrap typography override if present
-  const existingTypography = document.getElementById("bootstrap-typography-css");
+  const existingTypography = document.getElementById(
+    "bootstrap-typography-css",
+  );
   if (existingTypography) {
     existingTypography.remove();
   }
@@ -49,7 +56,10 @@ const loadBootstrapTypography = (theme: string) => {
   const typographyOverride = document.createElement("link");
   typographyOverride.id = "bootstrap-typography-css";
   typographyOverride.rel = "stylesheet";
-  typographyOverride.href = new URL(`../src/typography/typography-${theme}.css`, import.meta.url).href;
+  typographyOverride.href = new URL(
+    `../src/typography/typography-${theme}.css`,
+    import.meta.url,
+  ).href;
   document.head.appendChild(typographyOverride);
 };
 
@@ -65,7 +75,10 @@ const loadButtonCommonStyles = () => {
   const buttonCommonCSS = document.createElement("link");
   buttonCommonCSS.id = "button-common-css";
   buttonCommonCSS.rel = "stylesheet";
-  buttonCommonCSS.href = new URL("../src/components/Button/Button.css", import.meta.url).href;
+  buttonCommonCSS.href = new URL(
+    "../src/components/Button/Button.css",
+    import.meta.url,
+  ).href;
   document.head.appendChild(buttonCommonCSS);
 };
 
@@ -81,7 +94,10 @@ const loadButtonStyles = (theme: string) => {
   const buttonCSS = document.createElement("link");
   buttonCSS.id = "button-theme-css";
   buttonCSS.rel = "stylesheet";
-  buttonCSS.href = new URL(`../src/components/Button/Button-${theme}.css`, import.meta.url).href;
+  buttonCSS.href = new URL(
+    `../src/components/Button/Button-${theme}.css`,
+    import.meta.url,
+  ).href;
   document.head.appendChild(buttonCSS);
 };
 
@@ -97,8 +113,30 @@ const loadTagStyles = (theme: string) => {
   const tagCSS = document.createElement("link");
   tagCSS.id = "tag-theme-css";
   tagCSS.rel = "stylesheet";
-  tagCSS.href = new URL(`../src/components/Tag/Tag-${theme}.css`, import.meta.url).href;
+  tagCSS.href = new URL(
+    `../src/components/Tag/Tag-${theme}.css`,
+    import.meta.url,
+  ).href;
   document.head.appendChild(tagCSS);
+};
+
+// Load Pill Component Styles (theme-specific overrides)
+const loadPillStyles = (theme: string) => {
+  // Remove existing theme-specific Pill CSS if present
+  const existingPill = document.getElementById("pill-theme-css");
+  if (existingPill) {
+    existingPill.remove();
+  }
+
+  // Add theme-specific Pill CSS overrides
+  const pillCSS = document.createElement("link");
+  pillCSS.id = "pill-theme-css";
+  pillCSS.rel = "stylesheet";
+  pillCSS.href = new URL(
+    `../src/components/Pill/Pill-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(pillCSS);
 };
 
 // Load theme CSS files
@@ -130,7 +168,10 @@ const loadThemeCSS = (theme: string) => {
     const typographyCSS = document.createElement("link");
     typographyCSS.id = "typography-css";
     typographyCSS.rel = "stylesheet";
-    typographyCSS.href = new URL("../src/themes/typography.css", import.meta.url).href;
+    typographyCSS.href = new URL(
+      "../src/themes/typography.css",
+      import.meta.url,
+    ).href;
     document.head.appendChild(typographyCSS);
   }
 
@@ -138,7 +179,10 @@ const loadThemeCSS = (theme: string) => {
     const typographyLiteralsCSS = document.createElement("link");
     typographyLiteralsCSS.id = "typography-literals-css";
     typographyLiteralsCSS.rel = "stylesheet";
-    typographyLiteralsCSS.href = new URL("../src/themes/typography-literals.css", import.meta.url).href;
+    typographyLiteralsCSS.href = new URL(
+      "../src/themes/typography-literals.css",
+      import.meta.url,
+    ).href;
     document.head.appendChild(typographyLiteralsCSS);
   }
 
@@ -146,7 +190,10 @@ const loadThemeCSS = (theme: string) => {
     const baseVariablesCSS = document.createElement("link");
     baseVariablesCSS.id = "base-variables-css";
     baseVariablesCSS.rel = "stylesheet";
-    baseVariablesCSS.href = new URL("../src/themes/base-variables.css", import.meta.url).href;
+    baseVariablesCSS.href = new URL(
+      "../src/themes/base-variables.css",
+      import.meta.url,
+    ).href;
     document.head.appendChild(baseVariablesCSS);
   }
 
@@ -154,7 +201,10 @@ const loadThemeCSS = (theme: string) => {
   const themeCSS = document.createElement("link");
   themeCSS.id = "theme-css";
   themeCSS.rel = "stylesheet";
-  themeCSS.href = new URL(`../src/themes/${theme}-theme.css`, import.meta.url).href;
+  themeCSS.href = new URL(
+    `../src/themes/${theme}-theme.css`,
+    import.meta.url,
+  ).href;
   document.head.appendChild(themeCSS);
 
   // Load component styles (Button CSS with Bootstrap variable overrides)
@@ -174,11 +224,12 @@ const withHTMLCode: Decorator = (Story, context) => {
   useEffect(() => {
     loadBootstrapCSS();
     loadFontAwesome();
-    loadThemeCSS(theme);  // Load theme CSS FIRST (defines --clr-* variables)
+    loadThemeCSS(theme); // Load theme CSS FIRST (defines --clr-* variables)
     loadBootstrapTypography(theme);
-    loadButtonCommonStyles();  // Load common Button CSS (uses semantic variables)
-    loadButtonStyles(theme);  // Load theme-specific Button CSS overrides LAST
-    loadTagStyles(theme);  // Load theme-specific Tag CSS overrides
+    loadButtonCommonStyles(); // Load common Button CSS (uses semantic variables)
+    loadButtonStyles(theme); // Load theme-specific Button CSS overrides LAST
+    loadTagStyles(theme); // Load theme-specific Tag CSS overrides
+    loadPillStyles(theme); // Load theme-specific Pill CSS overrides
   }, [theme]);
 
   return (
@@ -226,14 +277,14 @@ const preview: Preview = {
         htmlWhitespaceSensitivity: "strict",
       },
     },
-    // Story ordering: Design System (Typography, Icons) first, then Components
+    // Story ordering: Components first, then Design System
     options: {
       storySort: {
         order: [
-          'Design System',
-          ['Typography', 'Icon'],
-          'Components',
-          ['Button', 'Alert', 'Card'],
+          "Components",
+          ["Pill", "Button", "Alert", "Card", "Tag"],
+          "Design System",
+          ["Typography", "Icon"],
         ],
       },
     },

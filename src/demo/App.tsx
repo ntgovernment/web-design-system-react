@@ -3,6 +3,7 @@ import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { Alert } from "../components/Alert";
 import { Tag } from "../components/Tag";
+import { Pill } from "../components/Pill";
 
 function App() {
   const [theme, setTheme] = useState<"ntg" | "central">("ntg");
@@ -30,6 +31,7 @@ function App() {
       const themePath = `/src/themes/${newTheme}-theme.css?v=${timestamp}`;
       const buttonThemePath = `/src/components/Button/Button-${newTheme}.css?v=${timestamp}`;
       const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;
+      const pillThemePath = `/src/components/Pill/Pill-${newTheme}.css?v=${timestamp}`;
 
       // Helper function to reload a stylesheet
       const reloadStylesheet = (id: string, href: string) => {
@@ -49,6 +51,7 @@ function App() {
       reloadStylesheet("theme-css", themePath);
       reloadStylesheet("button-theme-css", buttonThemePath);
       reloadStylesheet("tag-theme-css", tagThemePath);
+      reloadStylesheet("pill-theme-css", pillThemePath);
     } else {
       // Production: swap complete theme bundle (includes all dependencies)
       const themePath = `${newTheme}-theme.min.css`;
@@ -74,6 +77,35 @@ function App() {
           <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
         </p>
       </div>
+
+      <section className="mb-5">
+        <h2>Pills</h2>
+        <p className="text-muted mb-3">
+          Removable pill components for filters, selections, and tags. Click the
+          (×) to remove.
+        </p>
+        <div className="d-flex gap-2 flex-wrap">
+          <Pill
+            label="JavaScript"
+            onRemove={() => console.log("Removed JavaScript")}
+          />
+          <Pill
+            label="TypeScript"
+            onRemove={() => console.log("Removed TypeScript")}
+          />
+          <Pill label="React" onRemove={() => console.log("Removed React")} />
+          <Pill label="CSS" onRemove={() => console.log("Removed CSS")} />
+          <Pill label="HTML" onRemove={() => console.log("Removed HTML")} />
+          <Pill
+            label="Status: Active"
+            onRemove={() => console.log("Removed Status filter")}
+          />
+          <Pill
+            label="Category: Design"
+            onRemove={() => console.log("Removed Category filter")}
+          />
+        </div>
+      </section>
 
       <section className="mb-5">
         <h2>Tags</h2>

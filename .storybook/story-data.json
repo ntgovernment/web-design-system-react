@@ -58,52 +58,50 @@
         "Primary": {
           "args": {
             "variant": "primary",
-            "children": "Button"
+            "label": "Button"
           }
         },
         "Secondary": {
           "args": {
             "variant": "secondary",
-            "children": "Button"
+            "label": "Button"
           }
         },
         "Tertiary": {
           "args": {
             "variant": "tertiary",
-            "children": "Button"
+            "label": "Button"
           }
         },
         "Small": {
           "args": {
             "size": "sm",
-            "children": "Small Button"
+            "label": "Small Button"
           }
         },
         "AllVariants": {
           "args": {
-            "children": "Button"
+            "label": "Button"
           }
         },
         "WithIconLeft": {
           "args": {
             "variant": "primary",
-            "icon": "fa-light fa-home",
-            "iconPosition": "left",
-            "children": "Home"
+            "iconLeft": "fa-light fa-home",
+            "label": "Home"
           }
         },
         "WithIconRight": {
           "args": {
             "variant": "primary",
-            "icon": "fa-light fa-arrow-right",
-            "iconPosition": "right",
-            "children": "Next"
+            "iconRight": "fa-light fa-arrow-right",
+            "label": "Next"
           }
         },
         "IconOnly": {
           "args": {
             "variant": "primary",
-            "icon": "fa-light fa-search"
+            "iconLeft": "fa-light fa-search"
           }
         },
         "IconOnlyButtons": {
@@ -208,47 +206,87 @@
       },
       "file": "src/components/Icon/Icon.stories.tsx"
     },
+    "Pill": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Pill label"
+          }
+        },
+        "LongLabel": {
+          "args": {
+            "label": "Long pill label with more text"
+          }
+        },
+        "Interactive": {
+          "args": {
+            "label": "Click to remove"
+          }
+        },
+        "MultiplePills": {
+          "args": {
+            "label": "Pill"
+          }
+        },
+        "FilterExample": {
+          "args": {
+            "label": "Filter"
+          }
+        }
+      },
+      "file": "src/components/Pill/Pill.stories.tsx"
+    },
     "Tag": {
       "stories": {
         "Default": {
           "args": {
             "variant": "default",
-            "children": "Default"
+            "label": "Default"
           }
         },
         "Grey": {
           "args": {
             "variant": "grey",
-            "children": "Grey"
+            "label": "Grey"
           }
         },
         "Green": {
           "args": {
             "variant": "green",
-            "children": "Green"
+            "label": "Green"
           }
         },
         "Blue": {
           "args": {
             "variant": "blue",
-            "children": "Blue"
+            "label": "Blue"
           }
         },
         "Warning": {
           "args": {
             "variant": "warning",
-            "children": "Warning"
+            "label": "Warning"
           }
         },
         "Red": {
           "args": {
             "variant": "red",
-            "children": "Red"
+            "label": "Red"
+          }
+        },
+        "AllVariants": {
+          "args": {
+            "label": "Tag"
+          }
+        },
+        "VariousLabels": {
+          "args": {
+            "label": "Tag"
           }
         }
       },
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-01T06:09:11.516Z"
+  "generated": "2026-02-01T07:59:31.512Z"
 }

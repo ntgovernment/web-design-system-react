@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export interface IconProps {
   /**
@@ -40,18 +40,20 @@ export interface IconProps {
  */
 export const Icon = ({
   icon,
-  color = 'inherit',
+  color = "inherit",
   size,
-  className = '',
+  className = "",
   ariaHidden = true,
   ariaLabel,
   onClick,
   style,
 }: IconProps) => {
   const iconClasses = `${icon} ${className}`.trim();
-  
+
   const iconStyle: React.CSSProperties = {
-    color,
+    // Only add color to inline styles if explicitly set (not 'inherit')
+    // This allows CSS classes to control color when using default 'inherit'
+    ...(color !== "inherit" && { color }),
     ...(size && { fontSize: size }),
     ...style,
   };
@@ -63,7 +65,7 @@ export const Icon = ({
       aria-hidden={ariaHidden}
       aria-label={ariaLabel}
       onClick={onClick}
-      role={onClick ? 'button' : undefined}
+      role={onClick ? "button" : undefined}
     />
   );
 };

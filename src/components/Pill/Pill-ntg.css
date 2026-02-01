@@ -1,0 +1,18 @@
+/**
+ * Pill Component - NTG Theme Overrides
+ * 
+ * Theme-specific styling for NT.GOV.AU design system
+ */
+
+.pill {
+  /* Border */
+  border-radius: var(--radii-none);
+}
+
+/* Icon color - all states */
+.pill__close,
+.pill:hover .pill__close,
+.pill:focus .pill__close,
+.pill:active .pill__close {
+  color: var(--clr-link-default);
+}
