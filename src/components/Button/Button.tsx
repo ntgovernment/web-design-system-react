@@ -1,41 +1,47 @@
-import React from 'react';
+import React from "react";
+import { Icon } from "../Icon";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button variant
    */
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  variant?: "primary" | "secondary" | "tertiary";
   /**
    * Button size
    */
-  size?: 'sm';
+  size?: "sm";
   /**
-   * FontAwesome icon class (e.g., 'fa-light fa-home')
+   * Button text label
    */
-  icon?: string;
+  label?: string;
   /**
-   * Icon position relative to text
+   * Icon to display on the left side (FontAwesome icon class, e.g., 'fa-light fa-home')
    */
-  iconPosition?: 'left' | 'right';
+  iconLeft?: string;
+  /**
+   * Icon to display on the right side (FontAwesome icon class, e.g., 'fa-light fa-arrow-right')
+   */
+  iconRight?: string;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Button = ({
-  variant = 'primary',
+  variant = "primary",
   size,
   disabled = false,
-  children,
+  label,
   onClick,
-  type = 'button',
-  icon,
-  iconPosition = 'left',
+  type = "button",
+  iconLeft,
+  iconRight,
   className: customClassName,
   ...props
 }: ButtonProps) => {
-  const sizeClass = size ? `btn-${size}` : '';
-  const className = `btn btn-${variant} ${sizeClass} ${customClassName || ''}`.trim();
+  const sizeClass = size ? `btn-${size}` : "";
+  const className =
+    `btn btn-${variant} ${sizeClass} ${customClassName || ""}`.trim();
 
   return (
     <button
@@ -45,13 +51,9 @@ export const Button = ({
       onClick={onClick}
       {...props}
     >
-      {icon && iconPosition === 'left' && (
-        <i className={`${icon} ${children ? 'me-2' : ''}`} aria-hidden="true"></i>
-      )}
-      {children}
-      {icon && iconPosition === 'right' && (
-        <i className={`${icon} ${children ? 'ms-2' : ''}`} aria-hidden="true"></i>
-      )}
+      {iconLeft && <Icon icon={iconLeft} className={label ? "me-2" : ""} />}
+      {label}
+      {iconRight && <Icon icon={iconRight} className={label ? "ms-2" : ""} />}
     </button>
   );
 };

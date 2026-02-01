@@ -64,9 +64,11 @@ function App() {
       <div className="mb-4">
         <h1>NT Government Web Design System</h1>
         <p className="lead">Demo of Component Library with Bootstrap 5.3</p>
-        <Button variant="secondary" onClick={toggleTheme}>
-          Switch to {theme === "ntg" ? "NTG Central" : "NT.GOV.AU"} Theme
-        </Button>
+        <Button
+          variant="secondary"
+          onClick={toggleTheme}
+          label={`Switch to ${theme === "ntg" ? "NTG Central" : "NT.GOV.AU"} Theme`}
+        />
         <p className="mt-2 text-muted">
           Current theme:{" "}
           <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
@@ -98,18 +100,16 @@ function App() {
         <div className="mb-4">
           <h3 className="h5">All Variants</h3>
           <div className="d-flex gap-2 flex-wrap">
-            <Button variant="primary">Primary</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="tertiary">Tertiary</Button>
+            <Button variant="primary" label="Primary" />
+            <Button variant="secondary" label="Secondary" />
+            <Button variant="tertiary" label="Tertiary" />
           </div>
         </div>
         <div className="mb-4">
           <h3 className="h5">Sizes</h3>
           <div className="d-flex gap-2 flex-wrap align-items-center">
-            <Button variant="primary">Default Button</Button>
-            <Button variant="primary" size="sm">
-              Small Button
-            </Button>
+            <Button variant="primary" label="Default Button" />
+            <Button variant="primary" size="sm" label="Small Button" />
           </div>
         </div>
         <div className="mb-4">
@@ -117,35 +117,27 @@ function App() {
           <div className="d-flex gap-2 flex-wrap">
             <Button
               variant="primary"
-              icon="fa-light fa-home"
-              iconPosition="left"
-            >
-              Home
-            </Button>
+              iconLeft="fa-light fa-home"
+              label="Home"
+            />
             <Button
               variant="secondary"
-              icon="fa-light fa-arrow-left"
-              iconPosition="left"
-            >
-              Back
-            </Button>
+              iconLeft="fa-light fa-arrow-left"
+              label="Back"
+            />
             <Button
               variant="tertiary"
-              icon="fa-light fa-cog"
-              iconPosition="left"
-            >
-              Settings
-            </Button>
+              iconLeft="fa-light fa-cog"
+              label="Settings"
+            />
             <Button
               variant="primary"
-              icon="fa-light fa-arrow-right"
-              iconPosition="right"
-            >
-              Next
-            </Button>
+              iconRight="fa-light fa-arrow-right"
+              label="Next"
+            />
             <Button
               variant="primary"
-              icon="fa-light fa-search"
+              iconLeft="fa-light fa-search"
               aria-label="Search"
             />
           </div>
@@ -281,7 +273,7 @@ function App() {
           <div className="col-md-4">
             <Card
               title="Card with Footer"
-              footer={<Button variant="primary">Action</Button>}
+              footer={<Button variant="primary" label="Action" />}
             >
               <p>This card has a footer with a button.</p>
             </Card>

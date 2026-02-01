@@ -19,34 +19,30 @@ A customizable button component with theme support, icon integration, and access
 ```tsx
 import { Button } from '@ntgovernment/web-design-system';
 
-<Button variant="primary">Click me</Button>
-<Button variant="secondary">Cancel</Button>
-<Button variant="tertiary">More options</Button>
+<Button variant="primary" label="Click me" />
+<Button variant="secondary" label="Cancel" />
+<Button variant="tertiary" label="More options" />
 ```
 
 ### Small Size
 
 ```tsx
-<Button variant="primary" size="sm">Small Button</Button>
+<Button variant="primary" size="sm" label="Small Button" />
 ```
 
 ### With Icons
 
 ```tsx
-// Icon on the left (default)
-<Button variant="primary" icon="fa-solid fa-home" iconPosition="left">
-  Home
-</Button>
+// Icon on the left
+<Button variant="primary" iconLeft="fa-solid fa-home" label="Home" />
 
 // Icon on the right
-<Button variant="primary" icon="fa-solid fa-arrow-right" iconPosition="right">
-  Next
-</Button>
+<Button variant="primary" iconRight="fa-solid fa-arrow-right" label="Next" />
 
 // Icon-only button (requires aria-label for accessibility)
-<Button 
-  variant="primary" 
-  icon="fa-solid fa-search" 
+<Button
+  variant="primary"
+  iconLeft="fa-solid fa-search"
   aria-label="Search"
 />
 ```
@@ -54,82 +50,76 @@ import { Button } from '@ntgovernment/web-design-system';
 ### Disabled State
 
 ```tsx
-<Button variant="primary" disabled>
-  Disabled Button
-</Button>
+<Button variant="primary" disabled label="Disabled Button" />
 ```
 
 ### With Click Handler
 
 ```tsx
 const handleClick = () => {
-  console.log('Button clicked!');
+  console.log("Button clicked!");
 };
 
-<Button variant="primary" onClick={handleClick}>
-  Click me
-</Button>
+<Button variant="primary" onClick={handleClick} label="Click me" />;
 ```
 
 ### Custom Button Type
 
 ```tsx
-<Button variant="primary" type="submit">
-  Submit Form
-</Button>
+<Button variant="primary" type="submit" label="Submit Form" />
 ```
 
 ## Props
 
 ### ButtonProps
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'tertiary'` | `'primary'` | Button style variant |
-| `size` | `'sm'` | `undefined` | Button size (smaller variant) |
-| `icon` | `string` | `undefined` | FontAwesome icon class (e.g., 'fa-solid fa-home') |
-| `iconPosition` | `'left' \| 'right'` | `'left'` | Position of icon relative to button text |
-| `disabled` | `boolean` | `false` | Disables the button |
-| `onClick` | `(event: React.MouseEvent<HTMLButtonElement>) => void` | `undefined` | Click handler function |
-| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | HTML button type |
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | Button label/content (optional for icon-only buttons) |
-| ...props | `React.ButtonHTMLAttributes<HTMLButtonElement>` | - | All standard HTML button attributes |
+| Prop        | Type                                                   | Default     | Description                                                             |
+| ----------- | ------------------------------------------------------ | ----------- | ----------------------------------------------------------------------- |
+| `variant`   | `'primary' \| 'secondary' \| 'tertiary'`               | `'primary'` | Button style variant                                                    |
+| `size`      | `'sm'`                                                 | `undefined` | Button size (smaller variant)                                           |
+| `label`     | `string`                                               | `undefined` | Button text label                                                       |
+| `iconLeft`  | `string`                                               | `undefined` | FontAwesome icon class for left side (e.g., 'fa-solid fa-home')         |
+| `iconRight` | `string`                                               | `undefined` | FontAwesome icon class for right side (e.g., 'fa-solid fa-arrow-right') |
+| `disabled`  | `boolean`                                              | `false`     | Disables the button                                                     |
+| `onClick`   | `(event: React.MouseEvent<HTMLButtonElement>) => void` | `undefined` | Click handler function                                                  |
+| `type`      | `'button' \| 'submit' \| 'reset'`                      | `'button'`  | HTML button type                                                        |
+| `className` | `string`                                               | `undefined` | Additional CSS classes                                                  |
+| ...props    | `React.ButtonHTMLAttributes<HTMLButtonElement>`        | -           | All standard HTML button attributes                                     |
 
 ## Accessibility
 
 ### Icon-Only Buttons
 
-Icon-only buttons (buttons without text content) **must** include an `aria-label` to be accessible to screen readers:
+Icon-only buttons (buttons without a `label`) **must** include an `aria-label` to be accessible to screen readers:
 
 ```tsx
 // ✅ Correct - has aria-label
-<Button icon="fa-solid fa-search" aria-label="Search" />
+<Button iconLeft="fa-solid fa-search" aria-label="Search" />
 
 // ❌ Incorrect - missing aria-label
-<Button icon="fa-solid fa-search" />
+<Button iconLeft="fa-solid fa-search" />
 ```
 
 ### Icons in Buttons with Text
 
-When a button has both an icon and text, the icon is automatically marked with `aria-hidden="true"` to prevent duplication for screen readers:
+When a button has both an icon and a label, the icon is automatically marked with `aria-hidden="true"` to prevent duplication for screen readers:
 
 ```tsx
-<Button icon="fa-solid fa-home" iconPosition="left">
-  Home
-</Button>
+<Button iconLeft="fa-solid fa-home" label="Home" />
 // The icon is decorative and hidden from screen readers
 ```
 
 ### Keyboard Navigation
 
 Buttons support standard keyboard interaction:
+
 - **Enter** or **Space**: Activates the button
 - **Tab**: Moves focus to/from the button
 
 ### Disabled State
 
 Disabled buttons:
+
 - Cannot be focused or activated
 - Are announced as "disabled" by screen readers
 - Have reduced opacity for visual indication
@@ -144,11 +134,11 @@ The Button component uses Bootstrap 5.3 classes and theme-specific CSS files for
 
 ### Theme Differences
 
-| Feature | NTG Theme | Central Theme |
-|---------|-----------|---------------|
-| Font Family | Lato | Roboto |
+| Feature       | NTG Theme           | Central Theme       |
+| ------------- | ------------------- | ------------------- |
+| Font Family   | Lato                | Roboto              |
 | Border Radius | Sharp corners (0px) | Pill-shaped (50rem) |
-| Primary Color | NT.GOV.AU Orange | NTG Central Blue |
+| Primary Color | NT.GOV.AU Orange    | NTG Central Blue    |
 
 ### Using CSS Variables in Your Theme
 
@@ -159,43 +149,35 @@ See [Button/CSS_VARIABLES.md](CSS_VARIABLES.md) for detailed information about c
 ### Full Example with All Features
 
 ```tsx
-import { Button } from '@ntgovernment/web-design-system';
+import { Button } from "@ntgovernment/web-design-system";
 
 function MyComponent() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Form submitted');
+    console.log("Form submitted");
   };
 
   return (
     <div>
       {/* Primary action */}
-      <Button 
-        variant="primary" 
-        icon="fa-solid fa-check" 
+      <Button
+        variant="primary"
+        iconLeft="fa-solid fa-check"
         onClick={handleSubmit}
-      >
-        Save Changes
-      </Button>
+        label="Save Changes"
+      />
 
       {/* Secondary action */}
-      <Button 
-        variant="secondary" 
-        icon="fa-solid fa-times"
-      >
-        Cancel
-      </Button>
+      <Button variant="secondary" iconLeft="fa-solid fa-times" label="Cancel" />
 
       {/* Tertiary/less prominent action */}
-      <Button variant="tertiary">
-        View Details
-      </Button>
+      <Button variant="tertiary" label="View Details" />
 
       {/* Small icon-only button */}
-      <Button 
-        variant="primary" 
+      <Button
+        variant="primary"
         size="sm"
-        icon="fa-solid fa-edit" 
+        iconLeft="fa-solid fa-edit"
         aria-label="Edit"
       />
     </div>
@@ -208,14 +190,15 @@ function MyComponent() {
 ```tsx
 <form onSubmit={handleSubmit}>
   <input type="text" name="username" />
-  
-  <Button type="submit" variant="primary" icon="fa-solid fa-paper-plane">
-    Submit
-  </Button>
-  
-  <Button type="reset" variant="secondary">
-    Reset
-  </Button>
+
+  <Button
+    type="submit"
+    variant="primary"
+    iconLeft="fa-solid fa-paper-plane"
+    label="Submit"
+  />
+
+  <Button type="reset" variant="secondary" label="Reset" />
 </form>
 ```
 
@@ -241,7 +224,7 @@ Navigate to **Components > Button** to see all variants and configurations.
 The Button component is fully typed with TypeScript. Import the types:
 
 ```tsx
-import { Button, ButtonProps } from '@ntgovernment/web-design-system';
+import { Button, ButtonProps } from "@ntgovernment/web-design-system";
 
 // Use ButtonProps for custom wrappers or extensions
 const MyCustomButton: React.FC<ButtonProps> = (props) => {
@@ -252,6 +235,7 @@ const MyCustomButton: React.FC<ButtonProps> = (props) => {
 ## Browser Support
 
 The Button component supports all modern browsers:
+
 - Chrome/Edge (latest)
 - Firefox (latest)
 - Safari (latest)

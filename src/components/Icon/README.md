@@ -11,21 +11,21 @@ The Icon component provides a simple interface for displaying FontAwesome icons 
 The Icon component is part of the web design system and uses the FontAwesome kit for icon rendering.
 
 ```tsx
-import { Icon } from '@your-org/web-design-system';
+import { Icon } from "@your-org/web-design-system";
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `icon` | `string` | **required** | FontAwesome icon class (e.g., 'fa-light fa-home') |
-| `color` | `string` | `'inherit'` | Icon color (CSS color value or 'inherit') |
-| `size` | `string` | - | Icon size (CSS font-size value, e.g., '2rem', '24px') |
-| `className` | `string` | `''` | Additional CSS classes (e.g., 'me-2', 'ms-2') |
-| `ariaHidden` | `boolean` | `true` | ARIA hidden attribute for decorative icons |
-| `ariaLabel` | `string` | - | ARIA label for accessibility (use for standalone icons) |
-| `onClick` | `() => void` | - | Click handler for interactive icons |
-| `style` | `React.CSSProperties` | - | Custom inline styles |
+| Prop         | Type                  | Default      | Description                                             |
+| ------------ | --------------------- | ------------ | ------------------------------------------------------- |
+| `icon`       | `string`              | **required** | FontAwesome icon class (e.g., 'fa-light fa-home')       |
+| `color`      | `string`              | `'inherit'`  | Icon color (CSS color value or 'inherit')               |
+| `size`       | `string`              | -            | Icon size (CSS font-size value, e.g., '2rem', '24px')   |
+| `className`  | `string`              | `''`         | Additional CSS classes (e.g., 'me-2', 'ms-2')           |
+| `ariaHidden` | `boolean`             | `true`       | ARIA hidden attribute for decorative icons              |
+| `ariaLabel`  | `string`              | -            | ARIA label for accessibility (use for standalone icons) |
+| `onClick`    | `() => void`          | -            | Click handler for interactive icons                     |
+| `style`      | `React.CSSProperties` | -            | Custom inline styles                                    |
 
 ## Usage Examples
 
@@ -72,13 +72,13 @@ Use design system color variables for consistent status colors:
 ### Interactive Icon
 
 ```tsx
-<Icon 
-  icon="fa-light fa-trash" 
+<Icon
+  icon="fa-light fa-trash"
   color="#dc3545"
-  onClick={() => handleDelete()} 
+  onClick={() => handleDelete()}
   ariaLabel="Delete item"
   ariaHidden={false}
-  style={{ cursor: 'pointer' }}
+  style={{ cursor: "pointer" }}
 />
 ```
 
@@ -87,14 +87,20 @@ Use design system color variables for consistent status colors:
 FontAwesome supports multiple icon styles:
 
 ```tsx
-{/* Light style (default throughout this design system) */}
-<Icon icon="fa-light fa-user" />
+{
+  /* Light style (default throughout this design system) */
+}
+<Icon icon="fa-light fa-user" />;
 
-{/* Regular style (outlined) */}
-<Icon icon="fa-regular fa-user" />
+{
+  /* Regular style (outlined) */
+}
+<Icon icon="fa-regular fa-user" />;
 
-{/* Solid style */}
-<Icon icon="fa-solid fa-user" />
+{
+  /* Solid style */
+}
+<Icon icon="fa-solid fa-user" />;
 ```
 
 ## Accessibility
@@ -115,8 +121,8 @@ For decorative icons that accompany text, use default `ariaHidden={true}`:
 For standalone icons with meaning, provide an `ariaLabel` and set `ariaHidden={false}`:
 
 ```tsx
-<Icon 
-  icon="fa-light fa-close" 
+<Icon
+  icon="fa-light fa-close"
   ariaLabel="Close dialog"
   ariaHidden={false}
   onClick={handleClose}
@@ -158,6 +164,7 @@ GET http://localhost:6006/api/html/Icon/StatusIcons
 ```
 
 Example output:
+
 ```html
 <i class="fa-light fa-circle-check" aria-hidden="true"></i>
 ```
@@ -181,13 +188,14 @@ Visit Storybook to see interactive examples:
 The Icon component is used internally by other design system components:
 
 ### Button Component
+
 ```tsx
-<Button icon="fa-light fa-home" iconPosition="left">
-  Home
-</Button>
+<Button iconLeft="fa-light fa-home" label="Home" />
+<Button iconRight="fa-light fa-arrow-right" label="Next" />
 ```
 
 ### Alert Component
+
 ```tsx
 <Alert variant="success" icon="fa-light fa-circle-check">
   Success message
@@ -195,6 +203,7 @@ The Icon component is used internally by other design system components:
 ```
 
 ### Card Component
+
 ```tsx
 <Card title="Analytics" icon="fa-light fa-chart-line">
   Card content
@@ -206,7 +215,10 @@ The Icon component is used internally by other design system components:
 This design system uses a custom FontAwesome kit:
 
 ```html
-<script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+<script
+  src="https://kit.fontawesome.com/9bf658a5c7.js"
+  crossorigin="anonymous"
+></script>
 ```
 
 The kit is automatically loaded in both the demo app and Storybook environment.
@@ -214,6 +226,7 @@ The kit is automatically loaded in both the demo app and Storybook environment.
 ## Browser Support
 
 The Icon component supports all modern browsers that support:
+
 - ES6+ JavaScript
 - CSS custom properties
 - FontAwesome 6.x
