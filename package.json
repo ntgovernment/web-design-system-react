@@ -5,13 +5,8 @@
   "type": "module",
   "main": "./dist/components.min.js",
   "module": "./dist/components.min.js",
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/components.min.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./components.min.css": "./dist/components.min.css",
+    ".": "./dist/components.min.js",
     "./ntg-theme.min.css": "./dist/ntg-theme.min.css",
     "./central-theme.min.css": "./dist/central-theme.min.css"
   },
@@ -23,8 +18,8 @@
     "tokens:validate": "node scripts/validate-tokens.js",
     "tokens:build": "node scripts/build-tokens.js",
     "prebuild": "npm run generate-story-data",
-    "build": "tsc && vite build && node scripts/build-dist.js",
-    "preview": "vite preview",
+    "build": "tsc && node scripts/build-dist.js",
+    "preview": "vite preview --outDir dist",
     "generate-story-data": "node .storybook/generate-story-data.js",
     "prestorybook": "npm run generate-story-data",
     "storybook": "storybook dev -p 6006",

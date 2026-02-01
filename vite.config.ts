@@ -1,88 +1,67 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-// Plugin to copy theme CSS files to dist for demo app
-function copyThemeFiles() {
-  return {
-    name: 'copy-theme-files',
-    writeBundle() {
-      const dist = resolve(__dirname, 'dist');
-      const srcTypography = resolve(__dirname, 'src/typography');
-      const srcThemes = resolve(__dirname, 'src/themes');
-      
-      // Ensure dist exists
-      if (!existsSync(dist)) {
-        mkdirSync(dist, { recursive: true });
-      }
-      
-      // Copy Bootstrap typography files (will be minified by build-dist.js)
-      const typographyFiles = ['bootstrap-ntg.css', 'bootstrap-central.css'];
-      typographyFiles.forEach(file => {
-        const src = resolve(srcTypography, file);
-        const dest = resolve(dist, file);
-        if (existsSync(src)) {
-          copyFileSync(src, dest);
-          console.log(`✓ Copied ${file} to dist/`);
-        }
-      });
-      
-      // Copy component CSS files (Button styles - will be minified by build-dist.js)
-      const srcComponents = resolve(__dirname, 'src/components/Button');
-      const componentFiles = ['Button.css', 'Button-ntg.css', 'Button-central.css'];
-      componentFiles.forEach(file => {
-        const src = resolve(srcComponents, file);
-        const dest = resolve(dist, file);
-        if (existsSync(src)) {
-          copyFileSync(src, dest);
-          console.log(`✓ Copied ${file} to dist/`);
-        }
-      });
-      
-      // Copy theme files (will be minified by build-dist.js)
-      const themeFiles = ['ntg-theme.css', 'central-theme.css'];
-      themeFiles.forEach(file => {
-        const src = resolve(srcThemes, file);
-        const dest = resolve(dist, file);
-        if (existsSync(src)) {
-          copyFileSync(src, dest);
-          console.log(`✓ Copied ${file} to dist/`);
-        }
-      });
-      
-      // Post-process index.html to remove ./ prefix for consistency
-      const htmlPath = resolve(dist, 'index.html');
-      if (existsSync(htmlPath)) {
-        let html = readFileSync(htmlPath, 'utf-8');
-        // Remove ./ from src and href attributes
-        html = html.replace(/src="\.\//g, 'src="');
-        html = html.replace(/href="\.\//g, 'href="');
-        writeFileSync(htmlPath, html);
-        console.log(`✓ Cleaned paths in index.html`);
-      }
-    }
-  };
-}
-
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), copyThemeFiles()],
-  base: './', // Use relative paths for local file access
-  build: {
-    target: "es2020",
-    outDir: "dist",
-    emptyOutDir: true,
-    minify: true,
-    cssMinify: true,
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        // Generate files in root of dist/ for local file access
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]',
+export default defineConfig(({ mode }) => {
+  const isLibraryMode = mode === 'library';
+  
+  if (isLibraryMode) {
+    // Library build configuration - generates components.umd.js
+    return {
+      plugins: [react()],
+      build: {
+        target: "es2020",
+        outDir: "dist/lib",
+        emptyOutDir: true,
+        minify: 'esbuild',
+        sourcemap: false,
+        lib: {
+          entry: resolve(__dirname, 'src/index.ts'),
+          name: 'NTGDesignSystem',
+          fileName: 'components',
+          formats: ['umd'],
+        },
+        rollupOptions: {
+          // Externalize React and ReactDOM - they should be loaded separately
+          external: ['react', 'react-dom'],
+          output: {
+            globals: {
+              react: 'React',
+              'react-dom': 'ReactDOM',
+            },
+            // Prevent CSS from being generated in library mode
+            assetFileNames: (assetInfo) => {
+              // Skip CSS output in library mode
+              if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+                return 'unused/[name].[ext]';
+              }
+              return '[name].[ext]';
+            },
+          },
+        },
       },
-    },
-  },
+    };
+  } else {
+    // Demo build configuration - generates index.html, index.js, index.css
+    return {
+      plugins: [react()],
+      base: './',
+      build: {
+        target: "es2020",
+        outDir: "dist/demo",
+        emptyOutDir: true,
+        minify: 'esbuild',
+        cssMinify: true,
+        sourcemap: false,
+        rollupOptions: {
+          output: {
+            entryFileNames: 'index.js',
+            chunkFileNames: '[name].js',
+            assetFileNames: '[name].[ext]',
+          },
+        },
+      },
+    };
+  }
 });

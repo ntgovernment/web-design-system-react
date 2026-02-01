@@ -1,1 +1,99 @@
-stdout is not a tty
+
+> @ntgovernment/web-design-system@0.1.0 prebuild
+> npm run generate-story-data
+
+
+> @ntgovernment/web-design-system@0.1.0 generate-story-data
+> node .storybook/generate-story-data.js
+
+✓ Generated story data for 4 components
+  Output: C:\Projects\web-design-system\.storybook\story-data.json
+  - Alert: 8 stories
+  - Button: 9 stories
+  - Card: 6 stories
+  - Icon: 9 stories
+
+> @ntgovernment/web-design-system@0.1.0 build
+> tsc && node scripts/build-dist.js
+
+🔨 Building NT Government Web Design System...
+
+🧹 Cleaning dist directory...
+  ✓ Cleaned dist/
+
+📦 Building component library (UMD)...
+[36mvite v6.4.1 [32mbuilding for library...[36m[39m
+transforming...
+[32m✓[39m 19 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/lib/[22m[35munused/components.css  [39m[1m[2m 0.00 kB[22m[1m[22m[2m │ gzip: 0.02 kB[22m
+[2mdist/lib/[22m[36mcomponents.umd.cjs     [39m[1m[2m15.36 kB[22m[1m[22m[2m │ gzip: 5.94 kB[22m
+[32m✓ built in 294ms[39m
+  ✓ Library built to dist/lib/
+
+📦 Building demo application...
+[36mvite v6.4.1 [32mbuilding for demo...[36m[39m
+transforming...
+[32m✓[39m 37 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/demo/[22m[32mindex.html  [39m[1m[2m  0.90 kB[22m[1m[22m[2m │ gzip:  0.57 kB[22m
+[2mdist/demo/[22m[35mindex.css   [39m[1m[2m 60.08 kB[22m[1m[22m[2m │ gzip:  7.87 kB[22m
+[2mdist/demo/[22m[36mindex.js    [39m[1m[2m151.80 kB[22m[1m[22m[2m │ gzip: 48.19 kB[22m
+[32m✓ built in 1.06s[39m
+  ✓ Demo built to dist/demo/
+
+🎨 Building complete theme CSS bundles...
+🎨 Building complete theme CSS bundles...
+
+📦 Building NT.GOV.AU theme bundle...
+  ✓ ntg-theme.min.css (72.48KB → 61.62KB, -15.0%)
+📦 Building NTG Central theme bundle...
+  ✓ central-theme.min.css (72.98KB → 62.51KB, -14.3%)
+
+✅ Complete theme CSS bundles created!
+   Each theme bundle includes all dependencies:
+   • Base CSS variables
+   • Common design tokens
+   • Grid system
+   • Typography
+   • Theme-specific variables
+   • Bootstrap overrides
+   • Component styles
+   • Component theme overrides
+
+📂 Organizing distribution files...
+
+  ✓ Moved components.umd.* → components.min.js
+  ✓ Moved demo/index.html → index.html (transformed for production)
+  ✓ Moved demo/index.js → index.js
+  ✓ Moved demo/index.css → index.css
+
+🧹 Cleaning up temporary build directories...
+  ✓ Removed dist/lib/
+  ✓ Removed dist/demo/
+
+✅ Build complete!
+
+📦 Distribution files in dist/:
+   ┌─ Component Library (for Squiz Matrix deployment)
+   ├─ components.min.js       - UMD component bundle (React external)
+   ├─ ntg-theme.min.css       - Complete NT.GOV.AU theme bundle
+   ├─ central-theme.min.css   - Complete NTG Central theme bundle
+   ┌─ Demo Application
+   ├─ index.html              - Demo page with theme switching
+   ├─ index.js                - Demo application bundle
+   └─ index.css               - Demo application styles
+
+📊 File sizes:
+   components.min.js            15.00 KB
+   ntg-theme.min.css            61.62 KB
+   central-theme.min.css        62.51 KB
+   index.html                    0.88 KB
+   index.js                    148.24 KB
+   index.css                    58.67 KB
+
+🚀 Ready for deployment!
+   • To test demo: npm run preview or open dist/index.html
+   • To deploy to Squiz Matrix: Upload dist/ files as File Assets

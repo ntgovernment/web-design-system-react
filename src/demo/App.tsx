@@ -16,21 +16,47 @@ function App() {
     setTheme(newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
     
-    // Use environment-aware paths
+    // Use environment-aware paths for complete theme bundle
     const isDev = import.meta.env.DEV;
-    const typographyPath = isDev ? `/src/typography/bootstrap-${newTheme}.css` : `bootstrap-${newTheme}.css`;
-    const themePath = isDev ? `/src/themes/${newTheme}-theme.css` : `${newTheme}-theme.min.css`;
     
-    // Swap Bootstrap typography override CSS
-    const typographyLink = document.getElementById('bootstrap-typography-css') as HTMLLinkElement;
-    if (typographyLink) {
+    // In dev mode, we need to load individual files since bundles don't exist yet
+    // In production, we use the complete minified theme bundles
+    if (isDev) {
+      // Development: swap individual CSS files
+      const typographyPath = `/src/typography/bootstrap-${newTheme}.css`;
+      const themePath = `/src/themes/${newTheme}-theme.css`;
+      const buttonThemePath = `/src/components/Button/Button-${newTheme}.css`;
+      
+      // Update or create links for dev mode
+      let typographyLink = document.getElementById('bootstrap-typography-css') as HTMLLinkElement;
+      if (!typographyLink) {
+        typographyLink = document.createElement('link');
+        typographyLink.id = 'bootstrap-typography-css';
+        typographyLink.rel = 'stylesheet';
+        document.head.appendChild(typographyLink);
+      }
       typographyLink.href = typographyPath;
-    }
-    
-    // Swap theme CSS
-    const themeLink = document.getElementById('theme-css') as HTMLLinkElement;
-    if (themeLink) {
-      themeLink.href = themePath;
+      
+      let buttonThemeLink = document.getElementById('button-theme-css') as HTMLLinkElement;
+      if (!buttonThemeLink) {
+        buttonThemeLink = document.createElement('link');
+        buttonThemeLink.id = 'button-theme-css';
+        buttonThemeLink.rel = 'stylesheet';
+        document.head.appendChild(buttonThemeLink);
+      }
+      buttonThemeLink.href = buttonThemePath;
+      
+      const themeLink = document.getElementById('theme-css') as HTMLLinkElement;
+      if (themeLink) {
+        themeLink.href = themePath;
+      }
+    } else {
+      // Production: swap complete theme bundle (includes all dependencies)
+      const themePath = `${newTheme}-theme.min.css`;
+      const themeLink = document.getElementById('theme-css') as HTMLLinkElement;
+      if (themeLink) {
+        themeLink.href = themePath;
+      }
     }
   };
 
