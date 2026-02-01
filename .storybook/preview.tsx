@@ -32,6 +32,11 @@ import "../src/components/Image/Image.css";
 import "../src/components/Image/Image-ntg.css";
 import "../src/components/Image/Image-central.css";
 
+// Import Card CSS files to ensure Vite processes them
+import "../src/components/Card/Card.css";
+import "../src/components/Card/Card-ntg.css";
+import "../src/components/Card/Card-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -213,6 +218,25 @@ const loadImageStyles = (theme: string) => {
   document.head.appendChild(imageCSS);
 };
 
+// Load Card Component Styles (theme-specific overrides)
+const loadCardStyles = (theme: string) => {
+  // Remove existing theme-specific Card CSS if present
+  const existingCard = document.getElementById("card-theme-css");
+  if (existingCard) {
+    existingCard.remove();
+  }
+
+  // Add theme-specific Card CSS overrides
+  const cardCSS = document.createElement("link");
+  cardCSS.id = "card-theme-css";
+  cardCSS.rel = "stylesheet";
+  cardCSS.href = new URL(
+    `../src/components/Card/Card-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(cardCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -307,6 +331,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadNotificationStyles(theme); // Load theme-specific Notification CSS overrides
     loadCalloutStyles(theme); // Load theme-specific Callout CSS overrides
     loadImageStyles(theme); // Load theme-specific Image CSS overrides
+    loadCardStyles(theme); // Load theme-specific Card CSS overrides
   }, [theme]);
 
   return (
@@ -359,9 +384,9 @@ const preview: Preview = {
       storySort: {
         order: [
           "⭐ Recent",
-          ["Image"],
+          ["Card"],
           "Components",
-          ["Notification", "Pill", "Button", "Card", "Tag", "Callout"],
+          ["Notification", "Pill", "Button", "Card", "Tag", "Callout", "Image"],
           "Design System",
           ["Typography", "Icon"],
         ],

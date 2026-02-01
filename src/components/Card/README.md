@@ -1,294 +1,576 @@
 # Card Component
 
-A flexible container component for displaying grouped content with optional header, footer, and icon support.
+A flexible and extensible content container component for displaying grouped content with optional media, header metadata, and footer actions. Supports composition with Image, Tag, and Button components for rich content cards.
 
 ## Features
 
-- Optional title with header
-- Optional footer section
-- Eight contextual variants (primary, secondary, success, danger, warning, info, light, dark)
-- Icon support in header
-- Full TypeScript support
-- Bootstrap 5.3 styling
-- Flexible content area
+- **Rich Media Support** - Images, videos, or custom components with aspect ratio control
+- **Header Metadata** - Tag/label and date information for news articles and content listings
+- **Footer Actions** - Buttons or custom components for calls-to-action
+- **Flexible Composition** - Compose with Image, Tag, Button, and other components
+- **Horizontal Layout** - Image on the side (responsive, stacks on mobile)
+- **Clickable Cards** - Entire card as a link with hover and focus states
+- **Grid Support** - Works with Bootstrap grid and equal height cards
+- **Design Tokens** - Uses semantic tokens for consistent theming
+- **Theme Support** - Works with both NTG and Central themes
+- **Full TypeScript Support** - Complete type definitions with IntelliSense
+- **Accessibility** - Proper ARIA attributes and keyboard navigation
+
+## Design Tokens
+
+The Card component uses the design system's semantic tokens for consistent theming:
+
+### Spacing
+
+- `--sp-xl` (24px) - Card padding
+- `--sp-sm` (12px) - Internal gaps
+- `--sp-xs` (8px) - Small gaps
+
+### Colors
+
+- `--clr-bg-default` - Card background
+- `--clr-text-default` - Default text color
+- `--clr-link-default` - Card title color
+- `--clr-border-subtle` - Card border color
+
+### Typography
+
+- `--type-heading-h3-*` - Card title styling
+- `--type-body-default-*` - Card text styling
+- `--type-body-small-*` - Header date styling
+
+### Other
+
+- `--border-width-md` - Card border width
+- `--shadow-md` - Hover shadow for clickable cards
+- `--shadow-focus-ntg` / `--shadow-focus-central` - Theme-specific focus styles
 
 ## Usage
 
 ### Basic Card
 
 ```tsx
-import { Card } from '@ntgovernment/web-design-system';
+import { Card } from "@ntgovernment/web-design-system";
 
-<Card title="Card Title">
-  Card content goes here.
-</Card>
+<Card
+  title="Service Update"
+  description="Your application has been submitted and is currently being reviewed."
+/>;
 ```
 
-### Card with Footer
+### Full Card with All Features
+
+Matches the Figma design with media, header metadata, and footer actions:
 
 ```tsx
-<Card 
-  title="Dashboard Statistics" 
-  footer={<small className="text-muted">Last updated 3 mins ago</small>}
->
-  <p>Your application has 1,254 active users this month.</p>
-</Card>
-```
+import { Card, Image, Tag, Button } from "@ntgovernment/web-design-system";
 
-### Card with Icon
-
-```tsx
-<Card 
-  title="Analytics" 
-  icon="fa-solid fa-chart-line"
->
-  View your website analytics and metrics.
-</Card>
-```
-
-### Card with Variant
-
-```tsx
-<Card title="Success" variant="success">
-  Your operation completed successfully!
-</Card>
-
-<Card title="Warning" variant="warning">
-  Please review these pending items.
-</Card>
-
-<Card title="Danger" variant="danger">
-  Action required: resolve these errors.
-</Card>
-```
-
-### Card without Title
-
-```tsx
-<Card>
-  <p>Simple card with just body content, no header.</p>
-</Card>
-```
-
-### Full Featured Card
-
-```tsx
-<Card 
-  title="Project Overview" 
-  variant="primary"
-  icon="fa-solid fa-folder-open"
+<Card
+  media={<img src="article.jpg" alt="News article" />}
+  header={{
+    tag: <Tag variant="info" label="News" />,
+    date: "17 Feb 2025",
+  }}
+  title="Supporting survivors on National Day of Remembrance"
+  description="Join in and honour the resilience of survivors and the lives lost."
   footer={
-    <div className="d-flex justify-content-between">
-      <span>Updated: Jan 2026</span>
-      <a href="#">View details →</a>
+    <Button
+      variant="tertiary"
+      label="Find out more"
+      iconRight="fa-solid fa-arrow-right"
+    />
+  }
+  mediaAspectRatio="16:9"
+/>;
+```
+
+### Card with Media
+
+```tsx
+<Card
+  media={
+    <img
+      src="featured-image.jpg"
+      alt="Featured content"
+      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+    />
+  }
+  title="Environmental Sustainability"
+  description="Learn about our new programs to protect natural resources."
+  mediaAspectRatio="16:9"
+/>
+```
+
+### Card with Header Metadata
+
+```tsx
+<Card
+  header={{
+    tag: <Tag variant="success" label="Event" />,
+    date: "25 Mar 2025",
+  }}
+  title="Community Engagement Session"
+  description="Join us for a community discussion on local services."
+/>
+```
+
+### Card with Footer Actions
+
+```tsx
+<Card
+  title="Application Dashboard"
+  description="View and manage all your applications in one place."
+  footer={
+    <div style={{ display: "flex", gap: "var(--sp-sm)" }}>
+      <Button variant="primary" label="View Dashboard" />
+      <Button variant="secondary" label="New Application" />
     </div>
   }
->
-  <h6>Project Status: In Progress</h6>
-  <p>This project is currently 65% complete with 12 tasks remaining.</p>
-  <ul>
-    <li>Design phase: Complete</li>
-    <li>Development: In progress</li>
-    <li>Testing: Pending</li>
-  </ul>
-</Card>
+/>
+```
+
+### Horizontal Card Layout
+
+Image on the side (automatically stacks on mobile):
+
+```tsx
+<Card
+  horizontal
+  media={<img src="side-image.jpg" alt="Department" />}
+  title="Department of Health"
+  description="Access health services, information, and resources."
+  footer={
+    <Button
+      variant="tertiary"
+      label="Access Services"
+      iconRight="fa-solid fa-arrow-right"
+    />
+  }
+/>
+```
+
+### Clickable Card
+
+Entire card as a navigable link:
+
+```tsx
+<Card
+  clickable
+  href="/article/123"
+  ariaLabel="Read more about service updates"
+  media={<img src="article.jpg" alt="Service update" />}
+  header={{
+    tag: <Tag variant="warning" label="Alert" />,
+    date: "1 Feb 2025",
+  }}
+  title="Important Service Update"
+  description="Some services will have reduced hours during the holiday period."
+/>
+```
+
+### Card Grid with Equal Heights
+
+```tsx
+<div className="row row-cols-1 row-cols-md-3 g-4">
+  <div className="col">
+    <Card
+      className="h-100"
+      media={<img src="service1.jpg" alt="Service 1" />}
+      header={{
+        tag: <Tag variant="info" label="Service" />,
+        date: "15 Feb 2025",
+      }}
+      title="Licensing Services"
+      description="Apply for licenses and permits online."
+      footer={<Button variant="tertiary" label="Apply Now" />}
+    />
+  </div>
+  <div className="col">
+    <Card
+      className="h-100"
+      media={<img src="service2.jpg" alt="Service 2" />}
+      header={{
+        tag: <Tag variant="success" label="Service" />,
+        date: "10 Feb 2025",
+      }}
+      title="Business Registration"
+      description="Register your business entity."
+      footer={<Button variant="tertiary" label="Register" />}
+    />
+  </div>
+  {/* More cards... */}
+</div>
 ```
 
 ## Props
 
 ### CardProps
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | `undefined` | Card header title (optional) |
-| `children` | `React.ReactNode` | **Required** | Card body content |
-| `footer` | `React.ReactNode` | `undefined` | Card footer content (optional) |
-| `variant` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info' \| 'light' \| 'dark'` | `undefined` | Bootstrap contextual variant for background/text color |
-| `icon` | `string` | `undefined` | FontAwesome icon class for the header (e.g., 'fa-solid fa-chart-line') |
+| Prop               | Type                                | Default      | Description                                                   |
+| ------------------ | ----------------------------------- | ------------ | ------------------------------------------------------------- |
+| `title`            | `string`                            | **Required** | Card title (rendered as h5)                                   |
+| `description`      | `React.ReactNode`                   | **Required** | Card body content                                             |
+| `media`            | `React.ReactNode`                   | `undefined`  | Rich media content (Image component or custom ReactNode)      |
+| `header`           | `CardHeaderMeta \| React.ReactNode` | `undefined`  | Header metadata with tag and date, or custom ReactNode        |
+| `footer`           | `React.ReactNode`                   | `undefined`  | Footer content (Button component or custom ReactNode)         |
+| `horizontal`       | `boolean`                           | `false`      | Horizontal layout with image on side (stacks on mobile)       |
+| `clickable`        | `boolean`                           | `false`      | Make entire card clickable/linkable                           |
+| `href`             | `string`                            | `undefined`  | URL for clickable card (when clickable is true)               |
+| `className`        | `string`                            | `''`         | Additional CSS classes (e.g., 'h-100' for equal height)       |
+| `ariaLabel`        | `string`                            | `undefined`  | ARIA label for clickable cards (required for accessibility)   |
+| `mediaAspectRatio` | `'16:9' \| '4:3' \| '1:1'`          | `'16:9'`     | Aspect ratio for media container                              |
+| `icon`             | `string`                            | `undefined`  | **DEPRECATED**: FontAwesome icon class for title              |
+| `variant`          | `string`                            | `undefined`  | **DEPRECATED**: Use composition with Tag/Notification instead |
 
-## Variants
+### CardHeaderMeta
 
-The Card component supports eight Bootstrap contextual variants that apply background and text colors:
+Object type for structured header metadata:
 
-| Variant | Use Case | Example |
-|---------|----------|---------|
-| `primary` | Primary information or emphasis | System notifications, primary content |
-| `secondary` | Secondary information | Support content, metadata |
-| `success` | Successful operations or positive status | Completed tasks, success messages |
-| `danger` | Errors, critical warnings | Error states, urgent actions needed |
-| `warning` | Warnings, cautions | Pending items, attention required |
-| `info` | Informational content | Tips, helpful information |
-| `light` | Light-themed cards | Subtle emphasis |
-| `dark` | Dark-themed cards | High contrast, dark mode |
+| Property | Type              | Description                               |
+| -------- | ----------------- | ----------------------------------------- |
+| `tag`    | `React.ReactNode` | Tag/label component (e.g., Tag component) |
+| `date`   | `string`          | Date string (e.g., "17 Feb 2025")         |
 
-**Note**: When no variant is specified, the card uses the default Bootstrap card styling (white background with subtle border).
+## Media Aspect Ratios
 
-## Structure
+The `mediaAspectRatio` prop controls the aspect ratio of the media container:
 
-A Card can have up to three sections:
-
-### Header (Optional)
-- Displayed when `title` prop is provided
-- Shows the title as an `<h5>` element
-- Icon (if provided) appears before the title
-- Uses Bootstrap `.card-header` class
-
-### Body (Required)
-- Contains the `children` prop content
-- Always rendered
-- Uses Bootstrap `.card-body` class
-
-### Footer (Optional)
-- Displayed when `footer` prop is provided
-- Can contain any React node (text, links, buttons, etc.)
-- Uses Bootstrap `.card-footer` class
-
-## Examples
-
-### Dashboard Cards
+| Ratio  | Use Case                   | Dimensions                             |
+| ------ | -------------------------- | -------------------------------------- |
+| `16:9` | Default, widescreen images | Wide landscape (e.g., 1920x1080)       |
+| `4:3`  | Standard images            | Traditional landscape (e.g., 1024x768) |
+| `1:1`  | Square images              | Square format (e.g., 1000x1000)        |
 
 ```tsx
-<div className="row">
-  <div className="col-md-4">
-    <Card 
-      title="Total Users" 
-      icon="fa-solid fa-users"
+<Card
+  media={<img src="square.jpg" alt="Square image" />}
+  mediaAspectRatio="1:1"
+  title="Square Media Card"
+>
+  Content goes here
+</Card>
+```
+
+## Component Composition
+
+### With Image Component
+
+```tsx
+import { Card, Image } from "@ntgovernment/web-design-system";
+
+<Card
+  media={<Image src="article.jpg" alt="Article image" fluid />}
+  title="News Article"
+  description="Article content"
+/>;
+```
+
+### With Tag Component
+
+```tsx
+import { Card, Tag } from "@ntgovernment/web-design-system";
+
+<Card
+  header={{
+    tag: <Tag variant="info" label="News" />,
+    date: "17 Feb 2025",
+  }}
+  title="Latest Update"
+  description="Update content"
+/>;
+```
+
+### With Button Component
+
+```tsx
+import { Card, Button } from "@ntgovernment/web-design-system";
+
+<Card
+  title="Take Action"
+  description="Action content"
+  footer={
+    <Button
       variant="primary"
-    >
-      <h2 className="mb-0">1,254</h2>
-      <small className="text-white-50">+12% from last month</small>
-    </Card>
+      label="Get Started"
+      iconRight="fa-solid fa-arrow-right"
+    />
+  }
+/>;
+```
+
+### With Multiple Components
+
+```tsx
+import { Card, Image, Tag, Button } from "@ntgovernment/web-design-system";
+
+<Card
+  media={<Image src="event.jpg" alt="Event" />}
+  header={{
+    tag: <Tag variant="success" label="Event" />,
+    date: "25 Mar 2025",
+  }}
+  title="Community Event"
+  description="Event description"
+  footer={
+    <>
+      <Button variant="primary" label="Register" />
+      <Button variant="secondary" label="Learn More" />
+    </>
+  }
+/>;
+```
+
+## Layout Patterns
+
+### Grid Layout
+
+Use Bootstrap's grid system for responsive card layouts:
+
+```tsx
+<div className="row g-4">
+  <div className="col-md-6 col-lg-4">
+    <Card title="Card 1" description="Content 1" />
   </div>
-  
-  <div className="col-md-4">
-    <Card 
-      title="Revenue" 
-      icon="fa-solid fa-dollar-sign"
-      variant="success"
-    >
-      <h2 className="mb-0">$45,230</h2>
-      <small className="text-white-50">+8% from last month</small>
-    </Card>
+  <div className="col-md-6 col-lg-4">
+    <Card title="Card 2" description="Content 2" />
   </div>
-  
-  <div className="col-md-4">
-    <Card 
-      title="Pending Tasks" 
-      icon="fa-solid fa-list-check"
-      variant="warning"
-    >
-      <h2 className="mb-0">23</h2>
-      <small className="text-dark-50">Review required</small>
-    </Card>
+  <div className="col-md-6 col-lg-4">
+    <Card title="Card 3" description="Content 3" />
   </div>
 </div>
 ```
 
-### Content Card with Actions
+### Equal Height Cards
+
+Use Bootstrap's `h-100` utility class:
 
 ```tsx
-<Card 
-  title="Article Title" 
-  icon="fa-solid fa-newspaper"
-  footer={
-    <div>
-      <Button variant="primary" size="sm">Read More</Button>
-      <Button variant="tertiary" size="sm">Share</Button>
-    </div>
-  }
->
-  <p className="card-text">
-    This is a preview of the article content. Click "Read More" to 
-    view the full article with all details and images.
-  </p>
-  <p className="card-text">
-    <small className="text-muted">Published: February 1, 2026</small>
-  </p>
-</Card>
+<div className="row row-cols-1 row-cols-md-2 g-4">
+  <div className="col">
+    <Card className="h-100" title="Short Content" description="Brief text" />
+  </div>
+  <div className="col">
+    <Card
+      className="h-100"
+      title="Long Content"
+      description="Much longer text that extends the height..."
+    />
+  </div>
+</div>
 ```
 
-### List Card
+### Horizontal Layout
+
+Image on the side (responsive):
 
 ```tsx
-<Card title="Recent Activity" icon="fa-solid fa-clock">
-  <ul className="list-group list-group-flush">
-    <li className="list-group-item">User logged in - 2 mins ago</li>
-    <li className="list-group-item">Document uploaded - 15 mins ago</li>
-    <li className="list-group-item">Profile updated - 1 hour ago</li>
-  </ul>
-</Card>
+<Card
+  horizontal
+  media={<img src="side.jpg" alt="Side image" />}
+  title="Horizontal Card"
+  description="Content appears next to the image on desktop, stacks below on mobile devices."
+/>
 ```
 
 ## Accessibility
 
 ### Semantic HTML
-The Card component uses semantic HTML structure:
-- `<div>` with `.card` class for the container
-- Proper heading hierarchy (`<h5>` for card title)
-- Icons are marked with `aria-hidden="true"` to avoid redundancy
 
-### Title as Heading
-When using a `title`, it's rendered as an `<h5>` element. Ensure this fits within your page's heading hierarchy. If you need a different heading level, consider using a card without a title and providing your own heading in the body:
+The Card component uses semantic HTML:
+
+- `<div>` with `.card` class for container
+- `<h5>` for card title (proper heading hierarchy)
+- `<a>` tag when clickable with href
+- Proper ARIA attributes for interactive elements
+
+### Clickable Cards
+
+When using clickable cards:
+
+1. **Always provide `ariaLabel`** for screen readers:
 
 ```tsx
-<Card>
-  <h3>Custom Heading Level</h3>
-  <p>Card content with proper heading hierarchy.</p>
+<Card
+  clickable
+  href="/article"
+  ariaLabel="Read more about environmental initiatives"
+  title="Environmental Initiatives"
+>
+  Content preview...
+</Card>
+```
+
+2. **Keyboard Navigation** - Clickable cards support:
+   - `Tab` to focus
+   - `Enter` or `Space` to activate (when using button role)
+   - Theme-specific focus indicators (orange for NTG, green for Central)
+
+3. **Focus States** - Proper focus indicators with theme-specific colors:
+   - NTG: 4px solid orange (`--shadow-focus-ntg`)
+   - Central: 4px solid green (`--shadow-focus-central`)
+
+### Images
+
+Always provide descriptive `alt` text for images:
+
+```tsx
+<Card
+  media={
+    <img src="news.jpg" alt="Community members gathering at outdoor event" />
+  }
+  title="Community Gathering"
+>
+  Content
 </Card>
 ```
 
 ### Color Contrast
-When using colored variants, ensure text content maintains sufficient contrast for readability. Bootstrap's contextual utilities automatically adjust text color, but custom content may need additional styling.
 
-### Interactive Elements
-If the card contains interactive elements (buttons, links), ensure they have:
-- Visible focus indicators
-- Descriptive text or labels
-- Proper tab order
+All text maintains WCAG AAA color contrast ratios:
 
-## Styling
+- Default text: `--clr-text-default` on `--clr-bg-default`
+- Card titles: `--clr-link-default` (meets AAA standards)
 
-### Default Card Styles
-Cards use Bootstrap 5.3's card component styling:
-- White background with subtle border (default)
-- Rounded corners
-- Padding for content areas
-- Responsive width (adapts to container)
+## Theming
+
+### Theme Support
+
+The Card component automatically adapts to the active theme:
+
+**NTG Theme**:
+
+- Focus: 4px solid orange
+- Border radius: 0px (sharp corners)
+
+**Central Theme**:
+
+- Focus: 4px solid green
+- Border radius: Follows `--radii-md` token
 
 ### Custom Styling
-You can add custom classes using Bootstrap utilities or custom CSS by wrapping the Card:
+
+Override with custom CSS or design tokens:
 
 ```tsx
-<div className="my-3 shadow-lg">
-  <Card title="Styled Card">
-    Content with custom wrapper styling
-  </Card>
-</div>
+<Card
+  className="custom-card"
+  style={
+    {
+      "--bs-card-border-color": "var(--clr-border-strong-01)",
+      "--bs-card-bg": "var(--clr-bg-shade)",
+    } as React.CSSProperties
+  }
+  title="Custom Styled Card"
+>
+  Custom content
+</Card>
 ```
 
-### Grid Layouts
-Cards work well with Bootstrap's grid system:
+## Migration Guide
+
+### From Old Card Component
+
+**Old approach (deprecated)**:
 
 ```tsx
-<div className="row g-3">
-  <div className="col-12 col-md-6 col-lg-4">
-    <Card title="Card 1">Content 1</Card>
-  </div>
-  <div className="col-12 col-md-6 col-lg-4">
-    <Card title="Card 2">Content 2</Card>
-  </div>
-  <div className="col-12 col-md-6 col-lg-4">
-    <Card title="Card 3">Content 3</Card>
-  </div>
-</div>
+<Card
+  title="News"
+  variant="info"
+  icon="fa-solid fa-newspaper"
+  footer={<small>Updated 2 hours ago</small>}
+>
+  Content
+</Card>
 ```
 
-## Related Documentation
+**New approach (recommended)**:
 
-- [Button Component](../Button/README.md) - For card actions
-- [Alert Component](../Alert/README.md) - For similar contextual styling
-- [Icon Component](../Icon/README.md) - Using icons independently
-- [Theming Guide](../../themes/README.md) - Theme system overview
+```tsx
+<Card
+  header={{
+    tag: <Tag variant="info" label="News" />,
+    date: "Updated 2 hours ago",
+  }}
+  title="News"
+  description="Content"
+  footer={<Button variant="tertiary" label="Read more" />}
+/>
+```
+
+### Key Changes
+
+1. **`variant` prop deprecated** - Use Tag or Notification components for colored indicators
+2. **`icon` prop deprecated** - Use composition with Icon component or Button iconLeft/iconRight
+3. **New `media` prop** - For images, videos, or custom components
+4. **New `header` prop** - For tag and date metadata
+5. **New `horizontal` prop** - For side-by-side layouts
+6. **New `clickable` props** - For interactive cards
+
+## Examples
+
+### News Article Card
+
+```tsx
+<Card
+  media={<img src="/news/article-123.jpg" alt="Article image" />}
+  header={{
+    tag: <Tag variant="info" label="News" />,
+    date: "17 Feb 2025",
+  }}
+  title="New Government Initiative Launched"
+  description="The Northern Territory Government announces a $5M funding program for community development projects across regional areas."
+  footer={
+    <Button
+      variant="tertiary"
+      label="Read full article"
+      iconRight="fa-solid fa-arrow-right"
+    />
+  }
+  mediaAspectRatio="16:9"
+/>
+```
+
+### Service Card
+
+```tsx
+<Card
+  clickable
+  href="/services/licensing"
+  ariaLabel="Apply for business license"
+  media={<img src="/services/licensing.jpg" alt="Licensing services" />}
+  title="Business Licensing"
+  description="Apply for business licenses, permits, and registrations online. Fast processing and easy tracking."
+  footer={
+    <Button
+      variant="tertiary"
+      label="Apply now"
+      iconRight="fa-solid fa-arrow-right"
+    />
+  }
+/>
+```
+
+### Alert Card
+
+```tsx
+<Card
+  header={{
+    tag: <Tag variant="danger" label="Urgent" />,
+    date: "Due: 15 Feb 2025",
+  }}
+  title="Action Required: License Renewal"
+  description="Your license renewal is due soon. Please complete the renewal process to avoid service interruption."
+  footer={<Button variant="primary" label="Renew Now" />}
+/>
+```
+
+## Related Components
+
+- [Image Component](../Image/README.md) - For card media
+- [Tag Component](../Tag/README.md) - For card header labels
+- [Button Component](../Button/README.md) - For card footer actions
+- [Pill Component](../Pill/README.md) - Alternative to tags
+- [Notification Component](../Notification/README.md) - For alert-style cards
 
 ## Storybook
 
@@ -298,24 +580,33 @@ View live examples and interact with the Card component in Storybook:
 npm run storybook
 ```
 
-Navigate to **Components > Card** to see all variants and configurations.
+Navigate to **⭐ Recent > Card** to see all variants and configurations.
 
 ## TypeScript
 
-The Card component is fully typed with TypeScript. Import the types:
+Full TypeScript support with complete type definitions:
 
 ```tsx
-import { Card, CardProps } from '@ntgovernment/web-design-system';
+import {
+  Card,
+  CardProps,
+  CardHeaderMeta,
+} from "@ntgovernment/web-design-system";
 
-// Use CardProps for custom wrappers or extensions
-const MyCustomCard: React.FC<CardProps> = (props) => {
+// Custom header metadata
+const headerMeta: CardHeaderMeta = {
+  tag: <Tag variant="info" label="News" />,
+  date: "17 Feb 2025",
+};
+
+// Custom card wrapper
+const MyCard: React.FC<CardProps> = (props) => {
   return <Card {...props} />;
 };
 ```
 
 ## Browser Support
 
-The Card component supports all modern browsers:
 - Chrome/Edge (latest)
 - Firefox (latest)
 - Safari (latest)
@@ -324,8 +615,10 @@ The Card component supports all modern browsers:
 ## Notes
 
 - Bootstrap 5.3.3 must be loaded for proper styling
-- FontAwesome must be loaded if using the `icon` prop
-- The `children` prop is required - cards must have content
-- Title and footer are optional
-- Card adapts to the width of its container
-- Use Bootstrap grid classes for responsive card layouts
+- FontAwesome optional (only needed if using icon prop or Button iconLeft/iconRight)
+- `title` and `description` props are required - cards must have both
+- Card adapts to container width (100% by default)
+- Use `className="h-100"` for equal height cards in grids
+- Horizontal layout automatically stacks on mobile (< 768px)
+- Clickable cards require `ariaLabel` for accessibility
+- When `showFooter` is false, the entire card becomes clickable automatically

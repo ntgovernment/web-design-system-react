@@ -1,0 +1,22 @@
+/**
+ * Card Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common card styles are defined in Card.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline for clickable cards (4px solid #EC8C58 orange)
+ */
+
+/* NT.GOV.AU specific focus outline for clickable cards - 4px solid orange */
+.card--clickable:focus,
+.card--clickable:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+  border-color: var(--clr-border-strong-01);
+}
+
+/* Ensure focus styles also apply on hover */
+.card--clickable:focus:hover,
+.card--clickable:focus-visible:hover {
+  box-shadow: var(--shadow-focus-ntg);
+}

@@ -96,40 +96,75 @@
     },
     "Card": {
       "stories": {
-        "Basic": {
+        "Full": {
           "args": {
-            "title": "Card Title",
-            "children": "This is some card content. It can contain any React components or HTML."
+            "title": "Supporting survivors on National Day of Remembrance",
+            "description": "Join in and honour the resilience of survivors and the lives lost.",
+            "maxWidth": "353px"
           }
         },
-        "WithFooter": {
+        "WithTitleIcon": {
           "args": {
-            "title": "Card with Footer",
-            "children": "Card content goes here."
+            "title": "Important Service Update",
+            "description": "Some services will have reduced hours during the holiday period.",
+            "titleIcon": "fa-light fa-info-circle",
+            "tagLabel": "Alert:warning",
+            "dateLabel": "1 Feb 2025",
+            "maxWidth": "353px"
           }
         },
-        "PrimaryVariant": {
+        "NoImage": {
           "args": {
-            "title": "Primary Card",
-            "variant": "primary",
-            "children": "This card uses the primary theme color."
+            "title": "Community Engagement Session",
+            "description": "Join us for a community discussion on local services and programs.",
+            "tagLabel": "Event:green",
+            "dateLabel": "25 Mar 2025",
+            "maxWidth": "353px"
           }
         },
-        "AllVariants": {
+        "NoMetadata": {
           "args": {
-            "children": "Card content"
+            "title": "Environmental Sustainability Program",
+            "description": "Learn about our new programs to protect natural resources and promote sustainable practices.",
+            "maxWidth": "353px"
           }
         },
-        "WithIcon": {
+        "NoFooter": {
           "args": {
-            "title": "Analytics",
-            "icon": "fa-light fa-chart-line",
-            "children": "View your analytics dashboard and track your progress."
+            "title": "Business Registration Services",
+            "description": "Register your business entity online with our streamlined application process.",
+            "href": "#",
+            "tagLabel": "Service:blue",
+            "dateLabel": "15 Feb 2025",
+            "maxWidth": "353px"
           }
         },
-        "IconCards": {
+        "Minimal": {
           "args": {
-            "children": "Card content"
+            "title": "Quick Update",
+            "description": "This is a minimal card with just the essential content.",
+            "href": "#",
+            "maxWidth": "353px"
+          }
+        },
+        "MultipleTags": {
+          "args": {
+            "title": "Multi-Category Resource",
+            "description": "This resource covers multiple topics and is tagged accordingly.",
+            "tagLabel": "News:blue, Update:green, Featured:default",
+            "dateLabel": "20 Feb 2025",
+            "maxWidth": "353px"
+          }
+        },
+        "CustomAction": {
+          "args": {
+            "title": "Download Important Documents",
+            "description": "Access forms, guidelines, and resources for your application.",
+            "actionText": "Download Now",
+            "actionIcon": "fa-solid fa-download",
+            "tagLabel": "Resources:blue",
+            "dateLabel": "10 Feb 2025",
+            "maxWidth": "353px"
           }
         }
       },
@@ -394,5 +429,5 @@
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-01T14:53:53.268Z"
+  "generated": "2026-02-01T17:08:54.343Z"
 }

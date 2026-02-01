@@ -37,6 +37,7 @@ function App() {
       const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;
       const pillThemePath = `/src/components/Pill/Pill-${newTheme}.css?v=${timestamp}`;
       const imageThemePath = `/src/components/Image/Image-${newTheme}.css?v=${timestamp}`;
+      const cardThemePath = `/src/components/Card/Card-${newTheme}.css?v=${timestamp}`;
 
       // Helper function to reload a stylesheet
       const reloadStylesheet = (id: string, href: string) => {
@@ -59,6 +60,7 @@ function App() {
       reloadStylesheet("tag-theme-css", tagThemePath);
       reloadStylesheet("pill-theme-css", pillThemePath);
       reloadStylesheet("image-theme-css", imageThemePath);
+      reloadStylesheet("card-theme-css", cardThemePath);
     } else {
       // Production: swap complete theme bundle (includes all dependencies)
       const themePath = `${newTheme}-theme.min.css`;
@@ -84,6 +86,68 @@ function App() {
           <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
         </p>
       </div>
+
+      <section className="mb-5">
+        <h2>Cards</h2>
+        <p className="text-muted mb-3">
+          Flexible content containers with optional media, metadata, and
+          actions. Supports composition with Image, Tag, and Button components.
+        </p>
+        <div className="row g-4 mb-4">
+          <div className="col-md-6 col-lg-4">
+            <Card
+              title="Supporting survivors on National Day of Remembrance"
+              description="Join in and honour the resilience of survivors and the lives lost."
+              tagLabel="News:blue"
+              dateLabel="17 Feb 2025"
+              actionText="Find out more"
+              actionIcon="fa-solid fa-arrow-right"
+            />
+          </div>
+          <div className="col-md-6 col-lg-4">
+            <Card
+              title="Important Service Update"
+              description="Some services will have reduced hours during the holiday period."
+              showTitleIcon={true}
+              titleIcon="fa-light fa-info-circle"
+              tagLabel="Alert:warning"
+              dateLabel="1 Feb 2025"
+            />
+          </div>
+          <div className="col-md-6 col-lg-4">
+            <Card
+              title="Community Engagement Session"
+              description="Join us for a community discussion on local services."
+              showImage={false}
+              tagLabel="Event:green"
+              dateLabel="25 Mar 2025"
+              href="#"
+            />
+          </div>
+        </div>
+        <div className="row g-4">
+          <div className="col-md-6">
+            <Card
+              title="Business Registration Services"
+              description="Register your business entity online with our streamlined application process."
+              showFooter={false}
+              href="#"
+              tagLabel="Service:blue"
+              dateLabel="15 Feb 2025"
+            />
+          </div>
+          <div className="col-md-6">
+            <Card
+              title="Download Important Documents"
+              description="Access forms, guidelines, and resources for your application."
+              actionText="Download Now"
+              actionIcon="fa-solid fa-download"
+              tagLabel="Resources:blue"
+              dateLabel="10 Feb 2025"
+            />
+          </div>
+        </div>
+      </section>
 
       <section className="mb-5">
         <h2>Image</h2>
@@ -292,116 +356,125 @@ function App() {
 
       <section className="mb-5">
         <h2>Bootstrap Typography</h2>
-        <Card title="Typography Examples">
-          <h1>Heading 1 - Uses theme font</h1>
-          <h2>Heading 2 - Uses theme font</h2>
-          <h3>Heading 3 - Uses theme font</h3>
-          <h4>Heading 4 - Uses theme font</h4>
-          <h5>Heading 5 - Uses theme font</h5>
-          <h6>Heading 6 - Uses theme font</h6>
-          <p className="lead">
-            This is lead text. It stands out from regular paragraphs.
-          </p>
-          <p>
-            This is regular body text. The font family changes with the theme:{" "}
-            <strong>NTG uses Lato</strong>, <strong>Central uses Roboto</strong>
-            .
-          </p>
-          <p>
-            Here's a <a href="#typography">link with theme colors</a> that uses
-            theme-specific hover states.
-          </p>
-          <p>
-            <small className="text-muted">
-              Small muted text using theme text colors.
-            </small>
-          </p>
-        </Card>
+        <Card
+          title="Typography Examples"
+          description={
+            <>
+              <h1>Heading 1 - Uses theme font</h1>
+              <h2>Heading 2 - Uses theme font</h2>
+              <h3>Heading 3 - Uses theme font</h3>
+              <h4>Heading 4 - Uses theme font</h4>
+              <h5>Heading 5 - Uses theme font</h5>
+              <h6>Heading 6 - Uses theme font</h6>
+              <p className="lead">
+                This is lead text. It stands out from regular paragraphs.
+              </p>
+              <p>
+                This is regular body text. The font family changes with the
+                theme: <strong>NTG uses Lato</strong>,{" "}
+                <strong>Central uses Roboto</strong>.
+              </p>
+              <p>
+                Here's a <a href="#typography">link with theme colors</a> that
+                uses theme-specific hover states.
+              </p>
+              <p>
+                <small className="text-muted">
+                  Small muted text using theme text colors.
+                </small>
+              </p>
+            </>
+          }
+          showImage={false}
+          showMeta={false}
+          showFooter={false}
+        />
       </section>
 
       <section className="mb-5">
         <h2>Icons (FontAwesome)</h2>
-        <Card title="Icon Examples">
-          <div className="d-flex gap-3 flex-wrap" style={{ fontSize: "2rem" }}>
-            <i className="fa-thin fa-house" title="Home"></i>
-            <i className="fa-thin fa-user" title="User"></i>
-            <i className="fa-thin fa-heart" title="Heart"></i>
-            <i className="fa-thin fa-star" title="Star"></i>
-            <i className="fa-thin fa-envelope" title="Email"></i>
-            <i className="fa-thin fa-phone" title="Phone"></i>
-            <i className="fa-thin fa-calendar" title="Calendar"></i>
-            <i className="fa-thin fa-download" title="Download"></i>
-            <i className="fa-thin fa-search" title="Search"></i>
-            <i className="fa-thin fa-cog" title="Settings"></i>
-          </div>
-          <p className="mt-3 mb-0">
-            <small className="text-muted">Icons inherit theme text color</small>
-          </p>
-        </Card>
+        <Card
+          title="Icon Examples"
+          description={
+            <>
+              <div
+                className="d-flex gap-3 flex-wrap"
+                style={{ fontSize: "2rem" }}
+              >
+                <i className="fa-thin fa-house" title="Home"></i>
+                <i className="fa-thin fa-user" title="User"></i>
+                <i className="fa-thin fa-heart" title="Heart"></i>
+                <i className="fa-thin fa-star" title="Star"></i>
+                <i className="fa-thin fa-envelope" title="Email"></i>
+                <i className="fa-thin fa-phone" title="Phone"></i>
+                <i className="fa-thin fa-calendar" title="Calendar"></i>
+                <i className="fa-thin fa-download" title="Download"></i>
+                <i className="fa-thin fa-search" title="Search"></i>
+                <i className="fa-thin fa-cog" title="Settings"></i>
+              </div>
+              <p className="mt-3 mb-0">
+                <small className="text-muted">
+                  Icons inherit theme text color
+                </small>
+              </p>
+            </>
+          }
+          showImage={false}
+          showMeta={false}
+          showFooter={false}
+        />
       </section>
 
       <section className="mb-5">
         <h2>Theme CSS Variables</h2>
         <div className="row">
           <div className="col-md-6">
-            <Card title="NT.GOV.AU Theme (ntg- prefix)">
-              <ul className="list-unstyled">
-                <li>
-                  <code>--ntg-type-font-default</code>: Lato
-                </li>
-                <li>
-                  <code>--ntg-clr-action-pirmary</code>: #1f1f5f
-                </li>
-                <li>
-                  <code>--ntg-clr-link-hover</code>: #c33826
-                </li>
-                <li>
-                  <code>--ntg-success-03-d</code>: #107810
-                </li>
-              </ul>
-            </Card>
+            <Card
+              title="NT.GOV.AU Theme (ntg- prefix)"
+              description={
+                <ul className="list-unstyled">
+                  <li>
+                    <code>--ntg-type-font-default</code>: Lato
+                  </li>
+                  <li>
+                    <code>--ntg-clr-action-pirmary</code>: #1f1f5f
+                  </li>
+                  <li>
+                    <code>--ntg-clr-link-hover</code>: #c33826
+                  </li>
+                  <li>
+                    <code>--ntg-success-03-d</code>: #107810
+                  </li>
+                </ul>
+              }
+              showImage={false}
+              showMeta={false}
+              showFooter={false}
+            />
           </div>
           <div className="col-md-6">
-            <Card title="NTG Central Theme (central- prefix)">
-              <ul className="list-unstyled">
-                <li>
-                  <code>--central-type-font-default</code>: Roboto
-                </li>
-                <li>
-                  <code>--central-clr-action-pirmary</code>: Theme primary
-                </li>
-                <li>
-                  <code>--central-clr-link-hover</code>: Theme hover
-                </li>
-                <li>
-                  <code>--central-success-03-d</code>: Theme success
-                </li>
-              </ul>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-5">
-        <h2>Cards</h2>
-        <div className="row g-3">
-          <div className="col-md-4">
-            <Card title="Default Card">
-              <p>This is a basic card with a title and content.</p>
-            </Card>
-          </div>
-          <div className="col-md-4">
-            <Card title="Primary Card" variant="primary">
-              <p>This card uses the primary theme color.</p>
-            </Card>
-          </div>
-          <div className="col-md-4">
             <Card
-              title="Card with Footer"
-              footer={<Button variant="primary" label="Action" />}
-            >
-              <p>This card has a footer with a button.</p>
-            </Card>
+              title="NTG Central Theme (central- prefix)"
+              description={
+                <ul className="list-unstyled">
+                  <li>
+                    <code>--central-type-font-default</code>: Roboto
+                  </li>
+                  <li>
+                    <code>--central-clr-action-pirmary</code>: Theme primary
+                  </li>
+                  <li>
+                    <code>--central-clr-link-hover</code>: Theme hover
+                  </li>
+                  <li>
+                    <code>--central-success-03-d</code>: Theme success
+                  </li>
+                </ul>
+              }
+              showImage={false}
+              showMeta={false}
+              showFooter={false}
+            />
           </div>
         </div>
       </section>

@@ -3,7 +3,7 @@ import { Image } from "./Image";
 import placeholderImage from "../../assets/images/placeholder.webp";
 
 const meta = {
-  title: " ⭐ Recent/Image",
+  title: "Components/Image",
   component: Image,
   parameters: {
     layout: "padded",

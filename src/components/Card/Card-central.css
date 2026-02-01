@@ -1,0 +1,22 @@
+/**
+ * Card Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common card styles are defined in Card.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline for clickable cards (4px solid #6AB06A green)
+ */
+
+/* NTG Central specific focus outline for clickable cards - 4px solid green */
+.card--clickable:focus,
+.card--clickable:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+  border-color: var(--clr-border-strong-01);
+}
+
+/* Ensure focus styles also apply on hover */
+.card--clickable:focus:hover,
+.card--clickable:focus-visible:hover {
+  box-shadow: var(--shadow-focus-central);
+}

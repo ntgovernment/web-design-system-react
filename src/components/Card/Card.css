@@ -1,0 +1,328 @@
+/**
+ * Card Component - Common Styles
+ * 
+ * This file contains Bootstrap card CSS variable customizations
+ * that are common across all themes. Theme-specific overrides are
+ * defined in Card-ntg.css and Card-central.css.
+ * 
+ * Based on Bootstrap 5.3 CSS Variables approach:
+ * https://getbootstrap.com/docs/5.3/components/card/#variables
+ */
+
+/* Bootstrap Card CSS Variable Customizations */
+.card {
+  /* Spacing - Using design tokens */
+  --bs-card-spacer-y: var(--sp-xl);
+  --bs-card-spacer-x: var(--sp-xl);
+  --bs-card-title-spacer-y: var(--sp-sm);
+
+  /* Border - Using design tokens */
+  --bs-card-border-width: var(--border-width-md);
+  --bs-card-border-color: var(--clr-border-subtle);
+  --bs-card-border-radius: var(--radii-none) !important;
+
+  /* Background and text colors */
+  --bs-card-bg: var(--clr-bg-default);
+  --bs-card-color: var(--clr-text-default);
+
+  /* Card header/footer */
+  --bs-card-cap-padding-y: var(--sp-xl);
+  --bs-card-cap-padding-x: var(--sp-xl);
+  --bs-card-cap-bg: transparent;
+  --bs-card-cap-color: var(--clr-text-default);
+
+  /* Shadow - Using design tokens */
+  --bs-card-box-shadow: none;
+
+  /* Display */
+  display: flex;
+  flex-direction: column;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Card hover */
+.card:hover {
+  box-shadow: var(--shadow-md) !important;
+}
+
+.card:hover .card-title {
+  color: var(--clr-link-hover) !important;
+}
+
+.card:hover .card-title .icon {
+  color: var(--clr-link-hover) !important;
+}
+
+/* Card title styling */
+.card-title {
+  color: var(--clr-link-default) !important;
+  font-size: var(--type-heading-h3-size);
+  font-family: var(--type-font-default);
+  font-weight: var(--type-heading-h3-weight);
+  line-height: var(--type-heading-h3-lh);
+  word-wrap: break-word;
+}
+
+/* Card title icon */
+.card-title .icon {
+  color: var(--clr-link-default) !important;
+}
+
+/* Card text/body styling */
+.card-text {
+  color: var(--clr-text-default);
+  font-size: var(--type-body-default-size);
+  font-family: var(--type-font-default);
+  font-weight: var(--type-body-default-weight);
+  line-height: var(--type-body-default-lh);
+  word-wrap: break-word;
+}
+
+/* Card body */
+.card-body {
+  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+  padding-left: var(--sp-xl) !important;
+  padding-right: var(--sp-xl) !important;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  flex: 1 1 auto;
+}
+
+/* Card header */
+.card-header {
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+  background-color: var(--bs-card-cap-bg);
+  border-bottom: 0;
+}
+
+/* Card footer */
+.card-footer {
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: var(--sp-xl) !important;
+  background-color: transparent !important;
+  border-top: none !important;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+/* Card image styling */
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-img-top {
+  border-top-left-radius: var(--bs-card-border-radius);
+  border-top-right-radius: var(--bs-card-border-radius);
+}
+
+.card-img-bottom {
+  border-bottom-left-radius: var(--bs-card-border-radius);
+  border-bottom-right-radius: var(--bs-card-border-radius);
+}
+
+/**
+ * Custom Card Components
+ * BEM-style classes for enhanced card features
+ */
+
+/* Card header metadata (tag and date) */
+.card__header-meta {
+  align-self: stretch;
+  padding: var(--sp-xl) var(--sp-xl) var(--sp-xxs);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--sp-xl);
+}
+
+.card__header-meta-tags {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+}
+
+.card__header-meta-date {
+  color: var(--clr-text-default);
+  font-size: var(--type-body-small-size);
+  font-family: var(--type-font-default);
+  font-weight: var(--type-body-small-weight);
+  line-height: var(--type-body-small-lh);
+  white-space: nowrap;
+}
+
+/* Card media container */
+.card__media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card__media--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.card__media--4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.card__media--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Card body with icon */
+.card__body-content {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.card__body-title-wrapper {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+.card__body-title-wrapper .card-title {
+  flex: 1 1 0;
+  margin-bottom: 0;
+}
+
+/* Card footer actions */
+.card__footer-actions {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-sm);
+}
+
+/**
+ * Card Modifiers
+ */
+
+/* Horizontal layout (image on side) */
+.card--horizontal {
+  flex-direction: row;
+}
+
+.card--horizontal .card__media {
+  width: 40%;
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.card--horizontal .card__media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.card--horizontal .card-body {
+  flex: 1 1 0;
+}
+
+/* Responsive: Stack on mobile */
+@media (max-width: 768px) {
+  .card--horizontal {
+    flex-direction: column;
+  }
+
+  .card--horizontal .card__media {
+    width: 100%;
+  }
+}
+
+/* Clickable card */
+.card--clickable {
+  cursor: pointer;
+  border-color: var(--clr-border-subtle) !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card--clickable:hover {
+  border-color: var(--clr-border-strong-01);
+  box-shadow: var(--shadow-md);
+}
+
+.card--clickable:focus {
+  outline: none;
+  /* Theme-specific focus styles defined in Card-ntg.css and Card-central.css */
+}
+
+.card--clickable:focus-visible {
+  outline: none;
+}
+
+/* Ensure clickable card titles maintain link color */
+.card--clickable .card-title {
+  color: var(--clr-link-default);
+  text-decoration: none !important;
+}
+
+.card--clickable:hover .card-title {
+  color: var(--clr-link-hover) !important;
+  text-decoration: underline;
+}
+
+.card--clickable:hover .card-title .icon {
+  color: var(--clr-link-hover) !important;
+}
+
+/**
+ * Bootstrap Grid Support
+ * These classes work with Bootstrap's grid system
+ */
+
+/* Equal height cards in grid */
+.card.h-100 {
+  height: 100%;
+}
+
+/* Card groups - equal width and height columns */
+.card-group {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--sp-md);
+}
+
+.card-group > .card {
+  flex: 1 1 0;
+  margin-bottom: 0;
+}
+
+/* Responsive: Stack on mobile */
+@media (max-width: 576px) {
+  .card-group {
+    flex-direction: column;
+  }
+
+  .card-group > .card {
+    flex: 1 1 auto;
+  }
+}
