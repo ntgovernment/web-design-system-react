@@ -29,8 +29,10 @@
   --bs-btn-border-width: 0;
   --bs-btn-border-radius: var(--radii-button);
   
-  /* Focus state - theme-specific box-shadow overridden in theme files */
-  --bs-btn-focus-box-shadow-rgb: 31, 31, 95; /* Default, overridden by themes */
+  /* Active state */
+  --bs-btn-active-shadow: none;
+  
+  /* Focus state - theme-specific, defined in Button-ntg.css and Button-central.css */
 }
 
 /* Icon spacing within buttons */
@@ -44,35 +46,32 @@
 
 /* Primary button variant - Using semantic color tokens */
 .btn-primary {
-  --bs-btn-color: white;
+  --bs-btn-color: var(--clr-text-inverse);
   --bs-btn-bg: var(--clr-action-pirmary);
   --bs-btn-border-color: var(--clr-action-pirmary);
-  --bs-btn-hover-color: white;
+  --bs-btn-hover-color: var(--clr-text-inverse);
   --bs-btn-hover-bg: var(--clr-action-hover);
   --bs-btn-hover-border-color: var(--clr-action-hover);
-  --bs-btn-focus-shadow-rgb: var(--bs-btn-focus-box-shadow-rgb);
-  --bs-btn-active-color: white;
+  --bs-btn-active-color: var(--clr-text-inverse);
   --bs-btn-active-bg: var(--clr-action-pressed);
   --bs-btn-active-border-color: var(--clr-action-pressed);
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: white;
+  --bs-btn-disabled-color: var(--clr-text-muted);
   --bs-btn-disabled-bg: var(--clr-action-disabled);
   --bs-btn-disabled-border-color: var(--clr-action-disabled);
 }
 
 /* Secondary button variant */
 .btn-secondary {
-  --bs-btn-color: white;
+  --bs-btn-color: var(--clr-text-inverse);
   --bs-btn-bg: var(--clr-neutral-700);
   --bs-btn-border-color: var(--clr-neutral-700);
-  --bs-btn-hover-color: white;
+  --bs-btn-hover-color: var(--clr-text-inverse);
   --bs-btn-hover-bg: var(--clr-neutral-800);
   --bs-btn-hover-border-color: var(--clr-neutral-800);
-  --bs-btn-focus-shadow-rgb: var(--bs-btn-focus-box-shadow-rgb);
-  --bs-btn-active-color: white;
+  --bs-btn-active-color: var(--clr-text-inverse);
   --bs-btn-active-bg: var(--clr-neutral-900);
   --bs-btn-active-border-color: var(--clr-neutral-900);
-  --bs-btn-disabled-color: white;
+  --bs-btn-disabled-color: var(--clr-text-muted);
   --bs-btn-disabled-bg: var(--clr-action-disabled);
   --bs-btn-disabled-border-color: var(--clr-action-disabled);
 }
