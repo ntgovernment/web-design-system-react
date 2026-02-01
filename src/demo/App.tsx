@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
+import { Callout } from "../components/Callout";
 import { Tag } from "../components/Tag";
 import { Pill } from "../components/Pill";
 import { Notification } from "../components/Notification";
@@ -30,6 +31,7 @@ function App() {
       const typographyPath = `/src/typography/typography-${newTheme}.css?v=${timestamp}`;
       const themePath = `/src/themes/${newTheme}-theme.css?v=${timestamp}`;
       const buttonThemePath = `/src/components/Button/Button-${newTheme}.css?v=${timestamp}`;
+      const calloutThemePath = `/src/components/Callout/Callout-${newTheme}.css?v=${timestamp}`;
       const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;
       const pillThemePath = `/src/components/Pill/Pill-${newTheme}.css?v=${timestamp}`;
 
@@ -50,6 +52,7 @@ function App() {
       reloadStylesheet("bootstrap-typography-css", typographyPath);
       reloadStylesheet("theme-css", themePath);
       reloadStylesheet("button-theme-css", buttonThemePath);
+      reloadStylesheet("callout-theme-css", calloutThemePath);
       reloadStylesheet("tag-theme-css", tagThemePath);
       reloadStylesheet("pill-theme-css", pillThemePath);
     } else {
@@ -77,6 +80,21 @@ function App() {
           <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
         </p>
       </div>
+
+      <section className="mb-5">
+        <h2>Callout</h2>
+        <p className="text-muted mb-3">
+          Callout component for displaying informational messages with a
+          prominent left border.
+        </p>
+        <div className="d-flex flex-column gap-3">
+          <Callout
+            heading="Quick Tip"
+            content="This is a shorter callout with minimal content to demonstrate the component's flexibility."
+          />
+          <Callout content="This callout has no heading, just content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque." />
+        </div>
+      </section>
 
       <section className="mb-5">
         <h2>Notifications</h2>

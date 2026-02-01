@@ -22,6 +22,11 @@ import "../src/components/Notification/Notification.css";
 import "../src/components/Notification/Notification-ntg.css";
 import "../src/components/Notification/Notification-central.css";
 
+// Import Callout CSS files to ensure Vite processes them
+import "../src/components/Callout/Callout.css";
+import "../src/components/Callout/Callout-ntg.css";
+import "../src/components/Callout/Callout-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -165,6 +170,25 @@ const loadNotificationStyles = (theme: string) => {
   document.head.appendChild(notificationCSS);
 };
 
+// Load Callout Component Styles (theme-specific overrides)
+const loadCalloutStyles = (theme: string) => {
+  // Remove existing theme-specific Callout CSS if present
+  const existingCallout = document.getElementById("callout-theme-css");
+  if (existingCallout) {
+    existingCallout.remove();
+  }
+
+  // Add theme-specific Callout CSS overrides
+  const calloutCSS = document.createElement("link");
+  calloutCSS.id = "callout-theme-css";
+  calloutCSS.rel = "stylesheet";
+  calloutCSS.href = new URL(
+    `../src/components/Callout/Callout-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(calloutCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -257,6 +281,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadTagStyles(theme); // Load theme-specific Tag CSS overrides
     loadPillStyles(theme); // Load theme-specific Pill CSS overrides
     loadNotificationStyles(theme); // Load theme-specific Notification CSS overrides
+    loadCalloutStyles(theme); // Load theme-specific Callout CSS overrides
   }, [theme]);
 
   return (
@@ -304,10 +329,12 @@ const preview: Preview = {
         htmlWhitespaceSensitivity: "strict",
       },
     },
-    // Story ordering: Components first, then Design System
+    // Story ordering: Recent components first, then Components, then Design System
     options: {
       storySort: {
         order: [
+          "⭐ Recent",
+          ["Callout"],
           "Components",
           ["Notification", "Pill", "Button", "Card", "Tag"],
           "Design System",

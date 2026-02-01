@@ -5,6 +5,9 @@ export type { ButtonProps } from "./components/Button";
 export { Card } from "./components/Card";
 export type { CardProps } from "./components/Card";
 
+export { Callout } from "./components/Callout";
+export type { CalloutProps } from "./components/Callout";
+
 export { Icon } from "./components/Icon";
 export type { IconProps } from "./components/Icon";
 

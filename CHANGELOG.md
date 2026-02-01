@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Callout Component**: Informational message component with prominent left border
+  - Clean, structured layout with heading and content text
+  - Design token-based spacing (--sp-xl for padding, --sp-md and --sp-xs for gaps)
+  - Prominent 8px left border using --clr-border-strong-01 (#1F1F5F)
+  - Typography optimized for readability (24px heading, 16px body with proper line-height)
+  - Theme-aware color adaptation for NTG and Central themes
+  - WCAG AAA compliant color contrast
+  - Responsive text wrapping for long content
+  - Storybook stories with multiple content length examples
+  - Comprehensive documentation and usage examples
 - **Notification Component**: Status callout component with structured content layout
   - 4 status variants (info, success, warning, danger) with auto-assigned FontAwesome Light icons
   - Distinctive 8px left accent bar for visual emphasis
@@ -33,6 +43,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Storybook Organization**: Introduced "⭐ Recent" group for newly-created components
+  - New components now appear at the top of Storybook sidebar for easy discovery
+  - Components are moved to "Components" group once stable
+  - Updated `.storybook/preview.tsx` with story ordering configuration
 - **Component Removal**: Removed Alert component in favor of the new Notification component for better design consistency
 - Updated LICENSE from GPL v3 to MIT for broader compatibility
 - Enhanced main README with complete npm scripts documentation and HTML API section

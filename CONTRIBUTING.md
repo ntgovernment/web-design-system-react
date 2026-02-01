@@ -39,22 +39,26 @@ This project follows professional standards for collaboration:
 1. **Fork the repository** (if external contributor)
 
 2. **Clone the repository**
+
    ```bash
    git clone https://github.com/ntgovernment/web-design-system.git
    cd web-design-system
    ```
 
 3. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 4. **Validate design tokens**
+
    ```bash
    npm run tokens:validate
    ```
 
 5. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -123,16 +127,17 @@ git checkout -b fix/bug-description
 - Document complex types with comments
 
 **Example:**
+
 ```typescript
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button variant style
    */
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  variant?: "primary" | "secondary" | "tertiary";
   /**
    * Button size
    */
-  size?: 'sm';
+  size?: "sm";
   // ... more props
 }
 ```
@@ -156,7 +161,7 @@ export const ComponentName = ({
   ...props
 }: ComponentNameProps) => {
   // Component logic
-  
+
   return (
     // JSX
   );
@@ -188,6 +193,7 @@ Fix any linting errors or provide justification for exceptions.
 ### Creating a New Component
 
 1. **Create component directory**
+
    ```bash
    mkdir src/components/ComponentName
    ```
@@ -206,14 +212,15 @@ Fix any linting errors or provide justification for exceptions.
    - See existing components for template
 
 4. **Create Storybook stories** (`ComponentName.stories.tsx`)
+
    ```typescript
-   import type { Meta, StoryObj } from '@storybook/react';
-   import { ComponentName } from './ComponentName';
+   import type { Meta, StoryObj } from "@storybook/react";
+   import { ComponentName } from "./ComponentName";
 
    const meta: Meta<typeof ComponentName> = {
-     title: 'Components/ComponentName',
+     title: "⭐ Recent/ComponentName", // New components go in Recent group
      component: ComponentName,
-     tags: ['autodocs'],
+     tags: ["autodocs"],
    };
 
    export default meta;
@@ -226,11 +233,77 @@ Fix any linting errors or provide justification for exceptions.
    };
    ```
 
-5. **Update exports** in `src/index.ts`
+5. **Update Storybook configuration** in `.storybook/preview.tsx`:
+
+   a. **Add CSS imports** (near the top with other imports):
+
    ```typescript
-   export { ComponentName } from './components/ComponentName/ComponentName';
-   export type { ComponentNameProps } from './components/ComponentName/ComponentName';
+   // Import ComponentName CSS files to ensure Vite processes them
+   import "../src/components/ComponentName/ComponentName.css";
+   import "../src/components/ComponentName/ComponentName-ntg.css";
+   import "../src/components/ComponentName/ComponentName-central.css";
    ```
+
+   b. **Add theme loading function** (with other load functions):
+
+   ```typescript
+   // Load ComponentName Component Styles (theme-specific overrides)
+   const loadComponentNameStyles = (theme: string) => {
+     // Remove existing theme-specific ComponentName CSS if present
+     const existingComponentName = document.getElementById(
+       "componentname-theme-css",
+     );
+     if (existingComponentName) {
+       existingComponentName.remove();
+     }
+
+     // Add theme-specific ComponentName CSS overrides
+     const componentNameCSS = document.createElement("link");
+     componentNameCSS.id = "componentname-theme-css";
+     componentNameCSS.rel = "stylesheet";
+     componentNameCSS.href = new URL(
+       `../src/components/ComponentName/ComponentName-${theme}.css`,
+       import.meta.url,
+     ).href;
+     document.head.appendChild(componentNameCSS);
+   };
+   ```
+
+   c. **Call loading function** in the `useEffect`:
+
+   ```typescript
+   useEffect(() => {
+     // ... existing calls ...
+     loadComponentNameStyles(theme); // Add this line
+   }, [theme]);
+   ```
+
+   d. **Update story ordering** in `options.storySort.order`:
+
+   ```typescript
+   order: [
+     "⭐ Recent",
+     ["ComponentName", "Callout"],  // Add new component first
+     "Components",
+     ["Notification", "Pill", "Button", "Card", "Tag"],
+     "Design System",
+     ["Typography", "Icon"],
+   ],
+   ```
+
+6. **Update exports** in `src/index.ts`
+
+   ```typescript
+   export { ComponentName } from "./components/ComponentName/ComponentName";
+   export type { ComponentNameProps } from "./components/ComponentName/ComponentName";
+   ```
+
+7. **Move to Components group** (after component is no longer new)
+
+   When the component is stable and no longer "recent", update the story title:
+   - In `ComponentName.stories.tsx`: Change `title: "⭐ Recent/ComponentName"` to `title: "Components/ComponentName"`
+   - In `.storybook/preview.tsx`: Move from "⭐ Recent" array to "Components" array in story ordering
+   - Keep the CSS imports and theme loading function (these remain unchanged)
 
 ### Component Requirements
 
@@ -243,6 +316,8 @@ All components must:
 - ✅ Support keyboard navigation where applicable
 - ✅ Have a dedicated README.md file
 - ✅ Have Storybook stories demonstrating all variants
+- ✅ Be added to "⭐ Recent" group in Storybook initially
+- ✅ Be integrated into `.storybook/preview.tsx` with CSS imports and theme loading
 - ✅ Use Bootstrap 5.3 classes where appropriate
 - ✅ Follow the existing component structure and patterns
 
@@ -264,6 +339,7 @@ All components must:
 **⚠️ Important**: Theme CSS files are auto-generated. Never edit them directly.
 
 1. **Update tokens** in `design-tokens/tokens.json`
+
    ```json
    {
      "ntg": {
@@ -278,11 +354,13 @@ All components must:
    ```
 
 2. **Validate tokens**
+
    ```bash
    npm run tokens:validate
    ```
 
 3. **Generate CSS**
+
    ```bash
    npm run tokens:build
    ```
@@ -351,6 +429,7 @@ Before submitting a PR:
 ### Before Submitting
 
 1. **Update your branch**
+
    ```bash
    git checkout dev
    git pull origin dev
@@ -359,6 +438,7 @@ Before submitting a PR:
    ```
 
 2. **Run checks**
+
    ```bash
    npm run tokens:validate
    npm run build
@@ -374,6 +454,7 @@ Before submitting a PR:
 ### Submitting the PR
 
 1. **Push your branch**
+
    ```bash
    git push origin your-feature-branch
    ```
@@ -388,29 +469,36 @@ Before submitting a PR:
      - Checklist completion
 
 3. **PR Template**
+
    ```markdown
    ## Description
+
    Brief description of what this PR does.
 
    ## Related Issues
+
    Closes #123
 
    ## Type of Change
+
    - [ ] Bug fix
    - [ ] New feature
    - [ ] Documentation update
    - [ ] Refactoring
 
    ## Testing
+
    - [ ] Tested in Storybook
    - [ ] Tested both themes
    - [ ] No accessibility violations
    - [ ] Build succeeds
 
    ## Screenshots (if applicable)
+
    [Add screenshots]
 
    ## Checklist
+
    - [ ] Code follows project style guidelines
    - [ ] Documentation updated
    - [ ] CHANGELOG.md updated
@@ -472,6 +560,7 @@ chore(deps): update Storybook to 8.6.15
 ### Scopes
 
 Common scopes:
+
 - Component names: `Button`, `Card`, `Alert`, `Icon`
 - `tokens`: Design tokens
 - `themes`: Theme system

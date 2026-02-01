@@ -59,6 +59,41 @@
       },
       "file": "src/components/Button/Button.stories.tsx"
     },
+    "Callout": {
+      "stories": {
+        "Default": {
+          "args": {
+            "heading": "Callout heading",
+            "content": "Callout content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque. Praesent posuere lobortis purus, ac laoreet est volutpat in."
+          }
+        },
+        "LongContent": {
+          "args": {
+            "heading": "Important Notice",
+            "content": "This is a callout with a much longer content section to demonstrate how the component handles text wrapping and maintains readability. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nunc neque. Praesent posuere lobortis purus, ac laoreet est volutpat in. Sed euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula."
+          }
+        },
+        "ShortContent": {
+          "args": {
+            "heading": "Quick Tip",
+            "content": "Brief informational message for users."
+          }
+        },
+        "WithoutHeading": {
+          "args": {
+            "content": "This callout has no heading, just content. Useful for simple informational messages where a heading is not necessary."
+          }
+        },
+        "CustomStyling": {
+          "args": {
+            "heading": "Styled Callout",
+            "content": "This callout has additional custom styling applied via className.",
+            "className": "mb-4"
+          }
+        }
+      },
+      "file": "src/components/Callout/Callout.stories.tsx"
+    },
     "Card": {
       "stories": {
         "Basic": {
@@ -289,5 +324,5 @@
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-01T11:42:51.183Z"
+  "generated": "2026-02-01T12:38:58.120Z"
 }
