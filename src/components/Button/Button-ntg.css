@@ -24,12 +24,14 @@
 /* Maintain default background when focused but not hovered */
 .btn-primary:focus:not(:hover),
 .btn-primary:focus-visible:not(:hover) {
-  background-color: var(--clr-action-pirmary);
-  border-color: var(--clr-action-pirmary);
+  --bs-btn-hover-color: var(--clr-text-inverse);
+  --bs-btn-hover-bg: var(--clr-action-pirmary);
+  --bs-btn-hover-border-color: var(--clr-action-pirmary);
 }
 
 .btn-secondary:focus:not(:hover),
 .btn-secondary:focus-visible:not(:hover) {
-  background-color: var(--clr-neutral-700);
-  border-color: var(--clr-neutral-700);
+  --bs-btn-hover-color: var(--clr-text-default);
+  --bs-btn-hover-bg: var(--clr-action-secondary);
+  --bs-btn-hover-border-color: var(--clr-border-strong-01);
 }

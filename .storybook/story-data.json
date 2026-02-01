@@ -99,6 +99,11 @@
             "variant": "primary",
             "icon": "fa-light fa-search"
           }
+        },
+        "IconOnlyButtons": {
+          "args": {
+            "size": "sm"
+          }
         }
       },
       "file": "src/components/Button/Button.stories.tsx"
@@ -198,5 +203,5 @@
       "file": "src/components/Icon/Icon.stories.tsx"
     }
   },
-  "generated": "2026-02-01T01:56:28.288Z"
+  "generated": "2026-02-01T03:10:17.196Z"
 }

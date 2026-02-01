@@ -17,13 +17,10 @@
   --bs-btn-font-size: var(--type-button-label-default-size);
   --bs-btn-font-weight: var(--type-button-label-default-weight);
   --bs-btn-line-height: var(--type-button-label-default-lh);
-  --bs-btn-font-size-sm: var(--type-button-label-small-size);
   
   /* Spacing - Using design tokens */
   --bs-btn-padding-x: var(--sp-xl);
   --bs-btn-padding-y: var(--sp-md);
-  --bs-btn-padding-x-sm: var(--sp-md);
-  --bs-btn-padding-y-sm: var(--sp-xs);
   
   /* Border */
   --bs-btn-border-width: 0;
@@ -33,6 +30,14 @@
   --bs-btn-active-shadow: none;
   
   /* Focus state - theme-specific, defined in Button-ntg.css and Button-central.css */
+}
+
+/* Small button size variant */
+.btn-sm {
+  --bs-btn-padding-x: var(--sp-md);
+  --bs-btn-padding-y: var(--sp-sm);
+  --bs-btn-font-size: var(--type-button-label-small-size);
+  --bs-btn-border-radius: var(--radii-button);
 }
 
 /* Icon spacing within buttons */
@@ -62,15 +67,17 @@
 
 /* Secondary button variant */
 .btn-secondary {
-  --bs-btn-color: var(--clr-text-inverse);
-  --bs-btn-bg: var(--clr-neutral-700);
-  --bs-btn-border-color: var(--clr-neutral-700);
+  --bs-btn-border-width: var(--border-width-md);
+  --bs-btn-color: var(--clr-text-default);
+  --bs-btn-bg: var(--clr-action-secondary);
+  --bs-btn-border-color: var(--clr-border-strong-01);
   --bs-btn-hover-color: var(--clr-text-inverse);
-  --bs-btn-hover-bg: var(--clr-neutral-800);
-  --bs-btn-hover-border-color: var(--clr-neutral-800);
+  --bs-btn-hover-bg: var(--clr-action-hover);
+  --bs-btn-hover-border-color: var(--clr-action-hover);
   --bs-btn-active-color: var(--clr-text-inverse);
-  --bs-btn-active-bg: var(--clr-neutral-900);
-  --bs-btn-active-border-color: var(--clr-neutral-900);
+  --bs-btn-active-bg: var(--clr-action-pressed);
+  --bs-btn-active-border-color: var(--clr-action-pressed);
+  --bs-btn-active-border-width: 0;
   --bs-btn-disabled-color: var(--clr-text-muted);
   --bs-btn-disabled-bg: var(--clr-action-disabled);
   --bs-btn-disabled-border-color: var(--clr-action-disabled);
