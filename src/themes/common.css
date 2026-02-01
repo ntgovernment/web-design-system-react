@@ -8,7 +8,7 @@
  * 1. Update design-tokens/tokens.json
  * 2. Run: npm run tokens:build
  * 
- * Generated: 2026-01-31T15:05:03.855Z
+ * Generated: 2026-02-01T00:57:27.183Z
  * Source: Figma Design Tokens
  */
 
@@ -34,11 +34,11 @@
   --sp-xs: 8px;
   --sp-xxs: 4px;
   --sp-sm: 12px;
-  --sp-md: 1rem;
-  --sp-xl: 1.5rem;
-  --sp-xxl: 2rem;
-  --sp-xxxl: 3rem;
-  --sp-lg: 1.25rem;
+  --sp-md: 16px;
+  --sp-xl: 24px;
+  --sp-xxl: 32px;
+  --sp-xxxl: 48px;
+  --sp-lg: 20px;
 
   /* Border Widths */
   --border-width-sm: 0.5px;
@@ -50,5 +50,5 @@
   /* Border Radius */
   --radii-none: 0px;
   --radii-sm: 4px;
-  --radii-lg: 6.25rem;
+  --radii-lg: 100px;
 }

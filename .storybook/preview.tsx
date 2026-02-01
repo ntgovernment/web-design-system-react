@@ -2,6 +2,11 @@ import type { Preview, Decorator } from "@storybook/react";
 import { useEffect } from "react";
 import React from "react";
 
+// Import Button CSS files to ensure Vite processes them
+import "../src/components/Button/Button.css";
+import "../src/components/Button/Button-ntg.css";
+import "../src/components/Button/Button-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;

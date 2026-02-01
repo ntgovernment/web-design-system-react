@@ -67,12 +67,6 @@
             "children": "Button"
           }
         },
-        "Large": {
-          "args": {
-            "size": "lg",
-            "children": "Large Button"
-          }
-        },
         "Small": {
           "args": {
             "size": "sm",
@@ -204,5 +198,5 @@
       "file": "src/components/Icon/Icon.stories.tsx"
     }
   },
-  "generated": "2026-01-31T16:45:35.387Z"
+  "generated": "2026-02-01T01:56:28.288Z"
 }

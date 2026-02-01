@@ -9,18 +9,11 @@
  * https://getbootstrap.com/docs/5.3/components/buttons/#variables
  */
 
-/* Semantic variables used by buttons (theme-agnostic) */
-:root {
-  /* Text color for subtle/secondary text on buttons */
-  --clr-text-subtle: var(--ntg-neutral-06);
-  
-  /* Border radius for buttons */
-  --radii-button: var(--ntg-radii-button);
-}
-
 /* Bootstrap Button CSS Variable Customizations */
-:root {
+/* Override Bootstrap's component-level variables */
+.btn {
   /* Typography - Using design tokens */
+  --bs-btn-font-family: var(--type-font-default);
   --bs-btn-font-size: var(--type-button-label-default-size);
   --bs-btn-font-weight: var(--type-button-label-default-weight);
   --bs-btn-line-height: var(--type-button-label-default-lh);
@@ -29,13 +22,11 @@
   /* Spacing - Using design tokens */
   --bs-btn-padding-x: var(--sp-xl);
   --bs-btn-padding-y: var(--sp-md);
-  --bs-btn-padding-x-lg: var(--sp-xxl);
-  --bs-btn-padding-y-lg: var(--sp-md);
   --bs-btn-padding-x-sm: var(--sp-md);
   --bs-btn-padding-y-sm: var(--sp-xs);
   
   /* Border */
-  --bs-btn-border-width: 1px;
+  --bs-btn-border-width: 0;
   --bs-btn-border-radius: var(--radii-button);
   
   /* Focus state - theme-specific box-shadow overridden in theme files */
@@ -81,90 +72,6 @@
   --bs-btn-active-color: white;
   --bs-btn-active-bg: var(--clr-neutral-900);
   --bs-btn-active-border-color: var(--clr-neutral-900);
-  --bs-btn-disabled-color: white;
-  --bs-btn-disabled-bg: var(--clr-action-disabled);
-  --bs-btn-disabled-border-color: var(--clr-action-disabled);
-}
-
-/* Outline Primary button variant */
-.btn-outline-primary {
-  --bs-btn-color: var(--clr-action-pirmary);
-  --bs-btn-border-color: var(--clr-action-pirmary);
-  --bs-btn-hover-color: white;
-  --bs-btn-hover-bg: var(--clr-action-pirmary);
-  --bs-btn-hover-border-color: var(--clr-action-pirmary);
-  --bs-btn-focus-shadow-rgb: var(--bs-btn-focus-box-shadow-rgb);
-  --bs-btn-active-color: white;
-  --bs-btn-active-bg: var(--clr-action-pirmary);
-  --bs-btn-active-border-color: var(--clr-action-pirmary);
-  --bs-btn-disabled-color: var(--clr-action-disabled);
-  --bs-btn-disabled-bg: transparent;
-  --bs-btn-disabled-border-color: var(--clr-action-disabled);
-}
-
-/* Success button variant */
-.btn-success {
-  --bs-btn-color: white;
-  --bs-btn-bg: var(--clr-success);
-  --bs-btn-border-color: var(--clr-success);
-  --bs-btn-hover-color: white;
-  --bs-btn-hover-bg: var(--clr-success-dark);
-  --bs-btn-hover-border-color: var(--clr-success-dark);
-  --bs-btn-focus-shadow-rgb: var(--bs-btn-focus-box-shadow-rgb);
-  --bs-btn-active-color: white;
-  --bs-btn-active-bg: var(--clr-success-darker);
-  --bs-btn-active-border-color: var(--clr-success-darker);
-  --bs-btn-disabled-color: white;
-  --bs-btn-disabled-bg: var(--clr-action-disabled);
-  --bs-btn-disabled-border-color: var(--clr-action-disabled);
-}
-
-/* Danger button variant */
-.btn-danger {
-  --bs-btn-color: white;
-  --bs-btn-bg: var(--clr-danger);
-  --bs-btn-border-color: var(--clr-danger);
-  --bs-btn-hover-color: white;
-  --bs-btn-hover-bg: var(--clr-danger-dark);
-  --bs-btn-hover-border-color: var(--clr-danger-dark);
-  --bs-btn-focus-shadow-rgb: var(--bs-btn-focus-box-shadow-rgb);
-  --bs-btn-active-color: white;
-  --bs-btn-active-bg: var(--clr-danger-darker);
-  --bs-btn-active-border-color: var(--clr-danger-darker);
-  --bs-btn-disabled-color: white;
-  --bs-btn-disabled-bg: var(--clr-action-disabled);
-  --bs-btn-disabled-border-color: var(--clr-action-disabled);
-}
-
-/* Warning button variant */
-.btn-warning {
-  --bs-btn-color: var(--clr-text-primary);
-  --bs-btn-bg: var(--clr-warning);
-  --bs-btn-border-color: var(--clr-warning);
-  --bs-btn-hover-color: var(--clr-text-primary);
-  --bs-btn-hover-bg: var(--clr-warning-dark);
-  --bs-btn-hover-border-color: var(--clr-warning-dark);
-  --bs-btn-focus-shadow-rgb: var(--bs-btn-focus-box-shadow-rgb);
-  --bs-btn-active-color: var(--clr-text-primary);
-  --bs-btn-active-bg: var(--clr-warning-darker);
-  --bs-btn-active-border-color: var(--clr-warning-darker);
-  --bs-btn-disabled-color: white;
-  --bs-btn-disabled-bg: var(--clr-action-disabled);
-  --bs-btn-disabled-border-color: var(--clr-action-disabled);
-}
-
-/* Info button variant */
-.btn-info {
-  --bs-btn-color: white;
-  --bs-btn-bg: var(--clr-info);
-  --bs-btn-border-color: var(--clr-info);
-  --bs-btn-hover-color: white;
-  --bs-btn-hover-bg: var(--clr-info-dark);
-  --bs-btn-hover-border-color: var(--clr-info-dark);
-  --bs-btn-focus-shadow-rgb: var(--bs-btn-focus-box-shadow-rgb);
-  --bs-btn-active-color: white;
-  --bs-btn-active-bg: var(--clr-info-darker);
-  --bs-btn-active-border-color: var(--clr-info-darker);
   --bs-btn-disabled-color: white;
   --bs-btn-disabled-bg: var(--clr-action-disabled);
   --bs-btn-disabled-border-color: var(--clr-action-disabled);

@@ -10,7 +10,7 @@
  * 
  * Import order: common.css → grid.css → typography.css → theme
  * 
- * Generated: 2026-01-31T15:05:03.900Z
+ * Generated: 2026-02-01T00:57:27.251Z
  * Source: Figma Design Tokens
  */
 
@@ -132,9 +132,9 @@
   --central-type-mobile-button-default-sm-size: var(--type-mobile-button-default-sm-size);
   --central-type-mobile-tag-size: var(--type-mobile-tag-size);
   --central-radii-none: var(--radii-none);
-  --central-radii-button: 6.25rem;
+  --central-radii-button: 100px;
   --central-radii-sm: var(--radii-sm);
-  --central-radii-md: 1rem;
+  --central-radii-md: 16px;
   --central-radii-lg: var(--radii-lg);
   --central-type-link-default-decoration: var(--type-link-default-decoration);
   --central-type-link-default-paragraph-spacing: var(--type-link-default-paragraph-spacing);

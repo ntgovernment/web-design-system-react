@@ -10,7 +10,7 @@
  * 
  * Import order: common.css → grid.css → typography.css → theme
  * 
- * Generated: 2026-01-31T15:05:03.879Z
+ * Generated: 2026-02-01T00:57:27.223Z
  * Source: Figma Design Tokens
  */
 
@@ -154,7 +154,7 @@
   --ntg-radii-none: var(--radii-none);
   --ntg-radii-button: 0px;
   --ntg-radii-sm: var(--radii-sm);
-  --ntg-radii-md: 1.25rem;
+  --ntg-radii-md: 20px;
   --ntg-radii-lg: var(--radii-lg);
   --ntg-type-link-default-decoration: var(--type-link-default-decoration);
   --ntg-type-link-default-paragraph-spacing: var(--type-link-default-paragraph-spacing);

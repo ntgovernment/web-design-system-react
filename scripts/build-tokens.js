@@ -130,14 +130,17 @@ function resolveColorValue(tokenPath, themeData) {
 }
 
 // Helper to process dimension values
-function processDimension(value) {
+// category: 'typography' (uses rem for accessibility) or 'layout' (uses exact pixels)
+function processDimension(value, category = 'layout') {
   const num = parseFloat(value);
   if (isNaN(num)) return value;
   
-  // Convert to rem for larger values
-  if (num >= 16) {
+  // Typography uses rem for accessibility (scales with user preferences)
+  if (category === 'typography' && num >= 12) {
     return `${num / 16}rem`;
   }
+  
+  // Everything else (spacing, borders, layouts) uses exact pixels from Figma
   return `${num}px`;
 }
 
@@ -244,16 +247,16 @@ function extractTypographyTokens() {
           
           // Extract all font properties EXCEPT fontFamily (which is theme-specific)
           if (props.fontSize !== undefined) {
-            typography.push({ name: `--${prefix}-size`, value: processDimension(props.fontSize), description: token.description });
+            typography.push({ name: `--${prefix}-size`, value: processDimension(props.fontSize, 'typography'), description: token.description });
           }
           if (props.fontWeight !== undefined) {
             typography.push({ name: `--${prefix}-weight`, value: props.fontWeight, description: null });
           }
           if (props.lineHeight !== undefined) {
-            typography.push({ name: `--${prefix}-lh`, value: processDimension(props.lineHeight), description: null });
+            typography.push({ name: `--${prefix}-lh`, value: processDimension(props.lineHeight, 'typography'), description: null });
           }
           if (props.letterSpacing !== undefined) {
-            typography.push({ name: `--${prefix}-ls`, value: props.letterSpacing === 0 ? '0px' : processDimension(props.letterSpacing), description: null });
+            typography.push({ name: `--${prefix}-ls`, value: props.letterSpacing === 0 ? '0px' : processDimension(props.letterSpacing, 'typography'), description: null });
           }
           if (props.textDecoration && props.textDecoration !== 'none') {
             typography.push({ name: `--${prefix}-decoration`, value: props.textDecoration, description: null });
@@ -262,7 +265,7 @@ function extractTypographyTokens() {
             typography.push({ name: `--${prefix}-text-transform`, value: props.textCase, description: null });
           }
           if (props.paragraphSpacing && props.paragraphSpacing !== 0) {
-            typography.push({ name: `--${prefix}-paragraph-spacing`, value: processDimension(props.paragraphSpacing), description: null });
+            typography.push({ name: `--${prefix}-paragraph-spacing`, value: processDimension(props.paragraphSpacing, 'typography'), description: null });
           }
           if (props.fontStyle && props.fontStyle !== 'normal') {
             typography.push({ name: `--${prefix}-style`, value: props.fontStyle, description: null });
@@ -281,16 +284,16 @@ function extractTypographyTokens() {
         
         // Extract all font properties EXCEPT fontFamily
         if (props.fontSize !== undefined) {
-          typography.push({ name: `--${prefix}-size`, value: processDimension(props.fontSize), description: token.description });
+          typography.push({ name: `--${prefix}-size`, value: processDimension(props.fontSize, 'typography'), description: token.description });
         }
         if (props.fontWeight !== undefined) {
           typography.push({ name: `--${prefix}-weight`, value: props.fontWeight, description: null });
         }
         if (props.lineHeight !== undefined) {
-          typography.push({ name: `--${prefix}-lh`, value: processDimension(props.lineHeight), description: null });
+          typography.push({ name: `--${prefix}-lh`, value: processDimension(props.lineHeight, 'typography'), description: null });
         }
         if (props.letterSpacing !== undefined) {
-          typography.push({ name: `--${prefix}-ls`, value: props.letterSpacing === 0 ? '0px' : processDimension(props.letterSpacing), description: null });
+          typography.push({ name: `--${prefix}-ls`, value: props.letterSpacing === 0 ? '0px' : processDimension(props.letterSpacing, 'typography'), description: null });
         }
         if (props.textDecoration && props.textDecoration !== 'none') {
           typography.push({ name: `--${prefix}-decoration`, value: props.textDecoration, description: null });
@@ -299,7 +302,7 @@ function extractTypographyTokens() {
           typography.push({ name: `--${prefix}-text-transform`, value: props.textCase, description: null });
         }
         if (props.paragraphSpacing && props.paragraphSpacing !== 0) {
-          typography.push({ name: `--${prefix}-paragraph-spacing`, value: processDimension(props.paragraphSpacing), description: null });
+          typography.push({ name: `--${prefix}-paragraph-spacing`, value: processDimension(props.paragraphSpacing, 'typography'), description: null });
         }
       }
     });
@@ -361,7 +364,7 @@ function extractCommonTokens() {
       Object.entries(ntgTheme.sp).forEach(([key, token]) => {
         if (token.value !== undefined) {
           const varName = `--sp-${key}`;
-          const cssValue = processDimension(token.value);
+          const cssValue = processDimension(token.value, 'layout');
           common.spacing.push({ name: varName, value: cssValue, description: token.description });
         }
       });
@@ -384,7 +387,7 @@ function extractCommonTokens() {
       Object.entries(ntgTheme.radii).forEach(([key, token]) => {
         if (commonRadiiKeys.includes(key) && token.value !== undefined) {
           const varName = `--radii-${key}`;
-          const cssValue = processDimension(token.value);
+          const cssValue = processDimension(token.value, 'layout');
           common.radii.push({ name: varName, value: cssValue, description: token.description });
         }
       });
@@ -429,7 +432,7 @@ function extractVariables(obj, prefix = '', path = [], useCommonVars = false) {
         else if (value.type === 'color') {
           cssValue = processColor(cssValue);
         } else if (value.type === 'dimension') {
-          cssValue = processDimension(cssValue);
+          cssValue = processDimension(cssValue, 'layout');
         } else if (value.type === 'custom-shadow') {
           cssValue = processShadow(cssValue);
         } else if (value.type === 'number') {
@@ -789,7 +792,7 @@ if (value && typeof value === 'object') {
           else if (value.type === 'color') {
             cssValue = processColor(cssValue);
           } else if (value.type === 'dimension') {
-            cssValue = processDimension(cssValue);
+            cssValue = processDimension(cssValue, 'layout');
           } else if (value.type === 'custom-shadow') {
             cssValue = processShadow(cssValue);
           } else if (value.type === 'number') {

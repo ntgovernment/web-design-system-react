@@ -55,18 +55,11 @@ function App() {
           <div className="d-flex gap-2 flex-wrap">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
-            <Button variant="success">Success</Button>
-            <Button variant="danger">Danger</Button>
-            <Button variant="warning">Warning</Button>
-            <Button variant="info">Info</Button>
-            <Button variant="light">Light</Button>
-            <Button variant="dark">Dark</Button>
           </div>
         </div>
         <div className="mb-4">
           <h3 className="h5">Sizes</h3>
           <div className="d-flex gap-2 flex-wrap align-items-center">
-            <Button variant="primary" size="lg">Large Button</Button>
             <Button variant="primary">Default Button</Button>
             <Button variant="primary" size="sm">Small Button</Button>
           </div>
@@ -75,8 +68,7 @@ function App() {
           <h3 className="h5">With Icons</h3>
           <div className="d-flex gap-2 flex-wrap">
             <Button variant="primary" icon="fa-light fa-home" iconPosition="left">Home</Button>
-            <Button variant="success" icon="fa-light fa-check" iconPosition="left">Confirm</Button>
-            <Button variant="danger" icon="fa-light fa-trash" iconPosition="left">Delete</Button>
+            <Button variant="secondary" icon="fa-light fa-arrow-left" iconPosition="left">Back</Button>
             <Button variant="primary" icon="fa-light fa-arrow-right" iconPosition="right">Next</Button>
             <Button variant="primary" icon="fa-light fa-search" aria-label="Search" />
           </div>

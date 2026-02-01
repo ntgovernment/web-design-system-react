@@ -12,7 +12,7 @@
  * 1. Update design-tokens/tokens.json
  * 2. Run: npm run tokens:build
  * 
- * Generated: 2026-01-31T15:05:03.871Z
+ * Generated: 2026-02-01T00:57:27.206Z
  * Source: Figma Design Tokens
  */
 
@@ -52,11 +52,11 @@
   --type-body-default-bold-weight: 700;
   --type-body-default-bold-lh: 1.5rem;
   --type-body-default-bold-ls: 0px;
-  --type-body-sm-size: 14px;
+  --type-body-sm-size: 0.875rem;
   --type-body-sm-weight: 400;
   --type-body-sm-lh: 1.25rem;
   --type-body-sm-ls: 0px;
-  --type-body-sm-bold-size: 14px;
+  --type-body-sm-bold-size: 0.875rem;
   --type-body-sm-bold-weight: 700;
   --type-body-sm-bold-lh: 1.25rem;
   --type-body-sm-bold-ls: 0px;
@@ -72,18 +72,18 @@
   --type-link-default-bold-ls: 0px;
   --type-link-default-bold-decoration: underline;
   --type-link-default-bold-paragraph-spacing: 1rem;
-  --type-link-sm-size: 14px;
+  --type-link-sm-size: 0.875rem;
   --type-link-sm-weight: 400;
   --type-link-sm-lh: 1.25rem;
   --type-link-sm-ls: 0px;
   --type-link-sm-decoration: underline;
-  --type-caption-default-size: 14px;
+  --type-caption-default-size: 0.875rem;
   --type-caption-default-weight: 400;
   --type-caption-default-lh: 1.25rem;
   --type-caption-default-ls: 0px;
   --type-caption-default-paragraph-spacing: 1rem;
   /* For tags */
-  --type-uppercase-small-size: 12px;
+  --type-uppercase-small-size: 0.75rem;
   --type-uppercase-small-weight: 700;
   --type-uppercase-small-lh: 1rem;
   --type-uppercase-small-ls: 2px;
@@ -98,7 +98,7 @@
   --type-button-label-default-weight: 700;
   --type-button-label-default-lh: 1rem;
   --type-button-label-default-ls: 0px;
-  --type-button-label-small-size: 14px;
+  --type-button-label-small-size: 0.875rem;
   --type-button-label-small-weight: 700;
   --type-button-label-small-lh: 1rem;
   --type-button-label-small-ls: 0px;
@@ -136,11 +136,11 @@
   --type-mobile-body-default-bold-weight: 700;
   --type-mobile-body-default-bold-lh: 1.5rem;
   --type-mobile-body-default-bold-ls: 0px;
-  --type-mobile-body-sm-size: 14px;
+  --type-mobile-body-sm-size: 0.875rem;
   --type-mobile-body-sm-weight: 400;
   --type-mobile-body-sm-lh: 1.25rem;
   --type-mobile-body-sm-ls: 0px;
-  --type-mobile-body-sm-bold-size: 14px;
+  --type-mobile-body-sm-bold-size: 0.875rem;
   --type-mobile-body-sm-bold-weight: 700;
   --type-mobile-body-sm-bold-lh: 1.25rem;
   --type-mobile-body-sm-bold-ls: 0px;
@@ -150,12 +150,12 @@
   --type-mobile-link-default-ls: 0px;
   --type-mobile-link-default-decoration: underline;
   --type-mobile-link-default-paragraph-spacing: 1rem;
-  --type-mobile-link-sm-size: 14px;
+  --type-mobile-link-sm-size: 0.875rem;
   --type-mobile-link-sm-weight: 400;
   --type-mobile-link-sm-lh: 1.25rem;
   --type-mobile-link-sm-ls: 0px;
   --type-mobile-link-sm-decoration: underline;
-  --type-mobile-tag-size: 12px;
+  --type-mobile-tag-size: 0.75rem;
   --type-mobile-tag-weight: 700;
   --type-mobile-tag-lh: 1rem;
   --type-mobile-tag-ls: 2px;
@@ -164,7 +164,7 @@
   --type-mobile-button-default-weight: 700;
   --type-mobile-button-default-lh: 1rem;
   --type-mobile-button-default-ls: 0px;
-  --type-mobile-button-sm-size: 14px;
+  --type-mobile-button-sm-size: 0.875rem;
   --type-mobile-button-sm-weight: 700;
   --type-mobile-button-sm-lh: 1rem;
   --type-mobile-button-sm-ls: 0px;

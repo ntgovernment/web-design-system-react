@@ -6,6 +6,12 @@
 /* Import default NT.GOV.AU theme */
 @import './themes/ntg-theme.css';
 
+/* Import Button component common styles */
+@import './components/Button/Button.css';
+
+/* Import Button theme-specific styles (default to NTG) */
+@import './components/Button/Button-ntg.css';
+
 /* Additional global styles can be added here */
 body {
   margin: 0;

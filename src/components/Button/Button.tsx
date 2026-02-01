@@ -4,11 +4,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   /**
    * Button variant
    */
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
+  variant?: 'primary' | 'secondary';
   /**
    * Button size
    */
-  size?: 'sm' | 'lg';
+  size?: 'sm';
   /**
    * FontAwesome icon class (e.g., 'fa-light fa-home')
    */
