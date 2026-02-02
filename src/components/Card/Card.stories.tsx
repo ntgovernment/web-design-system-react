@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["full", "minicard"],
+      options: ["full", "minicard", "compact"],
     },
     mediaAspectRatio: {
       control: "select",
@@ -178,7 +178,7 @@ export const CustomAction: Story = {
     description:
       "Access forms, guidelines, and resources for your application.",
     actionText: "Download Now",
-    actionIcon: "fa-solid fa-download",
+    actionIcon: "fa-light fa-download",
     tagLabel: "Resources:blue",
     dateLabel: "10 Feb 2025",
     style: { maxWidth: "353px" },
@@ -193,8 +193,25 @@ export const CustomAction: Story = {
 export const Minicard: Story = {
   args: {
     variant: "minicard",
-    title: "Card title",
-    icon: "fa-solid fa-circle-info",
+    title: "Business Registration",
+    icon: "fa-light fa-circle-info",
     description: "This will not be shown in minicard variant",
+    style: { maxWidth: "353px" },
+  },
+};
+
+/**
+ * Compact variant with horizontal layout.
+ * Features icon, title and description in a single row.
+ * Ideal for contact cards, quick info blocks, or list items.
+ * Automatically hides image, metadata, and footer sections.
+ */
+export const Compact: Story = {
+  args: {
+    variant: "compact",
+    title: "Customer Service",
+    description: "1800 000 000 or ext 12345",
+    icon: "fa-light fa-phone",
+    style: { maxWidth: "400px" },
   },
 };

@@ -4,6 +4,7 @@ A flexible and extensible content container component for displaying grouped con
 
 ## Features
 
+- **Multiple Variants** - Full, minicard (icon + title), and compact (horizontal icon + content) variants
 - **Rich Media Support** - Images, videos, or custom components with aspect ratio control
 - **Header Metadata** - Tag/label and date information for news articles and content listings
 - **Footer Actions** - Buttons or custom components for calls-to-action
@@ -557,6 +558,29 @@ Override with custom CSS or design tokens:
   description="Your license renewal is due soon. Please complete the renewal process to avoid service interruption."
   footer={<Button variant="primary" label="Renew Now" />}
 />
+```
+
+### Compact Contact Cards
+
+```tsx
+<div className="row g-3">
+  <div className="col-md-6">
+    <Card
+      variant="compact"
+      title="Customer Service"
+      description="1800 000 000 or ext 12345"
+      icon="fa-solid fa-phone"
+    />
+  </div>
+  <div className="col-md-6">
+    <Card
+      variant="compact"
+      title="Email Support"
+      description="support@nt.gov.au"
+      icon="fa-solid fa-envelope"
+    />
+  </div>
+</div>
 ```
 
 ## Related Components

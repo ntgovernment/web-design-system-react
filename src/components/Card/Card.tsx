@@ -22,8 +22,9 @@ export interface CardProps {
    * Card variant
    * - full: Complete card with all sections
    * - minicard: Minimal card with only title icon and title
+   * - compact: Horizontal layout with icon, title and description
    */
-  variant?: "full" | "minicard";
+  variant?: "full" | "minicard" | "compact";
   /**
    * Card title
    */
@@ -146,12 +147,13 @@ export const Card = ({
   style,
   ariaLabel,
 }: CardProps) => {
-  // For minicard variant, override visibility settings
+  // For minicard and compact variants, override visibility settings
   const isMinicard = variant === "minicard";
-  const finalShowImage = isMinicard ? false : showImage;
-  const finalShowMeta = isMinicard ? false : showMeta;
-  const finalShowFooter = isMinicard ? false : showFooter;
-  const finalShowTitleIcon = isMinicard ? true : showTitleIcon;
+  const isCompact = variant === "compact";
+  const finalShowImage = isMinicard || isCompact ? false : showImage;
+  const finalShowMeta = isMinicard || isCompact ? false : showMeta;
+  const finalShowFooter = isMinicard || isCompact ? false : showFooter;
+  const finalShowTitleIcon = isMinicard || isCompact ? true : showTitleIcon;
 
   // Make card clickable if footer is not shown
   const isClickable = clickable || !finalShowFooter;
@@ -162,6 +164,7 @@ export const Card = ({
     horizontal ? "card--horizontal" : "",
     isClickable ? "card--clickable" : "",
     isMinicard ? "card--minicard" : "",
+    isCompact ? "card--compact" : "",
     variant && variant === "full" ? `text-bg-${variant}` : "",
     className,
   ]
@@ -296,11 +299,14 @@ export const Card = ({
 
       {/* Card body */}
       <div className="card-body">
+        {isCompact && finalShowTitleIcon && (
+          <Icon icon={icon} className="card__compact-icon" />
+        )}
         <div className="card__body-content">
           {title && (
             <div className="card__body-title-wrapper">
               <h5 className="card-title">
-                {finalShowTitleIcon && (
+                {finalShowTitleIcon && !isCompact && (
                   <Icon
                     icon={icon}
                     className={isMinicard ? "card__minicard-icon" : "me-2"}
@@ -311,7 +317,13 @@ export const Card = ({
             </div>
           )}
           {!isMinicard && description && (
-            <div className="card-text">{description}</div>
+            <div
+              className={
+                isCompact ? "card-text card__compact-description" : "card-text"
+              }
+            >
+              {description}
+            </div>
           )}
         </div>
       </div>
