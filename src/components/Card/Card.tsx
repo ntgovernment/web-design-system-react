@@ -19,6 +19,16 @@ export interface CardHeaderMeta {
 
 export interface CardProps {
   /**
+   * Card variant
+   * - full: Complete card with all sections
+   * - minicard: Minimal card with only title icon and title
+   */
+  variant?: "full" | "minicard";
+  /**
+   * Card title
+   */
+  title: string;
+  /**
    * Show/hide image section
    */
   showImage?: boolean;
@@ -52,20 +62,11 @@ export interface CardProps {
    */
   dateLabel?: string;
   /**
-   * Card title
-   */
-  title: string;
-  /**
    * Show/hide title icon
    */
   showTitleIcon?: boolean;
   /**
-   * Title icon (FontAwesome class)
-   */
-  titleIcon?: string;
-  /**
-   * FontAwesome icon class for title (e.g., 'fa-light fa-chart-line')
-   * @deprecated Use composition with Icon component instead
+   * Icon class (FontAwesome class)
    */
   icon?: string;
   /**
@@ -109,11 +110,6 @@ export interface CardProps {
    */
   style?: React.CSSProperties;
   /**
-   * Card variant - DEPRECATED: Use composition with Tag/Notification components instead
-   * @deprecated
-   */
-  variant?: "full";
-  /**
    * ARIA label for clickable cards (required for accessibility when clickable is true)
    */
   ariaLabel?: string;
@@ -126,6 +122,8 @@ export interface CardProps {
  * Can be used for news articles, product cards, content listings, etc.
  */
 export const Card = ({
+  variant,
+  title,
   showImage = true,
   media,
   imageURL = placeholderImage,
@@ -134,10 +132,8 @@ export const Card = ({
   header,
   tagLabel = "News:blue",
   dateLabel = "17 Feb 2025",
-  title,
   showTitleIcon = false,
-  titleIcon = "fa-light fa-info",
-  icon,
+  icon = "fa-light fa-circle-info",
   description,
   showFooter = true,
   footer,
@@ -148,18 +144,25 @@ export const Card = ({
   href,
   className = "",
   style,
-  variant,
   ariaLabel,
 }: CardProps) => {
+  // For minicard variant, override visibility settings
+  const isMinicard = variant === "minicard";
+  const finalShowImage = isMinicard ? false : showImage;
+  const finalShowMeta = isMinicard ? false : showMeta;
+  const finalShowFooter = isMinicard ? false : showFooter;
+  const finalShowTitleIcon = isMinicard ? true : showTitleIcon;
+
   // Make card clickable if footer is not shown
-  const isClickable = clickable || !showFooter;
+  const isClickable = clickable || !finalShowFooter;
 
   // Build card classes
   const cardClasses = [
     "card",
     horizontal ? "card--horizontal" : "",
     isClickable ? "card--clickable" : "",
-    variant ? `text-bg-${variant}` : "",
+    isMinicard ? "card--minicard" : "",
+    variant && variant === "full" ? `text-bg-${variant}` : "",
     className,
   ]
     .filter(Boolean)
@@ -196,7 +199,7 @@ export const Card = ({
 
   // Render header metadata (tag and date)
   const renderHeaderMeta = () => {
-    if (!showMeta) return null;
+    if (!finalShowMeta) return null;
 
     // If header is a ReactNode, render it directly
     if (header && !isCardHeaderMeta(header)) {
@@ -234,7 +237,7 @@ export const Card = ({
 
   // Render media section
   const renderMedia = () => {
-    if (!showImage) return null;
+    if (!finalShowImage) return null;
 
     if (media) {
       return <div className={mediaClasses}>{media}</div>;
@@ -258,7 +261,7 @@ export const Card = ({
 
   // Render footer section
   const renderFooter = () => {
-    if (!showFooter) return null;
+    if (!finalShowFooter) return null;
 
     if (footer) {
       return (
@@ -297,13 +300,19 @@ export const Card = ({
           {title && (
             <div className="card__body-title-wrapper">
               <h5 className="card-title">
-                {showTitleIcon && <Icon icon={titleIcon} className="me-2" />}
-                {icon && <i className={`${icon} me-2`} aria-hidden="true"></i>}
+                {finalShowTitleIcon && (
+                  <Icon
+                    icon={icon}
+                    className={isMinicard ? "card__minicard-icon" : "me-2"}
+                  />
+                )}
                 {title}
               </h5>
             </div>
           )}
-          {description && <div className="card-text">{description}</div>}
+          {!isMinicard && description && (
+            <div className="card-text">{description}</div>
+          )}
         </div>
       </div>
 

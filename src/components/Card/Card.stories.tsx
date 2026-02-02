@@ -9,6 +9,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
+    variant: {
+      control: "select",
+      options: ["full", "minicard"],
+    },
     mediaAspectRatio: {
       control: "select",
       options: ["16:9"],
@@ -25,7 +29,7 @@ const meta = {
     showTitleIcon: {
       control: "boolean",
     },
-    titleIcon: {
+    icon: {
       control: "text",
     },
     tagLabel: {
@@ -62,6 +66,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Full: Story = {
   args: {
+    variant: "full",
     title: "Supporting survivors on National Day of Remembrance",
     description:
       "Join in and honour the resilience of survivors and the lives lost.",
@@ -80,7 +85,7 @@ export const WithTitleIcon: Story = {
     description:
       "Some services will have reduced hours during the holiday period.",
     showTitleIcon: true,
-    titleIcon: "fa-light fa-info-circle",
+    icon: "fa-light fa-info-circle",
     tagLabel: "Alert:warning",
     dateLabel: "1 Feb 2025",
     style: { maxWidth: "353px" },
@@ -177,5 +182,19 @@ export const CustomAction: Story = {
     tagLabel: "Resources:blue",
     dateLabel: "10 Feb 2025",
     style: { maxWidth: "353px" },
+  },
+};
+
+/**
+ * Minicard variant with only title icon and title.
+ * Minimal card for compact displays or dashboard widgets.
+ * Automatically hides image, metadata, description, and footer sections.
+ */
+export const Minicard: Story = {
+  args: {
+    variant: "minicard",
+    title: "Card title",
+    icon: "fa-solid fa-circle-info",
+    description: "This will not be shown in minicard variant",
   },
 };

@@ -219,7 +219,6 @@ Entire card as a navigable link:
 | `className`        | `string`                            | `''`         | Additional CSS classes (e.g., 'h-100' for equal height)       |
 | `ariaLabel`        | `string`                            | `undefined`  | ARIA label for clickable cards (required for accessibility)   |
 | `mediaAspectRatio` | `'16:9' \| '4:3' \| '1:1'`          | `'16:9'`     | Aspect ratio for media container                              |
-| `icon`             | `string`                            | `undefined`  | **DEPRECATED**: FontAwesome icon class for title              |
 | `variant`          | `string`                            | `undefined`  | **DEPRECATED**: Use composition with Tag/Notification instead |
 
 ### CardHeaderMeta
@@ -473,12 +472,7 @@ Override with custom CSS or design tokens:
 **Old approach (deprecated)**:
 
 ```tsx
-<Card
-  title="News"
-  variant="info"
-  icon="fa-solid fa-newspaper"
-  footer={<small>Updated 2 hours ago</small>}
->
+<Card title="News" variant="info" footer={<small>Updated 2 hours ago</small>}>
   Content
 </Card>
 ```
@@ -487,12 +481,13 @@ Override with custom CSS or design tokens:
 
 ```tsx
 <Card
-  header={{
-    tag: <Tag variant="info" label="News" />,
-    date: "Updated 2 hours ago",
-  }}
+  variant="full"
+  tagLabel="News"
+  dateLabel="Updated 2 hours ago"
   title="News"
   description="Content"
+  showTitleIcon={true}
+  icon="fa-solid fa-newspaper"
   footer={<Button variant="tertiary" label="Read more" />}
 />
 ```
@@ -500,7 +495,7 @@ Override with custom CSS or design tokens:
 ### Key Changes
 
 1. **`variant` prop deprecated** - Use Tag or Notification components for colored indicators
-2. **`icon` prop deprecated** - Use composition with Icon component or Button iconLeft/iconRight
+2. **`icon` prop removed** - Use `showTitleIcon` and `icon` props instead
 3. **New `media` prop** - For images, videos, or custom components
 4. **New `header` prop** - For tag and date metadata
 5. **New `horizontal` prop** - For side-by-side layouts
@@ -615,7 +610,7 @@ const MyCard: React.FC<CardProps> = (props) => {
 ## Notes
 
 - Bootstrap 5.3.3 must be loaded for proper styling
-- FontAwesome optional (only needed if using icon prop or Button iconLeft/iconRight)
+- FontAwesome optional (only needed if using icon, actionIcon, or Button iconLeft/iconRight)
 - `title` and `description` props are required - cards must have both
 - Card adapts to container width (100% by default)
 - Use `className="h-100"` for equal height cards in grids

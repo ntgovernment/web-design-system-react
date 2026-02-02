@@ -109,7 +109,7 @@ function App() {
               title="Important Service Update"
               description="Some services will have reduced hours during the holiday period."
               showTitleIcon={true}
-              titleIcon="fa-light fa-info-circle"
+              icon="fa-light fa-info-circle"
               tagLabel="Alert:warning"
               dateLabel="1 Feb 2025"
             />

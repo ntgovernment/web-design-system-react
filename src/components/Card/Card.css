@@ -58,10 +58,10 @@
 /* Card title styling */
 .card-title {
   color: var(--clr-link-default) !important;
-  font-size: var(--type-heading-h3-size);
+  font-size: var(--type-heading-h4-size);
   font-family: var(--type-font-default);
-  font-weight: var(--type-heading-h3-weight);
-  line-height: var(--type-heading-h3-lh);
+  font-weight: var(--type-heading-h4-weight);
+  line-height: var(--type-heading-h4-lh);
   word-wrap: break-word;
 }
 
@@ -325,4 +325,45 @@
   .card-group > .card {
     flex: 1 1 auto;
   }
+}
+
+/**
+ * Minicard Variant
+ * Minimal card with only title icon and title
+ */
+
+/* Minicard variant - title and icon only */
+.card--minicard {
+  padding: var(--sp-xl) !important;
+  border: 1px solid var(--clr-border-subtle);
+}
+
+.card--minicard .card-body {
+  padding: 0 !important;
+  gap: var(--sp-sm);
+}
+
+.card--minicard .card__body-title-wrapper {
+  gap: var(--sp-xs);
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card--minicard .card-title {
+  font-size: var(--type-heading-h4-size);
+  line-height: var(--type-heading-h4-lh);
+  font-weight: var(--type-heading-h4-weight);
+  margin-bottom: 0;
+}
+
+.card--minicard .card__minicard-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 26.67px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-text-emphasis) !important;
+  margin-bottom: 0;
+  margin-right: var(--sp-xs);
 }
