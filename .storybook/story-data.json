@@ -98,6 +98,7 @@
       "stories": {
         "Full": {
           "args": {
+            "variant": "full",
             "title": "Supporting survivors on National Day of Remembrance",
             "description": "Join in and honour the resilience of survivors and the lives lost.",
             "maxWidth": "353px"
@@ -107,7 +108,7 @@
           "args": {
             "title": "Important Service Update",
             "description": "Some services will have reduced hours during the holiday period.",
-            "titleIcon": "fa-light fa-info-circle",
+            "icon": "fa-light fa-info-circle",
             "tagLabel": "Alert:warning",
             "dateLabel": "1 Feb 2025",
             "maxWidth": "353px"
@@ -161,10 +162,28 @@
             "title": "Download Important Documents",
             "description": "Access forms, guidelines, and resources for your application.",
             "actionText": "Download Now",
-            "actionIcon": "fa-solid fa-download",
+            "actionIcon": "fa-light fa-download",
             "tagLabel": "Resources:blue",
             "dateLabel": "10 Feb 2025",
             "maxWidth": "353px"
+          }
+        },
+        "Minicard": {
+          "args": {
+            "variant": "minicard",
+            "title": "Business Registration",
+            "icon": "fa-light fa-circle-info",
+            "description": "This will not be shown in minicard variant",
+            "maxWidth": "353px"
+          }
+        },
+        "Compact": {
+          "args": {
+            "variant": "compact",
+            "title": "Customer Service",
+            "description": "1800 000 000 or ext 12345",
+            "icon": "fa-light fa-phone",
+            "maxWidth": "400px"
           }
         }
       },
@@ -429,5 +448,5 @@
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-02T18:36:01.101Z"
+  "generated": "2026-02-03T11:52:23.322Z"
 }
