@@ -310,6 +310,9 @@
 }
 
 /* Apply hover styles to footer button when card is hovered */
+/* IMPORTANT: Footer uses Button.css classes (.btn-tertiary) directly on a span element */
+/* This is intentional - span prevents focus stealing but still needs Button styling */
+/* If Button.css hover colors change, update this selector accordingly */
 .card--clickable:hover .btn-tertiary {
   color: var(--clr-link-hover);
 }

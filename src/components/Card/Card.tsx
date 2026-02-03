@@ -6,6 +6,26 @@ import { Button } from "../Button";
 import { Icon } from "../Icon";
 import placeholderImage from "../../assets/images/placeholder.webp";
 
+/**
+ * IMPORTANT: Button Component Dependency
+ * The Card footer uses Button.css styles (.btn, .btn-tertiary) directly on a span element
+ * instead of the Button component to prevent focus stealing from the card.
+ *
+ * Dependencies:
+ * - Button.css: Provides base button styling (.btn) and variant styling (.btn-tertiary)
+ * - Button theme files: Provide hover color variables (--bs-btn-hover-color)
+ *
+ * If you modify Button.css or its theme files:
+ * - Footer span will automatically inherit token/variable updates
+ * - If class names change (e.g., btn-tertiary → btn-link), update Card.tsx line ~283
+ * - If Button.css is removed or restructured, Card footer styling will break
+ *
+ * Design Evolution:
+ * Previously used <Button> component but this caused focus to be stolen by the button element.
+ * The card wrapper needs to receive all focus for keyboard accessibility.
+ * Using span + Button.css classes maintains visual consistency while preserving focus behavior.
+ */
+
 export interface CardHeaderMeta {
   /**
    * Tag/label (e.g., "News", "Event") - can be a Tag component or ReactNode
@@ -274,6 +294,13 @@ export const Card = ({
     if (!actionText || actionText.trim() === "") return null;
 
     // Render footer button as non-interactive span to allow card-level focus
+    // IMPORTANT: Uses Button.css classes (.btn .btn-tertiary) directly for styling
+    // Rendered as span instead of Button component to prevent focus stealing
+    // - Span cannot receive focus (pointer-events: none in CSS)
+    // - aria-hidden="true" hides from screen readers (decorative)
+    // - Card wrapper (.card--clickable with tabIndex={0}) receives all focus
+    // - CSS maintains visual consistency with Button component hover states
+    // See Card.tsx file header documentation for dependency details
     return (
       <div className="card-footer">
         <div className="card__footer-actions">

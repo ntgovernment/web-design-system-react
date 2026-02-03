@@ -19,33 +19,37 @@
 
 :root {
   /* ===== TYPOGRAPHY ===== */
-  
+
   /* Font Families */
-  --bs-font-sans-serif: var(--central-type-font-default), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --bs-body-font-family: var(--central-type-font-default), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  
+  --bs-font-sans-serif:
+    var(--central-type-font-default), system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --bs-body-font-family:
+    var(--central-type-font-default), system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
   /* Body Typography */
   --bs-body-font-size: var(--central-type-desktop-body-default-size);
   --bs-body-font-weight: var(--type-body-default-weight);
   --bs-body-line-height: var(--type-body-default-lh);
   --bs-body-color: var(--central-clr-text-default);
   --bs-body-bg: var(--central-clr-bg-default);
-  
+
   /* Headings */
   --bs-heading-color: var(--central-clr-text-default);
   --bs-headings-font-weight: var(--type-heading-h2-weight);
-  
+
   /* Links */
   --bs-link-color: var(--central-clr-link-default);
   --bs-link-hover-color: var(--central-clr-link-hover);
   --bs-link-decoration: var(--central-type-link-default-decoration);
-  
+
   /* Bootstrap Reboot uses RGB variants - Override Strategy Layer 1 */
   --bs-link-color-rgb: var(--central-clr-link-default-rgb);
   --bs-link-hover-color-rgb: var(--central-clr-link-hover-rgb);
-  
+
   /* ===== COLORS ===== */
-  
+
   /* Primary Brand Colors mapped to NTG Central palette */
   --bs-primary: var(--central-clr-action-pirmary);
   --bs-secondary: var(--central-neutral-06);
@@ -55,36 +59,41 @@
   --bs-danger: var(--central-danger-03-d);
   --bs-light: var(--central-neutral-01);
   --bs-dark: var(--central-blue-03-d);
-  
+
   /* Emphasis Colors */
   --bs-emphasis-color: var(--central-clr-text-emphasis);
   --bs-secondary-color: var(--central-clr-text-muted);
-  
+
   /* Background Colors */
   --bs-secondary-bg: var(--central-clr-bg-shade-alt);
   --bs-tertiary-bg: var(--central-clr-bg-shade);
-  
+
   /* Border Colors */
   --bs-border-color: var(--central-clr-border-subtle);
-  
+
   /* Focus Ring */
-  --bs-focus-ring-color: rgba(236, 140, 88, 0.25); /* central-orange-02 with opacity */
-  
+  --bs-focus-ring-color: rgba(
+    236,
+    140,
+    88,
+    0.25
+  ); /* central-orange-02 with opacity */
+
   /* ===== COMPONENT-SPECIFIC ===== */
-  
+
   /* Code */
   --bs-code-color: var(--central-coral-03-d);
-  
+
   /* Highlight/Mark */
   --bs-highlight-color: var(--central-clr-text-default);
   --bs-highlight-bg: var(--central-warning-01);
-  
+
   /* Status/Alert Backgrounds */
   --bs-info-bg-subtle: var(--central-info-01);
   --bs-success-bg-subtle: var(--central-success-01);
   --bs-warning-bg-subtle: var(--central-warning-01);
   --bs-danger-bg-subtle: var(--central-danger-01);
-  
+
   /* Border Radius - NTG Central uses sharp corners for buttons */
   --bs-border-radius: var(--central-radii-sm);
   --bs-border-radius-sm: var(--central-radii-none);
@@ -106,8 +115,8 @@ a:hover {
   text-decoration: none;
 }
 
-a:focus,
-a:focus-visible {
+a:not(.card):focus,
+a:not(.card):focus-visible {
   background: var(--central-clr-focus-focus);
   border-bottom: 4px solid var(--central-clr-border-strong-01);
   text-decoration: none;
@@ -124,7 +133,7 @@ a:visited {
     --bs-body-font-size: var(--central-type-mobile-body-default-size);
     --bs-body-line-height: var(--type-mobile-body-default-lh);
   }
-  
+
   a {
     font-size: var(--type-mobile-link-default-size);
     line-height: var(--type-mobile-link-default-lh);

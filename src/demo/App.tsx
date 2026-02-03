@@ -92,6 +92,10 @@ function App() {
         <p className="text-muted mb-3">
           Flexible content containers with optional media, metadata, and
           actions. Supports composition with Image, Tag, and Button components.
+          <br />
+          <strong>Keyboard Accessible:</strong> All cards are focusable by
+          default. Press <kbd>Tab</kbd> to navigate and see themed focus
+          outlines. The entire card is highlighted, not individual elements.
         </p>
         <div className="row g-4 mb-4">
           <div className="col-md-6 col-lg-4">

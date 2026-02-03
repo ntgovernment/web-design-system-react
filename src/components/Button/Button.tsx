@@ -1,6 +1,17 @@
 import React from "react";
 import { Icon } from "../Icon";
 
+/**
+ * IMPORTANT: Card Component Dependency
+ * The Card component's footer uses Button.css styles directly via className="btn btn-tertiary"
+ * on a span element (see Card.tsx renderFooter function).
+ *
+ * If you modify Button.css styles or class names:
+ * - Update Card.tsx renderFooter to match new classes
+ * - Ensure Button.css variables remain consistent (colors, typography, spacing)
+ * - Test Card component focus and hover states after changes
+ */
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button variant
