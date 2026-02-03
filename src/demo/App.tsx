@@ -105,7 +105,7 @@ function App() {
               tagLabel="News:blue"
               dateLabel="17 Feb 2025"
               actionText="Find out more"
-              actionIcon="fa-solid fa-arrow-right"
+              actionIcon="fa-light fa-arrow-right"
             />
           </div>
           <div className="col-md-6 col-lg-4">
@@ -145,9 +145,55 @@ function App() {
               title="Download Important Documents"
               description="Access forms, guidelines, and resources for your application."
               actionText="Download Now"
-              actionIcon="fa-solid fa-download"
+              actionIcon="fa-light fa-download"
               tagLabel="Resources:blue"
               dateLabel="10 Feb 2025"
+            />
+          </div>
+        </div>
+        <h3 className="h5 mt-4 mb-3">Compact Variant</h3>
+        <div className="row g-3">
+          <div className="col-md-6">
+            <Card
+              variant="compact"
+              title="Customer Service"
+              description="1800 000 000 or ext 12345"
+              icon="fa-light fa-phone"
+            />
+          </div>
+          <div className="col-md-6">
+            <Card
+              variant="compact"
+              title="Email Support"
+              description="support@nt.gov.au"
+              icon="fa-light fa-envelope"
+            />
+          </div>
+        </div>
+        <h3 className="h5 mt-4 mb-3">Minicard Variant</h3>
+        <div className="row g-3">
+          <div className="col-md-4">
+            <Card
+              variant="minicard"
+              title="Business Registration"
+              description="Register your business entity."
+              icon="fa-light fa-briefcase"
+            />
+          </div>
+          <div className="col-md-4">
+            <Card
+              variant="minicard"
+              title="Apply for License"
+              description="Submit your license application."
+              icon="fa-light fa-file-certificate"
+            />
+          </div>
+          <div className="col-md-4">
+            <Card
+              variant="minicard"
+              title="Pay Fees"
+              description="Make a payment online."
+              icon="fa-light fa-credit-card"
             />
           </div>
         </div>
