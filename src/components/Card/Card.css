@@ -42,73 +42,61 @@
     border-color 0.2s ease;
 }
 
-/* Card hover */
+/* Hover states */
 .card:hover {
   box-shadow: var(--shadow-md) !important;
 }
 
-.card:hover .card-title {
-  color: var(--clr-link-hover) !important;
-}
-
+.card:hover .card-title,
 .card:hover .card-title .icon {
   color: var(--clr-link-hover) !important;
 }
 
-/* Card title styling */
+/* Typography */
 .card-title {
   color: var(--clr-link-default) !important;
   font-size: var(--type-heading-h4-size);
-  font-family: var(--type-font-default);
   font-weight: var(--type-heading-h4-weight);
   line-height: var(--type-heading-h4-lh);
   word-wrap: break-word;
 }
 
-/* Card title icon */
 .card-title .icon {
   color: var(--clr-link-default) !important;
 }
 
-/* Card text/body styling */
 .card-text {
   color: var(--clr-text-default);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
   word-wrap: break-word;
 }
 
-/* Card body */
+/* Layout */
 .card-body {
-  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-  padding-left: var(--sp-xl) !important;
-  padding-right: var(--sp-xl) !important;
+  padding: var(--sp-xl) var(--sp-xl) var(--sp-xxs) var(--sp-xl) !important ;
   display: flex;
   flex-direction: column;
   gap: var(--sp-sm);
   flex: 1 1 auto;
 }
 
-/* Card header */
 .card-header {
   padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
   background-color: var(--bs-card-cap-bg);
   border-bottom: 0;
 }
 
-/* Card footer */
 .card-footer {
-  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  padding-bottom: var(--sp-xl) !important;
+  padding: var(--sp-xs) var(--sp-xl) var(--sp-xl) var(--sp-xl) !important;
   background-color: transparent !important;
-  border-top: none !important;
-  border-bottom: 0;
-  border-left: 0;
-  border-right: 0;
+  border: none !important;
+}
+
+.card-footer .btn.btn-tertiary {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* Card image styling */
@@ -130,12 +118,7 @@
   border-bottom-right-radius: var(--bs-card-border-radius);
 }
 
-/**
- * Custom Card Components
- * BEM-style classes for enhanced card features
- */
-
-/* Card header metadata (tag and date) */
+/* Header metadata */
 .card__header-meta {
   align-self: stretch;
   padding: var(--sp-xl) var(--sp-xl) var(--sp-xxs);
@@ -152,18 +135,19 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: var(--sp-xs);
+  padding: 0;
+  margin: 0;
 }
 
 .card__header-meta-date {
   color: var(--clr-text-default);
   font-size: var(--type-body-small-size);
-  font-family: var(--type-font-default);
   font-weight: var(--type-body-small-weight);
   line-height: var(--type-body-small-lh);
   white-space: nowrap;
 }
 
-/* Card media container */
+/* Media container */
 .card__media {
   position: relative;
   width: 100%;
@@ -173,11 +157,9 @@
 .card__media--16-9 {
   aspect-ratio: 16 / 9;
 }
-
 .card__media--4-3 {
   aspect-ratio: 4 / 3;
 }
-
 .card__media--1-1 {
   aspect-ratio: 1 / 1;
 }
@@ -189,28 +171,25 @@
   display: block;
 }
 
-/* Card body with icon */
+/* Body content */
 .card__body-content {
-  align-self: stretch;
   display: flex;
   flex-direction: column;
   gap: var(--sp-sm);
 }
 
 .card__body-title-wrapper {
-  align-self: stretch;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   gap: var(--sp-xs);
 }
 
 .card__body-title-wrapper .card-title {
-  flex: 1 1 0;
+  flex: 1;
   margin-bottom: 0;
 }
 
-/* Card footer actions */
+/* Footer actions */
 .card__footer-actions {
   align-self: flex-start;
   display: flex;
@@ -218,10 +197,6 @@
   align-items: flex-start;
   gap: var(--sp-sm);
 }
-
-/**
- * Card Modifiers
- */
 
 /* Horizontal layout (image on side) */
 .card--horizontal {
@@ -240,10 +215,9 @@
 }
 
 .card--horizontal .card-body {
-  flex: 1 1 0;
+  flex: 1;
 }
 
-/* Responsive: Stack on mobile */
 @media (max-width: 768px) {
   .card--horizontal {
     flex-direction: column;
@@ -254,7 +228,7 @@
   }
 }
 
-/* Clickable card */
+/* Clickable cards */
 .card--clickable {
   cursor: pointer;
   border-color: var(--clr-border-subtle) !important;
@@ -270,11 +244,7 @@
   box-shadow: var(--shadow-md);
 }
 
-.card--clickable:focus {
-  outline: none;
-  /* Theme-specific focus styles defined in Card-ntg.css and Card-central.css */
-}
-
+.card--clickable:focus,
 .card--clickable:focus-visible {
   outline: none;
 }
@@ -294,40 +264,26 @@
   box-shadow: none !important;
 }
 
-/* Ensure clickable card titles maintain link color */
 .card--clickable .card-title {
   color: var(--clr-link-default);
   text-decoration: none !important;
 }
 
-.card--clickable:hover .card-title {
+.card--clickable:hover .card-title,
+.card--clickable:hover .card-title .icon,
+.card--clickable:hover .btn-tertiary {
   color: var(--clr-link-hover) !important;
+}
+
+.card--clickable:hover .card-title {
   text-decoration: underline;
 }
 
-.card--clickable:hover .card-title .icon {
-  color: var(--clr-link-hover) !important;
-}
-
-/* Apply hover styles to footer button when card is hovered */
-/* IMPORTANT: Footer uses Button.css classes (.btn-tertiary) directly on a span element */
-/* This is intentional - span prevents focus stealing but still needs Button styling */
-/* If Button.css hover colors change, update this selector accordingly */
-.card--clickable:hover .btn-tertiary {
-  color: var(--clr-link-hover);
-}
-
-/**
- * Bootstrap Grid Support
- * These classes work with Bootstrap's grid system
- */
-
-/* Equal height cards in grid */
+/* Grid support */
 .card.h-100 {
   height: 100%;
 }
 
-/* Card groups - equal width and height columns */
 .card-group {
   display: flex;
   flex-flow: row wrap;
@@ -335,27 +291,18 @@
 }
 
 .card-group > .card {
-  flex: 1 1 0;
+  flex: 1;
   margin-bottom: 0;
 }
 
-/* Responsive: Stack on mobile */
 @media (max-width: 576px) {
   .card-group {
     flex-direction: column;
   }
-
-  .card-group > .card {
-    flex: 1 1 auto;
-  }
 }
 
-/**
- * Minicard Variant
- * Minimal card with only title icon and title
- */
+/* Minicard variant */
 
-/* Minicard variant - title and icon only */
 .card--minicard {
   padding: var(--sp-xl) !important;
   border: 1px solid var(--clr-border-subtle);
@@ -380,13 +327,65 @@
 }
 
 .card--minicard .card__minicard-icon {
-  width: 32px;
-  height: 32px;
-  font-size: 26.67px;
+  width: var(--sp-xxl);
+  height: var(--sp-xxl);
+  font-size: var(--sp-xl);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--clr-text-emphasis) !important;
+  margin: 0 var(--sp-xs) 0 0;
+}
+
+/* Compact variant */
+
+.card--compact {
+  padding: var(--sp-xl) !important;
+  border: var(--border-width-md) solid var(--clr-border-subtle);
+  background: var(--clr-bg-default);
+}
+
+.card--compact .card-body {
+  padding: 0 !important;
+  gap: var(--sp-sm);
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.card--compact .card__body-content {
+  flex: 1;
+  gap: var(--sp-sm);
+}
+
+.card--compact .card__body-title-wrapper {
+  gap: var(--sp-xs);
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card--compact .card-title {
+  font-size: var(--type-body-default-size);
+  line-height: var(--type-body-default-lh);
+  font-weight: var(--type-heading-h4-weight);
   margin-bottom: 0;
-  margin-right: var(--sp-xs);
+  color: var(--clr-link-default) !important;
+}
+
+.card--compact .card__compact-icon {
+  width: var(--sp-xxxl);
+  height: var(--sp-xxxl);
+  font-size: var(--sp-xxl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--clr-link-default) !important;
+  margin: 0;
+}
+
+.card--compact .card__compact-description {
+  font-size: var(--type-body-default-size);
+  line-height: var(--type-body-default-lh);
+  font-weight: var(--type-body-default-weight);
+  color: var(--clr-text-default);
 }

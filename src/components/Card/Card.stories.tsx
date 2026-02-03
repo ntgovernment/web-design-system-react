@@ -23,7 +23,7 @@ const meta = {
     showMeta: {
       control: "boolean",
     },
-    showFooter: {
+    showButton: {
       control: "boolean",
     },
     showTitleIcon: {
@@ -56,13 +56,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * Full card variant matching Figma design with all sections:
- * - Rich media (16:9 image)
- * - Header metadata (tag and date)
- * - Title and body content
- * - Footer with action button
+ * Full Card Variant - Complete card with all sections
  *
- * This demonstrates composition of Image, Tag, and Button components.
+ * Sections displayed:
+ * - Media: 16:9 aspect ratio image
+ * - Header metadata: Tags and date labels
+ * - Title: Main heading with optional icon
+ * - Description: Body content
+ * - Footer: "Find out more" action button
+ *
+ * Features:
+ * - All interactive sections (clickable when href provided)
+ * - Theme-specific focus outline (keyboard accessible)
+ * - Design tokens for consistent spacing and typography
+ * - Button uses Button.css classes on span element (not Button component)
+ *
+ * Use Case: Rich content display for news, resources, events, services
  */
 export const Full: Story = {
   args: {
@@ -76,8 +85,16 @@ export const Full: Story = {
 };
 
 /**
- * Card with title icon displayed to the left of the title.
- * Useful for adding visual context or categorization.
+ * Full Variant with Title Icon
+ *
+ * Icon displayed to the left of the title text.
+ * Useful for adding visual hierarchy and categorization at a glance.
+ *
+ * Features:
+ * - Icon from FontAwesome 6 library
+ * - Automatically positioned left of title
+ * - Respects design tokens for spacing (ms-2 margin)
+ * - Works with any FontAwesome icon class string
  */
 export const WithTitleIcon: Story = {
   args: {
@@ -93,8 +110,15 @@ export const WithTitleIcon: Story = {
 };
 
 /**
- * Card without image section.
- * When showFooter is false, the entire card becomes clickable automatically.
+ * Full Variant Without Image Section
+ *
+ * Demonstrates card with image hidden (showImage={false}).
+ * All other sections render normally:
+ * - Header metadata (tags and date) still visible
+ * - Title and description displayed
+ * - Footer with action button
+ *
+ * Use Case: When media is not available or content-focused display is preferred
  */
 export const NoImage: Story = {
   args: {
@@ -109,7 +133,15 @@ export const NoImage: Story = {
 };
 
 /**
- * Card without metadata section (tag and date).
+ * Full Variant Without Metadata Section
+ *
+ * Demonstrates card with header metadata hidden (showMeta={false}).
+ * Removes tags and date display but keeps:
+ * - Media section
+ * - Title and description
+ * - Footer with action button
+ *
+ * Use Case: Simple content cards without need for categorization or dating
  */
 export const NoMetadata: Story = {
   args: {
@@ -122,15 +154,34 @@ export const NoMetadata: Story = {
 };
 
 /**
- * Card without footer.
- * When showFooter is false, the entire card becomes clickable.
+ * Full Variant Without Action Button (showButton={false})
+ *
+ * Key Points:
+ * - **Footer container ALWAYS renders** for full variant to maintain consistent spacing
+ * - **Only the button is hidden**, footer element persists with padding
+ * - **Prevents layout shift** when toggling button visibility dynamically
+ * - **Footer spacing remains consistent** across all states
+ *
+ * Behavior:
+ * - showButton={false}: Footer renders but button inside is hidden
+ * - showButton={true}: Footer renders with action button
+ * - Custom footer: Pass footer prop to override entirely
+ *
+ * Implementation:
+ * The footer container (.card-footer) with padding always renders for full variant.
+ * Only the button span (.btn .btn-tertiary) conditionally renders inside.
+ *
+ * Use Case:
+ * - Links/cards that don't need action button
+ * - Layouts where consistent card height is required
+ * - Progressive disclosure (button shown/hidden based on state)
  */
-export const NoFooter: Story = {
+export const NoButton: Story = {
   args: {
     title: "Business Registration Services",
     description:
       "Register your business entity online with our streamlined application process.",
-    showFooter: false,
+    showButton: false,
     href: "#",
     tagLabel: "Service:blue",
     dateLabel: "15 Feb 2025",
@@ -139,8 +190,20 @@ export const NoFooter: Story = {
 };
 
 /**
- * Minimal card with only title and description.
- * All optional sections are hidden, card becomes clickable.
+ * Minimal Full Card Configuration
+ *
+ * Demonstrates compact card with most sections hidden:
+ * - showImage={false}: No media section
+ * - showMeta={false}: No tags or date
+ * - showButton={false}: Footer container renders but button hidden
+ *
+ * Features:
+ * - Clean, focused content display
+ * - Clickable for navigation (href provided)
+ * - Consistent footer spacing maintained
+ * - All design tokens and theming still applied
+ *
+ * Use Case: Content cards where metadata and media not relevant
  */
 export const Minimal: Story = {
   args: {
@@ -148,15 +211,26 @@ export const Minimal: Story = {
     description: "This is a minimal card with just the essential content.",
     showImage: false,
     showMeta: false,
-    showFooter: false,
+    showButton: false,
     href: "#",
     style: { maxWidth: "353px" },
   },
 };
 
 /**
- * Card with multiple tags.
- * Tags are comma-separated with optional :variant suffix.
+ * Card with Multiple Metadata Tags
+ *
+ * Demonstrates tag rendering with multiple values:
+ * - Tags comma-separated: "News:blue, Update:green, Featured:default"
+ * - Each tag rendered with color variant
+ * - Scrolls horizontally if space constrained
+ *
+ * Tag Syntax:
+ * - "News:blue" -> tag text "News" with blue color variant
+ * - "Update:green" -> tag text "Update" with green color variant
+ * - "Featured:default" -> tag text "Featured" with default color (no color variant)
+ *
+ * Use Case: Content with multiple categories or labels
  */
 export const MultipleTags: Story = {
   args: {
@@ -170,7 +244,20 @@ export const MultipleTags: Story = {
 };
 
 /**
- * Card with custom action button text and icon.
+ * Card with Custom Action Button
+ *
+ * Demonstrates how to customize footer button:
+ * - actionText="Download Now": Custom button label
+ * - actionIcon="fa-light fa-download": FontAwesome icon
+ * - Icon displays to the right of text (ms-2 margin)
+ *
+ * Features:
+ * - Any FontAwesome 6 icon can be used
+ * - Button styling from Button.css (btn, btn-tertiary classes)
+ * - Theme-specific colors (NT.GOV.AU, Central themes)
+ * - Keyboard accessible (tab navigation)
+ *
+ * Use Case: Cards with specific actions (download, register, apply, etc.)
  */
 export const CustomAction: Story = {
   args: {
@@ -186,9 +273,29 @@ export const CustomAction: Story = {
 };
 
 /**
- * Minicard variant with only title icon and title.
- * Minimal card for compact displays or dashboard widgets.
- * Automatically hides image, metadata, description, and footer sections.
+ * Minicard Variant - Minimal Compact Card
+ *
+ * Renders only:
+ * - Icon (mandatory for minicard)
+ * - Title text
+ *
+ * Automatically hidden (cannot be shown in minicard):
+ * - Media/image section
+ * - Header metadata (tags, date)
+ * - Description/body content
+ * - Footer and button
+ *
+ * Features:
+ * - Compact size suitable for grids and dashboards
+ * - Icon always displays (showTitleIcon forced to true)
+ * - Clickable for navigation when href provided
+ * - Same focus states and keyboard navigation as full variant
+ *
+ * Use Cases:
+ * - Dashboard widgets
+ * - Grid layouts (categories, services)
+ * - Quick navigation cards
+ * - List item cards
  */
 export const Minicard: Story = {
   args: {
@@ -196,5 +303,43 @@ export const Minicard: Story = {
     title: "Card title",
     icon: "fa-solid fa-circle-info",
     description: "This will not be shown in minicard variant",
+    style: { maxWidth: "353px" },
+  },
+};
+
+/**
+ * Compact Variant - Horizontal Layout Card
+ *
+ * Renders in single horizontal row:
+ * - Icon on left side
+ * - Title text
+ * - Description below title (inline flow)
+ *
+ * Automatically hidden (cannot be shown in compact):
+ * - Media/image section
+ * - Header metadata (tags, date)
+ * - Footer and button
+ *
+ * Features:
+ * - Horizontal alignment maximizes space efficiency
+ * - Icon always displays (showTitleIcon forced to true)
+ * - Multi-line description supported
+ * - Same keyboard accessibility as full variant
+ * - Theme-specific focus outlines
+ *
+ * Use Cases:
+ * - Contact information cards
+ * - Quick info blocks (opening hours, phone, address)
+ * - List item layouts
+ * - Inline content cards
+ * - Service quick reference cards
+ */
+export const Compact: Story = {
+  args: {
+    variant: "compact",
+    title: "Customer Service",
+    description: "1800 000 000 or ext 12345",
+    icon: "fa-light fa-phone",
+    style: { maxWidth: "400px" },
   },
 };

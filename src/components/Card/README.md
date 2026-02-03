@@ -4,17 +4,18 @@ A flexible and extensible content container component for displaying grouped con
 
 ## Features
 
-- **Rich Media Support** - Images, videos, or custom components with aspect ratio control
-- **Header Metadata** - Tag/label and date information for news articles and content listings
-- **Footer Actions** - Buttons or custom components for calls-to-action
-- **Flexible Composition** - Compose with Image, Tag, Button, and other components
-- **Horizontal Layout** - Image on the side (responsive, stacks on mobile)
-- **Clickable Cards** - Entire card as a link with hover and focus states
-- **Grid Support** - Works with Bootstrap grid and equal height cards
-- **Design Tokens** - Uses semantic tokens for consistent theming
-- **Theme Support** - Works with both NTG and Central themes
-- **Full TypeScript Support** - Complete type definitions with IntelliSense
-- **Accessibility** - Proper ARIA attributes and keyboard navigation
+- **Three Layout Variants** - Full (complete), minicard (icon + title only), and compact (horizontal layout)
+- **Flexible Footer Behavior** - Footer container always renders for full variant; button visibility controlled independently
+- **Rich Media Support** - Images, videos, or custom components with 16:9 aspect ratio
+- **Header Metadata** - Tags and dates in header section (full variant only)
+- **Footer Actions** - Semantic tertiary button or custom footer content
+- **Responsive Design** - Mobile-friendly with stacking and reflow layouts
+- **Horizontal Layout** - Optional image-on-side layout (responsive, stacks on mobile)
+- **Clickable Cards** - Entire card as interactive link with keyboard support
+- **Design Tokens** - Semantic spacing, typography, color, and focus tokens
+- **Theme Support** - NT.GOV.AU (orange focus) and Central (green focus) themes
+- **Type-Safe** - Complete TypeScript definitions with IntelliSense
+- **Accessibility** - WCAG AAA compliant with proper ARIA labels and keyboard nav
 
 ## Design Tokens
 
@@ -22,28 +23,45 @@ The Card component uses the design system's semantic tokens for consistent themi
 
 ### Spacing
 
-- `--sp-xl` (24px) - Card padding
-- `--sp-sm` (12px) - Internal gaps
-- `--sp-xs` (8px) - Small gaps
+- `--sp-xl` (24px) - Card padding (all sides)
+- `--sp-xxs` (4px) - Minimal spacing (between body and footer)
+- `--sp-xs` (8px) - Extra-small gaps
+- `--sp-sm` (12px) - Small gaps
 
 ### Colors
 
-- `--clr-bg-default` - Card background
+- `--clr-bg-default` - Card background color
 - `--clr-text-default` - Default text color
-- `--clr-link-default` - Card title color
-- `--clr-border-subtle` - Card border color
+- `--clr-text-default-muted` - Secondary text color
+- `--clr-border-strong-01` - Card border color
 
 ### Typography
 
-- `--type-heading-h3-*` - Card title styling
-- `--type-body-default-*` - Card text styling
-- `--type-body-small-*` - Header date styling
+- `--type-heading-h5-*` - Card title (size, weight, line-height, letter-spacing)
+- `--type-body-base-*` - Card description text
+- `--type-body-sm-*` - Header date and small text
 
-### Other
+### Focus & Interactive
 
-- `--border-width-md` - Card border width
-- `--shadow-md` - Hover shadow for clickable cards
-- `--shadow-focus-ntg` / `--shadow-focus-central` - Theme-specific focus styles
+- `--border-width-md` (1px) - Card border width
+- `--shadow-focus-ntg` - Orange 4px focus outline for NT.GOV.AU theme
+- `--shadow-focus-central` - Green 4px focus outline for Central theme
+
+### Implementation
+
+All spacing uses CSS variables:
+
+```css
+.card {
+  padding: var(--sp-xl); /* 24px all sides */
+}
+.card-body {
+  padding: var(--sp-xl) var(--sp-xl) var(--sp-xxs) var(--sp-xl); /* top/right/bottom/left */
+}
+.card-footer {
+  padding: var(--sp-xl); /* 24px all sides */
+}
+```
 
 ## Usage
 
@@ -58,46 +76,74 @@ import { Card } from "@ntgovernment/web-design-system";
 />;
 ```
 
-### Full Card with All Features
+### Full Card - Complete with All Sections
 
-Matches the Figma design with media, header metadata, and footer actions:
+Default full variant rendering:
+
+- Media (16:9 image)
+- Header metadata (tags and date)
+- Title with optional icon
+- Description
+- Footer with "Find out more" button
 
 ```tsx
-import { Card, Image, Tag, Button } from "@ntgovernment/web-design-system";
-
 <Card
-  media={<img src="article.jpg" alt="News article" />}
-  header={{
-    tag: <Tag variant="info" label="News" />,
-    date: "17 Feb 2025",
-  }}
   title="Supporting survivors on National Day of Remembrance"
   description="Join in and honour the resilience of survivors and the lives lost."
-  footer={
-    <Button
-      variant="tertiary"
-      label="Find out more"
-      iconRight="fa-solid fa-arrow-right"
-    />
-  }
-  mediaAspectRatio="16:9"
-/>;
+  imageURL="article.jpg"
+  tagLabel="News:blue"
+  dateLabel="17 Feb 2025"
+  showTitleIcon={true}
+  icon="fa-light fa-circle-info"
+  actionText="Find out more"
+  actionIcon="fa-light fa-arrow-right"
+/>
 ```
 
-### Card with Media
+### Footer Behavior - showButton Prop (Important!)
+
+The footer container **always renders for full variant** to maintain consistent card spacing:
+
+```tsx
+// With button (default showButton={true})
+<Card
+  title="Article Title"
+  description="Content here"
+  actionText="Read more"
+/>
+// Result: Footer renders with button
+
+// Without button (showButton={false})
+<Card
+  title="Article Title"
+  description="Content here"
+  showButton={false}
+/>
+// Result: Footer container still renders but button is hidden (maintains spacing!)
+
+// Custom footer content (overrides default button)
+<Card
+  title="Article Title"
+  description="Content here"
+  footer={<p>Updated 2 hours ago</p>}
+/>
+// Result: Custom footer renders instead of default button
+```
+
+**Why?** The footer container persists to prevent layout shift when toggling button visibility dynamically. This is important for:
+
+- Consistent card height in responsive grids
+- Smooth transitions when showing/hiding buttons
+- Predictable layout behavior
+
+### Card with Image
 
 ```tsx
 <Card
-  media={
-    <img
-      src="featured-image.jpg"
-      alt="Featured content"
-      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-    />
-  }
   title="Environmental Sustainability"
   description="Learn about our new programs to protect natural resources."
-  mediaAspectRatio="16:9"
+  imageURL="featured-image.jpg"
+  showImage={true}
 />
 ```
 
@@ -105,28 +151,36 @@ import { Card, Image, Tag, Button } from "@ntgovernment/web-design-system";
 
 ```tsx
 <Card
-  header={{
-    tag: <Tag variant="success" label="Event" />,
-    date: "25 Mar 2025",
-  }}
   title="Community Engagement Session"
   description="Join us for a community discussion on local services."
+  tagLabel="Event:green"
+  dateLabel="25 Mar 2025"
 />
 ```
 
-### Card with Footer Actions
+### Card with Custom Footer
+
+Using custom footer content instead of default action button:
 
 ```tsx
 <Card
   title="Application Dashboard"
   description="View and manage all your applications in one place."
-  footer={
-    <div style={{ display: "flex", gap: "var(--sp-sm)" }}>
-      <Button variant="primary" label="View Dashboard" />
-      <Button variant="secondary" label="New Application" />
-    </div>
-  }
+  footer={<p style={{ fontSize: "0.875rem" }}>Updated 2 hours ago</p>}
 />
+```
+
+### Card Without Button (Footer Container Persists)
+
+Use `showButton={false}` to hide button while maintaining footer spacing:
+
+```tsx
+<Card
+  title="News Article"
+  description="Read the latest updates about government services."
+  showButton={false}
+/>
+// Footer container still renders, maintaining card spacing
 ```
 
 ### Horizontal Card Layout
@@ -135,36 +189,29 @@ Image on the side (automatically stacks on mobile):
 
 ```tsx
 <Card
-  horizontal
-  media={<img src="side-image.jpg" alt="Department" />}
+  horizontal={true}
   title="Department of Health"
   description="Access health services, information, and resources."
-  footer={
-    <Button
-      variant="tertiary"
-      label="Access Services"
-      iconRight="fa-solid fa-arrow-right"
-    />
-  }
+  imageURL="side-image.jpg"
+  actionText="Access Services"
+  actionIcon="fa-light fa-arrow-right"
 />
 ```
 
 ### Clickable Card
 
-Entire card as a navigable link:
+Entire card becomes a navigable link with keyboard support:
 
 ```tsx
 <Card
-  clickable
+  clickable={true}
   href="/article/123"
   ariaLabel="Read more about service updates"
-  media={<img src="article.jpg" alt="Service update" />}
-  header={{
-    tag: <Tag variant="warning" label="Alert" />,
-    date: "1 Feb 2025",
-  }}
   title="Important Service Update"
   description="Some services will have reduced hours during the holiday period."
+  imageURL="article.jpg"
+  tagLabel="Alert:warning"
+  dateLabel="1 Feb 2025"
 />
 ```
 
@@ -175,27 +222,23 @@ Entire card as a navigable link:
   <div className="col">
     <Card
       className="h-100"
-      media={<img src="service1.jpg" alt="Service 1" />}
-      header={{
-        tag: <Tag variant="info" label="Service" />,
-        date: "15 Feb 2025",
-      }}
       title="Licensing Services"
       description="Apply for licenses and permits online."
-      footer={<Button variant="tertiary" label="Apply Now" />}
+      imageURL="service1.jpg"
+      tagLabel="Service:blue"
+      dateLabel="15 Feb 2025"
+      actionText="Apply Now"
     />
   </div>
   <div className="col">
     <Card
       className="h-100"
-      media={<img src="service2.jpg" alt="Service 2" />}
-      header={{
-        tag: <Tag variant="success" label="Service" />,
-        date: "10 Feb 2025",
-      }}
       title="Business Registration"
       description="Register your business entity."
-      footer={<Button variant="tertiary" label="Register" />}
+      imageURL="service2.jpg"
+      tagLabel="Service:green"
+      dateLabel="10 Feb 2025"
+      actionText="Register"
     />
   </div>
   {/* More cards... */}
@@ -206,24 +249,67 @@ Entire card as a navigable link:
 
 ### CardProps
 
-| Prop               | Type                                | Default      | Description                                                   |
-| ------------------ | ----------------------------------- | ------------ | ------------------------------------------------------------- |
-| `title`            | `string`                            | **Required** | Card title (rendered as h5)                                   |
-| `description`      | `React.ReactNode`                   | **Required** | Card body content                                             |
-| `media`            | `React.ReactNode`                   | `undefined`  | Rich media content (Image component or custom ReactNode)      |
-| `header`           | `CardHeaderMeta \| React.ReactNode` | `undefined`  | Header metadata with tag and date, or custom ReactNode        |
-| `footer`           | `React.ReactNode`                   | `undefined`  | Footer content (Button component or custom ReactNode)         |
-| `horizontal`       | `boolean`                           | `false`      | Horizontal layout with image on side (stacks on mobile)       |
-| `clickable`        | `boolean`                           | `false`      | Make entire card clickable/linkable                           |
-| `href`             | `string`                            | `undefined`  | URL for clickable card (when clickable is true)               |
-| `className`        | `string`                            | `''`         | Additional CSS classes (e.g., 'h-100' for equal height)       |
-| `ariaLabel`        | `string`                            | `undefined`  | ARIA label for clickable cards (required for accessibility)   |
-| `mediaAspectRatio` | `'16:9' \| '4:3' \| '1:1'`          | `'16:9'`     | Aspect ratio for media container                              |
-| `variant`          | `string`                            | `undefined`  | **DEPRECATED**: Use composition with Tag/Notification instead |
+| Prop               | Type                                | Default       | Description                                                                  |
+| ------------------ | ----------------------------------- | ------------- | ---------------------------------------------------------------------------- |
+| `title`            | `string`                            | **Required**  | Card title (rendered as h5)                                                  |
+| `description`      | `React.ReactNode`                   | **Required**  | Card body content (not shown in minicard)                                    |
+| `variant`          | `'full' \| 'minicard' \| 'compact'` | `'full'`      | Layout variant (full=complete, minicard=title+icon, compact=horizontal)      |
+| `showImage`        | `boolean`                           | `true`        | Show/hide image section (full variant only)                                  |
+| `imageURL`         | `string`                            | placeholder   | Image URL for card media section                                             |
+| `media`            | `React.ReactNode`                   | `undefined`   | Custom media content (overrides imageURL)                                    |
+| `mediaAspectRatio` | `'16:9'`                            | `'16:9'`      | Aspect ratio for media container (only 16:9 currently supported)             |
+| `showMeta`         | `boolean`                           | `true`        | Show/hide header metadata (tags and date, full variant only)                 |
+| `tagLabel`         | `string`                            | `'News:blue'` | Tag labels comma-separated with optional :variant suffix                     |
+| `dateLabel`        | `string`                            | `undefined`   | Date label for header metadata section                                       |
+| `showTitleIcon`    | `boolean`                           | `false`       | Show/hide title icon (auto-true for minicard/compact, full=false by default) |
+| `icon`             | `string`                            | `undefined`   | FontAwesome icon class (e.g., 'fa-light fa-circle-info')                     |
+| `showButton`       | `boolean`                           | `true`        | Show/hide footer button (footer container always renders for full variant)   |
+| `actionText`       | `string`                            | `undefined`   | Action button text label (default: "Find out more")                          |
+| `actionIcon`       | `string`                            | `undefined`   | Action button icon (FontAwesome class)                                       |
+| `footer`           | `React.ReactNode`                   | `undefined`   | Custom footer content (overrides default button)                             |
+| `horizontal`       | `boolean`                           | `false`       | Horizontal layout with image on side (stacks on mobile)                      |
+| `clickable`        | `boolean`                           | `true`        | Make entire card clickable/keyboard navigable                                |
+| `href`             | `string`                            | `undefined`   | URL for clickable card (renders as anchor tag)                               |
+| `ariaLabel`        | `string`                            | `undefined`   | ARIA label for accessibility (recommended for clickable cards)               |
+
+### Variant Behavior Details
+
+#### Full Variant (Default)
+
+- All sections render: media, metadata, title, description, footer
+- Footer container **always renders** for spacing consistency
+- Button visibility controlled by `showButton` prop
+- Height expands with content
+
+```tsx
+<Card variant="full" title="..." description="..." />
+```
+
+#### Minicard Variant
+
+- Only icon and title render
+- No media, metadata, description, or footer
+- Best for: grids, dashboards, category displays
+- Icon always shows (showTitleIcon forced true)
+
+```tsx
+<Card variant="minicard" title="..." icon="..." />
+```
+
+#### Compact Variant
+
+- Horizontal layout with icon, title, and description
+- No media, metadata, or footer
+- Best for: contact cards, quick info blocks, lists
+- Icon always shows (showTitleIcon forced true)
+
+```tsx
+<Card variant="compact" title="..." description="..." icon="..." />
+```
 
 ### CardHeaderMeta
 
-Object type for structured header metadata:
+Object type for structured header metadata (full variant only):
 
 | Property | Type              | Description                               |
 | -------- | ----------------- | ----------------------------------------- |
@@ -252,71 +338,50 @@ The `mediaAspectRatio` prop controls the aspect ratio of the media container:
 
 ## Component Composition
 
-### With Image Component
+### Using Built-in Props vs Custom Components
+
+The Card component provides props to render common layouts. You can use:
+
+**Option 1: Built-in Props (Recommended)**
 
 ```tsx
-import { Card, Image } from "@ntgovernment/web-design-system";
-
 <Card
-  media={<Image src="article.jpg" alt="Article image" fluid />}
   title="News Article"
-  description="Article content"
-/>;
+  description="Article content here"
+  imageURL="article.jpg"
+  tagLabel="News:blue"
+  dateLabel="17 Feb 2025"
+  actionText="Read more"
+  actionIcon="fa-light fa-arrow-right"
+/>
 ```
 
-### With Tag Component
+**Option 2: Custom Footer with Component**
 
 ```tsx
-import { Card, Tag } from "@ntgovernment/web-design-system";
-
-<Card
-  header={{
-    tag: <Tag variant="info" label="News" />,
-    date: "17 Feb 2025",
-  }}
-  title="Latest Update"
-  description="Update content"
-/>;
-```
-
-### With Button Component
-
-```tsx
-import { Card, Button } from "@ntgovernment/web-design-system";
-
 <Card
   title="Take Action"
   description="Action content"
   footer={
-    <Button
-      variant="primary"
-      label="Get Started"
-      iconRight="fa-solid fa-arrow-right"
-    />
+    <div style={{ display: "flex", gap: "var(--sp-sm)" }}>
+      <button className="btn btn-primary">Get Started</button>
+      <button className="btn btn-secondary">Learn More</button>
+    </div>
   }
-/>;
+/>
 ```
 
-### With Multiple Components
+**Option 3: Custom Media**
 
 ```tsx
-import { Card, Image, Tag, Button } from "@ntgovernment/web-design-system";
-
 <Card
-  media={<Image src="event.jpg" alt="Event" />}
-  header={{
-    tag: <Tag variant="success" label="Event" />,
-    date: "25 Mar 2025",
-  }}
   title="Community Event"
-  description="Event description"
-  footer={
-    <>
-      <Button variant="primary" label="Register" />
-      <Button variant="secondary" label="Learn More" />
-    </>
-  }
-/>;
+  description="Join us for community discussion"
+  media={<video src="event.mp4" controls />}
+  tagLabel="Event:green"
+  dateLabel="25 Mar 2025"
+  actionText="Register"
+/>
 ```
 
 ## Layout Patterns
@@ -373,62 +438,89 @@ Image on the side (responsive):
 
 ## Accessibility
 
-### Semantic HTML
+### Semantic HTML Structure
 
-The Card component uses semantic HTML:
+The Card component produces semantic HTML:
 
-- `<div>` with `.card` class for container
-- `<h5>` for card title (proper heading hierarchy)
-- `<a>` tag when clickable with href
-- Proper ARIA attributes for interactive elements
+- `<div class="card">` - Container (or `<a>` when clickable)
+- `<h5 class="card-title">` - Proper heading hierarchy for titles
+- `<img alt="...">` - Descriptive alt text for images
+- `<span class="btn ..." aria-hidden="true">` - Footer button with aria-hidden to prevent duplicate announcements
 
-### Clickable Cards
+### Keyboard Navigation
 
-When using clickable cards:
+- **Tab** - Navigate to focused card
+- **Enter/Space** - Activate card link when href provided
+- **Internal elements** - Pointer-events disabled to prevent focus stealing
+- **Focus indicators** - Theme-specific 4px colored shadow outline
+  - NT.GOV.AU: Orange (`--shadow-focus-ntg`)
+  - Central: Green (`--shadow-focus-central`)
 
-1. **Always provide `ariaLabel`** for screen readers:
+### Clickable Cards Best Practices
+
+Always provide `ariaLabel` for screen reader users when card doesn't have a clear link text:
 
 ```tsx
 <Card
-  clickable
-  href="/article"
+  clickable={true}
+  href="/article/123"
   ariaLabel="Read more about environmental initiatives"
   title="Environmental Initiatives"
->
-  Content preview...
-</Card>
+  description="Learn about new conservation programs..."
+/>
 ```
 
-2. **Keyboard Navigation** - Clickable cards support:
-   - `Tab` to focus
-   - `Enter` or `Space` to activate (when using button role)
-   - Theme-specific focus indicators (orange for NTG, green for Central)
-
-3. **Focus States** - Proper focus indicators with theme-specific colors:
-   - NTG: 4px solid orange (`--shadow-focus-ntg`)
-   - Central: 4px solid green (`--shadow-focus-central`)
-
-### Images
+### Image Accessibility
 
 Always provide descriptive `alt` text for images:
 
 ```tsx
 <Card
-  media={
-    <img src="news.jpg" alt="Community members gathering at outdoor event" />
-  }
   title="Community Gathering"
->
-  Content
-</Card>
+  description="Community members at outdoor event"
+  imageURL="community.jpg"
+/>
+// imageURL assumes filename describes image
+
+// Or with custom media element:
+<Card
+  title="Community Gathering"
+  description="Community members at outdoor event"
+  media={<img src="community.jpg" alt="Community members gathering at outdoor event" />}
+/>
 ```
 
 ### Color Contrast
 
-All text maintains WCAG AAA color contrast ratios:
+All text meets WCAG AAA color contrast standards:
 
-- Default text: `--clr-text-default` on `--clr-bg-default`
-- Card titles: `--clr-link-default` (meets AAA standards)
+- Default text: `--clr-text-default` on `--clr-bg-default` (≥7:1)
+- Card titles: Semantic heading color tokens (≥7:1)
+- Link text: Proper contrast on hover/focus states
+
+### Button in Footer
+
+The footer button uses `aria-hidden="true"` because:
+
+1. Button is not a real button element (it's a span with button styling)
+2. Button is inside the clickable card wrapper
+3. To prevent screen reader duplicate announcements
+4. Card as whole is the interactive element, not individual button
+
+For custom footers with actual interactive elements:
+
+```tsx
+<Card
+  title="Actions Available"
+  description="Choose an action below"
+  footer={
+    <div style={{ display: "flex", gap: "var(--sp-sm)" }}>
+      <button className="btn btn-primary">Save</button>
+      <button className="btn btn-secondary">Cancel</button>
+    </div>
+  }
+/>
+```
 
 ## Theming
 
@@ -467,105 +559,238 @@ Override with custom CSS or design tokens:
 
 ## Migration Guide
 
-### From Old Card Component
+### Recent Changes: showFooter → showButton
 
 **Old approach (deprecated)**:
 
 ```tsx
-<Card title="News" variant="info" footer={<small>Updated 2 hours ago</small>}>
-  Content
-</Card>
+<Card showFooter={false} title="News" description="..." />
+// Footer section completely hidden
 ```
 
-**New approach (recommended)**:
+**New approach (current)**:
+
+```tsx
+<Card showButton={false} title="News" description="..." />
+// Footer container still renders (maintains spacing), button hidden
+```
+
+**Key difference**: Footer container always renders for full variant now (better layout consistency).
+
+### Footer Behavior Changes
+
+**Before showButton refactor**:
+
+- `showFooter={false}` → Entire footer section hidden, no spacing
+- Could cause layout shift when toggling visibility
+
+**After showButton refactor**:
+
+- `showButton={false}` → Footer container renders with consistent spacing, button hidden
+- Prevents layout shift/jumping
+- Better for responsive grids where consistent height is important
+
+### Updated Props
+
+| Old Pattern            | New Pattern                             | Notes                                            |
+| ---------------------- | --------------------------------------- | ------------------------------------------------ |
+| `showFooter={boolean}` | `showButton={boolean}`                  | Footer container always renders for full variant |
+| `footer={<Button...>}` | `actionText="..."` + `actionIcon="..."` | Use built-in button props, or pass custom footer |
+| `media={<img>}`        | `imageURL="..."` or `media={<img>}`     | Both work; imageURL is simpler                   |
+| `header={{tag, date}}` | `tagLabel="..."` + `dateLabel="..."`    | Both work; string props are simpler              |
+| `clickable={false}`    | `clickable={false}`                     | No change (already working)                      |
+
+### Example Migration
+
+**Old Full Card**:
 
 ```tsx
 <Card
-  variant="full"
-  tagLabel="News"
-  dateLabel="Updated 2 hours ago"
   title="News"
   description="Content"
-  showTitleIcon={true}
-  icon="fa-solid fa-newspaper"
+  showFooter={true}
   footer={<Button variant="tertiary" label="Read more" />}
 />
 ```
 
-### Key Changes
+**New Full Card (equivalent)**:
 
-1. **`variant` prop deprecated** - Use Tag or Notification components for colored indicators
-2. **`icon` prop removed** - Use `showTitleIcon` and `icon` props instead
-3. **New `media` prop** - For images, videos, or custom components
-4. **New `header` prop** - For tag and date metadata
-5. **New `horizontal` prop** - For side-by-side layouts
-6. **New `clickable` props** - For interactive cards
+```tsx
+<Card
+  title="News"
+  description="Content"
+  showButton={true}
+  actionText="Read more"
+  actionIcon="fa-light fa-arrow-right"
+/>
+```
 
 ## Examples
 
-### News Article Card
+### Full Card - News Article
+
+Complete card with media, metadata, and action button:
 
 ```tsx
 <Card
-  media={<img src="/news/article-123.jpg" alt="Article image" />}
-  header={{
-    tag: <Tag variant="info" label="News" />,
-    date: "17 Feb 2025",
-  }}
   title="New Government Initiative Launched"
   description="The Northern Territory Government announces a $5M funding program for community development projects across regional areas."
-  footer={
-    <Button
-      variant="tertiary"
-      label="Read full article"
-      iconRight="fa-solid fa-arrow-right"
-    />
-  }
-  mediaAspectRatio="16:9"
+  imageURL="/news/article-123.jpg"
+  tagLabel="News:blue"
+  dateLabel="17 Feb 2025"
+  actionText="Read full article"
+  actionIcon="fa-light fa-arrow-right"
 />
 ```
 
-### Service Card
+### Clickable Service Card
+
+Card becomes a navigable link:
 
 ```tsx
 <Card
-  clickable
+  clickable={true}
   href="/services/licensing"
   ariaLabel="Apply for business license"
-  media={<img src="/services/licensing.jpg" alt="Licensing services" />}
   title="Business Licensing"
   description="Apply for business licenses, permits, and registrations online. Fast processing and easy tracking."
+  imageURL="/services/licensing.jpg"
+  actionText="Apply now"
+  actionIcon="fa-light fa-arrow-right"
+/>
+```
+
+### Card Without Button (Footer Persists)
+
+Footer container remains for consistent spacing:
+
+```tsx
+<Card
+  title="Service Information"
+  description="Important information about our services."
+  imageURL="/info/service.jpg"
+  tagLabel="News:blue"
+  dateLabel="15 Feb 2025"
+  showButton={false}
+/>
+```
+
+### Alert Card with Custom Footer
+
+Custom footer content instead of default button:
+
+```tsx
+<Card
+  title="Action Required: License Renewal"
+  description="Your license renewal is due soon. Please complete the renewal process to avoid service interruption."
+  tagLabel="Urgent:warning"
+  dateLabel="Due: 15 Feb 2025"
   footer={
-    <Button
-      variant="tertiary"
-      label="Apply now"
-      iconRight="fa-solid fa-arrow-right"
-    />
+    <p style={{ color: "var(--clr-text-danger)" }}>Deadline: 15 Feb 2025</p>
   }
 />
 ```
 
-### Alert Card
+### Compact Contact Cards List
+
+Horizontal layout cards for contact information:
 
 ```tsx
-<Card
-  header={{
-    tag: <Tag variant="danger" label="Urgent" />,
-    date: "Due: 15 Feb 2025",
-  }}
-  title="Action Required: License Renewal"
-  description="Your license renewal is due soon. Please complete the renewal process to avoid service interruption."
-  footer={<Button variant="primary" label="Renew Now" />}
-/>
+<div className="row g-3">
+  <div className="col-md-6">
+    <Card
+      variant="compact"
+      title="Customer Service"
+      description="1800 000 000 or ext 12345"
+      icon="fa-light fa-phone"
+    />
+  </div>
+  <div className="col-md-6">
+    <Card
+      variant="compact"
+      title="Email Support"
+      description="support@nt.gov.au"
+      icon="fa-light fa-envelope"
+    />
+  </div>
+</div>
+```
+
+### Minicard Grid Dashboard
+
+Multiple minicards for categories/services:
+
+```tsx
+<div className="row g-3 row-cols-2 row-cols-md-3 row-cols-lg-4">
+  <div className="col">
+    <Card variant="minicard" title="Licensing" icon="fa-light fa-certificate" />
+  </div>
+  <div className="col">
+    <Card
+      variant="minicard"
+      title="Registration"
+      icon="fa-light fa-clipboard"
+    />
+  </div>
+  <div className="col">
+    <Card variant="minicard" title="Applications" icon="fa-light fa-file" />
+  </div>
+  <div className="col">
+    <Card variant="minicard" title="Support" icon="fa-light fa-headset" />
+  </div>
+</div>
+```
+
+### Responsive Grid with Equal Heights
+
+Full cards in responsive grid with consistent dimensions:
+
+```tsx
+<div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <div className="col">
+    <Card
+      className="h-100"
+      title="Licensing Services"
+      description="Apply for licenses and permits online. Fast processing and easy tracking."
+      imageURL="/services/licensing.jpg"
+      tagLabel="Service:blue"
+      dateLabel="15 Feb 2025"
+      actionText="Apply Now"
+    />
+  </div>
+  <div className="col">
+    <Card
+      className="h-100"
+      title="Business Registration"
+      description="Register your business entity quickly and securely online."
+      imageURL="/services/registration.jpg"
+      tagLabel="Service:green"
+      dateLabel="10 Feb 2025"
+      actionText="Register"
+    />
+  </div>
+  <div className="col">
+    <Card
+      className="h-100"
+      title="Job Applications"
+      description="Browse and apply for job opportunities with the NT Government."
+      imageURL="/services/jobs.jpg"
+      tagLabel="Careers:blue"
+      dateLabel="20 Feb 2025"
+      actionText="Apply"
+    />
+  </div>
+</div>
 ```
 
 ## Related Components
 
-- [Image Component](../Image/README.md) - For card media
-- [Tag Component](../Tag/README.md) - For card header labels
-- [Button Component](../Button/README.md) - For card footer actions
-- [Pill Component](../Pill/README.md) - Alternative to tags
-- [Notification Component](../Notification/README.md) - For alert-style cards
+- [Image Component](../Image/README.md) - For card media sections
+- [Tag Component](../Tag/README.md) - For card header labels (alternative to tagLabel prop)
+- [Icon Component](../Icon/README.md) - For title icons and action icons (FontAwesome wrapper)
+- [Notification Component](../Notification/README.md) - For alert/callout style cards
+- [Button Component](../Button/README.md) - Reference for Button.css dependency (used in footer)
+- [Pill Component](../Pill/README.md) - Alternative label component
 
 ## Storybook
 
@@ -607,13 +832,60 @@ const MyCard: React.FC<CardProps> = (props) => {
 - Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## Notes
+## Implementation Notes
 
-- Bootstrap 5.3.3 must be loaded for proper styling
-- FontAwesome optional (only needed if using icon, actionIcon, or Button iconLeft/iconRight)
-- `title` and `description` props are required - cards must have both
-- Card adapts to container width (100% by default)
-- Use `className="h-100"` for equal height cards in grids
-- Horizontal layout automatically stacks on mobile (< 768px)
-- Clickable cards require `ariaLabel` for accessibility
-- When `showFooter` is false, the entire card becomes clickable automatically
+### Dependencies
+
+- **Bootstrap 5.3.3** - Required for grid system and utility classes
+- **FontAwesome 6** - Required only if using icon, actionIcon props
+- **Button.css** - Required for footer button styling (imported automatically with Card.css)
+
+### Required Props
+
+- `title` (string) - Card always requires a title
+- `description` (React.ReactNode) - Card body content (note: not shown in minicard variant)
+
+### Responsive Behavior
+
+- **Width**: Card adapts to container width (100% by default)
+- **Height**:
+  - Use `className="h-100"` for equal height cards in grids
+  - Footer persists regardless of showButton state (maintains consistent height)
+- **Horizontal layout**:
+  - Desktop: Image on left side
+  - Mobile (< 768px): Image stacks above content
+
+### Focus and Keyboard
+
+- Clickable cards receive focus with `Tab` key
+- Theme-specific 4px colored focus outline appears on focus
+- NTG: Orange outline
+- Central: Green outline
+- Interior pointer-events disabled to maintain focus on card wrapper (not interior elements)
+
+### Footer Container
+
+**Important**: Footer container ALWAYS renders for full variant:
+
+- Maintains consistent card height across layouts
+- Prevents layout shift when toggling button visibility
+- Provides predictable spacing with `var(--sp-xl)` padding
+- Button visibility controlled independently via `showButton` prop
+
+### Design Token Usage
+
+All spacing uses CSS variables:
+
+- `--sp-xl` (24px) for card and footer padding
+- `--sp-xxs` (4px) between body and footer
+- `--type-heading-h5-*` for title styling
+- `--shadow-focus-ntg` / `--shadow-focus-central` for focus states
+
+### Browser Compatibility
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- iOS Safari (latest)
+- Chrome Mobile (latest)
+- CSS variables required (IE 11 not supported)

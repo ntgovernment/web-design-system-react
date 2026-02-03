@@ -134,7 +134,7 @@ function App() {
             <Card
               title="Business Registration Services"
               description="Register your business entity online with our streamlined application process."
-              showFooter={false}
+              showButton={false}
               href="#"
               tagLabel="Service:blue"
               dateLabel="15 Feb 2025"
@@ -391,7 +391,7 @@ function App() {
           }
           showImage={false}
           showMeta={false}
-          showFooter={false}
+          showButton={false}
         />
       </section>
 
@@ -425,7 +425,7 @@ function App() {
           }
           showImage={false}
           showMeta={false}
-          showFooter={false}
+          showButton={false}
         />
       </section>
 
@@ -453,7 +453,7 @@ function App() {
               }
               showImage={false}
               showMeta={false}
-              showFooter={false}
+              showButton={false}
             />
           </div>
           <div className="col-md-6">
@@ -477,7 +477,7 @@ function App() {
               }
               showImage={false}
               showMeta={false}
-              showFooter={false}
+              showButton={false}
             />
           </div>
         </div>
