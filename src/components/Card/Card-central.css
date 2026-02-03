@@ -11,6 +11,7 @@
 /* NTG Central specific focus outline for full variant clickable cards - 4px solid green */
 .card--full.card--clickable:focus,
 .card--full.card--clickable:focus-visible {
+  outline: none;
   box-shadow: var(--shadow-focus-central);
   border-color: var(--clr-border-strong-01);
 }
@@ -24,6 +25,7 @@
 /* NTG Central specific focus outline for minicard variant */
 .card--minicard.card--clickable:focus,
 .card--minicard.card--clickable:focus-visible {
+  outline: none;
   box-shadow: var(--shadow-focus-central);
   border-color: var(--clr-border-strong-01);
 }
@@ -31,6 +33,7 @@
 /* NTG Central specific focus outline for compact variant */
 .card--compact.card--clickable:focus,
 .card--compact.card--clickable:focus-visible {
+  outline: none;
   box-shadow: var(--shadow-focus-central);
   border-color: var(--clr-border-strong-01);
 }

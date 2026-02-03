@@ -140,7 +140,7 @@ export const Card = ({
   actionText = "Find out more",
   actionIcon = "fa-solid fa-arrow-right",
   horizontal = false,
-  clickable = false,
+  clickable = true,
   href,
   className = "",
   style,
@@ -153,8 +153,8 @@ export const Card = ({
   const finalShowFooter = isMinicard ? false : showFooter;
   const finalShowTitleIcon = isMinicard ? true : showTitleIcon;
 
-  // Make card clickable if footer is not shown
-  const isClickable = clickable || !finalShowFooter;
+  // All cards are clickable by default for consistent focus behavior
+  const isClickable = clickable;
 
   // Build card classes
   const cardClasses = [
@@ -273,14 +273,16 @@ export const Card = ({
 
     if (!actionText || actionText.trim() === "") return null;
 
+    // Render footer button as non-interactive span to allow card-level focus
     return (
       <div className="card-footer">
         <div className="card__footer-actions">
-          <Button
-            variant="tertiary"
-            label={actionText}
-            iconRight={actionIcon || undefined}
-          />
+          <span className="btn btn-tertiary" aria-hidden="true">
+            {actionText}
+            {actionIcon && (
+              <Icon icon={actionIcon} className={actionText ? "ms-2" : ""} />
+            )}
+          </span>
         </div>
       </div>
     );

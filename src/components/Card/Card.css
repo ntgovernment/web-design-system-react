@@ -279,6 +279,21 @@
   outline: none;
 }
 
+/* Prevent buttons/spans inside clickable cards from stealing focus */
+.card--clickable .btn,
+.card--clickable button,
+.card--clickable span.btn {
+  pointer-events: none;
+}
+
+.card--clickable .btn:focus,
+.card--clickable .btn:focus-visible,
+.card--clickable button:focus,
+.card--clickable button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Ensure clickable card titles maintain link color */
 .card--clickable .card-title {
   color: var(--clr-link-default);
@@ -292,6 +307,11 @@
 
 .card--clickable:hover .card-title .icon {
   color: var(--clr-link-hover) !important;
+}
+
+/* Apply hover styles to footer button when card is hovered */
+.card--clickable:hover .btn-tertiary {
+  color: var(--clr-link-hover);
 }
 
 /**
