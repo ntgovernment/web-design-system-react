@@ -1,4 +1,4 @@
-import type { Preview, Decorator } from "@storybook/react";
+import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 import React from "react";
 
@@ -358,6 +358,7 @@ const preview: Preview = {
       },
     },
   },
+
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -428,11 +429,13 @@ const preview: Preview = {
         ],
       },
       // Run on active story only for performance
-      element: "#storybook-root",
+      context: "#storybook-root",
       manual: false,
     },
   },
+
   decorators: [withHTMLCode],
+  tags: ["autodocs"]
 };
 
 export default preview;

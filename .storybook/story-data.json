@@ -130,7 +130,7 @@
             "maxWidth": "353px"
           }
         },
-        "NoFooter": {
+        "NoButton": {
           "args": {
             "title": "Business Registration Services",
             "description": "Register your business entity online with our streamlined application process.",
@@ -162,7 +162,7 @@
             "title": "Download Important Documents",
             "description": "Access forms, guidelines, and resources for your application.",
             "actionText": "Download Now",
-            "actionIcon": "fa-light fa-download",
+            "actionIcon": "fa-solid fa-download",
             "tagLabel": "Resources:blue",
             "dateLabel": "10 Feb 2025",
             "maxWidth": "353px"
@@ -171,8 +171,8 @@
         "Minicard": {
           "args": {
             "variant": "minicard",
-            "title": "Business Registration",
-            "icon": "fa-light fa-circle-info",
+            "title": "Card title",
+            "icon": "fa-solid fa-circle-info",
             "description": "This will not be shown in minicard variant",
             "maxWidth": "353px"
           }
@@ -448,5 +448,5 @@
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-03T13:10:37.647Z"
+  "generated": "2026-02-03T16:09:25.667Z"
 }
