@@ -235,11 +235,11 @@ Available classes:
 
 ## Related Documentation
 
-- [Design Tokens](../../../design-tokens/README.md)
-- [Typography](../../../src/themes/README.md)
+- [Design Tokens](../../../design-tokens/DESIGN-TOKENS.md)
+- [Typography](../../../src/themes/THEMES.md)
 - [Theme Switching](../../../src/themes/THEME_SWITCHING.md)
-- [Notification Component](../Notification/README.md) - Related component with status variants
-- [Button Component](../Button/README.md) - Interactive component patterns
+- [Notification Component](../Notification/NOTIFICATION.md) - Related component with status variants
+- [Button Component](../Button/BUTTON.md) - Interactive component patterns
 
 ## Browser Support
 

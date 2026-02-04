@@ -4,73 +4,79 @@
  * for Bootstrap 5.3 variable customization
  */
 
-import StyleDictionary from 'style-dictionary';
+import StyleDictionary from "style-dictionary";
 
 // Custom transform to handle Figma color format (e.g., "#ffffffff" -> "#ffffff")
 StyleDictionary.registerTransform({
-  name: 'color/figma',
-  type: 'value',
-  matcher: (token) => token.type === 'color',
+  name: "color/figma",
+  type: "value",
+  matcher: (token) => token.type === "color",
   transformer: (token) => {
     const value = token.value;
     // Remove alpha channel if it's fully opaque (ff at the end)
-    if (typeof value === 'string' && value.match(/^#[0-9a-f]{8}$/i)) {
+    if (typeof value === "string" && value.match(/^#[0-9a-f]{8}$/i)) {
       return value.slice(0, 7);
     }
     return value;
-  }
+  },
 });
 
 // Custom transform for dimension values (convert to rem or px)
 StyleDictionary.registerTransform({
-  name: 'size/rem',
-  type: 'value',
-  matcher: (token) => token.type === 'dimension',
+  name: "size/rem",
+  type: "value",
+  matcher: (token) => token.type === "dimension",
   transformer: (token) => {
     const value = parseFloat(token.value);
     if (isNaN(value)) return token.value;
-    
+
     // Convert to rem (assuming base font size of 16px)
     if (value >= 16) {
       return `${value / 16}rem`;
     }
     // Keep small values in px
     return `${value}px`;
-  }
+  },
 });
 
 // Custom transform for font weights
 StyleDictionary.registerTransform({
-  name: 'font/weight',
-  type: 'value',
-  matcher: (token) => token.type === 'number' && token.path.includes('weight'),
-  transformer: (token) => token.value
+  name: "font/weight",
+  type: "value",
+  matcher: (token) => token.type === "number" && token.path.includes("weight"),
+  transformer: (token) => token.value,
 });
 
 // Custom transform for shadow values
 StyleDictionary.registerTransform({
-  name: 'shadow/css',
-  type: 'value',
-  matcher: (token) => token.type === 'custom-shadow',
+  name: "shadow/css",
+  type: "value",
+  matcher: (token) => token.type === "custom-shadow",
   transformer: (token) => {
     const shadow = token.value;
-    if (!shadow) return 'none';
-    
-    const { offsetX = 0, offsetY = 0, radius = 0, spread = 0, color = '#000' } = shadow;
-    
+    if (!shadow) return "none";
+
+    const {
+      offsetX = 0,
+      offsetY = 0,
+      radius = 0,
+      spread = 0,
+      color = "#000",
+    } = shadow;
+
     // Convert color if needed
     let shadowColor = color;
     if (shadowColor.match(/^#[0-9a-f]{8}$/i)) {
       shadowColor = shadowColor.slice(0, 7);
     }
-    
+
     return `${offsetX}px ${offsetY}px ${radius}px ${spread}px ${shadowColor}`;
-  }
+  },
 });
 
 // Custom format for CSS with header
 StyleDictionary.registerFormat({
-  name: 'css/variables-with-header',
+  name: "css/variables-with-header",
   formatter: ({ dictionary, file, options }) => {
     const header = `/**
  * ${options.themeName} Theme - Auto-generated from design tokens
@@ -88,67 +94,75 @@ StyleDictionary.registerFormat({
 `;
 
     const variables = dictionary.allTokens
-      .map(token => {
-        const comment = token.comment ? `  /* ${token.comment} */\n` : '';
-        const prefix = options.prefix || '';
-        const name = token.path.join('-');
+      .map((token) => {
+        const comment = token.comment ? `  /* ${token.comment} */\n` : "";
+        const prefix = options.prefix || "";
+        const name = token.path.join("-");
         return `${comment}  --${prefix}${name}: ${token.value};`;
       })
-      .join('\n');
+      .join("\n");
 
     return `${header}:root {\n${variables}\n}\n`;
-  }
+  },
 });
 
 const config = {
-  source: ['design-tokens/tokens.json'],
+  source: ["design-tokens/tokens.json"],
   platforms: {
     // NT.GOV.AU Theme
-    'css/ntg': {
-      transformGroup: 'css',
-      transforms: ['color/figma', 'size/rem', 'font/weight', 'shadow/css'],
-      buildPath: 'src/themes/',
-      files: [{
-        destination: 'ntg-theme.css',
-        format: 'css/variables-with-header',
-        options: {
-          themeName: 'NT.GOV.AU',
-          prefix: 'ntg-',
-          outputReferences: true
+    "css/ntg": {
+      transformGroup: "css",
+      transforms: ["color/figma", "size/rem", "font/weight", "shadow/css"],
+      buildPath: "src/themes/",
+      files: [
+        {
+          destination: "theme-ntg.css",
+          format: "css/variables-with-header",
+          options: {
+            themeName: "NT.GOV.AU",
+            prefix: "ntg-",
+            outputReferences: true,
+          },
+          filter: (token) => {
+            // Include tokens from ntg theme and shared primitives
+            const path = token.path.join(".");
+            return (
+              path.includes("themes.ntg") ||
+              path.includes("primitives.ntg") ||
+              path.includes("effect.ntg")
+            );
+          },
         },
-        filter: (token) => {
-          // Include tokens from ntg theme and shared primitives
-          const path = token.path.join('.');
-          return path.includes('themes.ntg') || 
-                 path.includes('primitives.ntg') ||
-                 path.includes('effect.ntg');
-        }
-      }]
+      ],
     },
-    
+
     // NTG Central Theme
-    'css/central': {
-      transformGroup: 'css',
-      transforms: ['color/figma', 'size/rem', 'font/weight', 'shadow/css'],
-      buildPath: 'src/themes/',
-      files: [{
-        destination: 'central-theme.css',
-        format: 'css/variables-with-header',
-        options: {
-          themeName: 'NTG Central',
-          prefix: 'central-',
-          outputReferences: true
+    "css/central": {
+      transformGroup: "css",
+      transforms: ["color/figma", "size/rem", "font/weight", "shadow/css"],
+      buildPath: "src/themes/",
+      files: [
+        {
+          destination: "theme-central.css",
+          format: "css/variables-with-header",
+          options: {
+            themeName: "NTG Central",
+            prefix: "central-",
+            outputReferences: true,
+          },
+          filter: (token) => {
+            // Include tokens from central theme and shared primitives
+            const path = token.path.join(".");
+            return (
+              path.includes("themes.central") ||
+              path.includes("primitives.central") ||
+              path.includes("effect")
+            );
+          },
         },
-        filter: (token) => {
-          // Include tokens from central theme and shared primitives
-          const path = token.path.join('.');
-          return path.includes('themes.central') || 
-                 path.includes('primitives.central') ||
-                 path.includes('effect');
-        }
-      }]
-    }
-  }
+      ],
+    },
+  },
 };
 
 export default config;

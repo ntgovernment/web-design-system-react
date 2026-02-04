@@ -205,9 +205,9 @@ function MyComponent() {
 ## Related Documentation
 
 - [CSS Variables Customization](CSS_VARIABLES.md) - Detailed CSS variable documentation
-- [Theming Guide](../../themes/README.md) - Theme system overview
+- [Theming Guide](../../themes/THEMES.md) - Theme system overview
 - [Theme Switching](../../themes/THEME_SWITCHING.md) - Runtime theme switching
-- [Icon Component](../Icon/README.md) - Using icons independently
+- [Icon Component](../Icon/ICON.md) - Using icons independently
 
 ## Storybook
 

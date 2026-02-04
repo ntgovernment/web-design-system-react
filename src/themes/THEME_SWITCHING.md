@@ -12,37 +12,39 @@ src/themes/
 ├── grid.css                # Bootstrap grid configuration
 ├── typography.css          # Theme-agnostic typography
 ├── base-variables.css      # NEW: Unprefixed semantic variables (82 vars)
-├── ntg-theme.css           # NT.GOV.AU theme (255 lines)
-└── central-theme.css       # NTG Central theme (235 lines)
+├── theme-ntg.css           # NT.GOV.AU theme (255 lines)
+└── theme-central.css       # NTG Central theme (235 lines)
 ```
 
 ## Variable System
 
 ### Prefixed Variables (Theme-Specific)
+
 Each theme defines its own prefixed variables:
 
 ```css
-/* ntg-theme.css */
+/* theme-ntg.css */
 --ntg-blue-03-d: #1f1f5f;
 --ntg-clr-bg-default: var(--ntg-neutral-white);
 --ntg-type-desktop-h1-size: var(--type-heading-h1-size);
 
-/* central-theme.css */
+/* theme-central.css */
 --central-blue-04: #102040;
 --central-clr-bg-default: var(--central-neutrals-01);
 --central-type-desktop-h1-size: var(--type-heading-h1-size);
 ```
 
 ### Unprefixed Variables (Theme Switching)
+
 Both themes also define unprefixed semantic variables that reference their prefixed counterparts:
 
 ```css
-/* ntg-theme.css */
+/* theme-ntg.css */
 --clr-bg-default: var(--ntg-clr-bg-default);
 --clr-action-primary: var(--ntg-clr-action-pirmary);
 --type-desktop-h1-size: var(--ntg-type-desktop-h1-size);
 
-/* central-theme.css */
+/* theme-central.css */
 --clr-bg-default: var(--central-clr-bg-default);
 --clr-action-primary: var(--central-clr-action-pirmary);
 --type-desktop-h1-size: var(--central-type-desktop-h1-size);
@@ -56,12 +58,12 @@ Import a specific theme file. Components can use either prefixed or unprefixed v
 
 ```css
 /* In your app CSS */
-@import './themes/ntg-theme.css';
+@import "./themes/theme-ntg.css";
 
 /* Components can use either: */
 .button {
   background: var(--ntg-clr-action-primary); /* Prefixed - works */
-  background: var(--clr-action-primary);      /* Unprefixed - also works */
+  background: var(--clr-action-primary); /* Unprefixed - also works */
 }
 ```
 
@@ -74,20 +76,20 @@ Use base-variables.css as defaults and swap theme CSS files:
 
 ```html
 <!-- index.html -->
-<link rel="stylesheet" href="./themes/base-variables.css">
-<link rel="stylesheet" href="./themes/ntg-theme.css" id="theme-css">
+<link rel="stylesheet" href="./themes/base-variables.css" />
+<link rel="stylesheet" href="./themes/theme-ntg.css" id="theme-css" />
 ```
 
 ```javascript
 // Theme switcher
 function switchTheme(themeName) {
-  const themeLink = document.getElementById('theme-css');
+  const themeLink = document.getElementById("theme-css");
   themeLink.href = `./themes/${themeName}-theme.css`;
 }
 
 // Usage
-switchTheme('central'); // Switch to Central theme
-switchTheme('ntg');     // Switch to NTG theme
+switchTheme("central"); // Switch to Central theme
+switchTheme("ntg"); // Switch to NTG theme
 ```
 
 ```css
@@ -112,6 +114,7 @@ This would require theme-specific override files scoped to `[data-theme]`:
 ```
 
 **Note:** This pattern requires additional override files (not yet implemented). Would need:
+
 - `ntg-overrides.css` with `[data-theme="ntg"]` scope
 - `central-overrides.css` with `[data-theme="central"]` scope
 
@@ -129,6 +132,7 @@ This would require theme-specific override files scoped to `[data-theme]`:
 ```
 
 **Benefits:**
+
 - Works with theme switching
 - Cleaner, more semantic
 - Theme-agnostic component code
@@ -158,43 +162,53 @@ This would require theme-specific override files scoped to `[data-theme]`:
 ### Color Variables (52 total)
 
 **Backgrounds:**
+
 - `--clr-bg-default`, `--clr-bg-shade`, `--clr-bg-shade-alt`
 - `--clr-bg-dark`, `--clr-bg-dark-alt`
 - `--clr-bg-accent`, `--clr-bg-accent-alt`
 
 **Actions:**
+
 - `--clr-action-primary`, `--clr-action-hover`, `--clr-action-pressed`
 - `--clr-action-disabled`, `--clr-action-secondary`
 
 **Borders:**
+
 - `--clr-border-strong-01`, `--clr-border-strong-02`, `--clr-border-strong-03`
 - `--clr-border-subtle`, `--clr-border-inverse`, `--clr-border-accent`
 
 **Text:**
+
 - `--clr-text-default`, `--clr-text-inverse`, `--clr-text-muted`, `--clr-text-emphasis`
 
 **Links:**
+
 - `--clr-link-default`, `--clr-link-hover`, `--clr-link-visited`, `--clr-link-pressed`
 - `--clr-link-inverse`, `--clr-link-inverse-hover`, `--clr-link-inverse-visited`
 
 **Status:**
+
 - `--clr-status-info`, `--clr-status-info-bg`
 - `--clr-status-success`, `--clr-status-success-bg`
 - `--clr-status-warning`, `--clr-status-warning-bg`
 - `--clr-status-danger`, `--clr-status-danger-bg`
 
 **Focus:**
+
 - `--clr-focus-focus`
 
 **Misc:**
+
 - `--clr-misc-backdrop`, `--clr-misc-black`, `--clr-misc-transparent`
 
 ### Typography Variables (41 total)
 
 **Font Families:**
+
 - `--type-font-default`, `--type-font-alt`
 
 **Desktop Typography:**
+
 - `--type-desktop-h1-size` through `--type-desktop-h6-size`
 - `--type-desktop-body-default-size`, `--type-desktop-body-default-bold-size`
 - `--type-desktop-body-sm-size`, `--type-desktop-body-sm-bold-size`
@@ -202,6 +216,7 @@ This would require theme-specific override files scoped to `[data-theme]`:
 - `--type-desktop-uppercase-sm-size`, `--type-desktop-uppercase-default-size`
 
 **Mobile Typography:**
+
 - `--type-mobile-h1-size` through `--type-mobile-h6-size`
 - `--type-mobile-body-default-size`, `--type-mobile-body-default-bold-size`
 - `--type-mobile-body-sm-size`, `--type-mobile-body-sm-bold-size`
@@ -209,6 +224,7 @@ This would require theme-specific override files scoped to `[data-theme]`:
 - `--type-mobile-tag-size`
 
 **Typography Extensions:**
+
 - `--type-link-default-decoration`, `--type-link-default-paragraph-spacing`
 - `--type-link-default-bold-decoration`, `--type-link-default-bold-paragraph-spacing`
 - `--type-link-sm-decoration`
@@ -225,14 +241,14 @@ This would require theme-specific override files scoped to `[data-theme]`:
 // .storybook/preview.js
 export const globalTypes = {
   theme: {
-    name: 'Theme',
-    description: 'Global theme for components',
-    defaultValue: 'ntg',
+    name: "Theme",
+    description: "Global theme for components",
+    defaultValue: "ntg",
     toolbar: {
-      icon: 'paintbrush',
+      icon: "paintbrush",
       items: [
-        { value: 'ntg', title: 'NT.GOV.AU' },
-        { value: 'central', title: 'NTG Central' }
+        { value: "ntg", title: "NT.GOV.AU" },
+        { value: "central", title: "NTG Central" },
       ],
       showName: true,
     },
@@ -242,15 +258,15 @@ export const globalTypes = {
 export const decorators = [
   (Story, context) => {
     const theme = context.globals.theme;
-    
+
     // Update link element
     useEffect(() => {
-      const themeLink = document.getElementById('theme-css');
+      const themeLink = document.getElementById("theme-css");
       if (themeLink) {
         themeLink.href = `./themes/${theme}-theme.css`;
       }
     }, [theme]);
-    
+
     return <Story />;
   },
 ];
@@ -274,6 +290,7 @@ To create a new theme (e.g., "region" theme):
 ### Updating Existing Components
 
 **Before (theme-specific):**
+
 ```css
 .button {
   background: var(--ntg-clr-action-primary);
@@ -282,6 +299,7 @@ To create a new theme (e.g., "region" theme):
 ```
 
 **After (theme-agnostic):**
+
 ```css
 .button {
   background: var(--clr-action-primary);
@@ -311,6 +329,7 @@ To create a new theme (e.g., "region" theme):
 ### Browser Support
 
 CSS custom properties (variables) are supported in:
+
 - Chrome 49+
 - Firefox 31+
 - Safari 9.1+

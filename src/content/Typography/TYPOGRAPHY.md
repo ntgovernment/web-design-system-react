@@ -21,8 +21,8 @@ The design system uses Bootstrap's comprehensive typography system with two them
 
 Fonts are loaded via Google Fonts CDN in the theme-specific typography files:
 
-- `src/typography/typography-ntg.css` - Loads Lato for NTG theme
-- `src/typography/typography-central.css` - Loads Roboto for Central theme
+- `src/themes/typography-ntg.css` - Loads Lato for NTG theme
+- `src/themes/typography-central.css` - Loads Roboto for Central theme
 
 ## Typography Scale
 
@@ -345,7 +345,7 @@ The typography system uses CSS variables from the design token system. Key varia
 /* etc. */
 ```
 
-For complete details, see [src/typography/README.md](../../typography/README.md).
+For complete details, see [src/themes/typography-integration.md](../../themes/typography-integration.md).
 
 ## Examples in Storybook
 
@@ -394,9 +394,9 @@ import { Card, Notification } from '@ntgovernment/web-design-system';
 ## Related Documentation
 
 - [Bootstrap Typography Documentation](https://getbootstrap.com/docs/5.3/content/typography/) - Full Bootstrap typography reference
-- [Design Tokens](../../design-tokens/README.md) - Design token system documentation
-- [Theme System](../../themes/README.md) - Theme structure and usage
-- [Bootstrap Integration](../../typography/README.md) - Detailed Bootstrap typography integration
+- [Design Tokens](../../design-tokens/DESIGN-TOKENS.md) - Design token system documentation
+- [Theme System](../../themes/THEMES.md) - Theme structure and usage
+- [Bootstrap Integration](../../typography/TYPOGRAPHY.md) - Detailed Bootstrap typography integration
 
 ## Browser Support
 

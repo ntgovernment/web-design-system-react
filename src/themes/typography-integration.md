@@ -9,13 +9,17 @@ Bootstrap 5.3+ uses CSS custom properties (`--bs-*` variables) that can be overr
 ## Files
 
 ### `typography-ntg.css`
+
 Bootstrap variable overrides for the **NT.GOV.AU theme**:
+
 - Font family: **Lato**
 - Color palette: NTG blue, orange, ochre
 - Design language: Sharp corners, bold accents
 
 ### `typography-central.css`
+
 Bootstrap variable overrides for the **Central Australia theme**:
+
 - Font family: **Roboto**
 - Color palette: Central blues, warm tones
 - Design language: Similar structure, different palette
@@ -26,13 +30,20 @@ Proper CSS cascade is critical for theme switching to work correctly:
 
 ```html
 <!-- 1. Bootstrap from CDN (base styles) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
 
 <!-- 2. Typography override (theme-specific Bootstrap vars) -->
-<link id="bootstrap-typography-css" href="./typography/typography-ntg.css" rel="stylesheet">
+<link
+  id="bootstrap-typography-css"
+  href="./typography/typography-ntg.css"
+  rel="stylesheet"
+/>
 
 <!-- 3. Theme CSS (theme-specific design tokens) -->
-<link id="theme-css" href="./themes/ntg-theme.css" rel="stylesheet">
+<link id="theme-css" href="./themes/theme-ntg.css" rel="stylesheet" />
 ```
 
 ### Why This Order Matters
@@ -45,26 +56,26 @@ Proper CSS cascade is critical for theme switching to work correctly:
 
 ### Typography Variables
 
-| Bootstrap Variable | Maps To | NTG Value | Central Value |
-|-------------------|---------|-----------|---------------|
-| `--bs-font-sans-serif` | `--{theme}-type-font-default` | Lato | Roboto |
-| `--bs-body-font-family` | `--{theme}-type-font-default` | Lato | Roboto |
-| `--bs-body-font-size` | `--{theme}-type-desktop-body-default-size` | Desktop body | Desktop body |
-| `--bs-body-color` | `--{theme}-clr-text-default` | #1f1e27 | Theme text |
-| `--bs-heading-color` | `--{theme}-clr-text-default` | #1f1e27 | Theme text |
-| `--bs-link-color` | `--{theme}-clr-link-default` | #1f1f5f | Theme link |
-| `--bs-link-hover-color` | `--{theme}-clr-link-hover` | #c33826 | Theme hover |
+| Bootstrap Variable      | Maps To                                    | NTG Value    | Central Value |
+| ----------------------- | ------------------------------------------ | ------------ | ------------- |
+| `--bs-font-sans-serif`  | `--{theme}-type-font-default`              | Lato         | Roboto        |
+| `--bs-body-font-family` | `--{theme}-type-font-default`              | Lato         | Roboto        |
+| `--bs-body-font-size`   | `--{theme}-type-desktop-body-default-size` | Desktop body | Desktop body  |
+| `--bs-body-color`       | `--{theme}-clr-text-default`               | #1f1e27      | Theme text    |
+| `--bs-heading-color`    | `--{theme}-clr-text-default`               | #1f1e27      | Theme text    |
+| `--bs-link-color`       | `--{theme}-clr-link-default`               | #1f1f5f      | Theme link    |
+| `--bs-link-hover-color` | `--{theme}-clr-link-hover`                 | #c33826      | Theme hover   |
 
 ### Color Variables
 
-| Bootstrap Variable | Maps To | Purpose |
-|-------------------|---------|---------|
-| `--bs-primary` | `--{theme}-clr-action-pirmary` | Primary buttons, active states |
-| `--bs-success` | `--{theme}-success-03-d` | Success alerts, badges |
-| `--bs-info` | `--{theme}-info-03-d` | Info alerts, badges |
-| `--bs-warning` | `--{theme}-warning-03-d` | Warning alerts, badges |
-| `--bs-danger` | `--{theme}-danger-03-d` | Danger alerts, error states |
-| `--bs-border-color` | `--{theme}-clr-border-subtle` | Component borders |
+| Bootstrap Variable  | Maps To                        | Purpose                        |
+| ------------------- | ------------------------------ | ------------------------------ |
+| `--bs-primary`      | `--{theme}-clr-action-pirmary` | Primary buttons, active states |
+| `--bs-success`      | `--{theme}-success-03-d`       | Success alerts, badges         |
+| `--bs-info`         | `--{theme}-info-03-d`          | Info alerts, badges            |
+| `--bs-warning`      | `--{theme}-warning-03-d`       | Warning alerts, badges         |
+| `--bs-danger`       | `--{theme}-danger-03-d`        | Danger alerts, error states    |
+| `--bs-border-color` | `--{theme}-clr-border-subtle`  | Component borders              |
 
 ## Bootstrap Reboot Override Strategy
 
@@ -78,7 +89,7 @@ Bootstrap's link styles use RGB triplets with opacity control:
 // Bootstrap's _reboot.scss
 a {
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
-  
+
   &:hover {
     --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
   }
@@ -92,10 +103,11 @@ Notice it uses `--bs-link-color-rgb` (not `--bs-link-color`). Simply setting `--
 Our override files use **three layers** to ensure maximum compatibility:
 
 #### Layer 1: RGB Color Variables (Primary)
+
 ```css
 :root {
   /* NTG Theme */
-  --bs-link-color-rgb: 31, 31, 95;        /* #1F1F5F → RGB triplet */
+  --bs-link-color-rgb: 31, 31, 95; /* #1F1F5F → RGB triplet */
   --bs-link-hover-color-rgb: 195, 56, 38; /* #C33826 → RGB triplet */
 }
 ```
@@ -103,6 +115,7 @@ Our override files use **three layers** to ensure maximum compatibility:
 These RGB triplets directly override what Bootstrap Reboot uses.
 
 #### Layer 2: Base Color Variables (Fallback)
+
 ```css
 :root {
   --bs-link-color: var(--ntg-clr-link-default);
@@ -113,6 +126,7 @@ These RGB triplets directly override what Bootstrap Reboot uses.
 Some Bootstrap components (not Reboot) may reference the base hex variables.
 
 #### Layer 3: Direct Element Override (Maximum Specificity)
+
 ```css
 a {
   color: var(--ntg-clr-link-default); /* Explicit override */
@@ -127,12 +141,12 @@ Directly sets colors on anchor elements to ensure theme colors always apply.
 
 ### RGB Conversion Reference
 
-| Theme | Color | Hex | RGB Triplet |
-|-------|-------|-----|-------------|
-| NTG Link Default | `ntg-blue-03-d` | `#1F1F5F` | `31, 31, 95` |
-| NTG Link Hover | `ntg-ochre-02-d` | `#C33826` | `195, 56, 38` |
-| Central Link Default | `central-blue-04` | `#102040` | `16, 32, 64` |
-| Central Link Hover | `central-green-03` | `#208820` | `32, 136, 32` |
+| Theme                | Color              | Hex       | RGB Triplet   |
+| -------------------- | ------------------ | --------- | ------------- |
+| NTG Link Default     | `ntg-blue-03-d`    | `#1F1F5F` | `31, 31, 95`  |
+| NTG Link Hover       | `ntg-ochre-02-d`   | `#C33826` | `195, 56, 38` |
+| Central Link Default | `central-blue-04`  | `#102040` | `16, 32, 64`  |
+| Central Link Hover   | `central-green-03` | `#208820` | `32, 136, 32` |
 
 ### Why Three Layers?
 
@@ -149,17 +163,17 @@ This defensive approach ensures theme colors work regardless of Bootstrap's inte
 ```javascript
 function switchTheme(themeName) {
   // Update typography override
-  const typographyLink = document.getElementById('bootstrap-typography-css');
+  const typographyLink = document.getElementById("bootstrap-typography-css");
   typographyLink.href = `./typography/bootstrap-${themeName}.css`;
-  
+
   // Update theme CSS
-  const themeLink = document.getElementById('theme-css');
+  const themeLink = document.getElementById("theme-css");
   themeLink.href = `./themes/${themeName}-theme.css`;
 }
 
 // Usage
-switchTheme('ntg');     // Loads Lato font, NTG colors
-switchTheme('central'); // Loads Roboto font, Central colors
+switchTheme("ntg"); // Loads Lato font, NTG colors
+switchTheme("central"); // Loads Roboto font, Central colors
 ```
 
 ### In React/Storybook
@@ -168,9 +182,9 @@ Import both files dynamically or use a theme provider:
 
 ```tsx
 // .storybook/preview.tsx
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../src/typography/typography-ntg.css'; // or typography-central.css
-import '../src/themes/ntg-theme.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../src/themes/typography-ntg.css"; // or typography-central.css
+import "../src/themes/theme-ntg.css";
 ```
 
 ## Responsive Typography
@@ -232,7 +246,7 @@ This would follow the same pattern as the auto-generated theme CSS files.
 
 - [Bootstrap CSS Variables Documentation](https://getbootstrap.com/docs/5.3/customize/css-variables/)
 - [Bootstrap Typography](https://getbootstrap.com/docs/5.3/content/typography/)
-- [Design Tokens README](../../design-tokens/README.md)
+- [Design Tokens README](../../design-tokens/DESIGN-TOKENS.md)
 - [Theme Switching Guide](../themes/THEME_SWITCHING.md)
 
 ## Support

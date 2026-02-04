@@ -361,7 +361,7 @@ The project includes several npm scripts for development, building, and testing:
 - **`npm run tokens:build`** - Generate CSS from design tokens
   - Uses Style Dictionary to transform tokens
   - Outputs to `src/themes/`
-  - Generates: `common.css`, `grid.css`, `typography.css`, `ntg-theme.css`, `central-theme.css`, `base-variables.css`
+  - Generates: `common.css`, `grid.css`, `typography.css`, `theme-ntg.css`, `theme-central.css`, `base-variables.css`
 
 #### Utility Scripts
 
@@ -385,7 +385,7 @@ This project uses an automated design token system:
 3. **Output**: Generated theme files in `src/themes/`
 4. **Integration**: Vite bundles the CSS into the final library
 
-See [design-tokens/README.md](design-tokens/README.md) for detailed workflow documentation.
+See [design-tokens/DESIGN-TOKENS.md](design-tokens/DESIGN-TOKENS.md) for detailed workflow documentation.
 
 ## Deployment to Squiz DXP Component Services
 
@@ -501,12 +501,12 @@ npm run build
 
 Theme CSS files in `src/themes/` are automatically generated from design tokens:
 
-- `ntg-theme.css` - Generated from NTG theme tokens
-- `central-theme.css` - Generated from Central theme tokens
+- `theme-ntg.css` - Generated from NTG theme tokens
+- `theme-central.css` - Generated from Central theme tokens
 
 ⚠️ **Do not edit theme CSS files manually**. All changes should be made in `design-tokens/tokens.json`.
 
-For more details, see [design-tokens/README.md](design-tokens/README.md).
+For more details, see [design-tokens/DESIGN-TOKENS.md](design-tokens/DESIGN-TOKENS.md).
 
 ## Components
 
@@ -706,8 +706,8 @@ Components are tested in:
 If you encounter issues not covered here:
 
 1. **Check Documentation**:
-   - [design-tokens/README.md](design-tokens/README.md)
-   - [src/themes/README.md](src/themes/README.md)
+   - [design-tokens/DESIGN-TOKENS.md](design-tokens/DESIGN-TOKENS.md)
+   - [src/themes/THEMES.md](src/themes/THEMES.md)
    - [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)
    - Component-specific README files
 

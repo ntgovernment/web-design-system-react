@@ -15,5 +15,5 @@
   border-color: var(--ntg-neutral-04);
 }
 
-/* NTG theme uses the brand colors defined in ntg-theme.css */
+/* NTG theme uses the brand colors defined in theme-ntg.css */
 /* Status colors automatically inherit from --ntg-clr-status-* tokens */

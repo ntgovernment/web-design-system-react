@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./grid.css">
     <link rel="stylesheet" href="./typography.css">
     <link rel="stylesheet" href="./base-variables.css">
-    <link rel="stylesheet" href="./ntg-theme.css" id="theme-css">
+    <link rel="stylesheet" href="./theme-ntg.css" id="theme-css">
 
     <style>
         /* Demo styles using UNPREFIXED semantic variables */
@@ -297,7 +297,8 @@
             <ol style="line-height: 1.8;">
                 <li>Each theme file defines <strong>both prefixed and unprefixed</strong> variables</li>
                 <li>Unprefixed variables reference prefixed ones:
-                    <code>--clr-bg-default: var(--ntg-clr-bg-default)</code></li>
+                    <code>--clr-bg-default: var(--ntg-clr-bg-default)</code>
+                </li>
                 <li>Switching themes swaps the CSS file, changing all variable references at once</li>
                 <li>Components use unprefixed variables, making them <strong>theme-agnostic</strong></li>
             </ol>

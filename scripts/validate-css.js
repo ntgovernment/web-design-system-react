@@ -2,52 +2,53 @@
 
 /**
  * Validate Generated CSS
- * 
+ *
  * Checks that all CSS variable references point to defined variables
  */
 
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { readFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const rootDir = join(__dirname, '..');
+const rootDir = join(__dirname, "..");
 
-const files = [
-  'src/themes/ntg-theme.css',
-  'src/themes/central-theme.css'
-];
+const files = ["src/themes/theme-ntg.css", "src/themes/theme-central.css"];
 
 let allValid = true;
 
 for (const file of files) {
-  const css = readFileSync(join(rootDir, file), 'utf-8');
-  
+  const css = readFileSync(join(rootDir, file), "utf-8");
+
   // Extract all defined CSS variables
   const defined = new Set(
-    [...css.matchAll(/^\s*--([\w-]+):/gm)].map(m => m[1])
+    [...css.matchAll(/^\s*--([\w-]+):/gm)].map((m) => m[1]),
   );
-  
+
   // Extract all CSS variable references
-  const refs = [...css.matchAll(/var\(--([^)]+)\)/g)].map(m => m[1]);
-  
+  const refs = [...css.matchAll(/var\(--([^)]+)\)/g)].map((m) => m[1]);
+
   // Find undefined references
-  const undefined_refs = refs.filter(r => !defined.has(r));
-  
+  const undefined_refs = refs.filter((r) => !defined.has(r));
+
   if (undefined_refs.length === 0) {
-    console.log(`✅ ${file}: All ${refs.length} CSS variable references are valid!`);
+    console.log(
+      `✅ ${file}: All ${refs.length} CSS variable references are valid!`,
+    );
   } else {
-    console.log(`❌ ${file}: Found ${undefined_refs.length} undefined variable references:`);
+    console.log(
+      `❌ ${file}: Found ${undefined_refs.length} undefined variable references:`,
+    );
     const unique = [...new Set(undefined_refs)];
-    unique.forEach(ref => console.log(`   - --${ref}`));
+    unique.forEach((ref) => console.log(`   - --${ref}`));
     allValid = false;
   }
 }
 
 if (allValid) {
-  console.log('\n✅ CSS validation passed!');
+  console.log("\n✅ CSS validation passed!");
 } else {
-  console.log('\n❌ CSS validation failed - fix undefined references');
+  console.log("\n❌ CSS validation failed - fix undefined references");
   process.exit(1);
 }

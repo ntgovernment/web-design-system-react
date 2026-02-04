@@ -140,3 +140,7 @@ vite.config.ts.timestamp-*
 
 # Storybook build output
 storybook-static
+
+# Build output logs
+build-output.txt
+*-output.txt

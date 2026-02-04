@@ -203,7 +203,7 @@ Fix any linting errors or provide justification for exceptions.
    - Implement component
    - Export component and props interface
 
-3. **Create component README** (`README.md`)
+3. **Create component documentation** (matching folder name in uppercase, e.g., `BUTTON.md` for Button component)
    - Features overview
    - Usage examples
    - Props documentation
@@ -350,7 +350,7 @@ All components must:
 - ✅ Work with both NTG and Central themes
 - ✅ Include proper ARIA attributes for accessibility
 - ✅ Support keyboard navigation where applicable
-- ✅ Have a dedicated README.md file
+- ✅ Have dedicated documentation matching folder name (e.g., BUTTON.md for Button/)
 - ✅ Have Storybook stories demonstrating all variants
 - ✅ Be added to "⭐ Recent" group in Storybook initially
 - ✅ Be integrated into `.storybook/preview.tsx` with CSS imports and theme loading
@@ -409,7 +409,7 @@ All components must:
 - Maintain consistency between NTG and Central themes
 - Document token purpose and usage
 - Follow the existing token structure
-- Update `design-tokens/README.md` if adding new token categories
+- Update `design-tokens/DESIGN-TOKENS.md` if adding new token categories
 
 ## Documentation
 

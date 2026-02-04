@@ -66,16 +66,16 @@ design-tokens/
 ├── tokens.json                        # Source tokens from Figma (4433 lines)
 ├── config/
 │   └── style-dictionary.config.js    # Transform configuration
-└── README.md                          # Token workflow documentation
+└── DESIGN-TOKENS.md                  # Token workflow documentation
 
 scripts/
 ├── build-tokens.js                    # Token → CSS transformation
 └── validate-tokens.js                 # Token structure validation
 
 src/themes/
-├── ntg-theme.css                     # ⚠️ AUTO-GENERATED
-├── central-theme.css                 # ⚠️ AUTO-GENERATED
-└── README.md                         # Usage documentation
+├── theme-ntg.css                     # ⚠️ AUTO-GENERATED
+├── theme-central.css                 # ⚠️ AUTO-GENERATED
+└── THEMES.md                         # Usage documentation
 ```
 
 **Build Integration:**
@@ -214,7 +214,7 @@ web-design-system/
 │   ├── tokens.json         # Source tokens from Figma (4433 lines)
 │   ├── config/
 │   │   └── style-dictionary.config.js
-│   └── README.md
+│   └── DESIGN-TOKENS.md
 ├── scripts/                # Build automation (NEW)
 │   ├── build-tokens.js
 │   └── validate-tokens.js
@@ -230,12 +230,12 @@ web-design-system/
 │   │   │   ├── Button-ntg.css
 │   │   │   ├── Button-central.css
 │   │   │   ├── Button.stories.tsx
-│   │   │   ├── README.md
+│   │   │   ├── BUTTON.md
 │   │   │   └── index.ts
 │   │   ├── Card/
 │   │   │   ├── Card.tsx
 │   │   │   ├── Card.stories.tsx
-│   │   │   ├── README.md
+│   │   │   ├── CARD.md
 │   │   │   └── index.ts
 │   │   ├── Image/
 │   │   │   ├── Image.tsx
@@ -243,7 +243,7 @@ web-design-system/
 │   │   │   ├── Image-ntg.css
 │   │   │   ├── Image-central.css
 │   │   │   ├── Image.stories.tsx
-│   │   │   ├── README.md
+│   │   │   ├── IMAGE.md
 │   │   │   └── index.ts
 │   │   ├── Notification/
 │   │   ├── Tag/
@@ -251,9 +251,9 @@ web-design-system/
 │   │   ├── Callout/
 │   │   └── Icon/
 │   ├── themes/              # Theme CSS files (AUTO-GENERATED)
-│   │   ├── ntg-theme.css   # Generated from tokens
-│   │   ├── central-theme.css # Generated from tokens
-│   │   └── README.md       # Theme documentation
+│   │   ├── theme-ntg.css   # Generated from tokens
+│   │   ├── theme-central.css # Generated from tokens
+│   │   └── THEMES.md       # Theme documentation
 │   ├── demo/               # Demo application
 │   │   ├── App.tsx
 │   │   └── main.tsx

@@ -314,8 +314,8 @@ function PhotoGallery() {
 
 ## Related Documentation
 
-- [Design Tokens](../../design-tokens/README.md) - Design token system overview
-- [Theming Guide](../../themes/README.md) - Theme system overview
+- [Design Tokens](../../design-tokens/DESIGN-TOKENS.md) - Design token system overview
+- [Theming Guide](../../themes/THEMES.md) - Theme system overview
 - [Theme Switching](../../themes/THEME_SWITCHING.md) - Runtime theme switching
 - [Bootstrap Images](https://getbootstrap.com/docs/5.3/content/images/) - Bootstrap documentation
 

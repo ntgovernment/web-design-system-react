@@ -785,12 +785,12 @@ Full cards in responsive grid with consistent dimensions:
 
 ## Related Components
 
-- [Image Component](../Image/README.md) - For card media sections
-- [Tag Component](../Tag/README.md) - For card header labels (alternative to tagLabel prop)
-- [Icon Component](../Icon/README.md) - For title icons and action icons (FontAwesome wrapper)
-- [Notification Component](../Notification/README.md) - For alert/callout style cards
-- [Button Component](../Button/README.md) - Reference for Button.css dependency (used in footer)
-- [Pill Component](../Pill/README.md) - Alternative label component
+- [Image Component](../Image/IMAGE.md) - For card media sections
+- [Tag Component](../Tag/TAG.md) - For card header labels (alternative to tagLabel prop)
+- [Icon Component](../Icon/ICON.md) - For title icons and action icons (FontAwesome wrapper)
+- [Notification Component](../Notification/NOTIFICATION.md) - For alert/callout style cards
+- [Button Component](../Button/BUTTON.md) - Reference for Button.css dependency (used in footer)
+- [Pill Component](../Pill/PILL.md) - Alternative label component
 
 ## Storybook
 

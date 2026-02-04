@@ -9,15 +9,15 @@ Design tokens are the source of truth for all design decisions in this system. T
 1. **common.css** - Shared tokens (shadows, spacing, borders, radii)
 2. **grid.css** - Bootstrap-compatible grid system
 3. **typography.css** - Theme-agnostic typography (size, weight, line-height, letter-spacing, decoration, text-transform, paragraph-spacing)
-4. **ntg-theme.css** - NT.GOV.AU theme (Lato font, ochre accent)
-5. **central-theme.css** - NTG Central theme (Roboto font, green accent)
+4. **theme-ntg.css** - NT.GOV.AU theme (Lato font, ochre accent)
+5. **theme-central.css** - NTG Central theme (Roboto font, green accent)
 
 ## Structure
 
 ```
 design-tokens/
 ├── tokens.json              # Source tokens exported from Figma (4433 lines, 849 tokens)
-└── README.md               # This file
+└── DESIGN-TOKENS.md         # This file
 
 scripts/
 └── build-tokens.js          # Custom build script (Node.js ES modules)
@@ -26,9 +26,9 @@ src/themes/
 ├── common.css               # AUTO-GENERATED - 54 lines, 25 shared variables
 ├── grid.css                 # AUTO-GENERATED - 31 lines, 15 grid variables
 ├── typography.css           # AUTO-GENERATED - 171 lines, 144 typography variables
-├── ntg-theme.css            # AUTO-GENERATED - 171 lines, 131+ theme variables
-├── central-theme.css        # AUTO-GENERATED - 151 lines, 131+ theme variables
-└── README.md               # Usage documentation
+├── theme-ntg.css            # AUTO-GENERATED - 171 lines, 131+ theme variables
+├── theme-central.css        # AUTO-GENERATED - 151 lines, 131+ theme variables
+└── THEMES.md                # Usage documentation
 ```
 
 ## Workflow
@@ -51,6 +51,7 @@ npm run tokens:build
 ```
 
 This runs `scripts/build-tokens.js` which:
+
 - Reads `design-tokens/tokens.json`
 - Extracts common tokens (shadows, spacing, borders, radii)
 - Extracts grid tokens from `grid.ntg-breakpoint`
@@ -58,8 +59,8 @@ This runs `scripts/build-tokens.js` which:
 - Generates `src/themes/common.css` (25 shared variables)
 - Generates `src/themes/grid.css` (15 grid variables)
 - Generates `src/themes/typography.css` (144 theme-agnostic variables)
-- Generates `src/themes/ntg-theme.css` (with variable references)
-- Generates `src/themes/central-theme.css` (with variable references)
+- Generates `src/themes/theme-ntg.css` (with variable references)
+- Generates `src/themes/theme-central.css` (with variable references)
 
 ### 3. Build Library
 
@@ -76,24 +77,29 @@ This automatically runs `tokens:build` before building the component library.
 The `tokens.json` file contains:
 
 ### Grid
+
 - Breakpoint configurations (xs, sm, md, lg, xl)
 - Column counts, gutter sizes, offsets
 
 ### Font
+
 - Typography scales for desktop and mobile
 - Font families, sizes, weights, line heights
 - Letter spacing values
 
 ### Effects
+
 - Shadow definitions (sm, md, lg variants)
 - Focus states for both themes
 
 ### Primitives
+
 - **NTG Colors**: Blue, orange, ochre, coral, sky-blue, teal, rubine-red, bottle-green, neutral
 - **Central Colors**: Blue, green, orange, neutrals
 - **Status Colors**: Info, success, warning, danger
 
 ### Themes
+
 - **ntg**: NT.GOV.AU theme tokens
   - Background colors
   - Action/button colors
@@ -104,7 +110,6 @@ The `tokens.json` file contains:
   - Typography settings
   - Border radius
   - Spacing scale
-  
 - **central**: NTG Central theme tokens
   - Same structure as ntg theme
   - Different color values
@@ -112,17 +117,20 @@ The `tokens.json` file contains:
 ## Layered CSS Architecture
 
 ### Import Hierarchy
+
 ```css
 /* Theme files import foundation layers */
-@import './common.css';      /* Shadows, spacing, borders, radii */
-@import './grid.css';        /* Bootstrap grid configuration */
-@import './typography.css';  /* Theme-agnostic typography */
+@import "./common.css"; /* Shadows, spacing, borders, radii */
+@import "./grid.css"; /* Bootstrap grid configuration */
+@import "./typography.css"; /* Theme-agnostic typography */
 
 /* Then define theme-specific values */
 :root {
-  --ntg-type-font-default: Lato;  /* Theme-specific font family */
-  --ntg-clr-bg-default: #ffffff;   /* Theme-specific colors */
-  --ntg-type-desktop-h1-size: var(--type-heading-h1-size);  /* Reference typography */
+  --ntg-type-font-default: Lato; /* Theme-specific font family */
+  --ntg-clr-bg-default: #ffffff; /* Theme-specific colors */
+  --ntg-type-desktop-h1-size: var(
+    --type-heading-h1-size
+  ); /* Reference typography */
 }
 ```
 
@@ -139,14 +147,14 @@ The `tokens.json` file contains:
 --type-link-default-decoration: underline;
 --type-uppercase-small-text-transform: uppercase;
 
-/* ntg-theme.css - References shared values */
---ntg-type-font-default: Lato;  /* Only font family is theme-specific */
+/* theme-ntg.css - References shared values */
+--ntg-type-font-default: Lato; /* Only font family is theme-specific */
 --ntg-type-desktop-h1-size: var(--type-heading-h1-size);
 --ntg-type-desktop-h1-weight: var(--type-heading-h1-weight);
 --ntg-type-desktop-h1-lh: var(--type-heading-h1-lh);
 --ntg-type-desktop-h1-ls: var(--type-heading-h1-ls);
 
-/* central-theme.css - Same references, different font family */
+/* theme-central.css - Same references, different font family */
 --central-type-font-default: Roboto;
 --central-type-desktop-h1-size: var(--type-heading-h1-size);
 ```
@@ -155,14 +163,14 @@ The `tokens.json` file contains:
 
 **Understanding the naming conventions:**
 
-| Token Property | CSS Variable Suffix | Example |
-|----------------|---------------------|------------------|
-| `fontWeight` | `-weight` | `--type-heading-h1-weight` |
-| `lineHeight` | `-lh` | `--type-heading-h1-lh` |
-| `letterSpacing` | `-ls` | `--type-heading-h1-ls` |
-| `fontSize` | `-size` | `--type-heading-h1-size` |
-| `textDecoration` | `-decoration` | `--type-link-default-decoration` |
-| `textCase` | `-text-transform` | `--type-uppercase-small-text-transform` |
+| Token Property     | CSS Variable Suffix  | Example                                 |
+| ------------------ | -------------------- | --------------------------------------- |
+| `fontWeight`       | `-weight`            | `--type-heading-h1-weight`              |
+| `lineHeight`       | `-lh`                | `--type-heading-h1-lh`                  |
+| `letterSpacing`    | `-ls`                | `--type-heading-h1-ls`                  |
+| `fontSize`         | `-size`              | `--type-heading-h1-size`                |
+| `textDecoration`   | `-decoration`        | `--type-link-default-decoration`        |
+| `textCase`         | `-text-transform`    | `--type-uppercase-small-text-transform` |
 | `paragraphSpacing` | `-paragraph-spacing` | `--type-link-default-paragraph-spacing` |
 
 ## Validation
@@ -174,6 +182,7 @@ npm run tokens:validate
 ```
 
 This checks for:
+
 - Valid JSON syntax
 - Required token categories
 - Consistent naming conventions
@@ -213,7 +222,7 @@ If theme files duplicate raw values instead of using `var()`:
 grep -c "^  --" src/themes/common.css       # ~25 variables
 grep -c "^  --" src/themes/grid.css         # ~15 variables
 grep -c "^  --" src/themes/typography.css   # ~144 variables
-grep -c "^  --" src/themes/ntg-theme.css    # ~170+ variables
+grep -c "^  --" src/themes/theme-ntg.css    # ~170+ variables
 ```
 
 ### Debugging Commands
@@ -221,16 +230,16 @@ grep -c "^  --" src/themes/ntg-theme.css    # ~170+ variables
 ```bash
 # Check for specific property types
 grep "decoration\|text-transform\|paragraph-spacing" src/themes/typography.css
-grep "decoration\|text-transform\|paragraph-spacing" src/themes/ntg-theme.css
+grep "decoration\|text-transform\|paragraph-spacing" src/themes/theme-ntg.css
 
 # Verify variable references (should show var() calls)
-grep "type-desktop-h1" src/themes/ntg-theme.css
+grep "type-desktop-h1" src/themes/theme-ntg.css
 
 # Check import statements
-head -20 src/themes/ntg-theme.css | grep "@import"
+head -20 src/themes/theme-ntg.css | grep "@import"
 
 # Find duplicate or missing properties
-diff <(grep "^  --ntg-type" src/themes/ntg-theme.css | sort) <(grep "^  --central-type" src/themes/central-theme.css | sed 's/central/ntg/g' | sort)
+diff <(grep "^  --ntg-type" src/themes/theme-ntg.css | sort) <(grep "^  --central-type" src/themes/theme-central.css | sed 's/central/ntg/g' | sort)
 ```
 
 ### Build Script Architecture
@@ -247,6 +256,7 @@ diff <(grep "^  --ntg-type" src/themes/ntg-theme.css | sort) <(grep "^  --centra
    - Additional properties (decoration, text-transform, paragraph-spacing)
 
 **Processing Pipeline:**
+
 ```
 tokens.json
     ↓
@@ -256,8 +266,8 @@ tokens.json
     ↓
 [generateCSS]
     ↓
-ntg-theme.css (171 lines)
-central-theme.css (151 lines)
+theme-ntg.css (171 lines)
+theme-central.css (151 lines)
 ```
 
 ## Manual Editing
@@ -272,11 +282,13 @@ central-theme.css (151 lines)
 ## Token Categories
 
 ### Colors
+
 - Primitive colors (foundation)
 - Semantic colors (contextual usage)
 - Status colors (info, success, warning, danger)
 
 ### Typography
+
 - Font families
 - Font sizes (rem values)
 - Font weights
@@ -284,15 +296,18 @@ central-theme.css (151 lines)
 - Letter spacing
 
 ### Spacing
+
 - Spacer scale (xxs to xxxl)
 - Consistent spacing system
 
 ### Borders
+
 - Border widths
 - Border radius values
 - Border colors
 
 ### Effects
+
 - Box shadows
 - Focus states
 - Elevation system

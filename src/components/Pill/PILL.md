@@ -293,10 +293,10 @@ function SearchResults({ query, filters, onRemoveFilter, onClearAll }) {
 
 ## Related Documentation
 
-- [Design Tokens](../../../design-tokens/README.md)
+- [Design Tokens](../../../design-tokens/DESIGN-TOKENS.md)
 - [Theme Switching](../../../src/themes/THEME_SWITCHING.md)
-- [Tag Component](../Tag/README.md) - Related non-interactive label component
-- [Button Component](../Button/README.md) - Interactive button patterns
+- [Tag Component](../Tag/TAG.md) - Related non-interactive label component
+- [Button Component](../Button/BUTTON.md) - Interactive button patterns
 
 ## Browser Support
 
@@ -309,7 +309,7 @@ The Pill component supports all modern browsers:
 
 ## Best Practices
 
-1. **Use for removable items**: Pills are for dismissible content. For static labels, use the [Tag component](../Tag/README.md) instead.
+1. **Use for removable items**: Pills are for dismissible content. For static labels, use the [Tag component](../Tag/TAG.md) instead.
 
 2. **Keep labels concise**: Pills work best with short, scannable text (1-3 words).
 

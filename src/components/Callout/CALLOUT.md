@@ -141,5 +141,5 @@ The Callout component is compatible with all modern browsers:
 
 ## Related Components
 
-- [Notification](../Notification/README.md) - For status-specific alerts with semantic variants
-- [Card](../Card/README.md) - For grouping related content in a container
+- [Notification](../Notification/NOTIFICATION.md) - For status-specific alerts with semantic variants
+- [Card](../Card/CARD.md) - For grouping related content in a container

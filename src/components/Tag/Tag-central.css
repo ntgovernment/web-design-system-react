@@ -8,5 +8,5 @@
 /* Theme-specific adjustments can be added here as needed */
 /* The base Tag.css uses design tokens that are theme-aware */
 
-/* Central theme uses the brand colors defined in central-theme.css */
+/* Central theme uses the brand colors defined in theme-central.css */
 /* Status colors automatically inherit from --central-clr-status-* tokens */

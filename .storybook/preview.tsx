@@ -76,7 +76,7 @@ const loadBootstrapTypography = (theme: string) => {
   typographyOverride.id = "bootstrap-typography-css";
   typographyOverride.rel = "stylesheet";
   typographyOverride.href = new URL(
-    `../src/typography/typography-${theme}.css`,
+    `../src/themes/typography-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(typographyOverride);
@@ -299,7 +299,7 @@ const loadThemeCSS = (theme: string) => {
   themeCSS.id = "theme-css";
   themeCSS.rel = "stylesheet";
   themeCSS.href = new URL(
-    `../src/themes/${theme}-theme.css`,
+    `../src/themes/theme-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(themeCSS);

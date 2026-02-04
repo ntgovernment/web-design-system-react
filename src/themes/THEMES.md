@@ -6,8 +6,8 @@ The CSS files in this directory are automatically generated from design tokens.
 
 ## Generated Files
 
-- `ntg-theme.css` - NT.GOV.AU theme (auto-generated)
-- `central-theme.css` - NTG Central theme (auto-generated)
+- `theme-ntg.css` - NT.GOV.AU theme (auto-generated)
+- `theme-central.css` - NTG Central theme (auto-generated)
 
 ## Making Changes
 
@@ -43,6 +43,7 @@ dist/style.css
 ## CSS Variable Structure
 
 ### NT.GOV.AU Theme (`--ntg-*` prefix)
+
 - Colors: `--ntg-primary`, `--ntg-secondary`, etc.
 - Typography: `--ntg-font-family-sans-serif`, etc.
 - Spacing: `--ntg-spacer-1` through `--ntg-spacer-5`
@@ -50,10 +51,13 @@ dist/style.css
 - Shadows: `--ntg-box-shadow`, etc.
 
 ### NTG Central Theme (`--central-*` prefix)
+
 - Same structure with `--central-*` prefix
 
 ### Bootstrap Integration
+
 Both themes map to Bootstrap 5.3 variables:
+
 ```css
 --bs-primary: var(--ntg-primary);
 --bs-body-font-family: var(--ntg-font-family-sans-serif);
@@ -62,18 +66,21 @@ Both themes map to Bootstrap 5.3 variables:
 ## Documentation
 
 For more information about the design token system:
-- See `design-tokens/README.md`
+
+- See `design-tokens/DESIGN-TOKENS.md`
 - View Style Dictionary config: `design-tokens/config/style-dictionary.config.js`
 - Read build script: `scripts/build-tokens.js`
 
 ## Troubleshooting
 
 **CSS not updating after token changes?**
+
 1. Run `npm run tokens:build`
 2. Clear browser cache
 3. Restart Vite dev server
 
 **Build errors?**
+
 1. Run `npm run tokens:validate` to check token structure
 2. Check `design-tokens/tokens.json` for syntax errors
 3. Review console output for specific error messages

@@ -43,8 +43,8 @@ function App() {
       // Development: swap individual CSS files
       // Add timestamp to force reload and bypass cache
       const timestamp = new Date().getTime();
-      const typographyPath = `/src/typography/typography-${newTheme}.css?v=${timestamp}`;
-      const themePath = `/src/themes/${newTheme}-theme.css?v=${timestamp}`;
+      const typographyPath = `/src/themes/typography-${newTheme}.css?v=${timestamp}`;
+      const themePath = `/src/themes/theme-${newTheme}.css?v=${timestamp}`;
       const buttonThemePath = `/src/components/Button/Button-${newTheme}.css?v=${timestamp}`;
       const calloutThemePath = `/src/components/Callout/Callout-${newTheme}.css?v=${timestamp}`;
       const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;

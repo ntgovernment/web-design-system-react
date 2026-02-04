@@ -50,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - WCAG AAA compliant color contrast
   - Storybook stories with interactive demos
   - Comprehensive documentation and usage examples
-- Component-specific README files for Button, Card, Alert, and Typography components
+- Component-specific documentation for Button, Card, Alert, and content showcase files
 - CONTRIBUTING.md with development guidelines and contribution process
 - CHANGELOG.md to track version history
 - Comprehensive documentation for HTML API feature
@@ -76,7 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Card**: Flexible container with header, body, footer, 8 contextual variants, and icon support
   - **Alert**: Notification component with 8 variants, dismissible functionality, and icon support
   - **Icon**: FontAwesome icon wrapper with accessibility features and status color support
-  - **Typography**: Storybook documentation for typography system (not a component)
+  - **Typography**: Storybook content showcase for typography system (moved to content/ folder)
 - Dual-theme support:
   - NTG theme (NT.GOV.AU) with Lato font
   - Central theme (NTG Central) with Roboto font
@@ -92,7 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - DESIGN_TOKENS_IMPLEMENTATION.md with deep dive into token system
   - SQUIZ_DXP_DEPLOYMENT.md for Squiz DXP integration
   - Theme-specific documentation in `src/themes/`
-  - Typography system documentation in `src/typography/`
+  - Bootstrap typography integration documentation in `src/themes/typography-integration.md`
 - Storybook 8.6.15 setup:
   - 30+ component stories with examples
   - Accessibility addon (@storybook/addon-a11y) configured for WCAG AAA testing

@@ -236,6 +236,6 @@ The Icon component supports all modern browsers that support:
 
 ## Related Components
 
-- [Button](../Button/README.md) - Uses Icon for button icons
-- [Notification](../Notification/README.md) - Auto-assigns icons based on status
-- [Card](../Card/README.md) - Uses Icon for card header icons
+- [Button](../Button/BUTTON.md) - Uses Icon for button icons
+- [Notification](../Notification/NOTIFICATION.md) - Auto-assigns icons based on status
+- [Card](../Card/CARD.md) - Uses Icon for card header icons

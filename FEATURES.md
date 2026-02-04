@@ -178,7 +178,7 @@ Host the built files and load via script tags
 
 ## 📚 Documentation
 
-- **README.md** - Main documentation
+- **Main Documentation** - Project README with setup and usage
 - **SQUIZ_DXP_DEPLOYMENT.md** - Detailed deployment guide for Squiz DXP
 - **Storybook** - Interactive component documentation
 - **TypeScript** - IntelliSense and type hints in IDEs
