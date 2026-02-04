@@ -1,3 +1,4 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
 import type { StorybookConfig } from "@storybook/react-vite";
 import type { Plugin } from "vite";
 import { readFileSync } from "fs";
@@ -161,7 +162,12 @@ function htmlApiPlugin(): Plugin {
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  addons: ["@storybook/addon-links", "@storybook/addon-a11y", "@storybook/addon-docs"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-a11y",
+    "@storybook/addon-docs",
+    "@storybook/addon-vitest"
+  ],
 
   framework: {
     name: "@storybook/react-vite",
