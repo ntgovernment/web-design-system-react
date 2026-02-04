@@ -7,7 +7,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
  * Use the theme switcher in the toolbar to see font and color changes.
  */
 const meta = {
-  title: "Design System/Typography",
+  title: "Content/Typography",
   parameters: {
     layout: "padded",
     docs: {

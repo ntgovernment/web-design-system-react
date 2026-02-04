@@ -6,10 +6,23 @@ import { Tag } from "../components/Tag";
 import { Pill } from "../components/Pill";
 import { Notification } from "../components/Notification";
 import { Image } from "../components/Image";
+import { TableContent } from "../content/table/Table";
 import placeholderImage from "../assets/images/placeholder.webp";
 
 function App() {
   const [theme, setTheme] = useState<"ntg" | "central">("ntg");
+
+  const tableColumns = ["Service", "Owner", "Status", "Last updated"];
+  const tableRows = [
+    ["Grants Portal", "Digital NT", "Active", "2 Feb 2026"],
+    ["Vehicle Rego", "Transport", "Planned", "28 Jan 2026"],
+    ["Licensing Hub", "Business NT", "Active", "18 Jan 2026"],
+    ["Water Alerts", "Environment", "Paused", "12 Jan 2026"],
+    ["MyService", "Customer Experience", "Active", "4 Jan 2026"],
+    ["Open Data", "DPC", "Planned", "21 Dec 2025"],
+    ["Community Events", "NTG Central", "Active", "14 Dec 2025"],
+    ["Parks Pass", "Tourism", "Active", "30 Nov 2025"],
+  ];
 
   useEffect(() => {
     // Set initial theme on mount
@@ -86,6 +99,49 @@ function App() {
           <strong>{theme === "ntg" ? "NT.GOV.AU" : "NTG Central"}</strong>
         </p>
       </div>
+
+      <section className="mb-5">
+        <h2>Tables</h2>
+        <p className="text-muted mb-3">
+          Bootstrap table variants aligned with design tokens and Figma table
+          styling.
+        </p>
+        <div className="mb-4">
+          <h3 className="h5">Default (striped + hover)</h3>
+          <TableContent
+            caption="Service status overview"
+            columns={tableColumns}
+            rows={tableRows}
+          />
+        </div>
+        <div className="mb-4">
+          <h3 className="h5">Bordered</h3>
+          <TableContent
+            caption="Bordered table"
+            columns={tableColumns}
+            rows={tableRows}
+            bordered={true}
+          />
+        </div>
+        <div className="mb-4">
+          <h3 className="h5">Compact</h3>
+          <TableContent
+            caption="Compact table"
+            columns={tableColumns}
+            rows={tableRows}
+            size="sm"
+          />
+        </div>
+        <div className="mb-4">
+          <h3 className="h5">Responsive (md)</h3>
+          <TableContent
+            caption="Responsive table"
+            columns={tableColumns}
+            rows={tableRows}
+            responsive="md"
+          />
+        </div>
+      </section>
 
       <section className="mb-5">
         <h2>Cards</h2>

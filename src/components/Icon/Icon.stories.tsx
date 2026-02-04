@@ -1,19 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Icon } from './Icon';
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Icon } from "./Icon";
 
 const meta = {
-  title: 'Design System/Icon',
+  title: "Content/Icon",
   component: Icon,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     color: {
-      control: 'color',
+      control: "color",
     },
     size: {
-      control: 'text',
+      control: "text",
     },
   },
 } satisfies Meta<typeof Icon>;
@@ -23,28 +23,28 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    icon: 'fa-light fa-circle-check',
+    icon: "fa-light fa-circle-check",
   },
 };
 
 export const WithColor: Story = {
   args: {
-    icon: 'fa-light fa-heart',
-    color: '#dc3545',
+    icon: "fa-light fa-heart",
+    color: "#dc3545",
   },
 };
 
 export const WithSize: Story = {
   args: {
-    icon: 'fa-light fa-star',
-    color: '#ffc107',
-    size: '2rem',
+    icon: "fa-light fa-star",
+    color: "#ffc107",
+    size: "2rem",
   },
 };
 
 export const WithSpacing: Story = {
   args: {
-    icon: 'fa-light fa-home',
+    icon: "fa-light fa-home",
   },
   render: (args) => (
     <div>
@@ -56,10 +56,17 @@ export const WithSpacing: Story = {
 
 export const AllLightIcons: Story = {
   args: {
-    icon: 'fa-light fa-home',
+    icon: "fa-light fa-home",
   },
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: '1rem', fontSize: '1.5rem' }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(8, 1fr)",
+        gap: "1rem",
+        fontSize: "1.5rem",
+      }}
+    >
       <Icon icon="fa-light fa-home" ariaLabel="Home" />
       <Icon icon="fa-light fa-user" ariaLabel="User" />
       <Icon icon="fa-light fa-heart" ariaLabel="Heart" />
@@ -98,13 +105,28 @@ export const AllLightIcons: Story = {
 
 export const ColoredIcons: Story = {
   args: {
-    icon: 'fa-light fa-circle-check',
+    icon: "fa-light fa-circle-check",
   },
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', fontSize: '2rem' }}>
-      <Icon icon="fa-light fa-circle-check" color="#28a745" ariaLabel="Success" />
+    <div
+      style={{
+        display: "flex",
+        gap: "1rem",
+        alignItems: "center",
+        fontSize: "2rem",
+      }}
+    >
+      <Icon
+        icon="fa-light fa-circle-check"
+        color="#28a745"
+        ariaLabel="Success"
+      />
       <Icon icon="fa-light fa-circle-info" color="#17a2b8" ariaLabel="Info" />
-      <Icon icon="fa-light fa-triangle-exclamation" color="#ffc107" ariaLabel="Warning" />
+      <Icon
+        icon="fa-light fa-triangle-exclamation"
+        color="#ffc107"
+        ariaLabel="Warning"
+      />
       <Icon icon="fa-light fa-circle-xmark" color="#dc3545" ariaLabel="Error" />
       <Icon icon="fa-light fa-heart" color="#e83e8c" ariaLabel="Favorite" />
       <Icon icon="fa-light fa-star" color="#ffc107" ariaLabel="Rating" />
@@ -114,26 +136,56 @@ export const ColoredIcons: Story = {
 
 export const Sizes: Story = {
   args: {
-    icon: 'fa-light fa-heart',
+    icon: "fa-light fa-heart",
   },
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <Icon icon="fa-light fa-heart" color="#dc3545" size="0.875rem" ariaLabel="Small heart" />
-      <Icon icon="fa-light fa-heart" color="#dc3545" size="1rem" ariaLabel="Normal heart" />
-      <Icon icon="fa-light fa-heart" color="#dc3545" size="1.5rem" ariaLabel="Medium heart" />
-      <Icon icon="fa-light fa-heart" color="#dc3545" size="2rem" ariaLabel="Large heart" />
-      <Icon icon="fa-light fa-heart" color="#dc3545" size="3rem" ariaLabel="XL heart" />
-      <Icon icon="fa-light fa-heart" color="#dc3545" size="4rem" ariaLabel="XXL heart" />
+    <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+      <Icon
+        icon="fa-light fa-heart"
+        color="#dc3545"
+        size="0.875rem"
+        ariaLabel="Small heart"
+      />
+      <Icon
+        icon="fa-light fa-heart"
+        color="#dc3545"
+        size="1rem"
+        ariaLabel="Normal heart"
+      />
+      <Icon
+        icon="fa-light fa-heart"
+        color="#dc3545"
+        size="1.5rem"
+        ariaLabel="Medium heart"
+      />
+      <Icon
+        icon="fa-light fa-heart"
+        color="#dc3545"
+        size="2rem"
+        ariaLabel="Large heart"
+      />
+      <Icon
+        icon="fa-light fa-heart"
+        color="#dc3545"
+        size="3rem"
+        ariaLabel="XL heart"
+      />
+      <Icon
+        icon="fa-light fa-heart"
+        color="#dc3545"
+        size="4rem"
+        ariaLabel="XXL heart"
+      />
     </div>
   ),
 };
 
 export const RegularIcons: Story = {
   args: {
-    icon: 'fa-regular fa-circle',
+    icon: "fa-regular fa-circle",
   },
   render: () => (
-    <div style={{ display: 'flex', gap: '1rem', fontSize: '1.5rem' }}>
+    <div style={{ display: "flex", gap: "1rem", fontSize: "1.5rem" }}>
       <Icon icon="fa-regular fa-circle" ariaLabel="Circle outline" />
       <Icon icon="fa-regular fa-square" ariaLabel="Square outline" />
       <Icon icon="fa-regular fa-heart" ariaLabel="Heart outline" />
@@ -148,24 +200,40 @@ export const RegularIcons: Story = {
 
 export const StatusIcons: Story = {
   args: {
-    icon: 'fa-light fa-circle-check',
+    icon: "fa-light fa-circle-check",
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <Icon icon="fa-light fa-circle-check" color="var(--clr-status-success)" ariaHidden={true} />
+    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <Icon
+          icon="fa-light fa-circle-check"
+          color="var(--clr-status-success)"
+          ariaHidden={true}
+        />
         <span>Success message</span>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <Icon icon="fa-light fa-circle-info" color="var(--clr-status-info)" ariaHidden={true} />
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <Icon
+          icon="fa-light fa-circle-info"
+          color="var(--clr-status-info)"
+          ariaHidden={true}
+        />
         <span>Information message</span>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <Icon icon="fa-light fa-triangle-exclamation" color="var(--clr-status-warning)" ariaHidden={true} />
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <Icon
+          icon="fa-light fa-triangle-exclamation"
+          color="var(--clr-status-warning)"
+          ariaHidden={true}
+        />
         <span>Warning message</span>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <Icon icon="fa-light fa-circle-xmark" color="var(--clr-status-danger)" ariaHidden={true} />
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <Icon
+          icon="fa-light fa-circle-xmark"
+          color="var(--clr-status-danger)"
+          ariaHidden={true}
+        />
         <span>Error message</span>
       </div>
     </div>

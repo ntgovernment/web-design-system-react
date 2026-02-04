@@ -1,6 +1,5 @@
 import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
-import React from "react";
 
 // Import Button CSS files to ensure Vite processes them
 import "../src/components/Button/Button.css";
@@ -350,11 +349,9 @@ const preview: Preview = {
       toolbar: {
         icon: "paintbrush",
         items: [
-          { value: "ntg", title: "NT.GOV.AU", icon: "circle" },
-          { value: "central", title: "NTG Central", icon: "circlehollow" },
+          { value: "ntg", title: "NT.GOV.AU", icon: "globe" },
+          { value: "central", title: "NTG Central", icon: "user" },
         ],
-        showName: true,
-        dynamicTitle: true,
       },
     },
   },
@@ -384,12 +381,19 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
-          "⭐ Recent",
-          ["Card"],
+          "Content",
+          ["Table", "Typography", "Icon"],
           "Components",
-          ["Notification", "Pill", "Button", "Card", "Tag", "Callout", "Image"],
-          "Design System",
-          ["Typography", "Icon"],
+          [
+            "Card",
+            "Notification",
+            "Pill",
+            "Button",
+            "Card",
+            "Tag",
+            "Callout",
+            "Image",
+          ],
         ],
       },
     },
@@ -436,12 +440,12 @@ const preview: Preview = {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
-      test: "todo"
+      test: "todo",
     },
   },
 
   decorators: [withHTMLCode],
-  tags: ["autodocs"]
+  tags: ["autodocs"],
 };
 
 export default preview;
