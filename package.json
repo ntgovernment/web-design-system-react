@@ -3,51 +3,80 @@
   "version": "0.1.0",
   "description": "Component library and themes for NT Government websites and intranets",
   "type": "module",
-  "main": "./dist/web-design-system.umd.js",
-  "module": "./dist/web-design-system.es.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/components.min.js",
+  "module": "./dist/components.min.js",
   "exports": {
-    ".": {
-      "import": "./dist/web-design-system.es.js",
-      "require": "./dist/web-design-system.umd.js"
-    },
-    "./style.css": "./dist/style.css"
+    ".": "./dist/components.min.js",
+    "./ntg-theme.min.css": "./dist/ntg-theme.min.css",
+    "./central-theme.min.css": "./dist/central-theme.min.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "tokens:validate": "node scripts/validate-tokens.js",
+    "tokens:build": "node scripts/build-tokens.js",
+    "prebuild": "npm run generate-story-data",
+    "build": "tsc && node scripts/build-dist.js",
+    "preview": "vite preview --outDir dist",
+    "generate-story-data": "node .storybook/generate-story-data.js",
+    "prestorybook": "npm run generate-story-data",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "prebuild-storybook": "npm run generate-story-data",
+    "build-storybook": "storybook build",
+    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "peerDependenciesMeta": {
+    "bootstrap": {
+      "optional": false
+    },
+    "fontawesome": {
+      "optional": false
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.6.10",
-    "@storybook/addon-interactions": "^7.6.10",
-    "@storybook/addon-links": "^7.6.10",
-    "@storybook/blocks": "^7.6.10",
-    "@storybook/react": "^7.6.10",
-    "@storybook/react-vite": "^7.6.10",
-    "@storybook/testing-library": "^0.2.2",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.56.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "eslint-plugin-storybook": "^0.6.15",
-    "storybook": "^7.6.10",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12",
-    "vite-plugin-dts": "^3.7.2"
+    "@eslint/js": "^9.17.0",
+    "@storybook/addon-a11y": "10.2.4",
+    "@storybook/addon-docs": "10.2.4",
+    "@storybook/addon-links": "10.2.4",
+    "@storybook/addon-vitest": "^10.2.4",
+    "@storybook/react-vite": "10.2.4",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.5",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "eslint-plugin-storybook": "10.2.4",
+    "gh-pages": "^6.2.0",
+    "globals": "^15.13.0",
+    "playwright": "^1.58.1",
+    "storybook": "10.2.4",
+    "style-dictionary": "^5.2.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vite-plugin-dts": "^4.2.5",
+    "vitest": "^4.0.18"
   },
   "keywords": [
     "component-library",

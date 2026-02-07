@@ -1,0 +1,131 @@
+/* Notification Component Styles */
+
+.notification {
+  width: 100%;
+  background: var(--clr-bg-default);
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  outline: var(--border-width-md) solid;
+  outline-offset: calc(-1 * var(--border-width-md));
+}
+
+.notification__accent-bar {
+  width: var(--sp-xs);
+  align-self: stretch;
+}
+
+.notification__content {
+  flex: 1 1 0;
+  padding: var(--sp-xl);
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+}
+
+.notification__header {
+  align-self: stretch;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-md);
+}
+
+.notification__icon {
+  width: var(--sp-xxl);
+  height: var(--sp-xxl);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notification__icon i {
+  font-size: var(--sp-xl);
+}
+
+.notification__text {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+}
+
+.notification__title {
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-h3-size);
+  font-family: var(--type-font-default);
+  font-weight: var(--type-heading-h3-weight);
+  line-height: var(--type-heading-h3-lh);
+  word-wrap: break-word;
+}
+
+.notification__title:empty {
+  display: none;
+}
+
+.notification__message {
+  align-self: stretch;
+  color: var(--clr-text-default);
+  font-size: var(--type-body-default-size);
+  font-family: var(--type-font-default);
+  font-weight: var(--type-body-default-weight);
+  line-height: var(--type-body-default-lh);
+  word-wrap: break-word;
+}
+
+/* Variant Styles */
+
+.notification--info {
+  outline-color: var(--clr-status-info);
+}
+
+.notification--info .notification__accent-bar {
+  background: var(--clr-status-info);
+}
+
+.notification--info .notification__icon i {
+  color: var(--clr-status-info);
+}
+
+.notification--success {
+  outline-color: var(--clr-status-success);
+}
+
+.notification--success .notification__accent-bar {
+  background: var(--clr-status-success);
+}
+
+.notification--success .notification__icon i {
+  color: var(--clr-status-success);
+}
+
+.notification--warning {
+  outline-color: var(--clr-status-warning);
+}
+
+.notification--warning .notification__accent-bar {
+  background: var(--clr-status-warning);
+}
+
+.notification--warning .notification__icon i {
+  color: var(--clr-status-warning);
+}
+
+.notification--danger {
+  outline-color: var(--clr-status-danger);
+}
+
+.notification--danger .notification__accent-bar {
+  background: var(--clr-status-danger);
+}
+
+.notification--danger .notification__icon i {
+  color: var(--clr-status-danger);
+}

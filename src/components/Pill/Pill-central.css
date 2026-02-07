@@ -1,0 +1,35 @@
+/**
+ * Pill Component - Central Theme Overrides
+ * 
+ * Theme-specific styling for Central design system
+ */
+
+.pill {
+  /* Border */
+  border-radius: var(--radii-lg);
+
+  /* Colors */
+  background-color: var(--clr-bg-default);
+  border-color: var(--clr-border-subtle);
+  color: var(--clr-link-default);
+}
+
+/* Hover state */
+.pill:hover {
+  background-color: var(--clr-bg-shade-alt);
+}
+
+/* Focus state */
+.pill:focus {
+  outline: var(--border-width-xl) solid var(--clr-focus-focus);
+  outline-offset: -1px;
+  background-color: var(--clr-bg-default);
+}
+
+/* Icon color - all states */
+.pill__close,
+.pill:hover .pill__close,
+.pill:focus .pill__close,
+.pill:active .pill__close {
+  color: var(--central-green-03);
+}

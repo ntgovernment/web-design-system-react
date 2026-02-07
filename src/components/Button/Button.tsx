@@ -1,46 +1,58 @@
-import React from 'react';
+import React from "react";
+import { Icon } from "../Icon";
 
-export interface ButtonProps {
+/**
+ * IMPORTANT: Card Component Dependency
+ * The Card component's footer uses Button.css styles directly via className="btn btn-tertiary"
+ * on a span element (see Card.tsx renderFooter function).
+ *
+ * If you modify Button.css styles or class names:
+ * - Update Card.tsx renderFooter to match new classes
+ * - Ensure Button.css variables remain consistent (colors, typography, spacing)
+ * - Test Card component focus and hover states after changes
+ */
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button variant
    */
-  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
+  variant?: "primary" | "secondary" | "tertiary";
   /**
    * Button size
    */
-  size?: 'sm' | 'lg';
+  size?: "sm";
   /**
-   * Is this the button disabled?
+   * Button text label
    */
-  disabled?: boolean;
+  label?: string;
   /**
-   * Button contents
+   * Icon to display on the left side (FontAwesome icon class, e.g., 'fa-light fa-home')
    */
-  children: React.ReactNode;
+  iconLeft?: string;
   /**
-   * Optional click handler
+   * Icon to display on the right side (FontAwesome icon class, e.g., 'fa-light fa-arrow-right')
    */
-  onClick?: () => void;
-  /**
-   * Button type
-   */
-  type?: 'button' | 'submit' | 'reset';
+  iconRight?: string;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Button = ({
-  variant = 'primary',
+  variant = "primary",
   size,
   disabled = false,
-  children,
+  label,
   onClick,
-  type = 'button',
+  type = "button",
+  iconLeft,
+  iconRight,
+  className: customClassName,
   ...props
 }: ButtonProps) => {
-  const sizeClass = size ? `btn-${size}` : '';
-  const className = `btn btn-${variant} ${sizeClass}`.trim();
+  const sizeClass = size ? `btn-${size}` : "";
+  const className =
+    `btn btn-${variant} ${sizeClass} ${customClassName || ""}`.trim();
 
   return (
     <button
@@ -50,7 +62,9 @@ export const Button = ({
       onClick={onClick}
       {...props}
     >
-      {children}
+      {iconLeft && <Icon icon={iconLeft} className={label ? "me-2" : ""} />}
+      {label}
+      {iconRight && <Icon icon={iconRight} className={label ? "ms-2" : ""} />}
     </button>
   );
 };

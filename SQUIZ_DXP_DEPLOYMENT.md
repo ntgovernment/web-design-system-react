@@ -78,20 +78,24 @@ Create the following **File Assets** in Matrix:
 
 ### Step 3: Configure CDN Dependencies
 
-Since the library depends on Bootstrap 5.3, ensure it's loaded in your pages:
+The library depends on Bootstrap 5.3 and FontAwesome. Ensure both are loaded in your pages:
 
 **Option A: Add to Design Template**
 ```html
+<!-- Bootstrap 5.3 -->
 <link 
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
   rel="stylesheet" 
   integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
   crossorigin="anonymous"
 >
+
+<!-- FontAwesome Kit -->
+<script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
 ```
 
 **Option B: Add via Paint Layout**
-In your Paint Layout, add the Bootstrap CDN link in the `<head>` section.
+In your Paint Layout, add both the Bootstrap CDN link and FontAwesome Kit script in the `<head>` section.
 
 ### Step 4: Create Component Service Templates
 
@@ -117,6 +121,8 @@ Create a **Standard Page** asset for each component you want to expose:
     createElement(Button, {
       variant: '%globals_get_variant:primary%',
       size: '%globals_get_size%',
+      icon: '%globals_get_icon%',
+      iconPosition: '%globals_get_iconPosition:left%',
       onClick: () => { %globals_get_onclick% }
     }, '%globals_get_label:Click Me%')
   );
@@ -127,6 +133,8 @@ Create a **Standard Page** asset for each component you want to expose:
 - `variant`: Select (primary, secondary, success, danger, warning, info, light, dark)
 - `size`: Select (sm, default, lg)
 - `label`: Text
+- `icon`: Text (e.g., "fa-solid fa-home")
+- `iconPosition`: Select (left, right)
 - `onclick`: Text
 
 ### Step 5: Usage in Content Pages
@@ -150,6 +158,9 @@ For developers with more control, you can import the library directly in Paint L
   <!-- Bootstrap 5.3 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   
+  <!-- FontAwesome Kit -->
+  <script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+  
   <!-- Design System Styles -->
   <link rel="stylesheet" href="%globals_asset_url:YOUR_STYLE_CSS_ASSET_ID%">
 </head>
@@ -166,9 +177,9 @@ For developers with more control, you can import the library directly in Paint L
     root.render(
       h('div', { className: 'container my-4' },
         h('h1', {}, 'Welcome'),
-        h(Button, { variant: 'primary' }, 'Click Me'),
-        h(Card, { title: 'Info' }, 'This is a card'),
-        h(Alert, { variant: 'success' }, 'Success!')
+        h(Button, { variant: 'primary', icon: 'fa-solid fa-home' }, 'Home'),
+        h(Card, { title: 'Info', icon: 'fa-solid fa-info-circle' }, 'This is a card'),
+        h(Alert, { variant: 'success', icon: 'fa-solid fa-circle-check' }, 'Success!')
       )
     );
   </script>

@@ -1,35 +1,67 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts'
-import { resolve } from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      insertTypesEntry: true,
-    }),
-  ],
-  build: {
-    lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'WebDesignSystem',
-      formats: ['es', 'umd'],
-      fileName: (format) => `web-design-system.${format}.js`,
-    },
-    rollupOptions: {
-      external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
+export default defineConfig(({ mode }) => {
+  const isLibraryMode = mode === 'library';
+  
+  if (isLibraryMode) {
+    // Library build configuration - generates components.umd.js
+    return {
+      plugins: [react()],
+      build: {
+        target: "es2020",
+        outDir: "dist/lib",
+        emptyOutDir: true,
+        minify: 'esbuild',
+        sourcemap: false,
+        lib: {
+          entry: resolve(__dirname, 'src/index.ts'),
+          name: 'NTGDesignSystem',
+          fileName: 'components',
+          formats: ['umd'],
         },
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'style.css';
-          return assetInfo.name || 'asset';
+        rollupOptions: {
+          // Externalize React and ReactDOM - they should be loaded separately
+          external: ['react', 'react-dom'],
+          output: {
+            globals: {
+              react: 'React',
+              'react-dom': 'ReactDOM',
+            },
+            // Prevent CSS from being generated in library mode
+            assetFileNames: (assetInfo) => {
+              // Skip CSS output in library mode
+              if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+                return 'unused/[name].[ext]';
+              }
+              return '[name].[ext]';
+            },
+          },
         },
       },
-    },
-  },
-})
+    };
+  } else {
+    // Demo build configuration - generates index.html, index.js, index.css
+    return {
+      plugins: [react()],
+      base: './',
+      build: {
+        target: "es2020",
+        outDir: "dist/demo",
+        emptyOutDir: true,
+        minify: 'esbuild',
+        cssMinify: true,
+        sourcemap: false,
+        rollupOptions: {
+          output: {
+            entryFileNames: 'index.js',
+            chunkFileNames: '[name].js',
+            assetFileNames: '[name].[ext]',
+          },
+        },
+      },
+    };
+  }
+});

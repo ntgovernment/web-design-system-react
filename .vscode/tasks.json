@@ -1,0 +1,71 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Library",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Install Dependencies",
+			"type": "shell",
+			"command": "npm install",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install Storybook 10.2.1",
+			"type": "shell",
+			"command": "npm install",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install with a11y addon",
+			"type": "shell",
+			"command": "npm install",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Build Library",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Start Storybook",
+			"type": "shell",
+			"command": "npm run storybook",
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Build Library",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Build Library Verify",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

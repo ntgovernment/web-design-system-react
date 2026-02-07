@@ -1,7 +1,11 @@
 /**
- * Main stylesheet for NT Government Web Design System
- * Import this file to get the base theme
+ * Component-specific styles for NT Government Web Design System
+ * 
+ * This file contains only component-specific CSS.
+ * Import a theme file separately:
+ * - ntg-theme.min.css for NT.GOV.AU
+ * - central-theme.min.css for NTG Central
  */
 
-/* Import NT.GOV.AU theme by default */
-@import './themes/ntg-theme.css';
+/* Component-specific styles would go here if needed */
+/* Currently components use Bootstrap classes and theme CSS variables */

@@ -1,0 +1,74 @@
+/**
+ * Pill Component - Base Styles
+ * 
+ * Removable tag component for filters, selections, and chips.
+ * Uses design tokens for spacing, colors, and typography.
+ */
+
+.pill {
+  /* Display */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+
+  /* Spacing */
+  padding: var(--sp-xs) var(--sp-md);
+
+  /* Border */
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: var(--radii-none);
+
+  /* Colors */
+  background-color: var(--clr-bg-default);
+  color: var(--clr-link-default);
+
+  /* Typography */
+  font-family: var(--type-font-default);
+  font-size: var(--type-button-label-size);
+  font-weight: var(--type-button-label-weight);
+  line-height: var(--type-button-label-lh);
+
+  /* Interactive */
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+
+  /* Remove default button styles */
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+/* Hover state */
+.pill:hover {
+  background-color: var(--clr-bg-shade-alt);
+  border-color: var(--clr-border-subtle);
+  color: var(--clr-link-default);
+}
+
+/* Focus state */
+.pill:focus {
+  outline: var(--border-width-xl) solid var(--clr-focus-focus);
+  outline-offset: -1px;
+  background-color: var(--clr-bg-default);
+}
+
+/* Active state */
+.pill:active {
+  background-color: var(--clr-bg-active);
+}
+
+/* Label text */
+.pill__label {
+  display: inline-block;
+}
+
+/* Close button */
+.pill__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  line-height: 1;
+}

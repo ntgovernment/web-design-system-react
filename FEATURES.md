@@ -1,48 +1,124 @@
 # NT Government Web Design System - Features
 
 ## Overview
+
 A modern, production-ready component library built with Vite, React, TypeScript, and Bootstrap 5.3, designed for deployment in Squiz DXP Component Services.
 
 ## ✅ Completed Features
 
 ### 1. Modern Technology Stack
+
 - **Vite 5.4** - Fast build tool with HMR
 - **React 18.2** - Latest React with TypeScript support
 - **TypeScript 5.3** - Full type safety
 - **Bootstrap 5.3.3** - Via CDN with CSS variables support
 
 ### 2. Dual Theme System
+
+**Automated Design Token Workflow:**
+
+- Design tokens exported from Figma as JSON
+- Style Dictionary transforms tokens into CSS custom properties
+- Automated generation on every build
+- Version-controlled token source of truth
+
 - **NT.GOV.AU Theme** - CSS variables with `ntg-` prefix
   - Primary: #003366 (NT Government blue)
   - Accent: #00a3e0
-  - Fully customizable via CSS variables
-  
+  - Fully customizable via design tokens
 - **NTG Central Theme** - CSS variables with `central-` prefix
   - Primary: #0d6efd (Bootstrap blue)
   - Accent: #fd7e14 (Orange)
-  - Fully customizable via CSS variables
+  - Fully customizable via design tokens
+
+**Design Token Features:**
+
+- Single source of truth in `design-tokens/tokens.json`
+- Automated CSS generation via Style Dictionary
+- Bootstrap 5.3 CSS variable integration
+- Validation scripts for token structure
+- Build-time transformation
+- 4000+ token definitions from Figma
 
 ### 3. Component Library
-Three fully functional, documented components:
+
+Fully functional, documented components:
+
+#### Notification Component
+
+- 4 status variants (info, success, warning, danger)
+- Auto-assigned FontAwesome Light icons
+- Distinctive 8px left accent bar
+- Structured content with title and message props
+- Design token-based sizing
+- Optional title support
+- Non-dismissible for persistent messages
+- Full TypeScript types
+- WCAG AAA compliant
+
+#### Image Component
+
+- Responsive images with fluid sizing
+- Thumbnail styling with borders, padding, and shadows
+- Border radius variants (sm, md, lg, circle)
+- Automatic figure wrapper with captions
+- Design token integration for all styling
+- Theme-aware border radius and colors
+- Full TypeScript types
+- Semantic HTML with `<figure>` and `<figcaption>`
+- WCAG AAA compliant with required alt text
+- Support for native image attributes (srcSet, sizes, loading)
+
+#### Tag Component
+
+- 6 color variants (default, grey, green, blue, warning, red)
+- Uppercase typography
+- Theme-aware colors
+- Compact inline display
+- Full TypeScript types
+
+#### Pill Component
+
+- Removable filter/tag component
+- Click-to-remove functionality
+- FontAwesome icon integration
+- Theme-aware styling
+- Full TypeScript types
 
 #### Button Component
-- Multiple variants (primary, secondary, success, danger, warning, info, light, dark, link)
-- Size options (small, default, large)
+
+- Multiple variants (primary, secondary, tertiary)
+- Size options (small, default)
+- Icon support (left, right, icon-only)
 - Full TypeScript types
-- Bootstrap 5.3 classes
+- Bootstrap 5.3 classes with design token overrides
 
 #### Card Component
+
 - Title, body, and footer sections
+- Icon support in header
 - Variant support for theming
 - Flexible content
 - Responsive layout
+- Full TypeScript types
 
-#### Alert Component
-- Multiple variants
-- Dismissible option
-- Clean, accessible markup
+#### Callout Component
+
+- Heading and content props
+- Prominent left border
+- Flexible layout
+- Theme-aware styling
+- Full TypeScript types
+
+#### Icon Component
+
+- FontAwesome icon wrapper
+- Accessibility features
+- Size and color customization
+- Full TypeScript types
 
 ### 4. Storybook Integration
+
 - **Storybook 7.6** configured with React and Vite
 - Interactive component documentation
 - Live component preview
@@ -51,6 +127,7 @@ Three fully functional, documented components:
 - Responsive testing tools
 
 ### 5. Build System
+
 - **Library Mode**: Generates ES and UMD bundles
 - **TypeScript Declarations**: Full `.d.ts` files
 - **CSS Bundle**: Compiled theme CSS
@@ -58,6 +135,7 @@ Three fully functional, documented components:
 - **Source Maps**: For debugging
 
 ### 6. Development Experience
+
 - Hot Module Replacement (HMR)
 - TypeScript IntelliSense
 - Storybook hot reload
@@ -65,6 +143,7 @@ Three fully functional, documented components:
 - Comprehensive documentation
 
 ### 7. Squiz DXP Ready
+
 - UMD and ES module formats
 - Standalone CSS file
 - CDN-compatible Bootstrap integration
@@ -86,17 +165,20 @@ dist/
 ## 🚀 Deployment Options
 
 ### Option 1: NPM Package
+
 Install via npm/yarn and import components directly
 
 ### Option 2: Squiz DXP Component Services
+
 Upload build artifacts to Matrix and use as Component Services
 
 ### Option 3: CDN
+
 Host the built files and load via script tags
 
 ## 📚 Documentation
 
-- **README.md** - Main documentation
+- **Main Documentation** - Project README with setup and usage
 - **SQUIZ_DXP_DEPLOYMENT.md** - Detailed deployment guide for Squiz DXP
 - **Storybook** - Interactive component documentation
 - **TypeScript** - IntelliSense and type hints in IDEs
@@ -104,6 +186,7 @@ Host the built files and load via script tags
 ## 🎨 Theming
 
 All themes extend Bootstrap 5.3 CSS variables:
+
 - Fully customizable color schemes
 - Prefix-based variables prevent conflicts
 - Easy to add new themes

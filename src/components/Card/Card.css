@@ -1,0 +1,391 @@
+/**
+ * Card Component - Common Styles
+ * 
+ * This file contains Bootstrap card CSS variable customizations
+ * that are common across all themes. Theme-specific overrides are
+ * defined in Card-ntg.css and Card-central.css.
+ * 
+ * Based on Bootstrap 5.3 CSS Variables approach:
+ * https://getbootstrap.com/docs/5.3/components/card/#variables
+ */
+
+/* Bootstrap Card CSS Variable Customizations */
+.card {
+  /* Spacing - Using design tokens */
+  --bs-card-spacer-y: var(--sp-xl);
+  --bs-card-spacer-x: var(--sp-xl);
+  --bs-card-title-spacer-y: var(--sp-sm);
+
+  /* Border - Using design tokens */
+  --bs-card-border-width: var(--border-width-md);
+  --bs-card-border-color: var(--clr-border-subtle);
+  --bs-card-border-radius: var(--radii-none) !important;
+
+  /* Background and text colors */
+  --bs-card-bg: var(--clr-bg-default);
+  --bs-card-color: var(--clr-text-default);
+
+  /* Card header/footer */
+  --bs-card-cap-padding-y: var(--sp-xl);
+  --bs-card-cap-padding-x: var(--sp-xl);
+  --bs-card-cap-bg: transparent;
+  --bs-card-cap-color: var(--clr-text-default);
+
+  /* Shadow - Using design tokens */
+  --bs-card-box-shadow: none;
+
+  /* Display */
+  display: flex;
+  flex-direction: column;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Hover states */
+.card:hover {
+  box-shadow: var(--shadow-md) !important;
+}
+
+.card:hover .card-title,
+.card:hover .card-title .icon {
+  color: var(--clr-link-hover) !important;
+}
+
+/* Typography */
+.card-title {
+  color: var(--clr-link-default) !important;
+  font-size: var(--type-heading-h4-size);
+  font-weight: var(--type-heading-h4-weight);
+  line-height: var(--type-heading-h4-lh);
+  word-wrap: break-word;
+}
+
+.card-title .icon {
+  color: var(--clr-link-default) !important;
+}
+
+.card-text {
+  color: var(--clr-text-default);
+  font-size: var(--type-body-default-size);
+  font-weight: var(--type-body-default-weight);
+  line-height: var(--type-body-default-lh);
+  word-wrap: break-word;
+}
+
+/* Layout */
+.card-body {
+  padding: var(--sp-xl) var(--sp-xl) var(--sp-xxs) var(--sp-xl) !important ;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  flex: 1 1 auto;
+}
+
+.card-header {
+  padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+  background-color: var(--bs-card-cap-bg);
+  border-bottom: 0;
+}
+
+.card-footer {
+  padding: var(--sp-xs) var(--sp-xl) var(--sp-xl) var(--sp-xl) !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.card-footer .btn.btn-tertiary {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Card image styling */
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-img-top {
+  border-top-left-radius: var(--bs-card-border-radius);
+  border-top-right-radius: var(--bs-card-border-radius);
+}
+
+.card-img-bottom {
+  border-bottom-left-radius: var(--bs-card-border-radius);
+  border-bottom-right-radius: var(--bs-card-border-radius);
+}
+
+/* Header metadata */
+.card__header-meta {
+  align-self: stretch;
+  padding: var(--sp-xl) var(--sp-xl) var(--sp-xxs);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--sp-xl);
+}
+
+.card__header-meta-tags {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+  padding: 0;
+  margin: 0;
+}
+
+.card__header-meta-date {
+  color: var(--clr-text-default);
+  font-size: var(--type-body-small-size);
+  font-weight: var(--type-body-small-weight);
+  line-height: var(--type-body-small-lh);
+  white-space: nowrap;
+}
+
+/* Media container */
+.card__media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card__media--16-9 {
+  aspect-ratio: 16 / 9;
+}
+.card__media--4-3 {
+  aspect-ratio: 4 / 3;
+}
+.card__media--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Body content */
+.card__body-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.card__body-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+.card__body-title-wrapper .card-title {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Footer actions */
+.card__footer-actions {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-sm);
+}
+
+/* Horizontal layout (image on side) */
+.card--horizontal {
+  flex-direction: row;
+}
+
+.card--horizontal .card__media {
+  width: 40%;
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.card--horizontal .card__media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.card--horizontal .card-body {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .card--horizontal {
+    flex-direction: column;
+  }
+
+  .card--horizontal .card__media {
+    width: 100%;
+  }
+}
+
+/* Clickable cards */
+.card--clickable {
+  cursor: pointer;
+  border-color: var(--clr-border-subtle) !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card--clickable:hover {
+  border-color: var(--clr-border-strong-01);
+  box-shadow: var(--shadow-md);
+}
+
+.card--clickable:focus,
+.card--clickable:focus-visible {
+  outline: none;
+}
+
+/* Prevent buttons/spans inside clickable cards from stealing focus */
+.card--clickable .btn,
+.card--clickable button,
+.card--clickable span.btn {
+  pointer-events: none;
+}
+
+.card--clickable .btn:focus,
+.card--clickable .btn:focus-visible,
+.card--clickable button:focus,
+.card--clickable button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.card--clickable .card-title {
+  color: var(--clr-link-default);
+  text-decoration: none !important;
+}
+
+.card--clickable:hover .card-title,
+.card--clickable:hover .card-title .icon,
+.card--clickable:hover .btn-tertiary {
+  color: var(--clr-link-hover) !important;
+}
+
+.card--clickable:hover .card-title {
+  text-decoration: underline;
+}
+
+/* Grid support */
+.card.h-100 {
+  height: 100%;
+}
+
+.card-group {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--sp-md);
+}
+
+.card-group > .card {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .card-group {
+    flex-direction: column;
+  }
+}
+
+/* Minicard variant */
+
+.card--minicard {
+  padding: var(--sp-xl) !important;
+  border: 1px solid var(--clr-border-subtle);
+}
+
+.card--minicard .card-body {
+  padding: 0 !important;
+  gap: var(--sp-sm);
+}
+
+.card--minicard .card__body-title-wrapper {
+  gap: var(--sp-xs);
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card--minicard .card-title {
+  font-size: var(--type-heading-h4-size);
+  line-height: var(--type-heading-h4-lh);
+  font-weight: var(--type-heading-h4-weight);
+  margin-bottom: 0;
+}
+
+.card--minicard .card__minicard-icon {
+  width: var(--sp-xxl);
+  height: var(--sp-xxl);
+  font-size: var(--sp-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-text-emphasis) !important;
+  margin: 0 var(--sp-xs) 0 0;
+}
+
+/* Compact variant */
+
+.card--compact {
+  padding: var(--sp-xl) !important;
+  border: var(--border-width-md) solid var(--clr-border-subtle);
+  background: var(--clr-bg-default);
+}
+
+.card--compact .card-body {
+  padding: 0 !important;
+  gap: var(--sp-sm);
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.card--compact .card__body-content {
+  flex: 1;
+  gap: var(--sp-sm);
+}
+
+.card--compact .card__body-title-wrapper {
+  gap: var(--sp-xs);
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card--compact .card-title {
+  font-size: var(--type-body-default-size);
+  line-height: var(--type-body-default-lh);
+  font-weight: var(--type-heading-h4-weight);
+  margin-bottom: 0;
+  color: var(--clr-link-default) !important;
+}
+
+.card--compact .card__compact-icon {
+  width: var(--sp-xxxl);
+  height: var(--sp-xxxl);
+  font-size: var(--sp-xxl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--clr-link-default) !important;
+  margin: 0;
+}
+
+.card--compact .card__compact-description {
+  font-size: var(--type-body-default-size);
+  line-height: var(--type-body-default-lh);
+  font-weight: var(--type-body-default-weight);
+  color: var(--clr-text-default);
+}

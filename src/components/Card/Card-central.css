@@ -1,0 +1,21 @@
+/**
+ * Card Component - NTG Central Theme
+ * Focus outline: 4px solid #6AB06A green
+ */
+
+.card--full.card--clickable:focus,
+.card--full.card--clickable:focus-visible,
+.card--minicard.card--clickable:focus,
+.card--minicard.card--clickable:focus-visible,
+.card--compact.card--clickable:focus,
+.card--compact.card--clickable:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-central);
+  border-color: var(--clr-border-strong-01);
+  background-color: inherit;
+}
+
+.card--full.card--clickable:focus:hover,
+.card--full.card--clickable:focus-visible:hover {
+  box-shadow: var(--shadow-focus-central);
+}

@@ -1,0 +1,50 @@
+@import "../../themes/typography.css";
+
+.callout {
+  width: 100%;
+  padding: var(--sp-xl);
+  background: var(--clr-bg-default);
+  border-left: var(--border-width-xxl) solid var(--clr-border-strong-01);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+}
+
+.callout__content {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-md);
+}
+
+.callout__text-container {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+}
+
+.callout__heading {
+  align-self: stretch;
+  color: var(--clr-text-default);
+  font-size: var(--type-heading-h3-size);
+  font-family: var(--type-font-default);
+  font-weight: var(--type-heading-h3-weight);
+  line-height: var(--type-heading-h3-lh);
+  word-wrap: break-word;
+}
+
+.callout__text {
+  align-self: stretch;
+  color: var(--clr-text-default);
+  font-size: var(--type-body-default-size);
+  font-family: var(--type-font-default);
+  font-weight: var(--type-body-default-weight);
+  line-height: var(--type-body-default-lh);
+  word-wrap: break-word;
+}
