@@ -25,6 +25,7 @@
     "storybook": "storybook dev -p 6006",
     "prebuild-storybook": "npm run generate-story-data",
     "build-storybook": "storybook build",
+    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage"
@@ -67,6 +68,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "eslint-plugin-storybook": "10.2.4",
+    "gh-pages": "^6.2.0",
     "globals": "^15.13.0",
     "playwright": "^1.58.1",
     "storybook": "10.2.4",
