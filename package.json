@@ -25,6 +25,7 @@
     "storybook": "storybook dev -p 6006",
     "prebuild-storybook": "npm run generate-story-data",
     "build-storybook": "storybook build",
+    "build-storybook:squiz": "npm run build-storybook",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage"

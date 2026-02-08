@@ -166,19 +166,38 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
-    "@storybook/addon-vitest"
+    "@storybook/addon-vitest",
   ],
+
+  staticDirs: ["public"],
 
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
 
+  core: {
+    builder: {
+      name: "@storybook/builder-vite",
+      options: {
+        viteConfigPath: undefined,
+      },
+    },
+  },
+
+  managerHead: (head) => `
+    ${head}
+    <base href="/webds/storybook/" />
+  `,
+
   async viteFinal(config) {
+    // Configure base path for Squiz Matrix deployment at /webds/storybook
+    config.base = "/webds/storybook/";
+
     // Add custom HTML API plugin
     config.plugins = config.plugins || [];
     config.plugins.push(htmlApiPlugin());
     return config;
-  }
+  },
 };
 export default config;
