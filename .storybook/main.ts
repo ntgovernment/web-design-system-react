@@ -166,19 +166,49 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
-    "@storybook/addon-vitest"
+    "@storybook/addon-vitest",
   ],
+
+  staticDirs: ["public"],
 
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
 
+  core: {
+    builder: {
+      name: "@storybook/builder-vite",
+      options: {
+        viteConfigPath: undefined,
+      },
+    },
+  },
+
+  // Only set a custom <base> and Vite base for production builds (storybook build).
+  // This prevents the dev server from serving assets under `/webds/storybook/` which
+  // would otherwise produce 404s when running `storybook dev` locally.
+  managerHead: (head) => {
+    if (process.env.NODE_ENV === "production") {
+      return `
+    ${head}
+    <base href="/webds/storybook/" />
+  `;
+    }
+    return head;
+  },
+
   async viteFinal(config) {
-    // Add custom HTML API plugin
+    // Only apply the custom base path for production builds
+    if (process.env.NODE_ENV === "production") {
+      // Configure base path for Squiz Matrix deployment at /webds/storybook
+      config.base = "/webds/storybook/";
+    }
+
+    // Add custom HTML API plugin (always present)
     config.plugins = config.plugins || [];
     config.plugins.push(htmlApiPlugin());
     return config;
-  }
+  },
 };
 export default config;

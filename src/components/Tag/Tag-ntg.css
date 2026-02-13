@@ -2,7 +2,7 @@
  * Tag Component - NT.GOV.AU Theme Overrides
  * 
  * Theme-specific customizations for the NTG design system.
- * Adjusts colors, borders, and other properties to match NTG brand.
+ * Includes regional color variants for region-specific content tagging.
  */
 
 /* Theme-specific adjustments can be added here as needed */
@@ -17,3 +17,58 @@
 
 /* NTG theme uses the brand colors defined in theme-ntg.css */
 /* Status colors automatically inherit from --ntg-clr-status-* tokens */
+
+/**
+ * NTG Regional Color Variants
+ * Used to tag region-specific content (events, news, services)
+ * Six regional colors aligned with NTG brand guidelines
+ */
+
+/* Orange - Darwin/Top End Region */
+.tag-orange {
+  background-color: var(--ntg-orange-01);
+  color: var(--ntg-orange-04);
+  border: 1px solid var(--ntg-orange-02);
+}
+
+/* Ochre - Katherine/Big Rivers Region */
+.tag-ochre {
+  background-color: var(--ntg-ochre-01);
+  color: var(--ntg-ochre-04);
+  border: 1px solid var(--ntg-ochre-02-d);
+}
+
+/* Coral - Tennant Creek/Barkly Region */
+.tag-coral {
+  background-color: var(--ntg-coral-01);
+  color: var(--ntg-coral-04);
+  border: 1px solid var(--ntg-coral-03-d);
+}
+
+/* Sky Blue - Alice Springs/Central Australia Region */
+.tag-sky-blue {
+  background-color: var(--ntg-sky-blue-01);
+  color: var(--ntg-sky-blue-04);
+  border: 1px solid var(--ntg-sky-blue-03-d);
+}
+
+/* Teal - East Arnhem Region */
+.tag-teal {
+  background-color: var(--ntg-teal-01);
+  color: var(--ntg-teal-04);
+  border: 1px solid var(--ntg-teal-02-d);
+}
+
+/* Rubine Red - Additional Regional Variant */
+.tag-rubine-red {
+  background-color: var(--ntg-rubine-red-01);
+  color: var(--ntg-rubine-red-04);
+  border: 1px solid var(--ntg-rubine-red-03-d);
+}
+
+/* Bottle Green - Additional Regional Variant */
+.tag-bottle-green {
+  background-color: var(--ntg-bottle-green-01);
+  color: var(--ntg-bottle-green-04);
+  border: 1px solid var(--ntg-bottle-green-03-d);
+}

@@ -1,0 +1,1 @@
+.pill{border-radius:var(--radii-none)}.pill__close,.pill:hover .pill__close,.pill:focus .pill__close,.pill:active .pill__close{color:var(--clr-link-default)}
