@@ -2,7 +2,7 @@
  * Tag Component - Central Theme Overrides
  * 
  * Theme-specific customizations for the Central design system.
- * Adjusts colors, borders, and other properties to match Central brand.
+ * Includes agency secondary color variants for categorizing agency content.
  */
 
 /* Theme-specific adjustments can be added here as needed */
@@ -10,3 +10,37 @@
 
 /* Central theme uses the brand colors defined in theme-central.css */
 /* Status colors automatically inherit from --central-clr-status-* tokens */
+
+/* Subtle variant for Central theme */
+.tag-grey {
+  background-color: var(--central-neutrals-02);
+  color: var(--central-neutrals-09);
+  border: 1px solid var(--central-neutrals-04);
+}
+
+/**
+ * Central Agency Color Variants
+ * Used on agency intranets to categorize agency-specific content
+ * Primarily for search results and content categorization
+ */
+
+/* Central Green - For tagging NTG Central specific content */
+.tag-central-green {
+  background-color: var(--central-green-01);
+  color: var(--central-green-04);
+  border: 1px solid var(--central-green-03);
+}
+
+/* Central Orange - Agency secondary color variant */
+.tag-central-orange {
+  background-color: var(--central-orange-01);
+  color: var(--central-orange-04);
+  border: 1px solid var(--central-orange-03);
+}
+
+/* Central Blue Light - Agency secondary color variant */
+.tag-central-blue-light {
+  background-color: var(--central-blue-01);
+  color: var(--central-blue-04);
+  border: 1px solid var(--central-blue-03);
+}

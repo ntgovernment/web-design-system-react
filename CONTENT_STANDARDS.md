@@ -195,7 +195,9 @@ This document outlines content standards for the NT Government Web Design System
 
 ### Pills & Tags
 
-**Purpose**: Filters, categories, removable selections
+**Pills** - Interactive, removable filters or selections
+
+**Purpose**: Removable selections, filters, user choices
 
 **Good Examples**:
 
@@ -204,12 +206,6 @@ This document outlines content standards for the NT Government Web Design System
 <Pill label="JavaScript" onRemove={() => console.log('Removed')} />
 <Pill label="Status: Active" onRemove={() => console.log('Removed')} />
 <Pill label="Category: Design" onRemove={() => console.log('Removed')} />
-
-// Tags (status indicators)
-<Tag variant="green" label="Approved" />
-<Tag variant="blue" label="In Progress" />
-<Tag variant="red" label="Rejected" />
-<Tag variant="warning" label="Pending Review" />
 ```
 
 **Bad Examples**:
@@ -217,8 +213,90 @@ This document outlines content standards for the NT Government Web Design System
 ```tsx
 // ❌ Generic labels
 <Pill label="Pill label" onRemove={() => {}} />
-<Tag variant="default" label="Tag" />
 ```
+
+---
+
+**Tags** - Static categorization labels for content discovery
+
+**Purpose**: Static categorization labels for content discovery, not interactive elements
+
+**Key Guidelines:**
+
+- Labels: 2-3 words maximum, using nouns or adjectives (not verbs)
+- Quantity: No more than 3-4 tags per content item
+- Presentation: Horizontal layout only
+- No punctuation, icons, or action words
+- Non-hierarchical categorization
+
+**Good Examples**:
+
+```tsx
+// Search result categorization
+<div className="d-flex gap-2">
+  <Tag variant="blue" label="Online Services" />
+  <Tag variant="green" label="Business" />
+</div>
+
+// News categorization
+<div className="d-flex gap-2">
+  <Tag variant="default" label="Government" />
+  <Tag variant="blue" label="Infrastructure" />
+  <Tag variant="warning" label="Update" />
+</div>
+
+// Event categorization
+<div className="d-flex gap-2">
+  <Tag variant="warning" label="Community Event" />
+  <Tag variant="blue" label="Alice Springs" />
+</div>
+
+// Content with maximum tags (4)
+<div className="d-flex gap-2">
+  <Tag variant="default" label="Health" />
+  <Tag variant="blue" label="Community" />
+  <Tag variant="green" label="Regional" />
+  <Tag variant="grey" label="Services" />
+</div>
+```
+
+**Bad Examples**:
+
+```tsx
+// ❌ Using verbs/action words (suggests interactivity)
+<Tag variant="blue" label="Find Online Systems" />
+<Tag variant="green" label="Click Here" />
+
+// ❌ Too many tags (more than 4)
+<div className="d-flex gap-2">
+  <Tag variant="default" label="Government" />
+  <Tag variant="blue" label="Services" />
+  <Tag variant="green" label="Online" />
+  <Tag variant="warning" label="Important" />
+  <Tag variant="grey" label="Darwin" />
+  <Tag variant="red" label="New" />
+</div>
+
+// ❌ Labels too long (more than 3 words)
+<Tag variant="default" label="Important Information About Government Services" />
+
+// ❌ Using punctuation
+<Tag variant="warning" label="Important!" />
+<Tag variant="blue" label="News, Events" />
+
+// ❌ Vertical layout
+<div className="d-flex flex-column gap-2">
+  <Tag variant="blue" label="Government" />
+  <Tag variant="green" label="Services" />
+</div>
+```
+
+**When NOT to use Tags:**
+
+- As status indicators (use Notification component instead)
+- As interactive navigation (tags are static)
+- To create content hierarchy (tags are non-hierarchical)
+- As calls-to-action (use Button component)
 
 ## Writing Longer Content Examples
 

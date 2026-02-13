@@ -26,6 +26,7 @@
     "prebuild-storybook": "npm run generate-story-data",
     "build-storybook": "storybook build",
     "build-storybook:squiz": "npm run build-storybook",
+    "prepare-storybook-gfb": "npm run build-storybook:squiz && node scripts/prepare-gfb-deploy.js",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage"

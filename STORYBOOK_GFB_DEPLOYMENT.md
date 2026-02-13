@@ -22,6 +22,8 @@ Storybook provides interactive documentation for all components in the NT Govern
 
 ### 1. Build Storybook for Squiz Matrix
 
+Note: the Storybook *development server* (`npm run storybook`) runs from the repository root and does **not** use the `/webds/storybook/` base path. The `/webds/storybook/` base is applied only for production builds (so local dev won't produce the GFB-style asset paths).
+
 From the web-design-system repository:
 
 ```bash
@@ -38,6 +40,20 @@ This creates a production-ready Storybook site in the `storybook-static/` direct
 - Optimized and minified JavaScript bundles
 - Compiled CSS with theme support
 - Static HTML files for all component stories
+
+#### Optional: prepare a GFB-ready package (automated)
+
+To simplify deployment to Git File Bridge you can create a ready-to-commit package that mirrors the expected GFB repo layout. This copies `storybook-static/` into `gfb-package/webds/storybook/` so you can directly copy or commit the prepared files.
+
+```bash
+# Build + prepare files for GFB in one step
+npm run prepare-storybook-gfb
+
+# The prepared files will be in:
+# gfb-package/webds/storybook/
+```
+
+This is useful when you want a reproducible, reviewable package prior to copying into the GFB repository.
 
 ### 2. Verify Build Output
 
