@@ -46,6 +46,11 @@ import "../src/content/breadcrumbs/Breadcrumbs.css";
 import "../src/content/breadcrumbs/Breadcrumbs-ntg.css";
 import "../src/content/breadcrumbs/Breadcrumbs-central.css";
 
+// Import Pagination CSS files to ensure Vite processes them
+import "../src/content/pagination/Pagination.css";
+import "../src/content/pagination/Pagination-ntg.css";
+import "../src/content/pagination/Pagination-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -278,6 +283,23 @@ const loadBreadcrumbsStyles = (theme: string) => {
   document.head.appendChild(breadcrumbsCSS);
 };
 
+// Load Pagination Content Styles (theme-specific overrides)
+const loadPaginationStyles = (theme: string) => {
+  const existingPagination = document.getElementById("pagination-theme-css");
+  if (existingPagination) {
+    existingPagination.remove();
+  }
+
+  const paginationCSS = document.createElement("link");
+  paginationCSS.id = "pagination-theme-css";
+  paginationCSS.rel = "stylesheet";
+  paginationCSS.href = new URL(
+    `../src/content/pagination/Pagination-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(paginationCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -375,6 +397,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadImageStyles(theme); // Load theme-specific Image CSS overrides
     loadCardStyles(theme); // Load theme-specific Card CSS overrides
     loadBreadcrumbsStyles(theme); // Load theme-specific Breadcrumbs CSS overrides
+    loadPaginationStyles(theme); // Load theme-specific Pagination CSS overrides
   }, [theme]);
 
   return (
@@ -426,7 +449,7 @@ const preview: Preview = {
       storySort: {
         order: [
           "Content",
-          ["Breadcrumbs", "Table", "Typography", "Icon"],
+          ["Breadcrumbs", "Pagination", "Table", "Typography", "Icon"],
           "Components",
           [
             "Card",

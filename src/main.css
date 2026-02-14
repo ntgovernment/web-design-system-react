@@ -40,6 +40,10 @@
 @import "./content/breadcrumbs/Breadcrumbs.css";
 @import "./content/breadcrumbs/Breadcrumbs-ntg.css";
 
+/* Import Pagination content styles */
+@import "./content/pagination/Pagination.css";
+@import "./content/pagination/Pagination-ntg.css";
+
 /* Additional global styles can be added here */
 body {
   margin: 0;
