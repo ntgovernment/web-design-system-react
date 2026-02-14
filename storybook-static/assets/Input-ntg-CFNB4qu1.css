@@ -1,0 +1,1 @@
+.form-control:focus,.form-control:focus-visible{box-shadow:var(--shadow-focus-ntg)}.form-control[readonly],.form-control[data-readonly=true]{background:var(--ntg-neutral-01)}

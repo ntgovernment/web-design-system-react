@@ -609,6 +609,131 @@
       },
       "file": "src/components/FloatingButton/FloatingButton.stories.tsx"
     },
+    "Header": {
+      "stories": {
+        "Default": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "logoHref": "/",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "WithLogoImage": {
+          "args": {
+            "logoSrc": "https://via.placeholder.com/122x39/1F1F5F/FFFFFF?text=NT.GOV.AU",
+            "logoAlt": "Northern Territory Government",
+            "logoHref": "/",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "WithActiveState": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Home",
+            "href": "/"
+          }
+        },
+        "WithoutSearch": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "About",
+            "href": "/about"
+          }
+        },
+        "IconSearch": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "MediumLayout": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "MobileLayout": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "WithManyNavItems": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Home",
+            "href": "/",
+            "icon": "fa-light fa-home"
+          }
+        },
+        "MinimalHeader": {
+          "args": {
+            "logoAlt": "NT.GOV.AU"
+          }
+        },
+        "DepartmentHeader": {
+          "args": {
+            "logoAlt": "Department of Health",
+            "label": "Programs",
+            "href": "/programs",
+            "icon": "fa-light fa-briefcase"
+          }
+        },
+        "ServicePortalHeader": {
+          "args": {
+            "logoAlt": "My NT Services",
+            "label": "Dashboard",
+            "href": "/dashboard",
+            "icon": "fa-light fa-home"
+          }
+        },
+        "WithSearchHandler": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "CustomLogo": {
+          "args": {
+            "textDecoration": "none",
+            "color": "white",
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "8px"
+          }
+        },
+        "ResponsiveDemo": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "Playground": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "logoHref": "/",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        }
+      },
+      "file": "src/components/Header/Header.stories.tsx"
+    },
     "Icon": {
       "stories": {
         "Default": {
@@ -1204,5 +1329,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T20:32:21.973Z"
+  "generated": "2026-02-14T21:32:42.579Z"
 }

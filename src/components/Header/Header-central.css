@@ -1,0 +1,38 @@
+/**
+ * Header Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common header styles are defined in Header.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline (4px solid #6AB06A green)
+ * - Border radius (from central theme tokens)
+ * - Semantic variable definitions using central-prefixed tokens
+ */
+
+/* NTG Central theme-specific semantic variables */
+[data-theme="central"],
+.theme-central {
+  --radii-header: var(--central-radii-button);
+}
+
+/* NTG Central specific focus outline - 4px solid green */
+[data-theme="central"] .header__logo-link:focus-visible,
+.theme-central .header__logo-link:focus-visible {
+  outline: var(--border-width-xl) solid var(--clr-focus-focus);
+  outline-offset: var(--sp-xs);
+  border-radius: var(--radii-header);
+}
+
+[data-theme="central"] .header__nav-link:focus-visible,
+.theme-central .header__nav-link:focus-visible {
+  outline: var(--border-width-xl) solid var(--clr-focus-focus);
+  outline-offset: calc(-1 * var(--border-width-xl));
+  border-radius: var(--radii-header);
+}
+
+/* Central theme specific styling */
+[data-theme="central"] .header,
+.theme-central .header {
+  border-bottom: var(--border-width-sm) solid rgba(255, 255, 255, 0.1);
+}

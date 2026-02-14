@@ -8,6 +8,9 @@ export type {
 export { Button } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
 
+export { Header } from "./components/Header";
+export type { HeaderProps, HeaderNavItem } from "./components/Header";
+
 export { Card } from "./components/Card";
 export type { CardProps } from "./components/Card";
 

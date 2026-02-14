@@ -1,0 +1,34 @@
+/**
+ * Header Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common header styles are defined in Header.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline (4px solid #EC8C58 orange)
+ * - Border radius (0px for sharp corners)
+ * - Semantic variable definitions using ntg-prefixed tokens
+ */
+
+/* NT.GOV.AU theme-specific semantic variables */
+:root {
+  --radii-header: var(--ntg-radii-none);
+}
+
+/* NT.GOV.AU specific focus outline - 4px solid orange */
+.header__logo-link:focus-visible {
+  outline: var(--border-width-xl) solid var(--clr-focus-focus);
+  outline-offset: var(--sp-xs);
+  border-radius: var(--radii-header);
+}
+
+.header__nav-link:focus-visible {
+  outline: var(--border-width-xl) solid var(--clr-focus-focus);
+  outline-offset: calc(-1 * var(--border-width-xl));
+  border-radius: var(--radii-header);
+}
+
+/* Maintain default navbar styling for NTG theme */
+.header {
+  border-bottom: none;
+}
