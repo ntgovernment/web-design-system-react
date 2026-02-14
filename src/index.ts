@@ -14,6 +14,9 @@ export type { CardProps } from "./components/Card";
 export { Callout } from "./components/Callout";
 export type { CalloutProps } from "./components/Callout";
 
+export { Checkbox, CheckboxGroup } from "./components/Checkbox";
+export type { CheckboxProps, CheckboxGroupProps } from "./components/Checkbox";
+
 export { Icon } from "./components/Icon";
 export type { IconProps } from "./components/Icon";
 

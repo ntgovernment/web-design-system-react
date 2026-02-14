@@ -113,7 +113,6 @@ Per-theme overrides live in `Dropdown-ntg.css` and `Dropdown-central.css` and ar
 - Icon colour: the chevron and validation icons use `currentColor` so they inherit from the surrounding tokenised text colour.
 - Default sizing: the component wrapper defaults to `width: 100%` with `max-width: 480px` for consistent layout across Input, Dropdown and Textarea.
 
-
 ## Accessibility checklist
 
 - ✅ Always include a visible `label` for screen reader users.

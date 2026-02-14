@@ -257,6 +257,50 @@
       },
       "file": "src/components/Card/Card.stories.tsx"
     },
+    "Checkbox": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Subscribe to email notifications"
+          }
+        },
+        "Checked": {
+          "args": {
+            "label": "I agree to the terms and conditions"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "This option is currently unavailable"
+          }
+        },
+        "DisabledChecked": {
+          "args": {
+            "label": "Automatically enabled for all users"
+          }
+        },
+        "WithSuccessValidation": {
+          "args": {
+            "label": "Marketing communications",
+            "validationState": "success",
+            "validationMessage": "Preferences saved successfully"
+          }
+        },
+        "WithErrorValidation": {
+          "args": {
+            "label": "I have read and agree to the privacy policy",
+            "validationState": "error",
+            "validationMessage": "You must agree to the privacy policy to continue"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Checkbox label"
+          }
+        }
+      },
+      "file": "src/components/Checkbox/Checkbox.stories.tsx"
+    },
     "Dropdown": {
       "stories": {
         "Default": {
@@ -789,5 +833,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T05:17:13.132Z"
+  "generated": "2026-02-14T07:34:04.436Z"
 }

@@ -67,7 +67,6 @@ These tokens are defined in the theme files; override per-theme in `Textarea-ntg
 - Border radius is controlled by `--radii-none` by default (0px for both themes currently).
 - Default sizing: the component wrapper defaults to `width: 100%` with `max-width: 480px` to match Input and Dropdown.
 
-
 ## Accessibility checklist
 
 - Always include a visible `label`.

@@ -1,0 +1,18 @@
+/**
+ * Checkbox Component - NT.GOV.AU Theme Overrides
+ *
+ * Theme-specific border radius and focus shadow.
+ */
+
+/* Use the NTG focus shadow token with orange color */
+.form-check-input:focus,
+.form-check-input:focus-visible,
+.form-check-input:checked:focus,
+.form-check-input:checked:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+}
+
+/* NTG theme uses subtle border radius for checkboxes */
+[data-theme="ntg"] .form-check-input {
+  border-radius: var(--ntg-radii-sm, 4px);
+}

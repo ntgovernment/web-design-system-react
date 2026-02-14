@@ -24,6 +24,14 @@
 @import "./components/Notification/Notification.css";
 @import "./components/Notification/Notification-ntg.css";
 
+/* Import Pill component styles */
+@import "./components/Pill/Pill.css";
+@import "./components/Pill/Pill-ntg.css";
+
+/* Import Checkbox component styles */
+@import "./components/Checkbox/Checkbox.css";
+@import "./components/Checkbox/Checkbox-ntg.css";
+
 /* Additional global styles can be added here */
 body {
   margin: 0;

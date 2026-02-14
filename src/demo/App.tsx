@@ -51,6 +51,7 @@ function App() {
       const pillThemePath = `/src/components/Pill/Pill-${newTheme}.css?v=${timestamp}`;
       const imageThemePath = `/src/components/Image/Image-${newTheme}.css?v=${timestamp}`;
       const cardThemePath = `/src/components/Card/Card-${newTheme}.css?v=${timestamp}`;
+      const checkboxThemePath = `/src/components/Checkbox/Checkbox-${newTheme}.css?v=${timestamp}`;
 
       // Helper function to reload a stylesheet
       const reloadStylesheet = (id: string, href: string) => {
@@ -74,6 +75,7 @@ function App() {
       reloadStylesheet("pill-theme-css", pillThemePath);
       reloadStylesheet("image-theme-css", imageThemePath);
       reloadStylesheet("card-theme-css", cardThemePath);
+      reloadStylesheet("checkbox-theme-css", checkboxThemePath);
     } else {
       // Production: swap complete theme bundle (includes all dependencies)
       const themePath = `${newTheme}-theme.min.css`;
