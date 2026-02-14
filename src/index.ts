@@ -53,5 +53,8 @@ export type { DateInputProps, DateInputValue } from "./components/DateInput";
 export { DatePicker } from "./components/DatePicker";
 export type { DatePickerProps } from "./components/DatePicker";
 
+export { BackToTop } from "./components/BackToTop";
+export type { BackToTopProps } from "./components/BackToTop";
+
 // Import styles
 import "./style.css";

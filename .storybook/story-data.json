@@ -68,6 +68,56 @@
       },
       "file": "src/components/Accordion/Accordion.stories.tsx"
     },
+    "BackToTop": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "FastScroll": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "SlowScroll": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "HigherThreshold": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "LowerThreshold": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "CustomLabel": {
+          "args": {
+            "label": "Return to top"
+          }
+        },
+        "LocalizedFrench": {
+          "args": {
+            "label": "Retour en haut"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "FocusState": {
+          "args": {
+            "label": "Back to top"
+          }
+        }
+      },
+      "file": "src/components/BackToTop/BackToTop.stories.tsx"
+    },
     "Button": {
       "stories": {
         "Primary": {
@@ -1023,5 +1073,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T13:22:09.423Z"
+  "generated": "2026-02-14T19:33:49.155Z"
 }

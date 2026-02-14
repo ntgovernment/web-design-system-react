@@ -6,6 +6,7 @@ import { Tag } from "../components/Tag";
 import { Pill } from "../components/Pill";
 import { Notification } from "../components/Notification";
 import { Image } from "../components/Image";
+import { BackToTop } from "../components/BackToTop";
 import { TableContent } from "../content/table/Table";
 import placeholderImage from "../assets/images/placeholder.webp";
 
@@ -52,6 +53,7 @@ function App() {
       const imageThemePath = `/src/components/Image/Image-${newTheme}.css?v=${timestamp}`;
       const cardThemePath = `/src/components/Card/Card-${newTheme}.css?v=${timestamp}`;
       const checkboxThemePath = `/src/components/Checkbox/Checkbox-${newTheme}.css?v=${timestamp}`;
+      const backToTopThemePath = `/src/components/BackToTop/BackToTop-${newTheme}.css?v=${timestamp}`;
 
       // Helper function to reload a stylesheet
       const reloadStylesheet = (id: string, href: string) => {
@@ -76,6 +78,7 @@ function App() {
       reloadStylesheet("image-theme-css", imageThemePath);
       reloadStylesheet("card-theme-css", cardThemePath);
       reloadStylesheet("checkbox-theme-css", checkboxThemePath);
+      reloadStylesheet("back-to-top-theme-css", backToTopThemePath);
     } else {
       // Production: swap complete theme bundle (includes all dependencies)
       const themePath = `${newTheme}-theme.min.css`;
@@ -586,6 +589,8 @@ function App() {
           </div>
         </div>
       </section>
+
+      <BackToTop label="Back to top" scrollThreshold={300} />
     </div>
   );
 }

@@ -1,0 +1,62 @@
+/**
+ * Back to Top Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common button styles are defined in BackToTop.css.
+ * 
+ * Theme-specific customizations:
+ * - Default state: Light background (--ntg-neutral-01) with dark border and text
+ * - Hover state: Dark background (--ntg-blue-03-d) with inverse text
+ * - Focus state: 4px solid orange outline (--clr-focus-focus)
+ * - Semantic variable definitions using ntg-prefixed tokens
+ * 
+ * States documented in Figma:
+ * Default: bg-shade border-strong-01 text-link-default
+ * Hover: bg-dark text-inverse
+ * Focus: focus outline + default state
+ */
+
+/* NT.GOV.AU theme-specific semantic variables */
+:root {
+  --radii-button: var(--ntg-radii-button);
+}
+
+/* Default state - Light background with strong border */
+.back-to-top {
+  --bs-btn-color: var(--clr-link-default);
+  --bs-btn-bg: var(--clr-bg-shade);
+  --bs-btn-border-color: var(--clr-border-strong-01);
+  --bs-btn-disabled-color: var(--clr-text-muted);
+  --bs-btn-disabled-bg: var(--clr-action-disabled);
+  --bs-btn-disabled-border-color: var(--clr-border-subtle);
+  --bs-btn-disabled-opacity: 0.65;
+}
+
+/* Hover state - Dark background with inverse text */
+.back-to-top:hover {
+  --bs-btn-hover-color: var(--clr-text-inverse);
+  --bs-btn-hover-bg: var(--clr-bg-dark);
+  --bs-btn-hover-border-color: var(--clr-bg-dark);
+}
+
+/* Active/pressed state */
+.back-to-top:active {
+  --bs-btn-active-color: var(--clr-text-inverse);
+  --bs-btn-active-bg: var(--clr-action-pressed);
+  --bs-btn-active-border-color: var(--clr-action-pressed);
+}
+
+/* Focus state - Theme-specific 4px orange outline */
+.back-to-top:focus,
+.back-to-top:focus-visible {
+  box-shadow: 0 0 0 4px var(--clr-focus-focus);
+  outline: none;
+}
+
+/* Maintain default background when focused but not hovered */
+.back-to-top:focus:not(:hover),
+.back-to-top:focus-visible:not(:hover) {
+  --bs-btn-hover-color: var(--clr-link-default);
+  --bs-btn-hover-bg: var(--clr-bg-shade);
+  --bs-btn-hover-border-color: var(--clr-border-strong-01);
+}
