@@ -202,7 +202,7 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     // Only apply the custom base path for production builds
     if (process.env.NODE_ENV === "production") {
-      // Use STORYBOOK_BASE_PATH env variable if set (for GitHub Pages), 
+      // Use STORYBOOK_BASE_PATH env variable if set (for GitHub Pages),
       // otherwise use default for Squiz Matrix deployment
       config.base = process.env.STORYBOOK_BASE_PATH || "/webds/storybook/";
     }
