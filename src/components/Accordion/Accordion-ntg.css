@@ -1,0 +1,44 @@
+/**
+ * Accordion Component - NT.GOV.AU Theme
+ * 
+ * Theme-specific overrides for NT.GOV.AU (external) websites.
+ * Uses Lato font and ochre accent colors.
+ */
+
+/* Focus state for NT.GOV.AU theme - Reset Bootstrap defaults */
+.accordion-button:focus,
+.accordion-button:focus-visible,
+[data-theme="ntg"] .accordion-button:focus,
+[data-theme="ntg"] .accordion-button:focus-visible {
+  outline: none;
+  box-shadow: none !important;
+}
+
+/* Focus outline when closed (collapsed) */
+.accordion-button.collapsed:focus,
+.accordion-button.collapsed:focus-visible,
+[data-theme="ntg"] .accordion-button.collapsed:focus,
+[data-theme="ntg"] .accordion-button.collapsed:focus-visible {
+  outline: 4px solid var(--clr-focus-focus);
+  outline-offset: 0;
+  background-color: var(--clr-bg-default);
+  color: var(--clr-link-default);
+}
+
+/* Focus outline when open (not collapsed) */
+.accordion-button:not(.collapsed):focus,
+.accordion-button:not(.collapsed):focus-visible,
+[data-theme="ntg"] .accordion-button:not(.collapsed):focus,
+[data-theme="ntg"] .accordion-button:not(.collapsed):focus-visible {
+  outline: 4px solid var(--clr-focus-focus);
+  outline-offset: 0;
+  background-color: var(--clr-bg-shade);
+  color: var(--clr-link-default);
+}
+
+/* Open/Close All link focus state */
+.accordion-controls-link:focus,
+[data-theme="ntg"] .accordion-controls-link:focus {
+  outline: 4px solid var(--clr-focus-focus);
+  outline-offset: 0;
+}

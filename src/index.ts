@@ -1,4 +1,10 @@
 // Components
+export { Accordion } from "./components/Accordion";
+export type {
+  AccordionProps,
+  AccordionItemProps,
+} from "./components/Accordion";
+
 export { Button } from "./components/Button";
 export type { ButtonProps } from "./components/Button";
 
