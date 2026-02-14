@@ -629,7 +629,93 @@
         }
       },
       "file": "src/components/Tag/Tag.stories.tsx"
+    },
+    "Textarea": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Comments",
+            "helperText": "Share your thoughts with us",
+            "placeholder": "Enter your comments here"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Application Details",
+            "helperText": "Explain why you are applying for this service",
+            "placeholder": "Please provide detailed information"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Feedback",
+            "helperText": "Thank you for your input",
+            "value": "Thank you for creating this service. It has made a significant difference in how we access government resources."
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Survey Response",
+            "helperText": "Your feedback helps us improve",
+            "value": "The new website design is much easier to navigate. I can find the services I need quickly.",
+            "validationState": "success",
+            "validationMessage": "Thank you for your feedback"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "Description",
+            "helperText": "Minimum 20 characters required",
+            "value": "Too short",
+            "validationState": "error",
+            "validationMessage": "Please provide at least 20 characters"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "System Notice",
+            "helperText": "This field cannot be edited",
+            "value": "This textarea is disabled and cannot be modified. Disabled textareas are useful for displaying information that should not be changed."
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Terms and Conditions",
+            "helperText": "Please review carefully",
+            "value": "By using this service, you agree to our terms and conditions. This is a read-only field that displays important information but cannot be modified by the user."
+          }
+        },
+        "WithCharacterCount": {
+          "args": {
+            "label": "Quick Feedback",
+            "helperText": "Brief responses are appreciated",
+            "placeholder": "What did you think of this service?"
+          }
+        },
+        "WithMaxLength": {
+          "args": {
+            "label": "Tweet-style Message",
+            "helperText": "Keep it concise",
+            "placeholder": "Maximum 280 characters"
+          }
+        },
+        "LongContent": {
+          "args": {
+            "label": "Detailed Description",
+            "helperText": "Provide as much detail as necessary for your grant application",
+            "value": "This textarea demonstrates how the component gracefully handles longer content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography across all viewport sizes. Users can resize the textarea vertically by dragging the handle in the bottom right corner, allowing them to adjust the viewing area to their preferred size. The component supports all standard textarea functionality including scrolling for content that exceeds the visible area. This makes it ideal for applications requiring extensive user input such as grant applications, detailed feedback forms, or comprehensive survey responses."
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        }
+      },
+      "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T03:22:26.170Z"
+  "generated": "2026-02-14T03:43:35.216Z"
 }

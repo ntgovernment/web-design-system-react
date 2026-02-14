@@ -32,5 +32,8 @@ export type { ImageProps } from "./components/Image";
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 
+export { Textarea } from "./components/Textarea";
+export type { TextareaProps } from "./components/Textarea";
+
 // Import styles
 import "./style.css";

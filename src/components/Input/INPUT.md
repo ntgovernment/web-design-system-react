@@ -101,7 +101,7 @@ const [email, setEmail] = useState("");
   placeholder="name@example.com"
   value={email}
   onChange={(e) => setEmail(e.target.value)}
-/>
+/>;
 ```
 
 Uncontrolled with validation message:
@@ -124,4 +124,3 @@ Uncontrolled with validation message:
 ---
 
 Component source: `src/components/Input/Input.tsx`
-
