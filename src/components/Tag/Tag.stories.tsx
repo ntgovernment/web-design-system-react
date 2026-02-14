@@ -154,7 +154,7 @@ export const AllVariants: Story = {
  */
 export const InSearchResults: Story = {
   name: "In Search Results",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "600px" }}>
       <div className="border-bottom pb-3 mb-3">
@@ -217,7 +217,7 @@ export const InSearchResults: Story = {
  */
 export const OnNewsItems: Story = {
   name: "On News Items",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "600px" }}>
       <article className="mb-4">
@@ -257,7 +257,7 @@ export const OnNewsItems: Story = {
  */
 export const OnEventListings: Story = {
   name: "On Event Listings",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "600px" }}>
       <div className="card mb-3">
@@ -315,7 +315,7 @@ export const OnEventListings: Story = {
  */
 export const MultipleTags: Story = {
   name: "Multiple Tags (Best Practice)",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "500px" }}>
       <div className="mb-4">
@@ -369,7 +369,7 @@ export const MultipleTags: Story = {
  */
 export const ContentCategorization: Story = {
   name: "Content Categorization",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "600px" }}>
       <div className="mb-4">
@@ -439,7 +439,7 @@ export const ContentCategorization: Story = {
  */
 export const ProperLabelLength: Story = {
   name: "Label Length Guidelines",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "500px" }}>
       <div className="mb-4">
@@ -473,7 +473,7 @@ export const ProperLabelLength: Story = {
  */
 export const HorizontalLayout: Story = {
   name: "Horizontal Layout (Required)",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "600px" }}>
       <div className="mb-4">
@@ -539,7 +539,7 @@ export const VariousLabels: Story = {
  */
 export const NTGRegionalColors: Story = {
   name: "NTG Regional Variants",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "600px" }}>
       <p className="text-muted mb-3">
@@ -605,7 +605,7 @@ export const NTGRegionalColors: Story = {
  */
 export const CentralAgencyColors: Story = {
   name: "Central Agency Variants",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "600px" }}>
       <p className="text-muted mb-3">
@@ -665,7 +665,7 @@ export const CentralAgencyColors: Story = {
  */
 export const ThemeComparison: Story = {
   name: "Theme Variant Comparison",
-  args: { label: 'Tag' },
+  args: { label: "Tag" },
   render: () => (
     <div style={{ maxWidth: "700px" }}>
       <div className="mb-4">

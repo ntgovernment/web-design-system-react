@@ -380,6 +380,71 @@
       },
       "file": "src/components/Image/Image.stories.tsx"
     },
+    "Input": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text"
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text",
+            "validationState": "success",
+            "validationMessage": "Success message goes here"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text",
+            "validationState": "error",
+            "validationMessage": "Error message goes here"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Disabled text"
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        }
+      },
+      "file": "src/components/Input/Input.stories.tsx"
+    },
     "Notification": {
       "stories": {
         "Default": {
@@ -566,5 +631,5 @@
       "file": "src/components/Tag/Tag.stories.tsx"
     }
   },
-  "generated": "2026-02-14T01:09:03.114Z"
+  "generated": "2026-02-14T03:22:26.170Z"
 }

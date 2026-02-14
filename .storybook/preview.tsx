@@ -11,6 +11,11 @@ import "../src/components/Tag/Tag.css";
 import "../src/components/Tag/Tag-ntg.css";
 import "../src/components/Tag/Tag-central.css";
 
+// Import Input CSS files to ensure Vite processes them
+import "../src/components/Input/Input.css";
+import "../src/components/Input/Input-ntg.css";
+import "../src/components/Input/Input-central.css";
+
 // Import Pill CSS files to ensure Vite processes them
 import "../src/components/Pill/Pill.css";
 import "../src/components/Pill/Pill-ntg.css";
@@ -138,7 +143,22 @@ const loadTagStyles = (theme: string) => {
   ).href;
   document.head.appendChild(tagCSS);
 };
+// Load Input Component Styles (theme-specific overrides)
+const loadInputStyles = (theme: string) => {
+  const existingInput = document.getElementById("input-theme-css");
+  if (existingInput) {
+    existingInput.remove();
+  }
 
+  const inputCSS = document.createElement("link");
+  inputCSS.id = "input-theme-css";
+  inputCSS.rel = "stylesheet";
+  inputCSS.href = new URL(
+    `../src/components/Input/Input-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(inputCSS);
+};
 // Load Pill Component Styles (theme-specific overrides)
 const loadPillStyles = (theme: string) => {
   // Remove existing theme-specific Pill CSS if present
@@ -326,6 +346,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadButtonCommonStyles(); // Load common Button CSS (uses semantic variables)
     loadButtonStyles(theme); // Load theme-specific Button CSS overrides LAST
     loadTagStyles(theme); // Load theme-specific Tag CSS overrides
+    loadInputStyles(theme); // Load theme-specific Input CSS overrides
     loadPillStyles(theme); // Load theme-specific Pill CSS overrides
     loadNotificationStyles(theme); // Load theme-specific Notification CSS overrides
     loadCalloutStyles(theme); // Load theme-specific Callout CSS overrides

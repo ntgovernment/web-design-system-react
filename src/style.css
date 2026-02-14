@@ -9,3 +9,5 @@
 
 /* Component-specific styles would go here if needed */
 /* Currently components use Bootstrap classes and theme CSS variables */
+
+/* Input styles moved to component-scoped file: src/components/Input/Input.css */

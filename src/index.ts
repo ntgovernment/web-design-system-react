@@ -29,5 +29,8 @@ export type { NotificationProps } from "./components/Notification";
 export { Image } from "./components/Image";
 export type { ImageProps } from "./components/Image";
 
+export { Input } from "./components/Input";
+export type { InputProps } from "./components/Input";
+
 // Import styles
 import "./style.css";
