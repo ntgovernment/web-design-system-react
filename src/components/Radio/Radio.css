@@ -1,0 +1,266 @@
+/* Radio component - component-scoped styles (use semantic tokens) */
+
+/* ==========================================================================
+   Radio Group Styles
+   ========================================================================== */
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.radio-group-legend {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  margin-bottom: 0;
+  padding: 0;
+  float: none;
+}
+
+.radio-group-label-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+.radio-group-label {
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  font-weight: 700;
+  line-height: var(--type-body-default-lh);
+}
+
+.radio-group-required {
+  color: var(--clr-status-danger);
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+.radio-group-helper {
+  color: var(--clr-text-muted);
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+.radio-group-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.radio-group-message {
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+  margin-top: calc(var(--sp-xs) / 2); /* 4px */
+}
+
+.radio-group-message--success {
+  color: var(--clr-status-success);
+}
+
+.radio-group-message--error {
+  color: var(--clr-status-danger);
+}
+
+/* ==========================================================================
+   Individual Radio Wrapper Styles
+   ========================================================================== */
+
+.radio-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  gap: calc(var(--sp-xs) / 2); /* 4px */
+}
+
+/* ==========================================================================
+   Bootstrap Form Check Overrides
+   ========================================================================== */
+
+.form-check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding-left: 0;
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+.form-check-label {
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  font-weight: 400;
+  line-height: var(--type-body-default-lh);
+  cursor: pointer;
+  user-select: none;
+  padding: 0 var(--sp-xs) !important; /* 0 8px */
+  margin: 0;
+}
+
+/* ==========================================================================
+   Custom Radio Input Styling
+   ========================================================================== */
+
+.form-check-input[type="radio"] {
+  /* Reset and base sizing */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  width: 1.5rem !important; /* 24px */
+  height: 1.5rem !important; /* 24px */
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+
+  /* Border and background */
+  background-color: var(--clr-bg-default);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1.5px solid var(--clr-border-strong-02) !important;
+  border-radius: 50% !important;
+
+  /* Remove Bootstrap defaults */
+  vertical-align: top;
+  box-shadow: none;
+  transition:
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+/* Hover state */
+.form-check-input[type="radio"]:not(:disabled):not(:checked):hover {
+  background-color: var(--clr-bg-shade-alt);
+  border-color: var(--clr-border-strong-02) !important;
+}
+
+/* Focus state */
+.form-check-input[type="radio"]:focus,
+.form-check-input[type="radio"]:focus-visible {
+  border-color: var(--clr-border-strong-02) !important;
+  outline: none;
+  box-shadow: 0 0 0 calc(var(--sp-xs) / 2) var(--clr-focus-focus) !important;
+}
+
+/* Checked state - outer circle filled with primary color */
+.form-check-input[type="radio"]:checked {
+  background-color: var(--clr-link-default) !important;
+  border-color: var(--clr-border-strong-02) !important;
+  background-image: none;
+}
+
+/* Inner white circle when checked */
+.form-check-input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.625rem; /* 10px - inner circle */
+  height: 0.625rem; /* 10px */
+  background-color: var(--clr-bg-default);
+  border-radius: 50%;
+}
+
+/* Checked + Focus state */
+.form-check-input[type="radio"]:checked:focus,
+.form-check-input[type="radio"]:checked:focus-visible {
+  border-color: var(--clr-border-strong-02) !important;
+  box-shadow: 0 0 0 calc(var(--sp-xs) / 2) var(--clr-focus-focus) !important;
+}
+
+/* Disabled state */
+.form-check-input[type="radio"]:disabled {
+  background-color: var(--clr-bg-shade-alt);
+  border-color: var(--clr-border-subtle) !important;
+  opacity: 1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check-input[type="radio"]:disabled::before {
+  background-color: var(--clr-border-subtle);
+}
+
+/* Disabled + Checked state */
+.form-check-input[type="radio"]:disabled:checked {
+  background-color: var(--clr-text-muted) !important;
+  border-color: var(--clr-border-subtle) !important;
+}
+
+.form-check-input[type="radio"]:disabled:checked::before {
+  background-color: var(--clr-bg-default);
+}
+
+.form-check-input[type="radio"]:disabled ~ .form-check-label {
+  color: var(--clr-text-muted);
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Validation states */
+.form-check-input[type="radio"][data-status="error"],
+.form-check-input[type="radio"].is-invalid {
+  border-color: var(--clr-status-danger) !important;
+}
+
+/* Error state persists even when disabled */
+.form-check-input[type="radio"][data-status="error"]:disabled,
+.form-check-input[type="radio"].is-invalid:disabled {
+  border-color: var(--clr-status-danger) !important;
+}
+
+.form-check-input[type="radio"][data-status="success"],
+.form-check-input[type="radio"].is-valid {
+  border-color: var(--clr-status-success) !important;
+}
+
+/* Validation messages for individual radio buttons */
+.radio-message {
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+  margin-left: calc(1.5rem + var(--sp-xs)); /* Align with label */
+}
+
+.radio-message--success {
+  color: var(--clr-status-success);
+}
+
+.radio-message--error {
+  color: var(--clr-status-danger);
+}
+
+/* ==========================================================================
+   Responsive Typography (Mobile)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .radio-group-label,
+  .form-check-label {
+    font-size: var(
+      --type-mobile-body-default-size,
+      var(--type-desktop-body-default-size)
+    );
+  }
+
+  .radio-group-required,
+  .radio-group-helper,
+  .radio-group-message,
+  .radio-message {
+    font-size: var(--type-mobile-body-sm-size, var(--type-body-sm-size));
+  }
+}

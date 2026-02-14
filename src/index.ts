@@ -17,6 +17,9 @@ export type { CalloutProps } from "./components/Callout";
 export { Checkbox, CheckboxGroup } from "./components/Checkbox";
 export type { CheckboxProps, CheckboxGroupProps } from "./components/Checkbox";
 
+export { Radio, RadioGroup } from "./components/Radio";
+export type { RadioProps, RadioGroupProps } from "./components/Radio";
+
 export { Icon } from "./components/Icon";
 export type { IconProps } from "./components/Icon";
 

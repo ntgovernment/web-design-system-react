@@ -1,34 +1,39 @@
 import React, { useId } from "react";
 import { Icon } from "../Icon";
-import "./Checkbox.css";
-import "./Checkbox-ntg.css";
-import "./Checkbox-central.css";
+import "./Radio.css";
+import "./Radio-ntg.css";
+import "./Radio-central.css";
 
-export interface CheckboxProps extends Omit<
+export interface RadioProps extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "type" | "size"
 > {
   /**
-   * Checkbox label text
+   * Radio button label text
    */
   label?: string;
   /**
-   * Validation state for the checkbox
+   * Validation state for the radio button
    */
   validationState?: "success" | "error";
   /**
-   * Validation message shown below the checkbox
+   * Validation message shown below the radio button
    */
   validationMessage?: string;
   /**
    * Optional wrapper class for layout control
    */
   wrapperClassName?: string;
+  /**
+   * Name attribute to group radio buttons together
+   * Auto-provided by RadioGroup component when used in a group
+   */
+  name?: string;
 }
 
-export interface CheckboxGroupProps {
+export interface RadioGroupProps {
   /**
-   * Group label shown above the checkboxes
+   * Group label shown above the radio buttons
    */
   label?: string;
   /**
@@ -53,7 +58,7 @@ export interface CheckboxGroupProps {
    */
   validationMessage?: string;
   /**
-   * Checkbox elements to render in the group
+   * Radio button elements to render in the group
    */
   children: React.ReactNode;
   /**
@@ -64,12 +69,16 @@ export interface CheckboxGroupProps {
    * Optional ID for the group fieldset
    */
   id?: string;
+  /**
+   * Name attribute for all radio buttons in the group
+   */
+  name?: string;
 }
 
 /**
- * Checkbox component for selecting one or more options
+ * Radio button component for selecting one option from a list
  */
-export const Checkbox = ({
+export const Radio = ({
   label,
   validationState,
   validationMessage,
@@ -77,10 +86,11 @@ export const Checkbox = ({
   id,
   className,
   disabled,
+  name,
   ...props
-}: CheckboxProps) => {
+}: RadioProps) => {
   const generatedId = useId();
-  const checkboxId = id ?? generatedId;
+  const radioId = id ?? generatedId;
 
   const status =
     validationState === "error"
@@ -90,17 +100,18 @@ export const Checkbox = ({
         : undefined;
 
   const statusId =
-    validationMessage && status ? `${checkboxId}-status` : undefined;
+    validationMessage && status ? `${radioId}-status` : undefined;
   const describedBy = statusId || undefined;
 
   return (
     <div
-      className={`checkbox-wrapper${wrapperClassName ? ` ${wrapperClassName}` : ""}`}
+      className={`radio-wrapper${wrapperClassName ? ` ${wrapperClassName}` : ""}`}
     >
       <div className="form-check">
         <input
-          id={checkboxId}
-          type="checkbox"
+          id={radioId}
+          type="radio"
+          name={name}
           className={`form-check-input${className ? ` ${className}` : ""}`}
           disabled={disabled}
           aria-invalid={status === "error" ? "true" : undefined}
@@ -109,7 +120,7 @@ export const Checkbox = ({
           {...props}
         />
         {label && (
-          <label className="form-check-label" htmlFor={checkboxId}>
+          <label className="form-check-label" htmlFor={radioId}>
             {label}
           </label>
         )}
@@ -118,10 +129,10 @@ export const Checkbox = ({
       {status && validationMessage && (
         <div
           id={statusId}
-          className={`checkbox-message ${
+          className={`radio-message ${
             status === "error"
-              ? "checkbox-message--error"
-              : "checkbox-message--success"
+              ? "radio-message--error"
+              : "radio-message--success"
           }`}
           role={status === "error" ? "alert" : "status"}
           aria-live={status === "error" ? "assertive" : "polite"}
@@ -143,9 +154,9 @@ export const Checkbox = ({
 };
 
 /**
- * CheckboxGroup component for grouping related checkboxes
+ * RadioGroup component for grouping related radio buttons
  */
-export const CheckboxGroup = ({
+export const RadioGroup = ({
   label,
   helperText,
   requiredIndicator = "(Required)",
@@ -155,9 +166,11 @@ export const CheckboxGroup = ({
   children,
   wrapperClassName,
   id,
-}: CheckboxGroupProps) => {
+  name,
+}: RadioGroupProps) => {
   const generatedId = useId();
   const groupId = id ?? generatedId;
+  const groupName = name ?? `radio-group-${groupId}`;
 
   const status =
     validationState === "error"
@@ -172,41 +185,50 @@ export const CheckboxGroup = ({
   const describedBy =
     [helperId, statusId].filter(Boolean).join(" ") || undefined;
 
+  // Clone children and inject the name prop if it's a Radio component
+  const childrenWithName = React.Children.map(children, (child) => {
+    if (React.isValidElement(child) && child.type === Radio) {
+      return React.cloneElement(child as React.ReactElement<RadioProps>, {
+        name: groupName,
+      });
+    }
+    return child;
+  });
+
   return (
     <fieldset
       id={groupId}
-      className={`checkbox-group${wrapperClassName ? ` ${wrapperClassName}` : ""}`}
+      className={`radio-group${wrapperClassName ? ` ${wrapperClassName}` : ""}`}
       aria-describedby={describedBy}
       aria-invalid={status === "error" ? "true" : undefined}
+      aria-required={required ? "true" : undefined}
       data-status={status}
     >
       {label && (
-        <legend className="checkbox-group-legend">
-          <div className="checkbox-group-label-row">
-            <span className="checkbox-group-label">{label}</span>
+        <legend className="radio-group-legend">
+          <div className="radio-group-label-row">
+            <span className="radio-group-label">{label}</span>
             {required && (
-              <span className="checkbox-group-required">
-                {requiredIndicator}
-              </span>
+              <span className="radio-group-required">{requiredIndicator}</span>
             )}
           </div>
           {helperText && (
-            <div className="checkbox-group-helper" id={helperId}>
+            <div className="radio-group-helper" id={helperId}>
               {helperText}
             </div>
           )}
         </legend>
       )}
 
-      <div className="checkbox-group-items">{children}</div>
+      <div className="radio-group-items">{childrenWithName}</div>
 
       {status && validationMessage && (
         <div
           id={statusId}
-          className={`checkbox-group-message ${
+          className={`radio-group-message ${
             status === "error"
-              ? "checkbox-group-message--error"
-              : "checkbox-group-message--success"
+              ? "radio-group-message--error"
+              : "radio-group-message--success"
           }`}
           role={status === "error" ? "alert" : "status"}
           aria-live={status === "error" ? "assertive" : "polite"}

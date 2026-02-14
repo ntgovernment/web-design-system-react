@@ -1,0 +1,12 @@
+/* Radio component - NTG theme overrides */
+
+/* This file imports the NTG theme tokens which will automatically apply: */
+/* - Font family: Lato */
+/* - Border radius: 4px (var(--radii-sm)) */
+/* - Focus outline: Orange #ec8c58 (var(--clr-focus-focus)) */
+/* - Checked fill: Blue #1F1F5F (var(--clr-link-default)) */
+/* - Border color: #1F1E27 (var(--clr-border-strong-02)) */
+/* - Hover background: #E7E7EA (var(--clr-bg-shade-alt)) */
+
+/* All theme-specific values are handled through CSS variables */
+/* No additional overrides needed - tokens handle theme switching */

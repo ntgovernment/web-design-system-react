@@ -645,6 +645,46 @@
       },
       "file": "src/components/Pill/Pill.stories.tsx"
     },
+    "Radio": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Standard delivery",
+            "name": "delivery-method",
+            "value": "standard"
+          }
+        },
+        "Checked": {
+          "args": {
+            "label": "Email notifications",
+            "name": "notification-preference",
+            "value": "email"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "This option is currently unavailable",
+            "name": "unavailable-option",
+            "value": "unavailable"
+          }
+        },
+        "DisabledChecked": {
+          "args": {
+            "label": "Default option (cannot be changed)",
+            "name": "locked-option",
+            "value": "locked"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Radio button label",
+            "name": "playground-radio",
+            "value": "option"
+          }
+        }
+      },
+      "file": "src/components/Radio/Radio.stories.tsx"
+    },
     "Tag": {
       "stories": {
         "Default": {
@@ -833,5 +873,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T07:34:04.436Z"
+  "generated": "2026-02-14T08:04:55.180Z"
 }

@@ -367,6 +367,45 @@ The Checkbox component supports standard keyboard interaction:
 - [Dropdown](../Dropdown/DROPDOWN.md) - For single selection from a list
 - [Button](../Button/BUTTON.md) - For form submission
 
+## For developers & coding agents 📣
+
+Quick notes:
+
+- Validation messages include a decorative FontAwesome light icon (`fa-light fa-circle-check` for success, `fa-light fa-circle-exclamation` for error) inserted before the message text.
+- Validation icons are added in `src/components/Checkbox/Checkbox.tsx` using the `Icon` component — change the icon class there to update the visuals.
+
+Prop JSON (machine-friendly example):
+
+```json
+{
+  "label": "string",
+  "validationState": "success|error",
+  "validationMessage": "string",
+  "disabled": "boolean",
+  "checked": "boolean"
+}
+```
+
+Unit-test example (checks icon presence):
+
+```ts
+import { render, screen } from '@testing-library/react';
+import { Checkbox } from './Checkbox';
+
+test('renders error icon with error message', () => {
+  render(<Checkbox label="T" validationState="error" validationMessage="Required" />);
+  expect(screen.getByRole('alert')).toHaveTextContent('Required');
+  expect(document.querySelector('.fa-light.fa-circle-exclamation')).toBeTruthy();
+});
+```
+
+PR checklist
+
+1. Add/modify story for visual verification.
+2. Add unit tests for validation messaging and icon presence.
+3. Update documentation and token references if colours change.
+4. Run `npm run build` and `npm run storybook` locally.
+
 ## Storybook
 
 View live examples and interact with the Checkbox component in Storybook:
