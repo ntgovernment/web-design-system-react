@@ -41,6 +41,11 @@ import "../src/components/Card/Card.css";
 import "../src/components/Card/Card-ntg.css";
 import "../src/components/Card/Card-central.css";
 
+// Import Breadcrumbs CSS files to ensure Vite processes them
+import "../src/content/breadcrumbs/Breadcrumbs.css";
+import "../src/content/breadcrumbs/Breadcrumbs-ntg.css";
+import "../src/content/breadcrumbs/Breadcrumbs-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -256,6 +261,23 @@ const loadCardStyles = (theme: string) => {
   document.head.appendChild(cardCSS);
 };
 
+// Load Breadcrumbs Content Styles (theme-specific overrides)
+const loadBreadcrumbsStyles = (theme: string) => {
+  const existingBreadcrumbs = document.getElementById("breadcrumbs-theme-css");
+  if (existingBreadcrumbs) {
+    existingBreadcrumbs.remove();
+  }
+
+  const breadcrumbsCSS = document.createElement("link");
+  breadcrumbsCSS.id = "breadcrumbs-theme-css";
+  breadcrumbsCSS.rel = "stylesheet";
+  breadcrumbsCSS.href = new URL(
+    `../src/content/breadcrumbs/Breadcrumbs-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(breadcrumbsCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -352,6 +374,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadCalloutStyles(theme); // Load theme-specific Callout CSS overrides
     loadImageStyles(theme); // Load theme-specific Image CSS overrides
     loadCardStyles(theme); // Load theme-specific Card CSS overrides
+    loadBreadcrumbsStyles(theme); // Load theme-specific Breadcrumbs CSS overrides
   }, [theme]);
 
   return (
@@ -403,7 +426,7 @@ const preview: Preview = {
       storySort: {
         order: [
           "Content",
-          ["Table", "Typography", "Icon"],
+          ["Breadcrumbs", "Table", "Typography", "Icon"],
           "Components",
           [
             "Card",

@@ -18,20 +18,22 @@ import { SearchBar } from "@ntgovernment/web-design-system";
 
 ## API (props)
 
-| Prop | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
-| `variant` | `"primary" \| "secondary"` | `"primary"` | Visual style — `primary` shows a button; `secondary` shows a trailing icon. |
-| `wrapperClassName` | `string` | — | Optional wrapper CSS class for layout or token overrides. |
-| `onSearch` | `(value: string) => void` | — | Called when the user triggers search (button click or Enter). Receives the input string. |
-| `icon` | `string` | `"fa-light fa-search"` | FontAwesome class for the glyph. |
-| `searchButtonLabel` | `string` | `"Run search"` | `aria-label` used for the primary button. |
-| *(standard input attrs)* | `placeholder, value, defaultValue, onChange, name, aria-*` | — | All other standard `input` attributes are accepted, except `disabled`/`readOnly` (these props were removed). |
+| Prop                     | Type                                                       | Default                | Description                                                                                                  |
+| ------------------------ | ---------------------------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `variant`                | `"primary" \| "secondary"`                                 | `"primary"`            | Visual style — `primary` shows a button; `secondary` shows a trailing icon.                                  |
+| `wrapperClassName`       | `string`                                                   | —                      | Optional wrapper CSS class for layout or token overrides.                                                    |
+| `onSearch`               | `(value: string) => void`                                  | —                      | Called when the user triggers search (button click or Enter). Receives the input string.                     |
+| `icon`                   | `string`                                                   | `"fa-light fa-search"` | FontAwesome class for the glyph.                                                                             |
+| `searchButtonLabel`      | `string`                                                   | `"Run search"`         | `aria-label` used for the primary button.                                                                    |
+| _(standard input attrs)_ | `placeholder, value, defaultValue, onChange, name, aria-*` | —                      | All other standard `input` attributes are accepted, except `disabled`/`readOnly` (these props were removed). |
 
 Notes:
+
 - `value` toggles controlled mode; otherwise `defaultValue` enables uncontrolled behavior.
 - `disabled` and `readOnly` props were intentionally removed to keep the component API focused.
 
 ## Behaviours & edge cases
+
 - Pressing Enter while focused triggers `onSearch` with the current input text.
 - `onSearch` is only a notification — the component itself does not clear or mutate the value.
 - `data-filled` attribute appears on the root when the input contains text (useful for visual tests).
@@ -105,6 +107,7 @@ SearchBar maps these concepts to design tokens (spacing, color, border) rather t
 - Ensure color contrast for icon/button meets WCAG standards.
 
 ## Storybook (what to verify visually)
+
 Stories: `Primary`, `Secondary`, `WithOnSearch`, `Playground`.
 
 - Verify focus ring and radius under both NTG and Central themes.
@@ -159,16 +162,21 @@ Machine-friendly props schema (JSON):
 {
   "component": "SearchBar",
   "props": {
-    "variant": {"type": "string", "enum": ["primary","secondary"], "default": "primary"},
-    "onSearch": {"type": "function"},
-    "icon": {"type": "string", "default": "fa-light fa-search"},
-    "searchButtonLabel": {"type": "string", "default": "Run search"}
+    "variant": {
+      "type": "string",
+      "enum": ["primary", "secondary"],
+      "default": "primary"
+    },
+    "onSearch": { "type": "function" },
+    "icon": { "type": "string", "default": "fa-light fa-search" },
+    "searchButtonLabel": { "type": "string", "default": "Run search" }
   },
-  "dataAttributes": ["data-variant","data-filled"]
+  "dataAttributes": ["data-variant", "data-filled"]
 }
 ```
 
 Agent instructions:
+
 - Do not generate `disabled`, `readOnly`, or `size` props — they were removed.
 - Prefer `aria-label` when the input has no visible label.
 - Use `onSearch` for behavioural tests (Enter key and button click).
