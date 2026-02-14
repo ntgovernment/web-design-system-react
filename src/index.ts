@@ -65,5 +65,13 @@ export type { FloatingButtonProps } from "./components/FloatingButton";
 export { QuickExit } from "./components/QuickExit";
 export type { QuickExitProps } from "./components/QuickExit";
 
+export { Footer } from "./components/Footer";
+export type {
+  FooterProps,
+  FooterLink,
+  FooterSection,
+  SocialLink,
+} from "./components/Footer";
+
 // Import styles
 import "./style.css";

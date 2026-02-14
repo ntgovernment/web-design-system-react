@@ -48,6 +48,10 @@
 @import "./components/QuickExit/QuickExit.css";
 @import "./components/QuickExit/QuickExit-ntg.css";
 
+/* Import Footer component styles */
+@import "./components/Footer/Footer.css";
+@import "./components/Footer/Footer-ntg.css";
+
 /* Import Breadcrumbs content styles */
 @import "./content/breadcrumbs/Breadcrumbs.css";
 @import "./content/breadcrumbs/Breadcrumbs-ntg.css";

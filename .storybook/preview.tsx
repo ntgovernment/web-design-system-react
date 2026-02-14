@@ -41,6 +41,11 @@ import "../src/components/Card/Card.css";
 import "../src/components/Card/Card-ntg.css";
 import "../src/components/Card/Card-central.css";
 
+// Import Footer CSS files to ensure Vite processes them
+import "../src/components/Footer/Footer.css";
+import "../src/components/Footer/Footer-ntg.css";
+import "../src/components/Footer/Footer-central.css";
+
 // Import Breadcrumbs CSS files to ensure Vite processes them
 import "../src/content/breadcrumbs/Breadcrumbs.css";
 import "../src/content/breadcrumbs/Breadcrumbs-ntg.css";
@@ -266,6 +271,25 @@ const loadCardStyles = (theme: string) => {
   document.head.appendChild(cardCSS);
 };
 
+// Load Footer Component Styles (theme-specific overrides)
+const loadFooterStyles = (theme: string) => {
+  // Remove existing theme-specific Footer CSS if present
+  const existingFooter = document.getElementById("footer-theme-css");
+  if (existingFooter) {
+    existingFooter.remove();
+  }
+
+  // Add theme-specific Footer CSS overrides
+  const footerCSS = document.createElement("link");
+  footerCSS.id = "footer-theme-css";
+  footerCSS.rel = "stylesheet";
+  footerCSS.href = new URL(
+    `../src/components/Footer/Footer-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(footerCSS);
+};
+
 // Load Breadcrumbs Content Styles (theme-specific overrides)
 const loadBreadcrumbsStyles = (theme: string) => {
   const existingBreadcrumbs = document.getElementById("breadcrumbs-theme-css");
@@ -396,6 +420,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadCalloutStyles(theme); // Load theme-specific Callout CSS overrides
     loadImageStyles(theme); // Load theme-specific Image CSS overrides
     loadCardStyles(theme); // Load theme-specific Card CSS overrides
+    loadFooterStyles(theme); // Load theme-specific Footer CSS overrides
     loadBreadcrumbsStyles(theme); // Load theme-specific Breadcrumbs CSS overrides
     loadPaginationStyles(theme); // Load theme-specific Pagination CSS overrides
   }, [theme]);

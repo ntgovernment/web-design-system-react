@@ -609,6 +609,83 @@
       },
       "file": "src/components/FloatingButton/FloatingButton.stories.tsx"
     },
+    "Footer": {
+      "stories": {
+        "Minimal": {
+          "args": {
+            "label": "Privacy",
+            "href": "#"
+          }
+        },
+        "WithLogo": {
+          "args": {
+            "width": "176px",
+            "height": "63px",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": "4px",
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "fontSize": "12px",
+            "color": "rgba(255, 255, 255, 0.6)"
+          }
+        },
+        "MultipleSections": {
+          "args": {
+            "title": "Information and services",
+            "label": "Art, sport and leisure",
+            "href": "#"
+          }
+        },
+        "SocialMediaOnly": {
+          "args": {
+            "title": "Connect with us"
+          }
+        },
+        "CustomDivider": {
+          "args": {
+            "linkDivider": "•"
+          }
+        },
+        "SingleSection": {
+          "args": {
+            "title": "Quick Links",
+            "label": "Online services",
+            "href": "#"
+          }
+        },
+        "Extended": {
+          "args": {
+            "width": "176px",
+            "height": "63px",
+            "backgroundColor": "rgba(255, 255, 255, 0.1)",
+            "borderRadius": "4px",
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "fontSize": "11px",
+            "color": "rgba(255, 255, 255, 0.5)",
+            "textAlign": "center",
+            "padding": "8px"
+          }
+        },
+        "DenseLayout": {
+          "args": {
+            "title": "Services",
+            "label": "Online applications",
+            "href": "#"
+          }
+        },
+        "CustomSocialLinks": {
+          "args": {
+            "platform": "Follow us on Twitter",
+            "href": "#",
+            "icon": "fa-brands fa-x-twitter"
+          }
+        }
+      },
+      "file": "src/components/Footer/Footer.stories.tsx"
+    },
     "Header": {
       "stories": {
         "Default": {
@@ -1329,5 +1406,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T21:32:42.579Z"
+  "generated": "2026-02-14T22:13:39.639Z"
 }
