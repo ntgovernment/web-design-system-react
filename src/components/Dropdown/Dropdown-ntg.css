@@ -1,0 +1,16 @@
+/**
+ * Dropdown Component - NT.GOV.AU Theme Overrides
+ *
+ * Theme-specific focus shadow and border-radius.
+ */
+
+/* Use the NTG focus shadow token used across the design system */
+.form-select:focus,
+.form-select:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+}
+
+/* NTG theme has no border radius (sharp corners) */
+.form-select {
+  border-radius: var(--ntg-radii-none) !important;
+}

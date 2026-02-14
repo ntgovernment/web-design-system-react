@@ -62,7 +62,9 @@
 .textarea-field textarea.form-control:focus,
 .textarea-field textarea.form-control:focus-visible,
 .textarea-field textarea.form-control[data-active="true"] {
-  outline-color: var(--clr-focus-focus) !important;
+  /* border (outline) on focus should use the semantic border token */
+  outline-color: var(--clr-border-strong-02) !important;
+  /* keep theme focus shadow for the glow ring */
   box-shadow: 0 0 0 calc(var(--sp-xs) / 2) var(--clr-focus-focus) !important;
 }
 

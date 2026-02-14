@@ -1,0 +1,208 @@
+/* Dropdown component - component-scoped styles (use semantic tokens) */
+.dropdown-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  width: 100%;
+  max-width: 480px;
+}
+
+.dropdown-label-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+.dropdown-label {
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  font-weight: 700;
+  line-height: var(--type-body-default-lh);
+}
+
+.dropdown-required {
+  color: var(--clr-status-danger);
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+.dropdown-helper {
+  color: var(--clr-text-muted);
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+.dropdown-control-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.form-select {
+  width: 100%;
+  min-height: var(--sp-xxxl); /* 48px */
+  padding-left: var(--sp-md);
+  padding-right: calc(var(--sp-md) * 3); /* Extra space for icon */
+  background: var(--clr-bg-default);
+  outline: 1px var(--clr-border-strong-02) solid;
+  outline-offset: calc(var(--border-width-md) * -1);
+  border: none;
+  border-radius: var(--radii-none) !important;
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  line-height: var(--type-body-default-lh);
+  box-shadow: none;
+  /* remove native browser arrow (strong) */
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  /* some browsers render an arrow as a background-image -> remove it */
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+  /* ensure custom chevron is the only visible indicator */
+  outline-color: var(--clr-border-strong-02);
+}
+
+.form-select:focus,
+.form-select:focus-visible,
+.form-select[data-active="true"] {
+  /* use strong border token for both border and outline while keeping theme shadow */
+  border: 1px solid var(--clr-border-strong-02) !important;
+  border-color: var(--clr-border-strong-02) !important;
+  outline-color: var(--clr-border-strong-02) !important;
+  box-shadow: 0 0 0 calc(var(--sp-xs) / 2) var(--clr-focus-focus) !important;
+}
+
+/* Higher-specificity override to beat global/compiled rules */
+.dropdown-field .form-select:focus,
+.dropdown-field .form-select:focus-visible,
+.dropdown-field .form-select[data-active="true"] {
+  border: 1px solid var(--clr-border-strong-02) !important;
+  border-color: var(--clr-border-strong-02) !important;
+  outline-color: var(--clr-border-strong-02) !important;
+}
+
+.form-select[data-status="success"],
+.form-select.is-valid {
+  outline-color: var(--clr-status-success);
+}
+
+.form-select[data-status="error"],
+.form-select.is-invalid {
+  outline-color: var(--clr-status-danger);
+}
+
+.form-select[data-filled="true"] {
+  color: var(--clr-text-default);
+}
+
+.form-select:disabled,
+.form-select[data-disabled="true"] {
+  background: var(--clr-bg-shade-alt);
+  color: var(--clr-text-muted);
+  outline-color: var(--clr-border-subtle);
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 1;
+  box-shadow: none;
+}
+
+/* Custom dropdown icon */
+.dropdown-icon {
+  position: absolute;
+  right: var(--sp-md);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--sp-lg); /* 20px */
+  height: var(--sp-lg);
+  pointer-events: none;
+  color: var(--clr-text-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-select:disabled ~ .dropdown-icon,
+.form-select[data-disabled="true"] ~ .dropdown-icon {
+  color: var(--clr-text-muted);
+}
+
+/* Validation message styling */
+.dropdown-message {
+  display: inline-flex;
+  gap: var(--sp-xs);
+  align-items: center;
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+.dropdown-message--success {
+  /* text + icon inherit this colour */
+  color: var(--clr-status-success);
+}
+
+.dropdown-message--error {
+  /* text + icon inherit this colour */
+  color: var(--clr-status-danger);
+}
+
+.dropdown-message__icon {
+  width: var(--sp-lg); /* 20px */
+  height: var(--sp-lg);
+  position: relative;
+  flex: 0 0 var(--sp-lg);
+  display: inline-block;
+  color: inherit; /* ensure Icon(color="currentColor") follows message colour */
+}
+
+/* Bootstrap sizing support */
+.form-select-sm {
+  min-height: calc(var(--sp-xxxl) - var(--sp-md)); /* 32px */
+  font-size: var(--type-body-sm-size);
+  padding-left: var(--sp-sm);
+  padding-right: calc(var(--sp-sm) * 3);
+}
+
+.form-select-sm ~ .dropdown-icon {
+  right: var(--sp-sm);
+}
+
+.form-select-lg {
+  min-height: calc(var(--sp-xxxl) + var(--sp-md)); /* 64px */
+  font-size: var(--type-desktop-h6-size);
+  padding-left: var(--sp-xl);
+  padding-right: calc(var(--sp-xl) * 3);
+}
+
+.form-select-lg ~ .dropdown-icon {
+  right: var(--sp-xl);
+}
+
+/* Dropdown option styling (browser-specific) */
+.form-select option {
+  padding: var(--sp-md);
+  background: var(--clr-bg-default);
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  line-height: var(--type-body-default-lh);
+}
+
+.form-select option:disabled {
+  color: var(--clr-text-muted);
+  background: var(--clr-bg-default);
+}
+
+/* Selected option styling (limited browser support) */
+.form-select option:checked {
+  background: var(--clr-bg-shade-alt);
+  color: var(--clr-text-default);
+}
+
+/* Focus state for options (limited browser support) */
+.form-select option:focus {
+  background: var(--clr-bg-shade-alt);
+  outline: var(--border-width-xl) var(--clr-focus-focus) solid;
+  outline-offset: calc(var(--border-width-xl) * -1);
+}

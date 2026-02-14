@@ -40,8 +40,8 @@ These attributes make it easy for other tools and automated agents to detect com
 
 - --clr-bg-default
 - --clr-border-subtle
-- --clr-border-strong-02
-- --clr-focus-focus
+- --clr-border-strong-02 (used for focused outline/border)
+- --clr-focus-focus (theme-specific glow used for box-shadow)
 - --clr-status-success
 - --clr-status-danger
 - --clr-text-default
@@ -59,6 +59,13 @@ These tokens are defined in the theme files; override per-theme in `Input-ntg.cs
 
 - Per-theme overrides live in `Input-ntg.css` and `Input-central.css` and are automatically included in the theme bundles.
 - Storybook loads the theme CSS at runtime — use the Theme toolbar to test NTG vs Central behavior (focus ring, read-only backgrounds, etc.).
+
+## Focus behaviour & sizing (important details for implementers)
+
+- Focus (outline/border): the visible `border`/`outline` on focus uses the semantic token `--clr-border-strong-02` so the border contrasts with the background and matches hover state.
+- Focus glow ring: the outer glow (box-shadow) remains theme-specific and uses `--clr-focus-focus` (NTG orange / Central green) for the focus ring.
+- Default sizing: the component wrapper defaults to `width: 100%` with `max-width: 480px` — override via wrapperClassName or layout container when needed.
+- Validation icons and inline messages inherit color from the message container (icons use `currentColor`) so they follow tokenised colours.
 
 ## Accessibility checklist
 

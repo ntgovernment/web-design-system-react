@@ -35,5 +35,8 @@ export type { InputProps } from "./components/Input";
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 
+export { Dropdown } from "./components/Dropdown";
+export type { DropdownProps, DropdownOption } from "./components/Dropdown";
+
 // Import styles
 import "./style.css";

@@ -63,9 +63,10 @@ These tokens are defined in the theme files; override per-theme in `Textarea-ntg
 
 - Per-theme overrides live in `Textarea-ntg.css` and `Textarea-central.css` and are automatically included in the theme bundles.
 - Storybook loads the theme CSS at runtime — use the Theme toolbar to test NTG vs Central behavior (focus ring, read-only backgrounds, etc.).
-- NTG theme uses `--shadow-focus-ntg` for the focus outline.
-- Central theme uses `--shadow-focus-central` for the focus outline.
+- Focus behaviour: the visible `border`/`outline` on focus uses `--clr-border-strong-02` (semantic border token) while the outer glow (box-shadow) continues to use `--clr-focus-focus` via `--shadow-focus-ntg` / `--shadow-focus-central`.
 - Border radius is controlled by `--radii-none` by default (0px for both themes currently).
+- Default sizing: the component wrapper defaults to `width: 100%` with `max-width: 480px` to match Input and Dropdown.
+
 
 ## Accessibility checklist
 

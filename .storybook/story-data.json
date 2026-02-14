@@ -257,6 +257,78 @@
       },
       "file": "src/components/Card/Card.stories.tsx"
     },
+    "Dropdown": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Select your region",
+            "helperText": "Choose the region closest to you",
+            "placeholder": "Select a region"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Service type",
+            "helperText": "Select the government service you need",
+            "placeholder": "Select a service"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Preferred contact method",
+            "helperText": "How should we contact you?",
+            "value": "email"
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Service location",
+            "helperText": "Select where you would like to receive service",
+            "value": "darwin",
+            "validationState": "success",
+            "validationMessage": "Location confirmed and service available"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "Department",
+            "helperText": "Select the relevant government department",
+            "validationState": "error",
+            "validationMessage": "Please select a department to continue"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Service type",
+            "helperText": "Service selection is currently unavailable",
+            "value": "license-renewal"
+          }
+        },
+        "DisabledOptions": {
+          "args": {
+            "label": "Online Services",
+            "helperText": "Some services are currently unavailable",
+            "value": "online-services"
+          }
+        },
+        "ManyOptions": {
+          "args": {
+            "label": "Alyangula",
+            "helperText": "Select your community",
+            "placeholder": "Select a community",
+            "value": "alyangula"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Select your region",
+            "helperText": "Choose the region closest to you",
+            "placeholder": "Select a region"
+          }
+        }
+      },
+      "file": "src/components/Dropdown/Dropdown.stories.tsx"
+    },
     "Icon": {
       "stories": {
         "Default": {
@@ -717,5 +789,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T03:43:35.216Z"
+  "generated": "2026-02-14T05:17:13.132Z"
 }
