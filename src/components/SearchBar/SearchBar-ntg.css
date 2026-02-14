@@ -1,0 +1,12 @@
+/**
+ * SearchBar Component - NT.GOV.AU Theme Overrides
+ *
+ * Theme-specific customizations:
+ * - Focus shadow using NTG focus token
+ * - Border radius using NTG button radius token
+ */
+
+:root {
+  --search-bar-radius: var(--ntg-radii-button);
+  --search-bar-focus-shadow: var(--shadow-focus-ntg);
+}

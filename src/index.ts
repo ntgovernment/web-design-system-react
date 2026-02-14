@@ -38,6 +38,9 @@ export type { ImageProps } from "./components/Image";
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 
+export { SearchBar } from "./components/SearchBar";
+export type { SearchBarProps } from "./components/SearchBar";
+
 export { Textarea } from "./components/Textarea";
 export type { TextareaProps } from "./components/Textarea";
 

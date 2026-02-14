@@ -1,0 +1,12 @@
+/**
+ * SearchBar Component - NTG Central Theme Overrides
+ *
+ * Theme-specific customizations:
+ * - Focus shadow using Central focus token
+ * - Border radius using Central button radius token
+ */
+
+:root {
+  --search-bar-radius: var(--central-radii-button);
+  --search-bar-focus-shadow: var(--shadow-focus-central);
+}

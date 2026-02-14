@@ -806,6 +806,35 @@
       },
       "file": "src/components/Radio/Radio.stories.tsx"
     },
+    "SearchBar": {
+      "stories": {
+        "Primary": {
+          "args": {
+            "placeholder": "Search",
+            "variant": "primary"
+          }
+        },
+        "Secondary": {
+          "args": {
+            "placeholder": "Search",
+            "variant": "secondary"
+          }
+        },
+        "WithOnSearch": {
+          "args": {
+            "placeholder": "Search for announcements",
+            "variant": "primary"
+          }
+        },
+        "Playground": {
+          "args": {
+            "placeholder": "Search",
+            "variant": "primary"
+          }
+        }
+      },
+      "file": "src/components/SearchBar/SearchBar.stories.tsx"
+    },
     "Tag": {
       "stories": {
         "Default": {
@@ -994,5 +1023,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T10:54:06.481Z"
+  "generated": "2026-02-14T12:00:37.323Z"
 }
