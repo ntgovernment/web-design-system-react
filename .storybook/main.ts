@@ -190,9 +190,10 @@ const config: StorybookConfig = {
   // would otherwise produce 404s when running `storybook dev` locally.
   managerHead: (head) => {
     if (process.env.NODE_ENV === "production") {
+      const basePath = process.env.STORYBOOK_BASE_PATH || "/webds/storybook/";
       return `
     ${head}
-    <base href="/webds/storybook/" />
+    <base href="${basePath}" />
   `;
     }
     return head;
@@ -201,8 +202,9 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     // Only apply the custom base path for production builds
     if (process.env.NODE_ENV === "production") {
-      // Configure base path for Squiz Matrix deployment at /webds/storybook
-      config.base = "/webds/storybook/";
+      // Use STORYBOOK_BASE_PATH env variable if set (for GitHub Pages),
+      // otherwise use default for Squiz Matrix deployment
+      config.base = process.env.STORYBOOK_BASE_PATH || "/webds/storybook/";
     }
 
     // Add custom HTML API plugin (always present)
