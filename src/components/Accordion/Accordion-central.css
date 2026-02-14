@@ -1,0 +1,57 @@
+/**
+ * Accordion Component - NTG Central Theme
+ * 
+ * Theme-specific overrides for NTG Central (internal/intranet) websites.
+ * Uses Roboto font and green accent colors.
+ */
+
+/* Focus state for NTG Central theme - Reset Bootstrap defaults */
+[data-theme="central"] .accordion-button:focus,
+[data-theme="central"] .accordion-button:focus-visible {
+  outline: none;
+  box-shadow: none !important;
+}
+
+/* Focus outline when closed (collapsed) */
+[data-theme="central"] .accordion-button.collapsed:focus,
+[data-theme="central"] .accordion-button.collapsed:focus-visible {
+  outline: 4px solid var(--central-clr-focus-focus);
+  outline-offset: 0;
+  background-color: var(--central-clr-bg-default);
+  color: var(--central-clr-link-default);
+}
+
+/* Focus outline when open (not collapsed) */
+[data-theme="central"] .accordion-button:not(.collapsed):focus,
+[data-theme="central"] .accordion-button:not(.collapsed):focus-visible {
+  outline: 4px solid var(--central-clr-focus-focus);
+  outline-offset: 0;
+  background-color: var(--central-clr-bg-shade);
+  color: var(--central-clr-link-default);
+}
+
+/* Hover state for NTG Central theme */
+[data-theme="central"] .accordion-button:hover {
+  color: var(--central-clr-link-default);
+  background-color: var(--central-clr-bg-shade);
+}
+
+/* Open/expanded state for NTG Central theme */
+[data-theme="central"] .accordion-button:not(.collapsed) {
+  background-color: var(--central-clr-bg-shade) !important;
+}
+
+/* Open/Close All link focus state */
+[data-theme="central"] .accordion-controls-link:focus {
+  outline: 4px solid var(--central-clr-focus-focus);
+  outline-offset: 0;
+}
+
+/* Icon colors for Central theme */
+[data-theme="central"] .accordion-button-icon {
+  color: var(--central-clr-link-default);
+}
+
+[data-theme="central"] .accordion-button:hover .accordion-button-icon {
+  color: var(--central-clr-link-default);
+}
