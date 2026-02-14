@@ -164,10 +164,10 @@ Coding agents can rely on this JSON Schema to validate and generate Footer props
       }
     },
     "bottomLinks": { "$ref": "#/properties/sections/items/properties/links" },
-    "logo": { "oneOf": [ { "type": "string" }, { "type": "object" } ] },
+    "logo": { "oneOf": [{ "type": "string" }, { "type": "object" }] },
     "acknowledgement": { "type": "string" },
     "copyrightText": { "type": "string" },
-    "linkDivider": { "oneOf": [ { "type": "string" }, { "type": "object" } ] }
+    "linkDivider": { "oneOf": [{ "type": "string" }, { "type": "object" }] }
   },
   "additionalProperties": false
 }
@@ -188,7 +188,11 @@ Coding agents can rely on this JSON Schema to validate and generate Footer props
     }
   ],
   "socialLinks": [
-    { "platform": "Facebook", "href": "https://facebook.com/ntgov", "icon": "fa-brands fa-facebook" }
+    {
+      "platform": "Facebook",
+      "href": "https://facebook.com/ntgov",
+      "icon": "fa-brands fa-facebook"
+    }
   ],
   "bottomLinks": [
     { "label": "Privacy", "href": "/privacy" },
@@ -267,14 +271,14 @@ footer, ntg-footer, footer-links, footer-columns, footer-tokens, --clr-bg-dark, 
 
 ## API quick reference
 
-| Prop | Type | Default | Notes |
-| ---- | ---- | ------- | ----- |
-| `sections` | FooterSection[] | `[]` | Use `columns: 2` for two-column layout on md–xxl |
-| `socialLinks` | SocialLink[] | `[]` | Provide `icon` as FontAwesome class for visuals |
-| `bottomLinks` | FooterLink[] | `[]` | Shown under branding area |
-| `logo` | ReactNode | `undefined` | Use for department/agency logos |
-| `acknowledgement` | string | `undefined` | Aboriginal acknowledgement text |
-| `copyrightText` | string | `undefined` | Copyright/legal notice |
+| Prop              | Type            | Default     | Notes                                            |
+| ----------------- | --------------- | ----------- | ------------------------------------------------ |
+| `sections`        | FooterSection[] | `[]`        | Use `columns: 2` for two-column layout on md–xxl |
+| `socialLinks`     | SocialLink[]    | `[]`        | Provide `icon` as FontAwesome class for visuals  |
+| `bottomLinks`     | FooterLink[]    | `[]`        | Shown under branding area                        |
+| `logo`            | ReactNode       | `undefined` | Use for department/agency logos                  |
+| `acknowledgement` | string          | `undefined` | Aboriginal acknowledgement text                  |
+| `copyrightText`   | string          | `undefined` | Copyright/legal notice                           |
 
 ## Implementation notes for maintainers
 

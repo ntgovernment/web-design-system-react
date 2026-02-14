@@ -56,6 +56,11 @@ import "../src/content/pagination/Pagination.css";
 import "../src/content/pagination/Pagination-ntg.css";
 import "../src/content/pagination/Pagination-central.css";
 
+// Import Document CSS files to ensure Vite processes them
+import "../src/components/Document/Document.css";
+import "../src/components/Document/Document-ntg.css";
+import "../src/components/Document/Document-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -324,6 +329,23 @@ const loadPaginationStyles = (theme: string) => {
   document.head.appendChild(paginationCSS);
 };
 
+// Load Document Component Styles (theme-specific overrides)
+const loadDocumentStyles = (theme: string) => {
+  const existingDocument = document.getElementById("document-theme-css");
+  if (existingDocument) {
+    existingDocument.remove();
+  }
+
+  const documentCSS = document.createElement("link");
+  documentCSS.id = "document-theme-css";
+  documentCSS.rel = "stylesheet";
+  documentCSS.href = new URL(
+    `../src/components/Document/Document-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(documentCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -423,6 +445,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadFooterStyles(theme); // Load theme-specific Footer CSS overrides
     loadBreadcrumbsStyles(theme); // Load theme-specific Breadcrumbs CSS overrides
     loadPaginationStyles(theme); // Load theme-specific Pagination CSS overrides
+    loadDocumentStyles(theme); // Load theme-specific Document CSS overrides
   }, [theme]);
 
   return (

@@ -1,0 +1,9 @@
+/**
+ * Document Component - NT.GOV.AU Theme Overrides
+ */
+
+.document {
+  --document-radius: var(--ntg-radii-sm);
+  --document-icon-radius: var(--ntg-radii-sm);
+  --document-focus-shadow: var(--shadow-focus-ntg);
+}

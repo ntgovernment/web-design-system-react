@@ -1,0 +1,104 @@
+/**
+ * Document Component - Common Styles
+ */
+
+@import "../../themes/common.css";
+
+.document {
+  --document-radius: var(--radii-sm);
+  --document-icon-radius: var(--radii-sm);
+  --document-focus-shadow: var(--shadow-focus-ntg);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  border-radius: var(--document-radius);
+}
+
+.document__header {
+  display: flex;
+  align-items: flex-start;
+  column-gap: var(--sp-xs) !important;
+}
+
+.document__icon-wrapper {
+  width: var(--sp-xxxl);
+  height: var(--sp-xxxl);
+  padding: var(--sp-xs);
+  background: var(--clr-bg-shade);
+  border-radius: var(--document-icon-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.document__icon {
+  width: var(--sp-xxl);
+  height: 26.67px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-link-default);
+}
+
+.document__icon i {
+  font-size: var(--type-heading-h4-size);
+}
+
+.document__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xxs);
+}
+
+.document__title {
+  display: inline-flex;
+  align-items: center;
+  color: var(--clr-link-default);
+  font-size: var(--type-link-default-bold-size);
+  font-weight: var(--type-link-default-bold-weight);
+  line-height: var(--type-link-default-bold-lh);
+  text-decoration: var(--type-link-default-bold-decoration);
+  font-family: var(--type-font-default);
+  word-wrap: break-word;
+}
+
+.document__title:hover {
+  color: var(--clr-link-hover);
+  text-decoration: var(--type-link-default-bold-decoration);
+}
+
+.document:hover .document__title {
+  color: var(--clr-link-hover);
+}
+
+.document__title:focus,
+.document__title:focus-visible {
+  background: var(--clr-focus-focus);
+  border-bottom: 4px solid var(--clr-border-strong-01);
+  text-decoration: none;
+  outline: none;
+}
+
+.document__title:visited {
+  color: var(--clr-link-visited);
+}
+
+.document__info {
+  color: var(--clr-text-muted);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-lh);
+  font-family: var(--type-font-default);
+  word-wrap: break-word;
+}
+
+.document__description {
+  color: var(--clr-text-default);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-lh);
+  font-family: var(--type-font-default);
+  word-wrap: break-word;
+}

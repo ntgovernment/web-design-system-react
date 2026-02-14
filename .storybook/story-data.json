@@ -472,6 +472,73 @@
       },
       "file": "src/components/DatePicker/DatePicker.stories.tsx"
     },
+    "Document": {
+      "stories": {
+        "Default": {
+          "args": {
+            "title": "Emergency management plan template",
+            "href": "#",
+            "fileType": "docx",
+            "fileSize": "182 KB",
+            "description": "Optional description of the document."
+          }
+        },
+        "WithoutDescription": {
+          "args": {
+            "title": "Regional infrastructure budget summary",
+            "href": "#",
+            "fileType": "xlsx",
+            "fileSize": "2.4 MB"
+          }
+        },
+        "PdfVariant": {
+          "args": {
+            "title": "Community consultation outcomes",
+            "href": "#",
+            "fileType": "pdf",
+            "fileSize": "946 KB",
+            "description": "Summary of community feedback and actions from the recent consultations."
+          }
+        },
+        "XlsxVariant": {
+          "args": {
+            "title": "Service delivery performance data",
+            "href": "#",
+            "fileType": "xlsx",
+            "fileSize": "1.1 MB",
+            "description": "Spreadsheet of quarterly measures and regional performance indicators."
+          }
+        },
+        "PptxVariant": {
+          "args": {
+            "title": "Strategic planning briefing",
+            "href": "#",
+            "fileType": "pptx",
+            "fileSize": "4.8 MB",
+            "description": "Slides used for executive planning workshops and stakeholder updates."
+          }
+        },
+        "AllFileTypes": {
+          "args": {
+            "href": "#",
+            "fileType": "docx"
+          }
+        },
+        "NTGTheme": {
+          "args": {
+            "href": "#",
+            "fileType": "docx"
+          }
+        },
+        "CentralTheme": {
+          "args": {
+            "href": "#",
+            "fileType": "docx"
+          }
+        }
+      },
+      "file": "src/components/Document/Document.stories.tsx"
+    },
     "Dropdown": {
       "stories": {
         "Default": {
@@ -1406,5 +1473,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T22:13:39.639Z"
+  "generated": "2026-02-14T22:56:24.948Z"
 }
