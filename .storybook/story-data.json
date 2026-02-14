@@ -375,6 +375,53 @@
       },
       "file": "src/components/DateInput/DateInput.stories.tsx"
     },
+    "DatePicker": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Date of birth",
+            "helperText": "Please enter your date of birth in DD/MM/YYYY format",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Application date",
+            "helperText": "Select the date you are submitting your application",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "WithDefaultValue": {
+          "args": {
+            "label": "License expiry date",
+            "helperText": "Your current license expiry date",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Historical date",
+            "helperText": "This field is not editable",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Assessment date",
+            "helperText": "This information cannot be changed",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Select a date",
+            "helperText": "Choose any date from the calendar or type DD/MM/YYYY",
+            "placeholder": "DD/MM/YYYY"
+          }
+        }
+      },
+      "file": "src/components/DatePicker/DatePicker.stories.tsx"
+    },
     "Dropdown": {
       "stories": {
         "Default": {
@@ -947,5 +994,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T08:26:07.534Z"
+  "generated": "2026-02-14T10:54:06.481Z"
 }

@@ -47,5 +47,8 @@ export type { DropdownProps, DropdownOption } from "./components/Dropdown";
 export { DateInput } from "./components/DateInput";
 export type { DateInputProps, DateInputValue } from "./components/DateInput";
 
+export { DatePicker } from "./components/DatePicker";
+export type { DatePickerProps } from "./components/DatePicker";
+
 // Import styles
 import "./style.css";

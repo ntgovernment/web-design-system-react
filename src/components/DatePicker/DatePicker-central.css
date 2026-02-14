@@ -1,0 +1,44 @@
+/**
+ * DatePicker Component - NTG Central Theme Overrides
+ *
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common DatePicker styles are defined in DatePicker.css.
+ *
+ * Theme-specific customizations:
+ * - Central focus outline
+ * - Border radius using central-prefixed tokens
+ * - Shadow using central-prefixed tokens
+ *
+ * Note: Focus styles use --clr-focus-focus which automatically switches
+ * based on the active theme (NTG orange or Central green).
+ */
+
+/* Central date picker button hover state */
+.date-picker-button:hover:not(:disabled) {
+  color: var(--clr-action-primary);
+}
+
+/* Central calendar month/year styling */
+.calendar-month,
+.calendar-year {
+  color: var(--clr-text-default);
+}
+
+/* Central calendar selected date styling */
+.calendar-date--selected {
+  background: var(--clr-action-primary);
+  color: var(--text-inverse);
+}
+
+.calendar-date--selected:hover:not(:disabled) {
+  background: var(--clr-action-hover);
+}
+
+/* Central today indicator color */
+.calendar-date--today .calendar-date-number {
+  color: var(--clr-text-emphasis);
+}
+
+.calendar-date--today .calendar-date-dot {
+  background: var(--clr-text-emphasis);
+}
