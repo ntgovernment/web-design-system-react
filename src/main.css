@@ -40,6 +40,10 @@
 @import "./components/BackToTop/BackToTop.css";
 @import "./components/BackToTop/BackToTop-ntg.css";
 
+/* Import FloatingButton component styles */
+@import "./components/FloatingButton/FloatingButton.css";
+@import "./components/FloatingButton/FloatingButton-ntg.css";
+
 /* Import Breadcrumbs content styles */
 @import "./content/breadcrumbs/Breadcrumbs.css";
 @import "./content/breadcrumbs/Breadcrumbs-ntg.css";

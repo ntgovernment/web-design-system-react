@@ -544,6 +544,71 @@
       },
       "file": "src/components/Dropdown/Dropdown.stories.tsx"
     },
+    "FloatingButton": {
+      "stories": {
+        "Primary": {
+          "args": {
+            "label": "Submit Application",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right"
+          }
+        },
+        "Secondary": {
+          "args": {
+            "label": "Learn More",
+            "variant": "secondary",
+            "iconRight": "fa-light fa-arrow-right"
+          }
+        },
+        "WithIconLeft": {
+          "args": {
+            "label": "Download Form",
+            "variant": "primary",
+            "iconLeft": "fa-light fa-download"
+          }
+        },
+        "WithAutoHideBehavior": {
+          "args": {
+            "label": "Submit Application",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right",
+            "targetButtonId": "target-apply-button"
+          }
+        },
+        "AlwaysVisible": {
+          "args": {
+            "label": "Need Help? Contact Us",
+            "variant": "secondary",
+            "iconRight": "fa-light fa-phone"
+          }
+        },
+        "GrantApplicationExample": {
+          "args": {
+            "label": "Start Grant Application",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right",
+            "targetButtonId": "grant-apply-button"
+          }
+        },
+        "LicenseApplicationExample": {
+          "args": {
+            "label": "Apply for License",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right",
+            "targetButtonId": "license-apply-button"
+          }
+        },
+        "DownloadFormExample": {
+          "args": {
+            "label": "Download Application Form",
+            "variant": "primary",
+            "iconLeft": "fa-light fa-download",
+            "targetButtonId": "download-form-button"
+          }
+        }
+      },
+      "file": "src/components/FloatingButton/FloatingButton.stories.tsx"
+    },
     "Icon": {
       "stories": {
         "Default": {
@@ -1073,5 +1138,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T19:33:49.155Z"
+  "generated": "2026-02-14T20:06:18.714Z"
 }

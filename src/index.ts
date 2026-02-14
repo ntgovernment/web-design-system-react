@@ -56,5 +56,8 @@ export type { DatePickerProps } from "./components/DatePicker";
 export { BackToTop } from "./components/BackToTop";
 export type { BackToTopProps } from "./components/BackToTop";
 
+export { FloatingButton } from "./components/FloatingButton";
+export type { FloatingButtonProps } from "./components/FloatingButton";
+
 // Import styles
 import "./style.css";

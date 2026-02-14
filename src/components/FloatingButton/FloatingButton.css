@@ -1,0 +1,105 @@
+/**
+ * FloatingButton Component - Common Styles
+ * 
+ * This file contains Bootstrap button CSS variable customizations
+ * for the FloatingButton component that are common across all themes.
+ * Theme-specific overrides are defined in FloatingButton-ntg.css and
+ * FloatingButton-central.css.
+ * 
+ * Based on Bootstrap 5.3 CSS Variables approach:
+ * https://getbootstrap.com/docs/5.3/components/buttons/#variables
+ */
+
+.floating-button {
+  width: 100%;
+  padding: var(--sp-xl);
+  background: var(--clr-bg-default);
+  box-shadow: var(--shadow-sm-top);
+  border-top: var(--border-width-sm) solid var(--clr-border-subtle);
+
+  /* Fixed positioning */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030; /* Below modals (1050) but above most content */
+
+  /* Flexbox layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.floating-button__container {
+  width: 100%;
+  max-width: 1168px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-md);
+}
+
+.floating-button__button-wrapper {
+  width: 100%;
+  max-width: 1168px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--sp-md);
+}
+
+/* Button within FloatingButton - Inherits from Button.css */
+.floating-button .btn {
+  /* Typography - Using design tokens from Button.css */
+  padding-left: var(--sp-xl);
+  padding-right: var(--sp-xl);
+  padding-top: var(--sp-md);
+  padding-bottom: var(--sp-md);
+
+  /* Ensure button uses theme border-radius */
+  border-radius: var(--radii-button);
+
+  /* Flexbox for icon and text alignment */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+/* Icon within button */
+.floating-button .btn i {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hidden state - slide down out of view */
+.floating-button.floating-button--hidden {
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Visible state - slide up into view */
+.floating-button:not(.floating-button--hidden) {
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Small screen adjustments */
+@media (max-width: 767px) {
+  .floating-button {
+    padding: var(--sp-md);
+  }
+
+  .floating-button__button-wrapper {
+    flex-direction: column;
+  }
+
+  .floating-button .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
