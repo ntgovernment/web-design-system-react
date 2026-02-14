@@ -301,6 +301,80 @@
       },
       "file": "src/components/Checkbox/Checkbox.stories.tsx"
     },
+    "DateInput": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Date of Birth",
+            "helperText": "Enter your date of birth in DD MM YYYY format"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Passport Expiry Date",
+            "helperText": "Enter the expiry date shown on your passport"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Date of Marriage",
+            "helperText": "Enter the date you were married",
+            "day": "14",
+            "month": "02",
+            "year": "2020"
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Application Date",
+            "helperText": "Enter your application submission date",
+            "day": "15",
+            "month": "12",
+            "year": "2024"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "License Renewal Date",
+            "helperText": "Enter your license renewal date",
+            "day": "32",
+            "month": "13",
+            "year": "2023"
+          }
+        },
+        "ErrorRequired": {
+          "args": {
+            "label": "Commencement Date",
+            "helperText": "Enter the date you commenced employment"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "System Generated Date",
+            "helperText": "This date is automatically generated",
+            "day": "01",
+            "month": "01",
+            "year": "2025"
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Registration Date",
+            "helperText": "Your initial registration date",
+            "day": "28",
+            "month": "06",
+            "year": "2023"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Date Input",
+            "helperText": "Enter a date in DD MM YYYY format"
+          }
+        }
+      },
+      "file": "src/components/DateInput/DateInput.stories.tsx"
+    },
     "Dropdown": {
       "stories": {
         "Default": {
@@ -873,5 +947,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T08:04:55.180Z"
+  "generated": "2026-02-14T08:26:07.534Z"
 }

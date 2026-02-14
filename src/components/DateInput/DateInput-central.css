@@ -1,0 +1,17 @@
+/**
+ * DateInput Component - NTG Central Theme Overrides
+ *
+ * Theme-specific focus shadow and read-only background for Central theme.
+ */
+
+/* Use the Central focus shadow token used across the design system */
+.date-input-field-control.form-control:focus,
+.date-input-field-control.form-control:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+}
+
+/* Slight read-only background adjustment for Central */
+.date-input-field-control.form-control[readonly],
+.date-input-field-control.form-control[data-readonly="true"] {
+  background: var(--central-neutrals-02);
+}

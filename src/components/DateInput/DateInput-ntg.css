@@ -1,0 +1,17 @@
+/**
+ * DateInput Component - NT.GOV.AU Theme Overrides
+ *
+ * Theme-specific focus shadow and read-only background for NTG theme.
+ */
+
+/* Use the NTG focus shadow token used across the design system */
+.date-input-field-control.form-control:focus,
+.date-input-field-control.form-control:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+}
+
+/* Slight read-only background adjustment for NTG */
+.date-input-field-control.form-control[readonly],
+.date-input-field-control.form-control[data-readonly="true"] {
+  background: var(--ntg-neutral-01);
+}

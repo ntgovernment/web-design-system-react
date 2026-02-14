@@ -44,5 +44,8 @@ export type { TextareaProps } from "./components/Textarea";
 export { Dropdown } from "./components/Dropdown";
 export type { DropdownProps, DropdownOption } from "./components/Dropdown";
 
+export { DateInput } from "./components/DateInput";
+export type { DateInputProps, DateInputValue } from "./components/DateInput";
+
 // Import styles
 import "./style.css";
