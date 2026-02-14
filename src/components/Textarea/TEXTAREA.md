@@ -250,18 +250,18 @@ See **CSS_VARIABLES.md** for detailed documentation on available CSS variables a
 Props JSON schema (useful for programmatic tests / automated code generators):
 
 {
-  "component": "Textarea",
-  "props": {
-    "label": {"type":"string"},
-    "helperText": {"type":"string"},
-    "requiredIndicator": {"type":"string","default":"(Required)"},
-    "validationState": {"type":"string","enum":["success","error"]},
-    "validationMessage": {"type":"string"},
-    "maxLength": {"type":"number"},
-    "showCharacterCount": {"type":"boolean","default":false},
-    "rows": {"type":"number","default":5}
-  },
-  "dataAttributes": ["data-status","data-filled","data-readonly","data-disabled"]
+"component": "Textarea",
+"props": {
+"label": {"type":"string"},
+"helperText": {"type":"string"},
+"requiredIndicator": {"type":"string","default":"(Required)"},
+"validationState": {"type":"string","enum":["success","error"]},
+"validationMessage": {"type":"string"},
+"maxLength": {"type":"number"},
+"showCharacterCount": {"type":"boolean","default":false},
+"rows": {"type":"number","default":5}
+},
+"dataAttributes": ["data-status","data-filled","data-readonly","data-disabled"]
 }
 
 ## Token mapping (developer/agent reference)
@@ -279,10 +279,10 @@ Note: prefer token updates (design-tokens/tokens.json + `npm run tokens:build`) 
 
 ## Bootstrap variable mapping (quick)
 
-- `--bs-form-control-bg`  ⇄ `--clr-bg-default`
-- `--bs-border-color`     ⇄ `--clr-border-subtle`
-- `--bs-border-radius`    ⇄ `--radii-*` tokens
-- `--bs-body-font-size`   ⇄ `--type-desktop-body-default-size`
+- `--bs-form-control-bg` ⇄ `--clr-bg-default`
+- `--bs-border-color` ⇄ `--clr-border-subtle`
+- `--bs-border-radius` ⇄ `--radii-*` tokens
+- `--bs-body-font-size` ⇄ `--type-desktop-body-default-size`
 
 Use tokens where possible — Bootstrap `--bs-*` variables are useful for local, runtime customizations.
 
@@ -315,7 +315,7 @@ export const PlayFocus: Story = {
     await userEvent.click(ta);
     expect(ta).toHaveFocus();
     // snapshot or assert focus outline color via computedStyle
-  }
+  },
 };
 ```
 

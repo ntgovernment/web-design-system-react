@@ -285,14 +285,46 @@ For available design tokens, see:
 
 ```json
 [
-  { "cssVar": "--clr-bg-default", "tokenPath": "themes.ntg.clr.bg.default", "usage": "container background" },
-  { "cssVar": "--clr-border-subtle", "tokenPath": "themes.ntg.clr.border.subtle", "usage": "outline / border color" },
-  { "cssVar": "--clr-focus-focus", "tokenPath": "themes.ntg.clr.focus.focus", "usage": "focus ring color" },
-  { "cssVar": "--shadow-focus-ntg", "tokenPath": "effect.ntg-shadow.focus-ntg", "usage": "NTG theme focus shadow" },
-  { "cssVar": "--shadow-focus-central", "tokenPath": "effect.ntg-shadow.focus-central", "usage": "Central theme focus shadow" },
-  { "cssVar": "--radii-none", "tokenPath": "radii.none", "usage": "component border-radius" },
-  { "cssVar": "--sp-md", "tokenPath": "sp.md", "usage": "horizontal padding (16px)" },
-  { "cssVar": "--sp-xs", "tokenPath": "sp.xs", "usage": "vertical padding (8px)" }
+  {
+    "cssVar": "--clr-bg-default",
+    "tokenPath": "themes.ntg.clr.bg.default",
+    "usage": "container background"
+  },
+  {
+    "cssVar": "--clr-border-subtle",
+    "tokenPath": "themes.ntg.clr.border.subtle",
+    "usage": "outline / border color"
+  },
+  {
+    "cssVar": "--clr-focus-focus",
+    "tokenPath": "themes.ntg.clr.focus.focus",
+    "usage": "focus ring color"
+  },
+  {
+    "cssVar": "--shadow-focus-ntg",
+    "tokenPath": "effect.ntg-shadow.focus-ntg",
+    "usage": "NTG theme focus shadow"
+  },
+  {
+    "cssVar": "--shadow-focus-central",
+    "tokenPath": "effect.ntg-shadow.focus-central",
+    "usage": "Central theme focus shadow"
+  },
+  {
+    "cssVar": "--radii-none",
+    "tokenPath": "radii.none",
+    "usage": "component border-radius"
+  },
+  {
+    "cssVar": "--sp-md",
+    "tokenPath": "sp.md",
+    "usage": "horizontal padding (16px)"
+  },
+  {
+    "cssVar": "--sp-xs",
+    "tokenPath": "sp.xs",
+    "usage": "vertical padding (8px)"
+  }
 ]
 ```
 
