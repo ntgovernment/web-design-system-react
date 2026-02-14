@@ -44,6 +44,10 @@
 @import "./components/FloatingButton/FloatingButton.css";
 @import "./components/FloatingButton/FloatingButton-ntg.css";
 
+/* Import QuickExit component styles */
+@import "./components/QuickExit/QuickExit.css";
+@import "./components/QuickExit/QuickExit-ntg.css";
+
 /* Import Breadcrumbs content styles */
 @import "./content/breadcrumbs/Breadcrumbs.css";
 @import "./content/breadcrumbs/Breadcrumbs-ntg.css";

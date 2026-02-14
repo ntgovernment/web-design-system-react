@@ -59,5 +59,8 @@ export type { BackToTopProps } from "./components/BackToTop";
 export { FloatingButton } from "./components/FloatingButton";
 export type { FloatingButtonProps } from "./components/FloatingButton";
 
+export { QuickExit } from "./components/QuickExit";
+export type { QuickExitProps } from "./components/QuickExit";
+
 // Import styles
 import "./style.css";

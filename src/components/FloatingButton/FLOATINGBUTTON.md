@@ -501,17 +501,17 @@ For NTG Central websites, consider using a standard call-to-action button in a p
 
 ```typescript
 interface FloatingButtonProps {
-  label: string;                    // Required button text
-  iconLeft?: string;                // Left icon (FontAwesome class)
-  iconRight?: string;               // Right icon (FontAwesome class)
+  label: string; // Required button text
+  iconLeft?: string; // Left icon (FontAwesome class)
+  iconRight?: string; // Right icon (FontAwesome class)
   variant?: "primary" | "secondary"; // Button variant (default: "primary")
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void; // Click handler
-  targetButtonId?: string;          // ID of target button for auto-hide
-  autoHide?: boolean;               // Enable auto-hide (default: true)
-  className?: string;               // Additional CSS classes
+  targetButtonId?: string; // ID of target button for auto-hide
+  autoHide?: boolean; // Enable auto-hide (default: true)
+  className?: string; // Additional CSS classes
   type?: "button" | "submit" | "reset"; // HTML button type
-  disabled?: boolean;               // Disabled state
-  ariaLabel?: string;               // Accessibility label
+  disabled?: boolean; // Disabled state
+  ariaLabel?: string; // Accessibility label
 }
 ```
 
@@ -536,4 +536,3 @@ interface FloatingButtonProps {
 - Use design tokens (`--sp-*`, `--clr-*`, `--shadow-*`, `--radii-*`) for styling.
 - Prefer IntersectionObserver over scroll listeners for visibility logic.
 - Update `FLOATINGBUTTON.md` when changing behavior or props so code-generators and agents find authoritative docs.
-

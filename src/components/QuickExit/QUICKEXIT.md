@@ -461,9 +461,21 @@ Machine-readable props (useful for automation or AI agents):
 {
   "props": [
     { "name": "heading", "type": "string", "default": "Quick exit" },
-    { "name": "content", "type": "string", "default": "Click anywhere on this banner to exit this page. Call 000 if you're in immediate danger." },
-    { "name": "exitUrl", "type": "string", "default": "https://www.bom.gov.au/" },
-    { "name": "redirectUrl", "type": "string", "default": "https://www.google.com/" }
+    {
+      "name": "content",
+      "type": "string",
+      "default": "Click anywhere on this banner to exit this page. Call 000 if you're in immediate danger."
+    },
+    {
+      "name": "exitUrl",
+      "type": "string",
+      "default": "https://www.bom.gov.au/"
+    },
+    {
+      "name": "redirectUrl",
+      "type": "string",
+      "default": "https://www.google.com/"
+    }
   ]
 }
 ```
@@ -473,17 +485,22 @@ Playwright / end-to-end example (stub window.open & location.replace):
 ```js
 // stub browser globals on the page before interaction
 await page.evaluate(() => {
-  window.open = (url, target, features) => { window.__lastOpen = { url, target, features }; return window; };
-  window.location.replace = (url) => { window.__lastReplace = url; };
+  window.open = (url, target, features) => {
+    window.__lastOpen = { url, target, features };
+    return window;
+  };
+  window.location.replace = (url) => {
+    window.__lastReplace = url;
+  };
 });
 
-await page.waitForSelector('.quick-exit', { state: 'visible' });
-await page.click('.quick-exit');
+await page.waitForSelector(".quick-exit", { state: "visible" });
+await page.click(".quick-exit");
 
 const opened = await page.evaluate(() => window.__lastOpen);
-expect(opened.url).toBe('https://www.bom.gov.au/');
+expect(opened.url).toBe("https://www.bom.gov.au/");
 const replaced = await page.evaluate(() => window.__lastReplace);
-expect(replaced).toBe('https://www.google.com/');
+expect(replaced).toBe("https://www.google.com/");
 ```
 
 Notes for Storybook & automation:
