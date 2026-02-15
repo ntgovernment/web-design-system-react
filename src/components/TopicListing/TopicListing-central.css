@@ -1,0 +1,12 @@
+/**
+ * TopicListing Component - NTG Central Theme Overrides
+ */
+
+@import "../../themes/common.css";
+
+.topic-listing {
+  --topic-listing-focus-shadow: var(--shadow-focus-central);
+  --topic-listing-focus-radius: var(--central-radii-sm);
+  --topic-listing-link-rgb: var(--central-clr-link-default-rgb);
+  --topic-listing-link-hover-rgb: var(--central-clr-link-hover-rgb);
+}

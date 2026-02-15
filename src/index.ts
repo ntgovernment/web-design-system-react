@@ -82,6 +82,13 @@ export type {
 export { Banner } from "./components/Banner";
 export type { BannerProps } from "./components/Banner";
 
+export { TopicListing } from "./components/TopicListing";
+export type {
+  TopicListingProps,
+  TopicListingLink,
+  TopicListingVariant,
+} from "./components/TopicListing";
+
 // Content components
 export { OnThisPageNavigation } from "./content/on-this-page/OnThisPageNavigation";
 export type {
