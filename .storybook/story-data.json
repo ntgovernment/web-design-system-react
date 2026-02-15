@@ -123,55 +123,45 @@
         "Primary": {
           "args": {
             "variant": "primary",
-            "label": "Button"
+            "label": "Submit Application"
           }
         },
         "Secondary": {
           "args": {
             "variant": "secondary",
-            "label": "Button"
+            "label": "Save as Draft"
           }
         },
         "Tertiary": {
           "args": {
             "variant": "tertiary",
-            "label": "Button"
+            "label": "Cancel"
           }
         },
         "Small": {
           "args": {
             "size": "sm",
-            "label": "Small Button"
-          }
-        },
-        "AllVariants": {
-          "args": {
-            "label": "Button"
+            "label": "Edit Profile"
           }
         },
         "WithIconLeft": {
           "args": {
             "variant": "primary",
-            "iconLeft": "fa-light fa-home",
-            "label": "Home"
+            "iconLeft": "fa-light fa-download",
+            "label": "Download Report"
           }
         },
         "WithIconRight": {
           "args": {
-            "variant": "primary",
+            "variant": "tertiary",
             "iconRight": "fa-light fa-arrow-right",
-            "label": "Next"
+            "label": "View More Services"
           }
         },
         "IconOnly": {
           "args": {
             "variant": "primary",
             "iconLeft": "fa-light fa-search"
-          }
-        },
-        "IconOnlyButtons": {
-          "args": {
-            "size": "sm"
           }
         }
       },
@@ -1473,5 +1463,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-14T22:56:24.948Z"
+  "generated": "2026-02-15T02:47:58.073Z"
 }

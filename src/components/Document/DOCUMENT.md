@@ -36,18 +36,18 @@ Use this component to present documents without burying links in long blocks of 
 
 ## Props
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `title` | `string` | Yes | Display name shown as the link text. |
-| `href` | `string` | Yes | URL to download or view the document. |
-| `fileType` | `"docx" \| "doc" \| "pdf" \| "xlsx" \| "xls" \| "pptx" \| "ppt"` | Yes | File type for icon and metadata label. |
-| `fileSize` | `string` | Yes | File size label (e.g., "182 KB"). |
-| `description` | `string` | No | Optional description text below the metadata. |
-| `metadata` | `string` | No | Override for metadata line. Defaults to `TYPE | SIZE`. |
-| `ariaLabel` | `string` | No | Accessibility label for the title link. |
-| `target` | `string` | No | Link target (use with care). |
-| `rel` | `string` | No | Link rel attribute. |
-| `download` | `boolean` | No | Adds the download attribute to the link. |
+| Prop          | Type                                                             | Required | Description                                   |
+| ------------- | ---------------------------------------------------------------- | -------- | --------------------------------------------- | ------ |
+| `title`       | `string`                                                         | Yes      | Display name shown as the link text.          |
+| `href`        | `string`                                                         | Yes      | URL to download or view the document.         |
+| `fileType`    | `"docx" \| "doc" \| "pdf" \| "xlsx" \| "xls" \| "pptx" \| "ppt"` | Yes      | File type for icon and metadata label.        |
+| `fileSize`    | `string`                                                         | Yes      | File size label (e.g., "182 KB").             |
+| `description` | `string`                                                         | No       | Optional description text below the metadata. |
+| `metadata`    | `string`                                                         | No       | Override for metadata line. Defaults to `TYPE | SIZE`. |
+| `ariaLabel`   | `string`                                                         | No       | Accessibility label for the title link.       |
+| `target`      | `string`                                                         | No       | Link target (use with care).                  |
+| `rel`         | `string`                                                         | No       | Link rel attribute.                           |
+| `download`    | `boolean`                                                        | No       | Adds the download attribute to the link.      |
 
 ## File Type Icons
 
@@ -70,7 +70,7 @@ import { Document } from "@ntgovernment/web-design-system";
   href="/documents/emergency-management-plan.docx"
   fileType="docx"
   fileSize="182 KB"
-/>
+/>;
 ```
 
 ### With Description

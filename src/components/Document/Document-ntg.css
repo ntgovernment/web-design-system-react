@@ -2,6 +2,9 @@
  * Document Component - NT.GOV.AU Theme Overrides
  */
 
+/* Import common design tokens required by this component */
+@import "../../themes/common.css";
+
 .document {
   --document-radius: var(--ntg-radii-sm);
   --document-icon-radius: var(--ntg-radii-sm);

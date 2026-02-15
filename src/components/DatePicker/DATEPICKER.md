@@ -554,6 +554,68 @@ The DatePicker component works in all modern browsers:
 - Date constraints (min/max)
 - Mobile-responsive design
 
+## Implementation Summary (Developer & Agent)
+
+This section consolidates the former implementation summary into the component documentation.
+
+### File Structure
+
+```
+src/components/DatePicker/
+├── DatePicker.tsx
+├── DatePicker.css
+├── DatePicker-ntg.css
+├── DatePicker-central.css
+├── DatePicker.stories.tsx
+├── DATEPICKER.md
+├── CSS_VARIABLES.md
+└── index.ts
+```
+
+### Core Capabilities (Quick Scan)
+
+- Keyboard navigation for calendar and input
+- Validation states with messages and ARIA announcements
+- Min/max date constraints and disabled dates
+- Theme-aware focus outlines and typography
+- Mobile-friendly calendar overlay
+
+### Storybook Stories (Reference)
+
+- Default
+- Required
+- WithDefaultValue
+- Success
+- Error
+- Disabled
+- ReadOnly
+- WithMinDate
+- WithMaxDate
+- DateRange
+- Controlled
+- InForm
+- MultipleFields
+- Playground
+
+### Build Output (Reference)
+
+```
+dist/
+├── components.min.js
+├── ntg-theme.min.css
+├── central-theme.min.css
+├── index.html
+├── index.js
+└── index.css
+```
+
+### Token Coverage (Snapshot)
+
+- **Colors:** `--clr-bg-*`, `--clr-text-*`, `--clr-border-*`, `--clr-status-*`, `--clr-action-primary`
+- **Spacing:** `--sp-xs`, `--sp-sm`, `--sp-md`, `--sp-lg`, `--sp-xl`, `--sp-xxxl`
+- **Typography:** `--type-font-default`, `--type-desktop-body-default-size`, `--type-body-sm-*`
+- **Focus & radii:** `--shadow-focus-ntg`, `--shadow-focus-central`, `--radii-input`, `--radii-button`
+
 ---
 
 **Component Library**: NT Government Web Design System

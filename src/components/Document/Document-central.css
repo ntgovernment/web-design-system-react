@@ -2,6 +2,9 @@
  * Document Component - NTG Central Theme Overrides
  */
 
+/* Import common design tokens required by this component */
+@import "../../themes/common.css";
+
 .document {
   --document-radius: var(--central-radii-sm);
   --document-icon-radius: var(--central-radii-sm);

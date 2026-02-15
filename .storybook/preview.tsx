@@ -1,6 +1,12 @@
 import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 
+// Import common design tokens FIRST (required by component CSS files)
+import "../src/themes/common.css";
+import "../src/themes/grid.css";
+import "../src/themes/typography.css";
+import "../src/themes/typography-literals.css";
+
 // Import Button CSS files to ensure Vite processes them
 import "../src/components/Button/Button.css";
 import "../src/components/Button/Button-ntg.css";
