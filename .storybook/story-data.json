@@ -1635,6 +1635,58 @@
       },
       "file": "src/components/SideNavigation/SideNavigation.stories.tsx"
     },
+    "StepList": {
+      "stories": {
+        "Default": {
+          "args": {
+            "title": "Prepare Your Documents",
+            "description": "Gather your proof of identity and supporting documents before starting your application. You will need a current driver license or passport, and proof of Northern Territory residency dated within the last 3 months."
+          }
+        },
+        "SimpleTitlesOnly": {
+          "args": {
+            "title": "Create MyNTG Account"
+          }
+        },
+        "WithDescriptions": {
+          "args": {
+            "title": "Register Your Business",
+            "description": "Provide your business name, type, and registered address. This information must match your official business registration documents. You will also need to specify your business structure and primary industry category."
+          }
+        },
+        "WithDetailedDescriptions": {
+          "args": {
+            "title": "Gather Documents",
+            "description": "You will need recent identification documents and proof of residency. Accepted documents include driver license, passport, birth certificate, or utilities bill dated within 3 months."
+          }
+        },
+        "LongFormProcess": {
+          "args": {
+            "title": "Personal Information",
+            "description": "Enter your full legal name, date of birth, and contact information. Ensure all details match your official identification documents to avoid processing delays. Your personal information will be securely stored and used only for processing this application in accordance with the Privacy Act."
+          }
+        },
+        "ServiceApplication": {
+          "args": {
+            "title": "Check Eligibility",
+            "description": "Review the eligibility requirements. You must be an Australian resident and meet the income thresholds for this service."
+          }
+        },
+        "QuickProcess": {
+          "args": {
+            "title": "Access Online Portal",
+            "description": "Visit the NT Government services website and log in to your account."
+          }
+        },
+        "LicenseRenewal": {
+          "args": {
+            "title": "Check Renewal Eligibility",
+            "description": "Verify that your license is valid and eligible for renewal. Your renewal notice has been sent to your registered address. You can renew your license up to 3 months before the expiry date."
+          }
+        }
+      },
+      "file": "src/components/StepList/StepList.stories.tsx"
+    },
     "Tag": {
       "stories": {
         "Default": {
@@ -1864,5 +1916,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-02-15T10:43:54.359Z"
+  "generated": "2026-02-15T11:32:34.483Z"
 }

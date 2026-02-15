@@ -77,6 +77,13 @@ export type {
   SideNavigationItemProps,
 } from "./components/SideNavigation";
 
+export { StepList } from "./components/StepList";
+export type {
+  StepListProps,
+  StepListItem,
+  StepListItemContent,
+} from "./components/StepList";
+
 export { Footer } from "./components/Footer";
 export type {
   FooterProps,
