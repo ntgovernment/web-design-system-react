@@ -62,6 +62,11 @@ import "../src/content/pagination/Pagination.css";
 import "../src/content/pagination/Pagination-ntg.css";
 import "../src/content/pagination/Pagination-central.css";
 
+// Import OnThisPageNavigation CSS files to ensure Vite processes them
+import "../src/content/on-this-page/OnThisPageNavigation.css";
+import "../src/content/on-this-page/OnThisPageNavigation-ntg.css";
+import "../src/content/on-this-page/OnThisPageNavigation-central.css";
+
 // Import Document CSS files to ensure Vite processes them
 import "../src/components/Document/Document.css";
 import "../src/components/Document/Document-ntg.css";
@@ -335,6 +340,23 @@ const loadPaginationStyles = (theme: string) => {
   document.head.appendChild(paginationCSS);
 };
 
+// Load OnThisPageNavigation Content Styles (theme-specific overrides)
+const loadOnThisPageNavigationStyles = (theme: string) => {
+  const existingOnThisPage = document.getElementById("on-this-page-theme-css");
+  if (existingOnThisPage) {
+    existingOnThisPage.remove();
+  }
+
+  const onThisPageCSS = document.createElement("link");
+  onThisPageCSS.id = "on-this-page-theme-css";
+  onThisPageCSS.rel = "stylesheet";
+  onThisPageCSS.href = new URL(
+    `../src/content/on-this-page/OnThisPageNavigation-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(onThisPageCSS);
+};
+
 // Load Document Component Styles (theme-specific overrides)
 const loadDocumentStyles = (theme: string) => {
   const existingDocument = document.getElementById("document-theme-css");
@@ -451,6 +473,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadFooterStyles(theme); // Load theme-specific Footer CSS overrides
     loadBreadcrumbsStyles(theme); // Load theme-specific Breadcrumbs CSS overrides
     loadPaginationStyles(theme); // Load theme-specific Pagination CSS overrides
+    loadOnThisPageNavigationStyles(theme); // Load theme-specific OnThisPageNavigation CSS overrides
     loadDocumentStyles(theme); // Load theme-specific Document CSS overrides
   }, [theme]);
 
@@ -503,7 +526,14 @@ const preview: Preview = {
       storySort: {
         order: [
           "Content",
-          ["Breadcrumbs", "Pagination", "Table", "Typography", "Icon"],
+          [
+            "Breadcrumbs",
+            "OnThisPageNavigation",
+            "Pagination",
+            "Table",
+            "Typography",
+            "Icon",
+          ],
           "Components",
           [
             "Card",

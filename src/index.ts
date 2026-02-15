@@ -82,5 +82,12 @@ export type {
 export { Banner } from "./components/Banner";
 export type { BannerProps } from "./components/Banner";
 
+// Content components
+export { OnThisPageNavigation } from "./content/on-this-page/OnThisPageNavigation";
+export type {
+  OnThisPageNavigationProps,
+  OnThisPageNavigationItem,
+} from "./content/on-this-page/OnThisPageNavigation";
+
 // Import styles
 import "./style.css";

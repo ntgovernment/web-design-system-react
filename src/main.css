@@ -64,6 +64,10 @@
 @import "./content/pagination/Pagination.css";
 @import "./content/pagination/Pagination-ntg.css";
 
+/* Import OnThisPageNavigation content styles */
+@import "./content/on-this-page/OnThisPageNavigation.css";
+@import "./content/on-this-page/OnThisPageNavigation-ntg.css";
+
 /* Additional global styles can be added here */
 body {
   margin: 0;
