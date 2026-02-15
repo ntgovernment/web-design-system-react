@@ -35,6 +35,9 @@ export type { PillProps } from "./components/Pill";
 export { Notification } from "./components/Notification";
 export type { NotificationProps } from "./components/Notification";
 
+export { GlobalAlert } from "./components/GlobalAlert";
+export type { GlobalAlertProps } from "./components/GlobalAlert";
+
 export { Document } from "./components/Document";
 export type { DocumentProps, DocumentFileType } from "./components/Document";
 

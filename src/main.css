@@ -28,6 +28,10 @@
 @import "./components/Notification/Notification.css";
 @import "./components/Notification/Notification-ntg.css";
 
+/* Import GlobalAlert component styles */
+@import "./components/GlobalAlert/GlobalAlert.css";
+@import "./components/GlobalAlert/GlobalAlert-ntg.css";
+
 /* Import Document component styles */
 @import "./components/Document/Document.css";
 @import "./components/Document/Document-ntg.css";
