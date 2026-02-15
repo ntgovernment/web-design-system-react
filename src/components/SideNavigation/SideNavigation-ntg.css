@@ -1,0 +1,73 @@
+/**
+ * Side Navigation Component - NT.GOV.AU Theme Overrides
+ *
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common side navigation styles are defined in SideNavigation.css.
+ *
+ * Theme-specific customizations:
+ * - Focus outline (4px solid #EC8C58 orange)
+ * - Semantic variable definitions using ntg-prefixed tokens
+ * - Link colors and states using NTG color palette
+ */
+
+/* NT.GOV.AU theme-specific semantic variables */
+:root {
+  --clr-text-subtle: var(--ntg-neutral-06);
+  --radii-nav: var(--ntg-radii-nav);
+}
+
+/* NT.GOV.AU specific focus styling for navigation links */
+.side-nav__link:focus,
+.side-nav__link:focus-visible {
+  outline: none;
+  background-color: var(--clr-focus-focus);
+  border-bottom: 4px solid var(--clr-border-strong-01);
+}
+
+/* NT.GOV.AU specific focus styling for expand buttons */
+.side-nav__expand-btn:focus,
+.side-nav__expand-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus-ntg);
+  border-radius: 2px;
+}
+
+/* Header icon color for NTG theme */
+.side-nav__header-icon {
+  color: var(--clr-link-default);
+}
+
+.side-nav__header-icon i {
+  color: var(--clr-link-default);
+}
+
+/* Hover state for header */
+.side-nav__header:hover .side-nav__header-title {
+  color: var(--clr-link-hover);
+}
+
+.side-nav__header:hover .side-nav__header-icon {
+  color: var(--clr-text-emphasis);
+}
+
+.side-nav__header:hover .side-nav__header-icon i {
+  color: var(--clr-text-emphasis);
+}
+
+/* Item hover states */
+.side-nav__item:hover {
+  background-color: rgba(31, 31, 95, 0.04);
+}
+
+.side-nav__item--current:hover {
+  background-color: var(--clr-bg-shade);
+}
+
+/* Expand button color */
+.side-nav__expand-btn {
+  color: var(--ntg-neutral-black);
+}
+
+.side-nav__expand-btn:hover {
+  color: var(--clr-link-default);
+}

@@ -71,6 +71,12 @@ export type { FloatingButtonProps } from "./components/FloatingButton";
 export { QuickExit } from "./components/QuickExit";
 export type { QuickExitProps } from "./components/QuickExit";
 
+export { SideNavigation } from "./components/SideNavigation";
+export type {
+  SideNavigationProps,
+  SideNavigationItemProps,
+} from "./components/SideNavigation";
+
 export { Footer } from "./components/Footer";
 export type {
   FooterProps,

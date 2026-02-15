@@ -1564,6 +1564,77 @@
       },
       "file": "src/components/SearchBar/SearchBar.stories.tsx"
     },
+    "SideNavigation": {
+      "stories": {
+        "Default": {
+          "args": {
+            "sectionTitle": "Licensing Services",
+            "id": "overview",
+            "label": "Service Overview",
+            "href": "#overview"
+          }
+        },
+        "Interactive": {
+          "args": {
+            "sectionTitle": "Documentation"
+          }
+        },
+        "WithExpandableItems": {
+          "args": {
+            "sectionTitle": "Online Services",
+            "id": "registration",
+            "label": "Business Registration",
+            "href": "#registration"
+          }
+        },
+        "LargeNavigationStructure": {
+          "args": {
+            "sectionTitle": "Health and Wellness Services",
+            "id": "overview",
+            "label": "Service Overview",
+            "href": "#overview"
+          }
+        },
+        "MinimalExample": {
+          "args": {
+            "sectionTitle": "Support",
+            "id": "getting-help",
+            "label": "Getting Help",
+            "href": "#help"
+          }
+        },
+        "AllStates": {
+          "args": {
+            "sectionTitle": "Application Process",
+            "id": "prepare",
+            "label": "Prepare Your Documents",
+            "href": "#prepare"
+          }
+        },
+        "WithLongLabels": {
+          "args": {
+            "sectionTitle": "Government Programs and Services Registry",
+            "id": "overview",
+            "label": "Service Overview and Registration Requirements",
+            "href": "#overview"
+          }
+        },
+        "OnDarkBackground": {
+          "args": {
+            "sectionTitle": "Documentation",
+            "id": "intro",
+            "label": "Introduction",
+            "href": "#intro"
+          }
+        },
+        "AccessibilityDemo": {
+          "args": {
+            "sectionTitle": "Accessibility Features"
+          }
+        }
+      },
+      "file": "src/components/SideNavigation/SideNavigation.stories.tsx"
+    },
     "Tag": {
       "stories": {
         "Default": {
@@ -1793,5 +1864,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-02-15T09:59:47.006Z"
+  "generated": "2026-02-15T10:43:54.359Z"
 }

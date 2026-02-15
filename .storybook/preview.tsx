@@ -72,6 +72,11 @@ import "../src/components/Document/Document.css";
 import "../src/components/Document/Document-ntg.css";
 import "../src/components/Document/Document-central.css";
 
+// Import SideNavigation CSS files to ensure Vite processes them
+import "../src/components/SideNavigation/SideNavigation.css";
+import "../src/components/SideNavigation/SideNavigation-ntg.css";
+import "../src/components/SideNavigation/SideNavigation-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
