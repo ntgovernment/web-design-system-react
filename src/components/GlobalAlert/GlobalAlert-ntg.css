@@ -1,0 +1,27 @@
+/**
+ * GlobalAlert Component - NTG Theme Overrides
+ *
+ * This file contains NTG-specific overrides for the GlobalAlert component.
+ * Import this after GlobalAlert.css when using the NTG theme.
+ */
+
+/* NTG-specific border radius (no radius by default) */
+.global-alert {
+  border-radius: var(--ntg-radii-none, 0px);
+}
+
+/* NTG-specific focus outline */
+.global-alert__cta:focus,
+.global-alert__cta:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+}
+
+.global-alert__description a:focus,
+.global-alert__description a:focus-visible {
+  box-shadow: 0 0 0 2px var(--ntg-orange-02);
+}
+
+.global-alert__dismiss:focus,
+.global-alert__dismiss:focus-visible {
+  box-shadow: 0 0 0 2px var(--ntg-orange-02);
+}

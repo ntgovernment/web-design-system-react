@@ -1,0 +1,25 @@
+/**
+ * QuickExit Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common QuickExit styles are defined in QuickExit.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline (4px solid #EC8C58 orange)
+ * - Border radius (sharp corners - 0px)
+ */
+
+/* Import QuickExit common styles */
+@import "./QuickExit.css";
+
+/* NT.GOV.AU theme-specific styling */
+.quick-exit {
+  /* Sharp corners for NTG theme */
+  border-radius: var(--ntg-radii-button);
+}
+
+/* NT.GOV.AU specific focus outline - 4px solid orange */
+.quick-exit:focus,
+.quick-exit:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+}

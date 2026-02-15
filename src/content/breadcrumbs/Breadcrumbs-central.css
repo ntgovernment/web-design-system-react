@@ -1,0 +1,11 @@
+/**
+ * Breadcrumbs - NTG Central Theme Overrides
+ *
+ * Theme-specific focus shadow and radius.
+ */
+
+:root {
+  --breadcrumbs-radius: var(--central-radii-sm);
+  --breadcrumbs-focus-shadow: var(--shadow-focus-central);
+  --breadcrumbs-divider-color: var(--clr-icon-alt);
+}

@@ -1,0 +1,123 @@
+/**
+ * Back to Top Component - Common Styles
+ * 
+ * This file contains Bootstrap button CSS variable customizations
+ * that are common across all themes. Theme-specific overrides are
+ * defined in BackToTop-ntg.css and BackToTop-central.css.
+ * 
+ * Based on Bootstrap 5.3 CSS Variables approach:
+ * https://getbootstrap.com/docs/5.3/components/buttons/#variables
+ * 
+ * Design specification from Figma:
+ * - Default state: light background with dark text and border
+ * - Hover state: dark background with inverse text
+ * - Focus state: 4px solid focus outline
+ * - Padding: 8px (all sides)
+ * - Border: 1px solid (inset)
+ * - Icon: 12.5px x 16.67px
+ * - Label: Lato, 700, 14px/20px
+ */
+
+.back-to-top {
+  /* Bootstrap CSS Variables */
+  --bs-btn-padding-x: var(--sp-md);
+  --bs-btn-padding-y: var(--sp-md);
+  --bs-btn-font-family: var(--type-font-default);
+  --bs-btn-font-size: var(--type-button-label-default-size);
+  --bs-btn-font-weight: var(--type-button-label-default-weight);
+  --bs-btn-line-height: var(--type-button-label-default-lh);
+  --bs-btn-border-width: 1px;
+  --bs-btn-border-radius: 0;
+  --bs-btn-border-style: solid;
+  --bs-btn-active-shadow: none;
+
+  /* Default state styling from Figma */
+  background-color: var(--clr-bg-shade, #f5f5f7);
+  color: var(--clr-link-default, #1f1f5f);
+  border: 1px solid var(--clr-border-strong-01, #1f1f5f);
+  outline: 1px solid var(--clr-border-strong-01, #1f1f5f);
+  outline-offset: -1px;
+
+  /* Component-specific layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-xs);
+
+  /* Position and visibility */
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+
+  /* Default button behavior */
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  transition: all 0.15s ease-in-out;
+
+  /* Spacing */
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+
+  /* Typography */
+  font-family: var(--bs-btn-font-family);
+  font-size: var(--bs-btn-font-size);
+  font-weight: var(--bs-btn-font-weight);
+  line-height: var(--bs-btn-line-height);
+}
+
+/* Back to top icon styling */
+.back-to-top__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Back to top text label */
+.back-to-top__text {
+  white-space: nowrap;
+}
+
+/* Hover state */
+.back-to-top:hover {
+  background-color: var(--clr-bg-dark, #1f1f5f) !important;
+  color: var(--clr-text-inverse, white) !important;
+  border-color: var(--clr-border-strong-01, #1f1f5f) !important;
+  outline-color: var(--clr-border-strong-01, #1f1f5f) !important;
+}
+
+/* Active/pressed state */
+.back-to-top:active {
+  color: var(--bs-btn-active-color);
+  background-color: var(--bs-btn-active-bg);
+  border-color: var(--bs-btn-active-border-color);
+}
+
+/* Disabled state */
+.back-to-top:disabled {
+  color: var(--bs-btn-disabled-color);
+  background-color: var(--bs-btn-disabled-bg);
+  border-color: var(--bs-btn-disabled-border-color);
+  opacity: var(--bs-btn-disabled-opacity, 0.65);
+  cursor: not-allowed;
+}
+
+/* Focus state - theme-specific, defined in BackToTop-ntg.css and BackToTop-central.css */
+.back-to-top:focus,
+.back-to-top:focus-visible {
+  outline: 4px solid var(--clr-focus-focus, #ec8c58) !important;
+  outline-offset: 2px !important;
+  background-color: var(--clr-bg-default, white) !important;
+  color: var(--clr-link-default, #1f1f5f) !important;
+  border-color: var(--clr-border-strong-01, #1f1f5f) !important;
+}
+
+/* Responsive: Stack layout on small screens */
+@media (max-width: 576px) {
+  .back-to-top {
+    --bs-btn-padding-x: var(--sp-md);
+    --bs-btn-padding-y: var(--sp-md);
+    bottom: 1rem;
+    right: 1rem;
+  }
+}

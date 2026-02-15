@@ -1,0 +1,403 @@
+/**
+ * Footer Component - Common Styles
+ * 
+ * This file contains Bootstrap-based CSS variable customizations
+ * for the Footer component that are common across all themes.
+ * Theme-specific overrides are defined in Footer-ntg.css and Footer-central.css.
+ * 
+ * The Footer component uses:
+ * - Bootstrap 5.3 CSS Variables approach for consistency
+ * - Design tokens for colors, typography, and spacing
+ * - Theme-specific variables for brand customization
+ * 
+ * Reference: https://getbootstrap.com/docs/5.3/customize/css-variables/
+ */
+
+/* ============================================
+   Footer Main Container CSS Variables
+   ============================================ */
+.footer {
+  --footer-bg: var(--clr-bg-dark);
+  --footer-text: var(--clr-text-inverse);
+  --footer-text-muted: var(--clr-text-muted);
+  --footer-border: var(--clr-border-inverse);
+
+  /* Typography variables */
+  --footer-font-family: var(--type-font-default);
+  --footer-heading-weight: 700;
+  --footer-heading-size: 18px;
+  --footer-heading-lh: 20px;
+  --footer-body-size: 16px;
+  --footer-body-weight: 400;
+  --footer-body-lh: 24px;
+  --footer-sm-size: 14px;
+  --footer-sm-weight: 400;
+  --footer-sm-lh: 20px;
+
+  /* Spacing variables */
+  --footer-padding-top: 48px;
+  --footer-padding-bottom: 24px;
+  --footer-padding-x: 16px;
+  --footer-section-gap: 48px;
+  --footer-subsection-gap: 24px;
+  --footer-item-gap: 8px;
+  --footer-link-gap: 32px;
+
+  /* Border */
+  --footer-border-width: 0.5px;
+
+  /* Link marker (bullet point) */
+  --footer-marker-size: 6px;
+  --footer-marker-gap: 8px;
+
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  font-family: var(--footer-font-family);
+}
+
+/* ============================================
+   Footer Wrapper & Container
+   ============================================ */
+.footer__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-subsection-gap);
+}
+
+.footer__container {
+  width: 100%;
+  max-width: 1168px;
+  padding: var(--footer-padding-top) var(--footer-padding-x);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-section-gap);
+}
+
+/* ============================================
+   Main Content Area (Sections & Social)
+   ============================================ */
+.footer__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--footer-section-gap);
+}
+
+.footer__sections {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--footer-link-gap);
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+/* ============================================
+   Footer Sections
+   ============================================ */
+.footer__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-subsection-gap);
+}
+
+@media (min-width: 768px) {
+  .footer__section--cols-2 .footer__link-list {
+    column-count: 2;
+    column-gap: var(--footer-link-gap);
+    display: block;
+  }
+
+  .footer__section--cols-2 .footer__link-item {
+    break-inside: avoid;
+    margin-bottom: var(--footer-item-gap);
+  }
+}
+
+.footer__section-title {
+  font-size: var(--footer-heading-size);
+  font-weight: var(--footer-heading-weight);
+  line-height: var(--footer-heading-lh);
+  margin: 0;
+  color: var(--footer-text);
+  padding: 0;
+}
+
+/* ============================================
+   Link List (with bullet markers)
+   ============================================ */
+.footer__link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-item-gap);
+}
+
+.footer__link-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--footer-marker-gap);
+}
+
+.footer__link-marker {
+  width: var(--footer-marker-size);
+  height: var(--footer-marker-size);
+  background-color: var(--clr-text-inverse);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.footer__link {
+  font-size: var(--footer-body-size);
+  font-weight: var(--footer-body-weight);
+  line-height: var(--footer-body-lh);
+  color: var(--clr-text-inverse);
+  text-decoration: none;
+  border-bottom: 1px solid var(--clr-border-inverse);
+  padding: 2px 0;
+  transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+  color: var(--clr-text-inverse);
+}
+
+.footer__link:visited {
+  color: #8a38f5;
+}
+
+.footer__link:focus,
+.footer__link:focus-visible {
+  background-color: var(--clr-focus-focus);
+  color: var(--clr-text-default) !important;
+  border-bottom-color: var(--clr-border-inverse) !important;
+  outline: none;
+}
+
+/* ============================================
+   Social Media Links
+   ============================================ */
+.footer__social-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-subsection-gap);
+}
+
+.footer__social-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--footer-item-gap);
+}
+
+.footer__social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--footer-item-gap);
+  font-size: var(--footer-body-size);
+  font-weight: var(--footer-heading-weight);
+  line-height: var(--footer-body-lh);
+  color: var(--clr-text-inverse);
+  text-decoration: none;
+  padding: 2px 0;
+  transition: opacity 0.2s ease;
+}
+
+.footer__social-link:hover {
+  opacity: 0.8;
+}
+
+.footer__social-link:visited {
+  color: #8a38f5;
+}
+
+.footer__social-link:focus,
+.footer__social-link:focus-visible {
+  background-color: var(--clr-focus-focus);
+  color: var(--clr-text-default) !important;
+  border-bottom-color: var(--clr-border-inverse) !important;
+  outline: none;
+}
+
+.footer__social-link i {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   Metadata Section (Logo & Bottom Links)
+   ============================================ */
+.footer__metadata {
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-subsection-gap);
+  padding-bottom: var(--footer-padding-bottom);
+}
+
+.footer__logo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-item-gap);
+}
+
+/* ============================================
+   Bottom Links Navigation
+   ============================================ */
+.footer__bottom-nav {
+  width: 100%;
+}
+
+.footer__bottom-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--footer-item-gap);
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.footer__bottom-link-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--footer-item-gap);
+}
+
+.footer__bottom-link {
+  font-size: var(--footer-body-size);
+  font-weight: var(--footer-body-weight);
+  line-height: var(--footer-body-lh);
+  color: var(--clr-text-inverse);
+  text-decoration: none;
+  border-bottom: 1px solid var(--clr-border-inverse);
+  padding: 2px 0;
+  transition: color 0.2s ease;
+}
+
+.footer__bottom-link:hover {
+  color: var(--clr-text-inverse);
+}
+
+.footer__bottom-link:visited {
+  color: #8a38f5;
+}
+
+.footer__bottom-link:focus,
+.footer__bottom-link:focus-visible {
+  background-color: var(--clr-focus-focus);
+  color: var(--clr-text-default) !important;
+  border-bottom-color: var(--clr-border-inverse) !important;
+  outline: none;
+}
+
+.footer__divider {
+  color: var(--clr-text-inverse);
+  font-size: var(--footer-body-size);
+  font-weight: var(--footer-body-weight);
+}
+
+/* ============================================
+   Information Section (Acknowledgement & Copyright)
+   ============================================ */
+.footer__info-section {
+  width: 100%;
+  padding-top: var(--footer-padding-bottom);
+  padding-bottom: var(--footer-padding-bottom);
+  border-top: var(--footer-border-width) solid var(--footer-border);
+  background-color: var(--footer-bg);
+}
+
+.footer__info-section .footer__container {
+  padding-top: 0;
+  padding-bottom: 0;
+  gap: var(--footer-subsection-gap);
+}
+
+.footer__acknowledgement {
+  font-size: var(--footer-sm-size);
+  font-weight: var(--footer-sm-weight);
+  line-height: var(--footer-sm-lh);
+  color: var(--footer-text);
+  margin: 0;
+  padding: 0;
+}
+
+.footer__copyright {
+  font-size: var(--footer-sm-size);
+  font-weight: var(--footer-sm-weight);
+  line-height: var(--footer-sm-lh);
+  color: var(--footer-text);
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Tablet Breakpoint */
+@media (max-width: 767px) {
+  .footer__container {
+    padding: var(--footer-padding-top) var(--footer-padding-x);
+  }
+
+  .footer__main {
+    flex-direction: column;
+  }
+
+  .footer__sections {
+    flex-direction: column;
+    gap: var(--footer-subsection-gap);
+  }
+
+  .footer__link-list {
+    gap: var(--footer-item-gap);
+  }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 575px) {
+  .footer {
+    --footer-section-gap: 24px;
+    --footer-padding-top: 24px;
+  }
+
+  .footer__container {
+    padding: var(--footer-padding-top) var(--footer-padding-x);
+  }
+
+  .footer__section-title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .footer__link {
+    font-size: var(--footer-sm-size);
+    line-height: var(--footer-sm-lh);
+  }
+
+  .footer__bottom-links {
+    flex-direction: column;
+    align-content: flex-start;
+  }
+
+  .footer__divider {
+    display: none;
+  }
+}

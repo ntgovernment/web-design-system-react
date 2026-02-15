@@ -1,0 +1,10 @@
+/**
+ * Pagination - NT.GOV.AU Theme Overrides
+ *
+ * Theme-specific focus shadow and radius.
+ */
+
+:root {
+  --pagination-radius: var(--ntg-radii-none);
+  --pagination-focus-shadow: var(--shadow-focus-ntg);
+}

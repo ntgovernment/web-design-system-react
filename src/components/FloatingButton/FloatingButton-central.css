@@ -1,0 +1,34 @@
+/**
+ * FloatingButton Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common FloatingButton styles are defined in FloatingButton.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline (4px solid #6AB06A green)
+ * - Border radius (pill-shaped - 50rem)
+ * - Semantic variable definitions using central-prefixed tokens
+ */
+
+/* Import FloatingButton common styles */
+@import "./FloatingButton.css";
+
+/* NTG Central theme-specific button styling within FloatingButton */
+.floating-button .btn {
+  /* Pill-shaped buttons for Central theme */
+  border-radius: var(--central-radii-button);
+}
+
+/* Central specific focus outline - 4px solid green */
+.floating-button .btn:focus,
+.floating-button .btn:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+}
+
+/* Maintain default background when focused but not hovered */
+.floating-button .btn-primary:focus:not(:hover),
+.floating-button .btn-primary:focus-visible:not(:hover) {
+  --bs-btn-hover-color: var(--clr-text-inverse);
+  --bs-btn-hover-bg: var(--clr-action-pirmary);
+  --bs-btn-hover-border-color: var(--clr-action-pirmary);
+}

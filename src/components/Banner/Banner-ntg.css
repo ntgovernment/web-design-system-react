@@ -1,0 +1,28 @@
+/**
+ * Banner Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common banner styles are defined in Banner.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline for breadcrumb links
+ * - Border radius overrides
+ */
+
+/* NT.GOV.AU theme-specific focus for breadcrumb links */
+[data-theme="ntg"] .banner__breadcrumbs .content-breadcrumbs__link:focus,
+[data-theme="ntg"]
+  .banner__breadcrumbs
+  .content-breadcrumbs__link:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+}
+
+/* Ensure button uses correct theme radius */
+[data-theme="ntg"] .banner .btn {
+  --bs-btn-border-radius: var(--ntg-radii-button);
+}
+
+/* Pills use theme radius */
+[data-theme="ntg"] .banner__pill {
+  border-radius: var(--ntg-radii-sm);
+}

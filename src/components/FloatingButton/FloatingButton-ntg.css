@@ -1,0 +1,34 @@
+/**
+ * FloatingButton Component - NT.GOV.AU Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common FloatingButton styles are defined in FloatingButton.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline (4px solid #EC8C58 orange)
+ * - Border radius (sharp corners - 0px)
+ * - Semantic variable definitions using ntg-prefixed tokens
+ */
+
+/* Import FloatingButton common styles */
+@import "./FloatingButton.css";
+
+/* NT.GOV.AU theme-specific button styling within FloatingButton */
+.floating-button .btn {
+  /* Sharp corners for NTG theme */
+  border-radius: var(--ntg-radii-button);
+}
+
+/* NT.GOV.AU specific focus outline - 4px solid orange */
+.floating-button .btn:focus,
+.floating-button .btn:focus-visible {
+  box-shadow: var(--shadow-focus-ntg);
+}
+
+/* Maintain default background when focused but not hovered */
+.floating-button .btn-primary:focus:not(:hover),
+.floating-button .btn-primary:focus-visible:not(:hover) {
+  --bs-btn-hover-color: var(--clr-text-inverse);
+  --bs-btn-hover-bg: var(--clr-action-pirmary);
+  --bs-btn-hover-border-color: var(--clr-action-pirmary);
+}

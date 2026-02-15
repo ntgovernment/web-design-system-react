@@ -1,0 +1,106 @@
+/**
+ * Footer Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common footer styles are defined in Footer.css.
+ * 
+ * Theme-specific customizations:
+ * - Semantic variable definitions using central-prefixed tokens
+ * - Brand colors and typography
+ */
+
+/* ============================================
+   NTG Central Theme Semantic Variables
+   ============================================ */
+:root {
+  /* Map theme-agnostic variables to Central-specific tokens */
+  --clr-bg-dark: var(--central-clr-bg-dark);
+  --clr-text-inverse: var(--central-clr-text-inverse);
+  --clr-text-muted: var(--central-clr-text-muted);
+  --clr-border-inverse: var(--central-clr-border-inverse);
+  --clr-link-inverse-hover: rgba(255, 255, 255, 0.8);
+  --clr-link-inverse-visited: var(--central-clr-link-inverse-visited);
+  --clr-focus-focus: var(--central-clr-focus-focus);
+
+  /* Typography tokens */
+  --type-font-default: var(--central-type-font-default);
+  --type-button-label-default-size: var(
+    --central-type-desktop-button-default-size
+  );
+  --type-button-label-default-weight: var(
+    --central-type-desktop-button-default-weight
+  );
+  --type-button-label-default-lh: var(--central-type-desktop-button-default-lh);
+
+  /* Spacing tokens */
+  --sp-xs: var(--central-sp-xs);
+  --sp-sm: var(--central-sp-sm);
+  --sp-md: var(--central-sp-md);
+  --sp-lg: var(--central-sp-lg);
+  --sp-xl: var(--central-sp-xl);
+
+  /* Border radius */
+  --radii-button: var(--central-radii-button);
+
+  /* Border width */
+  --border-width-md: var(--central-border-width-md);
+}
+
+/* ============================================
+   Footer Text Hierarchy - Central Theme
+   ============================================ */
+
+.footer__section-title {
+  font-family: var(--central-type-font-default);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.footer__link {
+  font-family: var(--central-type-font-default);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.footer__social-link {
+  font-family: var(--central-type-font-default);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.footer__bottom-link {
+  font-family: var(--central-type-font-default);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.footer__acknowledgement {
+  font-family: var(--central-type-font-default);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.footer__copyright {
+  font-family: var(--central-type-font-default);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* ============================================
+   Footer Background & Text Colors - Central
+   ============================================ */
+
+.footer {
+  background-color: var(--central-clr-bg-dark);
+  color: var(--central-clr-text-inverse);
+}
+
+.footer__info-section {
+  background-color: var(--central-clr-bg-dark);
+}

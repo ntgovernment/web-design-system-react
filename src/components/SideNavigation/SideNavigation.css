@@ -1,0 +1,201 @@
+/**
+ * Side Navigation Component - Common Styles
+ *
+ * This file contains base styles for the Side Navigation component that are
+ * common across all themes. Theme-specific overrides like colors and focus styles
+ * are defined in SideNavigation-ntg.css and SideNavigation-central.css.
+ *
+ * All values use design tokens from src/themes to ensure consistency
+ * and enable theme switching.
+ *
+ * The component is used for navigating related pages within a content section.
+ * It displays a vertical list of links with an optional section header and
+ * supports current/active state indication with a left border.
+ *
+ * Styling based on Figma design specifications:
+ * - Header: 18px font-weight 700, 20px line-height, 16px padding
+ * - Items: 16px font-weight 400, 24px line-height, 16px padding
+ * - Current item: Bold weight with left 4px accent border
+ * - Spacing: 16px gap, borders between items
+ */
+
+@import "../../themes/common.css";
+
+/* Main container */
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  width: 298px;
+  border-bottom: 1px solid var(--clr-border-subtle);
+}
+
+/* Header section with section title */
+.side-nav__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding: var(--sp-md) var(--sp-md);
+  border-bottom: 1px solid var(--clr-border-strong-01);
+  width: 100%;
+}
+
+.side-nav__header-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-nav__header-icon i {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-nav__header-title {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--clr-link-default);
+  font-family: var(--type-font-default);
+}
+
+/* Content wrapper */
+.side-nav__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Item wrapper - contains item and optional submenu */
+.side-nav__item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--clr-border-subtle);
+  width: 100%;
+}
+
+/* Current/active state styling on wrapper extends border through opened children */
+.side-nav__item-wrapper:has(.side-nav__item--current) {
+  border-left: 4px solid var(--clr-border-accent);
+}
+
+/* Individual navigation item */
+.side-nav__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-md);
+  gap: var(--sp-xs);
+  width: 100%;
+}
+
+/* Current/active state styling */
+.side-nav__item--current {
+  padding-left: var(--sp-md);
+  background-color: var(--clr-bg-shade);
+  border-left: none;
+}
+
+/* Navigation link */
+.side-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  text-decoration: none;
+  color: var(--clr-link-default);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: var(--type-font-default);
+  transition: color 0.15s ease-in-out;
+}
+
+.side-nav__link:hover {
+  color: var(--clr-link-hover);
+}
+
+.side-nav__item--current .side-nav__link {
+  font-weight: 700;
+  color: var(--clr-link-default);
+}
+
+/* Label styling within link */
+.side-nav__label {
+  display: block;
+  text-align: left;
+}
+
+/* Expand/collapse button for expandable items */
+.side-nav__expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ntg-neutral-Black);
+  flex-shrink: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.side-nav__expand-btn--expanded {
+  transform: rotate(180deg);
+}
+
+.side-nav__expand-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.side-nav__expand-icon i {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Submenu styles */
+.side-nav__submenu {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  width: 100%;
+}
+
+.side-nav__submenu .side-nav__item-wrapper {
+  border-bottom: 1px solid var(--clr-border-subtle);
+  border-left: none;
+}
+
+.side-nav__submenu .side-nav__item {
+  padding: var(--sp-md) var(--sp-md) var(--sp-md) calc(var(--sp-md) * 2);
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  .side-nav {
+    width: 100%;
+  }
+}
+
+/* Focus state - Theme-specific, defined in SideNavigation-ntg.css and SideNavigation-central.css */
+/* Uses --shadow-focus-ntg or --shadow-focus-central */

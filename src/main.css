@@ -12,6 +12,14 @@
 /* Import Button theme-specific styles (default to NTG) */
 @import "./components/Button/Button-ntg.css";
 
+/* Import Input component styles */
+@import "./components/Input/Input.css";
+@import "./components/Input/Input-ntg.css";
+
+/* Import SearchBar component styles */
+@import "./components/SearchBar/SearchBar.css";
+@import "./components/SearchBar/SearchBar-ntg.css";
+
 /* Import Tag component styles */
 @import "./components/Tag/Tag.css";
 @import "./components/Tag/Tag-ntg.css";
@@ -19,6 +27,54 @@
 /* Import Notification component styles */
 @import "./components/Notification/Notification.css";
 @import "./components/Notification/Notification-ntg.css";
+
+/* Import GlobalAlert component styles */
+@import "./components/GlobalAlert/GlobalAlert.css";
+@import "./components/GlobalAlert/GlobalAlert-ntg.css";
+
+/* Import Document component styles */
+@import "./components/Document/Document.css";
+@import "./components/Document/Document-ntg.css";
+
+/* Import TopicListing component styles */
+@import "./components/TopicListing/TopicListing.css";
+@import "./components/TopicListing/TopicListing-ntg.css";
+
+/* Import Pill component styles */
+@import "./components/Pill/Pill.css";
+@import "./components/Pill/Pill-ntg.css";
+
+/* Import Checkbox component styles */
+@import "./components/Checkbox/Checkbox.css";
+@import "./components/Checkbox/Checkbox-ntg.css";
+
+/* Import BackToTop component styles */
+@import "./components/BackToTop/BackToTop.css";
+@import "./components/BackToTop/BackToTop-ntg.css";
+
+/* Import FloatingButton component styles */
+@import "./components/FloatingButton/FloatingButton.css";
+@import "./components/FloatingButton/FloatingButton-ntg.css";
+
+/* Import QuickExit component styles */
+@import "./components/QuickExit/QuickExit.css";
+@import "./components/QuickExit/QuickExit-ntg.css";
+
+/* Import Footer component styles */
+@import "./components/Footer/Footer.css";
+@import "./components/Footer/Footer-ntg.css";
+
+/* Import Breadcrumbs content styles */
+@import "./content/breadcrumbs/Breadcrumbs.css";
+@import "./content/breadcrumbs/Breadcrumbs-ntg.css";
+
+/* Import Pagination content styles */
+@import "./content/pagination/Pagination.css";
+@import "./content/pagination/Pagination-ntg.css";
+
+/* Import OnThisPageNavigation content styles */
+@import "./content/on-this-page/OnThisPageNavigation.css";
+@import "./content/on-this-page/OnThisPageNavigation-ntg.css";
 
 /* Additional global styles can be added here */
 body {

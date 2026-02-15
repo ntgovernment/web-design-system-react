@@ -1,0 +1,214 @@
+/* DateInput component - component-scoped styles (use semantic tokens) */
+
+/* Main wrapper for the entire date input component */
+.date-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Label row with label and required indicator */
+.date-input-label-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+/* Main label styling */
+.date-input-label {
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  font-weight: 700;
+  line-height: var(--type-body-default-lh);
+}
+
+/* Required indicator styling */
+.date-input-required {
+  color: var(--clr-status-danger);
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+/* Helper text styling */
+.date-input-helper {
+  color: var(--clr-text-muted);
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+/* Wrapper for the three input fields */
+.date-input-fields-wrapper {
+  display: flex;
+  gap: var(--sp-xs);
+  align-items: flex-end;
+}
+
+/* Individual field group (label + input) */
+.date-input-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+/* Size the day and month fields narrower, year field wider */
+.date-input-field-group:nth-child(1) {
+  /* Day field */
+  width: 63px;
+  flex-shrink: 0;
+}
+
+.date-input-field-group:nth-child(2) {
+  /* Month field */
+  width: 63px;
+  flex-shrink: 0;
+}
+
+.date-input-field-group:nth-child(3) {
+  /* Year field */
+  width: 78px;
+  flex-shrink: 0;
+}
+
+/* Individual field labels (Day, Month, Year) */
+.date-input-field-label {
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  font-weight: 400;
+  line-height: var(--type-body-default-lh);
+}
+
+/* Input field styling - using Bootstrap form-control for consistency */
+.date-input-field-control.form-control {
+  width: 100%;
+  min-height: var(--sp-xxxl); /* 48px */
+  height: 52px; /* Match Figma spec */
+  padding-left: var(--sp-md);
+  padding-right: var(--sp-md);
+  background: var(--clr-bg-default);
+  outline: 1px var(--clr-border-subtle) solid;
+  outline-offset: calc(var(--border-width-md) * -1);
+  border: none;
+  border-radius: var(--radii-none) !important;
+  color: var(--clr-text-default);
+  font-size: var(--type-desktop-body-default-size);
+  line-height: var(--type-body-default-lh);
+  box-shadow: none;
+  text-align: center;
+}
+
+/* Placeholder styling */
+.date-input-field-control.form-control::placeholder {
+  color: var(--clr-text-muted);
+  text-align: center;
+}
+
+/* Hover state */
+.date-input-field-control.form-control:hover:not(:disabled):not([readonly]) {
+  outline-color: var(--clr-border-strong-02);
+}
+
+/* Focus state */
+.date-input-field-control.form-control:focus,
+.date-input-field-control.form-control:focus-visible {
+  /* Use strong border token for border and outline while keeping theme shadow */
+  border: 1px solid var(--clr-border-strong-02) !important;
+  border-color: var(--clr-border-strong-02) !important;
+  outline-color: var(--clr-border-strong-02) !important;
+  box-shadow: 0 0 0 calc(var(--sp-xs) / 2) var(--clr-focus-focus) !important;
+}
+
+/* Higher-specificity override for focus */
+.date-input-field .date-input-field-control.form-control:focus,
+.date-input-field .date-input-field-control.form-control:focus-visible {
+  border: 1px solid var(--clr-border-strong-02) !important;
+  border-color: var(--clr-border-strong-02) !important;
+  outline-color: var(--clr-border-strong-02) !important;
+}
+
+/* Success validation state */
+.date-input-field-control.form-control[data-status="success"],
+.date-input-field-control.form-control.is-valid {
+  outline-color: var(--clr-status-success);
+}
+
+/* Error validation state */
+.date-input-field-control.form-control[data-status="error"],
+.date-input-field-control.form-control.is-invalid {
+  outline-color: var(--clr-status-danger);
+}
+
+/* Filled state */
+.date-input-field-control.form-control[data-filled="true"] {
+  color: var(--clr-text-default);
+}
+
+/* Read-only state */
+.date-input-field-control.form-control[readonly],
+.date-input-field-control.form-control[data-readonly="true"] {
+  background: var(--clr-bg-shade);
+  outline-color: var(--clr-border-subtle);
+  cursor: default;
+}
+
+/* Disabled state */
+.date-input-field-control.form-control:disabled,
+.date-input-field-control.form-control[data-disabled="true"] {
+  background: var(--clr-bg-shade-alt);
+  color: var(--clr-text-muted);
+  outline-color: var(--clr-border-subtle);
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 1;
+  box-shadow: none;
+}
+
+/* Validation message container */
+.date-input-message {
+  display: inline-flex;
+  gap: var(--sp-xs);
+  align-items: center;
+  font-size: var(--type-body-sm-size);
+  font-weight: 400;
+  line-height: var(--type-body-sm-lh, 1.25rem);
+}
+
+/* Success message color */
+.date-input-message--success {
+  color: var(--clr-status-success);
+}
+
+/* Error message color */
+.date-input-message--error {
+  color: var(--clr-status-danger);
+}
+
+/* Icon wrapper in validation message */
+.date-input-message__icon {
+  width: var(--sp-lg); /* 20px */
+  height: var(--sp-lg);
+  position: relative;
+  flex: 0 0 var(--sp-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 767px) {
+  .date-input-fields-wrapper {
+    gap: var(--sp-xxs);
+  }
+
+  .date-input-field-group:nth-child(1),
+  .date-input-field-group:nth-child(2) {
+    width: 60px;
+  }
+
+  .date-input-field-group:nth-child(3) {
+    width: 75px;
+  }
+}

@@ -1,0 +1,17 @@
+/**
+ * Input Component - NTG Central Theme Overrides
+ *
+ * Theme-specific focus shadow and read-only background.
+ */
+
+/* Use the Central focus shadow token used across the design system */
+.form-control:focus,
+.form-control:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+}
+
+/* Slight read-only background adjustment for Central */
+.form-control[readonly],
+.form-control[data-readonly="true"] {
+  background: var(--central-neutrals-02);
+}

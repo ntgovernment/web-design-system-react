@@ -1,0 +1,12 @@
+/* Radio component - Central theme overrides */
+
+/* This file imports the Central theme tokens which will automatically apply: */
+/* - Font family: Roboto */
+/* - Border radius: 4px (var(--radii-sm)) */
+/* - Focus outline: Green #6ab06a (var(--clr-focus-focus)) */
+/* - Checked fill: Blue #102040 (var(--clr-link-default)) */
+/* - Border color: #102040 (var(--clr-border-strong-02)) */
+/* - Hover background: #ECF0F0 (var(--clr-bg-shade-alt)) */
+
+/* All theme-specific values are handled through CSS variables */
+/* No additional overrides needed - tokens handle theme switching */

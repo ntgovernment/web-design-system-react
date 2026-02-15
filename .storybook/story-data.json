@@ -68,60 +68,230 @@
       },
       "file": "src/components/Accordion/Accordion.stories.tsx"
     },
+    "BackToTop": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "FastScroll": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "SlowScroll": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "HigherThreshold": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "LowerThreshold": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "CustomLabel": {
+          "args": {
+            "label": "Return to top"
+          }
+        },
+        "LocalizedFrench": {
+          "args": {
+            "label": "Retour en haut"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Back to top"
+          }
+        },
+        "FocusState": {
+          "args": {
+            "label": "Back to top"
+          }
+        }
+      },
+      "file": "src/components/BackToTop/BackToTop.stories.tsx"
+    },
+    "Banner": {
+      "stories": {
+        "PrimaryBanner": {
+          "args": {
+            "variant": "primary",
+            "title": "Page title",
+            "description": "Optional short description of the page goal",
+            "ctaText": "Call to action",
+            "linksHeading": "Popular",
+            "label": "Bus timetables and maps",
+            "href": "#"
+          }
+        },
+        "PrimaryWithFeaturedLinks": {
+          "args": {
+            "variant": "primary",
+            "title": "Health and Wellbeing",
+            "description": "Access health services, find medical facilities, and learn about public health programs in the Northern Territory.",
+            "ctaText": "Find health services",
+            "linksHeading": "Featured",
+            "label": "COVID-19 information",
+            "href": "#"
+          }
+        },
+        "PrimaryWithRelatedLinks": {
+          "args": {
+            "variant": "primary",
+            "title": "Business and Industry",
+            "description": "Start a business, apply for licenses and permits, and access business support services.",
+            "ctaText": "Register your business",
+            "linksHeading": "Related",
+            "label": "Business grants",
+            "href": "#"
+          }
+        },
+        "WithoutBreadcrumbs": {
+          "args": {
+            "variant": "primary",
+            "title": "Welcome to NT.GOV.AU",
+            "description": "Your gateway to Northern Territory Government services and information.",
+            "ctaText": "Explore services",
+            "linksHeading": "Popular",
+            "label": "Apply for permits",
+            "href": "#"
+          }
+        },
+        "WithoutDecorative": {
+          "args": {
+            "variant": "primary",
+            "title": "Clean Banner Design",
+            "description": "This banner demonstrates the component without decorative background elements.",
+            "ctaText": "Learn more",
+            "linksHeading": "Popular",
+            "label": "Service 1",
+            "href": "#"
+          }
+        },
+        "WithLongContent": {
+          "args": {
+            "variant": "primary",
+            "title": "Northern Territory Government Services and Information Portal",
+            "description": "Access comprehensive information about Northern Territory Government services, programs, and initiatives. Whether you",
+            "ctaText": "Get started with services",
+            "linksHeading": "Popular",
+            "label": "Driver",
+            "href": "#"
+          }
+        },
+        "SecondaryBanner": {
+          "args": {
+            "variant": "secondary",
+            "title": "Page title",
+            "description": "Optional short description of the page goal",
+            "ctaText": "Call to action",
+            "linksHeading": "Popular",
+            "label": "Bus timetables and maps",
+            "href": "#"
+          }
+        },
+        "SecondaryWithFeatured": {
+          "args": {
+            "variant": "secondary",
+            "title": "Transport Services",
+            "description": "Access public transport information, vehicle registration, and licensing services.",
+            "ctaText": "View all transport services",
+            "linksHeading": "Featured",
+            "label": "Renew your driver",
+            "href": "#"
+          }
+        },
+        "SecondaryMinimal": {
+          "args": {
+            "variant": "secondary",
+            "title": "Community Programs",
+            "description": "Explore community programs and support services.",
+            "ctaText": "Learn more",
+            "linksHeading": "Related",
+            "label": "Youth programs",
+            "href": "#"
+          }
+        },
+        "MinimalTitleOnly": {
+          "args": {
+            "variant": "primary",
+            "title": "Page Title",
+            "description": "This banner shows only the title and description, with no optional sections."
+          }
+        },
+        "WithoutCTA": {
+          "args": {
+            "variant": "primary",
+            "title": "Information Page",
+            "description": "This banner has no call to action button.",
+            "label": "Home",
+            "href": "/"
+          }
+        },
+        "WithoutLinks": {
+          "args": {
+            "variant": "primary",
+            "title": "Service Page",
+            "description": "This banner has no popular links section.",
+            "ctaText": "Get started",
+            "label": "Home",
+            "href": "/"
+          }
+        }
+      },
+      "file": "src/components/Banner/Banner.stories.tsx"
+    },
     "Button": {
       "stories": {
         "Primary": {
           "args": {
             "variant": "primary",
-            "label": "Button"
+            "label": "Submit Application"
           }
         },
         "Secondary": {
           "args": {
             "variant": "secondary",
-            "label": "Button"
+            "label": "Save as Draft"
           }
         },
         "Tertiary": {
           "args": {
             "variant": "tertiary",
-            "label": "Button"
+            "label": "Cancel"
           }
         },
         "Small": {
           "args": {
             "size": "sm",
-            "label": "Small Button"
-          }
-        },
-        "AllVariants": {
-          "args": {
-            "label": "Button"
+            "label": "Edit Profile"
           }
         },
         "WithIconLeft": {
           "args": {
             "variant": "primary",
-            "iconLeft": "fa-light fa-home",
-            "label": "Home"
+            "iconLeft": "fa-light fa-download",
+            "label": "Download Report"
           }
         },
         "WithIconRight": {
           "args": {
-            "variant": "primary",
+            "variant": "tertiary",
             "iconRight": "fa-light fa-arrow-right",
-            "label": "Next"
+            "label": "View More Services"
           }
         },
         "IconOnly": {
           "args": {
             "variant": "primary",
             "iconLeft": "fa-light fa-search"
-          }
-        },
-        "IconOnlyButtons": {
-          "args": {
-            "size": "sm"
           }
         }
       },
@@ -257,6 +427,908 @@
       },
       "file": "src/components/Card/Card.stories.tsx"
     },
+    "Checkbox": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Subscribe to email notifications"
+          }
+        },
+        "Checked": {
+          "args": {
+            "label": "I agree to the terms and conditions"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "This option is currently unavailable"
+          }
+        },
+        "DisabledChecked": {
+          "args": {
+            "label": "Automatically enabled for all users"
+          }
+        },
+        "WithSuccessValidation": {
+          "args": {
+            "label": "Marketing communications",
+            "validationState": "success",
+            "validationMessage": "Preferences saved successfully"
+          }
+        },
+        "WithErrorValidation": {
+          "args": {
+            "label": "I have read and agree to the privacy policy",
+            "validationState": "error",
+            "validationMessage": "You must agree to the privacy policy to continue"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Checkbox label"
+          }
+        }
+      },
+      "file": "src/components/Checkbox/Checkbox.stories.tsx"
+    },
+    "DateInput": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Date of Birth",
+            "helperText": "Enter your date of birth in DD MM YYYY format"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Passport Expiry Date",
+            "helperText": "Enter the expiry date shown on your passport"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Date of Marriage",
+            "helperText": "Enter the date you were married",
+            "day": "14",
+            "month": "02",
+            "year": "2020"
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Application Date",
+            "helperText": "Enter your application submission date",
+            "day": "15",
+            "month": "12",
+            "year": "2024"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "License Renewal Date",
+            "helperText": "Enter your license renewal date",
+            "day": "32",
+            "month": "13",
+            "year": "2023"
+          }
+        },
+        "ErrorRequired": {
+          "args": {
+            "label": "Commencement Date",
+            "helperText": "Enter the date you commenced employment"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "System Generated Date",
+            "helperText": "This date is automatically generated",
+            "day": "01",
+            "month": "01",
+            "year": "2025"
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Registration Date",
+            "helperText": "Your initial registration date",
+            "day": "28",
+            "month": "06",
+            "year": "2023"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Date Input",
+            "helperText": "Enter a date in DD MM YYYY format"
+          }
+        }
+      },
+      "file": "src/components/DateInput/DateInput.stories.tsx"
+    },
+    "DatePicker": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Date of birth",
+            "helperText": "Please enter your date of birth in DD/MM/YYYY format",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Application date",
+            "helperText": "Select the date you are submitting your application",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "WithDefaultValue": {
+          "args": {
+            "label": "License expiry date",
+            "helperText": "Your current license expiry date",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Historical date",
+            "helperText": "This field is not editable",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Assessment date",
+            "helperText": "This information cannot be changed",
+            "placeholder": "DD/MM/YYYY"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Select a date",
+            "helperText": "Choose any date from the calendar or type DD/MM/YYYY",
+            "placeholder": "DD/MM/YYYY"
+          }
+        }
+      },
+      "file": "src/components/DatePicker/DatePicker.stories.tsx"
+    },
+    "Document": {
+      "stories": {
+        "Default": {
+          "args": {
+            "title": "Emergency management plan template",
+            "href": "#",
+            "fileType": "docx",
+            "fileSize": "182 KB",
+            "description": "Optional description of the document."
+          }
+        },
+        "WithoutDescription": {
+          "args": {
+            "title": "Regional infrastructure budget summary",
+            "href": "#",
+            "fileType": "xlsx",
+            "fileSize": "2.4 MB"
+          }
+        },
+        "PdfVariant": {
+          "args": {
+            "title": "Community consultation outcomes",
+            "href": "#",
+            "fileType": "pdf",
+            "fileSize": "946 KB",
+            "description": "Summary of community feedback and actions from the recent consultations."
+          }
+        },
+        "XlsxVariant": {
+          "args": {
+            "title": "Service delivery performance data",
+            "href": "#",
+            "fileType": "xlsx",
+            "fileSize": "1.1 MB",
+            "description": "Spreadsheet of quarterly measures and regional performance indicators."
+          }
+        },
+        "PptxVariant": {
+          "args": {
+            "title": "Strategic planning briefing",
+            "href": "#",
+            "fileType": "pptx",
+            "fileSize": "4.8 MB",
+            "description": "Slides used for executive planning workshops and stakeholder updates."
+          }
+        },
+        "AllFileTypes": {
+          "args": {
+            "href": "#",
+            "fileType": "docx"
+          }
+        },
+        "NTGTheme": {
+          "args": {
+            "href": "#",
+            "fileType": "docx"
+          }
+        },
+        "CentralTheme": {
+          "args": {
+            "href": "#",
+            "fileType": "docx"
+          }
+        }
+      },
+      "file": "src/components/Document/Document.stories.tsx"
+    },
+    "Dropdown": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Select your region",
+            "helperText": "Choose the region closest to you",
+            "placeholder": "Select a region"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Service type",
+            "helperText": "Select the government service you need",
+            "placeholder": "Select a service"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Preferred contact method",
+            "helperText": "How should we contact you?",
+            "value": "email"
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Service location",
+            "helperText": "Select where you would like to receive service",
+            "value": "darwin",
+            "validationState": "success",
+            "validationMessage": "Location confirmed and service available"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "Department",
+            "helperText": "Select the relevant government department",
+            "validationState": "error",
+            "validationMessage": "Please select a department to continue"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Service type",
+            "helperText": "Service selection is currently unavailable",
+            "value": "license-renewal"
+          }
+        },
+        "DisabledOptions": {
+          "args": {
+            "label": "Online Services",
+            "helperText": "Some services are currently unavailable",
+            "value": "online-services"
+          }
+        },
+        "ManyOptions": {
+          "args": {
+            "label": "Alyangula",
+            "helperText": "Select your community",
+            "placeholder": "Select a community",
+            "value": "alyangula"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Select your region",
+            "helperText": "Choose the region closest to you",
+            "placeholder": "Select a region"
+          }
+        }
+      },
+      "file": "src/components/Dropdown/Dropdown.stories.tsx"
+    },
+    "FileUpload": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "buttonLabel": "Select files"
+          }
+        },
+        "WithHelperText": {
+          "args": {
+            "label": "Application documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "Please upload your identification documents in PDF or image format. All documents must be legible and not exceed 10MB.",
+            "supportedFormats": "pdf, jpg, png",
+            "buttonLabel": "Choose documents"
+          }
+        },
+        "SingleFile": {
+          "args": {
+            "label": "Avatar image",
+            "helperText": "Choose a profile picture for your account",
+            "supportedFormats": "jpg, png",
+            "buttonLabel": "Select image"
+          }
+        },
+        "WithSuccessFile": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "application-form.pdf",
+            "status": "success"
+          }
+        },
+        "WithMultipleFiles": {
+          "args": {
+            "label": "Submit supporting documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "Upload all relevant documents for your application review",
+            "supportedFormats": "pdf, jpg, png, docx",
+            "id": "file-1",
+            "name": "identity-proof.pdf",
+            "status": "success"
+          }
+        },
+        "WithLoadingFile": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "document-processing.pdf",
+            "status": "loading"
+          }
+        },
+        "WithErrorFile": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "large-document.pdf",
+            "status": "error",
+            "errorMessage": "File must be less than 10MB"
+          }
+        },
+        "DropzoneErrorState": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "invalid-file.txt",
+            "status": "error",
+            "errorMessage": "Unsupported file format. Please use jpg, png, or pdf."
+          }
+        },
+        "WithMixedFileStates": {
+          "args": {
+            "label": "Submit supporting documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "Upload all required documents for your application",
+            "supportedFormats": "pdf, jpg, png, docx",
+            "id": "file-1",
+            "name": "identity-proof.pdf",
+            "status": "success"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "File uploads are currently disabled",
+            "supportedFormats": "jpg, png, pdf",
+            "buttonLabel": "Select files"
+          }
+        },
+        "Optional": {
+          "args": {
+            "label": "Additional information",
+            "helperText": "Upload any additional documents that support your application",
+            "supportedFormats": "pdf, jpg, png",
+            "buttonLabel": "Choose files"
+          }
+        },
+        "Minimal": {
+          "args": {
+            "label": "Document",
+            "supportedFormats": "pdf",
+            "buttonLabel": "Select"
+          }
+        },
+        "Interactive": {
+          "args": {
+            "label": "Upload supporting documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "You can upload multiple documents at once",
+            "supportedFormats": "pdf, jpg, png, docx",
+            "buttonLabel": "Select files"
+          }
+        },
+        "UploadsInProgress": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "buttonLabel": "Select files"
+          }
+        },
+        "CustomButtonLabel": {
+          "args": {
+            "label": "Import data",
+            "requiredIndicator": "(Required)",
+            "helperText": "Import your data file to get started",
+            "supportedFormats": "csv, xlsx",
+            "buttonLabel": "Import file"
+          }
+        },
+        "LicenseDocumentUpload": {
+          "args": {
+            "label": "Driver",
+            "requiredIndicator": "(Required)",
+            "helperText": "Upload a clear image of both sides of your driver",
+            "supportedFormats": "jpg, png",
+            "buttonLabel": "Upload license"
+          }
+        }
+      },
+      "file": "src/components/FileUpload/FileUpload.stories.tsx"
+    },
+    "FloatingButton": {
+      "stories": {
+        "Primary": {
+          "args": {
+            "label": "Submit Application",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right"
+          }
+        },
+        "Secondary": {
+          "args": {
+            "label": "Learn More",
+            "variant": "secondary",
+            "iconRight": "fa-light fa-arrow-right"
+          }
+        },
+        "WithIconLeft": {
+          "args": {
+            "label": "Download Form",
+            "variant": "primary",
+            "iconLeft": "fa-light fa-download"
+          }
+        },
+        "WithAutoHideBehavior": {
+          "args": {
+            "label": "Submit Application",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right",
+            "targetButtonId": "target-apply-button"
+          }
+        },
+        "AlwaysVisible": {
+          "args": {
+            "label": "Need Help? Contact Us",
+            "variant": "secondary",
+            "iconRight": "fa-light fa-phone"
+          }
+        },
+        "GrantApplicationExample": {
+          "args": {
+            "label": "Start Grant Application",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right",
+            "targetButtonId": "grant-apply-button"
+          }
+        },
+        "LicenseApplicationExample": {
+          "args": {
+            "label": "Apply for License",
+            "variant": "primary",
+            "iconRight": "fa-light fa-arrow-right",
+            "targetButtonId": "license-apply-button"
+          }
+        },
+        "DownloadFormExample": {
+          "args": {
+            "label": "Download Application Form",
+            "variant": "primary",
+            "iconLeft": "fa-light fa-download",
+            "targetButtonId": "download-form-button"
+          }
+        }
+      },
+      "file": "src/components/FloatingButton/FloatingButton.stories.tsx"
+    },
+    "Footer": {
+      "stories": {
+        "Minimal": {
+          "args": {
+            "label": "Privacy",
+            "href": "#"
+          }
+        },
+        "WithLogo": {
+          "args": {
+            "width": "176px",
+            "height": "63px",
+            "backgroundColor": "rgba(255, 255, 255, 0.2)",
+            "borderRadius": "4px",
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "fontSize": "12px",
+            "color": "rgba(255, 255, 255, 0.6)"
+          }
+        },
+        "MultipleSections": {
+          "args": {
+            "title": "Information and services",
+            "label": "Art, sport and leisure",
+            "href": "#"
+          }
+        },
+        "SocialMediaOnly": {
+          "args": {
+            "title": "Connect with us"
+          }
+        },
+        "CustomDivider": {
+          "args": {
+            "linkDivider": "•"
+          }
+        },
+        "SingleSection": {
+          "args": {
+            "title": "Quick Links",
+            "label": "Online services",
+            "href": "#"
+          }
+        },
+        "Extended": {
+          "args": {
+            "width": "176px",
+            "height": "63px",
+            "backgroundColor": "rgba(255, 255, 255, 0.1)",
+            "borderRadius": "4px",
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "fontSize": "11px",
+            "color": "rgba(255, 255, 255, 0.5)",
+            "textAlign": "center",
+            "padding": "8px"
+          }
+        },
+        "DenseLayout": {
+          "args": {
+            "title": "Services",
+            "label": "Online applications",
+            "href": "#"
+          }
+        },
+        "CustomSocialLinks": {
+          "args": {
+            "platform": "Follow us on Twitter",
+            "href": "#",
+            "icon": "fa-brands fa-x-twitter"
+          }
+        }
+      },
+      "file": "src/components/Footer/Footer.stories.tsx"
+    },
+    "GlobalAlert": {
+      "stories": {
+        "Default": {
+          "args": {
+            "variant": "info",
+            "title": "System Maintenance Scheduled",
+            "description": "This alert provides important information for users. Please read this to understand how this may affect you. This might also contain a relevant link to provide user with <a href="
+          }
+        },
+        "Information": {
+          "args": {
+            "variant": "info",
+            "title": "Service Update Available",
+            "description": "A new version of our online services portal is now available. The update includes improved accessibility features and enhanced security. <a href="
+          }
+        },
+        "InformationDismissible": {
+          "args": {
+            "variant": "info",
+            "title": "New Features Available",
+            "description": "We have added new features to improve your experience on NT.GOV.AU. Explore the updated navigation and enhanced search capabilities. <a href="
+          }
+        },
+        "InformationWithCTA": {
+          "args": {
+            "variant": "info",
+            "title": "Complete Your Profile",
+            "description": "Help us serve you better by completing your user profile. This will enable personalized services and faster processing of your applications.",
+            "ctaText": "Update Profile"
+          }
+        },
+        "InformationComplete": {
+          "args": {
+            "variant": "info",
+            "title": "Annual Survey Now Open",
+            "description": "Share your feedback on NT Government services. Your input helps us improve our services to better meet community needs. <a href=",
+            "ctaText": "Take Survey"
+          }
+        },
+        "InformationAlternative": {
+          "args": {
+            "variant": "info-alt",
+            "title": "Service Update Available",
+            "description": "A new version of our online services portal is now available. The update includes improved accessibility features and enhanced security. <a href="
+          }
+        },
+        "InformationAlternativeDismissible": {
+          "args": {
+            "variant": "info-alt",
+            "title": "New Features Available",
+            "description": "We have added new features to improve your experience on NT.GOV.AU. Explore the updated navigation and enhanced search capabilities. <a href="
+          }
+        },
+        "InformationAlternativeWithCTA": {
+          "args": {
+            "variant": "info-alt",
+            "title": "Complete Your Profile",
+            "description": "Help us serve you better by completing your user profile. This will enable personalized services and faster processing of your applications.",
+            "ctaText": "Update Profile"
+          }
+        },
+        "InformationAlternativeComplete": {
+          "args": {
+            "variant": "info-alt",
+            "title": "Annual Survey Now Open",
+            "description": "Share your feedback on NT Government services. Your input helps us improve our services to better meet community needs. <a href=",
+            "ctaText": "Take Survey"
+          }
+        },
+        "Warning": {
+          "args": {
+            "variant": "warning",
+            "title": "Service Disruption Expected",
+            "description": "Due to planned system maintenance, some online services may be unavailable between 11 PM tonight and 2 AM tomorrow. Please plan accordingly and complete any urgent transactions before maintenance begins. <a href="
+          }
+        },
+        "WarningDismissible": {
+          "args": {
+            "variant": "warning",
+            "title": "Severe Weather Alert",
+            "description": "A severe weather warning has been issued for the Darwin region. Road closures and service disruptions are possible. Please monitor updates and take necessary precautions."
+          }
+        },
+        "WarningWithCTA": {
+          "args": {
+            "variant": "warning",
+            "title": "Action Required: License Expiring Soon",
+            "description": "Your professional license expires in 14 days. Renew now to avoid service interruptions and potential penalties. Processing times may vary during peak periods.",
+            "ctaText": "Renew License",
+            "ctaHref": "#renew"
+          }
+        },
+        "WarningComplete": {
+          "args": {
+            "variant": "warning",
+            "title": "Urgent: System Migration in Progress",
+            "description": "We are migrating to a new system to improve reliability and performance. Some features may be temporarily limited. Your patience is appreciated during this transition. <a href=",
+            "ctaText": "Check System Status"
+          }
+        },
+        "Critical": {
+          "args": {
+            "variant": "critical",
+            "title": "Emergency: Bushfire Warning",
+            "description": "An emergency bushfire warning is in effect for Litchfield and surrounding areas. Residents should evacuate immediately and follow emergency service directions. <a href="
+          }
+        },
+        "CriticalDismissible": {
+          "args": {
+            "variant": "critical",
+            "title": "Critical Weather Event",
+            "description": "A Category 4 cyclone is approaching the Northern Territory coast. All residents in affected areas must take immediate action to secure property and relocate to designated shelters."
+          }
+        },
+        "CriticalWithCTA": {
+          "args": {
+            "variant": "critical",
+            "title": "Public Health Emergency",
+            "description": "A public health emergency has been declared. All residents are advised to follow health authority guidelines and monitor official channels for updates on containment measures and safety protocols.",
+            "ctaText": "View Health Guidelines",
+            "ctaHref": "#health"
+          }
+        },
+        "CriticalComplete": {
+          "args": {
+            "variant": "critical",
+            "title": "Emergency Alert: Immediate Action Required",
+            "description": "A significant emergency situation is developing that requires immediate community action. Please follow all instructions from emergency services and monitor official channels for real-time updates. <a href=",
+            "ctaText": "View Emergency Information"
+          }
+        },
+        "LongContent": {
+          "args": {
+            "variant": "info",
+            "title": "Extended Service Announcement: Important Updates",
+            "description": "This global alert demonstrates how the component handles extended content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography across all viewport sizes. When communicating important information that affects all users of the website or service, it",
+            "ctaText": "Learn More"
+          }
+        },
+        "StackedAlerts": {
+          "args": {
+            "variant": "info",
+            "title": "Stacked Alerts",
+            "description": "Example of multiple alerts"
+          }
+        },
+        "AllVariants": {
+          "args": {
+            "variant": "info",
+            "title": "All Variants",
+            "description": "Comparison of all variants"
+          }
+        },
+        "Minimal": {
+          "args": {
+            "variant": "info",
+            "title": "Service Announcement",
+            "description": "Brief update about service availability."
+          }
+        },
+        "WithExternalLink": {
+          "args": {
+            "variant": "warning",
+            "title": "Important Update Required",
+            "description": "Changes to our authentication system require all users to update their security settings. This ensures your account remains secure and compliant with current standards.",
+            "ctaText": "Update Security Settings",
+            "ctaHref": "https://example.com/security"
+          }
+        }
+      },
+      "file": "src/components/GlobalAlert/GlobalAlert.stories.tsx"
+    },
+    "Header": {
+      "stories": {
+        "Default": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "logoHref": "/",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "WithLogoImage": {
+          "args": {
+            "logoSrc": "https://via.placeholder.com/122x39/1F1F5F/FFFFFF?text=NT.GOV.AU",
+            "logoAlt": "Northern Territory Government",
+            "logoHref": "/",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "WithActiveState": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Home",
+            "href": "/"
+          }
+        },
+        "WithoutSearch": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "About",
+            "href": "/about"
+          }
+        },
+        "IconSearch": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "MediumLayout": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "MobileLayout": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "WithManyNavItems": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Home",
+            "href": "/",
+            "icon": "fa-light fa-home"
+          }
+        },
+        "MinimalHeader": {
+          "args": {
+            "logoAlt": "NT.GOV.AU"
+          }
+        },
+        "DepartmentHeader": {
+          "args": {
+            "logoAlt": "Department of Health",
+            "label": "Programs",
+            "href": "/programs",
+            "icon": "fa-light fa-briefcase"
+          }
+        },
+        "ServicePortalHeader": {
+          "args": {
+            "logoAlt": "My NT Services",
+            "label": "Dashboard",
+            "href": "/dashboard",
+            "icon": "fa-light fa-home"
+          }
+        },
+        "WithSearchHandler": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "CustomLogo": {
+          "args": {
+            "textDecoration": "none",
+            "color": "white",
+            "display": "flex",
+            "alignItems": "center",
+            "gap": "8px"
+          }
+        },
+        "ResponsiveDemo": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        },
+        "Playground": {
+          "args": {
+            "logoAlt": "NT.GOV.AU",
+            "logoHref": "/",
+            "label": "Find online services",
+            "href": "/services",
+            "icon": "fa-light fa-search"
+          }
+        }
+      },
+      "file": "src/components/Header/Header.stories.tsx"
+    },
     "Icon": {
       "stories": {
         "Default": {
@@ -380,6 +1452,71 @@
       },
       "file": "src/components/Image/Image.stories.tsx"
     },
+    "Input": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text"
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text",
+            "validationState": "success",
+            "validationMessage": "Success message goes here"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text",
+            "validationState": "error",
+            "validationMessage": "Error message goes here"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Disabled text"
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "value": "Input text"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        }
+      },
+      "file": "src/components/Input/Input.stories.tsx"
+    },
     "Notification": {
       "stories": {
         "Default": {
@@ -463,6 +1600,264 @@
         }
       },
       "file": "src/components/Pill/Pill.stories.tsx"
+    },
+    "QuickExit": {
+      "stories": {
+        "CustomHeading": {
+          "args": {
+            "heading": "Leave this page quickly"
+          }
+        },
+        "CustomContent": {
+          "args": {
+            "heading": "Quick exit",
+            "content": "Click this banner to immediately exit. Your safety is important. Call 000 if you need emergency help or 1800 RESPECT (1800 737 732) for confidential support."
+          }
+        },
+        "DomesticViolenceSupport": {
+          "args": {
+            "heading": "Quick exit",
+            "content": "Click anywhere on this banner to leave this page immediately. If you"
+          }
+        },
+        "ChildSafetyResources": {
+          "args": {
+            "heading": "Leave quickly",
+            "content": "Click this banner to exit immediately. For child safety concerns, call 1800 700 250. In an emergency, call 000."
+          }
+        },
+        "WhistleblowerPortal": {
+          "args": {
+            "heading": "Exit securely",
+            "content": "Click to exit this page securely. Your report is confidential. This action will not delete any saved drafts."
+          }
+        },
+        "MentalHealthCrisis": {
+          "args": {
+            "heading": "Quick exit",
+            "content": "Exit this page quickly if you need to. For immediate mental health support, call Lifeline 13 11 14 or 000 in an emergency."
+          }
+        },
+        "CustomExitURLs": {
+          "args": {
+            "exitUrl": "https://www.abc.net.au/news/weather",
+            "redirectUrl": "https://www.facebook.com/",
+            "heading": "Exit now",
+            "content": "Click to leave this page. Your browsing history will show this page, but you won"
+          }
+        },
+        "ShortContent": {
+          "args": {
+            "heading": "Exit",
+            "content": "Click to leave immediately. Call 000 in an emergency."
+          }
+        },
+        "LongContent": {
+          "args": {
+            "heading": "Quick exit available",
+            "content": "Click anywhere on this banner to immediately leave this page and navigate to a safe website. This action will open a new tab with general weather information and redirect your current browser tab to a common search engine. Neither tab will have a functioning back button, but please note that this page will still appear in your browser"
+          }
+        },
+        "WithAnalytics": {
+          "args": {
+            "Event": ", {\r\n        event: ",
+            "component": "QuickExit"
+          }
+        }
+      },
+      "file": "src/components/QuickExit/QuickExit.stories.tsx"
+    },
+    "Radio": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Standard delivery",
+            "name": "delivery-method",
+            "value": "standard"
+          }
+        },
+        "Checked": {
+          "args": {
+            "label": "Email notifications",
+            "name": "notification-preference",
+            "value": "email"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "This option is currently unavailable",
+            "name": "unavailable-option",
+            "value": "unavailable"
+          }
+        },
+        "DisabledChecked": {
+          "args": {
+            "label": "Default option (cannot be changed)",
+            "name": "locked-option",
+            "value": "locked"
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Radio button label",
+            "name": "playground-radio",
+            "value": "option"
+          }
+        }
+      },
+      "file": "src/components/Radio/Radio.stories.tsx"
+    },
+    "SearchBar": {
+      "stories": {
+        "Primary": {
+          "args": {
+            "placeholder": "Search",
+            "variant": "primary"
+          }
+        },
+        "Secondary": {
+          "args": {
+            "placeholder": "Search",
+            "variant": "secondary"
+          }
+        },
+        "WithOnSearch": {
+          "args": {
+            "placeholder": "Search for announcements",
+            "variant": "primary"
+          }
+        },
+        "Playground": {
+          "args": {
+            "placeholder": "Search",
+            "variant": "primary"
+          }
+        }
+      },
+      "file": "src/components/SearchBar/SearchBar.stories.tsx"
+    },
+    "SideNavigation": {
+      "stories": {
+        "Default": {
+          "args": {
+            "sectionTitle": "Licensing Services",
+            "id": "overview",
+            "label": "Service Overview",
+            "href": "#overview"
+          }
+        },
+        "Interactive": {
+          "args": {
+            "sectionTitle": "Documentation"
+          }
+        },
+        "WithExpandableItems": {
+          "args": {
+            "sectionTitle": "Online Services",
+            "id": "registration",
+            "label": "Business Registration",
+            "href": "#registration"
+          }
+        },
+        "LargeNavigationStructure": {
+          "args": {
+            "sectionTitle": "Health and Wellness Services",
+            "id": "overview",
+            "label": "Service Overview",
+            "href": "#overview"
+          }
+        },
+        "MinimalExample": {
+          "args": {
+            "sectionTitle": "Support",
+            "id": "getting-help",
+            "label": "Getting Help",
+            "href": "#help"
+          }
+        },
+        "AllStates": {
+          "args": {
+            "sectionTitle": "Application Process",
+            "id": "prepare",
+            "label": "Prepare Your Documents",
+            "href": "#prepare"
+          }
+        },
+        "WithLongLabels": {
+          "args": {
+            "sectionTitle": "Government Programs and Services Registry",
+            "id": "overview",
+            "label": "Service Overview and Registration Requirements",
+            "href": "#overview"
+          }
+        },
+        "OnDarkBackground": {
+          "args": {
+            "sectionTitle": "Documentation",
+            "id": "intro",
+            "label": "Introduction",
+            "href": "#intro"
+          }
+        },
+        "AccessibilityDemo": {
+          "args": {
+            "sectionTitle": "Accessibility Features"
+          }
+        }
+      },
+      "file": "src/components/SideNavigation/SideNavigation.stories.tsx"
+    },
+    "StepList": {
+      "stories": {
+        "Default": {
+          "args": {
+            "title": "Prepare Your Documents",
+            "description": "Gather your proof of identity and supporting documents before starting your application. You will need a current driver license or passport, and proof of Northern Territory residency dated within the last 3 months."
+          }
+        },
+        "SimpleTitlesOnly": {
+          "args": {
+            "title": "Create MyNTG Account"
+          }
+        },
+        "WithDescriptions": {
+          "args": {
+            "title": "Register Your Business",
+            "description": "Provide your business name, type, and registered address. This information must match your official business registration documents. You will also need to specify your business structure and primary industry category."
+          }
+        },
+        "WithDetailedDescriptions": {
+          "args": {
+            "title": "Gather Documents",
+            "description": "You will need recent identification documents and proof of residency. Accepted documents include driver license, passport, birth certificate, or utilities bill dated within 3 months."
+          }
+        },
+        "LongFormProcess": {
+          "args": {
+            "title": "Personal Information",
+            "description": "Enter your full legal name, date of birth, and contact information. Ensure all details match your official identification documents to avoid processing delays. Your personal information will be securely stored and used only for processing this application in accordance with the Privacy Act."
+          }
+        },
+        "ServiceApplication": {
+          "args": {
+            "title": "Check Eligibility",
+            "description": "Review the eligibility requirements. You must be an Australian resident and meet the income thresholds for this service."
+          }
+        },
+        "QuickProcess": {
+          "args": {
+            "title": "Access Online Portal",
+            "description": "Visit the NT Government services website and log in to your account."
+          }
+        },
+        "LicenseRenewal": {
+          "args": {
+            "title": "Check Renewal Eligibility",
+            "description": "Verify that your license is valid and eligible for renewal. Your renewal notice has been sent to your registered address. You can renew your license up to 3 months before the expiry date."
+          }
+        }
+      },
+      "file": "src/components/StepList/StepList.stories.tsx"
     },
     "Tag": {
       "stories": {
@@ -564,7 +1959,134 @@
         }
       },
       "file": "src/components/Tag/Tag.stories.tsx"
+    },
+    "Textarea": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Comments",
+            "helperText": "Share your thoughts with us",
+            "placeholder": "Enter your comments here"
+          }
+        },
+        "Required": {
+          "args": {
+            "label": "Application Details",
+            "helperText": "Explain why you are applying for this service",
+            "placeholder": "Please provide detailed information"
+          }
+        },
+        "Filled": {
+          "args": {
+            "label": "Feedback",
+            "helperText": "Thank you for your input",
+            "value": "Thank you for creating this service. It has made a significant difference in how we access government resources."
+          }
+        },
+        "Success": {
+          "args": {
+            "label": "Survey Response",
+            "helperText": "Your feedback helps us improve",
+            "value": "The new website design is much easier to navigate. I can find the services I need quickly.",
+            "validationState": "success",
+            "validationMessage": "Thank you for your feedback"
+          }
+        },
+        "Error": {
+          "args": {
+            "label": "Description",
+            "helperText": "Minimum 20 characters required",
+            "value": "Too short",
+            "validationState": "error",
+            "validationMessage": "Please provide at least 20 characters"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "System Notice",
+            "helperText": "This field cannot be edited",
+            "value": "This textarea is disabled and cannot be modified. Disabled textareas are useful for displaying information that should not be changed."
+          }
+        },
+        "ReadOnly": {
+          "args": {
+            "label": "Terms and Conditions",
+            "helperText": "Please review carefully",
+            "value": "By using this service, you agree to our terms and conditions. This is a read-only field that displays important information but cannot be modified by the user."
+          }
+        },
+        "WithCharacterCount": {
+          "args": {
+            "label": "Quick Feedback",
+            "helperText": "Brief responses are appreciated",
+            "placeholder": "What did you think of this service?"
+          }
+        },
+        "WithMaxLength": {
+          "args": {
+            "label": "Tweet-style Message",
+            "helperText": "Keep it concise",
+            "placeholder": "Maximum 280 characters"
+          }
+        },
+        "LongContent": {
+          "args": {
+            "label": "Detailed Description",
+            "helperText": "Provide as much detail as necessary for your grant application",
+            "value": "This textarea demonstrates how the component gracefully handles longer content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography across all viewport sizes. Users can resize the textarea vertically by dragging the handle in the bottom right corner, allowing them to adjust the viewing area to their preferred size. The component supports all standard textarea functionality including scrolling for content that exceeds the visible area. This makes it ideal for applications requiring extensive user input such as grant applications, detailed feedback forms, or comprehensive survey responses."
+          }
+        },
+        "Playground": {
+          "args": {
+            "label": "Label",
+            "helperText": "Optional helper text",
+            "placeholder": "Placeholder text"
+          }
+        }
+      },
+      "file": "src/components/Textarea/Textarea.stories.tsx"
+    },
+    "TopicListing": {
+      "stories": {
+        "Topics": {
+          "args": {
+            "variant": "topics",
+            "title": "Family and community support",
+            "titleHref": "#",
+            "icon": "fa-light fa-family",
+            "description": "Find eligibility criteria, payment schedules, and how to apply.",
+            "ctaLabel": "View all family services",
+            "ctaHref": "#",
+            "label": "Child care subsidies",
+            "href": "#"
+          }
+        },
+        "Links": {
+          "args": {
+            "variant": "links",
+            "title": "Planning and approvals",
+            "titleHref": "#",
+            "icon": "fa-light fa-map",
+            "description": "Quick access to planning schemes, applications, and guidance for development approvals.",
+            "ctaLabel": "Start a planning application",
+            "ctaHref": "#",
+            "label": "Submit a development application",
+            "href": "#"
+          }
+        },
+        "Documents": {
+          "args": {
+            "variant": "documents",
+            "title": "Emergency management plan template",
+            "description": "Download templates and guidance to prepare your organisation for emergencies.",
+            "href": "#",
+            "fileType": "docx",
+            "fileSize": "182 KB"
+          }
+        }
+      },
+      "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-02-14T02:31:39.232Z"
+  "generated": "2026-02-15T11:59:00.695Z"
 }

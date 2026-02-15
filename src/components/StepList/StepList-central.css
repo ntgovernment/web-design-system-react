@@ -1,0 +1,25 @@
+/**
+ * StepList Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common StepList styles are defined in StepList.css.
+ * 
+ * Theme-specific customizations:
+ * - Border-radius values for circles and boxes
+ * - Focus states (if StepList items become interactive)
+ */
+
+/* NTG Central theme-specific semantic variables */
+:root {
+  /* Circle border-radius - full circle */
+  --step-list-circle-border-radius: 100px;
+  /* Info box border-radius */
+  --step-list-info-box-border-radius: 4px;
+}
+
+/* NTG Central theme: Focus state for step circle (if interactive) */
+.step-list__step-circle:focus,
+.step-list__step-circle:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+  outline: none;
+}

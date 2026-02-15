@@ -1,0 +1,27 @@
+/**
+ * GlobalAlert Component - Central Theme Overrides
+ *
+ * This file contains Central-specific overrides for the GlobalAlert component.
+ * Import this after GlobalAlert.css when using the Central theme.
+ */
+
+/* Central-specific border radius (no radius by default) */
+.global-alert {
+  border-radius: var(--central-radii-none, 0px);
+}
+
+/* Central-specific focus outline */
+.global-alert__cta:focus,
+.global-alert__cta:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+}
+
+.global-alert__description a:focus,
+.global-alert__description a:focus-visible {
+  box-shadow: 0 0 0 2px var(--central-success-02);
+}
+
+.global-alert__dismiss:focus,
+.global-alert__dismiss:focus-visible {
+  box-shadow: 0 0 0 2px var(--central-success-02);
+}

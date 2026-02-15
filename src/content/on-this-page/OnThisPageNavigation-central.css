@@ -1,0 +1,9 @@
+/**
+ * On This Page Navigation - NTG Central Theme Overrides
+ *
+ * Theme-specific radius and focus outline tokens.
+ */
+
+:root {
+  --on-this-page-focus-shadow: var(--shadow-focus-central);
+}

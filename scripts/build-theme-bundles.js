@@ -70,6 +70,14 @@ const componentCSS = [
     path: join(rootDir, "src", "components", "Tag", "Tag.css"),
     name: "Tag.css",
   },
+  {
+    path: join(rootDir, "src", "components", "Input", "Input.css"),
+    name: "Input.css",
+  },
+  {
+    path: join(rootDir, "src", "components", "SearchBar", "SearchBar.css"),
+    name: "SearchBar.css",
+  },
 ];
 
 // Theme configurations
@@ -81,6 +89,14 @@ const themes = [
     bootstrapFile: join(rootDir, "src", "typography", "typography-ntg.css"),
     buttonTheme: join(rootDir, "src", "components", "Button", "Button-ntg.css"),
     tagTheme: join(rootDir, "src", "components", "Tag", "Tag-ntg.css"),
+    inputTheme: join(rootDir, "src", "components", "Input", "Input-ntg.css"),
+    searchBarTheme: join(
+      rootDir,
+      "src",
+      "components",
+      "SearchBar",
+      "SearchBar-ntg.css",
+    ),
     outputFile: "ntg-theme.min.css",
   },
   {
@@ -96,6 +112,20 @@ const themes = [
       "Button-central.css",
     ),
     tagTheme: join(rootDir, "src", "components", "Tag", "Tag-central.css"),
+    inputTheme: join(
+      rootDir,
+      "src",
+      "components",
+      "Input",
+      "Input-central.css",
+    ),
+    searchBarTheme: join(
+      rootDir,
+      "src",
+      "components",
+      "SearchBar",
+      "SearchBar-central.css",
+    ),
     outputFile: "central-theme.min.css",
   },
 ];
@@ -143,6 +173,16 @@ themes.forEach((theme) => {
   const tagThemeContent = readCSSFile(theme.tagTheme);
   if (tagThemeContent) {
     cssBundle += `/* Tag-${theme.name}.css */\n${tagThemeContent}\n\n`;
+  }
+
+  const inputThemeContent = readCSSFile(theme.inputTheme);
+  if (inputThemeContent) {
+    cssBundle += `/* Input-${theme.name}.css */\n${inputThemeContent}\n\n`;
+  }
+
+  const searchBarThemeContent = readCSSFile(theme.searchBarTheme);
+  if (searchBarThemeContent) {
+    cssBundle += `/* SearchBar-${theme.name}.css */\n${searchBarThemeContent}\n\n`;
   }
 
   // Minify the bundle

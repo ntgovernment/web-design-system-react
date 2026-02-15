@@ -1,0 +1,16 @@
+/**
+ * Dropdown Component - NTG Central Theme Overrides
+ *
+ * Theme-specific focus shadow and border-radius.
+ */
+
+/* Use the Central focus shadow token used across the design system */
+.form-select:focus,
+.form-select:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+}
+
+/* Central theme has border radius */
+.form-select {
+  border-radius: var(--central-radii-sm) !important;
+}

@@ -1,0 +1,25 @@
+/**
+ * QuickExit Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common QuickExit styles are defined in QuickExit.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline (4px solid #6ab06a green)
+ * - Border radius (rounded corners - 20px)
+ */
+
+/* Import QuickExit common styles */
+@import "./QuickExit.css";
+
+/* NTG Central theme-specific styling */
+.quick-exit {
+  /* Rounded corners for Central theme */
+  border-radius: var(--central-radii-md);
+}
+
+/* Central specific focus outline - 4px solid green */
+.quick-exit:focus,
+.quick-exit:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+}

@@ -1,0 +1,44 @@
+/**
+ * DatePicker Component - NT.GOV.AU Theme Overrides
+ *
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common DatePicker styles are defined in DatePicker.css.
+ *
+ * Theme-specific customizations:
+ * - NTG focus outline (4px solid #EC8C58 orange)
+ * - Border radius using ntg-prefixed tokens
+ * - Shadow using ntg-prefixed tokens
+ *
+ * Note: Focus styles use --clr-focus-focus which automatically switches
+ * based on the active theme (NTG orange or Central green).
+ */
+
+/* NTG date picker button hover state */
+.date-picker-button:hover:not(:disabled) {
+  color: var(--clr-action-primary);
+}
+
+/* NTG calendar month/year styling */
+.calendar-month,
+.calendar-year {
+  color: var(--clr-text-default);
+}
+
+/* NTG calendar selected date styling */
+.calendar-date--selected {
+  background: var(--clr-action-primary);
+  color: var(--text-inverse);
+}
+
+.calendar-date--selected:hover:not(:disabled) {
+  background: var(--clr-action-hover);
+}
+
+/* NTG today indicator color (red/emphasis) */
+.calendar-date--today .calendar-date-number {
+  color: var(--clr-text-emphasis);
+}
+
+.calendar-date--today .calendar-date-dot {
+  background: var(--clr-text-emphasis);
+}

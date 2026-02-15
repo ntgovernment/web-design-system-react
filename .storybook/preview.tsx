@@ -1,6 +1,12 @@
 import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 
+// Import common design tokens FIRST (required by component CSS files)
+import "../src/themes/common.css";
+import "../src/themes/grid.css";
+import "../src/themes/typography.css";
+import "../src/themes/typography-literals.css";
+
 // Import Button CSS files to ensure Vite processes them
 import "../src/components/Button/Button.css";
 import "../src/components/Button/Button-ntg.css";
@@ -10,6 +16,11 @@ import "../src/components/Button/Button-central.css";
 import "../src/components/Tag/Tag.css";
 import "../src/components/Tag/Tag-ntg.css";
 import "../src/components/Tag/Tag-central.css";
+
+// Import Input CSS files to ensure Vite processes them
+import "../src/components/Input/Input.css";
+import "../src/components/Input/Input-ntg.css";
+import "../src/components/Input/Input-central.css";
 
 // Import Pill CSS files to ensure Vite processes them
 import "../src/components/Pill/Pill.css";
@@ -35,6 +46,36 @@ import "../src/components/Image/Image-central.css";
 import "../src/components/Card/Card.css";
 import "../src/components/Card/Card-ntg.css";
 import "../src/components/Card/Card-central.css";
+
+// Import Footer CSS files to ensure Vite processes them
+import "../src/components/Footer/Footer.css";
+import "../src/components/Footer/Footer-ntg.css";
+import "../src/components/Footer/Footer-central.css";
+
+// Import Breadcrumbs CSS files to ensure Vite processes them
+import "../src/content/breadcrumbs/Breadcrumbs.css";
+import "../src/content/breadcrumbs/Breadcrumbs-ntg.css";
+import "../src/content/breadcrumbs/Breadcrumbs-central.css";
+
+// Import Pagination CSS files to ensure Vite processes them
+import "../src/content/pagination/Pagination.css";
+import "../src/content/pagination/Pagination-ntg.css";
+import "../src/content/pagination/Pagination-central.css";
+
+// Import OnThisPageNavigation CSS files to ensure Vite processes them
+import "../src/content/on-this-page/OnThisPageNavigation.css";
+import "../src/content/on-this-page/OnThisPageNavigation-ntg.css";
+import "../src/content/on-this-page/OnThisPageNavigation-central.css";
+
+// Import Document CSS files to ensure Vite processes them
+import "../src/components/Document/Document.css";
+import "../src/components/Document/Document-ntg.css";
+import "../src/components/Document/Document-central.css";
+
+// Import SideNavigation CSS files to ensure Vite processes them
+import "../src/components/SideNavigation/SideNavigation.css";
+import "../src/components/SideNavigation/SideNavigation-ntg.css";
+import "../src/components/SideNavigation/SideNavigation-central.css";
 
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
@@ -138,7 +179,22 @@ const loadTagStyles = (theme: string) => {
   ).href;
   document.head.appendChild(tagCSS);
 };
+// Load Input Component Styles (theme-specific overrides)
+const loadInputStyles = (theme: string) => {
+  const existingInput = document.getElementById("input-theme-css");
+  if (existingInput) {
+    existingInput.remove();
+  }
 
+  const inputCSS = document.createElement("link");
+  inputCSS.id = "input-theme-css";
+  inputCSS.rel = "stylesheet";
+  inputCSS.href = new URL(
+    `../src/components/Input/Input-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(inputCSS);
+};
 // Load Pill Component Styles (theme-specific overrides)
 const loadPillStyles = (theme: string) => {
   // Remove existing theme-specific Pill CSS if present
@@ -236,6 +292,93 @@ const loadCardStyles = (theme: string) => {
   document.head.appendChild(cardCSS);
 };
 
+// Load Footer Component Styles (theme-specific overrides)
+const loadFooterStyles = (theme: string) => {
+  // Remove existing theme-specific Footer CSS if present
+  const existingFooter = document.getElementById("footer-theme-css");
+  if (existingFooter) {
+    existingFooter.remove();
+  }
+
+  // Add theme-specific Footer CSS overrides
+  const footerCSS = document.createElement("link");
+  footerCSS.id = "footer-theme-css";
+  footerCSS.rel = "stylesheet";
+  footerCSS.href = new URL(
+    `../src/components/Footer/Footer-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(footerCSS);
+};
+
+// Load Breadcrumbs Content Styles (theme-specific overrides)
+const loadBreadcrumbsStyles = (theme: string) => {
+  const existingBreadcrumbs = document.getElementById("breadcrumbs-theme-css");
+  if (existingBreadcrumbs) {
+    existingBreadcrumbs.remove();
+  }
+
+  const breadcrumbsCSS = document.createElement("link");
+  breadcrumbsCSS.id = "breadcrumbs-theme-css";
+  breadcrumbsCSS.rel = "stylesheet";
+  breadcrumbsCSS.href = new URL(
+    `../src/content/breadcrumbs/Breadcrumbs-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(breadcrumbsCSS);
+};
+
+// Load Pagination Content Styles (theme-specific overrides)
+const loadPaginationStyles = (theme: string) => {
+  const existingPagination = document.getElementById("pagination-theme-css");
+  if (existingPagination) {
+    existingPagination.remove();
+  }
+
+  const paginationCSS = document.createElement("link");
+  paginationCSS.id = "pagination-theme-css";
+  paginationCSS.rel = "stylesheet";
+  paginationCSS.href = new URL(
+    `../src/content/pagination/Pagination-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(paginationCSS);
+};
+
+// Load OnThisPageNavigation Content Styles (theme-specific overrides)
+const loadOnThisPageNavigationStyles = (theme: string) => {
+  const existingOnThisPage = document.getElementById("on-this-page-theme-css");
+  if (existingOnThisPage) {
+    existingOnThisPage.remove();
+  }
+
+  const onThisPageCSS = document.createElement("link");
+  onThisPageCSS.id = "on-this-page-theme-css";
+  onThisPageCSS.rel = "stylesheet";
+  onThisPageCSS.href = new URL(
+    `../src/content/on-this-page/OnThisPageNavigation-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(onThisPageCSS);
+};
+
+// Load Document Component Styles (theme-specific overrides)
+const loadDocumentStyles = (theme: string) => {
+  const existingDocument = document.getElementById("document-theme-css");
+  if (existingDocument) {
+    existingDocument.remove();
+  }
+
+  const documentCSS = document.createElement("link");
+  documentCSS.id = "document-theme-css";
+  documentCSS.rel = "stylesheet";
+  documentCSS.href = new URL(
+    `../src/components/Document/Document-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(documentCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -326,11 +469,17 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadButtonCommonStyles(); // Load common Button CSS (uses semantic variables)
     loadButtonStyles(theme); // Load theme-specific Button CSS overrides LAST
     loadTagStyles(theme); // Load theme-specific Tag CSS overrides
+    loadInputStyles(theme); // Load theme-specific Input CSS overrides
     loadPillStyles(theme); // Load theme-specific Pill CSS overrides
     loadNotificationStyles(theme); // Load theme-specific Notification CSS overrides
     loadCalloutStyles(theme); // Load theme-specific Callout CSS overrides
     loadImageStyles(theme); // Load theme-specific Image CSS overrides
     loadCardStyles(theme); // Load theme-specific Card CSS overrides
+    loadFooterStyles(theme); // Load theme-specific Footer CSS overrides
+    loadBreadcrumbsStyles(theme); // Load theme-specific Breadcrumbs CSS overrides
+    loadPaginationStyles(theme); // Load theme-specific Pagination CSS overrides
+    loadOnThisPageNavigationStyles(theme); // Load theme-specific OnThisPageNavigation CSS overrides
+    loadDocumentStyles(theme); // Load theme-specific Document CSS overrides
   }, [theme]);
 
   return (
@@ -382,7 +531,14 @@ const preview: Preview = {
       storySort: {
         order: [
           "Content",
-          ["Table", "Typography", "Icon"],
+          [
+            "Breadcrumbs",
+            "OnThisPageNavigation",
+            "Pagination",
+            "Table",
+            "Typography",
+            "Icon",
+          ],
           "Components",
           [
             "Card",

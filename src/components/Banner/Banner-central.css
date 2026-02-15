@@ -1,0 +1,28 @@
+/**
+ * Banner Component - NTG Central Theme Overrides
+ * 
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common banner styles are defined in Banner.css.
+ * 
+ * Theme-specific customizations:
+ * - Focus outline for breadcrumb links
+ * - Border radius overrides
+ */
+
+/* NTG Central theme-specific focus for breadcrumb links */
+[data-theme="central"] .banner__breadcrumbs .content-breadcrumbs__link:focus,
+[data-theme="central"]
+  .banner__breadcrumbs
+  .content-breadcrumbs__link:focus-visible {
+  box-shadow: var(--shadow-focus-central);
+}
+
+/* Ensure button uses correct theme radius */
+[data-theme="central"] .banner .btn {
+  --bs-btn-border-radius: var(--central-radii-button);
+}
+
+/* Pills use theme radius */
+[data-theme="central"] .banner__pill {
+  border-radius: var(--central-radii-sm);
+}

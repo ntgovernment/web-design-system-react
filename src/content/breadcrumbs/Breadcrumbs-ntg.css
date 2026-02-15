@@ -1,0 +1,11 @@
+/**
+ * Breadcrumbs - NT.GOV.AU Theme Overrides
+ *
+ * Theme-specific focus shadow and radius.
+ */
+
+:root {
+  --breadcrumbs-radius: var(--ntg-radii-none);
+  --breadcrumbs-focus-shadow: var(--shadow-focus-ntg);
+  --breadcrumbs-divider-color: var(--clr-text-emphasis);
+}
