@@ -1,0 +1,29 @@
+/**
+ * FileUpload Component - NT.GOV.AU Theme Overrides
+ *
+ * This file contains theme-specific overrides for the NT.GOV.AU theme.
+ * Common styles are defined in FileUpload.css.
+ *
+ * Theme-specific customizations:
+ * - Border radius tokens for dropzone and file items
+ * - Button focus background color (maintains secondary styling)
+ * - Semantic variable definitions using ntg-prefixed tokens
+ *
+ * Note: Focus outline color is handled by the semantic token --clr-focus-focus
+ * in the base CSS, which automatically uses orange (#EC8C58) for NTG theme.
+ */
+
+/* NT.GOV.AU theme-specific semantic variables */
+:root {
+  --clr-text-subtle: var(--ntg-neutral-06);
+  --file-upload-border-radius: var(--ntg-radii-none);
+  --file-upload-button-radius: var(--ntg-radii-button);
+  --file-upload-item-radius: var(--ntg-radii-none);
+}
+
+/* Maintain default background when focused but not hovered */
+.file-upload__button:focus:not(:hover),
+.file-upload__button:focus-visible:not(:hover) {
+  background: var(--clr-action-secondary);
+  color: var(--clr-link-default);
+}

@@ -1,0 +1,29 @@
+/**
+ * FileUpload Component - NTG Central Theme Overrides
+ *
+ * This file contains theme-specific overrides for the NTG Central theme.
+ * Common styles are defined in FileUpload.css.
+ *
+ * Theme-specific customizations:
+ * - Border radius tokens for dropzone and file items
+ * - Button focus background color (maintains secondary styling)
+ * - Semantic variable definitions using central-prefixed tokens
+ *
+ * Note: Focus outline color is handled by the semantic token --clr-focus-focus
+ * in the base CSS, which automatically uses green (#6AB06A) for Central theme.
+ */
+
+/* Central theme-specific semantic variables */
+:root {
+  --clr-text-subtle: var(--central-neutrals-06);
+  --file-upload-border-radius: var(--radii-none);
+  --file-upload-button-radius: var(--radii-none);
+  --file-upload-item-radius: var(--radii-none);
+}
+
+/* Maintain default background when focused but not hovered */
+.file-upload__button:focus:not(:hover),
+.file-upload__button:focus-visible:not(:hover) {
+  background: var(--clr-action-secondary);
+  color: var(--clr-link-default);
+}

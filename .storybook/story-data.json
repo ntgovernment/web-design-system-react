@@ -731,6 +731,165 @@
       },
       "file": "src/components/Dropdown/Dropdown.stories.tsx"
     },
+    "FileUpload": {
+      "stories": {
+        "Default": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "buttonLabel": "Select files"
+          }
+        },
+        "WithHelperText": {
+          "args": {
+            "label": "Application documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "Please upload your identification documents in PDF or image format. All documents must be legible and not exceed 10MB.",
+            "supportedFormats": "pdf, jpg, png",
+            "buttonLabel": "Choose documents"
+          }
+        },
+        "SingleFile": {
+          "args": {
+            "label": "Avatar image",
+            "helperText": "Choose a profile picture for your account",
+            "supportedFormats": "jpg, png",
+            "buttonLabel": "Select image"
+          }
+        },
+        "WithSuccessFile": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "application-form.pdf",
+            "status": "success"
+          }
+        },
+        "WithMultipleFiles": {
+          "args": {
+            "label": "Submit supporting documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "Upload all relevant documents for your application review",
+            "supportedFormats": "pdf, jpg, png, docx",
+            "id": "file-1",
+            "name": "identity-proof.pdf",
+            "status": "success"
+          }
+        },
+        "WithLoadingFile": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "document-processing.pdf",
+            "status": "loading"
+          }
+        },
+        "WithErrorFile": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "large-document.pdf",
+            "status": "error",
+            "errorMessage": "File must be less than 10MB"
+          }
+        },
+        "DropzoneErrorState": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "id": "file-1",
+            "name": "invalid-file.txt",
+            "status": "error",
+            "errorMessage": "Unsupported file format. Please use jpg, png, or pdf."
+          }
+        },
+        "WithMixedFileStates": {
+          "args": {
+            "label": "Submit supporting documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "Upload all required documents for your application",
+            "supportedFormats": "pdf, jpg, png, docx",
+            "id": "file-1",
+            "name": "identity-proof.pdf",
+            "status": "success"
+          }
+        },
+        "Disabled": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "File uploads are currently disabled",
+            "supportedFormats": "jpg, png, pdf",
+            "buttonLabel": "Select files"
+          }
+        },
+        "Optional": {
+          "args": {
+            "label": "Additional information",
+            "helperText": "Upload any additional documents that support your application",
+            "supportedFormats": "pdf, jpg, png",
+            "buttonLabel": "Choose files"
+          }
+        },
+        "Minimal": {
+          "args": {
+            "label": "Document",
+            "supportedFormats": "pdf",
+            "buttonLabel": "Select"
+          }
+        },
+        "Interactive": {
+          "args": {
+            "label": "Upload supporting documents",
+            "requiredIndicator": "(Required)",
+            "helperText": "You can upload multiple documents at once",
+            "supportedFormats": "pdf, jpg, png, docx",
+            "buttonLabel": "Select files"
+          }
+        },
+        "UploadsInProgress": {
+          "args": {
+            "label": "Upload file",
+            "requiredIndicator": "(Required)",
+            "helperText": "Optional helper text",
+            "supportedFormats": "jpg, png, pdf",
+            "buttonLabel": "Select files"
+          }
+        },
+        "CustomButtonLabel": {
+          "args": {
+            "label": "Import data",
+            "requiredIndicator": "(Required)",
+            "helperText": "Import your data file to get started",
+            "supportedFormats": "csv, xlsx",
+            "buttonLabel": "Import file"
+          }
+        },
+        "LicenseDocumentUpload": {
+          "args": {
+            "label": "Driver",
+            "requiredIndicator": "(Required)",
+            "helperText": "Upload a clear image of both sides of your driver",
+            "supportedFormats": "jpg, png",
+            "buttonLabel": "Upload license"
+          }
+        }
+      },
+      "file": "src/components/FileUpload/FileUpload.stories.tsx"
+    },
     "FloatingButton": {
       "stories": {
         "Primary": {
@@ -1593,5 +1752,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-15T03:54:02.676Z"
+  "generated": "2026-02-15T04:31:50.281Z"
 }

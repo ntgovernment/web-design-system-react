@@ -59,6 +59,9 @@ export type { DateInputProps, DateInputValue } from "./components/DateInput";
 export { DatePicker } from "./components/DatePicker";
 export type { DatePickerProps } from "./components/DatePicker";
 
+export { FileUpload } from "./components/FileUpload";
+export type { FileUploadProps, FileItem } from "./components/FileUpload";
+
 export { BackToTop } from "./components/BackToTop";
 export type { BackToTopProps } from "./components/BackToTop";
 
