@@ -118,6 +118,136 @@
       },
       "file": "src/components/BackToTop/BackToTop.stories.tsx"
     },
+    "Banner": {
+      "stories": {
+        "PrimaryBanner": {
+          "args": {
+            "variant": "primary",
+            "title": "Page title",
+            "description": "Optional short description of the page goal",
+            "ctaText": "Call to action",
+            "linksHeading": "Popular",
+            "label": "Bus timetables and maps",
+            "href": "#"
+          }
+        },
+        "PrimaryWithFeaturedLinks": {
+          "args": {
+            "variant": "primary",
+            "title": "Health and Wellbeing",
+            "description": "Access health services, find medical facilities, and learn about public health programs in the Northern Territory.",
+            "ctaText": "Find health services",
+            "linksHeading": "Featured",
+            "label": "COVID-19 information",
+            "href": "#"
+          }
+        },
+        "PrimaryWithRelatedLinks": {
+          "args": {
+            "variant": "primary",
+            "title": "Business and Industry",
+            "description": "Start a business, apply for licenses and permits, and access business support services.",
+            "ctaText": "Register your business",
+            "linksHeading": "Related",
+            "label": "Business grants",
+            "href": "#"
+          }
+        },
+        "WithoutBreadcrumbs": {
+          "args": {
+            "variant": "primary",
+            "title": "Welcome to NT.GOV.AU",
+            "description": "Your gateway to Northern Territory Government services and information.",
+            "ctaText": "Explore services",
+            "linksHeading": "Popular",
+            "label": "Apply for permits",
+            "href": "#"
+          }
+        },
+        "WithoutDecorative": {
+          "args": {
+            "variant": "primary",
+            "title": "Clean Banner Design",
+            "description": "This banner demonstrates the component without decorative background elements.",
+            "ctaText": "Learn more",
+            "linksHeading": "Popular",
+            "label": "Service 1",
+            "href": "#"
+          }
+        },
+        "WithLongContent": {
+          "args": {
+            "variant": "primary",
+            "title": "Northern Territory Government Services and Information Portal",
+            "description": "Access comprehensive information about Northern Territory Government services, programs, and initiatives. Whether you",
+            "ctaText": "Get started with services",
+            "linksHeading": "Popular",
+            "label": "Driver",
+            "href": "#"
+          }
+        },
+        "SecondaryBanner": {
+          "args": {
+            "variant": "secondary",
+            "title": "Page title",
+            "description": "Optional short description of the page goal",
+            "ctaText": "Call to action",
+            "linksHeading": "Popular",
+            "label": "Bus timetables and maps",
+            "href": "#"
+          }
+        },
+        "SecondaryWithFeatured": {
+          "args": {
+            "variant": "secondary",
+            "title": "Transport Services",
+            "description": "Access public transport information, vehicle registration, and licensing services.",
+            "ctaText": "View all transport services",
+            "linksHeading": "Featured",
+            "label": "Renew your driver",
+            "href": "#"
+          }
+        },
+        "SecondaryMinimal": {
+          "args": {
+            "variant": "secondary",
+            "title": "Community Programs",
+            "description": "Explore community programs and support services.",
+            "ctaText": "Learn more",
+            "linksHeading": "Related",
+            "label": "Youth programs",
+            "href": "#"
+          }
+        },
+        "MinimalTitleOnly": {
+          "args": {
+            "variant": "primary",
+            "title": "Page Title",
+            "description": "This banner shows only the title and description, with no optional sections."
+          }
+        },
+        "WithoutCTA": {
+          "args": {
+            "variant": "primary",
+            "title": "Information Page",
+            "description": "This banner has no call to action button.",
+            "label": "Home",
+            "href": "/"
+          }
+        },
+        "WithoutLinks": {
+          "args": {
+            "variant": "primary",
+            "title": "Service Page",
+            "description": "This banner has no popular links section.",
+            "ctaText": "Get started",
+            "label": "Home",
+            "href": "/"
+          }
+        }
+      },
+      "file": "src/components/Banner/Banner.stories.tsx"
+    },
     "Button": {
       "stories": {
         "Primary": {
@@ -1463,5 +1593,5 @@
       "file": "src/components/Textarea/Textarea.stories.tsx"
     }
   },
-  "generated": "2026-02-15T02:47:58.073Z"
+  "generated": "2026-02-15T03:54:02.676Z"
 }

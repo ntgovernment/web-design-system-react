@@ -76,5 +76,8 @@ export type {
   SocialLink,
 } from "./components/Footer";
 
+export { Banner } from "./components/Banner";
+export type { BannerProps } from "./components/Banner";
+
 // Import styles
 import "./style.css";
