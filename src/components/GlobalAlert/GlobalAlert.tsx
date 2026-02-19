@@ -21,7 +21,7 @@ export interface GlobalAlertProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Alert description content
    */
-  description: string;
+  description: React.ReactNode;
 
   /**
    * Optional dismiss button
@@ -88,13 +88,7 @@ export const GlobalAlert = ({
         <div className="global-alert__content">
           <div className="global-alert__text">
             <div className="global-alert__title">{title}</div>
-            <div className="global-alert__description">
-              {typeof description === "string" ? (
-                <span dangerouslySetInnerHTML={{ __html: description }} />
-              ) : (
-                description
-              )}
-            </div>
+            <div className="global-alert__description">{description}</div>
           </div>
           {ctaText && (
             <div className="global-alert__actions">
