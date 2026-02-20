@@ -1,0 +1,11 @@
+/* Tab Component - NTG Theme Overrides */
+
+/* All tabs focus state - no outline */
+.tab-nav-item:focus-visible {
+  outline: none;
+}
+
+.tab-scroll-btn:focus-visible {
+  outline: 4px solid var(--clr-focus-focus);
+  outline-offset: 0;
+}
