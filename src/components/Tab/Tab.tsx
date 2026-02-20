@@ -29,20 +29,15 @@ export const Tab: React.FC<TabProps> = ({
   showIcons = false,
   className = "",
 }) => {
-  const [activeTab, setActiveTab] = useState<string>(
-    activeTabId || items[0]?.id || "",
+  const isControlled = activeTabId !== undefined;
+  const [internalActiveTab, setInternalActiveTab] = useState<string>(
+    items[0]?.id || "",
   );
+  const activeTab = isControlled ? activeTabId : internalActiveTab;
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(false);
   const tabListRef = useRef<HTMLDivElement>(null);
   const tabNavRef = useRef<HTMLDivElement>(null);
-
-  // Update active tab when prop changes
-  useEffect(() => {
-    if (activeTabId) {
-      setActiveTab(activeTabId);
-    }
-  }, [activeTabId]);
 
   // Check if scroll buttons are needed
   useEffect(() => {
@@ -66,7 +61,9 @@ export const Tab: React.FC<TabProps> = ({
   }, [items]);
 
   const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId);
+    if (!isControlled) {
+      setInternalActiveTab(tabId);
+    }
     onTabChange?.(tabId);
   };
 
