@@ -129,7 +129,7 @@ export const Tab: React.FC<TabProps> = ({
     }
   };
 
-  const activeContent = items.find((item) => item.id === activeTab)?.content;
+  const activeItem = items.find((item) => item.id === activeTab);
 
   return (
     <div
@@ -201,14 +201,14 @@ export const Tab: React.FC<TabProps> = ({
         )}
       </div>
 
-      {activeContent && (
+      {activeItem != null && (
         <div
           id={`tab-panel-${activeTab}`}
           className="tab-content-wrapper"
           role="tabpanel"
           aria-labelledby={`tab-${activeTab}`}
         >
-          {activeContent}
+          {activeItem?.content}
         </div>
       )}
     </div>
