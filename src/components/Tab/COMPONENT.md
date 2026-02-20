@@ -445,7 +445,7 @@ color: var(--clr-link-hover); /* Red text */
 ```css
 background: var(--clr-focus-focus); /* Orange background */
 border-bottom: 4px solid var(--clr-border-strong-01); /* Dark blue border */
-outline: 4px solid [theme-specific]; /* Outline from theme CSS */
+outline: none; /* Outline reset in Tab.css; focus indicated by background and border */
 color: var(--clr-link-default); /* Returns to blue */
 ```
 
