@@ -63,7 +63,7 @@
   gap: var(--sp-xs);
   padding: var(--tab-padding);
   font-size: var(--tab-font-size);
-  font-family: Lato;
+  font-family: var(--type-font-default);
   line-height: var(--tab-line-height);
   color: var(--clr-link-default);
   background: transparent;
