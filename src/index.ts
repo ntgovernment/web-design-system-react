@@ -106,11 +106,23 @@ export type {
 } from "./components/TopicListing";
 
 // Content components
-export { OnThisPageNavigation } from "./content/on-this-page/OnThisPageNavigation";
+export { BreadcrumbsContent } from "./components/Breadcrumbs/Breadcrumbs";
+export type {
+  BreadcrumbItem,
+  BreadcrumbsContentProps,
+} from "./components/Breadcrumbs/Breadcrumbs";
+
+export { OnThisPageNavigation } from "./components/OnThisPageNavigation/OnThisPageNavigation";
 export type {
   OnThisPageNavigationProps,
   OnThisPageNavigationItem,
-} from "./content/on-this-page/OnThisPageNavigation";
+} from "./components/OnThisPageNavigation/OnThisPageNavigation";
+
+export { PaginationContent } from "./components/Pagination/Pagination";
+export type { PaginationContentProps } from "./components/Pagination/Pagination";
+
+export { TableContent } from "./components/Table/Table";
+export type {} from "./components/Table/Table";
 
 // Import styles
 import "./style.css";

@@ -24,7 +24,7 @@ const mobileItems = [
 ];
 
 const meta = {
-  title: "Content/Breadcrumbs",
+  title: "Components/Breadcrumbs",
   component: BreadcrumbsContent,
   parameters: {
     layout: "padded",

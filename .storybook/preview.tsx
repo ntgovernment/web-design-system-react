@@ -53,19 +53,19 @@ import "../src/components/Footer/Footer-ntg.css";
 import "../src/components/Footer/Footer-central.css";
 
 // Import Breadcrumbs CSS files to ensure Vite processes them
-import "../src/content/breadcrumbs/Breadcrumbs.css";
-import "../src/content/breadcrumbs/Breadcrumbs-ntg.css";
-import "../src/content/breadcrumbs/Breadcrumbs-central.css";
+import "../src/components/Breadcrumbs/Breadcrumbs.css";
+import "../src/components/Breadcrumbs/Breadcrumbs-ntg.css";
+import "../src/components/Breadcrumbs/Breadcrumbs-central.css";
 
 // Import Pagination CSS files to ensure Vite processes them
-import "../src/content/pagination/Pagination.css";
-import "../src/content/pagination/Pagination-ntg.css";
-import "../src/content/pagination/Pagination-central.css";
+import "../src/components/Pagination/Pagination.css";
+import "../src/components/Pagination/Pagination-ntg.css";
+import "../src/components/Pagination/Pagination-central.css";
 
 // Import OnThisPageNavigation CSS files to ensure Vite processes them
-import "../src/content/on-this-page/OnThisPageNavigation.css";
-import "../src/content/on-this-page/OnThisPageNavigation-ntg.css";
-import "../src/content/on-this-page/OnThisPageNavigation-central.css";
+import "../src/components/OnThisPageNavigation/OnThisPageNavigation.css";
+import "../src/components/OnThisPageNavigation/OnThisPageNavigation-ntg.css";
+import "../src/components/OnThisPageNavigation/OnThisPageNavigation-central.css";
 
 // Import Document CSS files to ensure Vite processes them
 import "../src/components/Document/Document.css";
@@ -327,7 +327,7 @@ const loadBreadcrumbsStyles = (theme: string) => {
   breadcrumbsCSS.id = "breadcrumbs-theme-css";
   breadcrumbsCSS.rel = "stylesheet";
   breadcrumbsCSS.href = new URL(
-    `../src/content/breadcrumbs/Breadcrumbs-${theme}.css`,
+    `../src/components/Breadcrumbs/Breadcrumbs-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(breadcrumbsCSS);
@@ -344,7 +344,7 @@ const loadPaginationStyles = (theme: string) => {
   paginationCSS.id = "pagination-theme-css";
   paginationCSS.rel = "stylesheet";
   paginationCSS.href = new URL(
-    `../src/content/pagination/Pagination-${theme}.css`,
+    `../src/components/Pagination/Pagination-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(paginationCSS);
@@ -361,7 +361,7 @@ const loadOnThisPageNavigationStyles = (theme: string) => {
   onThisPageCSS.id = "on-this-page-theme-css";
   onThisPageCSS.rel = "stylesheet";
   onThisPageCSS.href = new URL(
-    `../src/content/on-this-page/OnThisPageNavigation-${theme}.css`,
+    `../src/components/OnThisPageNavigation/OnThisPageNavigation-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(onThisPageCSS);
@@ -549,30 +549,49 @@ const preview: Preview = {
         htmlWhitespaceSensitivity: "strict",
       },
     },
-    // Story ordering: Recent components first, then Components, then Design System
+    // Story ordering: Components in alphabetical order
     options: {
       storySort: {
         order: [
-          "Content",
-          [
-            "Breadcrumbs",
-            "OnThisPageNavigation",
-            "Pagination",
-            "Table",
-            "Typography",
-            "Icon",
-          ],
           "Components",
           [
-            "Card",
-            "Notification",
-            "Pill",
+            "Accordion",
+            "BackToTop",
+            "Banner",
+            "Breadcrumbs",
             "Button",
-            "Card",
-            "Tag",
             "Callout",
+            "Card",
+            "Checkbox",
+            "DateInput",
+            "DatePicker",
+            "Document",
+            "Dropdown",
+            "FileUpload",
+            "FloatingButton",
+            "Footer",
+            "GlobalAlert",
+            "Header",
+            "Icon",
             "Image",
+            "Input",
+            "Notification",
+            "OnThisPageNavigation",
+            "Pagination",
+            "Pill",
+            "QuickExit",
+            "Radio",
+            "SearchBar",
+            "SideNavigation",
+            "StepList",
+            "Tab",
+            "Table",
+            "Tag",
+            "Textarea",
+            "TopicListing",
           ],
+          "Content",
+          ["Typography"],
         ],
       },
     },

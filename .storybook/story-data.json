@@ -248,6 +248,31 @@
       },
       "file": "src/components/Banner/Banner.stories.tsx"
     },
+    "Breadcrumbs": {
+      "stories": {
+        "Default": {
+          "args": {
+            "variant": "default"
+          }
+        },
+        "Truncated": {
+          "args": {
+            "variant": "truncated"
+          }
+        },
+        "Mobile": {
+          "args": {
+            "variant": "mobile"
+          }
+        },
+        "Themes": {
+          "args": {
+            "variant": "default"
+          }
+        }
+      },
+      "file": "src/components/Breadcrumbs/Breadcrumbs.stories.tsx"
+    },
     "Button": {
       "stories": {
         "Primary": {
@@ -1649,6 +1674,65 @@
       },
       "file": "src/components/Notification/Notification.stories.tsx"
     },
+    "OnThisPageNavigation": {
+      "stories": {
+        "Default": {
+          "args": {
+            "heading": "On this page"
+          }
+        },
+        "ActiveSection": {
+          "args": {
+            "heading": "On this page"
+          }
+        },
+        "LongLabels": {
+          "args": {
+            "heading": "On this page",
+            "label": "Check eligibility for the regional housing support program",
+            "href": "#regional-housing"
+          }
+        },
+        "Themes": {
+          "args": {
+            "heading": "On this page"
+          }
+        },
+        "DeeplyNested": {
+          "args": {
+            "heading": "On this page",
+            "label": "System overview",
+            "href": "#overview"
+          }
+        }
+      },
+      "file": "src/components/OnThisPageNavigation/OnThisPageNavigation.stories.tsx"
+    },
+    "Pagination": {
+      "stories": {
+        "Default": {
+          "args": {
+            "ariaLabel": "Search results pages"
+          }
+        },
+        "FirstPage": {
+          "args": {
+            "ariaLabel": "Service listings pages"
+          }
+        },
+        "LastPage": {
+          "args": {
+            "ariaLabel": "Service listings pages"
+          }
+        },
+        "Themes": {
+          "args": {
+            "ariaLabel": "Search results pages"
+          }
+        }
+      },
+      "file": "src/components/Pagination/Pagination.stories.tsx"
+    },
     "Pill": {
       "stories": {
         "Default": {
@@ -1980,6 +2064,44 @@
       },
       "file": "src/components/Tab/Tab.stories.tsx"
     },
+    "Table": {
+      "stories": {
+        "Default": {
+          "args": {
+            "caption": "Table example"
+          }
+        },
+        "Bordered": {
+          "args": {
+            "caption": "Bordered table"
+          }
+        },
+        "Borderless": {
+          "args": {
+            "caption": "Borderless table"
+          }
+        },
+        "Small": {
+          "args": {
+            "caption": "Compact table",
+            "size": "sm"
+          }
+        },
+        "ResponsiveMd": {
+          "args": {
+            "caption": "Responsive table (md)",
+            "responsive": "md"
+          }
+        },
+        "PrimaryVariant": {
+          "args": {
+            "caption": "Primary variant",
+            "variant": "primary"
+          }
+        }
+      },
+      "file": "src/components/Table/Table.stories.tsx"
+    },
     "Tag": {
       "stories": {
         "Default": {
@@ -2209,5 +2331,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-02-20T15:41:21.717Z"
+  "generated": "2026-02-20T16:05:20.738Z"
 }

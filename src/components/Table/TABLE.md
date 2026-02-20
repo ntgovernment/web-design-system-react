@@ -7,7 +7,7 @@ This content module provides Bootstrap table examples aligned with design tokens
 Use the `TableContent` component to render example tables with Bootstrap variants.
 
 ```tsx
-import { TableContent } from "../content/table/Table";
+import { TableContent } from "../components/Table/Table";
 
 const columns = ["Service", "Owner", "Status", "Last updated"];
 const rows = [

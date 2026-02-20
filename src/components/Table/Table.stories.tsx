@@ -15,7 +15,7 @@ const demoRows = [
 ];
 
 const meta = {
-  title: "Content/Table",
+  title: "Components/Table",
   component: TableContent,
   parameters: {
     layout: "padded",

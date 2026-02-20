@@ -7,7 +7,7 @@ import { Pill } from "../components/Pill";
 import { Notification } from "../components/Notification";
 import { Image } from "../components/Image";
 import { BackToTop } from "../components/BackToTop";
-import { TableContent } from "../content/table/Table";
+import { TableContent } from "../components/Table/Table";
 import placeholderImage from "../assets/images/placeholder.webp";
 
 function App() {
