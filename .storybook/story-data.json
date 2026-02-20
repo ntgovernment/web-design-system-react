@@ -1037,22 +1037,19 @@
         "Default": {
           "args": {
             "variant": "info",
-            "title": "System Maintenance Scheduled",
-            "description": "This alert provides important information for users. Please read this to understand how this may affect you. This might also contain a relevant link to provide user with <a href="
+            "title": "System Maintenance Scheduled"
           }
         },
         "Information": {
           "args": {
             "variant": "info",
-            "title": "Service Update Available",
-            "description": "A new version of our online services portal is now available. The update includes improved accessibility features and enhanced security. <a href="
+            "title": "Service Update Available"
           }
         },
         "InformationDismissible": {
           "args": {
             "variant": "info",
-            "title": "New Features Available",
-            "description": "We have added new features to improve your experience on NT.GOV.AU. Explore the updated navigation and enhanced search capabilities. <a href="
+            "title": "New Features Available"
           }
         },
         "InformationWithCTA": {
@@ -1067,22 +1064,19 @@
           "args": {
             "variant": "info",
             "title": "Annual Survey Now Open",
-            "description": "Share your feedback on NT Government services. Your input helps us improve our services to better meet community needs. <a href=",
             "ctaText": "Take Survey"
           }
         },
         "InformationAlternative": {
           "args": {
             "variant": "info-alt",
-            "title": "Service Update Available",
-            "description": "A new version of our online services portal is now available. The update includes improved accessibility features and enhanced security. <a href="
+            "title": "Service Update Available"
           }
         },
         "InformationAlternativeDismissible": {
           "args": {
             "variant": "info-alt",
-            "title": "New Features Available",
-            "description": "We have added new features to improve your experience on NT.GOV.AU. Explore the updated navigation and enhanced search capabilities. <a href="
+            "title": "New Features Available"
           }
         },
         "InformationAlternativeWithCTA": {
@@ -1097,15 +1091,13 @@
           "args": {
             "variant": "info-alt",
             "title": "Annual Survey Now Open",
-            "description": "Share your feedback on NT Government services. Your input helps us improve our services to better meet community needs. <a href=",
             "ctaText": "Take Survey"
           }
         },
         "Warning": {
           "args": {
             "variant": "warning",
-            "title": "Service Disruption Expected",
-            "description": "Due to planned system maintenance, some online services may be unavailable between 11 PM tonight and 2 AM tomorrow. Please plan accordingly and complete any urgent transactions before maintenance begins. <a href="
+            "title": "Service Disruption Expected"
           }
         },
         "WarningDismissible": {
@@ -1128,15 +1120,13 @@
           "args": {
             "variant": "warning",
             "title": "Urgent: System Migration in Progress",
-            "description": "We are migrating to a new system to improve reliability and performance. Some features may be temporarily limited. Your patience is appreciated during this transition. <a href=",
             "ctaText": "Check System Status"
           }
         },
         "Critical": {
           "args": {
             "variant": "critical",
-            "title": "Emergency: Bushfire Warning",
-            "description": "An emergency bushfire warning is in effect for Litchfield and surrounding areas. Residents should evacuate immediately and follow emergency service directions. <a href="
+            "title": "Emergency: Bushfire Warning"
           }
         },
         "CriticalDismissible": {
@@ -1159,16 +1149,7 @@
           "args": {
             "variant": "critical",
             "title": "Emergency Alert: Immediate Action Required",
-            "description": "A significant emergency situation is developing that requires immediate community action. Please follow all instructions from emergency services and monitor official channels for real-time updates. <a href=",
             "ctaText": "View Emergency Information"
-          }
-        },
-        "LongContent": {
-          "args": {
-            "variant": "info",
-            "title": "Extended Service Announcement: Important Updates",
-            "description": "This global alert demonstrates how the component handles extended content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography across all viewport sizes. When communicating important information that affects all users of the website or service, it",
-            "ctaText": "Learn More"
           }
         },
         "StackedAlerts": {
@@ -2088,5 +2069,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-02-15T11:59:00.695Z"
+  "generated": "2026-02-19T00:35:29.213Z"
 }

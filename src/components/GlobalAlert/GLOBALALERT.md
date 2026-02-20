@@ -67,7 +67,7 @@ The information variant is for low-level alerts indicating a minor problem or up
 <GlobalAlert
   variant="info"
   title="Service Update Available"
-  description="A new version of our online services portal is now available. <a href='#'>Learn more</a>"
+  description={<>A new version of our online services portal is now available. <a href='#'>Learn more</a></>}
 />
 ```
 
@@ -89,7 +89,7 @@ The information alternative variant uses a light blue background with dark text.
 <GlobalAlert
   variant="info-alt"
   title="Service Update Available"
-  description="A new version of our online services portal is now available. <a href='#'>Learn more</a>"
+  description={<>A new version of our online services portal is now available. <a href='#'>Learn more</a></>}
 />
 ```
 
@@ -111,7 +111,7 @@ The warning variant should be used when an event has happened or is about to hap
 <GlobalAlert
   variant="warning"
   title="Service Disruption Expected"
-  description="Due to planned maintenance, services will be unavailable tonight. <a href='#'>View details</a>"
+  description={<>Due to planned maintenance, services will be unavailable tonight. <a href='#'>View details</a></>}
   ctaText="View Affected Services"
 />
 ```
@@ -134,7 +134,7 @@ The critical variant should only be used for immediate, significant threats to t
 <GlobalAlert
   variant="critical"
   title="Emergency: Bushfire Warning"
-  description="Evacuate immediately. <a href='#'>View evacuation centers</a>"
+  description={<>Evacuate immediately. <a href='#'>View evacuation centers</a></>}
   ctaText="Emergency Information"
   dismissible={true}
 />
@@ -146,7 +146,7 @@ The critical variant should only be used for immediate, significant threats to t
 | -------------- | ----------------------------------- | ----------------- | ------------------------------------------ |
 | `variant`      | `"info" \| "warning" \| "critical"` | `"info"`          | Alert severity level                       |
 | `title`        | `string`                            | required          | Alert heading                              |
-| `description`  | `string`                            | required          | Alert content (can include HTML for links) |
+| `description`  | `React.ReactNode`                   | required          | Alert content (can include JSX with links) |
 | `dismissible`  | `boolean`                           | `false`           | Show dismiss button                        |
 | `onDismiss`    | `() => void`                        | -                 | Dismiss button click handler               |
 | `dismissLabel` | `string`                            | `"Dismiss alert"` | Aria label for dismiss button              |
@@ -191,7 +191,7 @@ function App() {
 <GlobalAlert
   variant="critical"
   title="Emergency: Severe Weather Warning"
-  description="Cyclone approaching. Follow emergency service directions. <a href='#'>View safety information</a>"
+  description={<>Cyclone approaching. Follow emergency service directions. <a href='#'>View safety information</a></>}
   dismissible={true}
   onDismiss={() => console.log("Alert dismissed")}
 />
@@ -203,7 +203,7 @@ function App() {
 <GlobalAlert
   variant="info"
   title="New Features Available"
-  description="We've updated our services. <a href='/features'>Explore new features</a> to learn more."
+  description={<>We've updated our services. <a href='/features'>Explore new features</a> to learn more.</>}
   dismissible={true}
 />
 ```
