@@ -48,6 +48,10 @@ function App() {
   return (
     <div>
       <Button variant="primary">Click me</Button>
+      {/*
+        See the component-specific documentation for detailed examples:
+        src/components/Card/CARD.md
+      */}
       <Card title="Welcome">
         <p>This is a card component</p>
       </Card>
