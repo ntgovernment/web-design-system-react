@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Breadcrumbs.css";
 
 export interface BreadcrumbItem {
@@ -44,6 +44,19 @@ export const BreadcrumbsContent = ({
   className,
   ...props
 }: BreadcrumbsContentProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const normalizedItems = normalizeItems(items);
   const currentIndex = normalizedItems.findIndex((item) => item.isCurrent);
   const currentItem =
@@ -79,7 +92,12 @@ export const BreadcrumbsContent = ({
 
     return (
       <li className="breadcrumb-item content-breadcrumbs__menu-item">
-        <details className="content-breadcrumbs__menu">
+        <details
+          className="content-breadcrumbs__menu"
+          ref={menuRef}
+          open={isMenuOpen}
+          onToggle={(e) => setIsMenuOpen((e.target as HTMLDetailsElement).open)}
+        >
           <summary
             className="content-breadcrumbs__menu-trigger"
             aria-label="Open breadcrumb menu"

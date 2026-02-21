@@ -122,7 +122,7 @@ Light background banner with vertical link list and visual divider between conte
 ## Anatomy
 
 1. **Decorative elements** (optional) - Desert rose SVG watermark for primary variant, geometric decorative watermark for secondary variant
-2. **Breadcrumbs** (optional) - Navigation context with inverted colors for dark backgrounds
+2. **Breadcrumbs** (optional) - Navigation context with inverted colors for dark backgrounds (see [Breadcrumbs](../Breadcrumbs/BREADCRUMBS.md))
 3. **Page title** (required) - H1 heading
 4. **Description** (optional) - Brief page introduction
 5. **Call to action button** (optional) - Primary or secondary action
@@ -420,7 +420,7 @@ src/components/Banner/
 
 The Banner component integrates with:
 
-1. **BreadcrumbsContent** (`src/content/breadcrumbs/`)
+1. **BreadcrumbsContent** (`src/components/Breadcrumbs/`)
    - Provides navigation context
    - Automatically inverted for dark backgrounds
    - Uses theme-specific divider SVG
@@ -673,7 +673,7 @@ The Banner component uses the Button and Breadcrumbs components, which leverage 
 ### Related Documentation
 
 - [Button Component](../Button/BUTTON.md)
-- [Breadcrumbs](../../content/breadcrumbs/BREADCRUMBS.md)
+- [Breadcrumbs](../Breadcrumbs/BREADCRUMBS.md)
 - [Pill Component](../Pill/PILL.md)
 - [Content Standards](../../../CONTENT_STANDARDS.md)
 - [Design Tokens](../../../design-tokens/DESIGN-TOKENS.md)

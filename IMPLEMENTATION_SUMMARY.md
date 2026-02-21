@@ -131,7 +131,7 @@ Each component is documented in its own markdown file under
 - Icon
 
 These per-component files include implementation notes, props tables, token
-mappings and Storybook guidance.  The library is intentionally lightweight and
+mappings and Storybook guidance. The library is intentionally lightweight and
 relies on the documentation within each component's folder rather than
 repeating information here.
 

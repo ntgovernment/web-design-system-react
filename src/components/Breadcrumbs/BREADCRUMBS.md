@@ -5,6 +5,7 @@ A token-driven wrapper around Bootstrap's breadcrumb that provides:
 - three variants (default, truncated, mobile),
 - theme-aware styling, and
 - accessible markup out of the box.
+- **Enhanced truncated menu** – ellipsis has a larger hit-area and the menu closes when clicking outside.
 
 ---
 
@@ -14,7 +15,7 @@ A token-driven wrapper around Bootstrap's breadcrumb that provides:
 import {
   BreadcrumbsContent,
   BreadcrumbItem,
-} from "../content/breadcrumbs/Breadcrumbs";
+} from "@ntgovernment/web-design-system"; // or relative path to component
 
 const items: BreadcrumbItem[] = [
   { label: "Home", href: "/" },
@@ -109,6 +110,8 @@ Unit tests
 
 - normalize behavior: assert last item becomes current when `isCurrent` missing
 - truncated menu: verify `details` contains all middle items and opens on click
+- truncated menu closes when clicking outside the menu
+- ellipsis summary receives padding such that its hit area is larger than the icon
 - mobile variant: renders `Home` + parent only
 - accessibility: `aria-current` present on active item
 

@@ -79,7 +79,8 @@
 .content-breadcrumbs__menu summary {
   display: inline-flex;
   align-items: center;
-  padding: 0 calc(var(--sp-xxs) / 2);
+  padding: var(--sp-xs) calc(var(--sp-xxs) / 2);
+  margin-block: calc(-1 * var(--sp-xs));
   cursor: pointer;
   color: var(--clr-link-default);
   font-size: var(--type-link-sm-size);

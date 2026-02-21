@@ -42,9 +42,9 @@ A modern, production-ready component library built with Vite, React, TypeScript,
 
 ### 3. Component Library
 
-The project includes a set of reusable, production-ready React components.  Each
+The project includes a set of reusable, production-ready React components. Each
 component is documented thoroughly in its own markdown file under
-`src/components/<ComponentName>/<COMPONENTNAME>.md`.  These files contain usage
+`src/components/<ComponentName>/<COMPONENTNAME>.md`. These files contain usage
 examples, props tables, design token references and Storybook guidance.
 
 Current components:

@@ -175,8 +175,8 @@ export const Default: Story = {
             <p>
               Applications are assessed against the program criteria by an
               independent panel. Decisions are notified within 8 weeks of the
-              round closing. See the{" "}
-              <a href="#">assessment criteria</a> for full details.
+              round closing. See the <a href="#">assessment criteria</a> for
+              full details.
             </p>
           </>
         ),
