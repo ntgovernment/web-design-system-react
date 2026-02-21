@@ -42,80 +42,23 @@ A modern, production-ready component library built with Vite, React, TypeScript,
 
 ### 3. Component Library
 
-Fully functional, documented components:
+The project includes a set of reusable, production-ready React components.  Each
+component is documented thoroughly in its own markdown file under
+`src/components/<ComponentName>/<COMPONENTNAME>.md`.  These files contain usage
+examples, props tables, design token references and Storybook guidance.
 
-#### Notification Component
+Current components:
 
-- 4 status variants (info, success, warning, danger)
-- Auto-assigned FontAwesome Light icons
-- Distinctive 8px left accent bar
-- Structured content with title and message props
-- Design token-based sizing
-- Optional title support
-- Non-dismissible for persistent messages
-- Full TypeScript types
-- WCAG AAA compliant
+- Notification
+- Image
+- Tag
+- Pill
+- Button
+- Card
+- Callout
+- Icon
 
-#### Image Component
-
-- Responsive images with fluid sizing
-- Thumbnail styling with borders, padding, and shadows
-- Border radius variants (sm, md, lg, circle)
-- Automatic figure wrapper with captions
-- Design token integration for all styling
-- Theme-aware border radius and colors
-- Full TypeScript types
-- Semantic HTML with `<figure>` and `<figcaption>`
-- WCAG AAA compliant with required alt text
-- Support for native image attributes (srcSet, sizes, loading)
-
-#### Tag Component
-
-- 6 color variants (default, grey, green, blue, warning, red)
-- Uppercase typography
-- Theme-aware colors
-- Compact inline display
-- Full TypeScript types
-
-#### Pill Component
-
-- Removable filter/tag component
-- Click-to-remove functionality
-- FontAwesome icon integration
-- Theme-aware styling
-- Full TypeScript types
-
-#### Button Component
-
-- Multiple variants (primary, secondary, tertiary)
-- Size options (small, default)
-- Icon support (left, right, icon-only)
-- Full TypeScript types
-- Bootstrap 5.3 classes with design token overrides
-
-#### Card Component
-
-- Title, body, and footer sections
-- Icon support in header
-- Variant support for theming
-- Flexible content
-- Responsive layout
-- Full TypeScript types
-
-#### Callout Component
-
-- Heading and content props
-- Prominent left border
-- Flexible layout
-- Theme-aware styling
-- Full TypeScript types
-
-#### Icon Component
-
-- FontAwesome icon wrapper
-- Accessibility features
-- Size and color customization
-- Full TypeScript types
+(See the per-component documentation for details.)
 
 ### 4. Storybook Integration
 

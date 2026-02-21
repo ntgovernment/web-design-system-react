@@ -5,7 +5,7 @@
         "Default": {
           "args": {
             "id": "accordion-1",
-            "title": "What services are available?"
+            "title": "Grant categories and funding amounts"
           }
         },
         "WithIcons": {
@@ -2345,5 +2345,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-02-21T04:47:04.520Z"
+  "generated": "2026-02-21T12:59:23.369Z"
 }

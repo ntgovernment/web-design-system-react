@@ -110,20 +110,76 @@ export const Default: Story = {
     items: [
       {
         id: "accordion-1",
-        title: "What services are available?",
-        content: sampleContent.item1,
+        title: "Grant categories and funding amounts",
+        content: (
+          <>
+            <p>
+              The Territory Grants Program offers funding across three
+              categories to support community organisations and small
+              businesses.
+            </p>
+            <ul>
+              <li>Community development grants — up to $25,000</li>
+              <li>Infrastructure improvement grants — up to $50,000</li>
+              <li>Youth and education initiatives — up to $15,000</li>
+            </ul>
+            <p>
+              Funding is available to eligible organisations operating within
+              the Northern Territory.{" "}
+              <a href="#">View the full program guidelines</a>.
+            </p>
+          </>
+        ),
         defaultOpen: false,
       },
       {
         id: "accordion-2",
-        title: "How do I apply for assistance?",
-        content: sampleContent.item2,
+        title: "Eligibility requirements",
+        content: (
+          <>
+            <p>
+              To be eligible for Territory Grants Program funding, applicants
+              must meet the following criteria:
+            </p>
+            <ul>
+              <li>
+                Registered as a not-for-profit, incorporated association or
+                small business in the NT
+              </li>
+              <li>ABN registered with current financial records available</li>
+              <li>
+                No outstanding compliance obligations with NT Government
+                agencies
+              </li>
+            </ul>
+            <p>
+              Individual applicants and unincorporated groups are not eligible
+              to apply directly. A fiscal sponsor arrangement may be available
+              in some cases.
+            </p>
+          </>
+        ),
         defaultOpen: false,
       },
       {
         id: "accordion-3",
-        title: "What documentation do I need?",
-        content: sampleContent.item3,
+        title: "Application and assessment process",
+        content: (
+          <>
+            <h4 style={{ marginTop: 0 }}>Submitting your application</h4>
+            <p>
+              Applications are submitted online through the Grants Management
+              Portal. You will need to create an account and complete all
+              required fields before submitting.
+            </p>
+            <p>
+              Applications are assessed against the program criteria by an
+              independent panel. Decisions are notified within 8 weeks of the
+              round closing. See the{" "}
+              <a href="#">assessment criteria</a> for full details.
+            </p>
+          </>
+        ),
         defaultOpen: false,
       },
     ],

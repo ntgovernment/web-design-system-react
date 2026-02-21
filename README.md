@@ -516,31 +516,21 @@ For more details, see [design-tokens/DESIGN-TOKENS.md](design-tokens/DESIGN-TOKE
 
 ### Available Components
 
-- **Button**: Configurable button component with multiple variants and icon support
-  - Props: `variant`, `size`, `disabled`, `icon`, `iconPosition`, `aria-label`
-  - Supports FontAwesome icons in left/right positions or icon-only mode
-- **Card**: Container component for content with optional icon in header
-  - Props: `title`, `variant`, `footer`, `icon`
-  - Icon appears before the card title
-- **Notification**: Alert/notification component with contextual icon support
-  - Props: `variant`, `title`, `message`
-  - Icons help communicate alert context (success, warning, error, info)
-- **Image**: Responsive image component with Bootstrap styling
-  - Props: `src`, `alt`, `fluid`, `thumbnail`, `rounded`, `caption`
-  - Supports thumbnail borders, rounded corners, and figure captions
-  - Auto-wraps in semantic `<figure>` when caption is provided
-- **Tag**: Status indicator component with color variants
-  - Props: `variant`, `label`
-  - 6 color variants for different statuses
-- **Pill**: Removable tag/filter component
-  - Props: `label`, `onRemove`
-  - Click-to-remove functionality
-- **Callout**: Informational callout component
-  - Props: `heading`, `content`
-  - Prominent left border for emphasis
-- **Icon**: FontAwesome icon wrapper component
-  - Props: `icon`, `color`, `size`
-  - Accessibility features built-in
+Each component has its own detailed documentation file located under
+`src/components/<ComponentName>/<COMPONENTNAME>.md` (e.g. `src/components/Button/BUTTON.md`).
+Developers and tooling agents should consult those files for usage examples,
+prop tables, design token information and best‑practice guidance.
+
+Current components include:
+
+- Button
+- Card
+- Notification
+- Image
+- Tag
+- Pill
+- Callout
+- Icon
 
 More components will be added over time.
 
