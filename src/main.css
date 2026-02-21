@@ -76,6 +76,10 @@
 @import "./components/OnThisPageNavigation/OnThisPageNavigation.css";
 @import "./components/OnThisPageNavigation/OnThisPageNavigation-ntg.css";
 
+/* Import Table content styles */
+@import "./components/Table/Table.css";
+@import "./components/Table/Table-ntg.css";
+
 /* Additional global styles can be added here */
 body {
   margin: 0;

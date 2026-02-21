@@ -82,6 +82,11 @@ import "../src/components/Tab/Tab.css";
 import "../src/components/Tab/Tab-ntg.css";
 import "../src/components/Tab/Tab-central.css";
 
+// Import Table CSS files to ensure Vite processes them
+import "../src/components/Table/Table.css";
+import "../src/components/Table/Table-ntg.css";
+import "../src/components/Table/Table-central.css";
+
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
@@ -401,6 +406,23 @@ const loadTabStyles = (theme: string) => {
   document.head.appendChild(tabCSS);
 };
 
+// Load Table Component Styles (theme-specific overrides)
+const loadTableStyles = (theme: string) => {
+  const existingTable = document.getElementById("table-theme-css");
+  if (existingTable) {
+    existingTable.remove();
+  }
+
+  const tableCSS = document.createElement("link");
+  tableCSS.id = "table-theme-css";
+  tableCSS.rel = "stylesheet";
+  tableCSS.href = new URL(
+    `../src/components/Table/Table-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(tableCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -503,6 +525,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadOnThisPageNavigationStyles(theme); // Load theme-specific OnThisPageNavigation CSS overrides
     loadDocumentStyles(theme); // Load theme-specific Document CSS overrides
     loadTabStyles(theme); // Load theme-specific Tab CSS overrides
+    loadTableStyles(theme); // Load theme-specific Table CSS overrides
   }, [theme]);
 
   return (

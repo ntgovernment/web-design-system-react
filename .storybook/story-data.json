@@ -2068,17 +2068,31 @@
       "stories": {
         "Default": {
           "args": {
-            "caption": "Table example"
+            "caption": "Service status summary",
+            "responsive": "always"
           }
         },
-        "Bordered": {
+        "TitleAndSubheading": {
           "args": {
-            "caption": "Bordered table"
+            "title": "Service status overview",
+            "subtitle": "Latest updates for digital services across NT Government portfolios.",
+            "caption": "Service status overview"
           }
         },
-        "Borderless": {
+        "HeadersWithFilters": {
           "args": {
-            "caption": "Borderless table"
+            "caption": "Sortable service status"
+          }
+        },
+        "BoldFirstColumn": {
+          "args": {
+            "caption": "Service status with primary column emphasis"
+          }
+        },
+        "SimplifiedNoHeader": {
+          "args": {
+            "title": "Contact details",
+            "caption": "Primary contact details"
           }
         },
         "Small": {
@@ -2093,10 +2107,10 @@
             "responsive": "md"
           }
         },
-        "PrimaryVariant": {
+        "ResponsiveStackedMobile": {
           "args": {
-            "caption": "Primary variant",
-            "variant": "primary"
+            "caption": "Program review schedule",
+            "responsive": "always"
           }
         }
       },
@@ -2331,5 +2345,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-02-20T16:05:20.738Z"
+  "generated": "2026-02-21T04:47:04.520Z"
 }

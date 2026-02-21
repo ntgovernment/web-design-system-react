@@ -363,19 +363,6 @@ Given this is an NT Government design system, prefer examples relevant to govern
 "Contact support";
 ```
 
-## Component-Specific Content Tables
-
-### Quick Reference
-
-| Component        | Short Example                    | Long Example Use Case                       |
-| ---------------- | -------------------------------- | ------------------------------------------- |
-| **Callout**      | "Quick tip: Save work regularly" | Explaining component text-wrapping behavior |
-| **Notification** | "Changes saved successfully"     | System status with timeline details         |
-| **Button**       | "Submit", "Save", "Cancel"       | Action-oriented, not generic                |
-| **Card**         | "Analytics Dashboard"            | Descriptive title with contextual content   |
-| **Typography**   | Theme font demonstration         | Explaining typography system features       |
-| **Pill**         | "JavaScript", "Status: Active"   | Real filter/tag names                       |
-| **Tag**          | "Approved", "In Progress"        | Status or category labels                   |
 
 ## Story Naming Conventions
 
