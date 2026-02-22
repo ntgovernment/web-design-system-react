@@ -286,7 +286,7 @@ All colors and spacing in the DatePicker use CSS variables. To customize:
 }
 ```
 
-See [CSS_VARIABLES.md](./CSS_VARIABLES.md) for a complete list of customizable variables.
+The comprehensive list of CSS variables used by the component appears later in this document.
 
 ---
 
@@ -567,8 +567,7 @@ src/components/DatePicker/
 ├── DatePicker-ntg.css
 ├── DatePicker-central.css
 ├── DatePicker.stories.tsx
-├── DATEPICKER.md
-├── CSS_VARIABLES.md
+├── DATEPICKER.md       # documentation consolidated here
 └── index.ts
 ```
 
