@@ -169,7 +169,7 @@
 }
 
 .footer__link:visited {
-  color: #8a38f5;
+  color: var(--clr-text-inverse);
 }
 
 .footer__link:focus,
@@ -218,7 +218,7 @@
 }
 
 .footer__social-link:visited {
-  color: #8a38f5;
+  color: var(--clr-text-inverse);
 }
 
 .footer__social-link:focus,
@@ -295,7 +295,7 @@
 }
 
 .footer__bottom-link:visited {
-  color: #8a38f5;
+  color: var(--clr-text-inverse);
 }
 
 .footer__bottom-link:focus,

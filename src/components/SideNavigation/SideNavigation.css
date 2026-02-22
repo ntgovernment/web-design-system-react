@@ -123,6 +123,10 @@
   color: var(--clr-link-hover);
 }
 
+.side-nav__link:visited {
+  color: var(--clr-link-default);
+}
+
 .side-nav__item--current .side-nav__link {
   font-weight: 700;
   color: var(--clr-link-default);

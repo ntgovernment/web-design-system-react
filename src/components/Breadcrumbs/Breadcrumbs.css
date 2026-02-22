@@ -52,6 +52,10 @@
   color: var(--clr-link-hover);
 }
 
+.content-breadcrumbs__link:visited {
+  color: var(--clr-link-default);
+}
+
 .content-breadcrumbs__link:focus,
 .content-breadcrumbs__link:focus-visible {
   outline: none;
