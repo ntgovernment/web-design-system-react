@@ -89,7 +89,7 @@ Token → Semantic variable → Bootstrap variable (used)
 
 Where to change values:
 
-- Theme-level changes: update `design-tokens/tokens.json` and run `npm run tokens:build` (preferred).
+- Theme-level changes: update `@ntgovernment/web-design-tokens` and bump `@ntgovernment/web-design-tokens` in `package.json`, then run `npm install && npm run build` (preferred).
 - Component-level overrides: change `src/content/pagination/Pagination.css` or set CSS variables at runtime.
 
 ---
@@ -129,8 +129,8 @@ Change via CSS class (global):
 
 Theme-level change (preferred):
 
-1. Edit `design-tokens/tokens.json` (change `clr-link-default` or radius tokens).
-2. Run `npm run tokens:build` then rebuild.
+1. Update `@ntgovernment/web-design-tokens` to the required version (change `clr-link-default` or radius tokens).
+2. Run `npm run build`.
 
 ---
 

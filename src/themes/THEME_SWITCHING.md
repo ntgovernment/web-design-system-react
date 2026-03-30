@@ -6,14 +6,24 @@ The design system now supports **dual-variable system** for flexible theme switc
 
 ## File Structure
 
+The built theme bundles are in `dist/`:
+
 ```
-src/themes/
-├── common.css              # Shared tokens (shadows, spacing, borders, radii)
-├── grid.css                # Bootstrap grid configuration
-├── typography.css          # Theme-agnostic typography
-├── base-variables.css      # NEW: Unprefixed semantic variables (82 vars)
-├── theme-ntg.css           # NT.GOV.AU theme (255 lines)
-└── theme-central.css       # NTG Central theme (235 lines)
+dist/
+├── theme-ntg.min.css     # Self-contained NT.GOV.AU theme bundle
+└── theme-central.min.css # Self-contained NTG Central theme bundle
+```
+
+Token CSS source lives in `node_modules/@ntgovernment/web-design-tokens/dist/css/`:
+
+```
+@ntgovernment/web-design-tokens/dist/css/
+├── base-variables.css       # Unprefixed semantic variable mappings
+├── common.css               # Spacing, shadows, borders, radii
+├── grid.css                 # Bootstrap grid configuration
+├── typography.css           # Type scale variables
+├── themes/theme-ntg.css     # NTG palette + semantic colors
+└── themes/theme-central.css # Central palette + semantic colors
 ```
 
 ## Variable System
@@ -274,16 +284,13 @@ export const decorators = [
 
 ## Creating New Themes
 
-To create a new theme (e.g., "region" theme):
+New themes are added to the `@ntgovernment/web-design-tokens` package. To consume a new theme:
 
-1. **Export from Figma** with new theme tokens
-2. **Update tokens.json** with new theme data under `primitives.region` and `themes.region`
-3. **Run build script**: `npm run tokens:build`
-4. **New files generated:**
-   - `src/themes/region-theme.css` (with both prefixed and unprefixed variables)
-   - `base-variables.css` updated (if using region as default)
-
-**No code changes needed!** The build script automatically generates both prefixed and unprefixed variables for any theme in tokens.json.
+1. **Raise a PR** in the `web-design-tokens` repository adding the new theme tokens
+2. **Publish** a new version of `@ntgovernment/web-design-tokens`
+3. **Bump the version** in this repo's `package.json` and run `npm install`
+4. **Add the theme** to `scripts/build-theme-bundles.js` — add a new entry to the `themes` array with the theme token file paths and output filename
+5. **Run `npm run build`** — the new `dist/theme-{name}.min.css` bundle will be produced automatically
 
 ## Migration Guide
 

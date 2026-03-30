@@ -178,13 +178,12 @@ switchTheme("central"); // Loads Roboto font, Central colors
 
 ### In React/Storybook
 
-Import both files dynamically or use a theme provider:
+Import theme CSS from the tokens package:
 
 ```tsx
 // .storybook/preview.tsx
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../src/themes/typography-ntg.css"; // or typography-central.css
-import "../src/themes/theme-ntg.css";
+import "@ntgovernment/web-design-tokens/css/theme-ntg"; // or theme-central
 ```
 
 ## Responsive Typography
@@ -206,7 +205,7 @@ This ensures Bootstrap components use the correct mobile typography from design 
 To add additional Bootstrap variable mappings:
 
 1. Identify the Bootstrap CSS variable from [Bootstrap docs](https://getbootstrap.com/docs/5.3/customize/css-variables/)
-2. Find the corresponding design token in `design-tokens/tokens.json`
+2. Find the corresponding design token in `@ntgovernment/web-design-tokens`
 3. Add the mapping to **both** `typography-ntg.css` AND `typography-central.css`
 4. Test with theme switching enabled
 
@@ -234,20 +233,14 @@ Verify the following when testing:
 
 ## Future Automation
 
-Currently, these files are **manually maintained**. In the future, they could be auto-generated from `design-tokens/tokens.json` by extending `scripts/build-tokens.js` to:
-
-1. Extract Bootstrap-compatible mappings from tokens
-2. Generate `bootstrap-{theme}.css` files automatically
-3. Keep mappings in sync with token updates
-
-This would follow the same pattern as the auto-generated theme CSS files.
+The Bootstrap typography override CSS in `@ntgovernment/web-design-tokens` maps token values to Bootstrap CSS variables. Any additional mappings should be added to the tokens package.
 
 ## Resources
 
 - [Bootstrap CSS Variables Documentation](https://getbootstrap.com/docs/5.3/customize/css-variables/)
 - [Bootstrap Typography](https://getbootstrap.com/docs/5.3/content/typography/)
-- [Design Tokens README](../../design-tokens/DESIGN-TOKENS.md)
-- [Theme Switching Guide](../themes/THEME_SWITCHING.md)
+- [`@ntgovernment/web-design-tokens` README](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens)
+- [Theme Switching Guide](THEME_SWITCHING.md)
 
 ## Support
 

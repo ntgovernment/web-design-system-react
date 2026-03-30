@@ -7,8 +7,8 @@
   "module": "./dist/components.min.js",
   "exports": {
     ".": "./dist/components.min.js",
-    "./ntg-theme.min.css": "./dist/ntg-theme.min.css",
-    "./central-theme.min.css": "./dist/central-theme.min.css"
+    "./theme-ntg.min.css": "./dist/theme-ntg.min.css",
+    "./theme-central.min.css": "./dist/theme-central.min.css"
   },
   "files": [
     "dist"

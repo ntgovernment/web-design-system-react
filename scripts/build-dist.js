@@ -12,8 +12,8 @@
  *      (reads token CSS from node_modules/@ntgovernment/web-design-tokens)
  *   5. Organise final dist/ structure:
  *        dist/components.min.js     UMD component bundle
- *        dist/ntg-theme.min.css     Self-contained NT.GOV.AU theme bundle
- *        dist/central-theme.min.css Self-contained NTG Central theme bundle
+ *        dist/theme-ntg.min.css     Self-contained NT.GOV.AU theme bundle
+ *        dist/theme-central.min.css Self-contained NTG Central theme bundle
  *        dist/index.html            Interactive demo
  *        dist/index.js / index.css  Demo app bundle
  *
@@ -111,7 +111,7 @@ demoFiles.forEach(file => {
       // Insert theme CSS link after Bootstrap CDN link
       html = html.replace(
         /(<!-- Bootstrap 5\.3[^>]*>\n\s*<link[^>]*bootstrap[^>]*>\n)/,
-        '$1  <!-- Theme CSS - Complete bundle with all dependencies (swapped during theme switching) -->\n  <link id="theme-css" href="ntg-theme.min.css" rel="stylesheet">\n'
+        '$1  <!-- Theme CSS - Complete bundle with all dependencies (swapped during theme switching) -->\n  <link id="theme-css" href="theme-ntg.min.css" rel="stylesheet">\n'
       );
       
       writeFileSync(destPath, html);
@@ -148,8 +148,8 @@ console.log('\n✅ Build complete!\n');
 console.log('📦 Distribution files in dist/:');
 console.log('   ┌─ Component Library (for Squiz Matrix deployment)');
 console.log('   ├─ components.min.js       - UMD component bundle (React external)');
-console.log('   ├─ ntg-theme.min.css       - Complete NT.GOV.AU theme bundle');
-console.log('   ├─ central-theme.min.css   - Complete NTG Central theme bundle');
+console.log('   ├─ theme-ntg.min.css       - Complete NT.GOV.AU theme bundle');
+console.log('   ├─ theme-central.min.css   - Complete NTG Central theme bundle');
 console.log('   ┌─ Demo Application');
 console.log('   ├─ index.html              - Demo page with theme switching');
 console.log('   ├─ index.js                - Demo application bundle');
@@ -159,8 +159,8 @@ console.log('   └─ index.css               - Demo application styles');
 console.log('\n📊 File sizes:');
 const filesToMeasure = [
   'components.min.js',
-  'ntg-theme.min.css',
-  'central-theme.min.css',
+  'theme-ntg.min.css',
+  'theme-central.min.css',
   'index.html',
   'index.js',
   'index.css',

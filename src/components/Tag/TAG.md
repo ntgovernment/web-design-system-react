@@ -325,8 +325,8 @@ The component generates the following CSS class structure:
 ## Related Documentation
 
 - [Design Tokens](../../../design-tokens/DESIGN-TOKENS.md)
-- [Typography](../../../src/themes/THEMES.md)
-- [Theme Switching](../../../src/themes/THEME_SWITCHING.md)
+- [Typography](src/themes/THEMES.md)
+- [Theme Switching](src/themes/THEME_SWITCHING.md)
 - [Card Component](../Card/CARD.md) - Uses tags for content categorization
 - [Notification Component](../Notification/NOTIFICATION.md) - For interactive status indicators
 - [Pill Component](../Pill/PILL.md) - For removable/interactive tags

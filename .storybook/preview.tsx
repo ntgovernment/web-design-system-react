@@ -92,6 +92,12 @@ if (typeof globalThis !== "undefined") {
   globalThis.IS_REACT_ACT_ENVIRONMENT = false;
 }
 
+// Base path for design token CSS static assets.
+// import.meta.env.BASE_URL is "/" in dev and the configured Vite base in production
+// (e.g. "/web-design-system/" on GitHub Pages). The design-tokens-css/ directory is
+// served from node_modules via staticDirs in main.ts.
+const tokensCssBase = `${import.meta.env.BASE_URL}design-tokens-css`;
+
 // Load Bootstrap CSS from CDN
 const loadBootstrapCSS = () => {
   const link = document.createElement("link");
@@ -126,27 +132,8 @@ const loadBootstrapTypography = (theme: string) => {
   const typographyOverride = document.createElement("link");
   typographyOverride.id = "bootstrap-typography-css";
   typographyOverride.rel = "stylesheet";
-  typographyOverride.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/typography-${theme}.css`;
+  typographyOverride.href = `${tokensCssBase}/themes/typography-${theme}.css`;
   document.head.appendChild(typographyOverride);
-};
-
-// Load Button Component Common Styles (theme-agnostic)
-const loadButtonCommonStyles = () => {
-  // Remove existing common Button CSS if present
-  const existingCommon = document.getElementById("button-common-css");
-  if (existingCommon) {
-    existingCommon.remove();
-  }
-
-  // Add common Button CSS (only once)
-  const buttonCommonCSS = document.createElement("link");
-  buttonCommonCSS.id = "button-common-css";
-  buttonCommonCSS.rel = "stylesheet";
-  buttonCommonCSS.href = new URL(
-    "../src/components/Button/Button.css",
-    import.meta.url,
-  ).href;
-  document.head.appendChild(buttonCommonCSS);
 };
 
 // Load Button Component Styles (theme-specific overrides)
@@ -428,52 +415,15 @@ const loadThemeCSS = (theme: string) => {
     existingTheme.remove();
   }
 
-  // Load common CSS files (only once)
-  if (!document.getElementById("common-css")) {
-    const commonCSS = document.createElement("link");
-    commonCSS.id = "common-css";
-    commonCSS.rel = "stylesheet";
-    commonCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/common.css`;
-    document.head.appendChild(commonCSS);
-  }
+  // Note: common, grid, typography, typography-literals, and base-variables CSS are
+  // already bundled into the Storybook JS bundle via the top-level ES imports at the
+  // top of this file. No need to load them again via <link> tags.
 
-  if (!document.getElementById("grid-css")) {
-    const gridCSS = document.createElement("link");
-    gridCSS.id = "grid-css";
-    gridCSS.rel = "stylesheet";
-    gridCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/grid.css`;
-    document.head.appendChild(gridCSS);
-  }
-
-  if (!document.getElementById("typography-css")) {
-    const typographyCSS = document.createElement("link");
-    typographyCSS.id = "typography-css";
-    typographyCSS.rel = "stylesheet";
-    typographyCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/typography.css`;
-    document.head.appendChild(typographyCSS);
-  }
-
-  if (!document.getElementById("typography-literals-css")) {
-    const typographyLiteralsCSS = document.createElement("link");
-    typographyLiteralsCSS.id = "typography-literals-css";
-    typographyLiteralsCSS.rel = "stylesheet";
-    typographyLiteralsCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/typography-literals.css`;
-    document.head.appendChild(typographyLiteralsCSS);
-  }
-
-  if (!document.getElementById("base-variables-css")) {
-    const baseVariablesCSS = document.createElement("link");
-    baseVariablesCSS.id = "base-variables-css";
-    baseVariablesCSS.rel = "stylesheet";
-    baseVariablesCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/base-variables.css`;
-    document.head.appendChild(baseVariablesCSS);
-  }
-
-  // Add theme-specific CSS
+  // Add theme-specific CSS (changes when user switches themes, so loaded dynamically)
   const themeCSS = document.createElement("link");
   themeCSS.id = "theme-css";
   themeCSS.rel = "stylesheet";
-  themeCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/theme-${theme}.css`;
+  themeCSS.href = `${tokensCssBase}/themes/theme-${theme}.css`;
   document.head.appendChild(themeCSS);
 
   // Load component styles (Button CSS with Bootstrap variable overrides)
@@ -495,7 +445,6 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadFontAwesome();
     loadThemeCSS(theme); // Load theme CSS FIRST (defines --clr-* variables)
     loadBootstrapTypography(theme);
-    loadButtonCommonStyles(); // Load common Button CSS (uses semantic variables)
     loadButtonStyles(theme); // Load theme-specific Button CSS overrides LAST
     loadTagStyles(theme); // Load theme-specific Tag CSS overrides
     loadInputStyles(theme); // Load theme-specific Input CSS overrides

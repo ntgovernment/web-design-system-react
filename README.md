@@ -35,13 +35,13 @@ After building (`npm run build`), the `dist/` folder contains:
 | File | Description | Size (approx.) |
 |---|---|---|
 | `components.min.js` | UMD bundle of all React components (React external) | ~75 KB |
-| `ntg-theme.min.css` | Complete NT.GOV.AU theme — tokens + component CSS | ~71 KB |
-| `central-theme.min.css` | Complete NTG Central theme — tokens + component CSS | ~72 KB |
+| `theme-ntg.min.css` | Complete NT.GOV.AU theme — tokens + component CSS | ~71 KB |
+| `theme-central.min.css` | Complete NTG Central theme — tokens + component CSS | ~72 KB |
 | `index.html` | Interactive demo page with theme switching | ~1 KB |
 | `index.js` | Demo application bundle | ~168 KB |
 | `index.css` | Demo application styles | ~120 KB |
 
-The theme bundles (`ntg-theme.min.css`, `central-theme.min.css`) are fully self-contained — they include the design token CSS variables, typography, grid, and all component styles. You only need to load Bootstrap from CDN and one theme bundle.
+The theme bundles (`theme-ntg.min.css`, `theme-central.min.css`) are fully self-contained — they include the design token CSS variables, typography, grid, and all component styles. You only need to load Bootstrap from CDN and one theme bundle.
 
 ## Usage
 
@@ -56,7 +56,7 @@ import {
   Image,
 } from "@ntgovernment/web-design-system";
 import "@ntgovernment/web-design-system/components.min.css";
-import "@ntgovernment/web-design-system/ntg-theme.min.css"; // or central-theme.min.css
+import "@ntgovernment/web-design-system/theme-ntg.min.css"; // or theme-central.min.css
 
 function App() {
   return (
@@ -95,9 +95,9 @@ The library ships two pre-configured themes. Load one theme bundle to get all de
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Pick ONE theme bundle -->
-<link rel="stylesheet" href="node_modules/@ntgovernment/web-design-system/dist/ntg-theme.min.css">
+<link rel="stylesheet" href="node_modules/@ntgovernment/web-design-system/dist/theme-ntg.min.css">
 <!-- OR -->
-<link rel="stylesheet" href="node_modules/@ntgovernment/web-design-system/dist/central-theme.min.css">
+<link rel="stylesheet" href="node_modules/@ntgovernment/web-design-system/dist/theme-central.min.css">
 ```
 
 #### NT.GOV.AU Theme (`ntg-` prefix)
@@ -625,7 +625,7 @@ Components are tested in:
    ```
 2. Load theme CSS after Bootstrap:
    ```html
-   <link rel="stylesheet" href="./ntg-theme.min.css" />
+   <link rel="stylesheet" href="./theme-ntg.min.css" />
    ```
 3. Check browser console for CSS loading errors
 
@@ -661,7 +661,7 @@ Components are tested in:
 
 **Solutions**:
 
-1. Load theme CSS file (`ntg-theme.min.css` or `central-theme.min.css`)
+1. Load theme CSS file (`theme-ntg.min.css` or `theme-central.min.css`)
 2. Ensure theme CSS loads after Bootstrap CSS
 3. Check browser DevTools to verify CSS variables are defined
 4. Clear browser cache

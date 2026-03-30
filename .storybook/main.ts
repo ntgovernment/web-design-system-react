@@ -169,7 +169,16 @@ const config: StorybookConfig = {
     "@storybook/addon-vitest",
   ],
 
-  staticDirs: ["public"],
+  staticDirs: [
+    "public",
+    // Serve design token CSS files so they can be loaded by preview.tsx at runtime.
+    // This copies them into the Storybook output, making them available in production
+    // (GitHub Pages) where node_modules is not served.
+    {
+      from: "../node_modules/@ntgovernment/web-design-tokens/dist/css",
+      to: "/design-tokens-css",
+    },
+  ],
 
   framework: {
     name: "@storybook/react-vite",
@@ -205,6 +214,24 @@ const config: StorybookConfig = {
       // Use STORYBOOK_BASE_PATH env variable if set (for GitHub Pages),
       // otherwise use default for Squiz Matrix deployment
       config.base = process.env.STORYBOOK_BASE_PATH || "/webds/storybook/";
+
+      // Fix: @storybook/addon-vitest injects vite-inject-mocker-entry.js with an
+      // absolute path (/vite-inject-mocker-entry.js) into iframe.html. Vite's base
+      // transformation only rewrites relative paths, so we convert it to a relative
+      // path here so that Vite can correctly rewrite it with the configured base.
+      config.plugins = config.plugins || [];
+      config.plugins.push({
+        name: "fix-storybook-absolute-paths",
+        transformIndexHtml: {
+          order: "pre" as const,
+          handler(html: string) {
+            return html.replace(
+              /src="\/vite-inject-mocker-entry\.js"/g,
+              'src="./vite-inject-mocker-entry.js"',
+            );
+          },
+        },
+      });
     }
 
     // Add custom HTML API plugin (always present)

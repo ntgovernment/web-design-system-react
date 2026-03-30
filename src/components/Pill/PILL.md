@@ -294,7 +294,7 @@ function SearchResults({ query, filters, onRemoveFilter, onClearAll }) {
 ## Related Documentation
 
 - [Design Tokens](../../../design-tokens/DESIGN-TOKENS.md)
-- [Theme Switching](../../../src/themes/THEME_SWITCHING.md)
+- [Theme Switching](src/themes/THEME_SWITCHING.md)
 - [Tag Component](../Tag/TAG.md) - Related non-interactive label component
 - [Button Component](../Button/BUTTON.md) - Interactive button patterns
 

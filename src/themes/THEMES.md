@@ -1,86 +1,74 @@
-# Theme CSS Files
+# Themes
 
-⚠️ **DO NOT EDIT THESE FILES MANUALLY** ⚠️
+This directory contains theme-related documentation and demo assets. Theme CSS is **not generated here** — it is consumed from the [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens) npm package and assembled into self-contained bundles by `scripts/build-theme-bundles.js`.
 
-The CSS files in this directory are automatically generated from design tokens.
+## Built Theme Bundles
 
-## Generated Files
+`npm run build` produces two fully self-contained CSS bundles in `dist/`:
 
-- `theme-ntg.css` - NT.GOV.AU theme (auto-generated)
-- `theme-central.css` - NTG Central theme (auto-generated)
+| File | Theme |
+|---|---|
+| `dist/theme-ntg.min.css` | NT.GOV.AU |
+| `dist/theme-central.min.css` | NTG Central |
 
-## Making Changes
+Each bundle includes base variables, common tokens, grid, typography, theme palette, and component styles — **no separate imports required** beyond Bootstrap CDN.
 
-To update theme CSS:
+## Token Source
 
-1. **Update design tokens**: Edit `design-tokens/tokens.json`
-2. **Rebuild CSS**: Run `npm run tokens:build`
-3. **Verify changes**: Check Storybook or run `npm run dev`
-4. **Commit both**: Commit both `tokens.json` and generated CSS files
+Design tokens live in the separate [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens) package. This repo consumes them as a direct npm dependency.
 
-## Build Process
+The tokens package exposes CSS via named export specifiers:
 
-The build process automatically generates theme CSS from tokens:
-
-```bash
-npm run tokens:validate  # Validate token structure
-npm run tokens:build     # Generate CSS from tokens
-npm run build            # Build library (includes token generation)
+```css
+@import "@ntgovernment/web-design-tokens/css/common";
+@import "@ntgovernment/web-design-tokens/css/theme-ntg";
+@import "@ntgovernment/web-design-tokens/css/theme-central";
 ```
 
-## Token Workflow
+## Updating Tokens
+
+1. Raise a PR in the `web-design-tokens` repository
+2. After a new version is published, bump `@ntgovernment/web-design-tokens` in `package.json`
+3. Run `npm install` then `npm run build`
+
+## Build Process
 
 ```
 Figma Design
     ↓ (export)
-design-tokens/tokens.json
-    ↓ (Style Dictionary)
-src/themes/*.css
-    ↓ (Vite build)
-dist/style.css
+@ntgovernment/web-design-tokens  ← external npm package
+    ↓ (scripts/build-theme-bundles.js)
+dist/theme-ntg.min.css / dist/theme-central.min.css
 ```
 
 ## CSS Variable Structure
 
-### NT.GOV.AU Theme (`--ntg-*` prefix)
+Components use **unprefixed semantic variables** that automatically resolve for the active theme:
 
-- Colors: `--ntg-primary`, `--ntg-secondary`, etc.
-- Typography: `--ntg-font-family-sans-serif`, etc.
-- Spacing: `--ntg-spacer-1` through `--ntg-spacer-5`
-- Borders: `--ntg-border-radius`, `--ntg-border-width`, etc.
-- Shadows: `--ntg-box-shadow`, etc.
+### Color tokens
+- `--clr-action-primary`, `--clr-action-hover` — interactive elements
+- `--clr-bg-default`, `--clr-bg-shade` — backgrounds
+- `--clr-text-default`, `--clr-text-muted` — text
+- `--clr-border-subtle`, `--clr-border-strong-01` — borders
+- `--clr-focus-focus` — focus ring (NTG: orange; Central: green)
+- `--clr-status-success/danger/warning/info` — status indicators
 
-### NTG Central Theme (`--central-*` prefix)
+### Spacing tokens
+- `--sp-xxs` (4px) through `--sp-xxxl` (48px)
 
-- Same structure with `--central-*` prefix
+### Typography tokens
+- `--type-font-default` — body typeface (NTG: Lato; Central: Roboto)
+- `--type-desktop-h1-size` through `--type-desktop-h6-size`
+- `--type-body-default-lh`, `--type-body-sm-size`
 
-### Bootstrap Integration
+## Theme Switching
 
-Both themes map to Bootstrap 5.3 variables:
-
-```css
---bs-primary: var(--ntg-primary);
---bs-body-font-family: var(--ntg-font-family-sans-serif);
-```
-
-## Documentation
-
-For more information about the design token system:
-
-- See `design-tokens/DESIGN-TOKENS.md`
-- View Style Dictionary config: `design-tokens/config/style-dictionary.config.js`
-- Read build script: `scripts/build-tokens.js`
+See [THEME_SWITCHING.md](THEME_SWITCHING.md) for runtime theme switching patterns.
 
 ## Troubleshooting
 
-**CSS not updating after token changes?**
+**Theme styles not reflecting after a token package update?**
 
-1. Run `npm run tokens:build`
-2. Clear browser cache
-3. Restart Vite dev server
-
-**Build errors?**
-
-1. Run `npm run tokens:validate` to check token structure
-2. Check `design-tokens/tokens.json` for syntax errors
-3. Review console output for specific error messages
+1. Confirm the version bump in `package.json` and re-run `npm install`
+2. Run `npm run build` to regenerate the theme bundles
+3. Hard-refresh the browser (Ctrl+Shift+R / Cmd+Shift+R)
