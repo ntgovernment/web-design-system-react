@@ -117,72 +117,23 @@ npm run build            # Includes token generation (via prebuild)
 
 ### 5. Component Library
 
-#### Eight Production Components:
+The component library is composed of a growing set of reusable React components.
+Each component is documented in its own markdown file under
+`src/components/<ComponentName>/<COMPONENTNAME>.md`:
 
-**Button Component**
+- Button
+- Card
+- Notification
+- Image
+- Tag
+- Pill
+- Callout
+- Icon
 
-- Multiple variants (primary, secondary, tertiary)
-- Size options (sm, default)
-- Icon support (left, right, icon-only)
-- Full TypeScript props interface
-- Storybook stories with all variants
-
-**Card Component**
-
-- Title, body, and footer sections
-- Icon support in header
-- Variant support for theming
-- Flexible content rendering
-- TypeScript props interface
-- Comprehensive Storybook stories
-
-**Notification Component**
-
-- 4 status variants (info, success, warning, danger)
-- Auto-assigned FontAwesome Light icons
-- Structured title and message props
-- Non-dismissible design
-- Design token-based styling
-- TypeScript props interface
-
-**Image Component**
-
-- Responsive images with fluid sizing
-- Thumbnail styling with borders and shadows
-- Border radius variants (sm, md, lg, circle)
-- Automatic figure/figcaption wrapper
-- Design token integration
-- Theme-aware styling
-- Full TypeScript props interface
-- 11 Storybook stories
-
-**Tag Component**
-
-- 6 color variants
-- Uppercase typography
-- Theme-aware colors
-- TypeScript props interface
-
-**Pill Component**
-
-- Removable filter component
-- Click-to-remove functionality
-- Theme-aware styling
-- TypeScript props interface
-
-**Callout Component**
-
-- Heading and content props
-- Prominent left border
-- Theme-aware styling
-- TypeScript props interface
-
-**Icon Component**
-
-- FontAwesome wrapper
-- Size and color customization
-- Accessibility features
-- TypeScript props interface
+These per-component files include implementation notes, props tables, token
+mappings and Storybook guidance. The library is intentionally lightweight and
+relies on the documentation within each component's folder rather than
+repeating information here.
 
 ### 6. Squiz DXP Deployment Ready
 

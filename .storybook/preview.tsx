@@ -2,10 +2,10 @@ import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 
 // Import common design tokens FIRST (required by component CSS files)
-import "../src/themes/common.css";
-import "../src/themes/grid.css";
-import "../src/themes/typography.css";
-import "../src/themes/typography-literals.css";
+import "@ntgovernment/web-design-tokens/css/common";
+import "@ntgovernment/web-design-tokens/css/grid";
+import "@ntgovernment/web-design-tokens/css/typography";
+import "@ntgovernment/web-design-tokens/css/typography-literals";
 
 // Import Button CSS files to ensure Vite processes them
 import "../src/components/Button/Button.css";
@@ -53,19 +53,19 @@ import "../src/components/Footer/Footer-ntg.css";
 import "../src/components/Footer/Footer-central.css";
 
 // Import Breadcrumbs CSS files to ensure Vite processes them
-import "../src/content/breadcrumbs/Breadcrumbs.css";
-import "../src/content/breadcrumbs/Breadcrumbs-ntg.css";
-import "../src/content/breadcrumbs/Breadcrumbs-central.css";
+import "../src/components/Breadcrumbs/Breadcrumbs.css";
+import "../src/components/Breadcrumbs/Breadcrumbs-ntg.css";
+import "../src/components/Breadcrumbs/Breadcrumbs-central.css";
 
 // Import Pagination CSS files to ensure Vite processes them
-import "../src/content/pagination/Pagination.css";
-import "../src/content/pagination/Pagination-ntg.css";
-import "../src/content/pagination/Pagination-central.css";
+import "../src/components/Pagination/Pagination.css";
+import "../src/components/Pagination/Pagination-ntg.css";
+import "../src/components/Pagination/Pagination-central.css";
 
 // Import OnThisPageNavigation CSS files to ensure Vite processes them
-import "../src/content/on-this-page/OnThisPageNavigation.css";
-import "../src/content/on-this-page/OnThisPageNavigation-ntg.css";
-import "../src/content/on-this-page/OnThisPageNavigation-central.css";
+import "../src/components/OnThisPageNavigation/OnThisPageNavigation.css";
+import "../src/components/OnThisPageNavigation/OnThisPageNavigation-ntg.css";
+import "../src/components/OnThisPageNavigation/OnThisPageNavigation-central.css";
 
 // Import Document CSS files to ensure Vite processes them
 import "../src/components/Document/Document.css";
@@ -81,6 +81,11 @@ import "../src/components/SideNavigation/SideNavigation-central.css";
 import "../src/components/Tab/Tab.css";
 import "../src/components/Tab/Tab-ntg.css";
 import "../src/components/Tab/Tab-central.css";
+
+// Import Table CSS files to ensure Vite processes them
+import "../src/components/Table/Table.css";
+import "../src/components/Table/Table-ntg.css";
+import "../src/components/Table/Table-central.css";
 
 // Suppress React act() warnings in Storybook
 if (typeof globalThis !== "undefined") {
@@ -121,10 +126,7 @@ const loadBootstrapTypography = (theme: string) => {
   const typographyOverride = document.createElement("link");
   typographyOverride.id = "bootstrap-typography-css";
   typographyOverride.rel = "stylesheet";
-  typographyOverride.href = new URL(
-    `../src/themes/typography-${theme}.css`,
-    import.meta.url,
-  ).href;
+  typographyOverride.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/typography-${theme}.css`;
   document.head.appendChild(typographyOverride);
 };
 
@@ -327,7 +329,7 @@ const loadBreadcrumbsStyles = (theme: string) => {
   breadcrumbsCSS.id = "breadcrumbs-theme-css";
   breadcrumbsCSS.rel = "stylesheet";
   breadcrumbsCSS.href = new URL(
-    `../src/content/breadcrumbs/Breadcrumbs-${theme}.css`,
+    `../src/components/Breadcrumbs/Breadcrumbs-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(breadcrumbsCSS);
@@ -344,7 +346,7 @@ const loadPaginationStyles = (theme: string) => {
   paginationCSS.id = "pagination-theme-css";
   paginationCSS.rel = "stylesheet";
   paginationCSS.href = new URL(
-    `../src/content/pagination/Pagination-${theme}.css`,
+    `../src/components/Pagination/Pagination-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(paginationCSS);
@@ -361,7 +363,7 @@ const loadOnThisPageNavigationStyles = (theme: string) => {
   onThisPageCSS.id = "on-this-page-theme-css";
   onThisPageCSS.rel = "stylesheet";
   onThisPageCSS.href = new URL(
-    `../src/content/on-this-page/OnThisPageNavigation-${theme}.css`,
+    `../src/components/OnThisPageNavigation/OnThisPageNavigation-${theme}.css`,
     import.meta.url,
   ).href;
   document.head.appendChild(onThisPageCSS);
@@ -401,6 +403,23 @@ const loadTabStyles = (theme: string) => {
   document.head.appendChild(tabCSS);
 };
 
+// Load Table Component Styles (theme-specific overrides)
+const loadTableStyles = (theme: string) => {
+  const existingTable = document.getElementById("table-theme-css");
+  if (existingTable) {
+    existingTable.remove();
+  }
+
+  const tableCSS = document.createElement("link");
+  tableCSS.id = "table-theme-css";
+  tableCSS.rel = "stylesheet";
+  tableCSS.href = new URL(
+    `../src/components/Table/Table-${theme}.css`,
+    import.meta.url,
+  ).href;
+  document.head.appendChild(tableCSS);
+};
+
 // Load theme CSS files
 const loadThemeCSS = (theme: string) => {
   // Remove existing theme CSS if present
@@ -414,7 +433,7 @@ const loadThemeCSS = (theme: string) => {
     const commonCSS = document.createElement("link");
     commonCSS.id = "common-css";
     commonCSS.rel = "stylesheet";
-    commonCSS.href = new URL("../src/themes/common.css", import.meta.url).href;
+    commonCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/common.css`;
     document.head.appendChild(commonCSS);
   }
 
@@ -422,7 +441,7 @@ const loadThemeCSS = (theme: string) => {
     const gridCSS = document.createElement("link");
     gridCSS.id = "grid-css";
     gridCSS.rel = "stylesheet";
-    gridCSS.href = new URL("../src/themes/grid.css", import.meta.url).href;
+    gridCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/grid.css`;
     document.head.appendChild(gridCSS);
   }
 
@@ -430,10 +449,7 @@ const loadThemeCSS = (theme: string) => {
     const typographyCSS = document.createElement("link");
     typographyCSS.id = "typography-css";
     typographyCSS.rel = "stylesheet";
-    typographyCSS.href = new URL(
-      "../src/themes/typography.css",
-      import.meta.url,
-    ).href;
+    typographyCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/typography.css`;
     document.head.appendChild(typographyCSS);
   }
 
@@ -441,10 +457,7 @@ const loadThemeCSS = (theme: string) => {
     const typographyLiteralsCSS = document.createElement("link");
     typographyLiteralsCSS.id = "typography-literals-css";
     typographyLiteralsCSS.rel = "stylesheet";
-    typographyLiteralsCSS.href = new URL(
-      "../src/themes/typography-literals.css",
-      import.meta.url,
-    ).href;
+    typographyLiteralsCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/typography-literals.css`;
     document.head.appendChild(typographyLiteralsCSS);
   }
 
@@ -452,10 +465,7 @@ const loadThemeCSS = (theme: string) => {
     const baseVariablesCSS = document.createElement("link");
     baseVariablesCSS.id = "base-variables-css";
     baseVariablesCSS.rel = "stylesheet";
-    baseVariablesCSS.href = new URL(
-      "../src/themes/base-variables.css",
-      import.meta.url,
-    ).href;
+    baseVariablesCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/base-variables.css`;
     document.head.appendChild(baseVariablesCSS);
   }
 
@@ -463,10 +473,7 @@ const loadThemeCSS = (theme: string) => {
   const themeCSS = document.createElement("link");
   themeCSS.id = "theme-css";
   themeCSS.rel = "stylesheet";
-  themeCSS.href = new URL(
-    `../src/themes/theme-${theme}.css`,
-    import.meta.url,
-  ).href;
+  themeCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/theme-${theme}.css`;
   document.head.appendChild(themeCSS);
 
   // Load component styles (Button CSS with Bootstrap variable overrides)
@@ -503,6 +510,7 @@ const withHTMLCode: Decorator = (Story, context) => {
     loadOnThisPageNavigationStyles(theme); // Load theme-specific OnThisPageNavigation CSS overrides
     loadDocumentStyles(theme); // Load theme-specific Document CSS overrides
     loadTabStyles(theme); // Load theme-specific Tab CSS overrides
+    loadTableStyles(theme); // Load theme-specific Table CSS overrides
   }, [theme]);
 
   return (
@@ -549,30 +557,49 @@ const preview: Preview = {
         htmlWhitespaceSensitivity: "strict",
       },
     },
-    // Story ordering: Recent components first, then Components, then Design System
+    // Story ordering: Components in alphabetical order
     options: {
       storySort: {
         order: [
-          "Content",
-          [
-            "Breadcrumbs",
-            "OnThisPageNavigation",
-            "Pagination",
-            "Table",
-            "Typography",
-            "Icon",
-          ],
           "Components",
           [
-            "Card",
-            "Notification",
-            "Pill",
+            "Accordion",
+            "BackToTop",
+            "Banner",
+            "Breadcrumbs",
             "Button",
-            "Card",
-            "Tag",
             "Callout",
+            "Card",
+            "Checkbox",
+            "DateInput",
+            "DatePicker",
+            "Document",
+            "Dropdown",
+            "FileUpload",
+            "FloatingButton",
+            "Footer",
+            "GlobalAlert",
+            "Header",
+            "Icon",
             "Image",
+            "Input",
+            "Notification",
+            "OnThisPageNavigation",
+            "Pagination",
+            "Pill",
+            "QuickExit",
+            "Radio",
+            "SearchBar",
+            "SideNavigation",
+            "StepList",
+            "Tab",
+            "Table",
+            "Tag",
+            "Textarea",
+            "TopicListing",
           ],
+          "Content",
+          ["Typography"],
         ],
       },
     },

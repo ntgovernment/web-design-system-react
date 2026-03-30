@@ -9,6 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Design Tokens Package**: Migrated to `@ntgovernment/web-design-tokens` (v2.0.0) as an external npm dependency
+  - Added `.npmrc` scoping `@ntgovernment` packages to the GitHub Packages registry
+  - Component CSS imports now use package export specifiers (e.g. `@ntgovernment/web-design-tokens/css/common`)
+  - Storybook preview imports updated to use package specifiers
+  - Dev-mode theme switching (`index.html`, `App.tsx`) updated to serve files from `node_modules/@ntgovernment/web-design-tokens`
+
+### Removed
+
+- `design-tokens/` folder (`tokens.json`, `DESIGN-TOKENS.md`, `config/style-dictionary.config.js`)
+- `scripts/build-tokens.js` and `scripts/validate-tokens.js`
+- Generated `src/themes/` CSS files: `base-variables.css`, `common.css`, `grid.css`, `theme-ntg.css`, `theme-central.css`, `typography.css`, `typography-literals.css`, `typography-ntg.css`, `typography-central.css`
+- `style-dictionary` devDependency
+- `tokens:build` and `tokens:validate` npm scripts
+
+### Changed
+
+- `scripts/build-theme-bundles.js`: resolves token CSS from `node_modules/@ntgovernment/web-design-tokens/dist/css/`
+- `scripts/validate-css.js`: now validates theme files from the installed `@ntgovernment/web-design-tokens` package
+- Added `server.fs.allow: ['..']` to `vite.config.ts` to permit serving token CSS in Vite dev server
+
+### Added
+
 - **Image Component**: Responsive image component with Bootstrap styling integration
   - Responsive fluid images (max-width: 100%, height: auto) enabled by default
   - Thumbnail styling with borders, padding, shadows using design tokens

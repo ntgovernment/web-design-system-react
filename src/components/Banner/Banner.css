@@ -203,6 +203,10 @@
   text-decoration: underline;
 }
 
+.banner__link:visited {
+  color: var(--clr-link-default);
+}
+
 .banner__link:focus,
 .banner__link:focus-visible {
   outline: none;
@@ -242,6 +246,10 @@
   background: var(--clr-bg-shade);
   color: var(--clr-text-default);
   text-decoration: none;
+}
+
+.banner__pill-link:visited {
+  color: var(--clr-text-default);
 }
 
 .banner__pill-link:focus,

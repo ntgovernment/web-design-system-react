@@ -8,14 +8,29 @@ const demoRows = [
   ["Vehicle Rego", "Transport", "Planned", "28 Jan 2026"],
   ["Licensing Hub", "Business NT", "Active", "18 Jan 2026"],
   ["Water Alerts", "Environment", "Paused", "12 Jan 2026"],
-  ["MyService", "Customer Experience", "Active", "4 Jan 2026"],
-  ["Open Data", "DPC", "Planned", "21 Dec 2025"],
   ["Community Events", "NTG Central", "Active", "14 Dec 2025"],
   ["Parks Pass", "Tourism", "Active", "30 Nov 2025"],
 ];
 
+const contactColumns = ["Item", "Details"];
+
+const contactRows = [
+  ["Phone", "1300 123 456"],
+  ["Email", "help@nt.gov.au"],
+  ["Address", "4th Floor, 22 Mitchell Street"],
+  ["After-hours", "–"],
+];
+
+const mobileColumns = ["Program", "Region", "Next review", "Owner"];
+
+const mobileRows = [
+  ["Water Safety", "Top End", "15 Mar 2026", "NT Health"],
+  ["Bushfire Ready", "Katherine", "10 Apr 2026", "Emergency Services"],
+  ["School Transport", "Barkly", "30 Apr 2026", "Education"],
+];
+
 const meta = {
-  title: "Content/Table",
+  title: "Components/Table",
   component: TableContent,
   parameters: {
     layout: "padded",
@@ -28,11 +43,17 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
+    title: { control: "text" },
+    subtitle: { control: "text" },
     bordered: { control: "boolean" },
     borderless: { control: "boolean" },
     striped: { control: "boolean" },
     hover: { control: "boolean" },
     size: { control: "select", options: ["md", "sm"] },
+    showHeader: { control: "boolean" },
+    sortable: { control: "boolean" },
+    boldFirstColumn: { control: "boolean" },
+    stacked: { control: "boolean" },
     responsive: {
       control: "select",
       options: ["none", "always", "sm", "md", "lg", "xl", "xxl"],
@@ -50,6 +71,7 @@ const meta = {
         "dark",
       ],
     },
+    onSort: { action: "sort", table: { disable: true } },
   },
 } satisfies Meta<typeof TableContent>;
 
@@ -58,34 +80,51 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    caption: "Table example",
+    caption: "Service status summary",
+    columns: demoColumns,
+    rows: demoRows,
+    responsive: "always",
+  },
+};
+
+export const TitleAndSubheading: Story = {
+  args: {
+    title: "Service status overview",
+    subtitle:
+      "Latest updates for digital services across NT Government portfolios.",
+    caption: "Service status overview",
     columns: demoColumns,
     rows: demoRows,
   },
 };
 
-export const WithoutCaption: Story = {
+export const HeadersWithFilters: Story = {
   args: {
-    caption: "",
+    caption: "Sortable service status",
     columns: demoColumns,
     rows: demoRows,
+    sortable: true,
   },
 };
 
-export const Bordered: Story = {
+export const BoldFirstColumn: Story = {
   args: {
-    caption: "Bordered table",
+    caption: "Service status with primary column emphasis",
     columns: demoColumns,
     rows: demoRows,
-    bordered: true,
+    boldFirstColumn: true,
   },
 };
 
-export const Borderless: Story = {
+export const SimplifiedNoHeader: Story = {
   args: {
-    caption: "Borderless table",
-    columns: demoColumns,
-    rows: demoRows,
+    title: "Contact details",
+    caption: "Primary contact details",
+    columns: contactColumns,
+    rows: contactRows,
+    showHeader: false,
+    striped: false,
+    hover: false,
     borderless: true,
   },
 };
@@ -108,11 +147,15 @@ export const ResponsiveMd: Story = {
   },
 };
 
-export const PrimaryVariant: Story = {
+export const ResponsiveStackedMobile: Story = {
   args: {
-    caption: "Primary variant",
-    columns: demoColumns,
-    rows: demoRows,
-    variant: "primary",
+    caption: "Program review schedule",
+    columns: mobileColumns,
+    rows: mobileRows,
+    stacked: true,
+    responsive: "always",
+  },
+  parameters: {
+    viewport: { defaultViewport: "mobile1" },
   },
 };

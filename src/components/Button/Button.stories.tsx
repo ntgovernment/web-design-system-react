@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import React, { useState } from "react";
 import { Button } from "./Button";
 
 const meta = {
@@ -449,6 +450,131 @@ export const DisabledState: Story = {
       description: {
         story:
           "Disabled buttons indicate actions that are not currently available. Use disabled state sparingly and ensure there's a clear reason why the action is unavailable. Always prefer showing enabled buttons with appropriate messaging instead when possible.",
+      },
+    },
+  },
+};
+
+/**
+ * Buttons in an animated loading state using FontAwesome's fa-spin class.
+ * Includes an interactive demo that simulates an async operation.
+ */
+export const LoadingState: Story = {
+  render: () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingSecondary, setIsLoadingSecondary] = useState(false);
+
+    const handlePrimaryClick = () => {
+      setIsLoading(true);
+      setTimeout(() => setIsLoading(false), 3000);
+    };
+
+    const handleSecondaryClick = () => {
+      setIsLoadingSecondary(true);
+      setTimeout(() => setIsLoadingSecondary(false), 3000);
+    };
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "32px",
+          alignItems: "flex-start",
+        }}
+      >
+        <div>
+          <h4
+            style={{
+              marginBottom: "12px",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#555",
+            }}
+          >
+            Static loading state — all variants
+          </h4>
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            <Button
+              variant="primary"
+              iconLeft="fa-light fa-circle-notch fa-spin"
+              label="Submitting…"
+              disabled
+              aria-busy="true"
+              aria-label="Submitting, please wait"
+            />
+            <Button
+              variant="secondary"
+              iconLeft="fa-light fa-circle-notch fa-spin"
+              label="Saving…"
+              disabled
+              aria-busy="true"
+              aria-label="Saving, please wait"
+            />
+            <Button
+              variant="tertiary"
+              iconLeft="fa-light fa-circle-notch fa-spin"
+              label="Loading…"
+              disabled
+              aria-busy="true"
+              aria-label="Loading, please wait"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h4
+            style={{
+              marginBottom: "12px",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "#555",
+            }}
+          >
+            Interactive demo — click to trigger loading (resets after 3 s)
+          </h4>
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            <Button
+              variant="primary"
+              iconLeft={
+                isLoading
+                  ? "fa-light fa-circle-notch fa-spin"
+                  : "fa-light fa-paper-plane"
+              }
+              label={isLoading ? "Submitting…" : "Submit Application"}
+              disabled={isLoading}
+              onClick={handlePrimaryClick}
+              aria-busy={isLoading}
+              aria-label={
+                isLoading ? "Submitting, please wait" : "Submit Application"
+              }
+            />
+            <Button
+              variant="secondary"
+              iconLeft={
+                isLoadingSecondary
+                  ? "fa-light fa-circle-notch fa-spin"
+                  : "fa-light fa-floppy-disk"
+              }
+              label={isLoadingSecondary ? "Saving…" : "Save as Draft"}
+              disabled={isLoadingSecondary}
+              onClick={handleSecondaryClick}
+              aria-busy={isLoadingSecondary}
+              aria-label={
+                isLoadingSecondary ? "Saving, please wait" : "Save as Draft"
+              }
+            />
+          </div>
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    layout: "padded",
+    docs: {
+      description: {
+        story:
+          "Buttons with an animated loading spinner using FontAwesome's `fa-spin` class on `fa-circle-notch`. The top row shows the static loading state across all variants. The interactive row lets you click to trigger a 3-second loading simulation — the icon swaps to a spinner, the label changes, and the button is disabled until the operation completes. Always set `aria-busy` and update `aria-label` so screen readers announce the change.",
       },
     },
   },

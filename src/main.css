@@ -4,7 +4,7 @@
  */
 
 /* Import default NT.GOV.AU theme */
-@import "./themes/theme-ntg.css";
+@import "@ntgovernment/web-design-tokens/css/theme-ntg";
 
 /* Import Button component common styles */
 @import "./components/Button/Button.css";
@@ -65,16 +65,20 @@
 @import "./components/Footer/Footer-ntg.css";
 
 /* Import Breadcrumbs content styles */
-@import "./content/breadcrumbs/Breadcrumbs.css";
-@import "./content/breadcrumbs/Breadcrumbs-ntg.css";
+@import "./components/Breadcrumbs/Breadcrumbs.css";
+@import "./components/Breadcrumbs/Breadcrumbs-ntg.css";
 
 /* Import Pagination content styles */
-@import "./content/pagination/Pagination.css";
-@import "./content/pagination/Pagination-ntg.css";
+@import "./components/Pagination/Pagination.css";
+@import "./components/Pagination/Pagination-ntg.css";
 
 /* Import OnThisPageNavigation content styles */
-@import "./content/on-this-page/OnThisPageNavigation.css";
-@import "./content/on-this-page/OnThisPageNavigation-ntg.css";
+@import "./components/OnThisPageNavigation/OnThisPageNavigation.css";
+@import "./components/OnThisPageNavigation/OnThisPageNavigation-ntg.css";
+
+/* Import Table content styles */
+@import "./components/Table/Table.css";
+@import "./components/Table/Table-ntg.css";
 
 /* Additional global styles can be added here */
 body {

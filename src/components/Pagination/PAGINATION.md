@@ -187,7 +187,7 @@ Use `!important` intentionally here to override Bootstrap's component-focused st
 
 - Focus ring missing? Verify `outline` is not overridden by a global `:focus` rule and that `--clr-focus-focus` token is defined for the active theme.
 - Background changes on focus? Ensure `--bs-pagination-focus-bg` is not set elsewhere — component enforces `background-color: transparent !important;` on focus.
-- Active color wrong for Central theme? Check that `--clr-link-default` is set correctly in `src/themes/theme-central.css`.
+- Active color wrong for Central theme? Check that `--clr-link-default` is set correctly in `@ntgovernment/web-design-tokens/css/theme-central`.
 
 ---
 

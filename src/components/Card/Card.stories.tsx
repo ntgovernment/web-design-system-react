@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["full", "minicard"],
+      options: ["full", "minicard", "compact"],
     },
     mediaAspectRatio: {
       control: "select",
@@ -340,6 +340,137 @@ export const Compact: Story = {
     title: "Customer Service",
     description: "1800 000 000 or ext 12345",
     icon: "fa-light fa-phone",
+    style: { maxWidth: "400px" },
+  },
+};
+
+export const MinicardTopIconTitle: Story = {
+  args: {
+    variant: "minicard",
+    title: "Card services",
+    icon: "fa-light fa-circle-info",
+    description: "Description is hidden in minicard.",
+    style: { maxWidth: "320px" },
+  },
+};
+
+export const IconTitleText: Story = {
+  args: {
+    title: "Service notification",
+    description: "Service availability has been updated for regional areas.",
+    showTitleIcon: true,
+    icon: "fa-light fa-bell",
+    showImage: false,
+    showMeta: false,
+    showButton: false,
+    style: { maxWidth: "353px" },
+  },
+};
+
+export const LeftIconTitleText: Story = {
+  args: {
+    variant: "compact",
+    title: "Contact support",
+    description: "Call 1800 123 456 for assistance.",
+    icon: "fa-light fa-phone",
+    style: { maxWidth: "400px" },
+  },
+};
+
+export const TitleText: Story = {
+  args: {
+    title: "Service update",
+    description: "Find the latest changes to online services.",
+    showImage: false,
+    showMeta: false,
+    showButton: false,
+    style: { maxWidth: "353px" },
+  },
+};
+
+export const TitleTextAction: Story = {
+  args: {
+    title: "Apply for a permit",
+    description: "Start your online application and track progress.",
+    showImage: false,
+    showMeta: false,
+    actionText: "Apply now",
+    actionIcon: "fa-light fa-arrow-right",
+    style: { maxWidth: "353px" },
+  },
+};
+
+export const TitleDateTagTextAction: Story = {
+  args: {
+    title: "Community grant round",
+    description: "Applications are open for regional community grants.",
+    showImage: false,
+    tagLabel: "Grants:green",
+    dateLabel: "Open until 30 Apr 2025",
+    actionText: "View details",
+    actionIcon: "fa-light fa-arrow-right",
+    style: { maxWidth: "353px" },
+  },
+};
+
+export const ImageTitleText: Story = {
+  args: {
+    title: "Visit the waterfront",
+    description: "Discover outdoor dining and events along the harbour.",
+    showMeta: false,
+    showButton: false,
+    style: { maxWidth: "353px" },
+  },
+};
+
+export const ImageTitleTextAction: Story = {
+  args: {
+    title: "Book a tour",
+    description: "Reserve your place for guided local tours.",
+    showMeta: false,
+    actionText: "Book now",
+    actionIcon: "fa-light fa-arrow-right",
+    style: { maxWidth: "353px" },
+  },
+};
+
+export const ImageTitleDateTagTextAction: Story = {
+  args: {
+    title: "Cultural festival",
+    description: "Celebrate music, art, and community this weekend.",
+    tagLabel: "Event:blue",
+    dateLabel: "12 May 2025",
+    actionText: "Get tickets",
+    actionIcon: "fa-light fa-arrow-right",
+    style: { maxWidth: "353px" },
+  },
+};
+
+export const LinkCardCentralOnly: Story = {
+  args: {
+    title: "NTG Central link card",
+    description: "Use a link-style card for quick navigation.",
+    showImage: false,
+    showMeta: false,
+    showButton: false,
+    href: "#",
+    style: { maxWidth: "353px" },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Link card styling is available in the NTG Central theme only.",
+      },
+    },
+  },
+};
+
+export const IconInfoCompact: Story = {
+  args: {
+    variant: "compact",
+    title: "Payment due soon",
+    description: "Your renewal payment is due in 14 days.",
+    icon: "fa-light fa-circle-info",
     style: { maxWidth: "400px" },
   },
 };

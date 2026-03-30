@@ -5,8 +5,8 @@
  * Uses design tokens for typography, spacing, and colors.
  */
 
-@import '../../themes/typography.css';
-@import '../../themes/typography-literals.css';
+@import '@ntgovernment/web-design-tokens/css/typography';
+@import '@ntgovernment/web-design-tokens/css/typography-literals';
 
 .tag {
   /* Typography - uppercase small tokens */

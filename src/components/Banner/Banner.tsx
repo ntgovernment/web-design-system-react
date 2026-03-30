@@ -1,9 +1,6 @@
 import React from "react";
 import { Button } from "../Button";
-import {
-  BreadcrumbsContent,
-  BreadcrumbItem,
-} from "../../content/breadcrumbs/Breadcrumbs";
+import { BreadcrumbsContent, BreadcrumbItem } from "../Breadcrumbs/Breadcrumbs";
 import "./Banner.css";
 
 export interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {

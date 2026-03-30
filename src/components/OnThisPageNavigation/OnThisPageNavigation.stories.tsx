@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { OnThisPageNavigation } from "./OnThisPageNavigation";
 
 const meta = {
-  title: "Content/OnThisPageNavigation",
+  title: "Components/OnThisPageNavigation",
   component: OnThisPageNavigation,
   parameters: {
     layout: "padded",

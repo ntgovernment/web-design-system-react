@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * Validate Generated CSS
+ * Validate Token CSS
  *
- * Checks that all CSS variable references point to defined variables
+ * Checks that the installed @ntgovernment/web-design-tokens package exposes
+ * the expected theme files and that all CSS variable references within each
+ * theme file point to variables defined in the same file.
+ *
+ * Reads from: node_modules/@ntgovernment/web-design-tokens/dist/css/themes/
  */
 
 import { readFileSync } from "fs";
@@ -14,12 +18,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, "..");
 
-const files = ["src/themes/theme-ntg.css", "src/themes/theme-central.css"];
+const tokensCssDir = join(rootDir, "node_modules", "@ntgovernment", "web-design-tokens", "dist", "css");
+const files = [
+  join(tokensCssDir, "themes", "theme-ntg.css"),
+  join(tokensCssDir, "themes", "theme-central.css"),
+];
 
 let allValid = true;
 
 for (const file of files) {
-  const css = readFileSync(join(rootDir, file), "utf-8");
+  const css = readFileSync(file, "utf-8");
 
   // Extract all defined CSS variables
   const defined = new Set(

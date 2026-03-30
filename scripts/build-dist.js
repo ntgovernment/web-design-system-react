@@ -1,4 +1,24 @@
 #!/usr/bin/env node
+/**
+ * scripts/build-dist.js
+ *
+ * Main build orchestrator for @ntgovernment/web-design-system.
+ *
+ * Pipeline:
+ *   1. Clean dist/
+ *   2. Build component library (UMD) via Vite --mode library → dist/lib/
+ *   3. Build demo application via Vite --mode demo → dist/demo/
+ *   4. Build complete theme CSS bundles via build-theme-bundles.js
+ *      (reads token CSS from node_modules/@ntgovernment/web-design-tokens)
+ *   5. Organise final dist/ structure:
+ *        dist/components.min.js     UMD component bundle
+ *        dist/ntg-theme.min.css     Self-contained NT.GOV.AU theme bundle
+ *        dist/central-theme.min.css Self-contained NTG Central theme bundle
+ *        dist/index.html            Interactive demo
+ *        dist/index.js / index.css  Demo app bundle
+ *
+ * Usage: node scripts/build-dist.js (invoked by `npm run build`)
+ */
 
 import { execSync } from 'child_process';
 import { readFileSync, writeFileSync, copyFileSync, renameSync, mkdirSync, existsSync, rmSync, readdirSync } from 'fs';

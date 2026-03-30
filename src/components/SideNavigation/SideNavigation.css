@@ -19,7 +19,7 @@
  * - Spacing: 16px gap, borders between items
  */
 
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 /* Main container */
 .side-nav {
@@ -121,6 +121,10 @@
 
 .side-nav__link:hover {
   color: var(--clr-link-hover);
+}
+
+.side-nav__link:visited {
+  color: var(--clr-link-default);
 }
 
 .side-nav__item--current .side-nav__link {

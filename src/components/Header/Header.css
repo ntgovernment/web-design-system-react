@@ -208,6 +208,10 @@
   color: var(--clr-link-inverse-hover);
 }
 
+.header__mobile-nav-link:visited {
+  color: var(--clr-text-inverse);
+}
+
 .header__mobile-nav-icon {
   width: var(--sp-lg);
   height: var(--sp-lg);
@@ -274,6 +278,10 @@
 
 .header__nav-link--active {
   color: var(--clr-link-inverse-hover);
+}
+
+.header__nav-link:visited {
+  color: var(--clr-text-inverse);
 }
 
 .header__nav-icon {

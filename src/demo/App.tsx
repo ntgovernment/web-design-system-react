@@ -7,7 +7,7 @@ import { Pill } from "../components/Pill";
 import { Notification } from "../components/Notification";
 import { Image } from "../components/Image";
 import { BackToTop } from "../components/BackToTop";
-import { TableContent } from "../content/table/Table";
+import { TableContent } from "../components/Table/Table";
 import placeholderImage from "../assets/images/placeholder.webp";
 
 function App() {
@@ -44,8 +44,8 @@ function App() {
       // Development: swap individual CSS files
       // Add timestamp to force reload and bypass cache
       const timestamp = new Date().getTime();
-      const typographyPath = `/src/themes/typography-${newTheme}.css?v=${timestamp}`;
-      const themePath = `/src/themes/theme-${newTheme}.css?v=${timestamp}`;
+      const typographyPath = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/typography-${newTheme}.css?v=${timestamp}`;
+      const themePath = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/theme-${newTheme}.css?v=${timestamp}`;
       const buttonThemePath = `/src/components/Button/Button-${newTheme}.css?v=${timestamp}`;
       const calloutThemePath = `/src/components/Callout/Callout-${newTheme}.css?v=${timestamp}`;
       const tagThemePath = `/src/components/Tag/Tag-${newTheme}.css?v=${timestamp}`;

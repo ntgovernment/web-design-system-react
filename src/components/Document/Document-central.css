@@ -3,7 +3,7 @@
  */
 
 /* Import common design tokens required by this component */
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 .document {
   --document-radius: var(--central-radii-sm);

@@ -20,7 +20,7 @@
  */
 
 /* Import design tokens required by this component */
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 /* Bootstrap Button CSS Variable Customizations */
 /* Override Bootstrap's component-level variables with design tokens */

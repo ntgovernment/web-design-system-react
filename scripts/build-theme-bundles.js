@@ -1,4 +1,28 @@
 #!/usr/bin/env node
+/**
+ * scripts/build-theme-bundles.js
+ *
+ * Assembles and minifies the self-contained theme CSS bundles written to dist/.
+ *
+ * Token CSS is read from `tokensCssDir`:
+ *   node_modules/@ntgovernment/web-design-tokens/dist/css/
+ *
+ * Bundle contents (in cascade order):
+ *   1. base-variables.css  — semantic unprefixed variable mappings
+ *   2. common.css          — spacing, shadows, borders, radii
+ *   3. grid.css            — Bootstrap grid configuration
+ *   4. typography.css      — typography scale variables
+ *   5. theme-{ntg|central}.css  — palette + semantic color mappings
+ *   6. typography-{ntg|central}.css — Bootstrap typography overrides
+ *   7. Component CSS       — Button, Tag, Input, SearchBar base styles
+ *   8. Component theme CSS — per-theme overrides for each component
+ *
+ * Output:
+ *   dist/ntg-theme.min.css
+ *   dist/central-theme.min.css
+ *
+ * Usage: node scripts/build-theme-bundles.js (invoked by build-dist.js)
+ */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { dirname, join } from "path";
@@ -9,6 +33,7 @@ const __dirname = dirname(__filename);
 
 const rootDir = join(__dirname, "..");
 const distDir = join(rootDir, "dist");
+const tokensCssDir = join(rootDir, "node_modules", "@ntgovernment", "web-design-tokens", "dist", "css");
 
 console.log("🎨 Building complete theme CSS bundles...\n");
 
@@ -46,16 +71,16 @@ function readCSSFile(filePath) {
 const cssOrder = [
   // Foundation - base CSS variables
   {
-    path: join(rootDir, "src", "themes", "base-variables.css"),
+    path: join(tokensCssDir, "base-variables.css"),
     name: "base-variables.css",
   },
   // Common design tokens
-  { path: join(rootDir, "src", "themes", "common.css"), name: "common.css" },
+  { path: join(tokensCssDir, "common.css"), name: "common.css" },
   // Grid system
-  { path: join(rootDir, "src", "themes", "grid.css"), name: "grid.css" },
+  { path: join(tokensCssDir, "grid.css"), name: "grid.css" },
   // Typography base
   {
-    path: join(rootDir, "src", "themes", "typography.css"),
+    path: join(tokensCssDir, "typography.css"),
     name: "typography.css",
   },
 ];
@@ -85,8 +110,8 @@ const themes = [
   {
     name: "ntg",
     displayName: "NT.GOV.AU",
-    themeFile: join(rootDir, "src", "themes", "theme-ntg.css"),
-    bootstrapFile: join(rootDir, "src", "typography", "typography-ntg.css"),
+    themeFile: join(tokensCssDir, "themes", "theme-ntg.css"),
+    bootstrapFile: join(tokensCssDir, "themes", "typography-ntg.css"),
     buttonTheme: join(rootDir, "src", "components", "Button", "Button-ntg.css"),
     tagTheme: join(rootDir, "src", "components", "Tag", "Tag-ntg.css"),
     inputTheme: join(rootDir, "src", "components", "Input", "Input-ntg.css"),
@@ -102,8 +127,8 @@ const themes = [
   {
     name: "central",
     displayName: "NTG Central",
-    themeFile: join(rootDir, "src", "themes", "theme-central.css"),
-    bootstrapFile: join(rootDir, "src", "typography", "typography-central.css"),
+    themeFile: join(tokensCssDir, "themes", "theme-central.css"),
+    bootstrapFile: join(tokensCssDir, "themes", "typography-central.css"),
     buttonTheme: join(
       rootDir,
       "src",

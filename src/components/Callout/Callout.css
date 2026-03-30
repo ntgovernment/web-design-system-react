@@ -1,4 +1,4 @@
-@import "../../themes/typography.css";
+@import "@ntgovernment/web-design-tokens/css/typography";
 
 .callout {
   width: 100%;
