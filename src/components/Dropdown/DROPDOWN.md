@@ -336,7 +336,7 @@ For developers migrating from Bootstrap:
 
 ## Notes for contributors
 
-- Add any new visual tokens to `src/themes/*` and reference them in component CSS via semantic variable names.
+- Add any new visual tokens to `@ntgovernment/web-design-tokens` and reference them in component CSS via semantic variable names.
 - When adding stories, use realistic government service examples (see `CONTENT_STANDARDS.md`).
 - Update `scripts/build-theme-bundles.js` if you add a new per-theme override file.
 - Ensure focus styles are tested in both themes (NTG orange, Central green).
@@ -592,17 +592,14 @@ For advanced custom dropdown experiences, consider using a custom component libr
 
 ## Tokens Source
 
-All design tokens are defined in:
+All design tokens are defined in [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens):
 
-- `src/themes/common.css` - Shared tokens (spacing, shadows, border widths)
-- `src/themes/theme-ntg.css` - NTG-specific tokens
-- `src/themes/theme-central.css` - Central-specific tokens
-- `src/themes/base-variables.css` - Semantic variable mappings
+- `@ntgovernment/web-design-tokens/css/common` - Shared tokens (spacing, shadows, border widths)
+- `@ntgovernment/web-design-tokens/css/theme-ntg` - NTG-specific tokens
+- `@ntgovernment/web-design-tokens/css/theme-central` - Central-specific tokens
+- `@ntgovernment/web-design-tokens/css/base-variables` - Semantic variable mappings
 
-To modify token values, update `design-tokens/tokens.json` and run:
-
-```bash
-npm run tokens:build
+To modify token values, raise a PR in the `web-design-tokens` repository then bump the version in `package.json`.
 ```
 
 ## Related Documentation

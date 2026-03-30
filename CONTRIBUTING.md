@@ -51,13 +51,7 @@ This project follows professional standards for collaboration:
    npm install
    ```
 
-4. **Validate design tokens**
-
-   ```bash
-   npm run tokens:validate
-   ```
-
-5. **Start the development server**
+4. **Start the development server**
 
    ```bash
    npm run dev
@@ -74,12 +68,8 @@ This project follows professional standards for collaboration:
 web-design-system/
 ├── src/
 │   ├── components/        # React components
-│   ├── themes/            # Theme CSS files (auto-generated)
-│   ├── typography/        # Bootstrap typography overrides
+│   ├── themes/            # Theme documentation and demo files
 │   └── index.ts           # Main export file
-├── design-tokens/         # Design token source
-│   ├── tokens.json        # Token definitions
-│   └── config/            # Style Dictionary configuration
 ├── scripts/               # Build and utility scripts
 ├── .storybook/            # Storybook configuration
 └── dist/                  # Build output (generated)
@@ -113,8 +103,7 @@ git checkout -b fix/bug-description
 1. Make your changes in the appropriate files
 2. Run the dev server to test: `npm run dev`
 3. Check Storybook for visual verification: `npm run storybook`
-4. Validate tokens if changed: `npm run tokens:validate`
-5. Build to ensure no errors: `npm run build`
+4. Build to ensure no errors: `npm run build`
 
 ## Coding Standards
 
@@ -370,38 +359,25 @@ All components must:
 
 ## Design Tokens
 
+Design tokens are maintained in the separate [`@ntgovernment/web-design-tokens`](https://github.com/ntgovernment/web-design-tokens) package and consumed here as an npm dependency.
+
 ### Modifying Tokens
 
-**⚠️ Important**: Theme CSS files are auto-generated. Never edit them directly.
+To update design tokens:
 
-1. **Update tokens** in `design-tokens/tokens.json`
-
-   ```json
-   {
-     "ntg": {
-       "color": {
-         "primary": {
-           "value": "#E87722",
-           "type": "color"
-         }
-       }
-     }
-   }
-   ```
-
-2. **Validate tokens**
+1. Open the [`ntgovernment/web-design-tokens`](https://github.com/ntgovernment/web-design-tokens) repository
+2. Follow the contribution process there to update token values
+3. Once a new version is published, update the dependency here:
 
    ```bash
-   npm run tokens:validate
+   npm install @ntgovernment/web-design-tokens@latest
    ```
 
-3. **Generate CSS**
+4. **Rebuild and verify**
 
    ```bash
-   npm run tokens:build
+   npm run build
    ```
-
-4. **Verify output** in `src/themes/`
 
 ### Token Guidelines
 
@@ -534,7 +510,6 @@ Before submitting a PR:
 2. **Run checks**
 
    ```bash
-   npm run tokens:validate
    npm run build
    ```
 

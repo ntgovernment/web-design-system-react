@@ -17,7 +17,7 @@
  * - Error: Upload failed
  */
 
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 /* ============================================================================
    File Upload Field Container

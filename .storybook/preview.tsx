@@ -2,10 +2,10 @@ import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 
 // Import common design tokens FIRST (required by component CSS files)
-import "../src/themes/common.css";
-import "../src/themes/grid.css";
-import "../src/themes/typography.css";
-import "../src/themes/typography-literals.css";
+import "@ntgovernment/web-design-tokens/css/common";
+import "@ntgovernment/web-design-tokens/css/grid";
+import "@ntgovernment/web-design-tokens/css/typography";
+import "@ntgovernment/web-design-tokens/css/typography-literals";
 
 // Import Button CSS files to ensure Vite processes them
 import "../src/components/Button/Button.css";
@@ -126,10 +126,7 @@ const loadBootstrapTypography = (theme: string) => {
   const typographyOverride = document.createElement("link");
   typographyOverride.id = "bootstrap-typography-css";
   typographyOverride.rel = "stylesheet";
-  typographyOverride.href = new URL(
-    `../src/themes/typography-${theme}.css`,
-    import.meta.url,
-  ).href;
+  typographyOverride.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/typography-${theme}.css`;
   document.head.appendChild(typographyOverride);
 };
 
@@ -436,7 +433,7 @@ const loadThemeCSS = (theme: string) => {
     const commonCSS = document.createElement("link");
     commonCSS.id = "common-css";
     commonCSS.rel = "stylesheet";
-    commonCSS.href = new URL("../src/themes/common.css", import.meta.url).href;
+    commonCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/common.css`;
     document.head.appendChild(commonCSS);
   }
 
@@ -444,7 +441,7 @@ const loadThemeCSS = (theme: string) => {
     const gridCSS = document.createElement("link");
     gridCSS.id = "grid-css";
     gridCSS.rel = "stylesheet";
-    gridCSS.href = new URL("../src/themes/grid.css", import.meta.url).href;
+    gridCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/grid.css`;
     document.head.appendChild(gridCSS);
   }
 
@@ -452,10 +449,7 @@ const loadThemeCSS = (theme: string) => {
     const typographyCSS = document.createElement("link");
     typographyCSS.id = "typography-css";
     typographyCSS.rel = "stylesheet";
-    typographyCSS.href = new URL(
-      "../src/themes/typography.css",
-      import.meta.url,
-    ).href;
+    typographyCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/typography.css`;
     document.head.appendChild(typographyCSS);
   }
 
@@ -463,10 +457,7 @@ const loadThemeCSS = (theme: string) => {
     const typographyLiteralsCSS = document.createElement("link");
     typographyLiteralsCSS.id = "typography-literals-css";
     typographyLiteralsCSS.rel = "stylesheet";
-    typographyLiteralsCSS.href = new URL(
-      "../src/themes/typography-literals.css",
-      import.meta.url,
-    ).href;
+    typographyLiteralsCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/typography-literals.css`;
     document.head.appendChild(typographyLiteralsCSS);
   }
 
@@ -474,10 +465,7 @@ const loadThemeCSS = (theme: string) => {
     const baseVariablesCSS = document.createElement("link");
     baseVariablesCSS.id = "base-variables-css";
     baseVariablesCSS.rel = "stylesheet";
-    baseVariablesCSS.href = new URL(
-      "../src/themes/base-variables.css",
-      import.meta.url,
-    ).href;
+    baseVariablesCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/base-variables.css`;
     document.head.appendChild(baseVariablesCSS);
   }
 
@@ -485,10 +473,7 @@ const loadThemeCSS = (theme: string) => {
   const themeCSS = document.createElement("link");
   themeCSS.id = "theme-css";
   themeCSS.rel = "stylesheet";
-  themeCSS.href = new URL(
-    `../src/themes/theme-${theme}.css`,
-    import.meta.url,
-  ).href;
+  themeCSS.href = `/node_modules/@ntgovernment/web-design-tokens/dist/css/themes/theme-${theme}.css`;
   document.head.appendChild(themeCSS);
 
   // Load component styles (Button CSS with Bootstrap variable overrides)

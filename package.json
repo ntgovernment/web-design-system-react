@@ -1,6 +1,6 @@
 {
   "name": "@ntgovernment/web-design-system",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Component library and themes for NT Government websites and intranets",
   "type": "module",
   "main": "./dist/components.min.js",
@@ -15,8 +15,6 @@
   ],
   "scripts": {
     "dev": "vite",
-    "tokens:validate": "node scripts/validate-tokens.js",
-    "tokens:build": "node scripts/build-tokens.js",
     "prebuild": "npm run generate-story-data",
     "build": "tsc && node scripts/build-dist.js",
     "preview": "vite preview --outDir dist",
@@ -33,6 +31,7 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
+    "@ntgovernment/web-design-tokens": "^2.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -74,7 +73,6 @@
     "globals": "^15.13.0",
     "playwright": "^1.58.1",
     "storybook": "10.2.4",
-    "style-dictionary": "^5.2.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.2.5",
@@ -87,6 +85,9 @@
     "vite",
     "bootstrap",
     "design-system",
+    "design-tokens",
+    "css-variables",
+    "theme",
     "ntgovernment"
   ],
   "repository": {

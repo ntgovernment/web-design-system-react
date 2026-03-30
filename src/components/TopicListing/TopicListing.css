@@ -4,7 +4,7 @@
  * Uses Bootstrap link utility classes with token-driven CSS variables.
  */
 
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 .topic-listing {
   --topic-listing-focus-shadow: var(--shadow-focus-ntg);

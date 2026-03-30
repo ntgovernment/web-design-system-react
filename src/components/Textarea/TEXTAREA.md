@@ -636,10 +636,10 @@ For a complete list of Bootstrap form-control variables, see:
 
 For available design tokens, see:
 
-- `design-tokens/tokens.json` - Complete token definitions
-- `src/themes/base-variables.css` - Base CSS variable definitions
-- `src/themes/theme-ntg.css` - NTG theme tokens
-- `src/themes/theme-central.css` - Central theme tokens
+- [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens) - Complete token definitions
+- `@ntgovernment/web-design-tokens/css/base-variables` - Base CSS variable definitions
+- `@ntgovernment/web-design-tokens/css/theme-ntg` - NTG theme tokens
+- `@ntgovernment/web-design-tokens/css/theme-central` - Central theme tokens
 
 ### Machine-readable token list (used by Textarea)
 

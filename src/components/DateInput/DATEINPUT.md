@@ -344,7 +344,7 @@ function ApplicationForm() {
 
 ## Notes for Contributors
 
-- Add any new visual tokens to `src/themes/*` and reference them in component CSS via semantic variable names
+- Add any new visual tokens to `@ntgovernment/web-design-tokens` and reference them in component CSS via semantic variable names
 - Update `scripts/build-theme-bundles.js` if you add new per-theme override files
 - When adding stories, ensure realistic content following `CONTENT_STANDARDS.md` (no Lorem ipsum)
 - Test thoroughly across both NTG and Central themes
@@ -551,7 +551,7 @@ export function toISO(v: { day: string; month: string; year: string }) {
 - [ ] Story(s) added/updated for new behaviour or variations
 - [ ] Unit tests and accessibility tests added/updated
 - [ ] Visual regression snapshots (if applicable) updated
-- [ ] Design token changes (if any) included and `npm run tokens:build` run
+- [ ] Design token changes (if any) contributed to `web-design-tokens` repo and version bumped in `package.json`
 - [ ] Documentation updated (`DATEINPUT.md`) with examples and developer guidance
 - [ ] No usage of Lorem ipsum; content follows `CONTENT_STANDARDS.md`
 
@@ -574,7 +574,7 @@ A: Use accessible selectors: `getByLabelText('Day')`, `getByLabelText('Month')`,
 
 - Component source: `src/components/DateInput/DateInput.tsx`
 - Storybook stories: `src/components/DateInput/DateInput.stories.tsx`
-- Design tokens: `design-tokens/tokens.json`
+- Design tokens: [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens)
 - Theme documentation: `src/themes/THEMES.md`
 - Bootstrap form controls: https://getbootstrap.com/docs/5.3/forms/form-control/
 

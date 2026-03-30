@@ -47,6 +47,12 @@ export default defineConfig(({ mode }) => {
     return {
       plugins: [react()],
       base: './',
+      server: {
+        fs: {
+          // Allow serving node_modules CSS for dev-mode theme switching
+          allow: ['..'],
+        },
+      },
       build: {
         target: "es2020",
         outDir: "dist/demo",

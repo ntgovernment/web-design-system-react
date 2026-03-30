@@ -19,7 +19,7 @@
  * - Spacing: 16px gap, borders between items
  */
 
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 /* Main container */
 .side-nav {

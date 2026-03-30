@@ -2,7 +2,7 @@
  * Document Component - Common Styles
  */
 
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 .document {
   --document-radius: var(--radii-sm);

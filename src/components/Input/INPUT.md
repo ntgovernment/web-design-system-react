@@ -124,7 +124,7 @@ Uncontrolled with validation message:
 
 ## Notes for contributors
 
-- Add any new visual tokens to `src/themes/*` and reference them in component CSS via semantic variable names.
+- Add any new visual tokens to `@ntgovernment/web-design-tokens` and reference them in component CSS via semantic variable names.
 - When adding stories, ensure required props are present in story `args` (missing required args can cause Storybook TypeScript errors).
 - Update `scripts/build-theme-bundles.js` if you add a new per-theme override file.
 

@@ -2,7 +2,7 @@
  * TopicListing Component - NT.GOV.AU Theme Overrides
  */
 
-@import "../../themes/common.css";
+@import "@ntgovernment/web-design-tokens/css/common";
 
 .topic-listing {
   --topic-listing-focus-shadow: var(--shadow-focus-ntg);

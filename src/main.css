@@ -4,7 +4,7 @@
  */
 
 /* Import default NT.GOV.AU theme */
-@import "./themes/theme-ntg.css";
+@import "@ntgovernment/web-design-tokens/css/theme-ntg";
 
 /* Import Button component common styles */
 @import "./components/Button/Button.css";
