@@ -197,7 +197,7 @@ function MyApplication() {
 
 ### Token-Based Styling Strategy
 
-The StepList component is built **entirely** using design tokens from `design-tokens/tokens.json`. This ensures:
+The StepList component is built **entirely** using design tokens from `@ntgovernment/web-design-tokens`. This ensures:
 
 - **Consistency**: All components use the same color palette and typography
 - **Maintainability**: Changes to design tokens automatically propagate
@@ -920,7 +920,7 @@ const steps: StepListItem[] = [{ stepNumber: 1, title: "Test" }];
 
 For a complete list of available design tokens, see:
 
-- `design-tokens/tokens.json` - Token definitions
+- `@ntgovernment/web-design-tokens` - Token definitions
 - `design-tokens/DESIGN-TOKENS.md` - Token documentation
 - `DESIGN_TOKENS_IMPLEMENTATION.md` - Implementation guide
 

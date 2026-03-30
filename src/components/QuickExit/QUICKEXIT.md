@@ -302,7 +302,7 @@ The entire banner is the touch target, ensuring easy activation on mobile device
 
 ```tsx
 import { QuickExit } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/ntg-theme.min.css";
+import "@ntgovernment/web-design-system/theme-ntg.min.css";
 
 // NTG theme provides:
 // - Orange focus outline (#EC8C58)
@@ -318,7 +318,7 @@ If needed for Central:
 
 ```tsx
 import { QuickExit } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/central-theme.min.css";
+import "@ntgovernment/web-design-system/theme-central.min.css";
 
 // Central theme would provide:
 // - Green focus outline (#6ab06a)
@@ -617,8 +617,8 @@ The component relies on these design tokens:
 
 If design tokens are updated:
 
-1. Export tokens to `design-tokens/tokens.json`
-2. Run `npm run tokens:build`
+1. Update the `@ntgovernment/web-design-tokens` package
+2. Run `npm run build`
 3. Test component appearance in both themes
 
 ### File Structure

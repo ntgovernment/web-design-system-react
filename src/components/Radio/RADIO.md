@@ -489,7 +489,7 @@ test('shows success icon for success validation', () => {
 
 Common agent tasks
 
-- Update tokens: change `--clr-link-default` in `design-tokens/tokens.json` and run `npm run tokens:build`.
+- Update tokens: change `--clr-link-default` in the `@ntgovernment/web-design-tokens` package.
 - Change validation icon: edit `Icon` usage in `src/components/Radio/Radio.tsx` or `Checkbox/Checkbox.tsx`.
 - Add a Storybook story: create a new `.stories.tsx` with meaningful content (follow Content Standards).
 - Tests: add unit tests under the component folder; run `npm test` or `pnpm test`.
@@ -996,17 +996,13 @@ This ensures Bootstrap defaults don't interfere with the design system.
 
 ## Design Token Source
 
-All CSS variables originate from design tokens defined in:
+All CSS variables originate from the [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens) package.
 
-```
-design-tokens/tokens.json
-```
+To modify token values:
 
-To modify the token values:
-
-1. Edit `design-tokens/tokens.json`
-2. Run `npm run tokens:build`
-3. Generated CSS files will update automatically
+1. Raise a PR in the `web-design-tokens` repository and publish a new version
+2. Bump the version in this repo's `package.json` and run `npm install`
+3. Run `npm run build` — rebuilt theme bundles will include the updated values
 
 See [DESIGN_TOKENS_IMPLEMENTATION.md](../../../DESIGN_TOKENS_IMPLEMENTATION.md) for more information.
 
@@ -1014,7 +1010,7 @@ See [DESIGN_TOKENS_IMPLEMENTATION.md](../../../DESIGN_TOKENS_IMPLEMENTATION.md) 
 
 - [Radio Component Documentation](RADIO.md) - Main component documentation
 - [Design Tokens Guide](../../../design-tokens/DESIGN-TOKENS.md) - Design token system
-- [Theme Switching Guide](../../../src/themes/THEME_SWITCHING.md) - How to implement theme switching
+- [Theme Switching Guide](src/themes/THEME_SWITCHING.md) - How to implement theme switching
 - [Component README](../../../README.md) - Overall design system documentation
 
 ## Questions?
@@ -1377,7 +1373,7 @@ Developers familiar with the Checkbox component will find Radio follows identica
 
 ## Design Tokens Used
 
-All values come from `design-tokens/tokens.json`:
+All values come from `@ntgovernment/web-design-tokens`:
 
 ### Colors
 
@@ -1434,8 +1430,8 @@ The Radio button component is complete and ready for use. Suggested next steps:
 - **Bootstrap Radio Docs**: https://getbootstrap.com/docs/5.3/forms/checks-radios/
 - **MDN Radio Reference**: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
 - **WCAG Radio Guidelines**: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
-- **Design Tokens**: [design-tokens/tokens.json](../../../design-tokens/tokens.json)
-- **Theme Switching**: [src/themes/THEME_SWITCHING.md](../../../src/themes/THEME_SWITCHING.md)
+- **Design Tokens**: [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens)
+- **Theme Switching**: [src/themes/THEME_SWITCHING.md](src/themes/THEME_SWITCHING.md)
 
 ## Summary
 

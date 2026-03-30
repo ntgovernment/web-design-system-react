@@ -275,7 +275,7 @@ Props JSON schema (useful for programmatic tests / automated code generators):
 - Border-radius: `--radii-none` (component default), override using `--radii-sm`/`--radii-md` or an explicit component-scoped class
 - Min-height: `120px` (no existing dedicated token — consider adding `sp-textarea` if you need tokenized reuse)
 
-Note: prefer token updates (design-tokens/tokens.json + `npm run tokens:build`) for global changes. Use component-level CSS overrides for one-off exceptions.
+Note: prefer token updates (`@ntgovernment/web-design-tokens` bump + `npm run build`) for global changes. Use component-level CSS overrides for one-off exceptions.
 
 ## Bootstrap variable mapping (quick)
 
@@ -321,8 +321,8 @@ export const PlayFocus: Story = {
 
 ## Programmatic token change (example for agents)
 
-1. Edit `design-tokens/tokens.json` (add/modify token under `sp`, `radii`, or `clr`).
-2. Run: `npm run tokens:build`
+1. Update `@ntgovernment/web-design-tokens` to the required version (add/modify token under `sp`, `radii`, or `clr`).
+2. Run: `npm run build`
 3. Rebuild: `npm run build` and verify in Storybook: `npm run storybook`
 
 Example JSON patch (add token):
@@ -338,13 +338,13 @@ Example JSON patch (add token):
 - [ ] Unit tests for new behaviour (Vitest)
 - [ ] Storybook stories + interaction tests for critical states
 - [ ] Update `TEXTAREA.md` and `CSS_VARIABLES.md` (token usage + examples)
-- [ ] Add token changes to `design-tokens/tokens.json` if raw values were introduced
-- [ ] Run `npm run tokens:build`, `npm run build`, and `npm run storybook` locally
+- [ ] If new design token values are required, raise a PR in the `@ntgovernment/web-design-tokens` repository
+- [ ] Run `npm run build` and `npm run storybook` locally
 - [ ] Follow `CONTENT_STANDARDS.md` for story content
 
 ## Notes for contributors (expanded)
 
-- Add new visual tokens to `design-tokens/tokens.json` and run `npm run tokens:build`.
+- Add new visual tokens to `@ntgovernment/web-design-tokens` and bump `@ntgovernment/web-design-tokens` in `package.json`, then run `npm install && npm run build`.
 - Prefer adding a token instead of hard-coding new measurements or colours.
 - When a theme-specific visual is required (border-radius, focus outline), update the theme token or create a per-theme override file in the component folder.
 - Keep stories realistic and accessible — no placeholder/lorem ipsum.
@@ -690,8 +690,8 @@ For available design tokens, see:
 
 ### Quick agent instructions — change a visual token safely
 
-1. Update `design-tokens/tokens.json` (edit the JSON token value).
-2. Run `npm run tokens:build` to regenerate token outputs.
+1. Update `@ntgovernment/web-design-tokens` (edit the JSON token value).
+2. Run `npm run build` to regenerate the theme bundles.
 3. Rebuild library and check visuals: `npm run build` then `npm run storybook`.
 4. Add a Storybook story demonstrating the change and a unit test if behaviour changed.
 

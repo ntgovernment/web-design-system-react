@@ -510,8 +510,8 @@ Override these at runtime for custom styling:
 
 To modify Banner appearance:
 
-1. **Update design tokens**: Edit `design-tokens/tokens.json`
-2. **Rebuild CSS**: Run `npm run tokens:build`
+1. **Update design tokens**: Update `@ntgovernment/web-design-tokens`
+2. **Rebuild CSS**: Run `npm run build`
 3. **Component-specific overrides**: Edit `Banner.css`, `Banner-ntg.css`, or `Banner-central.css`
 
 ### Theming Workflow

@@ -234,7 +234,7 @@ Coding agents can rely on this JSON Schema to validate and generate Footer props
 - Unit tests: `npm test` (Vitest)
 - Build library: `npm run build`
 - Build Storybook static site: `npm run build-storybook`
-- Token generation (when editing tokens): `npm run tokens:build`
+- Token generation (when editing tokens): `npm run build`
 
 ### Example unit test (columns prop)
 
@@ -408,7 +408,7 @@ The NTG theme uses:
 ```html
 <link
   rel="stylesheet"
-  href="@ntgovernment/web-design-system/ntg-theme.min.css"
+  href="@ntgovernment/web-design-system/theme-ntg.min.css"
 />
 ```
 
@@ -436,7 +436,7 @@ The Central theme uses:
 ```html
 <link
   rel="stylesheet"
-  href="@ntgovernment/web-design-system/central-theme.min.css"
+  href="@ntgovernment/web-design-system/theme-central.min.css"
 />
 ```
 
@@ -681,7 +681,7 @@ The component automatically uses semantic HTML:
 
 ### 4. Theme Consistency
 
-- Always import the appropriate theme CSS (ntg-theme.min.css or central-theme.min.css)
+- Always import the appropriate theme CSS (theme-ntg.min.css or theme-central.min.css)
 - Don't override theme colors unless creating a custom theme
 - Test both themes during development
 
@@ -818,7 +818,7 @@ Test responsive behavior:
 ```html
 <link
   rel="stylesheet"
-  href="@ntgovernment/web-design-system/ntg-theme.min.css"
+  href="@ntgovernment/web-design-system/theme-ntg.min.css"
 />
 ```
 

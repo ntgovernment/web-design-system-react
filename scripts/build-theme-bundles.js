@@ -18,8 +18,8 @@
  *   8. Component theme CSS — per-theme overrides for each component
  *
  * Output:
- *   dist/ntg-theme.min.css
- *   dist/central-theme.min.css
+ *   dist/theme-ntg.min.css
+ *   dist/theme-central.min.css
  *
  * Usage: node scripts/build-theme-bundles.js (invoked by build-dist.js)
  */
@@ -122,7 +122,7 @@ const themes = [
       "SearchBar",
       "SearchBar-ntg.css",
     ),
-    outputFile: "ntg-theme.min.css",
+    outputFile: "theme-ntg.min.css",
   },
   {
     name: "central",
@@ -151,7 +151,7 @@ const themes = [
       "SearchBar",
       "SearchBar-central.css",
     ),
-    outputFile: "central-theme.min.css",
+    outputFile: "theme-central.min.css",
   },
 ];
 

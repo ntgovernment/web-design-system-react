@@ -879,8 +879,8 @@ src/main.css
 ```
 dist/
 ├── components.min.js
-├── ntg-theme.min.css
-├── central-theme.min.css
+├── theme-ntg.min.css
+├── theme-central.min.css
 ├── index.html
 ├── index.js
 └── index.css

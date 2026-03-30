@@ -180,7 +180,7 @@ import { TopicListing } from "@ntgovernment/web-design-system";
 
 ## Theming and Tokens
 
-The component relies on semantic tokens for colour, spacing, typography and theme-specific tokens for focus outlines and border radii. Change tokens in `design-tokens/tokens.json` and run `npm run tokens:build` to regenerate theme CSS.
+The component relies on semantic tokens for colour, spacing, typography and theme-specific tokens for focus outlines and border radii. Change tokens in `@ntgovernment/web-design-tokens` and bump `@ntgovernment/web-design-tokens` in `package.json`, then run `npm install && npm run build` to regenerate theme CSS.
 
 Primary tokens used (component-level):
 
@@ -285,9 +285,8 @@ Accessibility checklist
 Maintenance & extension
 
 - Add new document types by updating `Document` `fileTypeConfig` and stories in `src/components/Document/`.
-- Update token values in `design-tokens/tokens.json` and run:
-  - `npm run tokens:validate`
-  - `npm run tokens:build`
+- Update token values in `@ntgovernment/web-design-tokens` and run:
+  - `npm run build`
 - Regenerate Storybook catalog when adding stories: `npm run generate-story-data` (run automatically by `npm run storybook` / `build-storybook`).
 - Export: Confirm `src/index.ts` exports `TopicListing` (already wired).
 

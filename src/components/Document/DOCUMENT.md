@@ -180,7 +180,7 @@ Selectors above are stable — prefer them in unit tests and visual regression s
 - Focus visuals: `--clr-focus-focus` (background), `--clr-border-strong-01` (focus bottom border), `--shadow-focus-ntg` / `--shadow-focus-central`
 - Radii: `--radii-sm`, theme overrides `--ntg-radii-sm`, `--central-radii-sm`
 
-Change tokens in `design-tokens/tokens.json` and run `npm run tokens:build` to regenerate theme files.
+Change tokens in `@ntgovernment/web-design-tokens` and bump `@ntgovernment/web-design-tokens` in `package.json`, then run `npm install && npm run build` to regenerate theme files.
 
 ### Theming
 

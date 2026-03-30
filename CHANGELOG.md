@@ -28,6 +28,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/build-theme-bundles.js`: resolves token CSS from `node_modules/@ntgovernment/web-design-tokens/dist/css/`
 - `scripts/validate-css.js`: now validates theme files from the installed `@ntgovernment/web-design-tokens` package
 - Added `server.fs.allow: ['..']` to `vite.config.ts` to permit serving token CSS in Vite dev server
+- **Renamed distribution theme bundles** for naming consistency:
+  - `dist/ntg-theme.min.css` → `dist/theme-ntg.min.css`
+  - `dist/central-theme.min.css` → `dist/theme-central.min.css`
+  - `package.json` export specifiers updated accordingly (`./theme-ntg.min.css`, `./theme-central.min.css`)
+- **Fixed Storybook GitHub Pages 404 errors** (`@storybook/addon-vitest`, design token CSS, component CSS):
+  - `staticDirs` in `.storybook/main.ts` now serves `node_modules/@ntgovernment/web-design-tokens/dist/css/` at `/design-tokens-css` so token CSS is available in the built output
+  - Added `transformIndexHtml` Vite plugin in `viteFinal` to convert the absolute `/vite-inject-mocker-entry.js` injected by `@storybook/addon-vitest` to a relative path so Vite correctly prepends the configured base path
+  - `loadThemeCSS()` and `loadBootstrapTypography()` in `.storybook/preview.tsx` now reference token CSS via `${import.meta.env.BASE_URL}design-tokens-css/…` instead of hardcoded `/node_modules/…` paths
+  - Removed redundant dynamic `<link>` loading of `common`, `grid`, `typography`, `typography-literals`, and `base-variables` CSS (these are already bundled into the Storybook JS output via top-level ES imports)
+  - Removed `loadButtonCommonStyles()`: the function used `new URL(staticString, import.meta.url)`, which caused Vite to copy `Button.css` verbatim (bypassing PostCSS), leaving a bare `@import "@ntgovernment/web-design-tokens/css/common"` in the output that browsers cannot resolve; `Button.css` is already correctly processed via the top-level ES import
 
 ### Added
 

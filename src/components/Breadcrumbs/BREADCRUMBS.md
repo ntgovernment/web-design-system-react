@@ -74,7 +74,7 @@ Use these selectors in unit/visual tests and Storybook snapshots.
 
 ## Styling & tokens (what the component uses)
 
-Primary tokens used (refer to `design-tokens/tokens.json`):
+Primary tokens used (refer to `@ntgovernment/web-design-tokens`):
 
 - Colors: `--clr-link-default`, `--clr-link-hover`, `--clr-text-default`, `--clr-icon-alt`, `--clr-text-emphasis`
 - Divider (theme-controlled): `--breadcrumbs-divider-color` (set per theme)

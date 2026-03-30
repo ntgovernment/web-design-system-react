@@ -575,7 +575,7 @@ A: Use accessible selectors: `getByLabelText('Day')`, `getByLabelText('Month')`,
 - Component source: `src/components/DateInput/DateInput.tsx`
 - Storybook stories: `src/components/DateInput/DateInput.stories.tsx`
 - Design tokens: [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens)
-- Theme documentation: `src/themes/THEMES.md`
+- Theme documentation: [src/themes/THEMES.md](src/themes/THEMES.md)
 - Bootstrap form controls: https://getbootstrap.com/docs/5.3/forms/form-control/
 
 ---

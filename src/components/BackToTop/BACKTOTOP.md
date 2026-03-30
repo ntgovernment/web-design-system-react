@@ -61,7 +61,7 @@ The Back to Top component provides an accessibility-focused way for users to qui
 
 ```tsx
 import { BackToTop } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/ntg-theme.min.css";
+import "@ntgovernment/web-design-system/theme-ntg.min.css";
 
 export default function App() {
   return (
@@ -90,7 +90,7 @@ export default function App() {
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="./ntg-theme.min.css" />
+    <link rel="stylesheet" href="./theme-ntg.min.css" />
   </head>
   <body>
     <!-- Page content -->
@@ -299,7 +299,7 @@ Override theme variables in your stylesheet:
 
 ```tsx
 import { BackToTop } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/ntg-theme.min.css";
+import "@ntgovernment/web-design-system/theme-ntg.min.css";
 
 export function App() {
   return <BackToTop />;
@@ -316,7 +316,7 @@ The NT.GOV.AU theme provides:
 
 ```tsx
 import { BackToTop } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/central-theme.min.css";
+import "@ntgovernment/web-design-system/theme-central.min.css";
 
 export function App() {
   return <BackToTop />;
@@ -402,7 +402,7 @@ const scrollInterval = setInterval(() => {
 1. Check that page content is longer than `scrollThreshold` pixels
 2. Verify scrolling works on the page (not on a contained element)
 3. Check browser console for error messages
-4. Ensure CSS is loaded: `import "@ntgovernment/web-design-system/ntg-theme.min.css"`
+4. Ensure CSS is loaded: `import "@ntgovernment/web-design-system/theme-ntg.min.css"`
 
 ### Focus outline not visible
 
@@ -410,7 +410,7 @@ const scrollInterval = setInterval(() => {
 
 **Solutions**:
 
-1. Verify theme CSS is loaded (`ntg-theme.min.css` or `central-theme.min.css`)
+1. Verify theme CSS is loaded (`theme-ntg.min.css` or `theme-central.min.css`)
 2. Check that `box-shadow` is not being overridden by other CSS
 3. Check browser DevTools to see actual applied styles
 4. Clear browser cache and reload
@@ -500,8 +500,8 @@ The component depends on these semantic variables from the design token system:
 
 If tokens are updated in Figma:
 
-1. Export tokens to `design-tokens/tokens.json`
-2. Run `npm run tokens:build` to regenerate CSS
+1. Update the `@ntgovernment/web-design-tokens` package
+2. Bump `@ntgovernment/web-design-tokens` in `package.json`, run `npm install`, then `npm run build`
 3. Test component in all themes to ensure consistency
 
 ### CSS File Structure
@@ -540,7 +540,7 @@ Access via: `GET /api/html?storyId=components-back-to-top--default`
 
 - [Bootstrap 5.3 Buttons Documentation](https://getbootstrap.com/docs/5.3/components/buttons/#variables)
 - [Design Tokens Documentation](https://github.com/ntgovernment/web-design-system/blob/main/design-tokens/DESIGN-TOKENS.md)
-- [Theme Customization Guide](https://github.com/ntgovernment/web-design-system/blob/main/src/themes/THEMES.md)
+- [Theme Customization Guide](src/themes/THEMES.md)
 - [Content Standards](https://github.com/ntgovernment/web-design-system/blob/main/CONTENT_STANDARDS.md)
 - [WCAG 2.1 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)
 
@@ -560,7 +560,7 @@ This section consolidates all component-specific documentation that previously l
 
 ```tsx
 import { BackToTop } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/ntg-theme.min.css";
+import "@ntgovernment/web-design-system/theme-ntg.min.css";
 
 // In your component
 <BackToTop />;
