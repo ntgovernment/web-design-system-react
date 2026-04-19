@@ -147,35 +147,39 @@ The Squiz Matrix design parse file is maintained at `src/squiz/design-parse.html
 ```html
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-
-<head>
+  <head>
     <script runat="server">
-        print(`%globals_asset_contents_raw:1607588:dist/nesters/head.html%`);
+      print(`%globals_asset_contents_raw:1607588:dist/nesters/head.html%`);
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="top"></div>
 
     <script runat="server">
-        print(`%globals_asset_contents_raw:1607588:dist/nesters/skip_links.html%`);
+      print(
+        `%globals_asset_contents_raw:1607588:dist/nesters/skip_links.html%`,
+      );
     </script>
     <script runat="server">
-        print(`%globals_asset_contents_raw:1607588:dist/nesters/header_content.html%`);
+      print(
+        `%globals_asset_contents_raw:1607588:dist/nesters/header_content.html%`,
+      );
     </script>
 
     <div class="ntg-body">
-        <MySource_AREA id_name="body" design_area="body" />
+      <MySource_AREA id_name="body" design_area="body" />
     </div>
 
     <script runat="server">
-        print(`%globals_asset_contents_raw:1607588:dist/nesters/footer_content.html%`);
+      print(
+        `%globals_asset_contents_raw:1607588:dist/nesters/footer_content.html%`,
+      );
     </script>
     <script runat="server">
-        print(`%globals_asset_contents_raw:1607588:dist/nesters/footer_js.html%`);
+      print(`%globals_asset_contents_raw:1607588:dist/nesters/footer_js.html%`);
     </script>
-</body>
-
+  </body>
 </html>
 ```
 
@@ -194,12 +198,12 @@ The Vite dev server assembles the design-parse template by inlining the nester H
 
 Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`. Asset references within each nester use `%globals_asset_url_with_hash:1607588:dist/...%` for cache-busted URLs served via GFB.
 
-| Design Area      | Nester File                   | Description                                                                                                                  |
-| ---------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `head`           | `nesters/head.html`           | Page title, metadata, Dublin Core, Open Graph, no-JS script, FontAwesome CSS, favicons, theme CSS, jQuery CDN               |
-| `skip_links`     | `nesters/skip_links.html`     | Skip-to-content and skip-to-footer links                                                                                     |
-| `header_content` | `nesters/header_content.html` | Top page alert, NTG logo (print), site header with navigation and search                                                     |
-| `footer_content` | `nesters/footer_content.html` | Footer links, social media, logos, utility links, acknowledgement                                                            |
+| Design Area      | Nester File                   | Description                                                                                                                      |
+| ---------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `head`           | `nesters/head.html`           | Page title, metadata, Dublin Core, Open Graph, no-JS script, FontAwesome CSS, favicons, theme CSS, jQuery CDN                    |
+| `skip_links`     | `nesters/skip_links.html`     | Skip-to-content and skip-to-footer links                                                                                         |
+| `header_content` | `nesters/header_content.html` | Top page alert, NTG logo (print), site header with navigation and search                                                         |
+| `footer_content` | `nesters/footer_content.html` | Footer links, social media, logos, utility links, acknowledgement                                                                |
 | `footer_js`      | `nesters/footer_js.html`      | Bootstrap 5.3 bundle JS, FontAwesome fallback, lightbox plugins, React 18 CDN, components.min.js, Funnelback search autocomplete |
 
 ### Step 4: Create Component Service Templates

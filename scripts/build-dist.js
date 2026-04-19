@@ -16,9 +16,13 @@
  *        dist/theme-central.min.css Self-contained NTG Central theme bundle
  *        dist/index.html            Interactive demo
  *        dist/index.js / index.css  Demo app bundle
+ *   6. Copy Squiz Matrix nester and asset files:
  *        dist/nesters/*.html        Squiz Matrix design nesters (5 files)
  *        dist/favicons/*.png        Favicon assets
  *        dist/images/ntg-logo.png   NT Government logo
+ *   7. Copy vendor files (consolidated from ntgbase GFB 1484642):
+ *        dist/globals/js/           Bootstrap, Typeahead, Handlebars, Funnelback JS
+ *        dist/ntgbase/images/       NTG logos and icons (desert-rose, mono logo)
  *
  * Usage: node scripts/build-dist.js (invoked by `npm run build`)
  */
@@ -157,72 +161,22 @@ if (existsSync(unusedDir)) {
   console.log("  ✓ Removed dist/unused/");
 }
 
-// Step 6: Create Squiz Matrix nester and asset files
-console.log("\n📄 Creating Squiz Matrix nester files...");
+// Step 6: Copy Squiz Matrix nester and asset files
+console.log("\n📄 Copying Squiz Matrix nester files...");
 const nestersDir = join(distDir, "nesters");
+const nestersSourceDir = join(rootDir, "src", "squiz", "nesters");
 mkdirSync(nestersDir, { recursive: true });
 
-// head.html — standard Squiz Matrix <head> nester content
-const headHtml = `<!--@@ Frontend <head> @@-->
-<title>%frontend_asset_is_homepage^eq:1::{frontend_asset_name} | ^striphtml%%globals_site_name^striphtml%</title>
-
-<!--@@ Misc metadata @@-->
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-<meta charset="utf-8">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-<!--@@ Global metadata @@-->
-<meta name="description" content="%frontend_asset_metadata_page-description%">
-<meta name="robots" content="%frontend_asset_metadata_page-robots%">
-<meta name="dcterms.title" content="%frontend_asset_metadata_page-title%" />
-<meta name="dcterms.creator" content="Northern Territory Government" />
-<meta name="dcterms.created" content="%frontend_asset_created^date_format:c%" />
-<meta name="dcterms.issued" content="%frontend_asset_published^date_format:c%" />
-<meta name="dcterms.modified" content="%frontend_asset_updated^date_format:c%" />
-<meta name="dcterms.identifier" content="%frontend_asset_url%" />
-<meta name="dcterms.subject" content="%globals_site_name%" />
-<meta name="dc.language" content="en" />
-
-<!--@@ Open Graph Data | http://ogp.me/ @@-->
-<meta property="og:title" content="%frontend_asset_name%" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="%frontend_asset_url%" />
-<meta property="og:image" content="%frontend_asset_thumbnail_url^empty:./?a=795706%" />
-<meta property="og:description" content="%frontend_asset_metadata_page-description%" />
-<meta property="og:site_name" content="%globals_site_name%" />
-<meta property="article:published_time" content="%frontend_asset_published^date_format:c%" />
-<meta property="article:modified_time" content="%frontend_asset_updated^date_format:c%" />
-<meta property="article:tag" content="%frontend_asset_metadata_page-keywords%" />
-
-<!--@@ No JS @@-->
-<script type="text/javascript">
-    var $html = document.documentElement; if ($html.classList) $html.classList.remove("no-js"), $html.classList.add("js"); else { var className = "no-js"; $html.className = $html.className.replace(new RegExp("(^|\\\\b)" + className.split(" ").join("|") + "(\\\\b|$)", "gi"), " "), $html.className += " js" }
-</script>
-
-<!--@@ Font Awesome icons v6 @@-->
-<link rel="stylesheet" href="https://kit.fontawesome.com/f73a36f593.css" crossorigin="anonymous">
-
-<!--@@ Favicons @@-->
-<link rel="apple-touch-icon" sizes="180x180" href="%globals_asset_url_with_hash:1607588:dist/favicons/apple-touch-icon-180x180.png%">
-<link rel="icon" type="image/png" sizes="32x32" href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-32x32.png%">
-<link rel="icon" type="image/png" sizes="16x16" href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-16x16.png%">
-`;
-writeFileSync(join(nestersDir, "head.html"), headHtml);
-console.log("  ✓ Created nesters/head.html");
-
-// Remaining nesters — empty placeholders
-const emptyNesters = [
-  "skip_links",
-  "header_content",
-  "footer_content",
-  "footer_js",
+const nesterFiles = [
+  "head.html",
+  "skip_links.html",
+  "header_content.html",
+  "footer_content.html",
+  "footer_js.html",
 ];
-emptyNesters.forEach((name) => {
-  writeFileSync(join(nestersDir, `${name}.html`), "");
-  console.log(`  ✓ Created nesters/${name}.html`);
+nesterFiles.forEach((name) => {
+  copyFileSync(join(nestersSourceDir, name), join(nestersDir, name));
+  console.log(`  ✓ Copied nesters/${name}`);
 });
 
 // Create favicons directory with placeholder files
@@ -251,6 +205,26 @@ images.forEach((name) => {
   console.log(`  ✓ Created images/${name} (placeholder)`);
 });
 
+// Step 7: Copy vendor files (consolidated from ntgbase GFB 1484642)
+console.log("\n📦 Copying vendor files...");
+const vendorSourceDir = join(rootDir, "src", "squiz", "vendor");
+function copyDirRecursive(src, dest) {
+  mkdirSync(dest, { recursive: true });
+  for (const entry of readdirSync(src, { withFileTypes: true })) {
+    const srcPath = join(src, entry.name);
+    const destPath = join(dest, entry.name);
+    if (entry.isDirectory()) {
+      copyDirRecursive(srcPath, destPath);
+    } else {
+      copyFileSync(srcPath, destPath);
+      console.log(`  ✓ Copied ${destPath.replace(distDir, "dist")}`);
+    }
+  }
+}
+if (existsSync(vendorSourceDir)) {
+  copyDirRecursive(vendorSourceDir, distDir);
+}
+
 // Display final build summary
 console.log("\n✅ Build complete!\n");
 console.log("📦 Distribution files in dist/:");
@@ -272,6 +246,9 @@ console.log("   ├─ skip_links.html         - Skip links nest content");
 console.log("   ├─ header_content.html     - Header nest content");
 console.log("   ├─ footer_content.html     - Footer nest content");
 console.log("   └─ footer_js.html          - Footer JS nest content");
+console.log("   ┌─ Vendor Files (consolidated from ntgbase)");
+console.log("   ├─ globals/js/             - Bootstrap, jQuery, Funnelback JS");
+console.log("   └─ ntgbase/images/         - NTG logos and icons");
 
 // Display file sizes
 console.log("\n📊 File sizes:");

@@ -45,13 +45,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Dev-mode theme switching (`index.html`, `App.tsx`) updated to serve files from `node_modules/@ntgovernment/web-design-tokens`
 - **Squiz Matrix Design Nesters**: Added `src/squiz/` with a design parse template and 5 HTML nesters for Squiz DXP deployment
   - `design-parse.html` — Matrix design file that maps nesters to page regions via `print()` calls
-  - `nesters/head.html` — `<head>` content (meta, favicons, Bootstrap/FontAwesome CDNs, jQuery CDN)
+  - `nesters/head.html` — `<head>` content (meta, favicons, Bootstrap/FontAwesome CDNs, jQuery CDN) using Squiz Matrix keywords (`%frontend_asset_%`, `%globals_%`)
   - `nesters/skip_links.html` — skip navigation link
-  - `nesters/header_content.html` — global alert banner, site header, mobile search
-  - `nesters/footer_content.html` — site footer with links and acknowledgement
+  - `nesters/header_content.html` — global alert banner, site header, mobile search with Squiz Matrix keywords
+  - `nesters/footer_content.html` — site footer using `%globals_site_metadata_site-*%` keywords for all footer sections (footerInfo, footerSocial, welcomeToCountry, careTakerMessage)
   - `nesters/footer_js.html` — Bootstrap JS, React 18 CDN, `process.env` shim, components bundle, Funnelback search
   - Vite plugin `squizPreviewPlugin` serves `/squiz-preview.html` during `npm run dev` for local preview
   - Build outputs nesters and static assets (favicons, logo) to `dist/`
+- **Vendor Files Consolidation**: Consolidated 6 vendor files from ntgbase GFB (1484642) into `src/squiz/vendor/` for deployment via this repo's GFB (1607588)
+  - `globals/js/bootstrap.bundle.min.js` — Bootstrap 5.3 JS bundle
+  - `globals/js/typeahead.bundle.min.js` — Typeahead for search autocomplete
+  - `globals/js/handlebars.min.js` — Handlebars templating for Funnelback
+  - `globals/js/funnelback.autocompletion-2.6.0.js` — Funnelback search autocompletion
+  - `ntgbase/images/ntg-desert-rose-reverse.svg` — NTG desert rose logo reversed
+  - `ntgbase/images/logo-ntg-mono.svg` — NTG monochrome logo for footer
+  - Build Step 7 in `build-dist.js` recursively copies vendor files to `dist/`
 
 ### Removed
 
@@ -200,8 +208,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `npm run dev` - Start Vite development server
 - `npm run build` - Build library for production
-- `npm run tokens:validate` - Validate design token structure
-- `npm run tokens:build` - Generate CSS from design tokens
 - `npm run storybook` - Start Storybook development server
 - `npm run build-storybook` - Build static Storybook site
 - `npm run generate-story-data` - Generate Storybook data for HTML API
