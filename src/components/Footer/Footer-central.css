@@ -23,27 +23,10 @@
   --clr-focus-focus: var(--central-clr-focus-focus);
 
   /* Typography tokens */
-  --type-font-default: var(--central-type-font-default);
-  --type-button-label-default-size: var(
-    --central-type-desktop-button-default-size
-  );
-  --type-button-label-default-weight: var(
-    --central-type-desktop-button-default-weight
-  );
-  --type-button-label-default-lh: var(--central-type-desktop-button-default-lh);
-
-  /* Spacing tokens */
-  --sp-xs: var(--central-sp-xs);
-  --sp-sm: var(--central-sp-sm);
-  --sp-md: var(--central-sp-md);
-  --sp-lg: var(--central-sp-lg);
-  --sp-xl: var(--central-sp-xl);
+  --type-font-family-default: var(--central-type-font-family-default);
 
   /* Border radius */
   --radii-button: var(--central-radii-button);
-
-  /* Border width */
-  --border-width-md: var(--central-border-width-md);
 }
 
 /* ============================================
@@ -51,42 +34,42 @@
    ============================================ */
 
 .footer__section-title {
-  font-family: var(--central-type-font-default);
+  font-family: var(--central-type-font-family-default);
   font-size: 18px;
   font-weight: 700;
   line-height: 20px;
 }
 
 .footer__link {
-  font-family: var(--central-type-font-default);
+  font-family: var(--central-type-font-family-default);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
 
 .footer__social-link {
-  font-family: var(--central-type-font-default);
+  font-family: var(--central-type-font-family-default);
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
 }
 
 .footer__bottom-link {
-  font-family: var(--central-type-font-default);
+  font-family: var(--central-type-font-family-default);
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
 
 .footer__acknowledgement {
-  font-family: var(--central-type-font-default);
+  font-family: var(--central-type-font-family-default);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
 }
 
 .footer__copyright {
-  font-family: var(--central-type-font-default);
+  font-family: var(--central-type-font-family-default);
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;

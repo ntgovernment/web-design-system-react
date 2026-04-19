@@ -346,6 +346,7 @@ For developers migrating from Bootstrap:
 
 Component source: [src/components/Dropdown/Dropdown.tsx](Dropdown.tsx)  
 Styles: [Dropdown.css](Dropdown.css) | [Dropdown-ntg.css](Dropdown-ntg.css) | [Dropdown-central.css](Dropdown-central.css)
+
 # Dropdown Component - CSS Variables
 
 This document lists all CSS custom properties (variables) used by the Dropdown component.
@@ -594,12 +595,11 @@ For advanced custom dropdown experiences, consider using a custom component libr
 
 All design tokens are defined in [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens):
 
-- `@ntgovernment/web-design-tokens/css/common` - Shared tokens (spacing, shadows, border widths)
-- `@ntgovernment/web-design-tokens/css/theme-ntg` - NTG-specific tokens
-- `@ntgovernment/web-design-tokens/css/theme-central` - Central-specific tokens
-- `@ntgovernment/web-design-tokens/css/base-variables` - Semantic variable mappings
+- `@ntgovernment/web-design-tokens/css/theme-ntg-bundled` - NTG theme (self-contained, includes all token layers)
+- `@ntgovernment/web-design-tokens/css/theme-central-bundled` - Central theme (self-contained, includes all token layers)
 
 To modify token values, raise a PR in the `web-design-tokens` repository then bump the version in `package.json`.
+
 ```
 
 ## Related Documentation
@@ -608,3 +608,4 @@ To modify token values, raise a PR in the `web-design-tokens` repository then bu
 - [Dropdown.stories.tsx](Dropdown.stories.tsx) - Storybook stories
 - [CONTENT_STANDARDS.md](../../CONTENT_STANDARDS.md) - Content guidelines
 - [THEMES.md](../../themes/THEMES.md) - Theme system overview
+```

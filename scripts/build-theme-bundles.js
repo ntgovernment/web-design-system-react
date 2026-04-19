@@ -8,14 +8,11 @@
  *   node_modules/@ntgovernment/web-design-tokens/dist/css/
  *
  * Bundle contents (in cascade order):
- *   1. base-variables.css  — semantic unprefixed variable mappings
- *   2. common.css          — spacing, shadows, borders, radii
- *   3. grid.css            — Bootstrap grid configuration
- *   4. typography.css      — typography scale variables
- *   5. theme-{ntg|central}.css  — palette + semantic color mappings
- *   6. typography-{ntg|central}.css — Bootstrap typography overrides
- *   7. Component CSS       — Button, Tag, Input, SearchBar base styles
- *   8. Component theme CSS — per-theme overrides for each component
+ *   1. theme-{ntg|central}.bundled.css — self-contained token bundle
+ *      (base-variables + common + grid + typography + typography-literals + theme palette)
+ *   2. typography-{ntg|central}.css — Bootstrap typography overrides
+ *   3. Component CSS       — Button, Tag, Input, SearchBar base styles
+ *   4. Component theme CSS — per-theme overrides for each component
  *
  * Output:
  *   dist/theme-ntg.min.css
@@ -33,7 +30,14 @@ const __dirname = dirname(__filename);
 
 const rootDir = join(__dirname, "..");
 const distDir = join(rootDir, "dist");
-const tokensCssDir = join(rootDir, "node_modules", "@ntgovernment", "web-design-tokens", "dist", "css");
+const tokensCssDir = join(
+  rootDir,
+  "node_modules",
+  "@ntgovernment",
+  "web-design-tokens",
+  "dist",
+  "css",
+);
 
 console.log("🎨 Building complete theme CSS bundles...\n");
 
@@ -67,24 +71,6 @@ function readCSSFile(filePath) {
   }
 }
 
-// Define CSS files to include in order (dependencies first)
-const cssOrder = [
-  // Foundation - base CSS variables
-  {
-    path: join(tokensCssDir, "base-variables.css"),
-    name: "base-variables.css",
-  },
-  // Common design tokens
-  { path: join(tokensCssDir, "common.css"), name: "common.css" },
-  // Grid system
-  { path: join(tokensCssDir, "grid.css"), name: "grid.css" },
-  // Typography base
-  {
-    path: join(tokensCssDir, "typography.css"),
-    name: "typography.css",
-  },
-];
-
 // Component CSS files (currently only Button)
 const componentCSS = [
   {
@@ -110,7 +96,7 @@ const themes = [
   {
     name: "ntg",
     displayName: "NT.GOV.AU",
-    themeFile: join(tokensCssDir, "themes", "theme-ntg.css"),
+    themeFile: join(tokensCssDir, "themes", "theme-ntg.bundled.css"),
     bootstrapFile: join(tokensCssDir, "themes", "typography-ntg.css"),
     buttonTheme: join(rootDir, "src", "components", "Button", "Button-ntg.css"),
     tagTheme: join(rootDir, "src", "components", "Tag", "Tag-ntg.css"),
@@ -127,7 +113,7 @@ const themes = [
   {
     name: "central",
     displayName: "NTG Central",
-    themeFile: join(tokensCssDir, "themes", "theme-central.css"),
+    themeFile: join(tokensCssDir, "themes", "theme-central.bundled.css"),
     bootstrapFile: join(tokensCssDir, "themes", "typography-central.css"),
     buttonTheme: join(
       rootDir,
@@ -161,18 +147,11 @@ themes.forEach((theme) => {
 
   let cssBundle = "";
 
-  // Add common CSS files
-  cssOrder.forEach(({ path, name }) => {
-    const content = readCSSFile(path);
-    if (content) {
-      cssBundle += `/* ${name} */\n${content}\n\n`;
-    }
-  });
-
-  // Add theme-specific CSS
+  // Add bundled theme CSS (self-contained: base-variables + common + grid +
+  // typography + typography-literals + theme palette — all inlined)
   const themeContent = readCSSFile(theme.themeFile);
   if (themeContent) {
-    cssBundle += `/* ${theme.name}-theme.css */\n${themeContent}\n\n`;
+    cssBundle += `/* theme-${theme.name}.bundled.css */\n${themeContent}\n\n`;
   }
 
   // Add Bootstrap typography overrides
@@ -210,6 +189,9 @@ themes.forEach((theme) => {
     cssBundle += `/* SearchBar-${theme.name}.css */\n${searchBarThemeContent}\n\n`;
   }
 
+  // Strip @import statements — all imported content is already concatenated above
+  cssBundle = cssBundle.replace(/@import\s+['"][^'"]*['"]\s*;?/g, "");
+
   // Minify the bundle
   const minified = minifyCSS(cssBundle);
 
@@ -228,11 +210,9 @@ themes.forEach((theme) => {
 
 console.log("\n✅ Complete theme CSS bundles created!");
 console.log("   Each theme bundle includes all dependencies:");
-console.log("   • Base CSS variables");
-console.log("   • Common design tokens");
-console.log("   • Grid system");
-console.log("   • Typography");
-console.log("   • Theme-specific variables");
+console.log(
+  "   • Bundled design tokens (base-variables, common, grid, typography, theme palette)",
+);
 console.log("   • Bootstrap overrides");
 console.log("   • Component styles");
 console.log("   • Component theme overrides");

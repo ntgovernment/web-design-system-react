@@ -12,7 +12,7 @@
 
 .quick-exit {
   width: 100%;
-  padding: var(--sp-xl) var(--sp-xxl);
+  padding: var(--sp-xl) var(--sp-2xl);
   background: var(--clr-bg-accent);
   display: flex;
   justify-content: flex-start;
@@ -46,8 +46,8 @@
 }
 
 .quick-exit__icon {
-  width: var(--sp-xxl);
-  height: var(--sp-xxl);
+  width: var(--sp-2xl);
+  height: var(--sp-2xl);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -65,7 +65,7 @@
 .quick-exit__heading {
   color: var(--clr-text-inverse);
   font-size: var(--type-desktop-h3-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-heading-h3-weight);
   line-height: var(--type-heading-h3-lh);
   word-wrap: break-word;
@@ -75,7 +75,7 @@
   align-self: stretch;
   color: var(--clr-text-inverse);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-body-default-bold-weight);
   line-height: var(--type-body-default-lh);
   word-wrap: break-word;

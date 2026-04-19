@@ -1,6 +1,6 @@
 {
   "name": "@ntgovernment/web-design-system",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Component library and themes for NT Government websites and intranets",
   "type": "module",
   "main": "./dist/components.min.js",
@@ -31,7 +31,7 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@ntgovernment/web-design-tokens": "^2.0.0",
+    "@ntgovernment/web-design-tokens": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -72,7 +72,7 @@
     "eslint-plugin-storybook": "10.2.4",
     "globals": "^15.13.0",
     "playwright": "^1.58.1",
-    "storybook": "10.2.4",
+    "storybook": "^10.3.5",
     "typescript": "^5.7.2",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.2.5",

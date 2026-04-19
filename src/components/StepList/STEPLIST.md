@@ -279,7 +279,7 @@ The StepList component uses Bootstrap 5.3's CSS variable system for typography c
 
 #### Global Typography Variables
 
-From `@ntgovernment/web-design-tokens/css/base-variables`:
+From `@ntgovernment/web-design-tokens` (included in bundled theme files):
 
 ```css
 :root {

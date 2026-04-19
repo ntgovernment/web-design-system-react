@@ -237,6 +237,32 @@ const config: StorybookConfig = {
     // Add custom HTML API plugin (always present)
     config.plugins = config.plugins || [];
     config.plugins.push(htmlApiPlugin());
+
+    // Resolve bundled token CSS — Vite's package exports resolver doesn't handle
+    // the ".bundled.css" file extension in the exports map, so we alias directly.
+    const tokensDir = join(
+      __dirname,
+      "..",
+      "node_modules",
+      "@ntgovernment",
+      "web-design-tokens",
+      "dist",
+      "css",
+      "themes",
+    );
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@ntgovernment/web-design-tokens/css/theme-ntg-bundled": join(
+        tokensDir,
+        "theme-ntg.bundled.css",
+      ),
+      "@ntgovernment/web-design-tokens/css/theme-central-bundled": join(
+        tokensDir,
+        "theme-central.bundled.css",
+      ),
+    };
+
     return config;
   },
 };

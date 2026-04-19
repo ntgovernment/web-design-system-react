@@ -34,8 +34,8 @@
 }
 
 .notification__icon {
-  width: var(--sp-xxl);
-  height: var(--sp-xxl);
+  width: var(--sp-2xl);
+  height: var(--sp-2xl);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -60,7 +60,7 @@
 .notification__title {
   color: var(--clr-text-default);
   font-size: var(--type-desktop-h3-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-heading-h3-weight);
   line-height: var(--type-heading-h3-lh);
   word-wrap: break-word;
@@ -74,7 +74,7 @@
   align-self: stretch;
   color: var(--clr-text-default);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
   word-wrap: break-word;

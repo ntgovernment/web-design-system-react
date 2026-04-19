@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Design Tokens v3.1.0 Bundled CSS Migration**: Switched from individual token CSS imports to self-contained bundled theme files (`theme-ntg.bundled.css` / `theme-central.bundled.css`)
+  - `.storybook/preview.tsx`: replaced 5 individual token imports (`base-variables`, `common`, `grid`, `typography`, `typography-literals`) with single `theme-ntg-bundled` import; updated `loadThemeCSS()` for dynamic theme switching
+  - `src/main.css`: switched from `theme-ntg` to `theme-ntg-bundled`
+  - `scripts/build-theme-bundles.js`: simplified to read one bundled theme file per theme instead of 4 individual files
+  - `.storybook/main.ts`: added `resolve.alias` in `viteFinal` to work around Vite exports resolution for `.bundled.css` files
+  - `vite.config.ts`: added matching `resolve.alias` for dev and build modes
+  - Removed `@import` statements for individual token CSS from 10 component files (TopicListing, Document, FileUpload, SideNavigation, Callout, StepList)
+- **Design Tokens v3 Migration**: Updated all component CSS to match `@ntgovernment/web-design-tokens` v3.0 token renames
+  - Spacing: `--sp-xxl` → `--sp-2xl`, `--sp-xxxl` → `--sp-3xl` (13 component files, 32 references)
+  - Typography: `--type-font-default` → `--type-font-family-default` (22 component files)
+  - Typography: `--type-body-small-*` → `--type-body-sm-*` (Card)
+  - Typography: `--type-uppercase-small-*` → `--type-uppercase-sm-*` (Tag, Table)
+  - Typography: `--type-button-label-*` → `--type-button-label-default-*` (Pill)
+  - Typography: `--type-mobile-heading-h4-*` → `--type-mobile-h4-*` (GlobalAlert)
+
+### Fixed
+
+- **Footer theme overrides**: Removed broken indirection through non-existent prefixed spacing (`--ntg-sp-*`, `--central-sp-*`), border-width (`--ntg-border-width-md`, `--central-border-width-md`), and button typography tokens. Common tokens are used directly.
+- **Build system**: Strip `@import` statements from concatenated theme bundle CSS before minification — prevents invalid mid-file `@import` in dist output
+- **Component CSS**: Removed `@import` statements from Button.css and Tag.css (tokens are loaded by theme bundles and Storybook preview)
+- **Storybook**: Added missing `base-variables.css` import to `.storybook/preview.tsx` for `--type-desktop-*` alias availability
+
 ### Added
 
 - **Design Tokens Package**: Migrated to `@ntgovernment/web-design-tokens` (v2.0.0) as an external npm dependency

@@ -183,7 +183,7 @@ Import theme CSS from the tokens package:
 ```tsx
 // .storybook/preview.tsx
 import "bootstrap/dist/css/bootstrap.min.css";
-import "@ntgovernment/web-design-tokens/css/theme-ntg"; // or theme-central
+import "@ntgovernment/web-design-tokens/css/theme-ntg-bundled"; // or theme-central-bundled
 ```
 
 ## Responsive Typography

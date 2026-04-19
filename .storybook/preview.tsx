@@ -1,11 +1,9 @@
 import type { Preview, Decorator } from "@storybook/react-vite";
 import { useEffect } from "react";
 
-// Import common design tokens FIRST (required by component CSS files)
-import "@ntgovernment/web-design-tokens/css/common";
-import "@ntgovernment/web-design-tokens/css/grid";
-import "@ntgovernment/web-design-tokens/css/typography";
-import "@ntgovernment/web-design-tokens/css/typography-literals";
+// Import bundled design tokens (includes base-variables, common, grid, typography,
+// typography-literals, and theme palette in a single self-contained file)
+import "@ntgovernment/web-design-tokens/css/theme-ntg-bundled";
 
 // Import Button CSS files to ensure Vite processes them
 import "../src/components/Button/Button.css";
@@ -415,15 +413,12 @@ const loadThemeCSS = (theme: string) => {
     existingTheme.remove();
   }
 
-  // Note: common, grid, typography, typography-literals, and base-variables CSS are
-  // already bundled into the Storybook JS bundle via the top-level ES imports at the
-  // top of this file. No need to load them again via <link> tags.
-
-  // Add theme-specific CSS (changes when user switches themes, so loaded dynamically)
+  // Add theme-specific bundled CSS (changes when user switches themes, so loaded
+  // dynamically). Each bundled file is self-contained with all token layers inlined.
   const themeCSS = document.createElement("link");
   themeCSS.id = "theme-css";
   themeCSS.rel = "stylesheet";
-  themeCSS.href = `${tokensCssBase}/themes/theme-${theme}.css`;
+  themeCSS.href = `${tokensCssBase}/themes/theme-${theme}.bundled.css`;
   document.head.appendChild(themeCSS);
 
   // Load component styles (Button CSS with Bootstrap variable overrides)

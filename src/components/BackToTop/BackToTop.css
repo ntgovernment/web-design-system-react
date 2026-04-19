@@ -22,7 +22,7 @@
   /* Bootstrap CSS Variables */
   --bs-btn-padding-x: var(--sp-md);
   --bs-btn-padding-y: var(--sp-md);
-  --bs-btn-font-family: var(--type-font-default);
+  --bs-btn-font-family: var(--type-font-family-default);
   --bs-btn-font-size: var(--type-button-label-default-size);
   --bs-btn-font-weight: var(--type-button-label-default-weight);
   --bs-btn-line-height: var(--type-button-label-default-lh);

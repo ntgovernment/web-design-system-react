@@ -2,8 +2,6 @@
  * Document Component - Common Styles
  */
 
-@import "@ntgovernment/web-design-tokens/css/common";
-
 .document {
   --document-radius: var(--radii-sm);
   --document-icon-radius: var(--radii-sm);
@@ -22,8 +20,8 @@
 }
 
 .document__icon-wrapper {
-  width: var(--sp-xxxl);
-  height: var(--sp-xxxl);
+  width: var(--sp-3xl);
+  height: var(--sp-3xl);
   padding: var(--sp-xs);
   background: var(--clr-bg-shade);
   border-radius: var(--document-icon-radius);
@@ -34,7 +32,7 @@
 }
 
 .document__icon {
-  width: var(--sp-xxl);
+  width: var(--sp-2xl);
   height: 26.67px;
   display: flex;
   align-items: center;
@@ -60,7 +58,7 @@
   font-weight: var(--type-link-default-bold-weight);
   line-height: var(--type-link-default-bold-lh);
   text-decoration: var(--type-link-default-bold-decoration);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   word-wrap: break-word;
 }
 
@@ -90,7 +88,7 @@
   font-size: var(--type-body-sm-size);
   font-weight: var(--type-body-sm-weight);
   line-height: var(--type-body-sm-lh);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   word-wrap: break-word;
 }
 
@@ -99,6 +97,6 @@
   font-size: var(--type-body-sm-size);
   font-weight: var(--type-body-sm-weight);
   line-height: var(--type-body-sm-lh);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   word-wrap: break-word;
 }

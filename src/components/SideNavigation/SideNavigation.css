@@ -19,8 +19,6 @@
  * - Spacing: 16px gap, borders between items
  */
 
-@import "@ntgovernment/web-design-tokens/css/common";
-
 /* Main container */
 .side-nav {
   display: flex;
@@ -63,7 +61,7 @@
   font-weight: 700;
   line-height: 20px;
   color: var(--clr-link-default);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
 }
 
 /* Content wrapper */
@@ -115,7 +113,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   transition: color 0.15s ease-in-out;
 }
 

@@ -1,5 +1,5 @@
 ---
-description: "Stage all changes, bump the semantic version in package.json, generate a conventional commit message from recent changes, commit, and push to the dev branch."
+description: "Stage all changes, bump the semantic version in package.json, generate a conventional commit message from recent changes, commit, create and push an annotated git tag, then push to the dev branch."
 name: "Deploy to Dev"
 agent: agent
 tools: [run_in_terminal, read_file, replace_string_in_file]
@@ -27,6 +27,7 @@ git diff --cached -- package.json src/ scripts/ .github/
 ```
 
 Apply **semver** rules:
+
 - **patch** (`x.x.Z`) — bug fixes, docs updates, minor config tweaks, no API or behaviour changes
 - **minor** (`x.Y.0`) — new features, new components, new exports, new dependencies that extend capability (e.g. adding `@ntgovernment/web-design-tokens`)
 - **major** (`X.0.0`) — breaking changes: removed exports, renamed components, changed CSS variable names, dropped support
@@ -44,6 +45,7 @@ git add package.json
 Construct a [Conventional Commits](https://www.conventionalcommits.org/) message based on the staged changes.
 
 **Format:**
+
 ```
 <type>(<scope>): <short summary>
 
@@ -51,6 +53,7 @@ Construct a [Conventional Commits](https://www.conventionalcommits.org/) message
 ```
 
 **Rules:**
+
 - `type` must be one of: `feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `build`, `ci`
 - `scope` should be the primary area affected (e.g. `tokens`, `build`, `deps`, `components`, `docs`)
 - Summary line must be ≤ 72 characters, lowercase, no trailing period
@@ -58,6 +61,7 @@ Construct a [Conventional Commits](https://www.conventionalcommits.org/) message
 - Prefix any removed items with `remove:` and any breaking changes with `BREAKING CHANGE:`
 
 **Example for the token migration:**
+
 ```
 feat(deps): migrate design tokens to @ntgovernment/web-design-tokens
 
@@ -78,7 +82,22 @@ git commit -m "<type>(<scope>): <summary>" -m "<body>"
 
 Use separate `-m` flags for the subject and body so the body is properly separated by a blank line.
 
-## Step 5 — Push to dev
+## Step 5 — Create and push a git tag
+
+Using the new version string determined in Step 2, create an annotated tag and push it:
+
+```bash
+git tag -a v<version> -m "<type>(<scope>): <summary>"
+git push origin v<version>
+```
+
+The tag message should match the commit subject line. Verify the tag was created with:
+
+```bash
+git tag -l "v<version>"
+```
+
+## Step 6 — Push to dev
 
 ```bash
 git push origin dev
@@ -95,10 +114,16 @@ Do **not** force-push unless the user explicitly confirms.
 
 ## Quality gate
 
-Before pushing, verify the build still passes:
+Before committing, verify the build still passes:
 
 ```bash
 npm run build
 ```
 
 If the build fails, fix the issue before committing. Do **not** push broken code.
+
+Confirm the git tag exists on the remote after Step 5:
+
+```bash
+git ls-remote --tags origin v<version>
+```

@@ -68,7 +68,7 @@
   align-self: stretch;
   color: var(--clr-text-inverse);
   font-size: var(--type-heading-h4-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-heading-h4-weight);
   line-height: var(--type-heading-h4-lh);
   word-wrap: break-word;
@@ -79,7 +79,7 @@
   align-self: stretch;
   color: var(--clr-text-inverse);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
   word-wrap: break-word;
@@ -264,7 +264,7 @@
   }
 
   .global-alert__title {
-    font-size: var(--type-mobile-heading-h4-size);
-    line-height: var(--type-mobile-heading-h4-lh);
+    font-size: var(--type-mobile-h4-size);
+    line-height: var(--type-mobile-h4-lh);
   }
 }

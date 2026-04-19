@@ -17,8 +17,6 @@
  * - Error: Upload failed
  */
 
-@import "@ntgovernment/web-design-tokens/css/common";
-
 /* ============================================================================
    File Upload Field Container
    ========================================================================== */
@@ -182,7 +180,7 @@
   font-size: var(--type-desktop-body-default-size);
   font-weight: 700;
   line-height: var(--type-body-default-lh);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
 }
 
 .file-upload__title--uploading {
@@ -203,7 +201,7 @@
   font-size: var(--type-body-sm-size);
   font-weight: 400;
   line-height: var(--type-body-sm-lh, 1.25rem);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
 }
 
 .file-upload__size {
@@ -223,7 +221,7 @@
   font-size: var(--type-button-label-small-size);
   font-weight: 700;
   line-height: var(--type-button-label-small-lh);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   cursor: pointer;
   transition:
     background-color 0.15s ease-in-out,
@@ -328,7 +326,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
 }
 
 /* Default file item state */
@@ -458,7 +456,7 @@
   font-size: var(--type-body-sm-size);
   font-weight: 400;
   line-height: var(--type-body-sm-lh);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   word-break: break-word;
   flex: 1 1 0;
 }

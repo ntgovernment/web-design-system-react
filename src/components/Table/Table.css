@@ -86,7 +86,7 @@
 }
 
 .content-table__sort-icon {
-  font-size: var(--type-uppercase-small-size);
+  font-size: var(--type-uppercase-sm-size);
   line-height: 1;
 }
 

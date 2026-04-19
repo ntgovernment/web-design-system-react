@@ -6,9 +6,9 @@ This directory contains theme-related documentation and demo assets. Theme CSS i
 
 `npm run build` produces two fully self-contained CSS bundles in `dist/`:
 
-| File | Theme |
-|---|---|
-| `dist/theme-ntg.min.css` | NT.GOV.AU |
+| File                         | Theme       |
+| ---------------------------- | ----------- |
+| `dist/theme-ntg.min.css`     | NT.GOV.AU   |
 | `dist/theme-central.min.css` | NTG Central |
 
 Each bundle includes base variables, common tokens, grid, typography, theme palette, and component styles — **no separate imports required** beyond Bootstrap CDN.
@@ -20,9 +20,9 @@ Design tokens live in the separate [`@ntgovernment/web-design-tokens`](https://g
 The tokens package exposes CSS via named export specifiers:
 
 ```css
-@import "@ntgovernment/web-design-tokens/css/common";
-@import "@ntgovernment/web-design-tokens/css/theme-ntg";
-@import "@ntgovernment/web-design-tokens/css/theme-central";
+/* Bundled theme files (recommended — self-contained, includes all token layers) */
+@import "@ntgovernment/web-design-tokens/css/theme-ntg-bundled";
+@import "@ntgovernment/web-design-tokens/css/theme-central-bundled";
 ```
 
 ## Updating Tokens
@@ -46,6 +46,7 @@ dist/theme-ntg.min.css / dist/theme-central.min.css
 Components use **unprefixed semantic variables** that automatically resolve for the active theme:
 
 ### Color tokens
+
 - `--clr-action-primary`, `--clr-action-hover` — interactive elements
 - `--clr-bg-default`, `--clr-bg-shade` — backgrounds
 - `--clr-text-default`, `--clr-text-muted` — text
@@ -54,9 +55,11 @@ Components use **unprefixed semantic variables** that automatically resolve for 
 - `--clr-status-success/danger/warning/info` — status indicators
 
 ### Spacing tokens
+
 - `--sp-xxs` (4px) through `--sp-xxxl` (48px)
 
 ### Typography tokens
+
 - `--type-font-default` — body typeface (NTG: Lato; Central: Roboto)
 - `--type-desktop-h1-size` through `--type-desktop-h6-size`
 - `--type-body-default-lh`, `--type-body-sm-size`

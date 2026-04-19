@@ -5,25 +5,22 @@
  * Uses design tokens for typography, spacing, and colors.
  */
 
-@import '@ntgovernment/web-design-tokens/css/typography';
-@import '@ntgovernment/web-design-tokens/css/typography-literals';
-
 .tag {
   /* Typography - uppercase small tokens */
-  font-size: var(--type-uppercase-small-size);
-  font-weight: var(--type-uppercase-small-weight);
-  line-height: var(--type-uppercase-small-lh);
-  letter-spacing: var(--type-uppercase-small-ls);
-  text-transform: var(--literal-text-transform-uppercase-small);
-  font-family: var(--type-font-default);
-  
+  font-size: var(--type-uppercase-sm-size);
+  font-weight: var(--type-uppercase-sm-weight);
+  line-height: var(--type-uppercase-sm-lh);
+  letter-spacing: var(--type-uppercase-sm-ls);
+  text-transform: var(--literal-text-transform-uppercase-sm);
+  font-family: var(--type-font-family-default);
+
   /* Spacing */
   padding: var(--sp-xxs) var(--sp-xs);
-  
+
   /* Display */
   display: inline-block;
   border-radius: 0;
-  
+
   /* Default for consistency */
   vertical-align: middle;
   white-space: nowrap;

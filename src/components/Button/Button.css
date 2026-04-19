@@ -19,9 +19,6 @@
  * - Proper typography with text-box-trim for cleaner baselines
  */
 
-/* Import design tokens required by this component */
-@import "@ntgovernment/web-design-tokens/css/common";
-
 /* Bootstrap Button CSS Variable Customizations */
 /* Override Bootstrap's component-level variables with design tokens */
 .btn {
@@ -32,7 +29,7 @@
   gap: var(--sp-xs);
 
   /* Typography - Using design tokens */
-  --bs-btn-font-family: var(--type-font-default);
+  --bs-btn-font-family: var(--type-font-family-default);
   --bs-btn-font-size: var(--type-button-label-default-size);
   --bs-btn-font-weight: var(--type-button-label-default-weight);
   --bs-btn-line-height: var(--type-button-label-default-lh);

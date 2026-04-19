@@ -250,7 +250,7 @@ typography.css:  --type-{category}-{variant}-{property}
 Examples:
   --type-heading-h1-size
   --type-link-default-decoration
-  --type-uppercase-small-text-transform
+  --type-uppercase-sm-text-transform
   --type-mobile-link-default-paragraph-spacing
 ```
 
@@ -264,7 +264,7 @@ theme-ntg.css:  --ntg-type-{context}-{variant}-{property}
 Examples:
   --ntg-type-desktop-h1-size: var(--type-heading-h1-size)
   --ntg-type-link-default-decoration: var(--type-link-default-decoration)
-  --central-type-uppercase-small-text-transform: var(--type-uppercase-small-text-transform)
+  --central-type-uppercase-sm-text-transform: var(--type-uppercase-sm-text-transform)
 ```
 
 ## Token Workflow

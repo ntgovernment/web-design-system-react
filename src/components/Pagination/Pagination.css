@@ -41,9 +41,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--sp-xxl);
-  min-height: var(--sp-xxl);
-  font-family: var(--type-font-default);
+  min-width: var(--sp-2xl);
+  min-height: var(--sp-2xl);
+  font-family: var(--type-font-family-default);
   font-size: var(--type-body-default-size);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
