@@ -345,7 +345,7 @@ The typography system uses CSS variables from the design token system. Key varia
 /* etc. */
 ```
 
-For complete details, see [src/themes/typography-integration.md](../../themes/typography-integration.md).
+For complete details, see the [Theme Switching guide](../../themes/THEME_SWITCHING.md).
 
 ## Examples in Storybook
 

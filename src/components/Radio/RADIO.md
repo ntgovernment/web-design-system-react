@@ -553,6 +553,7 @@ The Radio component supports all modern browsers:
 - The component extends all native HTML input attributes (except `type` and `size`)
 - Radio button groups use semantic HTML (`<fieldset>` and `<legend>`) for better accessibility
 - Unlike checkboxes, radio buttons cannot be unchecked by clicking them again once selected
+
 # Radio Component - CSS Variables Reference
 
 This document provides a comprehensive reference of all CSS variables used by the Radio component, enabling theme customization and override capabilities.
@@ -1004,12 +1005,9 @@ To modify token values:
 2. Bump the version in this repo's `package.json` and run `npm install`
 3. Run `npm run build` — rebuilt theme bundles will include the updated values
 
-See [DESIGN_TOKENS_IMPLEMENTATION.md](../../../DESIGN_TOKENS_IMPLEMENTATION.md) for more information.
-
 ## Related Documentation
 
 - [Radio Component Documentation](RADIO.md) - Main component documentation
-- [Design Tokens Guide](../../../design-tokens/DESIGN-TOKENS.md) - Design token system
 - [Theme Switching Guide](src/themes/THEME_SWITCHING.md) - How to implement theme switching
 - [Component README](../../../README.md) - Overall design system documentation
 
@@ -1021,6 +1019,7 @@ For questions about CSS variable usage or customization:
 2. Review existing component CSS files for patterns
 3. Consult the [design token documentation](../../../design-tokens/DESIGN-TOKENS.md)
 4. Refer to [Bootstrap 5.3 documentation](https://getbootstrap.com/docs/5.3/) for form control details
+
 # Radio Button Component - Implementation Summary
 
 ## Overview

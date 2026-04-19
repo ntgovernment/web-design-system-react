@@ -20,102 +20,113 @@
  * Usage: node scripts/build-dist.js (invoked by `npm run build`)
  */
 
-import { execSync } from 'child_process';
-import { readFileSync, writeFileSync, copyFileSync, renameSync, mkdirSync, existsSync, rmSync, readdirSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { execSync } from "child_process";
+import {
+  readFileSync,
+  writeFileSync,
+  copyFileSync,
+  renameSync,
+  mkdirSync,
+  existsSync,
+  rmSync,
+  readdirSync,
+} from "fs";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const rootDir = join(__dirname, '..');
-const distDir = join(rootDir, 'dist');
-const distLibDir = join(rootDir, 'dist', 'lib');
-const distDemoDir = join(rootDir, 'dist', 'demo');
+const rootDir = join(__dirname, "..");
+const distDir = join(rootDir, "dist");
+const distLibDir = join(rootDir, "dist", "lib");
+const distDemoDir = join(rootDir, "dist", "demo");
 
-console.log('🔨 Building NT Government Web Design System...\n');
+console.log("🔨 Building NT Government Web Design System...\n");
 
 // Step 1: Clean dist directory
-console.log('🧹 Cleaning dist directory...');
+console.log("🧹 Cleaning dist directory...");
 if (existsSync(distDir)) {
   rmSync(distDir, { recursive: true, force: true });
 }
 mkdirSync(distDir, { recursive: true });
-console.log('  ✓ Cleaned dist/\n');
+console.log("  ✓ Cleaned dist/\n");
 
 // Step 2: Build library (components.umd.js)
-console.log('📦 Building component library (UMD)...');
+console.log("📦 Building component library (UMD)...");
 try {
-  execSync('vite build --mode library', { 
-    cwd: rootDir, 
-    stdio: 'inherit' 
+  execSync("vite build --mode library", {
+    cwd: rootDir,
+    stdio: "inherit",
   });
-  console.log('  ✓ Library built to dist/lib/\n');
+  console.log("  ✓ Library built to dist/lib/\n");
 } catch (error) {
-  console.error('  ✗ Library build failed');
+  console.error("  ✗ Library build failed");
   process.exit(1);
 }
 
 // Step 3: Build demo application
-console.log('📦 Building demo application...');
+console.log("📦 Building demo application...");
 try {
-  execSync('vite build --mode demo', { 
-    cwd: rootDir, 
-    stdio: 'inherit' 
+  execSync("vite build --mode demo", {
+    cwd: rootDir,
+    stdio: "inherit",
   });
-  console.log('  ✓ Demo built to dist/demo/\n');
+  console.log("  ✓ Demo built to dist/demo/\n");
 } catch (error) {
-  console.error('  ✗ Demo build failed');
+  console.error("  ✗ Demo build failed");
   process.exit(1);
 }
 
 // Step 4: Build complete theme CSS bundles
-console.log('🎨 Building complete theme CSS bundles...');
+console.log("🎨 Building complete theme CSS bundles...");
 try {
-  execSync('node scripts/build-theme-bundles.js', { 
-    cwd: rootDir, 
-    stdio: 'inherit' 
+  execSync("node scripts/build-theme-bundles.js", {
+    cwd: rootDir,
+    stdio: "inherit",
   });
-  console.log('');
+  console.log("");
 } catch (error) {
-  console.error('  ✗ Theme bundle build failed');
+  console.error("  ✗ Theme bundle build failed");
   process.exit(1);
 }
 
 // Step 5: Organize files into final dist structure
-console.log('📂 Organizing distribution files...\n');
+console.log("📂 Organizing distribution files...\n");
 
 // Move library file: dist/lib/components.umd.js or .cjs -> dist/components.min.js
-let libFile = join(distLibDir, 'components.umd.js');
+let libFile = join(distLibDir, "components.umd.js");
 if (!existsSync(libFile)) {
-  libFile = join(distLibDir, 'components.umd.cjs'); // Vite may use .cjs extension
+  libFile = join(distLibDir, "components.umd.cjs"); // Vite may use .cjs extension
 }
 if (existsSync(libFile)) {
-  copyFileSync(libFile, join(distDir, 'components.min.js'));
-  console.log('  ✓ Moved components.umd.* → components.min.js');
+  copyFileSync(libFile, join(distDir, "components.min.js"));
+  console.log("  ✓ Moved components.umd.* → components.min.js");
 } else {
-  console.warn('  ⚠ Warning: components.umd.js or .cjs not found in dist/lib/');
+  console.warn("  ⚠ Warning: components.umd.js or .cjs not found in dist/lib/");
 }
 
 // Move demo files from dist/demo/ to dist/
-const demoFiles = ['index.html', 'index.js', 'index.css'];
-demoFiles.forEach(file => {
+const demoFiles = ["index.html", "index.js", "index.css"];
+demoFiles.forEach((file) => {
   const srcPath = join(distDemoDir, file);
   const destPath = join(distDir, file);
   if (existsSync(srcPath)) {
-    if (file === 'index.html') {
+    if (file === "index.html") {
       // Transform index.html to use bundled theme CSS
-      let html = readFileSync(srcPath, 'utf-8');
-      
+      let html = readFileSync(srcPath, "utf-8");
+
       // Vite strips out individual CSS links during build, so we need to add back the theme CSS
       // Insert theme CSS link after Bootstrap CDN link
       html = html.replace(
         /(<!-- Bootstrap 5\.3[^>]*>\n\s*<link[^>]*bootstrap[^>]*>\n)/,
-        '$1  <!-- Theme CSS - Complete bundle with all dependencies (swapped during theme switching) -->\n  <link id="theme-css" href="theme-ntg.min.css" rel="stylesheet">\n'
+        '$1  <!-- Theme CSS - Complete bundle with all dependencies (swapped during theme switching) -->\n  <link id="theme-css" href="theme-ntg.min.css" rel="stylesheet">\n',
       );
-      
+
       writeFileSync(destPath, html);
-      console.log(`  ✓ Moved demo/${file} → ${file} (transformed for production)`);
+      console.log(
+        `  ✓ Moved demo/${file} → ${file} (transformed for production)`,
+      );
     } else {
       copyFileSync(srcPath, destPath);
       console.log(`  ✓ Moved demo/${file} → ${file}`);
@@ -126,47 +137,151 @@ demoFiles.forEach(file => {
 });
 
 // Clean up temporary directories
-console.log('\n🧹 Cleaning up temporary build directories...');
+console.log("\n🧹 Cleaning up temporary build directories...");
 if (existsSync(distLibDir)) {
   rmSync(distLibDir, { recursive: true, force: true });
-  console.log('  ✓ Removed dist/lib/');
+  console.log("  ✓ Removed dist/lib/");
 }
 if (existsSync(distDemoDir)) {
   rmSync(distDemoDir, { recursive: true, force: true });
-  console.log('  ✓ Removed dist/demo/');
+  console.log("  ✓ Removed dist/demo/");
 }
 
 // Clean up unused CSS directory if it exists
-const unusedDir = join(distDir, 'unused');
+const unusedDir = join(distDir, "unused");
 if (existsSync(unusedDir)) {
   rmSync(unusedDir, { recursive: true, force: true });
-  console.log('  ✓ Removed dist/unused/');
+  console.log("  ✓ Removed dist/unused/");
 }
 
+// Step 6: Create Squiz Matrix nester and asset files
+console.log("\n📄 Creating Squiz Matrix nester files...");
+const nestersDir = join(distDir, "nesters");
+mkdirSync(nestersDir, { recursive: true });
+
+// head.html — standard Squiz Matrix <head> nester content
+const headHtml = `<!--@@ Frontend <head> @@-->
+<title>%frontend_asset_is_homepage^eq:1::{frontend_asset_name} | ^striphtml%%globals_site_name^striphtml%</title>
+
+<!--@@ Misc metadata @@-->
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<!--@@ Global metadata @@-->
+<meta name="description" content="%frontend_asset_metadata_page-description%">
+<meta name="robots" content="%frontend_asset_metadata_page-robots%">
+<meta name="dcterms.title" content="%frontend_asset_metadata_page-title%" />
+<meta name="dcterms.creator" content="Northern Territory Government" />
+<meta name="dcterms.created" content="%frontend_asset_created^date_format:c%" />
+<meta name="dcterms.issued" content="%frontend_asset_published^date_format:c%" />
+<meta name="dcterms.modified" content="%frontend_asset_updated^date_format:c%" />
+<meta name="dcterms.identifier" content="%frontend_asset_url%" />
+<meta name="dcterms.subject" content="%globals_site_name%" />
+<meta name="dc.language" content="en" />
+
+<!--@@ Open Graph Data | http://ogp.me/ @@-->
+<meta property="og:title" content="%frontend_asset_name%" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="%frontend_asset_url%" />
+<meta property="og:image" content="%frontend_asset_thumbnail_url^empty:./?a=795706%" />
+<meta property="og:description" content="%frontend_asset_metadata_page-description%" />
+<meta property="og:site_name" content="%globals_site_name%" />
+<meta property="article:published_time" content="%frontend_asset_published^date_format:c%" />
+<meta property="article:modified_time" content="%frontend_asset_updated^date_format:c%" />
+<meta property="article:tag" content="%frontend_asset_metadata_page-keywords%" />
+
+<!--@@ No JS @@-->
+<script type="text/javascript">
+    var $html = document.documentElement; if ($html.classList) $html.classList.remove("no-js"), $html.classList.add("js"); else { var className = "no-js"; $html.className = $html.className.replace(new RegExp("(^|\\\\b)" + className.split(" ").join("|") + "(\\\\b|$)", "gi"), " "), $html.className += " js" }
+</script>
+
+<!--@@ Font Awesome icons v6 @@-->
+<link rel="stylesheet" href="https://kit.fontawesome.com/f73a36f593.css" crossorigin="anonymous">
+
+<!--@@ Favicons @@-->
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+`;
+writeFileSync(join(nestersDir, "head.html"), headHtml);
+console.log("  ✓ Created nesters/head.html");
+
+// Remaining nesters — empty placeholders
+const emptyNesters = [
+  "skip_links",
+  "header_content",
+  "footer_content",
+  "footer_js",
+];
+emptyNesters.forEach((name) => {
+  writeFileSync(join(nestersDir, `${name}.html`), "");
+  console.log(`  ✓ Created nesters/${name}.html`);
+});
+
+// Create favicons directory with placeholder files
+// Replace these with real favicon PNGs before deployment
+console.log("\n🖼️  Creating favicons directory...");
+const faviconsDir = join(distDir, "favicons");
+mkdirSync(faviconsDir, { recursive: true });
+const favicons = [
+  "apple-touch-icon-180x180.png",
+  "favicon-32x32.png",
+  "favicon-16x16.png",
+];
+favicons.forEach((name) => {
+  writeFileSync(join(faviconsDir, name), "");
+  console.log(`  ✓ Created favicons/${name} (placeholder)`);
+});
+
+// Create images directory with placeholder files
+// Replace these with real images before deployment
+console.log("\n🖼️  Creating images directory...");
+const imagesDir = join(distDir, "images");
+mkdirSync(imagesDir, { recursive: true });
+const images = ["ntg-logo.png"];
+images.forEach((name) => {
+  writeFileSync(join(imagesDir, name), "");
+  console.log(`  ✓ Created images/${name} (placeholder)`);
+});
+
 // Display final build summary
-console.log('\n✅ Build complete!\n');
-console.log('📦 Distribution files in dist/:');
-console.log('   ┌─ Component Library (for Squiz Matrix deployment)');
-console.log('   ├─ components.min.js       - UMD component bundle (React external)');
-console.log('   ├─ theme-ntg.min.css       - Complete NT.GOV.AU theme bundle');
-console.log('   ├─ theme-central.min.css   - Complete NTG Central theme bundle');
-console.log('   ┌─ Demo Application');
-console.log('   ├─ index.html              - Demo page with theme switching');
-console.log('   ├─ index.js                - Demo application bundle');
-console.log('   └─ index.css               - Demo application styles');
+console.log("\n✅ Build complete!\n");
+console.log("📦 Distribution files in dist/:");
+console.log("   ┌─ Component Library (for Squiz Matrix deployment)");
+console.log(
+  "   ├─ components.min.js       - UMD component bundle (React external)",
+);
+console.log("   ├─ theme-ntg.min.css       - Complete NT.GOV.AU theme bundle");
+console.log(
+  "   ├─ theme-central.min.css   - Complete NTG Central theme bundle",
+);
+console.log("   ┌─ Demo Application");
+console.log("   ├─ index.html              - Demo page with theme switching");
+console.log("   ├─ index.js                - Demo application bundle");
+console.log("   ├─ index.css               - Demo application styles");
+console.log("   ┌─ Squiz Matrix Nesters (dist/nesters/)");
+console.log("   ├─ head.html               - <head> nest content");
+console.log("   ├─ skip_links.html         - Skip links nest content");
+console.log("   ├─ header_content.html     - Header nest content");
+console.log("   ├─ footer_content.html     - Footer nest content");
+console.log("   └─ footer_js.html          - Footer JS nest content");
 
 // Display file sizes
-console.log('\n📊 File sizes:');
+console.log("\n📊 File sizes:");
 const filesToMeasure = [
-  'components.min.js',
-  'theme-ntg.min.css',
-  'theme-central.min.css',
-  'index.html',
-  'index.js',
-  'index.css',
+  "components.min.js",
+  "theme-ntg.min.css",
+  "theme-central.min.css",
+  "index.html",
+  "index.js",
+  "index.css",
 ];
 
-filesToMeasure.forEach(file => {
+filesToMeasure.forEach((file) => {
   const filePath = join(distDir, file);
   if (existsSync(filePath)) {
     const stats = readFileSync(filePath);
@@ -175,6 +290,8 @@ filesToMeasure.forEach(file => {
   }
 });
 
-console.log('\n🚀 Ready for deployment!');
-console.log('   • To test demo: npm run preview or open dist/index.html');
-console.log('   • To deploy to Squiz Matrix: Upload dist/ files as File Assets');
+console.log("\n🚀 Ready for deployment!");
+console.log("   • To test demo: npm run preview or open dist/index.html");
+console.log(
+  "   • To deploy to Squiz Matrix: Upload dist/ files as File Assets",
+);

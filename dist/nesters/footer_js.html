@@ -1,0 +1,88 @@
+<!--@@ bootstrap.bundle.min.js (includes Popper) @@-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+
+<!--@@ Load Fontawesome local copy if CDN fallback @@-->
+<script type="text/javascript">
+    (function ($) {
+        var $span = $('<span class="fa" style="display:none"></span>').appendTo('body');
+        if ($span.css('font-family') !== '\"Font Awesome 6 Pro\"') {
+            // Fallback Link
+            // $('head').append('<link href="./?a=" rel="stylesheet">');
+        }
+        $span.remove();
+    })(jQuery);
+</script>
+
+<!--@@ additional plugins @@-->
+
+<script>
+
+    //// Lightbox ////
+    if ($('body').has('[' + 'data-plugin' + '="' + 'lightbox' + '"]').length > 0) {
+        $('head').append('<link href="./?a=1303090" rel="stylesheet">');
+        //@@ $('body').append('<script type="text/javascript" src="./?a=1298288:dist/ntgbase/ntg-base-plugins.min.js"> </' + 'script>');
+        //@@ GitHub
+        $('body').append('<script type="text/javascript" src="%globals_asset_url_with_hash:1484642:dist/ntgbase/ntg-base-plugins.min.js%"> </' + 'script>');
+    }
+
+    //add additional scripts here with data attribute conditions
+
+</script>
+
+<!--@@ GitHub @@-->
+<script type="text/javascript" src="components.min.js"></script>
+
+
+<!--@@ GitHub @@-->
+<script type="text/javascript" src="index.js"></script>
+
+%begin_globals_asset_metadata_page-type.options^contains:standard-page-default%
+<script>
+    window.onload = function () {
+        var currentURL = window.location.hash;
+        var anchorHashLinks = document.querySelectorAll('[href*="#"]');
+        for (var i = 0; i < anchorHashLinks.length; i++) {
+            if (anchorHashLinks[i].hash == currentURL) {
+                var hashValue = anchorHashLinks[i].hash.substr(1);
+                document.getElementById(hashValue).scrollIntoView(true);
+            }
+        }
+    }
+</script>
+%end_globals%
+
+
+<!-- Load in any additional JS required by the page -->
+%begin_globals_asset_metadata_content-additionalJS%
+<script type="text/javascript" src="./?a=%globals_asset_metadata_content-additionalJS^json_decode^index:0%"></script>
+<script>$(document).ready(function () { $('.datatable, .data-table').dataTable(); });</script>
+%end_globals%
+
+
+<!--funnelback autocomplete-->
+<script src="https://nt.gov.au/__data/assets/js_file/0003/1048341/typeahead.bundle.min.js"></script>
+<script src="https://nt.gov.au/__data/assets/js_file/0005/1048343/handlebars.min.js"></script>
+<script src="https://nt.gov.au/__data/assets/js_file/0007/1048345/funnelback.autocompletion-2.6.0.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery('input.query').autocompletion({
+            datasets: {
+                organic: {
+                    collection: 'ntgov~sp-search',
+                    profile: 'agencies',
+                    program: 'https://ntgov-search.funnelback.squiz.cloud/s/suggest.json',
+                    format: 'extended',
+                    alpha: '0.5',
+                    show: '5',
+                    sort: '0',
+                    group: true
+                },
+            },
+            typeahead: { hint: true },
+            length: 3
+        });
+    });
+</script>

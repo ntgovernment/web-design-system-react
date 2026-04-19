@@ -450,6 +450,7 @@ The Checkbox component supports all modern browsers:
 - Custom CSS classes can be added via the `className` prop
 - The component extends all native HTML input attributes (except `type` and `size`)
 - Checkbox groups use semantic HTML (`<fieldset>` and `<legend>`) for better accessibility
+
 # Checkbox CSS Variables
 
 This document provides details about the CSS variables used in the Checkbox component, allowing you to customize the styling to fit your theme or brand.
@@ -768,8 +769,6 @@ For older browsers, consider providing fallback values:
 
 - [Checkbox Component Documentation](CHECKBOX.md) - Main component documentation
 - [Theme System](../../themes/THEMES.md) - Overview of the theme system
-- [Design Tokens](../../design-tokens/DESIGN-TOKENS.md) - Complete token reference
-- [CSS Architecture](../../FEATURES.md) - CSS structure and methodology
 
 ## Questions or Issues?
 

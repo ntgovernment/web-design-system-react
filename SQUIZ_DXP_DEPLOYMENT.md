@@ -37,7 +37,7 @@ The following sections describe deploying individual components as Matrix Compon
 ## Prerequisites
 
 - Access to Squiz Matrix admin interface
-- Node.js 18+ installed locally for building
+- Node.js 22+ installed locally for building
 - Understanding of Matrix Asset structure
 
 ## Build Process
@@ -54,11 +54,27 @@ npm run build
 
 This creates the following files in the `dist/` directory:
 
-- `web-design-system.es.js` - ES Module format (recommended)
-- `web-design-system.umd.js` - UMD format (for broader compatibility)
-- `style.css` - Compiled CSS with theme variables
-- `index.d.ts` - TypeScript type definitions
-- Additional chunk files as needed
+```
+dist/
+├── components.min.js          UMD component bundle (React external)
+├── theme-ntg.min.css          Complete NT.GOV.AU theme bundle (tokens + component CSS)
+├── theme-central.min.css      Complete NTG Central theme bundle (tokens + component CSS)
+├── index.html                 Interactive demo page
+├── index.js                   Demo application bundle
+├── index.css                  Demo application styles
+├── nesters/                   Squiz Matrix nest_content HTML files
+│   ├── head.html              <head> content (metadata, OG tags, favicons, theme CSS)
+│   ├── skip_links.html        Skip navigation links
+│   ├── header_content.html    Site header (alert banner, logo, navigation)
+│   ├── footer_content.html    Site footer (links, logos, utility nav)
+│   └── footer_js.html         Footer scripts (Bootstrap JS, components, search)
+├── favicons/                  Favicon image assets
+│   ├── apple-touch-icon-180x180.png
+│   ├── favicon-32x32.png
+│   └── favicon-16x16.png
+└── images/                    Site image assets
+    └── ntg-logo.png           NTG mono logo (print only)
+```
 
 ### 2. Build Storybook (Optional)
 
@@ -76,36 +92,30 @@ This creates a static Storybook site in `storybook-static/` that can be hosted s
 
 1. **Login to Matrix** with admin privileges
 2. **Navigate** to the appropriate site structure
-3. **Create a new folder** (e.g., "NT Gov Design System v0.1.0")
+3. **Create a new folder** (e.g., "NT Gov Design System v0.3.0")
 
 ### Step 2: Upload Library Files
 
 Create the following **File Assets** in Matrix:
 
-#### JavaScript Files
+#### JavaScript File
 
-1. **Create File Asset**: `web-design-system.es.js`
-   - Upload: `dist/web-design-system.es.js`
+1. **Create File Asset**: `components.min.js`
+   - Upload: `dist/components.min.js`
    - Asset Type: JS File
    - Note the Asset ID
 
-2. **Create File Asset**: `web-design-system.umd.js` (optional, for UMD support)
-   - Upload: `dist/web-design-system.umd.js`
-   - Asset Type: JS File
-   - Note the Asset ID
+#### CSS Theme Files
 
-#### CSS Files
-
-3. **Create File Asset**: `style.css`
-   - Upload: `dist/style.css`
+2. **Create File Asset**: `theme-ntg.min.css`
+   - Upload: `dist/theme-ntg.min.css`
    - Asset Type: CSS File
    - Note the Asset ID
 
-#### TypeScript Definitions (optional)
-
-4. **Create File Asset**: `index.d.ts`
-   - Upload: `dist/index.d.ts`
-   - Asset Type: Text File
+3. **Create File Asset**: `theme-central.min.css`
+   - Upload: `dist/theme-central.min.css`
+   - Asset Type: CSS File
+   - Note the Asset ID
 
 ### Step 3: Configure CDN Dependencies
 
@@ -132,6 +142,52 @@ The library depends on Bootstrap 5.3 and FontAwesome. Ensure both are loaded in 
 **Option B: Add via Paint Layout**
 In your Paint Layout, add both the Bootstrap CDN link and FontAwesome Kit script in the `<head>` section.
 
+### Standard Design File
+
+The standard Squiz Matrix design file used with this design system:
+
+```html
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <MySource_AREA id_name="head" design_area="nest_content" cache="0" />
+  </head>
+
+  <body>
+    <div id="top"></div>
+
+    <MySource_AREA id_name="skip_links" design_area="nest_content" cache="1" />
+    <MySource_AREA
+      id_name="header_content"
+      design_area="nest_content"
+      cache="1"
+    />
+
+    <div class="ntg-body">
+      <MySource_AREA id_name="body" design_area="body" />
+    </div>
+
+    <MySource_AREA
+      id_name="footer_content"
+      design_area="nest_content"
+      cache="1"
+    />
+    <MySource_AREA id_name="footer_js" design_area="nest_content" cache="1" />
+  </body>
+</html>
+```
+
+Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`:
+
+| Design Area      | Nester File                   | Description                                                                                                                  |
+| ---------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `head`           | `nesters/head.html`           | Page title, metadata, Dublin Core, Open Graph, no-JS script, FontAwesome CSS, favicons, theme CSS                            |
+| `skip_links`     | `nesters/skip_links.html`     | Skip-to-content and skip-to-footer links                                                                                     |
+| `header_content` | `nesters/header_content.html` | Top page alert, NTG logo (print), site header with navigation and search                                                     |
+| `footer_content` | `nesters/footer_content.html` | Footer links, social media, logos, utility links, acknowledgement                                                            |
+| `footer_js`      | `nesters/footer_js.html`      | Bootstrap 5.3 bundle JS, FontAwesome fallback, lightbox plugins, components.min.js, index.js, Funnelback search autocomplete |
+
 ### Step 4: Create Component Service Templates
 
 #### Example: Button Component Service
@@ -143,10 +199,13 @@ Create a **Standard Page** asset for each component you want to expose:
 **Content (HTML):**
 
 ```html
+<!-- Load the theme CSS -->
+<link rel="stylesheet" href="%globals_asset_url:YOUR_THEME_CSS_ASSET_ID%" />
+
 <div id="ntg-button-%asset_assetid%"></div>
 
 <script type="module">
-  import { Button } from '%globals_asset_url:YOUR_ES_MODULE_ASSET_ID%';
+  import { Button } from '%globals_asset_url:YOUR_COMPONENTS_JS_ASSET_ID%';
   import { createRoot } from 'https://esm.sh/react-dom@18/client';
   import { createElement } from 'https://esm.sh/react@18';
 
@@ -204,8 +263,11 @@ For developers with more control, you can import the library directly in Paint L
       crossorigin="anonymous"
     ></script>
 
-    <!-- Design System Styles -->
-    <link rel="stylesheet" href="%globals_asset_url:YOUR_STYLE_CSS_ASSET_ID%" />
+    <!-- Design System Theme (pick one) -->
+    <link
+      rel="stylesheet"
+      href="%globals_asset_url:YOUR_THEME_NTG_CSS_ASSET_ID%"
+    />
   </head>
   <body>
     <div id="app"></div>
@@ -214,8 +276,8 @@ For developers with more control, you can import the library directly in Paint L
       import {
         Button,
         Card,
-        Alert,
-      } from "%globals_asset_url:YOUR_ES_MODULE_ASSET_ID%";
+        Notification,
+      } from "%globals_asset_url:YOUR_COMPONENTS_JS_ASSET_ID%";
       import { createRoot } from "https://esm.sh/react-dom@18/client";
       import { createElement as h } from "https://esm.sh/react@18";
 
@@ -232,11 +294,11 @@ For developers with more control, you can import the library directly in Paint L
             { title: "Info", icon: "fa-solid fa-info-circle" },
             "This is a card",
           ),
-          h(
-            Alert,
-            { variant: "success", icon: "fa-solid fa-circle-check" },
-            "Success!",
-          ),
+          h(Notification, {
+            variant: "success",
+            title: "Success",
+            message: "Operation completed.",
+          }),
         ),
       );
     </script>
@@ -288,7 +350,7 @@ Matrix automatically handles cache busting through Asset IDs, but you can also:
 
 ### 3. Performance
 
-- Use ES Module format (`web-design-system.es.js`) for modern browsers
+- The theme CSS bundles (`theme-ntg.min.css`, `theme-central.min.css`) are self-contained — they include tokens, typography, and all component styles
 - Lazy load components when possible
 - Bootstrap is loaded from CDN for better caching
 
@@ -336,7 +398,6 @@ For issues or questions:
 
 - **[STORYBOOK_GFB_DEPLOYMENT.md](STORYBOOK_GFB_DEPLOYMENT.md)** - Deploy Storybook documentation site to Squiz Matrix
 - [README.md](README.md) - Main project documentation
-- [FEATURES.md](FEATURES.md) - Component features and capabilities
 - [THEME_SWITCHING.md](src/themes/THEME_SWITCHING.md) - Theme switching implementation
 
 ## Updates
