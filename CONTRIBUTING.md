@@ -260,50 +260,25 @@ Fix any linting errors or provide justification for exceptions.
 
 5. **Update Storybook configuration** in `.storybook/preview.tsx`:
 
-   a. **Add CSS imports** (near the top with other imports):
+   a. **Ensure the component imports its own base CSS** in its `.tsx` file:
 
    ```typescript
-   // Import ComponentName CSS files to ensure Vite processes them
-   import "../src/components/ComponentName/ComponentName.css";
-   import "../src/components/ComponentName/ComponentName-ntg.css";
-   import "../src/components/ComponentName/ComponentName-central.css";
+   // In ComponentName.tsx
+   import "./ComponentName.css";
    ```
 
-   b. **Add theme loading function** (with other load functions):
+   b. **Register theme CSS** in the `components` array inside the `withHTMLCode` decorator's `useEffect`:
 
    ```typescript
-   // Load ComponentName Component Styles (theme-specific overrides)
-   const loadComponentNameStyles = (theme: string) => {
-     // Remove existing theme-specific ComponentName CSS if present
-     const existingComponentName = document.getElementById(
-       "componentname-theme-css",
-     );
-     if (existingComponentName) {
-       existingComponentName.remove();
-     }
-
-     // Add theme-specific ComponentName CSS overrides
-     const componentNameCSS = document.createElement("link");
-     componentNameCSS.id = "componentname-theme-css";
-     componentNameCSS.rel = "stylesheet";
-     componentNameCSS.href = new URL(
-       `../src/components/ComponentName/ComponentName-${theme}.css`,
-       import.meta.url,
-     ).href;
-     document.head.appendChild(componentNameCSS);
-   };
+   const components: [string, string, string][] = [
+     // ... existing entries ...
+     ["ComponentName", "componentname-theme-css", "ComponentName"],
+   ];
    ```
 
-   c. **Call loading function** in the `useEffect`:
+   The generic `loadComponentThemeCSS()` function handles duplicate detection and theme switching automatically — no per-component loader function is needed.
 
-   ```typescript
-   useEffect(() => {
-     // ... existing calls ...
-     loadComponentNameStyles(theme); // Add this line
-   }, [theme]);
-   ```
-
-   d. **Update story ordering** in `options.storySort.order`:
+   c. **Update story ordering** in `options.storySort.order`:
 
    ```typescript
    order: [
@@ -328,7 +303,7 @@ Fix any linting errors or provide justification for exceptions.
    When the component is stable and no longer "recent", update the story title:
    - In `ComponentName.stories.tsx`: Change `title: "⭐ Recent/ComponentName"` to `title: "Components/ComponentName"`
    - In `.storybook/preview.tsx`: Move from "⭐ Recent" array to "Components" array in story ordering
-   - Keep the CSS imports and theme loading function (these remain unchanged)
+   - Keep the theme CSS entry in the `components` array (this remains unchanged)
 
 ### Component Requirements
 
@@ -342,7 +317,7 @@ All components must:
 - ✅ Have dedicated documentation matching folder name (e.g., BUTTON.md for Button/)
 - ✅ Have Storybook stories demonstrating all variants
 - ✅ Be added to "⭐ Recent" group in Storybook initially
-- ✅ Be integrated into `.storybook/preview.tsx` with CSS imports and theme loading
+- ✅ Import their own base CSS in the component `.tsx` file and be registered for theme CSS loading in `.storybook/preview.tsx`
 - ✅ Use Bootstrap 5.3 classes where appropriate
 - ✅ Follow the existing component structure and patterns
 

@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Storybook CSS deduplication**: Eliminated redundant CSS loading that caused stylesheets to be processed 2–3 times per component
+  - Removed 45 static CSS imports from `.storybook/preview.tsx` (components now self-import their base CSS)
+  - Added `import './Component.css'` to 6 components that were missing it: Button, Notification, Tag, Pill, Image, Footer
+  - Added duplicate guards to `loadBootstrapCSS()` and `loadFontAwesome()` to prevent re-injection on every render
+  - Consolidated 15 per-component `loadXxxStyles()` functions (~200 lines) into a single generic `loadComponentThemeCSS()` function that skips loading when the same href is already present
 - **Design Tokens v3.1.0 Bundled CSS Migration**: Switched from individual token CSS imports to self-contained bundled theme files (`theme-ntg.bundled.css` / `theme-central.bundled.css`)
   - `.storybook/preview.tsx`: replaced 5 individual token imports (`base-variables`, `common`, `grid`, `typography`, `typography-literals`) with single `theme-ntg-bundled` import; updated `loadThemeCSS()` for dynamic theme switching
   - `src/main.css`: switched from `theme-ntg` to `theme-ntg-bundled`

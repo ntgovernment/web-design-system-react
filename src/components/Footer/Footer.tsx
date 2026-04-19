@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "../Icon";
+import "./Footer.css";
 
 export interface FooterLink {
   label: string;

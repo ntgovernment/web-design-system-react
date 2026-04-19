@@ -794,10 +794,14 @@ The component handles 8+ tabs effectively with scroll buttons. For 15+ tabs:
 
 **Fix in Storybook preview.tsx:**
 
+Ensure `Tab` is registered in the `components` array inside the `withHTMLCode` decorator, and that `Tab.tsx` imports its own `Tab.css`:
+
 ```tsx
-import "../src/components/Tab/Tab.css";
-import "../src/components/Tab/Tab-ntg.css";
-import "../src/components/Tab/Tab-central.css";
+// In Tab.tsx
+import "./Tab.css";
+
+// In .storybook/preview.tsx — components array
+["Tab", "tab-theme-css", "Tab"],
 ```
 
 ---
