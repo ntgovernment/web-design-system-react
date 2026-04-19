@@ -92,11 +92,11 @@ This creates a static Storybook site in `storybook-static/` that can be hosted s
 
 The repository is connected to Squiz Matrix via a **Git File Bridge** asset.
 
-| Setting | Value |
-|---|---|
-| **GFB Asset ID** | `1607588` |
-| **Branch** | `dev` |
-| **Repository** | `ntgovernment/web-design-system` |
+| Setting          | Value                            |
+| ---------------- | -------------------------------- |
+| **GFB Asset ID** | `1607588`                        |
+| **Branch**       | `dev`                            |
+| **Repository**   | `ntgovernment/web-design-system` |
 
 All `dist/` files are served through the GFB. Use these keywords to reference them:
 
