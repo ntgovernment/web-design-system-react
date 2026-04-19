@@ -11,7 +11,7 @@ This directory contains theme-related documentation and demo assets. Theme CSS i
 | `dist/theme-ntg.min.css`     | NT.GOV.AU   |
 | `dist/theme-central.min.css` | NTG Central |
 
-Each bundle includes base variables, common tokens, grid, typography, theme palette, and component styles — **no separate imports required** beyond Bootstrap CDN.
+Each bundle includes base variables, common tokens, grid, typography, theme palette, and component styles (Button, Tag, Input, SearchBar, GlobalAlert, Header) — **no separate imports required** beyond Bootstrap CDN.
 
 ## Token Source
 
@@ -66,15 +66,17 @@ Components use **unprefixed semantic variables** that automatically resolve for 
 
 ## Squiz Matrix CMS Loading
 
-The theme CSS bundle is loaded in the `<head>` nester (`src/squiz/nesters/head.html`) via the Git File Bridge:
+Bootstrap CSS is loaded from CDN first, followed by the theme bundle (which overrides Bootstrap defaults with design tokens). Both are in the `<head>` nester (`src/squiz/nesters/head.html`):
 
 ```html
+<!--@@ Bootstrap 5.3.3 CSS (loaded before theme to allow design-token overrides) @@-->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous">
 <!--@@ Main CSS @@-->
-<link
-  type="text/css"
-  rel="stylesheet"
-  href="%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%"
-/>
+<link type="text/css" rel="stylesheet"
+      href="%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%">
 ```
 
 | Theme       | GFB reference                                                      | Bundle                       |
@@ -84,7 +86,7 @@ The theme CSS bundle is loaded in the `<head>` nester (`src/squiz/nesters/head.h
 
 The `_with_hash` keyword suffix ensures cache-busted URLs — the file hash changes whenever the bundle is rebuilt and the GFB is synced.
 
-Since each bundle is self-contained (tokens + typography + grid + component styles), no additional CSS imports are needed. Font Awesome 6 and Bootstrap JS are loaded separately in `head.html` and `footer_js.html` respectively.
+Bootstrap CSS is loaded via CDN before the theme bundle so that design-token overrides take precedence. Font Awesome 6 is loaded separately in `head.html` and Bootstrap JS in `footer_js.html`.
 
 For deployment details, see [SQUIZ_DXP_DEPLOYMENT.md](../../SQUIZ_DXP_DEPLOYMENT.md).
 

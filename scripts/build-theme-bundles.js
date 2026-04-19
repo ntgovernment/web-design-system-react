@@ -71,7 +71,7 @@ function readCSSFile(filePath) {
   }
 }
 
-// Component CSS files (currently only Button)
+// Component CSS files
 const componentCSS = [
   {
     path: join(rootDir, "src", "components", "Button", "Button.css"),
@@ -88,6 +88,14 @@ const componentCSS = [
   {
     path: join(rootDir, "src", "components", "SearchBar", "SearchBar.css"),
     name: "SearchBar.css",
+  },
+  {
+    path: join(rootDir, "src", "components", "GlobalAlert", "GlobalAlert.css"),
+    name: "GlobalAlert.css",
+  },
+  {
+    path: join(rootDir, "src", "components", "Header", "Header.css"),
+    name: "Header.css",
   },
 ];
 
@@ -108,6 +116,14 @@ const themes = [
       "SearchBar",
       "SearchBar-ntg.css",
     ),
+    globalAlertTheme: join(
+      rootDir,
+      "src",
+      "components",
+      "GlobalAlert",
+      "GlobalAlert-ntg.css",
+    ),
+    headerTheme: join(rootDir, "src", "components", "Header", "Header-ntg.css"),
     outputFile: "theme-ntg.min.css",
   },
   {
@@ -136,6 +152,20 @@ const themes = [
       "components",
       "SearchBar",
       "SearchBar-central.css",
+    ),
+    globalAlertTheme: join(
+      rootDir,
+      "src",
+      "components",
+      "GlobalAlert",
+      "GlobalAlert-central.css",
+    ),
+    headerTheme: join(
+      rootDir,
+      "src",
+      "components",
+      "Header",
+      "Header-central.css",
     ),
     outputFile: "theme-central.min.css",
   },
@@ -187,6 +217,16 @@ themes.forEach((theme) => {
   const searchBarThemeContent = readCSSFile(theme.searchBarTheme);
   if (searchBarThemeContent) {
     cssBundle += `/* SearchBar-${theme.name}.css */\n${searchBarThemeContent}\n\n`;
+  }
+
+  const globalAlertThemeContent = readCSSFile(theme.globalAlertTheme);
+  if (globalAlertThemeContent) {
+    cssBundle += `/* GlobalAlert-${theme.name}.css */\n${globalAlertThemeContent}\n\n`;
+  }
+
+  const headerThemeContent = readCSSFile(theme.headerTheme);
+  if (headerThemeContent) {
+    cssBundle += `/* Header-${theme.name}.css */\n${headerThemeContent}\n\n`;
   }
 
   // Strip @import statements — all imported content is already concatenated above

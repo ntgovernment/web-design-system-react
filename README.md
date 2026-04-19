@@ -32,29 +32,29 @@ This will also install `@ntgovernment/web-design-tokens` (a direct dependency) w
 
 After building (`npm run build`), the `dist/` folder contains:
 
-| File                                    | Description                                             |
-| --------------------------------------- | ------------------------------------------------------- |
-| `components.min.js`                     | UMD bundle of all React components (React externalized) |
-| `theme-ntg.min.css`                     | Complete NT.GOV.AU theme — tokens + component CSS       |
-| `theme-central.min.css`                 | Complete NTG Central theme — tokens + component CSS     |
-| `index.html`                            | Interactive demo page with theme switching              |
-| `index.js`                              | Demo application bundle                                 |
-| `index.css`                             | Demo application styles                                 |
-| `nesters/head.html`                     | Squiz Matrix design nester — `<head>` content           |
-| `nesters/skip_links.html`               | Squiz Matrix design nester — skip navigation links      |
-| `nesters/header_content.html`           | Squiz Matrix design nester — site header                |
-| `nesters/footer_content.html`           | Squiz Matrix design nester — site footer                |
-| `nesters/footer_js.html`                | Squiz Matrix design nester — bottom-of-body scripts     |
-| `favicons/apple-touch-icon-180x180.png` | Apple touch icon (180×180)                              |
-| `favicons/favicon-16x16.png`            | 16×16 favicon                                           |
-| `favicons/favicon-32x32.png`            | 32×32 favicon                                           |
-| `images/ntg-logo.png`                   | NT Government logo                                      |
-| `globals/js/bootstrap.bundle.min.js`    | Bootstrap 5.3 JS bundle (vendor)                        |
-| `globals/js/typeahead.bundle.min.js`    | Typeahead JS for search autocomplete (vendor)           |
-| `globals/js/handlebars.min.js`          | Handlebars templating for Funnelback (vendor)           |
-| `globals/js/funnelback.autocompletion-2.6.0.js` | Funnelback search autocompletion (vendor)       |
-| `ntgbase/images/ntg-desert-rose-reverse.svg` | NTG desert rose logo reversed (vendor)             |
-| `ntgbase/images/logo-ntg-mono.svg`      | NTG monochrome logo for footer (vendor)                 |
+| File                                            | Description                                             |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| `components.min.js`                             | UMD bundle of all React components (React externalized) |
+| `theme-ntg.min.css`                             | Complete NT.GOV.AU theme — tokens + component CSS       |
+| `theme-central.min.css`                         | Complete NTG Central theme — tokens + component CSS     |
+| `index.html`                                    | Interactive demo page with theme switching              |
+| `index.js`                                      | Demo application bundle                                 |
+| `index.css`                                     | Demo application styles                                 |
+| `nesters/head.html`                             | Squiz Matrix design nester — `<head>` content           |
+| `nesters/skip_links.html`                       | Squiz Matrix design nester — skip navigation links      |
+| `nesters/header_content.html`                   | Squiz Matrix design nester — site header                |
+| `nesters/footer_content.html`                   | Squiz Matrix design nester — site footer                |
+| `nesters/footer_js.html`                        | Squiz Matrix design nester — bottom-of-body scripts     |
+| `favicons/apple-touch-icon-180x180.png`         | Apple touch icon (180×180)                              |
+| `favicons/favicon-16x16.png`                    | 16×16 favicon                                           |
+| `favicons/favicon-32x32.png`                    | 32×32 favicon                                           |
+| `images/ntg-logo.png`                           | NT Government logo                                      |
+| `globals/js/bootstrap.bundle.min.js`            | Bootstrap 5.3 JS bundle (vendor)                        |
+| `globals/js/typeahead.bundle.min.js`            | Typeahead JS for search autocomplete (vendor)           |
+| `globals/js/handlebars.min.js`                  | Handlebars templating for Funnelback (vendor)           |
+| `globals/js/funnelback.autocompletion-2.6.0.js` | Funnelback search autocompletion (vendor)               |
+| `ntgbase/images/ntg-desert-rose-reverse.svg`    | NTG desert rose logo reversed (vendor)                  |
+| `ntgbase/images/logo-ntg-mono.svg`              | NTG monochrome logo for footer (vendor)                 |
 
 The theme bundles (`theme-ntg.min.css`, `theme-central.min.css`) are fully self-contained — they include the design token CSS variables, typography, grid, and all component styles. You only need to load Bootstrap from CDN and one theme bundle.
 

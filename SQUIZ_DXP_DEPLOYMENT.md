@@ -59,13 +59,13 @@ During build, nester files are copied from `src/squiz/nesters/` and any legacy G
 ```
 dist/
 ├── components.min.js          UMD component bundle (React external)
-├── theme-ntg.min.css          Complete NT.GOV.AU theme bundle (tokens + component CSS)
-├── theme-central.min.css      Complete NTG Central theme bundle (tokens + component CSS)
+├── theme-ntg.min.css          Complete NT.GOV.AU theme bundle (tokens + component CSS incl. GlobalAlert, Header)
+├── theme-central.min.css      Complete NTG Central theme bundle (tokens + component CSS incl. GlobalAlert, Header)
 ├── index.html                 Interactive demo page
 ├── index.js                   Demo application bundle
 ├── index.css                  Demo application styles
 ├── nesters/                   Squiz Matrix nest_content HTML files
-│   ├── head.html              <head> content (metadata, OG tags, favicons, theme CSS)
+│   ├── head.html              <head> content (metadata, OG tags, favicons, Bootstrap CDN, theme CSS)
 │   ├── skip_links.html        Skip navigation links
 │   ├── header_content.html    Site header (alert banner, logo, navigation)
 │   ├── footer_content.html    Site footer (links, logos, utility nav)

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 <meta charset="utf-8">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
@@ -45,8 +45,11 @@
 <link rel="icon" type="image/png" sizes="16x16" href="./?a=1185688">
 <!--@@ Main CSS @@-->
 <!--<link type="text/css" rel="stylesheet" href="./?a=1298288:dist/ntgbase/ntgbase.min.css">-->
+<!--@@ Bootstrap 5.3.3 CSS (loaded before theme to allow design-token overrides) @@-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <!--@@ GitHub @@-->
-<link type="text/css" rel="stylesheet" href="%globals_asset_url_with_hash:1484642:dist/ntgbase/ntgbase.min.css%">
+<link type="text/css" rel="stylesheet" href="%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%">
 
 <!--@@ Print CSS @@-->
 <link rel="stylesheet" href="./?a=1300941" media="print">
@@ -55,7 +58,7 @@
 <!--@@ jquerys.js @@-->
 <!--<script type="text/javascript" src="./?a=1298288:dist/globals/js/jquery.min.js"></script>-->
 <!--@@ GitHub @@-->
-<script type="text/javascript" src="%globals_asset_url_with_hash:1484642:dist/globals/js/jquery.min.js%"></script>
+<script type="text/javascript" src="%globals_asset_url_with_hash:1607588:dist/globals/js/jquery.min.js%"></script>
 
 <!--@@ SSJS Console Logging @@-->
 <script runat="server">
@@ -80,25 +83,28 @@
 %begin_globals_site_metadata_site-monsido%
 <!-- Monsido -->
 <script type="text/javascript">
-    window._monsido = window._monsido || {
-        token: "%globals_site_metadata_site-monsido%",
-        statistics: {
-            enabled: true,
-            documentTracking: {
+    (function () {
+        var token = "%globals_site_metadata_site-monsido%";
+        if (!token || !token.trim()) return;
+        window._monsido = window._monsido || {
+            token: token,
+            statistics: {
                 enabled: true,
-                documentCls: "monsido_download",
-                documentIgnoreCls: "monsido_ignore_download",
-                documentExt: ["pdf", "PDF", "docx", "DOCX", "xlsx", "XLSX", "pptx", "PPTX", "zip", "ZIP", "doc", "DOC", "xls", "XLS", "ppt", "PPT"],
+                documentTracking: {
+                    enabled: true,
+                    documentCls: "monsido_download",
+                    documentIgnoreCls: "monsido_ignore_download",
+                    documentExt: ["pdf", "PDF", "docx", "DOCX", "xlsx", "XLSX", "pptx", "PPTX", "zip", "ZIP", "doc", "DOC", "xls", "XLS", "ppt", "PPT"],
+                },
             },
-        },
-        heatmap: {
-            enabled: true,
-        },
-    };
+            heatmap: {
+                enabled: true,
+            },
+        };
+        var s = document.createElement('script');
+        s.src = 'https://app-script.monsido.com/v2/monsido-script.js';
+        s.async = true;
+        document.head.appendChild(s);
+    })();
 </script>
-<script type="text/javascript" async src="https://app-script.monsido.com/v2/monsido-script.js"></script>
 %end_asset%
-<!--@@ Load in any additional CSS required by the page @@-->
-%begin_globals_site_metadata_site-altCss%
-<link type="text/css" rel="stylesheet" href="./?a=%globals_site_metadata_site-altCss^json_decode^index:0%">
-%end_globals%
