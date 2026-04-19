@@ -96,14 +96,14 @@ interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
 
 #### Props (quick reference)
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| `sectionTitle` | string | yes | Header text shown at the top of the navigation block |
-| `items` | SideNavigationItemProps[] | yes | Array of navigation items (see schema below) |
-| `className` | string | no | Additional CSS class applied to the root `.side-nav` |
-| `onItemClick` | (id: string) => void | no | Callback when a non-expandable item is clicked |
-| `onToggleExpand` | (id: string, expanded: boolean) => void | no | Callback when an expandable item is toggled |
-| `expandIconClass` | string | no | Override FontAwesome class used for expand/collapse icon |
+| Prop              | Type                                    | Required | Description                                              |
+| ----------------- | --------------------------------------- | -------- | -------------------------------------------------------- |
+| `sectionTitle`    | string                                  | yes      | Header text shown at the top of the navigation block     |
+| `items`           | SideNavigationItemProps[]               | yes      | Array of navigation items (see schema below)             |
+| `className`       | string                                  | no       | Additional CSS class applied to the root `.side-nav`     |
+| `onItemClick`     | (id: string) => void                    | no       | Callback when a non-expandable item is clicked           |
+| `onToggleExpand`  | (id: string, expanded: boolean) => void | no       | Callback when an expandable item is toggled              |
+| `expandIconClass` | string                                  | no       | Override FontAwesome class used for expand/collapse icon |
 
 #### Machine-friendly JSON schema (example)
 
@@ -122,9 +122,7 @@ interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
       "label": "Guides",
       "isExpandable": true,
       "isExpanded": true,
-      "children": [
-        { "id": "setup", "label": "Setup Guide", "href": "#setup" }
-      ]
+      "children": [{ "id": "setup", "label": "Setup Guide", "href": "#setup" }]
     }
   ]
 }

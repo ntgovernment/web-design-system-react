@@ -57,7 +57,7 @@ This project follows professional standards for collaboration:
    npm run dev
    ```
 
-6. **Start Storybook**
+5. **Start Storybook**
    ```bash
    npm run storybook
    ```
