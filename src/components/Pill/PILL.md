@@ -293,8 +293,8 @@ function SearchResults({ query, filters, onRemoveFilter, onClearAll }) {
 
 ## Related Documentation
 
-- [Design Tokens](../../../design-tokens/DESIGN-TOKENS.md)
-- [Theme Switching](src/themes/THEME_SWITCHING.md)
+- [Design Tokens (`@ntgovernment/web-design-tokens`)](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens)
+- [Theme Switching](../../themes/THEME_SWITCHING.md)
 - [Tag Component](../Tag/TAG.md) - Related non-interactive label component
 - [Button Component](../Button/BUTTON.md) - Interactive button patterns
 

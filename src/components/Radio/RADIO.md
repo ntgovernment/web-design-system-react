@@ -1008,7 +1008,7 @@ To modify token values:
 ## Related Documentation
 
 - [Radio Component Documentation](RADIO.md) - Main component documentation
-- [Theme Switching Guide](src/themes/THEME_SWITCHING.md) - How to implement theme switching
+- [Theme Switching Guide](../../themes/THEME_SWITCHING.md) - How to implement theme switching
 - [Component README](../../../README.md) - Overall design system documentation
 
 ## Questions?
@@ -1430,7 +1430,7 @@ The Radio button component is complete and ready for use. Suggested next steps:
 - **MDN Radio Reference**: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
 - **WCAG Radio Guidelines**: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 - **Design Tokens**: [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens)
-- **Theme Switching**: [src/themes/THEME_SWITCHING.md](src/themes/THEME_SWITCHING.md)
+- **Theme Switching**: [THEME_SWITCHING.md](../../themes/THEME_SWITCHING.md)
 
 ## Summary
 

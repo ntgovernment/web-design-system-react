@@ -16,6 +16,10 @@ tools:
 
 Update the documentation for this repository to be comprehensive, accurate, and agent-friendly. Work through each area below in order.
 
+## 0. Build first
+
+Run `npm run build` in the terminal before making any documentation changes. This ensures `dist/` is up to date so you can accurately verify distribution file lists, export paths, and build output references throughout the docs.
+
 ## 1. README.md
 
 Review [README.md](../../README.md) against the current state of [package.json](../../package.json) and update:

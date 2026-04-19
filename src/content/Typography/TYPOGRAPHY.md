@@ -19,10 +19,10 @@ The design system uses Bootstrap's comprehensive typography system with two them
 
 ### Font Loading
 
-Fonts are loaded via Google Fonts CDN in the theme-specific typography files:
+Fonts are loaded via Google Fonts CDN in the theme token bundles from `@ntgovernment/web-design-tokens`:
 
-- `src/themes/typography-ntg.css` - Loads Lato for NTG theme
-- `src/themes/typography-central.css` - Loads Roboto for Central theme
+- **NTG theme** — Lato (`theme-ntg-bundled`)
+- **Central theme** — Roboto (`theme-central-bundled`)
 
 ## Typography Scale
 

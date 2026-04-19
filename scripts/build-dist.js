@@ -16,6 +16,9 @@
  *        dist/theme-central.min.css Self-contained NTG Central theme bundle
  *        dist/index.html            Interactive demo
  *        dist/index.js / index.css  Demo app bundle
+ *        dist/nesters/*.html        Squiz Matrix design nesters (5 files)
+ *        dist/favicons/*.png        Favicon assets
+ *        dist/images/ntg-logo.png   NT Government logo
  *
  * Usage: node scripts/build-dist.js (invoked by `npm run build`)
  */

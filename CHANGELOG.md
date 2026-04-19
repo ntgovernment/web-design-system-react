@@ -43,6 +43,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Component CSS imports now use package export specifiers (e.g. `@ntgovernment/web-design-tokens/css/common`)
   - Storybook preview imports updated to use package specifiers
   - Dev-mode theme switching (`index.html`, `App.tsx`) updated to serve files from `node_modules/@ntgovernment/web-design-tokens`
+- **Squiz Matrix Design Nesters**: Added `src/squiz/` with a design parse template and 5 HTML nesters for Squiz DXP deployment
+  - `design-parse.html` — Matrix design file that maps nesters to page regions via `print()` calls
+  - `nesters/head.html` — `<head>` content (meta, favicons, Bootstrap/FontAwesome CDNs, jQuery CDN)
+  - `nesters/skip_links.html` — skip navigation link
+  - `nesters/header_content.html` — global alert banner, site header, mobile search
+  - `nesters/footer_content.html` — site footer with links and acknowledgement
+  - `nesters/footer_js.html` — Bootstrap JS, React 18 CDN, `process.env` shim, components bundle, Funnelback search
+  - Vite plugin `squizPreviewPlugin` serves `/squiz-preview.html` during `npm run dev` for local preview
+  - Build outputs nesters and static assets (favicons, logo) to `dist/`
 
 ### Removed
 
@@ -142,7 +151,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - NTG theme (NT.GOV.AU) with Lato font
   - Central theme (NTG Central) with Roboto font
 - Automated design token system:
-  - 849 tokens in `design-tokens/tokens.json`
+  - 849 design tokens (now in `@ntgovernment/web-design-tokens`)
   - Style Dictionary integration for CSS generation
   - Layered CSS architecture (common, grid, typography, themes)
   - 28-30% reduction in theme file sizes through optimization

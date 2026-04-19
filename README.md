@@ -32,14 +32,23 @@ This will also install `@ntgovernment/web-design-tokens` (a direct dependency) w
 
 After building (`npm run build`), the `dist/` folder contains:
 
-| File                    | Description                                         | Size (approx.) |
-| ----------------------- | --------------------------------------------------- | -------------- |
-| `components.min.js`     | UMD bundle of all React components (React external) | ~75 KB         |
-| `theme-ntg.min.css`     | Complete NT.GOV.AU theme — tokens + component CSS   | ~71 KB         |
-| `theme-central.min.css` | Complete NTG Central theme — tokens + component CSS | ~72 KB         |
-| `index.html`            | Interactive demo page with theme switching          | ~1 KB          |
-| `index.js`              | Demo application bundle                             | ~168 KB        |
-| `index.css`             | Demo application styles                             | ~120 KB        |
+| File | Description |
+| --- | --- |
+| `components.min.js` | UMD bundle of all React components (React externalized) |
+| `theme-ntg.min.css` | Complete NT.GOV.AU theme — tokens + component CSS |
+| `theme-central.min.css` | Complete NTG Central theme — tokens + component CSS |
+| `index.html` | Interactive demo page with theme switching |
+| `index.js` | Demo application bundle |
+| `index.css` | Demo application styles |
+| `nesters/head.html` | Squiz Matrix design nester — `<head>` content |
+| `nesters/skip_links.html` | Squiz Matrix design nester — skip navigation links |
+| `nesters/header_content.html` | Squiz Matrix design nester — site header |
+| `nesters/footer_content.html` | Squiz Matrix design nester — site footer |
+| `nesters/footer_js.html` | Squiz Matrix design nester — bottom-of-body scripts |
+| `favicons/apple-touch-icon-180x180.png` | Apple touch icon (180×180) |
+| `favicons/favicon-16x16.png` | 16×16 favicon |
+| `favicons/favicon-32x32.png` | 32×32 favicon |
+| `images/ntg-logo.png` | NT Government logo |
 
 The theme bundles (`theme-ntg.min.css`, `theme-central.min.css`) are fully self-contained — they include the design token CSS variables, typography, grid, and all component styles. You only need to load Bootstrap from CDN and one theme bundle.
 
@@ -55,7 +64,6 @@ import {
   Icon,
   Image,
 } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/components.min.css";
 import "@ntgovernment/web-design-system/theme-ntg.min.css"; // or theme-central.min.css
 
 function App() {
@@ -414,6 +422,31 @@ Individual layers are still available if needed:
 
 To update tokens, raise a PR in the `web-design-tokens` repository and bump the version in this repo's `package.json`.
 
+### Architecture
+
+```
+@ntgovernment/web-design-tokens (npm)   ← CSS custom-property tokens
+        │
+        ▼
+scripts/build-theme-bundles.js          ← reads token CSS from node_modules/
+        │
+        ▼
+theme-{ntg|central}.min.css            ← bundled tokens + component CSS
+        │
+src/components/*/Component.css          ← base component styles (token vars)
+src/components/*/Component-ntg.css      ← NTG theme overrides
+src/components/*/Component-central.css  ← Central theme overrides
+        │
+        ▼
+scripts/build-dist.js                   ← orchestrates: Vite lib build → demo build → theme bundles → dist/
+```
+
+**Token dependency** — `@ntgovernment/web-design-tokens` supplies all CSS custom properties (colours, spacing, typography, grid). No tokens are generated locally.
+
+**Component CSS** — Each component has a base `.css` file using semantic token variables plus optional per-theme override files (`-ntg.css`, `-central.css`).
+
+**Theme bundles** — `build-theme-bundles.js` concatenates the self-contained bundled token CSS with all component CSS and theme overrides, then minifies. The result is a single CSS file per theme.
+
 ## Deployment to Squiz DXP Component Services
 
 This library is designed to be deployed as Component Services in Squiz DXP.
@@ -717,10 +750,9 @@ Components are tested in:
 If you encounter issues not covered here:
 
 1. **Check Documentation**:
-   - [design-tokens/DESIGN-TOKENS.md](design-tokens/DESIGN-TOKENS.md)
    - [src/themes/THEMES.md](src/themes/THEMES.md)
-   - [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)
-   - Component-specific README files
+   - [SQUIZ_DXP_DEPLOYMENT.md](SQUIZ_DXP_DEPLOYMENT.md)
+   - Component-specific docs at `src/components/<Name>/<NAME>.md`
 
 2. **Search Issues**: Check if the issue is already reported in the repository
 

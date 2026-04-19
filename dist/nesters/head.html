@@ -41,65 +41,6 @@
 <link rel="stylesheet" href="https://kit.fontawesome.com/f73a36f593.css" crossorigin="anonymous">
 
 <!--@@ Favicons @@-->
-<link rel="apple-touch-icon" sizes="180x180"
-    href="%globals_asset_url_with_hash:1607588:dist/favicons/apple-touch-icon-180x180.png%">
-<link rel="icon" type="image/png" sizes="32x32"
-    href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-32x32.png%">
-<link rel="icon" type="image/png" sizes="16x16"
-    href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-16x16.png%">
-
-<!--@@ GitHub @@-->
-<link rel="stylesheet" href="%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%">
-
-<!--@@ SSJS Console Logging @@-->
-<script runat="server">
-    var ssconsole = {
-        log: function () {
-            print('<scr' + 'ipt>');
-            print('console.log.apply(null,' + JSON.stringify(['ssconsole.log'].concat([].slice.call(arguments))) + ')');
-            print('</scr' + 'ipt>');
-        }
-    };
-</script>
-
-<!--@@ Google Analytics @@-->
-%begin_globals_site_metadata_site-googleAnalytics%
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=%globals_site_metadata_site-googleAnalytics%"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', '%globals_site_metadata_site-googleAnalytics%', {
-        'cookie_flags': 'SameSite=None;Secure'
-    });
-</script>
-%end_asset%
-
-%begin_globals_site_metadata_site-monsido%
-<!-- Monsido -->
-<script type="text/javascript">
-    window._monsido = window._monsido || {
-        token: "%globals_site_metadata_site-monsido%",
-        statistics: {
-            enabled: true,
-            documentTracking: {
-                enabled: true,
-                documentCls: "monsido_download",
-                documentIgnoreCls: "monsido_ignore_download",
-                documentExt: ["pdf", "PDF", "docx", "DOCX", "xlsx", "XLSX", "pptx", "PPTX", "zip", "ZIP", "doc", "DOC", "xls", "XLS", "ppt", "PPT"],
-            },
-        },
-        heatmap: {
-            enabled: true,
-        },
-    };
-</script>
-<script type="text/javascript" async src="https://app-script.monsido.com/v2/monsido-script.js"></script>
-%end_asset%
-
-<!--@@ Load in any additional CSS required by the page @@-->
-%begin_globals_site_metadata_site-altCss%
-<link type="text/css" rel="stylesheet" href="./?a=%globals_site_metadata_site-altCss^json_decode^index:0%">
-%end_globals%
+<link rel="apple-touch-icon" sizes="180x180" href="%globals_asset_url_with_hash:1607588:dist/favicons/apple-touch-icon-180x180.png%">
+<link rel="icon" type="image/png" sizes="32x32" href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-32x32.png%">
+<link rel="icon" type="image/png" sizes="16x16" href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-16x16.png%">
