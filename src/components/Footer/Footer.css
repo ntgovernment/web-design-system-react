@@ -23,7 +23,7 @@
   --footer-border: var(--clr-border-inverse);
 
   /* Typography variables */
-  --footer-font-family: var(--type-font-default);
+  --footer-font-family: var(--type-font-family-default);
   --footer-heading-weight: 700;
   --footer-heading-size: 18px;
   --footer-heading-lh: 20px;

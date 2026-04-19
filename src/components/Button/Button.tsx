@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "../Icon";
+import "./Button.css";
 
 /**
  * IMPORTANT: Card Component Dependency

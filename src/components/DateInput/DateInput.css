@@ -84,7 +84,7 @@
 /* Input field styling - using Bootstrap form-control for consistency */
 .date-input-field-control.form-control {
   width: 100%;
-  min-height: var(--sp-xxxl); /* 48px */
+  min-height: var(--sp-3xl); /* 48px */
   height: 52px; /* Match Figma spec */
   padding-left: var(--sp-md);
   padding-right: var(--sp-md);

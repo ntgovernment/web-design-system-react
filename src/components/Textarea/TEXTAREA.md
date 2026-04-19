@@ -358,6 +358,7 @@ Theme overrides: `Textarea-ntg.css`, `Textarea-central.css`
 Component source: `src/components/Textarea/Textarea.tsx`  
 Styles: `src/components/Textarea/Textarea.css`  
 Theme overrides: `Textarea-ntg.css`, `Textarea-central.css`
+
 # Textarea CSS Variables
 
 This document explains how to customize the Textarea component using Bootstrap 5.3's CSS variables approach and design system tokens.
@@ -637,9 +638,8 @@ For a complete list of Bootstrap form-control variables, see:
 For available design tokens, see:
 
 - [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens) - Complete token definitions
-- `@ntgovernment/web-design-tokens/css/base-variables` - Base CSS variable definitions
-- `@ntgovernment/web-design-tokens/css/theme-ntg` - NTG theme tokens
-- `@ntgovernment/web-design-tokens/css/theme-central` - Central theme tokens
+- `@ntgovernment/web-design-tokens/css/theme-ntg-bundled` - NTG theme (self-contained, includes all token layers)
+- `@ntgovernment/web-design-tokens/css/theme-central-bundled` - Central theme (self-contained, includes all token layers)
 
 ### Machine-readable token list (used by Textarea)
 

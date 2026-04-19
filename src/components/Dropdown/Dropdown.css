@@ -41,7 +41,7 @@
 
 .form-select {
   width: 100%;
-  min-height: var(--sp-xxxl); /* 48px */
+  min-height: var(--sp-3xl); /* 48px */
   padding-left: var(--sp-md);
   padding-right: calc(var(--sp-md) * 3); /* Extra space for icon */
   background: var(--clr-bg-default);
@@ -159,7 +159,7 @@
 
 /* Bootstrap sizing support */
 .form-select-sm {
-  min-height: calc(var(--sp-xxxl) - var(--sp-md)); /* 32px */
+  min-height: calc(var(--sp-3xl) - var(--sp-md)); /* 32px */
   font-size: var(--type-body-sm-size);
   padding-left: var(--sp-sm);
   padding-right: calc(var(--sp-sm) * 3);
@@ -170,7 +170,7 @@
 }
 
 .form-select-lg {
-  min-height: calc(var(--sp-xxxl) + var(--sp-md)); /* 64px */
+  min-height: calc(var(--sp-3xl) + var(--sp-md)); /* 64px */
   font-size: var(--type-desktop-h6-size);
   padding-left: var(--sp-xl);
   padding-right: calc(var(--sp-xl) * 3);

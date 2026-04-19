@@ -3,8 +3,8 @@
  * This file can be imported to get base styles
  */
 
-/* Import default NT.GOV.AU theme */
-@import "@ntgovernment/web-design-tokens/css/theme-ntg";
+/* Import default NT.GOV.AU theme (bundled — includes all token layers) */
+@import "@ntgovernment/web-design-tokens/css/theme-ntg-bundled";
 
 /* Import Button component common styles */
 @import "./components/Button/Button.css";

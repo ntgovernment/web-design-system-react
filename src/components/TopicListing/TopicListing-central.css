@@ -2,8 +2,6 @@
  * TopicListing Component - NTG Central Theme Overrides
  */
 
-@import "@ntgovernment/web-design-tokens/css/common";
-
 .topic-listing {
   --topic-listing-focus-shadow: var(--shadow-focus-central);
   --topic-listing-focus-radius: var(--central-radii-sm);

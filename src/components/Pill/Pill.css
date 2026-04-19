@@ -23,10 +23,10 @@
   color: var(--clr-link-default);
 
   /* Typography */
-  font-family: var(--type-font-default);
-  font-size: var(--type-button-label-size);
-  font-weight: var(--type-button-label-weight);
-  line-height: var(--type-button-label-lh);
+  font-family: var(--type-font-family-default);
+  font-size: var(--type-button-label-default-size);
+  font-weight: var(--type-button-label-default-weight);
+  line-height: var(--type-button-label-default-lh);
 
   /* Interactive */
   cursor: pointer;

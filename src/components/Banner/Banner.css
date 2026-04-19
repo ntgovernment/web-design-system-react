@@ -11,7 +11,7 @@
   position: relative;
   width: 100%;
   padding-top: var(--sp-xl);
-  padding-bottom: var(--sp-xxxl);
+  padding-bottom: var(--sp-3xl);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -94,7 +94,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: var(--sp-xxl);
+  gap: var(--sp-2xl);
   flex-wrap: wrap;
 }
 
@@ -114,7 +114,7 @@
   margin: 0;
   color: var(--clr-text-inverse);
   font-size: var(--type-heading-h1-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-heading-h1-weight);
   line-height: var(--type-heading-h1-lh);
   word-wrap: break-word;
@@ -129,7 +129,7 @@
   margin: 0;
   color: var(--clr-text-inverse);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
   word-wrap: break-word;
@@ -159,7 +159,7 @@
   margin: 0;
   color: var(--clr-text-inverse);
   font-size: var(--type-heading-h3-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-heading-h3-weight);
   line-height: var(--type-heading-h3-lh);
   word-wrap: break-word;
@@ -172,7 +172,7 @@
 /* Secondary variant - border divider between main and links */
 .banner--secondary .banner__main {
   border-right: 1px solid var(--clr-border-subtle);
-  padding-right: var(--sp-xxl);
+  padding-right: var(--sp-2xl);
 }
 
 /* Vertical link list for standard variant */
@@ -189,7 +189,7 @@
   background-color: transparent;
   color: var(--clr-link-default);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
   text-decoration: none;
@@ -231,7 +231,7 @@
   background: var(--clr-bg-default);
   color: var(--clr-text-default);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
   text-decoration: none;
@@ -275,7 +275,7 @@
   background: var(--clr-bg-default);
   color: var(--clr-text-default);
   font-size: var(--type-body-default-size);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-weight: var(--type-body-default-weight);
   line-height: var(--type-body-default-lh);
   border: none;

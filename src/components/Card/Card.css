@@ -141,9 +141,9 @@
 
 .card__header-meta-date {
   color: var(--clr-text-default);
-  font-size: var(--type-body-small-size);
-  font-weight: var(--type-body-small-weight);
-  line-height: var(--type-body-small-lh);
+  font-size: var(--type-body-sm-size);
+  font-weight: var(--type-body-sm-weight);
+  line-height: var(--type-body-sm-lh);
   white-space: nowrap;
 }
 
@@ -327,8 +327,8 @@
 }
 
 .card--minicard .card__minicard-icon {
-  width: var(--sp-xxl);
-  height: var(--sp-xxl);
+  width: var(--sp-2xl);
+  height: var(--sp-2xl);
   font-size: var(--sp-xl);
   display: flex;
   align-items: center;
@@ -372,9 +372,9 @@
 }
 
 .card--compact .card__compact-icon {
-  width: var(--sp-xxxl);
-  height: var(--sp-xxxl);
-  font-size: var(--sp-xxl);
+  width: var(--sp-3xl);
+  height: var(--sp-3xl);
+  font-size: var(--sp-2xl);
   display: flex;
   align-items: center;
   justify-content: center;

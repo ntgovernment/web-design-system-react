@@ -282,7 +282,7 @@ footer, ntg-footer, footer-links, footer-columns, footer-tokens, --clr-bg-dark, 
 
 ## Implementation notes for maintainers
 
-- Footer relies on CSS variables defined in theme CSS files (from `@ntgovernment/web-design-tokens/css/theme-ntg` / `theme-central`)
+- Footer relies on CSS variables defined in bundled theme CSS files (from `@ntgovernment/web-design-tokens/css/theme-ntg-bundled` / `theme-central-bundled`)
 - Storybook loads theme CSS first; component CSS is imported via `src/style.css` and Storybook preview loader
 - Prefer adding token mappings in the `web-design-tokens` repository rather than hard-coding values
 

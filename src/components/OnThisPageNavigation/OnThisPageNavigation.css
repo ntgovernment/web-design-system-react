@@ -21,7 +21,7 @@
 
 .content-on-this-page__heading {
   color: var(--clr-text-default);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-size: var(--type-heading-h5-size);
   font-weight: var(--type-heading-h5-weight);
   line-height: var(--type-heading-h5-lh);
@@ -66,7 +66,7 @@
 .content-on-this-page__link,
 .content-on-this-page__text {
   color: var(--clr-link-default);
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
   font-size: var(--type-link-default-size);
   font-weight: var(--type-link-default-weight);
   line-height: var(--type-link-default-lh);

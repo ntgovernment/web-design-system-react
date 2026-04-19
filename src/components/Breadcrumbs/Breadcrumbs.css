@@ -124,7 +124,7 @@
   z-index: 1;
   margin: 0;
   padding: 0;
-  min-width: calc(var(--sp-xxxl) * 4);
+  min-width: calc(var(--sp-3xl) * 4);
   background: var(--clr-bg-default);
   border: none;
   border-radius: var(--breadcrumbs-radius);

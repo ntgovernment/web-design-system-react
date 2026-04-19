@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "../Icon";
+import "./Pill.css";
 
 export interface PillProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**

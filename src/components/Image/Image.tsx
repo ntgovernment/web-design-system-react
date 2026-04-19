@@ -1,4 +1,5 @@
 import React from "react";
+import "./Image.css";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   /**

@@ -61,7 +61,7 @@
 /* Input field styling */
 .date-picker-input {
   width: 100%;
-  min-height: var(--sp-xxxl); /* 48px */
+  min-height: var(--sp-3xl); /* 48px */
   padding-left: var(--sp-md);
   padding-right: calc(var(--sp-md) * 3); /* Extra space for icon */
   background: var(--clr-bg-default);
@@ -73,7 +73,7 @@
   font-size: var(--type-desktop-body-default-size);
   line-height: var(--type-body-default-lh);
   box-shadow: none;
-  font-family: var(--type-font-default);
+  font-family: var(--type-font-family-default);
 }
 
 .date-picker-input::placeholder {

@@ -32,14 +32,14 @@ This will also install `@ntgovernment/web-design-tokens` (a direct dependency) w
 
 After building (`npm run build`), the `dist/` folder contains:
 
-| File | Description | Size (approx.) |
-|---|---|---|
-| `components.min.js` | UMD bundle of all React components (React external) | ~75 KB |
-| `theme-ntg.min.css` | Complete NT.GOV.AU theme — tokens + component CSS | ~71 KB |
-| `theme-central.min.css` | Complete NTG Central theme — tokens + component CSS | ~72 KB |
-| `index.html` | Interactive demo page with theme switching | ~1 KB |
-| `index.js` | Demo application bundle | ~168 KB |
-| `index.css` | Demo application styles | ~120 KB |
+| File                    | Description                                         | Size (approx.) |
+| ----------------------- | --------------------------------------------------- | -------------- |
+| `components.min.js`     | UMD bundle of all React components (React external) | ~75 KB         |
+| `theme-ntg.min.css`     | Complete NT.GOV.AU theme — tokens + component CSS   | ~71 KB         |
+| `theme-central.min.css` | Complete NTG Central theme — tokens + component CSS | ~72 KB         |
+| `index.html`            | Interactive demo page with theme switching          | ~1 KB          |
+| `index.js`              | Demo application bundle                             | ~168 KB        |
+| `index.css`             | Demo application styles                             | ~120 KB        |
 
 The theme bundles (`theme-ntg.min.css`, `theme-central.min.css`) are fully self-contained — they include the design token CSS variables, typography, grid, and all component styles. You only need to load Bootstrap from CDN and one theme bundle.
 
@@ -92,12 +92,21 @@ The library ships two pre-configured themes. Load one theme bundle to get all de
 
 ```html
 <!-- Bootstrap (required) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
 
 <!-- Pick ONE theme bundle -->
-<link rel="stylesheet" href="node_modules/@ntgovernment/web-design-system/dist/theme-ntg.min.css">
+<link
+  rel="stylesheet"
+  href="node_modules/@ntgovernment/web-design-system/dist/theme-ntg.min.css"
+/>
 <!-- OR -->
-<link rel="stylesheet" href="node_modules/@ntgovernment/web-design-system/dist/theme-central.min.css">
+<link
+  rel="stylesheet"
+  href="node_modules/@ntgovernment/web-design-system/dist/theme-central.min.css"
+/>
 ```
 
 #### NT.GOV.AU Theme (`ntg-` prefix)
@@ -386,18 +395,21 @@ The project includes several npm scripts for development, building, and testing:
 
 Design tokens are managed in the separate [`@ntgovernment/web-design-tokens`](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens) package. This repo consumes them as an npm dependency — **no local token generation is required**.
 
-The tokens package exposes CSS custom properties via named exports:
+The tokens package (v3.1.0+) exposes self-contained **bundled** theme CSS files that include all token layers (base-variables, common, grid, typography, typography-literals, and theme palette):
 
 ```css
-/* All tokens (common + grid + typography + base variables) */
-@import "@ntgovernment/web-design-tokens/css";
+/* Bundled theme files (recommended — self-contained, no extra imports needed) */
+@import "@ntgovernment/web-design-tokens/css/theme-ntg-bundled"; /* NTG theme */
+@import "@ntgovernment/web-design-tokens/css/theme-central-bundled"; /* Central theme */
+```
 
-/* Individual layers */
-@import "@ntgovernment/web-design-tokens/css/common";       /* spacing, shadows, borders, radii */
-@import "@ntgovernment/web-design-tokens/css/grid";         /* Bootstrap grid configuration */
-@import "@ntgovernment/web-design-tokens/css/typography";   /* type scale variables */
-@import "@ntgovernment/web-design-tokens/css/theme-ntg";    /* NTG palette + semantic colors */
-@import "@ntgovernment/web-design-tokens/css/theme-central"; /* Central palette + semantic colors */
+Individual layers are still available if needed:
+
+```css
+@import "@ntgovernment/web-design-tokens/css/common"; /* spacing, shadows, borders, radii */
+@import "@ntgovernment/web-design-tokens/css/grid"; /* Bootstrap grid configuration */
+@import "@ntgovernment/web-design-tokens/css/typography"; /* type scale variables */
+@import "@ntgovernment/web-design-tokens/css/theme-ntg"; /* NTG palette + semantic colors (unbundled) */
 ```
 
 To update tokens, raise a PR in the `web-design-tokens` repository and bump the version in this repo's `package.json`.
@@ -421,9 +433,12 @@ This creates the distribution files listed in the [Distribution Files](#distribu
 3. **Reference in Component Services**:
    ```html
    <!-- Bootstrap CDN (required) -->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link
+     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+     rel="stylesheet"
+   />
    <!-- Choose one theme bundle -->
-   <link rel="stylesheet" href="%globals_asset_url:NTG_THEME_ASSET_ID%">
+   <link rel="stylesheet" href="%globals_asset_url:NTG_THEME_ASSET_ID%" />
    <!-- React component bundle -->
    <script src="%globals_asset_url:COMPONENTS_ASSET_ID%"></script>
    ```
@@ -479,7 +494,7 @@ You can extend or override a theme by defining CSS variables after the theme bun
 /* Load the base theme, then override specific tokens */
 :root {
   --clr-action-primary: #yourcolor;
-  --type-font-default: "Your Font", sans-serif;
+  --type-font-family-default: "Your Font", sans-serif;
 }
 ```
 
@@ -498,42 +513,42 @@ Tokens are managed in the [`@ntgovernment/web-design-tokens`](https://github.com
 Each component has its own detailed documentation at `src/components/<Name>/<NAME>.md`.
 Consult those files for prop tables, CSS token references, and usage examples.
 
-| Component | Export | Description |
-|---|---|---|
-| Accordion | `Accordion` | Collapsible content panels |
-| BackToTop | `BackToTop` | Scroll-to-top button |
-| Banner | `Banner` | Full-width promotional banner |
-| Breadcrumbs | `BreadcrumbsContent` | Page hierarchy navigation |
-| Button | `Button` | Primary interactive element with variants |
-| Callout | `Callout` | Highlighted informational block |
-| Card | `Card` | Content container with image/body/footer |
-| Checkbox | `Checkbox`, `CheckboxGroup` | Form checkbox with label |
-| DateInput | `DateInput` | Day/month/year split date input |
-| DatePicker | `DatePicker` | Calendar date picker |
-| Document | `Document` | File/document link with icon |
-| Dropdown | `Dropdown` | Select dropdown form control |
-| FileUpload | `FileUpload` | File attachment input |
-| FloatingButton | `FloatingButton` | Fixed-position action button |
-| Footer | `Footer` | Site footer with links and social |
-| GlobalAlert | `GlobalAlert` | Site-wide alert banner |
-| Header | `Header` | Site header with navigation |
-| Icon | `Icon` | FontAwesome icon wrapper |
-| Image | `Image` | Responsive image with caption |
-| Input | `Input` | Text input form control |
-| Notification | `Notification` | Inline status notification |
-| OnThisPageNavigation | `OnThisPageNavigation` | In-page anchor links |
-| Pagination | `PaginationContent` | Page navigation controls |
-| Pill | `Pill` | Small status badge |
-| QuickExit | `QuickExit` | Emergency exit button |
-| Radio | `Radio`, `RadioGroup` | Radio button form control |
-| SearchBar | `SearchBar` | Search input with submit |
-| SideNavigation | `SideNavigation` | Vertical section navigation |
-| StepList | `StepList` | Numbered step process list |
-| Tab | _(see component)_ | Tabbed content panels |
-| Table | `TableContent` | Data table with Bootstrap styling |
-| Tag | `Tag` | Colour-coded label |
-| Textarea | `Textarea` | Multi-line text input |
-| TopicListing | `TopicListing` | Link list with topic grouping |
+| Component            | Export                      | Description                               |
+| -------------------- | --------------------------- | ----------------------------------------- |
+| Accordion            | `Accordion`                 | Collapsible content panels                |
+| BackToTop            | `BackToTop`                 | Scroll-to-top button                      |
+| Banner               | `Banner`                    | Full-width promotional banner             |
+| Breadcrumbs          | `BreadcrumbsContent`        | Page hierarchy navigation                 |
+| Button               | `Button`                    | Primary interactive element with variants |
+| Callout              | `Callout`                   | Highlighted informational block           |
+| Card                 | `Card`                      | Content container with image/body/footer  |
+| Checkbox             | `Checkbox`, `CheckboxGroup` | Form checkbox with label                  |
+| DateInput            | `DateInput`                 | Day/month/year split date input           |
+| DatePicker           | `DatePicker`                | Calendar date picker                      |
+| Document             | `Document`                  | File/document link with icon              |
+| Dropdown             | `Dropdown`                  | Select dropdown form control              |
+| FileUpload           | `FileUpload`                | File attachment input                     |
+| FloatingButton       | `FloatingButton`            | Fixed-position action button              |
+| Footer               | `Footer`                    | Site footer with links and social         |
+| GlobalAlert          | `GlobalAlert`               | Site-wide alert banner                    |
+| Header               | `Header`                    | Site header with navigation               |
+| Icon                 | `Icon`                      | FontAwesome icon wrapper                  |
+| Image                | `Image`                     | Responsive image with caption             |
+| Input                | `Input`                     | Text input form control                   |
+| Notification         | `Notification`              | Inline status notification                |
+| OnThisPageNavigation | `OnThisPageNavigation`      | In-page anchor links                      |
+| Pagination           | `PaginationContent`         | Page navigation controls                  |
+| Pill                 | `Pill`                      | Small status badge                        |
+| QuickExit            | `QuickExit`                 | Emergency exit button                     |
+| Radio                | `Radio`, `RadioGroup`       | Radio button form control                 |
+| SearchBar            | `SearchBar`                 | Search input with submit                  |
+| SideNavigation       | `SideNavigation`            | Vertical section navigation               |
+| StepList             | `StepList`                  | Numbered step process list                |
+| Tab                  | _(see component)_           | Tabbed content panels                     |
+| Table                | `TableContent`              | Data table with Bootstrap styling         |
+| Tag                  | `Tag`                       | Colour-coded label                        |
+| Textarea             | `Textarea`                  | Multi-line text input                     |
+| TopicListing         | `TopicListing`              | Link list with topic grouping             |
 
 ## CSS Variables Reference
 
@@ -560,9 +575,8 @@ All CSS custom properties are defined in `@ntgovernment/web-design-tokens`. Comp
 ### Spacing tokens
 
 ```css
---sp-xxs: 4px   --sp-xs: 8px    --sp-sm: 12px
---sp-md: 16px   --sp-lg: 20px   --sp-xl: 24px
---sp-xxl: 32px  --sp-xxxl: 48px
+--sp-xxs: 4px --sp-xs: 8px --sp-sm: 12px --sp-md: 16px --sp-lg: 20px
+  --sp-xl: 24px --sp-2xl: 32px --sp-3xl: 48px;
 ```
 
 ### Typography tokens
@@ -570,7 +584,7 @@ All CSS custom properties are defined in `@ntgovernment/web-design-tokens`. Comp
 ```css
 --type-heading-h1-size    --type-heading-h1-weight    --type-heading-h1-lh
 --type-body-default-size  --type-body-default-weight  --type-body-default-lh
---type-font-default       /* Loaded typeface (Lato / Roboto) */
+--type-font-family-default /* Loaded typeface (Lato / Roboto) */
 ```
 
 For the full token catalogue see the [`@ntgovernment/web-design-tokens` README](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens).

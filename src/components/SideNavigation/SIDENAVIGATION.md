@@ -96,14 +96,14 @@ interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
 
 #### Props (quick reference)
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| `sectionTitle` | string | yes | Header text shown at the top of the navigation block |
-| `items` | SideNavigationItemProps[] | yes | Array of navigation items (see schema below) |
-| `className` | string | no | Additional CSS class applied to the root `.side-nav` |
-| `onItemClick` | (id: string) => void | no | Callback when a non-expandable item is clicked |
-| `onToggleExpand` | (id: string, expanded: boolean) => void | no | Callback when an expandable item is toggled |
-| `expandIconClass` | string | no | Override FontAwesome class used for expand/collapse icon |
+| Prop              | Type                                    | Required | Description                                              |
+| ----------------- | --------------------------------------- | -------- | -------------------------------------------------------- |
+| `sectionTitle`    | string                                  | yes      | Header text shown at the top of the navigation block     |
+| `items`           | SideNavigationItemProps[]               | yes      | Array of navigation items (see schema below)             |
+| `className`       | string                                  | no       | Additional CSS class applied to the root `.side-nav`     |
+| `onItemClick`     | (id: string) => void                    | no       | Callback when a non-expandable item is clicked           |
+| `onToggleExpand`  | (id: string, expanded: boolean) => void | no       | Callback when an expandable item is toggled              |
+| `expandIconClass` | string                                  | no       | Override FontAwesome class used for expand/collapse icon |
 
 #### Machine-friendly JSON schema (example)
 
@@ -122,9 +122,7 @@ interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
       "label": "Guides",
       "isExpandable": true,
       "isExpanded": true,
-      "children": [
-        { "id": "setup", "label": "Setup Guide", "href": "#setup" }
-      ]
+      "children": [{ "id": "setup", "label": "Setup Guide", "href": "#setup" }]
     }
   ]
 }
@@ -337,22 +335,13 @@ The Side Navigation component respects the active theme and automatically adjust
 Theme-specific CSS is loaded dynamically in Storybook's preview configuration:
 
 ```typescript
-// In .storybook/preview.tsx
-const loadSideNavigationStyles = (theme: string) => {
-  const existingSideNav = document.getElementById("side-nav-theme-css");
-  if (existingSideNav) {
-    existingSideNav.remove();
-  }
-
-  const sideNavCSS = document.createElement("link");
-  sideNavCSS.id = "side-nav-theme-css";
-  sideNavCSS.rel = "stylesheet";
-  sideNavCSS.href = new URL(
-    `../src/components/SideNavigation/SideNavigation-${theme}.css`,
-    import.meta.url,
-  ).href;
-  document.head.appendChild(sideNavCSS);
-};
+// In .storybook/preview.tsx — registered in the components array
+// inside the withHTMLCode decorator's useEffect:
+const components: [string, string, string][] = [
+  // ... other entries ...
+  ["SideNavigation", "side-navigation-theme-css", "SideNavigation"],
+];
+// The generic loadComponentThemeCSS() handles loading and theme switching.
 ```
 
 ### CSS Variable Customization
@@ -664,7 +653,7 @@ Make sure the current/active page is always marked with the `isCurrent` flag so 
 
 **Problem**: Focus states are not showing up when tabbing through navigation.
 
-**Solution**: Ensure theme CSS files are loaded properly. Check that `SideNavigation-ntg.css` or `SideNavigation-central.css` are imported in Storybook's preview file.
+**Solution**: Ensure theme CSS files are loaded properly. Check that `SideNavigation` is registered in the `components` array inside the `withHTMLCode` decorator in `.storybook/preview.tsx`.
 
 ### Items not expanding
 
