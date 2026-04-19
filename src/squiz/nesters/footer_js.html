@@ -1,0 +1,96 @@
+<script src="./Standard website template_files/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript">
+    (function ($) {
+        var $span = $('<span class="fa" style="display:none"></span>').appendTo('body');
+        if ($span.css('font-family') !== '"Font Awesome 6 Pro"') {
+            // Fallback Link
+            // $('head').append('<link href="./?a=" rel="stylesheet">');
+        }
+        $span.remove();
+    })(jQuery);
+</script>
+
+
+
+<script>
+
+    //// Lightbox ////
+    if ($('body').has('[' + 'data-plugin' + '="' + 'lightbox' + '"]').length > 0) {
+        $('head').append('<link href="https://nt.gov.au/ntg/_designmaster/css/lightbox/lightbox.min.css" rel="stylesheet">');
+        //@@ $('body').append('<script type="text/javascript" src="https://cmsexternal.nt.gov.au/__data/assets/git_bridge/0011/1298288/dist/ntgbase/ntg-base-plugins.min.js"> </' + 'script>');
+        //@@ GitHub
+        $('body').append('<script type="text/javascript" src="?h=0514c2a"> </' + 'script>');
+    }
+
+    //add additional scripts here with data attribute conditions
+
+</script>
+
+
+<!-- React 18 (required by components.min.js UMD bundle which externalises React) -->
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+
+<!-- process.env shim required by UMD React bundle -->
+<script>window.process = { env: { NODE_ENV: 'production' } };</script>
+
+<script type="text/javascript" src="./Standard website template_files/components.min.js"></script>
+
+
+
+<!-- index.js removed — demo app entry point, not part of the Squiz design template -->
+
+
+<script>
+    window.onload = function () {
+        var currentURL = window.location.hash;
+        if (!currentURL) return;
+        var anchorHashLinks = document.querySelectorAll('[href*="#"]');
+        for (var i = 0; i < anchorHashLinks.length; i++) {
+            if (anchorHashLinks[i].hash == currentURL) {
+                var hashValue = anchorHashLinks[i].hash.substr(1);
+                var el = document.getElementById(hashValue);
+                if (el) el.scrollIntoView(true);
+            }
+        }
+    }
+</script>
+
+
+
+<!-- Load in any additional JS required by the page -->
+
+<!-- saved_resource removed — browser-save artifact, not a real asset -->
+<script>$(document).ready(function () { if ($.fn.dataTable) { $('.datatable, .data-table').dataTable(); } });</script>
+
+
+
+<!--funnelback autocomplete-->
+<script src="./Standard website template_files/typeahead.bundle.min.js"></script>
+<script src="./Standard website template_files/handlebars.min.js"></script>
+<script src="./Standard website template_files/funnelback.autocompletion-2.6.0.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        jQuery('input.query').autocompletion({
+            datasets: {
+                organic: {
+                    collection: 'ntgov~sp-search',
+                    profile: 'agencies',
+                    program: 'https://ntgov-search.funnelback.squiz.cloud/s/suggest.json',
+                    format: 'extended',
+                    alpha: '0.5',
+                    show: '5',
+                    sort: '0',
+                    group: true
+                },
+            },
+            typeahead: { hint: true },
+            length: 3
+        });
+    });
+</script>

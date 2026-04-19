@@ -76,6 +76,21 @@ dist/
     └── ntg-logo.png           NTG mono logo (print only)
 ```
 
+### Source Files
+
+The design parse template and nester source files are maintained at:
+
+```
+src/squiz/
+├── design-parse.html              Matrix design parse template (server-side print())
+└── nesters/
+    ├── head.html                  <head> content (meta, CSS, analytics, jQuery)
+    ├── skip_links.html            Skip navigation links
+    ├── header_content.html        Site header (alert banner, logo, navigation, search)
+    ├── footer_content.html        Site footer (links, logos, acknowledgement)
+    └── footer_js.html             Footer scripts (Bootstrap, React CDN, components, Funnelback)
+```
+
 ### 2. Build Storybook (Optional)
 
 For documentation and component preview:
@@ -127,49 +142,65 @@ After pushing changes to the `dev` branch:
 
 ### Standard Design File
 
-The standard Squiz Matrix design file used with this design system:
+The Squiz Matrix design parse file is maintained at `src/squiz/design-parse.html`. It uses server-side `print()` to inline each nester from the Git File Bridge:
 
 ```html
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <MySource_AREA id_name="head" design_area="nest_content" cache="0" />
-  </head>
 
-  <body>
+<head>
+    <script runat="server">
+        print(`%globals_asset_contents_raw:1607588:dist/nesters/head.html%`);
+    </script>
+</head>
+
+<body>
     <div id="top"></div>
 
-    <MySource_AREA id_name="skip_links" design_area="nest_content" cache="1" />
-    <MySource_AREA
-      id_name="header_content"
-      design_area="nest_content"
-      cache="1"
-    />
+    <script runat="server">
+        print(`%globals_asset_contents_raw:1607588:dist/nesters/skip_links.html%`);
+    </script>
+    <script runat="server">
+        print(`%globals_asset_contents_raw:1607588:dist/nesters/header_content.html%`);
+    </script>
 
     <div class="ntg-body">
-      <MySource_AREA id_name="body" design_area="body" />
+        <MySource_AREA id_name="body" design_area="body" />
     </div>
 
-    <MySource_AREA
-      id_name="footer_content"
-      design_area="nest_content"
-      cache="1"
-    />
-    <MySource_AREA id_name="footer_js" design_area="nest_content" cache="1" />
-  </body>
+    <script runat="server">
+        print(`%globals_asset_contents_raw:1607588:dist/nesters/footer_content.html%`);
+    </script>
+    <script runat="server">
+        print(`%globals_asset_contents_raw:1607588:dist/nesters/footer_js.html%`);
+    </script>
+</body>
+
 </html>
 ```
+
+### Local Preview
+
+The design template can be previewed locally during development:
+
+```bash
+npm run dev
+# Open http://localhost:5173/squiz-preview.html
+```
+
+The Vite dev server assembles the design-parse template by inlining the nester HTML files from `src/squiz/nesters/` on each request. Edits to any nester file are reflected immediately on reload.
+
+> **Note**: The local preview disables analytics (Google Analytics, Monsido/heatmaps) and loads React/jQuery from CDN since those dependencies are provided differently in production Matrix.
 
 Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`. Asset references within each nester use `%globals_asset_url_with_hash:1607588:dist/...%` for cache-busted URLs served via GFB.
 
 | Design Area      | Nester File                   | Description                                                                                                                  |
 | ---------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `head`           | `nesters/head.html`           | Page title, metadata, Dublin Core, Open Graph, no-JS script, FontAwesome CSS, favicons, theme CSS                            |
+| `head`           | `nesters/head.html`           | Page title, metadata, Dublin Core, Open Graph, no-JS script, FontAwesome CSS, favicons, theme CSS, jQuery CDN               |
 | `skip_links`     | `nesters/skip_links.html`     | Skip-to-content and skip-to-footer links                                                                                     |
 | `header_content` | `nesters/header_content.html` | Top page alert, NTG logo (print), site header with navigation and search                                                     |
 | `footer_content` | `nesters/footer_content.html` | Footer links, social media, logos, utility links, acknowledgement                                                            |
-| `footer_js`      | `nesters/footer_js.html`      | Bootstrap 5.3 bundle JS, FontAwesome fallback, lightbox plugins, components.min.js, index.js, Funnelback search autocomplete |
+| `footer_js`      | `nesters/footer_js.html`      | Bootstrap 5.3 bundle JS, FontAwesome fallback, lightbox plugins, React 18 CDN, components.min.js, Funnelback search autocomplete |
 
 ### Step 4: Create Component Service Templates
 

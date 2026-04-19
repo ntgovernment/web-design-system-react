@@ -147,3 +147,7 @@ gfb-package/
 # Build output logs
 build-output.txt
 *-output.txt
+
+# Standard website template (saved page)
+Standard website template.html
+Standard website template_files/
