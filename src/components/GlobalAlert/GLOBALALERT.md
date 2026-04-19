@@ -536,6 +536,57 @@ For non-React implementations, use the CSS classes directly:
 </div>
 ```
 
+## Squiz Matrix CMS Integration
+
+The GlobalAlert is used in the Squiz Matrix design nester `src/squiz/nesters/header_content.html`, rendered above the Header component. It uses Squiz Matrix metadata keywords for dynamic content.
+
+### Nester Markup
+
+```html
+%begin_globals_site_metadata_site-alertType%
+<div class="global-alert global-alert--%globals_site_metadata_site-alertType%" role="alert">
+    <div class="global-alert__container">
+        <div class="global-alert__content">
+            <div class="global-alert__text">
+                <div class="global-alert__title">%globals_site_metadata_site-alertTitle%</div>
+                <div class="global-alert__description">%globals_site_metadata_site-alertMessage%</div>
+            </div>
+        </div>
+        <button type="button" class="global-alert__dismiss" aria-label="Dismiss alert">
+            <i class="fa-light fa-xmark"></i>
+        </button>
+    </div>
+</div>
+%end_asset%
+```
+
+### CMS Metadata Keywords
+
+| Keyword | Purpose | Maps to |
+| --- | --- | --- |
+| `%globals_site_metadata_site-alertType%` | Variant name (`info`, `warning`, `critical`) | `variant` prop / `global-alert--{variant}` class |
+| `%globals_site_metadata_site-alertTitle%` | Alert heading text | `title` prop / `.global-alert__title` |
+| `%globals_site_metadata_site-alertMessage%` | Alert body content (may contain HTML links) | `description` prop / `.global-alert__description` |
+
+### Conditional Rendering
+
+The `%begin_globals_site_metadata_site-alertType%` / `%end_asset%` wrapper ensures the alert only renders when the `site-alertType` metadata field has a value in Squiz Matrix. When the field is empty, the entire block is omitted from the page.
+
+### Dismiss Behaviour
+
+In the nester, dismiss is handled by inline vanilla JavaScript (not React state or Bootstrap `data-bs-dismiss`):
+
+```js
+document.querySelectorAll('.global-alert__dismiss').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var alert = btn.closest('.global-alert');
+        if (alert) { alert.style.display = 'none'; }
+    });
+});
+```
+
+This hides the alert for the current page view. For persistent dismissal across pages, consider adding `localStorage` or session-based persistence.
+
 ## Testing
 
 ### Unit Tests

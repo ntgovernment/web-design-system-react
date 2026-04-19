@@ -1,74 +1,136 @@
-<!--@@ Global alert @@-->
+<!--@@ Global alert — GlobalAlert component @@-->
 %begin_globals_site_metadata_site-alertType%
-<div class="alert alert-%globals_site_metadata_site-alertType% alert-dismissible fade show mb-0 rounded-0" role="alert">
-    <div class="container-xl ps-md-4">
-        <small>
-            <strong>%globals_site_metadata_site-alertTitle%</strong> <br>
-            %globals_site_metadata_site-alertMessage%
-        </small>
+<div class="global-alert global-alert--%globals_site_metadata_site-alertType%" role="alert">
+    <div class="global-alert__container">
+        <div class="global-alert__content">
+            <div class="global-alert__text">
+                <div class="global-alert__title">%globals_site_metadata_site-alertTitle%</div>
+                <div class="global-alert__description">%globals_site_metadata_site-alertMessage%</div>
+            </div>
+        </div>
+        <button type="button" class="global-alert__dismiss" aria-label="Dismiss alert">
+            <i class="fa-light fa-xmark"></i>
+        </button>
     </div>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 %end_asset%
 
 
 <div class="container d-none d-print-block">
-    <img src="%globals_asset_url_with_hash:1484642:dist/ntgbase/images/ntg-logo.png%" alt="ntg-mono">
+    <img src="%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%" alt="ntg-mono">
 </div>
 
-<header class="ntg-header d-print-none" id="header">
-    <div class="navbar navbar-expand-md navbar-dark">
-        <!--<div class="container-xl py-4 py-md-0 d-flex justify-content-between">-->
-        <div class="container-xl p-0 p-lg-2 px-md-0 d-flex justify-content-between">
-            <a href="%globals_site_url%">
-                <img alt="NT.GOV.AU logo"
-                    src="%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%"
-                    class="site-logo d-print-none">
-                <span class="text-hide d-print-block site-name mt-5">NT.GOV.AU</span>
-            </a>
+<!--@@ Header — Header component @@-->
+<header class="header d-print-none" id="header">
+    <nav class="navbar header__navbar">
+        <div class="header__container">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <nav class="nav nav-masthead justify-content-center d-print-none d-none d-md-flex" role="navigation">
-                <!--<a href="https://health.nt.gov.au/covid-19" class="nav-link bg-blue" id="covidWebsiteLink" title="For COVID-19 news, updates and alerts, go to the coronavirus website.">Coronavirus (COVID-19) &nbsp<i class="fal fa-external-link-square fa-lg mr-2"></i></a>-->
-                <a href="https://nt.gov.au/contacts" class="nav-link">Contacts</a>
-                <div class="ps-4 d-lg-flex d-none">
-
-
+            <!-- Logo Section with Hamburger -->
+            <div class="header__logo-section">
+                <button class="header__hamburger" type="button" aria-label="Toggle navigation menu"
+                    aria-expanded="false">
+                    <span class="header__hamburger-line"></span>
+                    <span class="header__hamburger-line"></span>
+                    <span class="header__hamburger-line"></span>
+                </button>
+                <div class="header__logo">
+                    <a href="%globals_site_url%" class="header__logo-link">
+                        <img src="%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%"
+                            alt="NT.GOV.AU logo" class="header__logo-image">
+                        <span class="header__logo-text">%globals_site_name%</span>
+                    </a>
                 </div>
-            </nav>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item">
+                        <a href="/services" class="header__nav-link">
+                            <i class="fa-light fa-search header__nav-icon" aria-hidden="true"></i>
+                            <span class="header__nav-text">Find online services</span>
+                        </a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="https://nt.gov.au/contacts" class="header__nav-link">
+                            <span class="header__nav-text">Contacts</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Search — expanded on desktop -->
+                <div class="header__search" data-variant="expanded">
+                    <div class="header__search-expanded">
+                        <form action="https://nt.gov.au/search" class="search-bar" role="search" data-variant="primary">
+                            <div class="input-group search-bar__group">
+                                <input class="form-control search-bar__control" type="search" name="query"
+                                    placeholder="Search" aria-label="Search" autocomplete="off">
+                                <button class="btn search-bar__button" type="submit" aria-label="Run search">
+                                    <span class="search-bar__icon" aria-hidden="true">
+                                        <i class="fa-light fa-search search-bar__icon-glyph"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
-
-
-    <nav class="collapse navbar-collapse navbar-dark d-md-none" id="navbarCollapse" aria-role="navigation">
-
     </nav>
 
-</header>
-
-
-<div class="mobile-banner banner-search d-lg-none d-print-none">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 py-4 px-md-0">
-
-
-                <form class="form-inline search d-print-none" action="https://nt.gov.au/search">
-                    <div class="input-group p-0">
-                        <input class="form-control" type="text" placeholder="Search" name="query" aria-label="Search"
-                            autocomplete="off">
-                        <div class="input-group-append">
-                            <button class="btn" type="submit" aria-label="Apply search"><span
-                                    class="text-hide">Search</span></button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
+    <!-- Mobile Menu -->
+    <div class="header__mobile-menu">
+        <ul class="header__mobile-nav-list">
+            <li class="header__mobile-nav-item">
+                <a href="/services" class="header__mobile-nav-link">
+                    <i class="fa-light fa-search header__mobile-nav-icon" aria-hidden="true"></i>
+                    <span class="header__mobile-nav-text">Find online services</span>
+                </a>
+            </li>
+            <li class="header__mobile-nav-item">
+                <a href="https://nt.gov.au/contacts" class="header__mobile-nav-link">
+                    <span class="header__mobile-nav-text">Contacts</span>
+                </a>
+            </li>
+        </ul>
+        <!-- Mobile search -->
+        <div class="header__mobile-search">
+            <form action="https://nt.gov.au/search" class="search-bar" role="search" data-variant="primary">
+                <div class="input-group search-bar__group">
+                    <input class="form-control search-bar__control" type="search" name="query" placeholder="Search"
+                        aria-label="Search" autocomplete="off">
+                    <button class="btn search-bar__button" type="submit" aria-label="Run search">
+                        <span class="search-bar__icon" aria-hidden="true">
+                            <i class="fa-light fa-search search-bar__icon-glyph"></i>
+                        </span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-</div>
+</header>
+
+<!--@@ Inline JS — GlobalAlert dismiss + Hamburger toggle @@-->
+<script>
+    (function () {
+        /* GlobalAlert dismiss */
+        document.querySelectorAll('.global-alert__dismiss').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var alert = btn.closest('.global-alert');
+                if (alert) { alert.style.display = 'none'; }
+            });
+        });
+
+        /* Hamburger menu toggle */
+        var hamburger = document.querySelector('.header__hamburger');
+        var mobileMenu = document.querySelector('.header__mobile-menu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', function () {
+                var isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', String(!isOpen));
+                mobileMenu.style.display = isOpen ? '' : 'flex';
+            });
+        }
+    })();
+</script>
