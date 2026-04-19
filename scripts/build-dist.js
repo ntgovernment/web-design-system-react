@@ -203,9 +203,9 @@ const headHtml = `<!--@@ Frontend <head> @@-->
 <link rel="stylesheet" href="https://kit.fontawesome.com/f73a36f593.css" crossorigin="anonymous">
 
 <!--@@ Favicons @@-->
-<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="%globals_asset_url_with_hash:1607588:dist/favicons/apple-touch-icon-180x180.png%">
+<link rel="icon" type="image/png" sizes="32x32" href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-32x32.png%">
+<link rel="icon" type="image/png" sizes="16x16" href="%globals_asset_url_with_hash:1607588:dist/favicons/favicon-16x16.png%">
 `;
 writeFileSync(join(nestersDir, "head.html"), headHtml);
 console.log("  ✓ Created nesters/head.html");

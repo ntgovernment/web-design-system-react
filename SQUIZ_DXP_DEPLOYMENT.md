@@ -88,59 +88,42 @@ This creates a static Storybook site in `storybook-static/` that can be hosted s
 
 ## Deployment to Squiz Matrix
 
-### Step 1: Create File Assets
+### Git File Bridge (GFB)
 
-1. **Login to Matrix** with admin privileges
-2. **Navigate** to the appropriate site structure
-3. **Create a new folder** (e.g., "NT Gov Design System v0.3.0")
+The repository is connected to Squiz Matrix via a **Git File Bridge** asset.
 
-### Step 2: Upload Library Files
+| Setting | Value |
+|---|---|
+| **GFB Asset ID** | `1607588` |
+| **Branch** | `dev` |
+| **Repository** | `ntgovernment/web-design-system` |
 
-Create the following **File Assets** in Matrix:
+All `dist/` files are served through the GFB. Use these keywords to reference them:
 
-#### JavaScript File
+- **File contents** (inline HTML into nest_content): `%globals_asset_file_contents:1607588:dist/nesters/<file>.html%`
+- **File URL** (for `src`/`href` attributes): `%globals_asset_url_with_hash:1607588:dist/<file>%`
 
-1. **Create File Asset**: `components.min.js`
-   - Upload: `dist/components.min.js`
-   - Asset Type: JS File
-   - Note the Asset ID
+### Step 1: Load Nesters into Design Areas
 
-#### CSS Theme Files
+Each `MySource_AREA` nest_content area is populated using `globals_asset_file_contents`:
 
-2. **Create File Asset**: `theme-ntg.min.css`
-   - Upload: `dist/theme-ntg.min.css`
-   - Asset Type: CSS File
-   - Note the Asset ID
-
-3. **Create File Asset**: `theme-central.min.css`
-   - Upload: `dist/theme-central.min.css`
-   - Asset Type: CSS File
-   - Note the Asset ID
-
-### Step 3: Configure CDN Dependencies
-
-The library depends on Bootstrap 5.3 and FontAwesome. Ensure both are loaded in your pages:
-
-**Option A: Add to Design Template**
-
-```html
-<!-- Bootstrap 5.3 -->
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-  crossorigin="anonymous"
-/>
-
-<!-- FontAwesome Kit -->
-<script
-  src="https://kit.fontawesome.com/9bf658a5c7.js"
-  crossorigin="anonymous"
-></script>
+```
+head:           %globals_asset_file_contents:1607588:dist/nesters/head.html%
+skip_links:     %globals_asset_file_contents:1607588:dist/nesters/skip_links.html%
+header_content: %globals_asset_file_contents:1607588:dist/nesters/header_content.html%
+footer_content: %globals_asset_file_contents:1607588:dist/nesters/footer_content.html%
+footer_js:      %globals_asset_file_contents:1607588:dist/nesters/footer_js.html%
 ```
 
-**Option B: Add via Paint Layout**
-In your Paint Layout, add both the Bootstrap CDN link and FontAwesome Kit script in the `<head>` section.
+Within the nester HTML files, all references to `dist/` assets use `%globals_asset_url_with_hash:1607588:dist/...%` for cache-busted URLs.
+
+### Step 2: Sync the GFB
+
+After pushing changes to the `dev` branch:
+
+1. Open the GFB asset (`1607588`) in Matrix admin
+2. Click **Sync Now** (or wait for the scheduled sync)
+3. Verify the nesters render correctly in Preview mode
 
 ### Standard Design File
 
@@ -178,7 +161,7 @@ The standard Squiz Matrix design file used with this design system:
 </html>
 ```
 
-Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`:
+Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`. Asset references within each nester use `%globals_asset_url_with_hash:1607588:dist/...%` for cache-busted URLs served via GFB.
 
 | Design Area      | Nester File                   | Description                                                                                                                  |
 | ---------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -404,9 +387,9 @@ For issues or questions:
 
 When updating the library:
 
-1. Build new version locally
-2. Create new versioned folder in Matrix
-3. Upload new dist files
-4. Test thoroughly
-5. Update component services to use new version
+1. Build new version locally (`npm run build`)
+2. Commit `dist/` changes and push to `dev` branch
+3. Sync GFB asset `1607588` in Matrix
+4. Verify nesters render correctly in Preview mode
+5. Test thoroughly across browsers
 6. Communicate changes to content editors
