@@ -64,6 +64,26 @@ Components use **unprefixed semantic variables** that automatically resolve for 
 - `--type-desktop-h1-size` through `--type-desktop-h6-size`
 - `--type-body-default-lh`, `--type-body-sm-size`
 
+## Squiz Matrix CMS Loading
+
+The theme CSS bundle is loaded in the `<head>` nester (`src/squiz/nesters/head.html`) via the Git File Bridge:
+
+```html
+<!--@@ Main CSS @@-->
+<link type="text/css" rel="stylesheet" href="%globals_asset_url_with_hash:1484642:dist/theme-ntg.min.css%">
+```
+
+| Theme | GFB reference | Bundle |
+| --- | --- | --- |
+| NT.GOV.AU | `%globals_asset_url_with_hash:1484642:dist/theme-ntg.min.css%` | `dist/theme-ntg.min.css` |
+| NTG Central | `%globals_asset_url_with_hash:1484642:dist/theme-central.min.css%` | `dist/theme-central.min.css` |
+
+The `_with_hash` keyword suffix ensures cache-busted URLs — the file hash changes whenever the bundle is rebuilt and the GFB is synced.
+
+Since each bundle is self-contained (tokens + typography + grid + component styles), no additional CSS imports are needed. Font Awesome 6 and Bootstrap JS are loaded separately in `head.html` and `footer_js.html` respectively.
+
+For deployment details, see [SQUIZ_DXP_DEPLOYMENT.md](../../SQUIZ_DXP_DEPLOYMENT.md).
+
 ## Theme Switching
 
 See [THEME_SWITCHING.md](THEME_SWITCHING.md) for runtime theme switching patterns.

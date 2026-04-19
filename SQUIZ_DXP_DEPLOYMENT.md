@@ -206,6 +206,44 @@ Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`.
 | `footer_content` | `nesters/footer_content.html` | Footer links, social media, logos, utility links, acknowledgement                                                                |
 | `footer_js`      | `nesters/footer_js.html`      | Bootstrap 5.3 bundle JS, FontAwesome fallback, lightbox plugins, React 18 CDN, components.min.js, Funnelback search autocomplete |
 
+### Nester Reference
+
+#### `head.html`
+
+The `<head>` nester loads all page-level metadata, stylesheets, and pre-body scripts. Contents in order:
+
+| Section | What it loads | Asset reference |
+| --- | --- | --- |
+| Page title | `%frontend_asset_name%` with `%globals_site_name%` fallback | Squiz keywords |
+| Metadata | Description, robots, Dublin Core (`dcterms.*`), language | `%frontend_asset_metadata_*%` |
+| Open Graph | Title, type, URL, image, description, site name, dates, keywords | `%frontend_asset_*%` |
+| No-JS script | Swaps `no-js` → `js` class on `<html>` | Inline |
+| Font Awesome 6 | Kit CSS from `kit.fontawesome.com/f73a36f593.css` | External CDN |
+| Favicons | apple-touch-icon (180×180), favicon (32×32, 16×16) | Matrix asset IDs (`./?a=1185686` etc.) |
+| Theme CSS | `dist/theme-ntg.min.css` — complete NTG theme bundle | `%globals_asset_url_with_hash:1484642:dist/theme-ntg.min.css%` |
+| Print CSS | Separate print stylesheet | Matrix asset ID (`./?a=1300941`) |
+| jQuery | `dist/globals/js/jquery.min.js` | `%globals_asset_url_with_hash:1484642:dist/globals/js/jquery.min.js%` |
+| SSJS console | Server-side `ssconsole.log` stub | Inline + `%globals_asset_contents_raw:1248208%` |
+| Google Analytics | gtag.js with site-specific GA ID | Conditional: `%begin_globals_site_metadata_site-googleAnalytics%` |
+| Monsido | Accessibility monitoring and heatmaps | Conditional: `%begin_globals_site_metadata_site-monsido%` |
+
+> **Note:** head.html references GFB asset `1484642` for CSS/JS bundles. This is distinct from `1607588` used by other nesters for images and nester file contents.
+
+#### `header_content.html`
+
+The header nester renders the GlobalAlert and Header design system components as static HTML with Squiz Matrix keywords. See component-level docs for full markup:
+
+- [GlobalAlert — CMS Integration](src/components/GlobalAlert/GLOBALALERT.md#squiz-matrix-cms-integration)
+- [Header — CMS Integration](src/components/Header/HEADER.md#squiz-matrix-cms-integration)
+
+| Section | Component | Key CMS keywords |
+| --- | --- | --- |
+| Global alert | `GlobalAlert` (`global-alert--{variant}`) | `%globals_site_metadata_site-alertType%`, `site-alertTitle`, `site-alertMessage` |
+| Print logo | — | `%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%` |
+| Site header | `Header` (`header__navbar`) | `%globals_site_url%`, `%globals_site_name%`, `%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%` |
+| Mobile menu | `Header` (`header__mobile-menu`) | Same nav items as desktop |
+| Inline JS | — | GlobalAlert dismiss + hamburger toggle |
+
 ### Step 4: Create Component Service Templates
 
 #### Example: Button Component Service
