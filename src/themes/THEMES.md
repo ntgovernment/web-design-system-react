@@ -70,12 +70,16 @@ The theme CSS bundle is loaded in the `<head>` nester (`src/squiz/nesters/head.h
 
 ```html
 <!--@@ Main CSS @@-->
-<link type="text/css" rel="stylesheet" href="%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%">
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%"
+/>
 ```
 
-| Theme | GFB reference | Bundle |
-| --- | --- | --- |
-| NT.GOV.AU | `%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%` | `dist/theme-ntg.min.css` |
+| Theme       | GFB reference                                                      | Bundle                       |
+| ----------- | ------------------------------------------------------------------ | ---------------------------- |
+| NT.GOV.AU   | `%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%`     | `dist/theme-ntg.min.css`     |
 | NTG Central | `%globals_asset_url_with_hash:1607588:dist/theme-central.min.css%` | `dist/theme-central.min.css` |
 
 The `_with_hash` keyword suffix ensures cache-busted URLs — the file hash changes whenever the bundle is rebuilt and the GFB is synced.

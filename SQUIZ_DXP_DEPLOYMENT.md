@@ -52,7 +52,9 @@ npm install
 npm run build
 ```
 
-This creates the following files in the `dist/` directory:
+This creates the following files in the `dist/` directory.
+
+During build, nester files are copied from `src/squiz/nesters/` and any legacy GFB asset references (`1484642`) are automatically replaced with the current GFB asset ID (`1607588`). See `scripts/build-dist.js` Step 6.
 
 ```
 dist/
@@ -212,20 +214,20 @@ Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`.
 
 The `<head>` nester loads all page-level metadata, stylesheets, and pre-body scripts. Contents in order:
 
-| Section | What it loads | Asset reference |
-| --- | --- | --- |
-| Page title | `%frontend_asset_name%` with `%globals_site_name%` fallback | Squiz keywords |
-| Metadata | Description, robots, Dublin Core (`dcterms.*`), language | `%frontend_asset_metadata_*%` |
-| Open Graph | Title, type, URL, image, description, site name, dates, keywords | `%frontend_asset_*%` |
-| No-JS script | Swaps `no-js` → `js` class on `<html>` | Inline |
-| Font Awesome 6 | Kit CSS from `kit.fontawesome.com/f73a36f593.css` | External CDN |
-| Favicons | apple-touch-icon (180×180), favicon (32×32, 16×16) | Matrix asset IDs (`./?a=1185686` etc.) |
-| Theme CSS | `dist/theme-ntg.min.css` — complete NTG theme bundle | `%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%` |
-| Print CSS | Separate print stylesheet | Matrix asset ID (`./?a=1300941`) |
-| jQuery | `dist/globals/js/jquery.min.js` | `%globals_asset_url_with_hash:1607588:dist/globals/js/jquery.min.js%` |
-| SSJS console | Server-side `ssconsole.log` stub | Inline + `%globals_asset_contents_raw:1248208%` |
-| Google Analytics | gtag.js with site-specific GA ID | Conditional: `%begin_globals_site_metadata_site-googleAnalytics%` |
-| Monsido | Accessibility monitoring and heatmaps | Conditional: `%begin_globals_site_metadata_site-monsido%` |
+| Section          | What it loads                                                    | Asset reference                                                       |
+| ---------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Page title       | `%frontend_asset_name%` with `%globals_site_name%` fallback      | Squiz keywords                                                        |
+| Metadata         | Description, robots, Dublin Core (`dcterms.*`), language         | `%frontend_asset_metadata_*%`                                         |
+| Open Graph       | Title, type, URL, image, description, site name, dates, keywords | `%frontend_asset_*%`                                                  |
+| No-JS script     | Swaps `no-js` → `js` class on `<html>`                           | Inline                                                                |
+| Font Awesome 6   | Kit CSS from `kit.fontawesome.com/f73a36f593.css`                | External CDN                                                          |
+| Favicons         | apple-touch-icon (180×180), favicon (32×32, 16×16)               | Matrix asset IDs (`./?a=1185686` etc.)                                |
+| Theme CSS        | `dist/theme-ntg.min.css` — complete NTG theme bundle             | `%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%`        |
+| Print CSS        | Separate print stylesheet                                        | Matrix asset ID (`./?a=1300941`)                                      |
+| jQuery           | `dist/globals/js/jquery.min.js`                                  | `%globals_asset_url_with_hash:1607588:dist/globals/js/jquery.min.js%` |
+| SSJS console     | Server-side `ssconsole.log` stub                                 | Inline + `%globals_asset_contents_raw:1248208%`                       |
+| Google Analytics | gtag.js with site-specific GA ID                                 | Conditional: `%begin_globals_site_metadata_site-googleAnalytics%`     |
+| Monsido          | Accessibility monitoring and heatmaps                            | Conditional: `%begin_globals_site_metadata_site-monsido%`             |
 
 > **Note:** All nesters now reference GFB asset `1607588` for both CSS/JS bundles and nester file contents.
 
@@ -236,30 +238,30 @@ The header nester renders the GlobalAlert and Header design system components as
 - [GlobalAlert — CMS Integration](src/components/GlobalAlert/GLOBALALERT.md#squiz-matrix-cms-integration)
 - [Header — CMS Integration](src/components/Header/HEADER.md#squiz-matrix-cms-integration)
 
-| Section | Component | Key CMS keywords |
-| --- | --- | --- |
-| Global alert | `GlobalAlert` (`global-alert--{variant}`) | `%globals_site_metadata_site-alertType%`, `site-alertTitle`, `site-alertMessage` |
-| Print logo | — | `%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%` |
-| Site header | `Header` (`header__navbar`) | `%globals_site_url%`, `%globals_site_name%`, `%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%` |
-| Mobile menu | `Header` (`header__mobile-menu`) | Same nav items as desktop |
-| Inline JS | — | GlobalAlert dismiss + hamburger toggle |
+| Section      | Component                                 | Key CMS keywords                                                                                                                     |
+| ------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Global alert | `GlobalAlert` (`global-alert--{variant}`) | `%globals_site_metadata_site-alertType%`, `site-alertTitle`, `site-alertMessage`                                                     |
+| Print logo   | —                                         | `%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%`                                                                     |
+| Site header  | `Header` (`header__navbar`)               | `%globals_site_url%`, `%globals_site_name%`, `%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%` |
+| Mobile menu  | `Header` (`header__mobile-menu`)          | Same nav items as desktop                                                                                                            |
+| Inline JS    | —                                         | GlobalAlert dismiss + hamburger toggle                                                                                               |
 
 #### `footer_js.html`
 
 The footer JS nester loads all page-level scripts after the closing `</body>` content. Contents in order:
 
-| Section | What it loads | Asset reference |
-| --- | --- | --- |
-| Bootstrap JS | `dist/globals/js/bootstrap.bundle.min.js` | `%globals_asset_url_with_hash:1607588:dist/globals/js/bootstrap.bundle.min.js%` |
-| Font Awesome fallback | jQuery check for FA6 Pro font-family, with commented fallback link | Inline |
-| Lightbox | Conditional load of lightbox CSS + `ntg-base-plugins.min.js` (only if `[data-plugin="lightbox"]` exists) | `%globals_asset_url_with_hash:1607588:dist/ntgbase/ntg-base-plugins.min.js%` |
-| React 18 | `react.production.min.js` + `react-dom.production.min.js` (required by UMD component bundle) | unpkg.com CDN |
-| process.env shim | `window.process = { env: { NODE_ENV: 'production' } }` | Inline |
-| Components JS | `dist/components.min.js` — UMD component bundle | `%globals_asset_url_with_hash:1607588:dist/components.min.js%` |
-| Anchor scroll | Scrolls to hash target on page load | Inline |
-| Alt JS | Optional per-site additional JS | Conditional: `%begin_globals_site_metadata_site-altJs%` |
-| DataTables | jQuery DataTables init for `.datatable` / `.data-table` elements | Inline |
-| Funnelback | Typeahead, Handlebars, and Funnelback autocompletion for search | `%globals_asset_url_with_hash:1607588:dist/globals/js/*.js%` |
+| Section               | What it loads                                                                                            | Asset reference                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Bootstrap JS          | `dist/globals/js/bootstrap.bundle.min.js`                                                                | `%globals_asset_url_with_hash:1607588:dist/globals/js/bootstrap.bundle.min.js%` |
+| Font Awesome fallback | jQuery check for FA6 Pro font-family, with commented fallback link                                       | Inline                                                                          |
+| Lightbox              | Conditional load of lightbox CSS + `ntg-base-plugins.min.js` (only if `[data-plugin="lightbox"]` exists) | `%globals_asset_url_with_hash:1607588:dist/ntgbase/ntg-base-plugins.min.js%`    |
+| React 18              | `react.production.min.js` + `react-dom.production.min.js` (required by UMD component bundle)             | unpkg.com CDN                                                                   |
+| process.env shim      | `window.process = { env: { NODE_ENV: 'production' } }`                                                   | Inline                                                                          |
+| Components JS         | `dist/components.min.js` — UMD component bundle                                                          | `%globals_asset_url_with_hash:1607588:dist/components.min.js%`                  |
+| Anchor scroll         | Scrolls to hash target on page load                                                                      | Inline                                                                          |
+| Alt JS                | Optional per-site additional JS                                                                          | Conditional: `%begin_globals_site_metadata_site-altJs%`                         |
+| DataTables            | jQuery DataTables init for `.datatable` / `.data-table` elements                                         | Inline                                                                          |
+| Funnelback            | Typeahead, Handlebars, and Funnelback autocompletion for search                                          | `%globals_asset_url_with_hash:1607588:dist/globals/js/*.js%`                    |
 
 ### Step 4: Create Component Service Templates
 

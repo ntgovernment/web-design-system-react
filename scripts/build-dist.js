@@ -18,9 +18,10 @@
  *        dist/index.js / index.css  Demo app bundle
  *   6. Copy Squiz Matrix nester and asset files:
  *        dist/nesters/*.html        Squiz Matrix design nesters (5 files)
+ *        - Replaces legacy GFB 1484642 references with current GFB 1607588
  *        dist/favicons/*.png        Favicon assets
  *        dist/images/ntg-logo.png   NT Government logo
- *   7. Copy vendor files (consolidated from ntgbase GFB 1484642):
+ *   7. Copy vendor files (from src/squiz/vendor/):
  *        dist/globals/js/           Bootstrap, Typeahead, Handlebars, Funnelback JS
  *        dist/ntgbase/images/       NTG logos and icons (desert-rose, mono logo)
  *
@@ -174,9 +175,22 @@ const nesterFiles = [
   "footer_content.html",
   "footer_js.html",
 ];
+// GFB asset ID for all nester references (CSS/JS bundles, images, etc.)
+const GFB_ASSET_ID = "1607588";
+const LEGACY_GFB_ID = "1484642";
+
 nesterFiles.forEach((name) => {
-  copyFileSync(join(nestersSourceDir, name), join(nestersDir, name));
-  console.log(`  ✓ Copied nesters/${name}`);
+  const srcPath = join(nestersSourceDir, name);
+  let content = readFileSync(srcPath, "utf-8");
+  if (content.includes(LEGACY_GFB_ID)) {
+    content = content.replaceAll(LEGACY_GFB_ID, GFB_ASSET_ID);
+    console.log(
+      `  ✓ Copied nesters/${name} (updated GFB ${LEGACY_GFB_ID} → ${GFB_ASSET_ID})`,
+    );
+  } else {
+    console.log(`  ✓ Copied nesters/${name}`);
+  }
+  writeFileSync(join(nestersDir, name), content);
 });
 
 // Create favicons directory with placeholder files
