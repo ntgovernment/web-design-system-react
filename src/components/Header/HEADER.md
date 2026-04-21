@@ -1113,14 +1113,18 @@ The Header component is used in the Squiz Matrix design nester `src/squiz/nester
           <span class="header__hamburger-line"></span>
         </button>
         <div class="header__logo">
-          <a href="%globals_site_url%" class="header__logo-link">
-            <img
-              src="%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%"
-              alt="NT.GOV.AU logo"
-              class="header__logo-image"
-            />
-            <span class="header__logo-text">%globals_site_name%</span>
-          </a>
+          <div class="header__logo-group header__logo-group--agency-internet">
+            <a href="https://nt.gov.au" class="header__logo-link">
+              <img
+                src="%globals_asset_url_with_hash:1607588:dist/ntgbase/images/logo-ntg-mono.svg%"
+                alt="NT Government logo"
+                class="header__logo-image"
+              />
+            </a>
+            <a href="%globals_site_url%" class="header__agency-link">
+              <span class="header__agency-title">%globals_site_name%</span>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -1199,11 +1203,12 @@ The Header component is used in the Squiz Matrix design nester `src/squiz/nester
 
 ### CMS Keywords
 
-| Keyword                                                                                 | Purpose            | Maps to                                                 |
-| --------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------- |
-| `%globals_site_url%`                                                                    | Site home URL      | `header__logo-link` href (or `agencyHref` prop)         |
-| `%globals_site_name%`                                                                   | Site display name  | `agencyName` prop / `.header__agency-title`             |
-| `%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%` | NT Government logo | `.header__logo-image` src for "agency-internet" variant |
+| Keyword                                                                                 | Purpose                        | Maps to                                                           |
+| --------------------------------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------------- |
+| `https://nt.gov.au`                                                                     | NT.GOV.AU base URL             | `.header__logo-link` href (NT mono logo link target)              |
+| `%globals_site_url%`                                                                    | Agency/site home URL           | `.header__agency-link` href                                       |
+| `%globals_site_name%`                                                                   | Agency/site display name       | `.header__agency-title` text content                              |
+| `%globals_asset_url_with_hash:1607588:dist/ntgbase/images/logo-ntg-mono.svg%`          | NT Government mono logo        | `.header__logo-image` src (agency-internet variant)               |
 
 ### Key Differences from React Component
 

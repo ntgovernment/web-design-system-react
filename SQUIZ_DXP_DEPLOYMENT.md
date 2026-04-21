@@ -238,13 +238,13 @@ The header nester renders the GlobalAlert and Header design system components as
 - [GlobalAlert — CMS Integration](src/components/GlobalAlert/GLOBALALERT.md#squiz-matrix-cms-integration)
 - [Header — CMS Integration](src/components/Header/HEADER.md#squiz-matrix-cms-integration)
 
-| Section      | Component                                 | Key CMS keywords                                                                                                                     |
-| ------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Global alert | `GlobalAlert` (`global-alert--{variant}`) | `%globals_site_metadata_site-alertType%`, `site-alertTitle`, `site-alertMessage`                                                     |
-| Print logo   | —                                         | `%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%`                                                                     |
-| Site header  | `Header` (`header__navbar`)               | `%globals_site_url%`, `%globals_site_name%`, `%globals_asset_url_with_hash:1607588:dist/ntgbase/images/ntg-desert-rose-reverse.svg%` |
-| Mobile menu  | `Header` (`header__mobile-menu`)          | Same nav items as desktop                                                                                                            |
-| Inline JS    | —                                         | GlobalAlert dismiss + hamburger toggle                                                                                               |
+| Section      | Component                                 | Key CMS keywords                                                                                                                  |
+| ------------ | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Global alert | `GlobalAlert` (`global-alert--{variant}`) | `%globals_site_metadata_site-alertType%`, `site-alertTitle`, `site-alertMessage`                                                 |
+| Print logo   | —                                         | `%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%`                                                                 |
+| Site header  | `Header` (`header__navbar`)               | `https://nt.gov.au` (logo link), `%globals_site_url%` (agency link), `%globals_site_name%`, `logo-ntg-mono.svg` (agency variant)   |
+| Mobile menu  | `Header` (`header__mobile-menu`)          | Same nav items as desktop                                                                                                        |
+| Inline JS    | —                                         | GlobalAlert dismiss + hamburger toggle                                                                                            |
 
 #### `footer_js.html`
 
