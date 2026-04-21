@@ -4,6 +4,8 @@ import "./Header-ntg.css";
 import "./Header-central.css";
 import { Icon } from "../Icon";
 import { SearchBar } from "../SearchBar";
+import desertRoseSvg from "../../squiz/vendor/ntgbase/images/ntg-desert-rose-reverse.svg";
+import monoLogoSvg from "../../squiz/vendor/ntgbase/images/logo-ntg-mono.svg";
 
 export interface HeaderNavItem {
   /**
@@ -24,22 +26,40 @@ export interface HeaderNavItem {
   active?: boolean;
 }
 
+export type HeaderVariant = "nt-gov-au" | "agency-internet" | "other-site";
+
+const NT_GOV_AU_URL = "https://nt.gov.au";
+
 export interface HeaderProps extends Omit<
   React.HTMLAttributes<HTMLElement>,
   "children"
 > {
   /**
-   * The logo image source URL
+   * Header variant that determines the logo layout.
+   * - `"nt-gov-au"`: NT.GOV.AU desert-rose logo only, links to nt.gov.au. No title.
+   * - `"agency-internet"`: NT Government mono logo (links to nt.gov.au) plus
+   *   agency name title (links to `agencyHref`).
+   * - `"other-site"`: Same structure as `"agency-internet"` with a different
+   *   class name for distinct styling.
+   * @default "nt-gov-au"
    */
-  logoSrc?: string;
+  variant?: HeaderVariant;
   /**
-   * Alt text for the logo image
+   * Agency or site name shown as the title link in `"agency-internet"` and
+   * `"other-site"` variants.
+   */
+  agencyName?: string;
+  /**
+   * URL the agency/site title links to. Used by `"agency-internet"` and
+   * `"other-site"` variants.
+   * @default "/"
+   */
+  agencyHref?: string;
+  /**
+   * Alt text for the logo image.
+   * @default "NT.GOV.AU"
    */
   logoAlt?: string;
-  /**
-   * Logo link destination (typically the home page)
-   */
-  logoHref?: string;
   /**
    * Navigation items to display in the header
    */
@@ -79,9 +99,10 @@ export interface HeaderProps extends Omit<
  * Header component for site-wide navigation
  */
 export const Header = ({
-  logoSrc,
+  variant = "nt-gov-au",
+  agencyName,
+  agencyHref = "/",
   logoAlt = "NT.GOV.AU",
-  logoHref = "/",
   navItems = [],
   showSearch = true,
   searchVariant = "expanded",
@@ -101,16 +122,35 @@ export const Header = ({
       return customLogo;
     }
 
-    const logoContent = logoSrc ? (
-      <img src={logoSrc} alt={logoAlt} className="header__logo-image" />
-    ) : (
-      <span className="header__logo-text">{logoAlt}</span>
-    );
+    if (variant === "nt-gov-au") {
+      return (
+        <a href={NT_GOV_AU_URL} className="header__logo-link">
+          <img
+            src={desertRoseSvg}
+            alt={logoAlt}
+            className="header__logo-image"
+          />
+        </a>
+      );
+    }
+
+    // agency-internet & other-site share structure with differing class names
+    const variantClass =
+      variant === "other-site"
+        ? "header__logo-group--other-site"
+        : "header__logo-group--agency-internet";
 
     return (
-      <a href={logoHref} className="header__logo-link">
-        {logoContent}
-      </a>
+      <div className={`header__logo-group ${variantClass}`}>
+        <a href={NT_GOV_AU_URL} className="header__logo-link">
+          <img src={monoLogoSvg} alt={logoAlt} className="header__logo-image" />
+        </a>
+        {agencyName && (
+          <a href={agencyHref} className="header__agency-link">
+            <span className="header__agency-title">{agencyName}</span>
+          </a>
+        )}
+      </div>
     );
   };
 

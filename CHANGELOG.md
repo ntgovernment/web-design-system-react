@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Header Component Variant API**: Replaced logo-based props with flexible variant pattern for different header layouts
+  - Removed: `logoSrc`, `logoHref` props
+  - Added: `variant` prop (`'nt-gov-au' | 'agency-internet' | 'other-site'`) to determine layout
+  - Added: `agencyName` and `agencyHref` props for agency-internet and other-site variants
+  - `nt-gov-au` variant: NT Government desert-rose logo only, links to https://nt.gov.au
+  - `agency-internet` variant: NT Government mono logo + agency title (separated by divider), each with independent links
+  - `other-site` variant: same layout as agency-internet but with distinct CSS class for theme customization
+  - Updated: 6 Header stories to use variant controls (NTGovAu, AgencyInternet, OtherSite, etc.)
+  - Updated: HEADER.md documentation with all variant-based usage examples
+  - Maintained backward compatibility through `logoAlt` prop for all variants
 - **Storybook CSS deduplication**: Eliminated redundant CSS loading that caused stylesheets to be processed 2–3 times per component
   - Removed 45 static CSS imports from `.storybook/preview.tsx` (components now self-import their base CSS)
   - Added `import './Component.css'` to 6 components that were missing it: Button, Notification, Tag, Pill, Image, Footer
