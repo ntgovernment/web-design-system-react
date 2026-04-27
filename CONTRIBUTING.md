@@ -67,12 +67,21 @@ This project follows professional standards for collaboration:
 ```
 web-design-system/
 ├── src/
-│   ├── components/        # React components
+│   ├── components/        # React components (organized by component name)
+│   ├── content/           # Content pages and guides
+│   ├── demo/              # Demo application (Vite entry point)
 │   ├── themes/            # Theme documentation and demo files
+│   ├── assets/            # Images and static assets
+│   ├── squiz/             # Squiz DXP integration
+│   │   ├── nesters/       # Squiz Matrix design nesters (HTML templates)
+│   │   ├── layouts/       # Squiz DXP page layouts (manifest.json + markup.hbs)
+│   │   ├── vendor/        # Vendor assets (Bootstrap, jQuery, Funnelback)
+│   │   └── design-parse.html
 │   └── index.ts           # Main export file
 ├── scripts/               # Build and utility scripts
 ├── .storybook/            # Storybook configuration
-└── dist/                  # Build output (generated)
+├── dist/                  # Build output (generated)
+└── node_modules/          # Dependencies
 ```
 
 ## Development Workflow
@@ -637,6 +646,49 @@ Common scopes:
 - All conversations must be resolved
 - CI checks must pass (when implemented)
 - Squash and merge into `dev` branch
+
+## Squiz DXP Development
+
+### Page Layouts
+
+Page Layouts are structural templates for the Squiz DXP Page Builder. They are defined in `src/squiz/layouts/<layout-name>/` with a `manifest.json` (config + zones) and `markup.hbs` (Handlebars template).
+
+**Creating a new layout:**
+
+1. Create `src/squiz/layouts/<layout-name>/` folder (use kebab-case)
+2. Add `manifest.json` following the [Squiz layout schema](https://docs.squiz.net/component-service/latest/layouts/layout-files.html)
+3. Add `markup.hbs` with `{{#if zones.<key>}} {{zones.<key>}} {{/if}}` blocks for each zone
+4. (Optional) Create `mock/*.html` files for local preview
+
+**Test locally:**
+
+```bash
+npm run build                          # Build themes first
+
+npm run layouts:dev                    # NTG theme (http://localhost:4040)
+npm run layouts:dev:central            # Central theme
+```
+
+Auto-reload watches `manifest.json`, `markup.hbs`, and `mock/*.html`.
+
+**Deploy to DXP:**
+
+```bash
+dxp-next auth login --tenant=<TENANT-ID>  # One-time login
+
+npm run layouts:deploy:dry-run    # Validate first
+npm run layouts:deploy            # Push to DXP
+
+# Verify in DXP Console → Component Service → Components & Layouts
+```
+
+**Branch naming:** `feature/layout-name` or `feature/dxp-*`
+
+**Commit scope:** `dxp(layouts)` or `dxp(layout-name)`
+
+### Squiz Matrix Integration
+
+Squiz Matrix nester files live in `src/squiz/nesters/`. These are design templates loaded via Git File Bridge. See [SQUIZ_DXP_DEPLOYMENT.md](SQUIZ_DXP_DEPLOYMENT.md) for integration details.
 
 ## Questions and Support
 

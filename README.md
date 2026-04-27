@@ -45,6 +45,8 @@ After building (`npm run build`), the `dist/` folder contains:
 | `nesters/header_content.html`                   | Squiz Matrix design nester — site header                |
 | `nesters/footer_content.html`                   | Squiz Matrix design nester — site footer                |
 | `nesters/footer_js.html`                        | Squiz Matrix design nester — bottom-of-body scripts     |
+| `layouts/full-width-section/manifest.json`      | Squiz DXP page layout config — single column, 3 zones   |
+| `layouts/full-width-section/markup.hbs`         | Squiz DXP page layout template — Handlebars            |
 | `favicons/apple-touch-icon-180x180.png`         | Apple touch icon (180×180)                              |
 | `favicons/favicon-16x16.png`                    | 16×16 favicon                                           |
 | `favicons/favicon-32x32.png`                    | 32×32 favicon                                           |
@@ -57,6 +59,48 @@ After building (`npm run build`), the `dist/` folder contains:
 | `ntgbase/images/logo-ntg-mono.svg`              | NTG monochrome logo for footer (vendor)                 |
 
 The theme bundles (`theme-ntg.min.css`, `theme-central.min.css`) are fully self-contained — they include the design token CSS variables, typography, grid, and all component styles. You only need to load Bootstrap from CDN and one theme bundle.
+
+## Squiz DXP Integration
+
+The system is optimized for deployment to Squiz DXP as both Component Services (individual React components) and Page Layouts (structural templates for Page Builder).
+
+### Page Layouts
+
+Page Layouts define the structural templates available in the DXP's Page Builder. They consist of a manifest (metadata + zones) and a Handlebars template for rendering.
+
+**Available layouts:**
+- **`full-width-section`** — single-column, full-width layout with three stacked zones (header, main, footer) for building flexible page structures.
+
+**Develop locally:**
+
+```bash
+# Build the themes first (required for stylesheets)
+npm run build
+
+# Run the layout dev server (opens http://localhost:4040)
+npm run layouts:dev          # with NTG theme
+npm run layouts:dev:central  # with Central theme
+```
+
+The dev server auto-reloads when `manifest.json`, `markup.hbs`, or `mock/*.html` files change. See [src/squiz/layouts/README.md](src/squiz/layouts/README.md) for details.
+
+**Deploy to DXP:**
+
+You must be authenticated with `dxp-next auth login --tenant=<TENANT-ID>` first.
+
+```bash
+# Validate before deploying
+npm run layouts:deploy:dry-run
+
+# Deploy to your logged-in tenant
+npm run layouts:deploy
+```
+
+Verify deployment in the DXP Console → **Component Service** → **Components & Layouts**.
+
+### Squiz Matrix Nesters
+
+The `src/squiz/nesters/` folder contains design nester files for Squiz Matrix. These are loaded into the design template via the Git File Bridge (asset `1607588`). See [SQUIZ_DXP_DEPLOYMENT.md](SQUIZ_DXP_DEPLOYMENT.md) for details.
 
 ## Usage
 

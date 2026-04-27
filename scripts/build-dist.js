@@ -219,7 +219,30 @@ images.forEach((name) => {
   console.log(`  ✓ Created images/${name} (placeholder)`);
 });
 
-// Step 7: Copy vendor files (consolidated from ntgbase GFB 1484642)
+// Step 7: Copy Squiz DXP Page Layouts (manifest.json + markup.hbs per layout)
+console.log("\n🧱 Copying Squiz DXP page layouts...");
+const layoutsSourceDir = join(rootDir, "src", "squiz", "layouts");
+const layoutsDestDir = join(distDir, "layouts");
+function copyLayoutsRecursive(src, dest) {
+  mkdirSync(dest, { recursive: true });
+  for (const entry of readdirSync(src, { withFileTypes: true })) {
+    const srcPath = join(src, entry.name);
+    const destPath = join(dest, entry.name);
+    if (entry.isDirectory()) {
+      // Skip per-layout mock content used only for local testing.
+      if (entry.name === "mock") continue;
+      copyLayoutsRecursive(srcPath, destPath);
+    } else {
+      copyFileSync(srcPath, destPath);
+      console.log(`  ✓ Copied ${destPath.replace(distDir, "dist")}`);
+    }
+  }
+}
+if (existsSync(layoutsSourceDir)) {
+  copyLayoutsRecursive(layoutsSourceDir, layoutsDestDir);
+}
+
+// Step 8: Copy vendor files (consolidated from ntgbase GFB 1484642)
 console.log("\n📦 Copying vendor files...");
 const vendorSourceDir = join(rootDir, "src", "squiz", "vendor");
 function copyDirRecursive(src, dest) {
@@ -260,6 +283,10 @@ console.log("   ├─ skip_links.html         - Skip links nest content");
 console.log("   ├─ header_content.html     - Header nest content");
 console.log("   ├─ footer_content.html     - Footer nest content");
 console.log("   └─ footer_js.html          - Footer JS nest content");
+console.log("   ┌─ Squiz DXP Page Layouts (dist/layouts/)");
+console.log(
+  "   └─ full-width-section/     - Single column / 3 zones (header, main, footer)",
+);
 console.log("   ┌─ Vendor Files (consolidated from ntgbase)");
 console.log("   ├─ globals/js/             - Bootstrap, jQuery, Funnelback JS");
 console.log("   └─ ntgbase/images/         - NTG logos and icons");

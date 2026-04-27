@@ -28,7 +28,11 @@
     "prepare-storybook-gfb": "npm run build-storybook:squiz && node scripts/prepare-gfb-deploy.js",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "layouts:dev": "cd src/squiz/layouts/full-width-section && npx -y --package=@squiz/dxp-cli-next@latest dxp-next page layouts dev --zones header:mock/header.html,main:mock/main.html,footer:mock/footer.html --stylesheet ../../../../dist/theme-ntg.min.css",
+    "layouts:dev:central": "cd src/squiz/layouts/full-width-section && npx -y --package=@squiz/dxp-cli-next@latest dxp-next page layouts dev --zones header:mock/header.html,main:mock/main.html,footer:mock/footer.html --stylesheet ../../../../dist/theme-central.min.css",
+    "layouts:deploy": "cd src/squiz/layouts/full-width-section && npx -y --package=@squiz/dxp-cli-next@latest dxp-next page layouts deploy",
+    "layouts:deploy:dry-run": "cd src/squiz/layouts/full-width-section && npx -y --package=@squiz/dxp-cli-next@latest dxp-next page layouts deploy --dry-run"
   },
   "dependencies": {
     "@ntgovernment/web-design-tokens": "^3.0.0",
