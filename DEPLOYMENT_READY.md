@@ -84,13 +84,13 @@ See [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md) f
 **Deployed location:**
 `https://dxp.squiz.cloud/organization/ntgov-4670/component-service/all-components/ntg-web-design-system/quick-exit`
 
-| Field     | Value                                                                      |
-| --------- | -------------------------------------------------------------------------- |
-| Namespace | `ntg-web-design-system`                                                    |
-| Name      | `quick-exit`                                                               |
-| Version   | `0.1.0`                                                                    |
-| Type      | Edge (Server-Side Rendering)                                               |
-| Icon      | `exit_to_app` (red)                                                        |
+| Field     | Value                                                                            |
+| --------- | -------------------------------------------------------------------------------- |
+| Namespace | `ntg-web-design-system`                                                          |
+| Name      | `quick-exit`                                                                     |
+| Version   | `0.1.0`                                                                          |
+| Type      | Edge (Server-Side Rendering)                                                     |
+| Icon      | `exit_to_app` (red)                                                              |
 | Previews  | `default`, `domestic-violence`, `child-safety`, `whistleblower`, `mental-health` |
 
 ### Deployment Checklist — Quick Exit

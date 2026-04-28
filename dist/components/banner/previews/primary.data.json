@@ -1,0 +1,14 @@
+{
+  "variant": "primary",
+  "title": "Page title",
+  "description": "Optional short description of the page goal",
+  "ctaText": "Call to action",
+  "ctaHref": "#",
+  "linksHeading": "Popular",
+  "links": [
+    { "label": "Bus timetables and maps", "href": "#" },
+    { "label": "Check your rego", "href": "#" },
+    { "label": "Find a Motor Vehicle Registry (MVR)", "href": "#" },
+    { "label": "Government priorities", "href": "#" }
+  ]
+}

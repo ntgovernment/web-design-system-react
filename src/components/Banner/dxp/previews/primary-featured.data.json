@@ -1,0 +1,16 @@
+{
+  "variant": "primary",
+  "title": "Health and Wellbeing",
+  "description": "Access health services, find medical facilities, and learn about public health programs in the Northern Territory.",
+  "ctaText": "Find health services",
+  "ctaHref": "#",
+  "linksHeading": "Featured",
+  "links": [
+    { "label": "COVID-19 information", "href": "#" },
+    { "label": "Mental health support", "href": "#" },
+    { "label": "Hospital locations", "href": "#" },
+    { "label": "Medicare services", "href": "#" }
+  ],
+  "label": "Home",
+  "href": "/"
+}
