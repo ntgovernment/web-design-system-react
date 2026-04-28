@@ -125,11 +125,7 @@ export const Header = ({
     if (variant === "nt-gov-au") {
       return (
         <a href={NT_GOV_AU_URL} className="header__logo-link">
-          <img
-            src={desertRoseSvg}
-            alt={logoAlt}
-            className="header__logo-image"
-          />
+          <img src={monoLogoSvg} alt={logoAlt} className="header__logo-image" />
         </a>
       );
     }
@@ -143,7 +139,11 @@ export const Header = ({
     return (
       <div className={`header__logo-group ${variantClass}`}>
         <a href={NT_GOV_AU_URL} className="header__logo-link">
-          <img src={monoLogoSvg} alt={logoAlt} className="header__logo-image" />
+          <img
+            src={desertRoseSvg}
+            alt={logoAlt}
+            className="header__logo-image"
+          />
         </a>
         {agencyName && (
           <a href={agencyHref} className="header__agency-link">

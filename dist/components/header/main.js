@@ -57,19 +57,14 @@ function renderSearchBar({ placeholder, action, autoFocus }) {
 
 /** Mirrors Header.tsx → renderLogo(). */
 function renderLogo({ variant, agencyName, agencyHref, logoAlt }) {
-  // Logo SVGs are served via jsdelivr from this repo so they resolve
-  // identically in the DXP edge runtime and in the local preview wrapper.
-  // (The Squiz Matrix-style `%globals_asset_url_with_hash:...%` keywords
-  // do not resolve at the DXP edge.)
-  const ASSET_BASE =
-    "https://cdn.jsdelivr.net/gh/ntgovernment/web-design-system@main/src/squiz/vendor/ntgbase/images";
-  const desertRose = `${ASSET_BASE}/ntg-desert-rose-reverse.svg`;
-  const monoLogo = `${ASSET_BASE}/logo-ntg-mono.svg`;
+  const ASSET_BASE = "https://nt.gov.au/__data/assets/git_bridge/0008/1607588";
+  const desertRose = `${ASSET_BASE}/dist/ntgbase/images/ntg-desert-rose-reverse.svg`;
+  const monoLogo = `${ASSET_BASE}/dist/ntgbase/images/logo-ntg-mono.svg`;
 
   if (variant === "nt-gov-au") {
     return `
       <a href="${esc(NT_GOV_AU_URL)}" class="header__logo-link">
-        <img src="${esc(desertRose)}" alt="${esc(logoAlt)}" class="header__logo-image" />
+        <img src="${esc(monoLogo)}" alt="${esc(logoAlt)}" class="header__logo-image" />
       </a>
     `;
   }
@@ -82,7 +77,7 @@ function renderLogo({ variant, agencyName, agencyHref, logoAlt }) {
   return `
     <div class="header__logo-group ${variantClass}">
       <a href="${esc(NT_GOV_AU_URL)}" class="header__logo-link">
-        <img src="${esc(monoLogo)}" alt="${esc(logoAlt)}" class="header__logo-image" />
+        <img src="${esc(desertRose)}" alt="${esc(logoAlt)}" class="header__logo-image" />
       </a>
       ${
         agencyName

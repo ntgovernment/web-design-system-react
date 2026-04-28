@@ -1,6 +1,6 @@
 {
   "name": "@ntgovernment/web-design-system",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Component library and themes for NT Government websites and intranets",
   "type": "module",
   "main": "./dist/components.min.js",

@@ -37,9 +37,6 @@ The full prop reference lives in
 ### Preview locally
 
 ```bash
-# (Re-)inline Header CSS variables to literal values (after editing Header.css)
-node scripts/inline-header-css.js
-
 # Open preview.html in a browser via any static server (or Vite)
 npm run dev
 # then visit http://localhost:5173/src/components/Header/dxp/preview.html
@@ -67,14 +64,11 @@ To deploy new versions after making changes:
 # 1. Update the version in manifest.json
 # "version": "1.0.2"  (use semantic versioning)
 
-# 2. Regenerate inlined styles (if you edited CSS)
-node scripts/inline-header-css.js
-
-# 3. Commit and push
+# 2. Commit and push
 git add -A && git commit -m "Deploy: Header v1.0.2 — <description>"
 git push origin <branch>
 
-# 4. Prepare and deploy to DXP
+# 3. Prepare and deploy to DXP
 npm run cmp-prepare
 npm run cmp-deploy:dry-run  # Validate first
 npm run cmp-deploy          # Deploy to live tenant
@@ -94,7 +88,7 @@ For detailed deployment instructions, see [DEPLOYMENT_READY.md](../../DEPLOYMENT
 
 The component uses only HTML semantics and Bootstrap 5 classes (`.navbar`, `.container`, `.input-group`, `.form-control`, `.btn`, etc.).
 
-- **Local preview** (`preview.html`): Self-contained `<style>` block with Header rules + minimal Bootstrap (populated by `scripts/inline-header-css.js`).
+- **Local preview** (`preview.html`): External `<link>` to `https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/theme-ntg.min.css`.
 - **DXP deployment** (`previews/wrapper.html`): Theme CSS inlined at build time by `scripts/prepare-header-dxp.js`.
 - **Production** (Squiz Matrix): CSS loaded site-wide from the `head.html` nester.
 

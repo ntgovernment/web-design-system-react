@@ -19,7 +19,7 @@ A comprehensive header component for site-wide navigation with logo, navigation 
 
 ### NT.GOV.AU Variant (Default)
 
-The primary NT Government header with desert-rose logo linking to https://nt.gov.au. No site title.
+The primary NT Government header with the NT Government mono logo linking to https://nt.gov.au. No site title.
 
 ```tsx
 import { Header } from "@ntgovernment/web-design-system";
@@ -40,7 +40,7 @@ import { Header } from "@ntgovernment/web-design-system";
 
 ### Agency Internet Variant
 
-For NT Government agency websites. Shows the NT Government mono logo (linking to nt.gov.au) with the agency name as a title link.
+For NT Government agency websites. Shows the NT Government desert-rose logo (linking to nt.gov.au) with the agency name as a title link.
 
 ```tsx
 <Header
@@ -57,7 +57,7 @@ For NT Government agency websites. Shows the NT Government mono logo (linking to
 
 ### Other Site Variant
 
-Similar to agency-internet but with a different CSS class name for distinct styling. Use this for NT Government partner websites or other branded sites.
+Similar to agency-internet (uses the desert-rose logo) but with a different CSS class name for distinct styling. Use this for NT Government partner websites or other branded sites.
 
 ```tsx
 <Header
