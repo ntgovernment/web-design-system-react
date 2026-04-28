@@ -59,6 +59,7 @@ During build, nester files are copied from `src/squiz/nesters/` and any legacy G
 ```
 dist/
 ├── components.min.js          UMD component bundle (React external)
+├── hydrate.min.js             DXP component hydration runtime (mounts [data-hydration-component] containers)
 ├── theme-ntg.min.css          Complete NT.GOV.AU theme bundle (tokens + component CSS incl. GlobalAlert, Header)
 ├── theme-central.min.css      Complete NTG Central theme bundle (tokens + component CSS incl. GlobalAlert, Header)
 ├── index.html                 Interactive demo page
@@ -69,7 +70,18 @@ dist/
 │   ├── skip_links.html        Skip navigation links
 │   ├── header_content.html    Site header (alert banner, logo, navigation)
 │   ├── footer_content.html    Site footer (links, logos, utility nav)
-│   └── footer_js.html         Footer scripts (Bootstrap JS, components, search)
+│   └── footer_js.html         Footer scripts (Bootstrap JS, React CDN, components, hydrate, Funnelback)
+├── globals/
+│   └── js/                    Third-party vendor scripts (copied from src/squiz/vendor/globals/js/)
+│       ├── bootstrap.bundle.min.js
+│       ├── jquery.min.js
+│       ├── typeahead.bundle.min.js
+│       ├── handlebars.min.js
+│       └── funnelback.autocompletion-2.6.0.js
+├── ntgbase/
+│   └── images/                NTG logo assets (copied from src/squiz/vendor/ntgbase/images/)
+│       ├── logo-ntg-mono.svg
+│       └── ntg-desert-rose-reverse.svg
 ├── favicons/                  Favicon image assets
 │   ├── apple-touch-icon-180x180.png
 │   ├── favicon-32x32.png
@@ -260,6 +272,7 @@ The footer JS nester loads all page-level scripts after the closing `</body>` co
 | React 18              | `react.production.min.js` + `react-dom.production.min.js` (required by UMD component bundle)             | unpkg.com CDN                                                                   |
 | process.env shim      | `window.process = { env: { NODE_ENV: 'production' } }`                                                   | Inline                                                                          |
 | Components JS         | `dist/components.min.js` — UMD component bundle                                                          | `%globals_asset_url_with_hash:1607588:dist/components.min.js%`                  |
+| Hydration runtime     | `dist/hydrate.min.js` — mounts DXP-rendered components into `[data-hydration-component]` containers      | `%globals_asset_url_with_hash:1607588:dist/hydrate.min.js%`                     |
 | Anchor scroll         | Scrolls to hash target on page load                                                                      | Inline                                                                          |
 | Alt JS                | Optional per-site additional JS                                                                          | Conditional: `%begin_globals_site_metadata_site-altJs%`                         |
 | DataTables            | jQuery DataTables init for `.datatable` / `.data-table` elements                                         | Inline                                                                          |

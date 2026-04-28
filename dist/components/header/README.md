@@ -1,6 +1,8 @@
 # Header — Squiz DXP Component Service
 
-Site-wide NT Government header packaged for Squiz DXP. Renders as **server-side HTML only** via `main.js`. A small inline `<script>` handles hamburger toggle and search-icon expansion — no client-side React or hydration runtime required.
+✅ **DEPLOYED** — Site-wide NT Government header packaged for Squiz DXP. **Version 1.0.1 is live on DXP cloud.**
+
+Renders as **server-side HTML only** via `main.js`. A small inline `<script>` handles hamburger toggle and search-icon expansion — no client-side React or hydration runtime required.
 
 ## Files
 
@@ -57,29 +59,30 @@ npm run cmp-dev:runner
 
 ## Deployment
 
+**Status:** ✅ **Version 1.0.1 deployed and live on DXP cloud.**
+
+To deploy new versions after making changes:
+
 ```bash
-# Validate the manifest without pushing
-npm run cmp-deploy:dry-run
+# 1. Update the version in manifest.json
+# "version": "1.0.2"  (use semantic versioning)
 
-# Push to the connected DXP tenant
-npm run cmp-deploy
-```
+# 2. Regenerate inlined styles (if you edited CSS)
+node scripts/inline-header-css.js
 
-### Version Management
+# 3. Commit and push
+git add -A && git commit -m "Deploy: Header v1.0.2 — <description>"
+git push origin <branch>
 
-If you get a version conflict error ("already exists"), increment the version in `manifest.json` and redeploy:
-
-```json
-{
-  "version": "1.0.1"  // Bump the version (semantic versioning)
-}
-```
-
-Then:
-```bash
+# 4. Prepare and deploy to DXP
 npm run cmp-prepare
-npm run cmp-deploy
+npm run cmp-deploy:dry-run  # Validate first
+npm run cmp-deploy          # Deploy to live tenant
 ```
+
+**The `cmp-deploy` command automatically runs `cmp-prepare` before executing.**
+
+For detailed deployment instructions, see [DEPLOYMENT_READY.md](../../DEPLOYMENT_READY.md).
 
 ## Runtime dependencies
 
