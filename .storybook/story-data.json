@@ -1309,23 +1309,35 @@
     },
     "Header": {
       "stories": {
-        "Default": {
+        "NTGovAu": {
           "args": {
+            "variant": "nt-gov-au",
             "logoAlt": "NT.GOV.AU",
-            "logoHref": "/",
             "label": "Find online services",
             "href": "/services",
             "icon": "fa-light fa-search"
           }
         },
-        "WithLogoImage": {
+        "AgencyInternet": {
           "args": {
-            "logoSrc": "https://via.placeholder.com/122x39/1F1F5F/FFFFFF?text=NT.GOV.AU",
+            "variant": "agency-internet",
             "logoAlt": "Northern Territory Government",
-            "logoHref": "/",
-            "label": "Find online services",
-            "href": "/services",
-            "icon": "fa-light fa-search"
+            "agencyName": "Department of Health",
+            "agencyHref": "https://health.nt.gov.au",
+            "label": "Programs",
+            "href": "/programs",
+            "icon": "fa-light fa-briefcase"
+          }
+        },
+        "OtherSite": {
+          "args": {
+            "variant": "other-site",
+            "logoAlt": "Northern Territory Government",
+            "agencyName": "My NT Services",
+            "agencyHref": "/",
+            "label": "Dashboard",
+            "href": "/dashboard",
+            "icon": "fa-light fa-home"
           }
         },
         "WithActiveState": {
@@ -1381,7 +1393,10 @@
         },
         "DepartmentHeader": {
           "args": {
-            "logoAlt": "Department of Health",
+            "variant": "agency-internet",
+            "agencyName": "Department of Health",
+            "agencyHref": "/",
+            "logoAlt": "Northern Territory Government",
             "label": "Programs",
             "href": "/programs",
             "icon": "fa-light fa-briefcase"
@@ -1389,7 +1404,10 @@
         },
         "ServicePortalHeader": {
           "args": {
-            "logoAlt": "My NT Services",
+            "variant": "other-site",
+            "agencyName": "My NT Services",
+            "agencyHref": "/",
+            "logoAlt": "Northern Territory Government",
             "label": "Dashboard",
             "href": "/dashboard",
             "icon": "fa-light fa-home"
@@ -1422,8 +1440,8 @@
         },
         "Playground": {
           "args": {
+            "variant": "nt-gov-au",
             "logoAlt": "NT.GOV.AU",
-            "logoHref": "/",
             "label": "Find online services",
             "href": "/services",
             "icon": "fa-light fa-search"
@@ -2345,5 +2363,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-04-19T16:03:50.773Z"
+  "generated": "2026-04-28T03:10:09.166Z"
 }

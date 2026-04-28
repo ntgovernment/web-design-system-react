@@ -67,12 +67,21 @@ This project follows professional standards for collaboration:
 ```
 web-design-system/
 ├── src/
-│   ├── components/        # React components
+│   ├── components/        # React components (organized by component name)
+│   ├── content/           # Content pages and guides
+│   ├── demo/              # Demo application (Vite entry point)
 │   ├── themes/            # Theme documentation and demo files
+│   ├── assets/            # Images and static assets
+│   ├── squiz/             # Squiz DXP integration
+│   │   ├── nesters/       # Squiz Matrix design nesters (HTML templates)
+│   │   ├── layouts/       # Squiz DXP page layouts (manifest.json + markup.hbs)
+│   │   ├── vendor/        # Vendor assets (Bootstrap, jQuery, Funnelback)
+│   │   └── design-parse.html
 │   └── index.ts           # Main export file
 ├── scripts/               # Build and utility scripts
 ├── .storybook/            # Storybook configuration
-└── dist/                  # Build output (generated)
+├── dist/                  # Build output (generated)
+└── node_modules/          # Dependencies
 ```
 
 ## Development Workflow
@@ -637,6 +646,109 @@ Common scopes:
 - All conversations must be resolved
 - CI checks must pass (when implemented)
 - Squash and merge into `dev` branch
+
+## Squiz DXP Development
+
+### Page Layouts
+
+Page Layouts are structural templates for the Squiz DXP Page Builder. They are defined in `src/squiz/layouts/<layout-name>/` with a `manifest.json` (config + zones) and `markup.hbs` (Handlebars template).
+
+**Creating a new layout:**
+
+1. Create `src/squiz/layouts/<layout-name>/` folder (use kebab-case)
+2. Add `manifest.json` following the [Squiz layout schema](https://docs.squiz.net/component-service/latest/layouts/layout-files.html)
+3. Add `markup.hbs` with `{{#if zones.<key>}} {{zones.<key>}} {{/if}}` blocks for each zone
+4. (Optional) Create `mock/*.html` files for local preview
+
+**Test locally:**
+
+```bash
+npm run build                          # Build themes first
+
+npm run layouts:dev                    # NTG theme (http://localhost:4040)
+npm run layouts:dev:central            # Central theme
+```
+
+Auto-reload watches `manifest.json`, `markup.hbs`, and `mock/*.html`.
+
+**Deploy to DXP:**
+
+```bash
+dxp-next auth login --tenant=<TENANT-ID>  # One-time login
+
+npm run layouts:deploy:dry-run    # Validate first
+npm run layouts:deploy            # Push to DXP
+
+# Verify in DXP Console → Component Service → Components & Layouts
+```
+
+**Branch naming:** `feature/layout-name` or `feature/dxp-*`
+
+**Commit scope:** `dxp(layouts)` or `dxp(layout-name)`
+
+### Component Services
+
+Component Services are server-rendered, self-contained components deployed as edge functions. They are defined in `src/components/<ComponentName>/dxp/` with a `manifest.json` (config) and `main.js` (renderer).
+
+**Current component services:**
+
+- **Header** ✅ **DEPLOYED** — `src/components/Header/dxp/` — Site-wide header with NT branding, navigation, and search (v1.0.1 live on DXP cloud)
+
+**Editing a component service:**
+
+1. Edit `src/components/Header/Header.tsx` or `src/components/Header/Header.css` as normal
+2. Update `src/components/Header/dxp/main.js` if the rendered output shape changes
+3. Test locally via `preview.html` or Storybook
+
+**Styling considerations:**
+
+- The Header component uses only HTML semantics and Bootstrap 5 classes (`.navbar`, `.container`, `.input-group`, `.form-control`, `.btn`, etc.)
+- Local preview (`preview.html`) has self-contained styles via `scripts/inline-header-css.js`
+- When editing Header CSS, regenerate the inlined styles:
+
+  ```bash
+  node scripts/inline-header-css.js
+  ```
+
+**Test locally in Squiz DXP:**
+
+```bash
+npm run cmp-prepare          # Copy source to dist/ and inline styles
+npm run cmp-dev             # Open dev-ui (http://localhost:3000)
+```
+
+The `cmp-dev`, `cmp-dev:runner`, `cmp-deploy`, and `cmp-deploy:dry-run` commands auto-run `cmp-prepare`.
+
+**Deploy to DXP:**
+
+1. Update the version in `src/components/Header/dxp/manifest.json` (semantic versioning)
+2. Regenerate CSS if needed: `node scripts/inline-header-css.js`
+3. Commit and push: `git add -A && git commit -m "Deploy: Header v1.0.2 — <description>"` then `git push origin <branch>`
+4. Prepare and deploy:
+
+   ```bash
+   npm run cmp-prepare            # Copy source to dist/, inline theme CSS
+   npm run cmp-deploy:dry-run     # Validate manifest
+   npm run cmp-deploy             # Push to DXP cloud
+   ```
+
+5. Verify in DXP Console → **Component Service** → **Components & Layouts**
+
+**Troubleshooting:**
+
+- **"Version already exists" error**: Increment `version` in `manifest.json` using semantic versioning (e.g., `1.0.0` → `1.0.1`), then rerun `cmp-prepare` and `cmp-deploy`
+- **"No components found" error**: Ensure `cmp-prepare` completed successfully; check that `dist/components/header/manifest.json` exists
+- **Cannot authenticate**: Run `dxp-next auth login --tenant=<TENANT-ID>` first (see [DEPLOYMENT_READY.md](DEPLOYMENT_READY.md))
+
+**Branch naming:** `feature/header` or `feature/dxp-component-*`
+
+**Commit scope:** `dxp(header)` or `dxp(components)`
+
+See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for detailed Header configuration and styling.
+
+### Squiz Matrix Integration
+
+Squiz Matrix nester files live in `src/squiz/nesters/`. These are design templates loaded via Git File Bridge. See [SQUIZ_DXP_DEPLOYMENT.md](SQUIZ_DXP_DEPLOYMENT.md) for integration details.
 
 ## Questions and Support
 

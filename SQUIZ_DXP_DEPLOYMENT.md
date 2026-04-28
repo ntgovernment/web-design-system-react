@@ -85,12 +85,14 @@ The design parse template and nester source files are maintained at:
 ```
 src/squiz/
 ├── design-parse.html              Matrix design parse template (server-side print())
-└── nesters/
-    ├── head.html                  <head> content (meta, CSS, analytics, jQuery)
-    ├── skip_links.html            Skip navigation links
-    ├── header_content.html        Site header (alert banner, logo, navigation, search)
-    ├── footer_content.html        Site footer (links, logos, acknowledgement)
-    └── footer_js.html             Footer scripts (Bootstrap, React CDN, components, Funnelback)
+├── nesters/
+│   ├── head.html                  <head> content (meta, CSS, analytics, jQuery)
+│   ├── skip_links.html            Skip navigation links
+│   ├── header_content.html        (Empty placeholder — provided by Header component in a layout zone)
+│   ├── footer_content.html        (Empty placeholder — provided by Footer component in a layout zone)
+│   └── footer_js.html             Footer scripts (Bootstrap, React CDN, components, Funnelback)
+└── layouts/                       Squiz DXP Page Layouts (manifest.json + markup.hbs per layout)
+    └── full-width-section/        Single column, 3 zones: header / main / footer
 ```
 
 ### 2. Build Storybook (Optional)
@@ -238,13 +240,13 @@ The header nester renders the GlobalAlert and Header design system components as
 - [GlobalAlert — CMS Integration](src/components/GlobalAlert/GLOBALALERT.md#squiz-matrix-cms-integration)
 - [Header — CMS Integration](src/components/Header/HEADER.md#squiz-matrix-cms-integration)
 
-| Section      | Component                                 | Key CMS keywords                                                                                                                  |
-| ------------ | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Section      | Component                                 | Key CMS keywords                                                                                                                 |
+| ------------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Global alert | `GlobalAlert` (`global-alert--{variant}`) | `%globals_site_metadata_site-alertType%`, `site-alertTitle`, `site-alertMessage`                                                 |
 | Print logo   | —                                         | `%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%`                                                                 |
-| Site header  | `Header` (`header__navbar`)               | `https://nt.gov.au` (logo link), `%globals_site_url%` (agency link), `%globals_site_name%`, `logo-ntg-mono.svg` (agency variant)   |
+| Site header  | `Header` (`header__navbar`)               | `https://nt.gov.au` (logo link), `%globals_site_url%` (agency link), `%globals_site_name%`, `logo-ntg-mono.svg` (agency variant) |
 | Mobile menu  | `Header` (`header__mobile-menu`)          | Same nav items as desktop                                                                                                        |
-| Inline JS    | —                                         | GlobalAlert dismiss + hamburger toggle                                                                                            |
+| Inline JS    | —                                         | GlobalAlert dismiss + hamburger toggle                                                                                           |
 
 #### `footer_js.html`
 

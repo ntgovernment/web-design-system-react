@@ -1,0 +1,15 @@
+{
+  "variant": "other-site",
+  "agencyName": "Example Initiative",
+  "agencyHref": "/",
+  "logoAlt": "NT Government",
+  "navItems": [
+    { "label": "Overview", "href": "/" },
+    { "label": "Get involved", "href": "/get-involved" },
+    { "label": "Resources", "href": "/resources" }
+  ],
+  "showSearch": false,
+  "searchVariant": "icon",
+  "searchPlaceholder": "Search",
+  "searchAction": "/search"
+}
