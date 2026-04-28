@@ -1,6 +1,6 @@
 # Banner — Squiz DXP Component Service
 
-🧪 **PREVIEW** — Page banner component for home and landing pages, packaged for Squiz DXP. **Version 0.1.0 (initial preview release).**
+Page banner component for home and landing pages, packaged for Squiz DXP. **Version 0.3.0.**
 
 Renders as **server-side HTML only** via `main.js`. The DXP version is intentionally non-interactive — no React, no event handlers, no breadcrumb truncation menu. Theme CSS (loaded site-wide via the head nester) provides all styling.
 
@@ -17,20 +17,20 @@ Renders as **server-side HTML only** via `main.js`. The DXP version is intention
 
 ## Inputs
 
-| Property         | Type    | Default      | Notes                                                                                      |
-| ---------------- | ------- | ------------ | ------------------------------------------------------------------------------------------ |
-| `title`          | string  | `Page title` | **Required.** H1 heading.                                                                  |
-| `variant`        | enum    | `primary`    | `primary` = dark background; `secondary` = light shade background with border divider.     |
-| `description`    | string  |              | Optional subtitle displayed below the title.                                               |
-| `ctaText`        | string  |              | CTA button label. Leave blank to hide the button.                                          |
-| `ctaHref`        | string  |              | URL for the CTA button link. Required when `ctaText` is set.                               |
-| `ctaVariant`     | enum    | `secondary`  | Bootstrap button style: `primary`, `secondary`, or `tertiary`.                             |
-| `linksHeading`   | enum    |              | `Popular`, `Featured`, or `Related`. Leave blank to hide the links panel.                  |
-| `links`          | array   | `[]`         | `{ label, href }` pairs. Primary = pill links; secondary = vertical text links.            |
-| `breadcrumbs`    | array   | `[]`         | Full breadcrumb trail `{ label, href, isCurrent }`. Takes precedence over `label`/`href`.  |
-| `label`          | string  |              | Shortcut: first breadcrumb item label (e.g. `Home`). Adds a "Current page" crumb after it. |
-| `href`           | string  |              | Shortcut: first breadcrumb item URL. Used together with `label`.                           |
-| `showDecorative` | boolean | `true`       | Show the decorative SVG background element.                                                |
+| Property         | Type    | Default                                       | Notes                                                                                      |
+| ---------------- | ------- | --------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `title`          | string  | `Page title`                                  | **Required.** H1 heading.                                                                  |
+| `variant`        | enum    | `primary`                                     | `primary` = dark background; `secondary` = light shade background with border divider.     |
+| `description`    | string  | `Optional short description of the page goal` | Optional subtitle displayed below the title.                                               |
+| `ctaText`        | string  | `Call to action`                              | CTA button label. Leave blank to hide the button.                                          |
+| `ctaHref`        | string  | `#`                                           | URL for the CTA button link. Required when `ctaText` is set.                               |
+| `ctaVariant`     | enum    | `secondary`                                   | Bootstrap button style: `primary`, `secondary`, or `tertiary`.                             |
+| `linksHeading`   | enum    | `Popular`                                     | `Popular`, `Featured`, or `Related`. Leave blank to hide the links panel.                  |
+| `links`          | array   | 4 NT Gov service links                        | `{ label, href }` pairs. Primary = pill links; secondary = vertical text links.            |
+| `breadcrumbs`    | array   | `[]`                                          | Full breadcrumb trail `{ label, href, isCurrent }`. Takes precedence over `label`/`href`.  |
+| `label`          | string  |                                               | Shortcut: first breadcrumb item label (e.g. `Home`). Adds a "Current page" crumb after it. |
+| `href`           | string  |                                               | Shortcut: first breadcrumb item URL. Used together with `label`.                           |
+| `showDecorative` | boolean | `true`                                        | Show the decorative SVG background element.                                                |
 
 ## Limitations
 
