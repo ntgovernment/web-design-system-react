@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Global Alert - DXP Component Preview</title>
+
+    <link rel="stylesheet" href="https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/theme-ntg.min.css" />
+
+    <!-- Font Awesome (matches production loading) -->
+    <script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family:
+                -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        .preview-section {
+            margin: 0 0 3rem;
+            padding: 0;
+            background: #fff;
+        }
+
+        .preview-section>h2 {
+            font-family: inherit;
+            margin: 0;
+            padding: 1rem 1.5rem;
+            background: #1f1f5f;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .preview-section>h3 {
+            margin: 0;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.85rem;
+            color: #555;
+            background: #fafafa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .preview-host {
+            padding: 0;
+        }
+
+        .note {
+            margin: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="note">
+        Local preview of the Global Alert DXP component. <strong>main.js</strong>
+        renders the full HTML server-side; the same Bootstrap + theme
+        stylesheets used by Storybook style the output. Run
+        <code>npm run build</code> first to generate
+        <code>dist/theme-ntg.min.css</code>.
+    </div>
+
+    <div class="preview-section">
+        <h2>1. Info</h2>
+        <h3>Standard informational alert (solid blue)</h3>
+        <div id="preview-info" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>2. Info (alternative)</h2>
+        <h3>Lighter informational variant</h3>
+        <div id="preview-info-alt" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>3. Warning</h2>
+        <h3>Warning variant with CTA</h3>
+        <div id="preview-warning" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>4. Critical</h2>
+        <h3>Critical / emergency variant with CTA</h3>
+        <div id="preview-critical" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>5. Dismissible</h2>
+        <h3>Info variant with a dismiss button</h3>
+        <div id="preview-dismissible" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>6. With CTA</h2>
+        <h3>Info variant with a call-to-action button</h3>
+        <div id="preview-with-cta" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>7. Complete</h2>
+        <h3>Warning variant with both CTA and dismiss</h3>
+        <div id="preview-complete" class="preview-host"></div>
+    </div>
+
+    <!-- Server-side render via main.js -->
+    <script type="module">
+        import component from "./main.js";
+
+        const response = await fetch("./example.data.json");
+        const data = await response.json();
+
+        function mount(targetId, html) {
+            const host = document.getElementById(targetId);
+            host.innerHTML = html;
+        }
+
+        mount("preview-info", await component.main(data.info));
+        mount("preview-info-alt", await component.main(data["info-alt"]));
+        mount("preview-warning", await component.main(data.warning));
+        mount("preview-critical", await component.main(data.critical));
+        mount("preview-dismissible", await component.main(data.dismissible));
+        mount("preview-with-cta", await component.main(data["with-cta"]));
+        mount("preview-complete", await component.main(data.complete));
+    </script>
+</body>
+
+</html>

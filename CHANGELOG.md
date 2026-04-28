@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **GlobalAlert DXP Component Service** (`src/components/GlobalAlert/dxp/`) — new edge-rendered component for Squiz DXP, deployed as `ntg-web-design-system/global-alert` v0.1.0
+  - `manifest.json` — Squiz DXP v1 manifest with full input JSON Schema; defaults: `variant: "info"`, `title: "Important update"`, `description: "<p>Service updates and important information for all users.</p>"`, `dismissible: false`, `dismissLabel: "Dismiss alert"`; supports `ctaText` / `ctaHref` for an optional call-to-action button
+  - `main.js` — pure ESM edge renderer mirroring `GlobalAlert.tsx` BEM markup (`global-alert`, `global-alert--{variant}`, `__container`, `__content`, `__text`, `__title`, `__description`, `__actions`, `__cta`, `__dismiss`); `description` rendered as raw `FormattedText` HTML; all other values HTML-escaped; invalid variant values fall back to `info`
+  - `example.data.json` — 8 keyed sample inputs (default, info, info-alt, warning, critical, dismissible, with-cta, complete)
+  - `preview.html` — local SSR harness for all 7 variants
+  - `previews/wrapper.html` + 7 per-variant `*.data.json` files (info, info-alt, warning, critical, dismissible, with-cta, complete)
+  - `README.md` — component dev/deploy guide
+- **`scripts/prepare-globalalert-dxp.js`** — stages `src/components/GlobalAlert/dxp/` → `dist/components/global-alert/` and inlines `theme-ntg.min.css` into `previews/wrapper.html` between `<!-- INLINE_THEME_CSS_START/END -->` markers
+- **`scripts/prepare-all-dxp.js`** — aggregate prepare script that auto-discovers every `src/components/*/dxp/manifest.json` and stages all DXP components into `dist/components/<name>/`; new DXP components are picked up automatically without script changes
+- **npm scripts for GlobalAlert DXP**: `cmp-globalalert-prepare`, `cmp-globalalert-dev`, `cmp-globalalert-dev:runner`, `cmp-globalalert-deploy`, `cmp-globalalert-deploy:dry-run` (each with a `pre*` hook auto-running the prepare step)
+- **Unified DXP npm scripts**: `cmp-prepare` (runs `prepare-all-dxp.js`), `cmp-dev` / `cmp-dev:runner` (stages all components then opens DXP dev-ui at `dist/components/` to preview all components in one UI)
+
+### Changed
+
+- **Header DXP manifest** (`src/components/Header/dxp/manifest.json`) v1.0.3 → v1.0.4
+  - Icon updated from `web` to `web_asset` (Material Icons browser-window icon, more semantically precise for a site header)
+  - Default `variant` changed from `"nt-gov-au"` to `"agency-internet"`
+  - Added default for `agencyName`: `"Department of Example"`
+  - Updated default `logoAlt` from `"NT.GOV.AU"` to `"NT Government"` (matches agency-internet preview data)
+  - Added default `navItems`: About us, Programs, Publications, Contact
+- **Footer DXP manifest** (`src/components/Footer/dxp/manifest.json`) v0.1.1 → v0.1.2
+  - Icon updated from `web` to `call_to_action` (Material Icons bottom-strip panel, semantically correct for a site footer)
+
 ### Changed
 
 - **Header Component Variant API**: Replaced logo-based props with flexible variant pattern for different header layouts

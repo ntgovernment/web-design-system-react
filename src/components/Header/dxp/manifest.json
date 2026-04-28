@@ -5,14 +5,14 @@
   "displayName": "Header",
   "description": "Site-wide header with NT Government branding, navigation, and optional search.",
   "icon": {
-    "id": "web",
+    "id": "web_asset",
     "color": {
       "type": "enum",
       "value": "blue"
     }
   },
   "type": "edge",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "mainFunction": "main",
   "functions": [
     {
@@ -26,12 +26,13 @@
             "title": "Variant",
             "description": "Header layout variant. 'nt-gov-au' shows the NT.GOV.AU desert-rose logo only. 'agency-internet' shows the NT Government mono logo plus an agency title. 'other-site' is the same as agency-internet with distinct styling.",
             "enum": ["nt-gov-au", "agency-internet", "other-site"],
-            "default": "nt-gov-au"
+            "default": "agency-internet"
           },
           "agencyName": {
             "type": "string",
             "title": "Agency name",
-            "description": "Agency or site name shown as the title link in 'agency-internet' and 'other-site' variants."
+            "description": "Agency or site name shown as the title link in 'agency-internet' and 'other-site' variants.",
+            "default": "Department of Example"
           },
           "agencyHref": {
             "type": "string",
@@ -43,7 +44,7 @@
             "type": "string",
             "title": "Logo alt text",
             "description": "Alt text for the logo image.",
-            "default": "NT.GOV.AU"
+            "default": "NT Government"
           },
           "navItems": {
             "type": "array",
@@ -73,7 +74,12 @@
               },
               "required": ["label", "href"]
             },
-            "default": []
+            "default": [
+              { "label": "About us", "href": "/about" },
+              { "label": "Programs", "href": "/programs" },
+              { "label": "Publications", "href": "/publications" },
+              { "label": "Contact", "href": "/contact" }
+            ]
           },
           "showSearch": {
             "type": "boolean",

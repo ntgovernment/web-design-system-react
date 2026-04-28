@@ -277,7 +277,17 @@ if (existsSync(reactComponentsDir)) {
     if (!entry.isDirectory()) continue;
     const dxpDir = join(reactComponentsDir, entry.name, "dxp");
     if (!existsSync(join(dxpDir, "manifest.json"))) continue;
-    const slug = entry.name.toLowerCase();
+    // Use the manifest `name` field as the slug so the dist directory matches
+    // the DXP component name (e.g. "global-alert" not "globalalert").
+    let slug;
+    try {
+      const manifest = JSON.parse(
+        readFileSync(join(dxpDir, "manifest.json"), "utf8"),
+      );
+      slug = manifest.name || entry.name.toLowerCase();
+    } catch {
+      slug = entry.name.toLowerCase();
+    }
     copyDxpRecursive(dxpDir, join(componentsDestDir, slug));
     dxpComponents.push(slug);
   }
@@ -414,7 +424,10 @@ console.log(
   "   └─ full-width-section/     - Single column / 3 zones (header, main, footer)",
 );
 console.log("   ┌─ Squiz DXP Components (dist/components/)");
-console.log("   └─ header/                 - Site-wide header component");
+for (let i = 0; i < dxpComponents.length; i++) {
+  const prefix = i === dxpComponents.length - 1 ? "└─" : "├─";
+  console.log(`   ${prefix} ${dxpComponents[i]}/`);
+}
 console.log("   ┌─ Vendor Files (consolidated from ntgbase)");
 console.log("   ├─ globals/js/             - Bootstrap, jQuery, Funnelback JS");
 console.log("   └─ ntgbase/images/         - NTG logos and icons");

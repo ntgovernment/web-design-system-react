@@ -484,6 +484,94 @@ For issues or questions:
 2. Review Storybook documentation at https://cmsexternal.nt.gov.au/webds/storybook
 3. Contact the development team
 
+## DXP Edge Component Services
+
+In addition to deploying assets to Squiz Matrix via GFB, this repository packages three components as **Squiz DXP Edge Component Services** — server-side HTML renderers that run on Cloudflare Workers inside DXP. These are distinct from the Matrix nester deployment described above.
+
+### Deployed Components
+
+| Component | Namespace | Version | DXP URL |
+| --- | --- | --- | --- |
+| **Header** | `ntg-web-design-system` | `1.0.4` | `…/ntg-web-design-system/header` |
+| **Footer** | `ntg-web-design-system` | `0.1.2` | `…/ntg-web-design-system/footer` |
+| **Global Alert** | `ntg-web-design-system` | `0.1.0` | `…/ntg-web-design-system/global-alert` |
+
+All three components emit plain HTML styled by the site-wide theme CSS (loaded via the `head.html` nester). No React, no inline scripts (except where noted in per-component READMEs).
+
+### Source Structure
+
+Each DXP component lives under `src/components/<Name>/dxp/`:
+
+```
+src/components/<Name>/dxp/
+├── manifest.json            # Squiz DXP v1 manifest (metadata + input JSON Schema + preview map)
+├── main.js                  # Edge renderer — pure ESM, exports { async main(input) }
+├── example.data.json        # Sample inputs for the local preview.html harness
+├── preview.html             # Local SSR harness (opens in Vite dev server)
+├── README.md                # Component dev/deploy guide
+└── previews/
+    ├── wrapper.html         # Dev-ui wrapper with <!-- INLINE_THEME_CSS_START/END --> markers
+    └── *.data.json          # One file per preview variant
+```
+
+Staged output (produced by prepare scripts) goes to `dist/components/<name>/`. The `dist/` copy has theme CSS inlined into `previews/wrapper.html` — required by the Squiz DXP CLI.
+
+### Local Development
+
+#### Preview a single component
+
+```bash
+# Prepare + open dev-ui for one component
+npm run cmp-globalalert-dev   # Global Alert
+npm run cmp-header-dev        # Header
+npm run cmp-footer-dev        # Footer
+```
+
+#### Preview all components together
+
+```bash
+# Prepares all DXP components, then opens dev-ui at dist/components/
+npm run cmp-dev
+```
+
+`cmp-prepare` (run automatically by `precmp-dev`) discovers every `src/components/*/dxp/manifest.json` and stages each into `dist/components/<name>/`, so new DXP components are picked up without any script changes.
+
+#### Local preview harness
+
+While Vite dev server is running (`npm run dev`), open:
+
+```
+http://localhost:5173/src/components/GlobalAlert/dxp/preview.html
+http://localhost:5173/src/components/Header/dxp/preview.html
+http://localhost:5173/src/components/Footer/dxp/preview.html
+```
+
+### Deployment
+
+Each component has individual deploy scripts with automatic `pre*` prepare hooks:
+
+```bash
+# Validate (no upload)
+npm run cmp-globalalert-deploy:dry-run
+npm run cmp-header-deploy:dry-run
+npm run cmp-footer-deploy:dry-run
+
+# Deploy to live DXP tenant
+npm run cmp-globalalert-deploy
+npm run cmp-header-deploy
+npm run cmp-footer-deploy
+```
+
+Before deploying, increment the `"version"` field in `manifest.json` following semantic versioning. The DXP CLI will reject a re-deploy of the same version.
+
+### Per-Component Documentation
+
+- **Header** — [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md)
+- **Footer** — [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md)
+- **Global Alert** — [src/components/GlobalAlert/dxp/README.md](src/components/GlobalAlert/dxp/README.md)
+
+---
+
 ## Related Documentation
 
 - **[STORYBOOK_GFB_DEPLOYMENT.md](STORYBOOK_GFB_DEPLOYMENT.md)** - Deploy Storybook documentation site to Squiz Matrix

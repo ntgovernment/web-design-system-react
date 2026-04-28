@@ -5,14 +5,14 @@
   "displayName": "Footer",
   "description": "Site-wide footer with NT Government link sections, social media, branding, acknowledgement and copyright.",
   "icon": {
-    "id": "web",
+    "id": "call_to_action",
     "color": {
       "type": "enum",
       "value": "blue"
     }
   },
   "type": "edge",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "mainFunction": "main",
   "functions": [
     {

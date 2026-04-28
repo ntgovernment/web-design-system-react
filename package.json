@@ -1,6 +1,6 @@
 {
   "name": "@ntgovernment/web-design-system",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Component library and themes for NT Government websites and intranets",
   "type": "module",
   "main": "./dist/components.min.js",
@@ -50,7 +50,21 @@
     "precmp-footer-deploy": "npm run cmp-footer-prepare",
     "cmp-footer-deploy": "cd dist/components/footer && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp deploy .",
     "precmp-footer-deploy:dry-run": "npm run cmp-footer-prepare",
-    "cmp-footer-deploy:dry-run": "cd dist/components/footer && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp deploy --dry-run ."
+    "cmp-footer-deploy:dry-run": "cd dist/components/footer && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp deploy --dry-run .",
+    "cmp-globalalert-prepare": "node scripts/prepare-globalalert-dxp.js",
+    "precmp-globalalert-dev": "npm run cmp-globalalert-prepare",
+    "cmp-globalalert-dev": "cd dist/components/global-alert && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp dev-ui .",
+    "precmp-globalalert-dev:runner": "npm run cmp-globalalert-prepare",
+    "cmp-globalalert-dev:runner": "cd dist/components/global-alert && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp dev -e .",
+    "precmp-globalalert-deploy": "npm run cmp-globalalert-prepare",
+    "cmp-globalalert-deploy": "cd dist/components/global-alert && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp deploy .",
+    "precmp-globalalert-deploy:dry-run": "npm run cmp-globalalert-prepare",
+    "cmp-globalalert-deploy:dry-run": "cd dist/components/global-alert && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp deploy --dry-run .",
+    "cmp-prepare": "node scripts/prepare-all-dxp.js",
+    "precmp-dev": "npm run cmp-prepare",
+    "cmp-dev": "cd dist/components && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp dev-ui .",
+    "precmp-dev:runner": "npm run cmp-prepare",
+    "cmp-dev:runner": "cd dist/components && npx -y --package=@squiz/dxp-cli-next@latest dxp-next cmp dev -e ."
   },
   "dependencies": {
     "@ntgovernment/web-design-tokens": "^3.0.0",
