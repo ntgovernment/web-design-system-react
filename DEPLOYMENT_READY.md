@@ -5,6 +5,7 @@
 The Header DXP component (v1.0.1) has been successfully deployed to the Squiz DXP cloud.
 
 **Deployment Details:**
+
 - **Namespace:** `ntg-web-design-system`
 - **Component:** `header`
 - **Version:** `1.0.1`
@@ -13,10 +14,10 @@ The Header DXP component (v1.0.1) has been successfully deployed to the Squiz DX
 
 ## Deployment Checklist
 
-- ✅ Component source prepared (`npm run cmp-prepare`)
-- ✅ Manifest schema validated (`npm run cmp-deploy:dry-run`)
+- ✅ Component source prepared (`npm run cmp-header-prepare`)
+- ✅ Manifest schema validated (`npm run cmp-header-deploy:dry-run`)
 - ✅ Version bumped from 1.0.0 → 1.0.1
-- ✅ Deployed to DXP cloud (`npm run cmp-deploy`)
+- ✅ Deployed to DXP cloud (`npm run cmp-header-deploy`)
 - ✅ Component available in Page Builder
 - ✅ Code committed and pushed to GitHub
 
@@ -56,8 +57,8 @@ To deploy new versions or bug fixes:
    ```
 5. Deploy to DXP:
    ```bash
-   npm run cmp-prepare
-   npm run cmp-deploy
+   npm run cmp-header-prepare
+   npm run cmp-header-deploy
    ```
 
-The `cmp-prepare` and `cmp-deploy` commands will auto-run if you use npm task hooks.
+The `cmp-header-prepare` and `cmp-header-deploy` commands will auto-run if you use npm task hooks. The Footer component service uses parallel `cmp-footer-*` scripts.

@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "component-input.schema.json",
+  "title": "DXP Component Input Schema",
+  "description": "Input validation schema for Squiz DXP component functions. Extends content-meta.schema.json with DXP-specific constraints. Used in the 'input' block of each function definition in manifest.json.",
+  "type": "object",
+  "required": ["type", "properties"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "object",
+      "description": "The input schema root must always be type 'object'."
+    },
+    "properties": {
+      "type": "object",
+      "description": "Map of input property names to their JSON Schema definitions. Each property can use standard JSON Schema types plus the custom DXP types: SquizLink, SquizImage, FormattedText.",
+      "additionalProperties": {
+        "$ref": "#/definitions/inputProperty"
+      }
+    },
+    "required": {
+      "type": "array",
+      "description": "List of required input property names.",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    }
+  },
+  "definitions": {
+    "inputProperty": {
+      "type": "object",
+      "description": "Definition of a single component input property.",
+      "properties": {
+        "type": {
+          "description": "Property data type. Standard JSON Schema types plus DXP-specific types.",
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "string",
+                "boolean",
+                "number",
+                "integer",
+                "null",
+                "array",
+                "object",
+                "FormattedText",
+                "SquizImage",
+                "SquizLink"
+              ]
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "string",
+                  "boolean",
+                  "number",
+                  "integer",
+                  "null",
+                  "array",
+                  "object",
+                  "FormattedText",
+                  "SquizImage",
+                  "SquizLink"
+                ]
+              }
+            }
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable label shown in the DXP content editor UI."
+        },
+        "description": {
+          "type": "string",
+          "description": "Help text shown in the DXP content editor UI."
+        },
+        "default": {
+          "description": "Default value for the property."
+        },
+        "enum": {
+          "type": "array",
+          "description": "List of valid values (renders as a dropdown in the DXP editor)."
+        },
+        "format": {
+          "type": "string",
+          "description": "String format hint.",
+          "enum": [
+            "matrix-asset-uri",
+            "multi-line",
+            "phone",
+            "date",
+            "time",
+            "date-time",
+            "email",
+            "uri",
+            "uri-reference"
+          ]
+        },
+        "minLength": {
+          "type": "integer",
+          "description": "Minimum string length."
+        },
+        "maxLength": {
+          "type": "integer",
+          "description": "Maximum string length."
+        },
+        "minimum": {
+          "type": "number",
+          "description": "Minimum numeric value."
+        },
+        "maximum": {
+          "type": "number",
+          "description": "Maximum numeric value."
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Regex pattern the string value must match."
+        },
+        "items": {
+          "$ref": "#/definitions/inputProperty",
+          "description": "Schema for array items (when type is 'array')."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Nested properties (when type is 'object').",
+          "additionalProperties": {
+            "$ref": "#/definitions/inputProperty"
+          }
+        },
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Required nested property names (when type is 'object')."
+        }
+      }
+    }
+  }
+}

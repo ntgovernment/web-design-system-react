@@ -1,0 +1,183 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "namespace": "ntg-web-design-system",
+  "name": "footer",
+  "displayName": "Footer",
+  "description": "Site-wide footer with NT Government link sections, social media, branding, acknowledgement and copyright.",
+  "icon": {
+    "id": "web",
+    "color": {
+      "type": "enum",
+      "value": "blue"
+    }
+  },
+  "type": "edge",
+  "version": "0.1.0",
+  "mainFunction": "main",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "sections": {
+            "type": "array",
+            "title": "Link sections",
+            "description": "Grouped link lists shown in the main footer area (e.g. 'Information and services', 'Find out more').",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Section title"
+                },
+                "columns": {
+                  "type": "integer",
+                  "title": "Columns",
+                  "description": "Number of columns to flow links into on medium+ screens (1 or 2).",
+                  "enum": [1, 2],
+                  "default": 1
+                },
+                "links": {
+                  "type": "array",
+                  "title": "Links",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "label": { "type": "string", "title": "Label" },
+                      "href": { "type": "string", "title": "URL" }
+                    },
+                    "required": ["label", "href"]
+                  },
+                  "default": []
+                }
+              },
+              "required": ["title", "links"]
+            },
+            "default": []
+          },
+          "socialLinks": {
+            "type": "array",
+            "title": "Social media links",
+            "description": "Shown under a 'Connect with us' heading alongside the link sections.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "platform": { "type": "string", "title": "Platform / label" },
+                "href": { "type": "string", "title": "URL" },
+                "icon": {
+                  "type": "string",
+                  "title": "Icon",
+                  "description": "Font Awesome icon class (e.g. 'fa-brands fa-facebook')."
+                }
+              },
+              "required": ["platform", "href"]
+            },
+            "default": []
+          },
+          "socialSectionTitle": {
+            "type": "string",
+            "title": "Social section title",
+            "default": "Connect with us"
+          },
+          "bottomLinks": {
+            "type": "array",
+            "title": "Bottom links",
+            "description": "Utility links rendered as a single line beneath the main footer (e.g. Privacy, Accessibility, Contact).",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string", "title": "Label" },
+                "href": { "type": "string", "title": "URL" }
+              },
+              "required": ["label", "href"]
+            },
+            "default": []
+          },
+          "linkDivider": {
+            "type": "string",
+            "title": "Bottom links divider",
+            "description": "Character or short string drawn between adjacent bottom links.",
+            "default": "|"
+          },
+          "logo": {
+            "type": "SquizLink",
+            "title": "Image asset"
+          },
+          "logoAlt": {
+            "type": "string",
+            "title": "Logo alt text",
+            "description": "Alt text for the logo image.",
+            "default": ""
+          },
+          "logoHref": {
+            "type": "string",
+            "title": "Logo URL",
+            "description": "Optional URL the logo links to. If omitted, the logo is rendered without a surrounding link."
+          },
+          "acknowledgement": {
+            "type": "string",
+            "title": "Acknowledgement of Country",
+            "description": "Aboriginal acknowledgement text shown in the info section."
+          },
+          "copyrightText": {
+            "type": "string",
+            "title": "Copyright text",
+            "description": "Copyright statement shown beneath the acknowledgement."
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/default.data.json"
+          }
+        }
+      }
+    },
+    "minimal": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/minimal.data.json"
+          }
+        }
+      }
+    },
+    "multiple-sections": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/multiple-sections.data.json"
+          }
+        }
+      }
+    },
+    "social-media-only": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/social-media-only.data.json"
+          }
+        }
+      }
+    }
+  }
+}

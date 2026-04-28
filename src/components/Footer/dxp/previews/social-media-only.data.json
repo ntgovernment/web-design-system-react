@@ -1,0 +1,45 @@
+{
+  "sections": [
+    {
+      "title": "Connect with us",
+      "links": []
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "Facebook",
+      "href": "https://facebook.com/ntgovernment",
+      "icon": "fa-brands fa-facebook"
+    },
+    {
+      "platform": "LinkedIn",
+      "href": "https://linkedin.com/company/nt-government",
+      "icon": "fa-brands fa-linkedin"
+    },
+    {
+      "platform": "YouTube",
+      "href": "https://youtube.com/@ntgovernment",
+      "icon": "fa-brands fa-youtube"
+    },
+    {
+      "platform": "Instagram",
+      "href": "https://instagram.com/ntgovernment",
+      "icon": "fa-brands fa-instagram"
+    },
+    {
+      "platform": "Have your say",
+      "href": "https://consultation.nt.gov.au",
+      "icon": "fa-light fa-comments"
+    }
+  ],
+  "bottomLinks": [
+    { "label": "Copyright, disclaimer and privacy", "href": "#" },
+    { "label": "Freedom of information", "href": "#" },
+    { "label": "Interpreter services", "href": "#" },
+    { "label": "Accessibility", "href": "#" },
+    { "label": "Site map", "href": "#" },
+    { "label": "Contacts", "href": "#" },
+    { "label": "NTG staff systems", "href": "#" }
+  ],
+  "copyrightText": "© 2025 Northern Territory Government of Australia"
+}

@@ -6,11 +6,11 @@ Renders as **server-side HTML only** via `main.js`. A small inline `<script>` ha
 
 ## Files
 
-| File                | Purpose                                                                  |
+| File                | Purpose                                                                |
 | ------------------- | ---------------------------------------------------------------------- |
 | `manifest.json`     | Squiz DXP v1 manifest (component metadata + input JSON Schema)         |
 | `main.js`           | Edge renderer — emits full `<header>` HTML + inline interactivity code |
-| `example.data.json` | Sample inputs for each variant (used by `cmp-dev`)                     |
+| `example.data.json` | Sample inputs for each variant (used by `cmp-header-dev`)              |
 | `preview.html`      | Local preview (SSR test harness with self-contained styles)            |
 | `previews/`         | Data files (`*.data.json`) and wrapper template for each variant       |
 | `README.md`         | This file                                                              |
@@ -44,14 +44,14 @@ npm run dev
 
 ### Test in Squiz DXP dev-ui
 
-The `cmp-dev`, `cmp-dev:runner`, `cmp-deploy`, and `cmp-deploy:dry-run` npm scripts auto-run `npm run cmp-prepare` before executing, which copies the source to `dist/components/header/` and inlines the theme CSS.
+The `cmp-header-dev`, `cmp-header-dev:runner`, `cmp-header-deploy`, and `cmp-header-deploy:dry-run` npm scripts auto-run `npm run cmp-header-prepare` before executing, which copies the source to `dist/components/header/` and inlines the theme CSS.
 
 ```bash
 # Squiz DXP dev-ui (NTG theme)
-npm run cmp-dev
+npm run cmp-header-dev
 
 # Squiz DXP dev runner with live reload
-npm run cmp-dev:runner
+npm run cmp-header-dev:runner
 ```
 
 ## Deployment
@@ -69,12 +69,12 @@ git add -A && git commit -m "Deploy: Header v1.0.2 — <description>"
 git push origin <branch>
 
 # 3. Prepare and deploy to DXP
-npm run cmp-prepare
-npm run cmp-deploy:dry-run  # Validate first
-npm run cmp-deploy          # Deploy to live tenant
+npm run cmp-header-prepare
+npm run cmp-header-deploy:dry-run  # Validate first
+npm run cmp-header-deploy          # Deploy to live tenant
 ```
 
-**The `cmp-deploy` command automatically runs `cmp-prepare` before executing.**
+**The `cmp-header-deploy` command automatically runs `cmp-header-prepare` before executing.**
 
 For detailed deployment instructions, see [DEPLOYMENT_READY.md](../../DEPLOYMENT_READY.md).
 
@@ -89,7 +89,7 @@ For detailed deployment instructions, see [DEPLOYMENT_READY.md](../../DEPLOYMENT
 The component uses only HTML semantics and Bootstrap 5 classes (`.navbar`, `.container`, `.input-group`, `.form-control`, `.btn`, etc.).
 
 - **Local preview** (`preview.html`): External `<link>` to `https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/theme-ntg.min.css`.
-- **DXP deployment** (`previews/wrapper.html`): Theme CSS inlined at build time by `scripts/prepare-header-dxp.js`.
+- **DXP deployment** (`previews/wrapper.html`): Theme CSS inlined at build time by `scripts/prepare-header-dxp.js` (run via `npm run cmp-header-prepare`).
 - **Production** (Squiz Matrix): CSS loaded site-wide from the `head.html` nester.
 
 ## Deployment

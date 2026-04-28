@@ -713,11 +713,11 @@ Component Services are server-rendered, self-contained components deployed as ed
 **Test locally in Squiz DXP:**
 
 ```bash
-npm run cmp-prepare          # Copy source to dist/ and inline styles
-npm run cmp-dev             # Open dev-ui (http://localhost:3000)
+npm run cmp-header-prepare   # Copy source to dist/ and inline styles
+npm run cmp-header-dev       # Open dev-ui (http://localhost:3000)
 ```
 
-The `cmp-dev`, `cmp-dev:runner`, `cmp-deploy`, and `cmp-deploy:dry-run` commands auto-run `cmp-prepare`.
+The `cmp-header-dev`, `cmp-header-dev:runner`, `cmp-header-deploy`, and `cmp-header-deploy:dry-run` commands auto-run `cmp-header-prepare`. Equivalent `cmp-footer-*` scripts exist for the Footer component service.
 
 **Deploy to DXP:**
 
@@ -727,17 +727,17 @@ The `cmp-dev`, `cmp-dev:runner`, `cmp-deploy`, and `cmp-deploy:dry-run` commands
 4. Prepare and deploy:
 
    ```bash
-   npm run cmp-prepare            # Copy source to dist/, inline theme CSS
-   npm run cmp-deploy:dry-run     # Validate manifest
-   npm run cmp-deploy             # Push to DXP cloud
+   npm run cmp-header-prepare       # Copy source to dist/, inline theme CSS
+   npm run cmp-header-deploy:dry-run # Validate manifest
+   npm run cmp-header-deploy        # Push to DXP cloud
    ```
 
 5. Verify in DXP Console → **Component Service** → **Components & Layouts**
 
 **Troubleshooting:**
 
-- **"Version already exists" error**: Increment `version` in `manifest.json` using semantic versioning (e.g., `1.0.0` → `1.0.1`), then rerun `cmp-prepare` and `cmp-deploy`
-- **"No components found" error**: Ensure `cmp-prepare` completed successfully; check that `dist/components/header/manifest.json` exists
+- **"Version already exists" error**: Increment `version` in `manifest.json` using semantic versioning (e.g., `1.0.0` → `1.0.1`), then rerun `cmp-header-prepare` (or `cmp-footer-prepare`) and the matching `cmp-*-deploy`
+- **"No components found" error**: Ensure `cmp-header-prepare` (or `cmp-footer-prepare`) completed successfully; check that `dist/components/header/manifest.json` (or `dist/components/footer/manifest.json`) exists
 - **Cannot authenticate**: Run `dxp-next auth login --tenant=<TENANT-ID>` first (see [DEPLOYMENT_READY.md](DEPLOYMENT_READY.md))
 
 **Branch naming:** `feature/header` or `feature/dxp-component-*`

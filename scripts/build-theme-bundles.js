@@ -11,8 +11,8 @@
  *   1. theme-{ntg|central}.bundled.css — self-contained token bundle
  *      (base-variables + common + grid + typography + typography-literals + theme palette)
  *   2. typography-{ntg|central}.css — Bootstrap typography overrides
- *   3. Component CSS       — Button, Tag, Input, SearchBar base styles
- *   4. Component theme CSS — per-theme overrides for each component
+ *   3. Component CSS       — all ComponentName.css base styles (auto-discovered)
+ *   4. Component theme CSS — all ComponentName-{theme}.css overrides (auto-discovered)
  *
  * Output:
  *   dist/theme-ntg.min.css
@@ -21,7 +21,13 @@
  * Usage: node scripts/build-theme-bundles.js (invoked by build-dist.js)
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+} from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
@@ -71,33 +77,38 @@ function readCSSFile(filePath) {
   }
 }
 
-// Component CSS files
-const componentCSS = [
-  {
-    path: join(rootDir, "src", "components", "Button", "Button.css"),
-    name: "Button.css",
-  },
-  {
-    path: join(rootDir, "src", "components", "Tag", "Tag.css"),
-    name: "Tag.css",
-  },
-  {
-    path: join(rootDir, "src", "components", "Input", "Input.css"),
-    name: "Input.css",
-  },
-  {
-    path: join(rootDir, "src", "components", "SearchBar", "SearchBar.css"),
-    name: "SearchBar.css",
-  },
-  {
-    path: join(rootDir, "src", "components", "GlobalAlert", "GlobalAlert.css"),
-    name: "GlobalAlert.css",
-  },
-  {
-    path: join(rootDir, "src", "components", "Header", "Header.css"),
-    name: "Header.css",
-  },
-];
+// Auto-discover all component CSS files from src/components/
+const componentsDir = join(rootDir, "src", "components");
+
+function discoverComponentCSS() {
+  const componentDirs = readdirSync(componentsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .sort();
+
+  const baseFiles = [];
+  const themeFiles = { ntg: [], central: [] };
+
+  for (const dir of componentDirs) {
+    const basePath = join(componentsDir, dir, `${dir}.css`);
+    if (existsSync(basePath)) {
+      baseFiles.push({ path: basePath, name: `${dir}.css` });
+    }
+    for (const theme of ["ntg", "central"]) {
+      const themePath = join(componentsDir, dir, `${dir}-${theme}.css`);
+      if (existsSync(themePath)) {
+        themeFiles[theme].push({
+          path: themePath,
+          name: `${dir}-${theme}.css`,
+        });
+      }
+    }
+  }
+
+  return { baseFiles, themeFiles };
+}
+
+const { baseFiles: componentCSS, themeFiles } = discoverComponentCSS();
 
 // Theme configurations
 const themes = [
@@ -106,24 +117,6 @@ const themes = [
     displayName: "NT.GOV.AU",
     themeFile: join(tokensCssDir, "themes", "theme-ntg.bundled.css"),
     bootstrapFile: join(tokensCssDir, "themes", "typography-ntg.css"),
-    buttonTheme: join(rootDir, "src", "components", "Button", "Button-ntg.css"),
-    tagTheme: join(rootDir, "src", "components", "Tag", "Tag-ntg.css"),
-    inputTheme: join(rootDir, "src", "components", "Input", "Input-ntg.css"),
-    searchBarTheme: join(
-      rootDir,
-      "src",
-      "components",
-      "SearchBar",
-      "SearchBar-ntg.css",
-    ),
-    globalAlertTheme: join(
-      rootDir,
-      "src",
-      "components",
-      "GlobalAlert",
-      "GlobalAlert-ntg.css",
-    ),
-    headerTheme: join(rootDir, "src", "components", "Header", "Header-ntg.css"),
     outputFile: "theme-ntg.min.css",
   },
   {
@@ -131,42 +124,6 @@ const themes = [
     displayName: "NTG Central",
     themeFile: join(tokensCssDir, "themes", "theme-central.bundled.css"),
     bootstrapFile: join(tokensCssDir, "themes", "typography-central.css"),
-    buttonTheme: join(
-      rootDir,
-      "src",
-      "components",
-      "Button",
-      "Button-central.css",
-    ),
-    tagTheme: join(rootDir, "src", "components", "Tag", "Tag-central.css"),
-    inputTheme: join(
-      rootDir,
-      "src",
-      "components",
-      "Input",
-      "Input-central.css",
-    ),
-    searchBarTheme: join(
-      rootDir,
-      "src",
-      "components",
-      "SearchBar",
-      "SearchBar-central.css",
-    ),
-    globalAlertTheme: join(
-      rootDir,
-      "src",
-      "components",
-      "GlobalAlert",
-      "GlobalAlert-central.css",
-    ),
-    headerTheme: join(
-      rootDir,
-      "src",
-      "components",
-      "Header",
-      "Header-central.css",
-    ),
     outputFile: "theme-central.min.css",
   },
 ];
@@ -199,35 +156,12 @@ themes.forEach((theme) => {
   });
 
   // Add component theme overrides
-  const buttonThemeContent = readCSSFile(theme.buttonTheme);
-  if (buttonThemeContent) {
-    cssBundle += `/* Button-${theme.name}.css */\n${buttonThemeContent}\n\n`;
-  }
-
-  const tagThemeContent = readCSSFile(theme.tagTheme);
-  if (tagThemeContent) {
-    cssBundle += `/* Tag-${theme.name}.css */\n${tagThemeContent}\n\n`;
-  }
-
-  const inputThemeContent = readCSSFile(theme.inputTheme);
-  if (inputThemeContent) {
-    cssBundle += `/* Input-${theme.name}.css */\n${inputThemeContent}\n\n`;
-  }
-
-  const searchBarThemeContent = readCSSFile(theme.searchBarTheme);
-  if (searchBarThemeContent) {
-    cssBundle += `/* SearchBar-${theme.name}.css */\n${searchBarThemeContent}\n\n`;
-  }
-
-  const globalAlertThemeContent = readCSSFile(theme.globalAlertTheme);
-  if (globalAlertThemeContent) {
-    cssBundle += `/* GlobalAlert-${theme.name}.css */\n${globalAlertThemeContent}\n\n`;
-  }
-
-  const headerThemeContent = readCSSFile(theme.headerTheme);
-  if (headerThemeContent) {
-    cssBundle += `/* Header-${theme.name}.css */\n${headerThemeContent}\n\n`;
-  }
+  themeFiles[theme.name].forEach(({ path, name }) => {
+    const content = readCSSFile(path);
+    if (content) {
+      cssBundle += `/* ${name} */\n${content}\n\n`;
+    }
+  });
 
   // Strip @import statements — all imported content is already concatenated above
   cssBundle = cssBundle.replace(/@import\s+['"][^'"]*['"]\s*;?/g, "");

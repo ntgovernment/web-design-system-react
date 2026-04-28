@@ -2,7 +2,7 @@
   "$schema": "http://localhost:3000/schemas/v1.json#",
   "namespace": "ntg-web-design-system",
   "name": "header",
-  "displayName": "NT Gov Header",
+  "displayName": "Header",
   "description": "Site-wide header with NT Government branding, navigation, and optional search.",
   "icon": {
     "id": "web",

@@ -106,30 +106,33 @@ Component Services are server-rendered, self-contained components deployed as ed
 **Available components:**
 
 - **`header`** ✅ **DEPLOYED** — Site-wide header with NT Government branding, navigation, and optional search. Version 1.0.1 is live on DXP cloud. See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for configuration and styling details.
+- **`footer`** 🧪 **PREVIEW** — Site-wide footer with link sections, social media, branding, acknowledgement and copyright. Version 0.1.0. See [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md) for configuration and styling details.
+
+Npm scripts are namespaced per component: `cmp-header-*` for the Header service and `cmp-footer-*` for the Footer service.
 
 **Develop locally:**
 
 ```bash
 # Copy component source to dist/ and inline styles
-npm run cmp-prepare
+npm run cmp-header-prepare      # or: npm run cmp-footer-prepare
 
 # Open the Squiz DXP dev-ui (http://localhost:3000 by default)
-npm run cmp-dev
+npm run cmp-header-dev          # or: npm run cmp-footer-dev
 
 # Or use the dev runner with live reload
-npm run cmp-dev:runner
+npm run cmp-header-dev:runner   # or: npm run cmp-footer-dev:runner
 ```
 
-The `cmp-dev` and `cmp-deploy` commands automatically run `cmp-prepare` before executing.
+The `cmp-*-dev` and `cmp-*-deploy` commands automatically run the matching `cmp-*-prepare` before executing.
 
 **Deploy to DXP:**
 
 ```bash
 # Validate before deploying
-npm run cmp-deploy:dry-run
+npm run cmp-header-deploy:dry-run    # or: npm run cmp-footer-deploy:dry-run
 
 # Deploy to your logged-in tenant
-npm run cmp-deploy
+npm run cmp-header-deploy            # or: npm run cmp-footer-deploy
 ```
 
 Verify deployment in the DXP Console → **Component Service** → **Components & Layouts**.
