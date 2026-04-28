@@ -1,95 +1,63 @@
-# Header DXP Component — Deployment Ready
+# Header DXP Component — Deployment Complete
 
-**Status:** ✅ **PREPARED AND VALIDATED**
+**Status:** ✅ **DEPLOYED AND LIVE**
 
-The Header DXP component has been successfully prepared and validated. All source files are in place at `dist/components/header/` and the manifest schema is correct.
+The Header DXP component (v1.0.1) has been successfully deployed to the Squiz DXP cloud.
 
-## Pre-Deployment Checklist
+**Deployment Details:**
+- **Namespace:** `ntg-web-design-system`
+- **Component:** `header`
+- **Version:** `1.0.1`
+- **Type:** Edge Function (Server-Side Rendering)
+- **Status:** Live on DXP Cloud
 
-- ✅ Component source copied from `src/components/Header/dxp/` to `dist/components/header/`
-- ✅ Theme CSS inlined into `dist/components/header/previews/wrapper.html`
-- ✅ Manifest schema validation passed
-- ✅ Entry point (`main.js`) verified
+## Deployment Checklist
 
-## Next Steps: Authenticate and Deploy
-
-### 1. Authenticate with Squiz DXP
-
-```bash
-dxp-next auth login --tenant=<TENANT-ID>
-```
-
-Replace `<TENANT-ID>` with your DXP tenant ID. You can find this in:
-- Your Squiz DXP Console URL
-- Your account settings in the DXP admin panel
-- Your Squiz documentation or onboarding materials
-
-**Example:**
-```bash
-dxp-next auth login --tenant=my-tenant-id-abc123
-```
-
-This is a one-time setup. The CLI will securely store your authentication token.
-
-### 2. Deploy the Component
-
-Once authenticated, run:
-
-```bash
-npm run cmp-deploy
-```
-
-This will:
-- Push the Header component to your DXP tenant
-- Register it as an available component service
-- Make it available for use in Page Builder
-
-### 3. Verify Deployment
-
-After deployment succeeds, verify in the DXP Console:
-
-1. Navigate to **Component Service** → **Components & Layouts**
-2. Look for **NT Gov Header** in the component list
-3. Check that the manifest displays:
-   - **Name:** `header`
-   - **Namespace:** `ntg-web-design-system`
-   - **Type:** `edge`
-   - **Inputs:** variant, agencyName, navItems, showSearch, searchVariant, etc.
+- ✅ Component source prepared (`npm run cmp-prepare`)
+- ✅ Manifest schema validated (`npm run cmp-deploy:dry-run`)
+- ✅ Version bumped from 1.0.0 → 1.0.1
+- ✅ Deployed to DXP cloud (`npm run cmp-deploy`)
+- ✅ Component available in Page Builder
+- ✅ Code committed and pushed to GitHub
 
 ## Using the Component in Squiz DXP
 
-Once deployed, drop the **NT Gov Header** component into the **header** zone of the `full-width-section` Page Layout.
+The Header component is now available for use in the DXP Page Builder:
 
-## Troubleshooting
+1. In the DXP Console, navigate to **Page Builder**
+2. Create a new page or edit an existing one
+3. Add the **NT Gov Header** component to the **header** zone
+4. Configure the component with:
+   - **Variant:** `nt-gov-au`, `agency-internet`, or `other-site`
+   - **Navigation Items:** Array of `{ label, href, icon?, active? }`
+   - **Search:** Enable/disable and set variant (`expanded` or `icon`)
+   - **Agency Name:** (for agency-internet and other-site variants)
 
-**"Unauthorized" (401) error:**
-- You haven't authenticated yet, or your session expired
-- Run: `dxp-next auth login --tenant=<TENANT-ID>`
+See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for full configuration details.
 
-**"Cannot upload component version ... already exists" error:**
-- The component version has already been deployed to this tenant
-- **Solution:** Increment the version in `src/components/Header/dxp/manifest.json`
+## Future Deployments
 
-  ```json
-  {
-    "version": "1.0.1"  // Bump from 1.0.0 to 1.0.1 (or 1.1.0 for minor, 2.0.0 for major)
-  }
-  ```
+To deploy new versions or bug fixes:
 
-- Then re-prepare and re-deploy:
-  ```bash
-  npm run cmp-prepare
-  npm run cmp-deploy
-  ```
+1. Make changes to `src/components/Header/` (component code or styles)
+2. Update the version in `src/components/Header/dxp/manifest.json` using semantic versioning:
+   ```json
+   "version": "1.0.2"  // increment patch, minor, or major
+   ```
+3. Regenerate inlined CSS (if you edited styles):
+   ```bash
+   node scripts/inline-header-css.js
+   ```
+4. Commit and push to GitHub:
+   ```bash
+   git add -A
+   git commit -m "Deploy: Header component v1.0.2 — <change description>"
+   git push origin <branch>
+   ```
+5. Deploy to DXP:
+   ```bash
+   npm run cmp-prepare
+   npm run cmp-deploy
+   ```
 
-**"No components found" error:**
-- The `cmp-prepare` step may not have run
-- Retry: `npm run cmp-prepare && npm run cmp-deploy`
-
-**Component not appearing in Page Builder:**
-- Verify deployment succeeded (check DXP Console)
-- Refresh the Page Builder UI
-- Clear your browser cache
-
-**For more help:**
-See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) or [CONTRIBUTING.md](CONTRIBUTING.md#component-services).
+The `cmp-prepare` and `cmp-deploy` commands will auto-run if you use npm task hooks.

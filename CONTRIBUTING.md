@@ -692,7 +692,7 @@ Component Services are server-rendered, self-contained components deployed as ed
 
 **Current component services:**
 
-- **Header** (`src/components/Header/dxp/`) — Site-wide header with NT branding, navigation, and search
+- **Header** ✅ **DEPLOYED** — `src/components/Header/dxp/` — Site-wide header with NT branding, navigation, and search (v1.0.1 live on DXP cloud)
 
 **Editing a component service:**
 
@@ -721,14 +721,24 @@ The `cmp-dev`, `cmp-dev:runner`, `cmp-deploy`, and `cmp-deploy:dry-run` commands
 
 **Deploy to DXP:**
 
-```bash
-npm run cmp-deploy:dry-run    # Validate first
-npm run cmp-deploy            # Push to DXP
+1. Update the version in `src/components/Header/dxp/manifest.json` (semantic versioning)
+2. Regenerate CSS if needed: `node scripts/inline-header-css.js`
+3. Commit and push: `git add -A && git commit -m "Deploy: Header v1.0.2 — <description>"` then `git push origin <branch>`
+4. Prepare and deploy:
 
-# Verify in DXP Console → Component Service → Components & Layouts
-```
+   ```bash
+   npm run cmp-prepare            # Copy source to dist/, inline theme CSS
+   npm run cmp-deploy:dry-run     # Validate manifest
+   npm run cmp-deploy             # Push to DXP cloud
+   ```
 
-If you get a "version already exists" error, increment `version` in `manifest.json` using semantic versioning (e.g., `1.0.0` → `1.0.1`), then rerun `cmp-prepare` and `cmp-deploy`.
+5. Verify in DXP Console → **Component Service** → **Components & Layouts**
+
+**Troubleshooting:**
+
+- **"Version already exists" error**: Increment `version` in `manifest.json` using semantic versioning (e.g., `1.0.0` → `1.0.1`), then rerun `cmp-prepare` and `cmp-deploy`
+- **"No components found" error**: Ensure `cmp-prepare` completed successfully; check that `dist/components/header/manifest.json` exists
+- **Cannot authenticate**: Run `dxp-next auth login --tenant=<TENANT-ID>` first (see [DEPLOYMENT_READY.md](DEPLOYMENT_READY.md))
 
 **Branch naming:** `feature/header` or `feature/dxp-component-*`
 

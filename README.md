@@ -105,7 +105,7 @@ Component Services are server-rendered, self-contained components deployed as ed
 
 **Available components:**
 
-- **`header`** — Site-wide header with NT Government branding, navigation, and optional search. See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for configuration and styling details.
+- **`header`** ✅ **DEPLOYED** — Site-wide header with NT Government branding, navigation, and optional search. Version 1.0.1 is live on DXP cloud. See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for configuration and styling details.
 
 **Develop locally:**
 
