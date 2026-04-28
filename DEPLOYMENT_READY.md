@@ -1,64 +1,105 @@
-# Header DXP Component — Deployment Complete
+# DXP Component Services — Deployment Status
 
-**Status:** ✅ **DEPLOYED AND LIVE**
+**Status:** ✅ **BOTH COMPONENTS DEPLOYED AND LIVE**
 
-The Header DXP component (v1.0.1) has been successfully deployed to the Squiz DXP cloud.
+Both the Header and Footer DXP Component Services have been successfully deployed to the Squiz DXP cloud under the `ntg-web-design-system` namespace.
 
-**Deployment Details:**
+---
 
-- **Namespace:** `ntg-web-design-system`
-- **Component:** `header`
-- **Version:** `1.0.1`
-- **Type:** Edge Function (Server-Side Rendering)
-- **Status:** Live on DXP Cloud
+## Header Component Service
 
-## Deployment Checklist
+**Deployed location:**
+`https://dxp.squiz.cloud/organization/ntgov-4670/component-service/all-components/ntg-web-design-system/header`
+
+| Field     | Value                                        |
+| --------- | -------------------------------------------- |
+| Namespace | `ntg-web-design-system`                      |
+| Name      | `header`                                     |
+| Version   | `1.0.3`                                      |
+| Type      | Edge (Server-Side Rendering)                 |
+| Previews  | `nt-gov-au`, `agency-internet`, `other-site` |
+
+### Deployment Checklist — Header
 
 - ✅ Component source prepared (`npm run cmp-header-prepare`)
 - ✅ Manifest schema validated (`npm run cmp-header-deploy:dry-run`)
-- ✅ Version bumped from 1.0.0 → 1.0.1
 - ✅ Deployed to DXP cloud (`npm run cmp-header-deploy`)
 - ✅ Component available in Page Builder
 - ✅ Code committed and pushed to GitHub
 
-## Using the Component in Squiz DXP
-
-The Header component is now available for use in the DXP Page Builder:
+### Using the Header in Squiz DXP
 
 1. In the DXP Console, navigate to **Page Builder**
-2. Create a new page or edit an existing one
-3. Add the **NT Gov Header** component to the **header** zone
-4. Configure the component with:
+2. Create or edit a page and add the **NT Gov Header** component to the **header** zone
+3. Configure:
    - **Variant:** `nt-gov-au`, `agency-internet`, or `other-site`
    - **Navigation Items:** Array of `{ label, href, icon?, active? }`
    - **Search:** Enable/disable and set variant (`expanded` or `icon`)
-   - **Agency Name:** (for agency-internet and other-site variants)
+   - **Agency Name:** (for `agency-internet` and `other-site` variants)
 
 See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for full configuration details.
 
-## Future Deployments
+---
 
-To deploy new versions or bug fixes:
+## Footer Component Service
 
-1. Make changes to `src/components/Header/` (component code or styles)
-2. Update the version in `src/components/Header/dxp/manifest.json` using semantic versioning:
-   ```json
-   "version": "1.0.2"  // increment patch, minor, or major
-   ```
-3. Regenerate inlined CSS (if you edited styles):
+**Deployed location:**
+`https://dxp.squiz.cloud/organization/ntgov-4670/component-service/all-components/ntg-web-design-system/footer`
+
+| Field     | Value                                                          |
+| --------- | -------------------------------------------------------------- |
+| Namespace | `ntg-web-design-system`                                        |
+| Name      | `footer`                                                       |
+| Version   | `0.1.1`                                                        |
+| Type      | Edge (Server-Side Rendering)                                   |
+| Previews  | `default`, `minimal`, `multiple-sections`, `social-media-only` |
+
+### Deployment Checklist — Footer
+
+- ✅ Component source prepared (`npm run cmp-footer-prepare`)
+- ✅ Manifest schema validated (`npm run cmp-footer-deploy:dry-run`)
+- ✅ Deployed to DXP cloud (`npm run cmp-footer-deploy`)
+- ✅ Component available in Page Builder
+- ✅ Code committed and pushed to GitHub (v0.5.0)
+
+### Using the Footer in Squiz DXP
+
+1. In the DXP Console, navigate to **Page Builder**
+2. Create or edit a page and add the **NT Gov Footer** component to the **footer** zone
+3. Configure:
+   - **Sections:** Array of `{ title, links: [{ label, href }], columns? }` — main link groups
+   - **Social Links:** Array of `{ platform, href, icon? }` — shown under "Connect with us"
+   - **Bottom Links:** Utility links (Privacy, Accessibility, Contact, etc.)
+   - **Acknowledgement:** Acknowledgement of Country text
+   - **Copyright Text:** Copyright statement
+
+See [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md) for full configuration details.
+
+---
+
+## Re-deploying a Component
+
+To deploy a new version or bug fix:
+
+1. Edit `src/components/{Name}/` (code or styles)
+2. Bump the version in `src/components/{Name}/dxp/manifest.json`
+3. Run `npm run build` to rebuild theme CSS bundles
+4. Commit and push to GitHub
+5. Deploy:
+
    ```bash
-   node scripts/inline-header-css.js
-   ```
-4. Commit and push to GitHub:
-   ```bash
-   git add -A
-   git commit -m "Deploy: Header component v1.0.2 — <change description>"
-   git push origin <branch>
-   ```
-5. Deploy to DXP:
-   ```bash
-   npm run cmp-header-prepare
+   # Header
    npm run cmp-header-deploy
+
+   # Footer
+   npm run cmp-footer-deploy
    ```
 
-The `cmp-header-prepare` and `cmp-header-deploy` commands will auto-run if you use npm task hooks. The Footer component service uses parallel `cmp-footer-*` scripts.
+Both deploy scripts automatically run `prepare` (copies source → `dist/components/{name}/` and inlines `theme-ntg.min.css`) before calling `dxp-next cmp deploy .`.
+
+For a pre-flight validation without deploying:
+
+```bash
+npm run cmp-header-deploy:dry-run
+npm run cmp-footer-deploy:dry-run
+```
