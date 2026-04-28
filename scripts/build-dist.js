@@ -242,6 +242,131 @@ if (existsSync(layoutsSourceDir)) {
   copyLayoutsRecursive(layoutsSourceDir, layoutsDestDir);
 }
 
+// Step 7b: Copy Squiz DXP Component Service components
+//
+// Each React component may ship a `dxp/` subfolder containing a Squiz DXP
+// Component Service package (manifest.json + main.js + example data + README).
+// Walk src/components/*/dxp/ and copy each to dist/components/<name>/.
+console.log("\n🧩 Copying Squiz DXP component services...");
+const reactComponentsDir = join(rootDir, "src", "components");
+const componentsDestDir = join(distDir, "components");
+mkdirSync(componentsDestDir, { recursive: true });
+function copyDxpRecursive(src, dest) {
+  mkdirSync(dest, { recursive: true });
+  for (const entry of readdirSync(src, { withFileTypes: true })) {
+    const srcPath = join(src, entry.name);
+    const destPath = join(dest, entry.name);
+    if (entry.isDirectory()) {
+      // Skip the locally-populated preview assets folder — wrapper resources
+      // are sourced from the main dist/ at runtime, not shipped per-component.
+      if (entry.name === "_assets") continue;
+      copyDxpRecursive(srcPath, destPath);
+    } else {
+      // Skip files only relevant to local development.
+      if (entry.name === "preview.html") continue;
+      copyFileSync(srcPath, destPath);
+      console.log(`  ✓ Copied ${destPath.replace(distDir, "dist")}`);
+    }
+  }
+}
+const dxpComponents = [];
+if (existsSync(reactComponentsDir)) {
+  for (const entry of readdirSync(reactComponentsDir, {
+    withFileTypes: true,
+  })) {
+    if (!entry.isDirectory()) continue;
+    const dxpDir = join(reactComponentsDir, entry.name, "dxp");
+    if (!existsSync(join(dxpDir, "manifest.json"))) continue;
+    const slug = entry.name.toLowerCase();
+    copyDxpRecursive(dxpDir, join(componentsDestDir, slug));
+    dxpComponents.push(slug);
+  }
+}
+
+// Step 7c: Build the client-side hydration bundle (dist/hydrate.min.js)
+console.log("\n💧 Building client-side hydration bundle...");
+try {
+  execSync("vite build --mode hydrate", { cwd: rootDir, stdio: "inherit" });
+  const hydrateBuildDir = join(distDir, "hydrate-build");
+  // Vite emits hydrate.iife.js (or hydrate.iife.cjs); rename to hydrate.min.js
+  const candidates = ["hydrate.iife.js", "hydrate.iife.cjs", "hydrate.js"];
+  let found = null;
+  for (const candidate of candidates) {
+    const p = join(hydrateBuildDir, candidate);
+    if (existsSync(p)) {
+      found = p;
+      break;
+    }
+  }
+  if (found) {
+    copyFileSync(found, join(distDir, "hydrate.min.js"));
+    console.log("  ✓ Built dist/hydrate.min.js");
+  } else {
+    console.warn("  ⚠ Hydrate bundle output not found in dist/hydrate-build/");
+  }
+  if (existsSync(hydrateBuildDir)) {
+    rmSync(hydrateBuildDir, { recursive: true, force: true });
+  }
+} catch (error) {
+  console.error("  ✗ Hydrate bundle build failed");
+  process.exit(1);
+}
+
+// Step 7d: Inline preview wrapper stylesheets.
+//
+// The Squiz component-service dev-ui only resolves fully qualified URLs from
+// preview wrapper HTML (relative paths 404 with `text/html` MIME). For each
+// DXP component that ships a `previews/wrapper.html` containing the marker
+//   <!-- INLINE_THEME_CSS_START --> ... <!-- INLINE_THEME_CSS_END -->
+// inline the contents of `dist/theme-ntg.min.css` between the markers in the
+// dist copy so `npm run cmp-dev` loads the styles successfully. The source
+// wrapper keeps its placeholder so it stays diff-friendly.
+console.log("\n🎨 Inlining theme CSS into preview wrappers...");
+const themeCssPath = join(distDir, "theme-ntg.min.css");
+const inlineMarkerStart = "<!-- INLINE_THEME_CSS_START -->";
+const inlineMarkerEnd = "<!-- INLINE_THEME_CSS_END -->";
+if (existsSync(themeCssPath)) {
+  const themeCss = readFileSync(themeCssPath, "utf-8");
+  for (const slug of dxpComponents) {
+    const wrapperPath = join(
+      componentsDestDir,
+      slug,
+      "previews",
+      "wrapper.html",
+    );
+    if (!existsSync(wrapperPath)) continue;
+    let html = readFileSync(wrapperPath, "utf-8");
+    const startIdx = html.indexOf(inlineMarkerStart);
+    const endIdx = html.indexOf(inlineMarkerEnd);
+    if (startIdx === -1 || endIdx === -1) continue;
+    const before = html.slice(0, startIdx + inlineMarkerStart.length);
+    const after = html.slice(endIdx);
+    html = `${before}\n    <style>\n${themeCss}\n    </style>\n    ${after}`;
+    writeFileSync(wrapperPath, html);
+    console.log(
+      `  ✓ Inlined theme CSS into dist/components/${slug}/previews/wrapper.html`,
+    );
+  }
+} else {
+  console.warn("  ⚠ dist/theme-ntg.min.css not found; skipping inline step.");
+}
+
+// Clean up any legacy `_assets/` folders left over from the previous
+// hydration-runtime workflow so they don't get committed.
+for (const entry of readdirSync(reactComponentsDir, { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue;
+  const legacyAssetsDir = join(
+    reactComponentsDir,
+    entry.name,
+    "dxp",
+    "previews",
+    "_assets",
+  );
+  if (existsSync(legacyAssetsDir)) {
+    rmSync(legacyAssetsDir, { recursive: true, force: true });
+  }
+}
+
 // Step 8: Copy vendor files (consolidated from ntgbase GFB 1484642)
 console.log("\n📦 Copying vendor files...");
 const vendorSourceDir = join(rootDir, "src", "squiz", "vendor");
@@ -269,6 +394,7 @@ console.log("   ┌─ Component Library (for Squiz Matrix deployment)");
 console.log(
   "   ├─ components.min.js       - UMD component bundle (React external)",
 );
+console.log("   ├─ hydrate.min.js          - DXP component hydration runtime");
 console.log("   ├─ theme-ntg.min.css       - Complete NT.GOV.AU theme bundle");
 console.log(
   "   ├─ theme-central.min.css   - Complete NTG Central theme bundle",
@@ -287,6 +413,8 @@ console.log("   ┌─ Squiz DXP Page Layouts (dist/layouts/)");
 console.log(
   "   └─ full-width-section/     - Single column / 3 zones (header, main, footer)",
 );
+console.log("   ┌─ Squiz DXP Components (dist/components/)");
+console.log("   └─ header/                 - Site-wide header component");
 console.log("   ┌─ Vendor Files (consolidated from ntgbase)");
 console.log("   ├─ globals/js/             - Bootstrap, jQuery, Funnelback JS");
 console.log("   └─ ntgbase/images/         - NTG logos and icons");

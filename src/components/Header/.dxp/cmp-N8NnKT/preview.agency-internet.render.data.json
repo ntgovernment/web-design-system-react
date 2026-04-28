@@ -1,0 +1,16 @@
+{
+  "variant": "agency-internet",
+  "agencyName": "Department of Example",
+  "agencyHref": "/",
+  "logoAlt": "NT Government",
+  "navItems": [
+    { "label": "About us", "href": "/about" },
+    { "label": "Programs", "href": "/programs" },
+    { "label": "Publications", "href": "/publications" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "showSearch": true,
+  "searchVariant": "expanded",
+  "searchPlaceholder": "Search",
+  "searchAction": "/search"
+}

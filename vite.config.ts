@@ -92,6 +92,28 @@ const bundledTokenAliases = {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isLibraryMode = mode === "library";
+  const isHydrateMode = mode === "hydrate";
+
+  if (isHydrateMode) {
+    // Hydration bundle - small IIFE that mounts UMD React components into
+    // SSR'd `[data-hydration-component]` containers emitted by DXP main.js
+    // files. Loaded via the footer_js nester after components.min.js.
+    return {
+      build: {
+        target: "es2018",
+        outDir: "dist/hydrate-build",
+        emptyOutDir: true,
+        minify: "esbuild",
+        sourcemap: false,
+        lib: {
+          entry: resolve(__dirname, "src/squiz/client/hydrate-components.js"),
+          name: "NTGHydrate",
+          fileName: "hydrate",
+          formats: ["iife"],
+        },
+      },
+    };
+  }
 
   if (isLibraryMode) {
     // Library build configuration - generates components.umd.js

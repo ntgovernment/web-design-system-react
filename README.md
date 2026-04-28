@@ -46,7 +46,7 @@ After building (`npm run build`), the `dist/` folder contains:
 | `nesters/footer_content.html`                   | Squiz Matrix design nester — site footer                |
 | `nesters/footer_js.html`                        | Squiz Matrix design nester — bottom-of-body scripts     |
 | `layouts/full-width-section/manifest.json`      | Squiz DXP page layout config — single column, 3 zones   |
-| `layouts/full-width-section/markup.hbs`         | Squiz DXP page layout template — Handlebars            |
+| `layouts/full-width-section/markup.hbs`         | Squiz DXP page layout template — Handlebars             |
 | `favicons/apple-touch-icon-180x180.png`         | Apple touch icon (180×180)                              |
 | `favicons/favicon-16x16.png`                    | 16×16 favicon                                           |
 | `favicons/favicon-32x32.png`                    | 32×32 favicon                                           |
@@ -69,6 +69,7 @@ The system is optimized for deployment to Squiz DXP as both Component Services (
 Page Layouts define the structural templates available in the DXP's Page Builder. They consist of a manifest (metadata + zones) and a Handlebars template for rendering.
 
 **Available layouts:**
+
 - **`full-width-section`** — single-column, full-width layout with three stacked zones (header, main, footer) for building flexible page structures.
 
 **Develop locally:**
@@ -94,6 +95,41 @@ npm run layouts:deploy:dry-run
 
 # Deploy to your logged-in tenant
 npm run layouts:deploy
+```
+
+Verify deployment in the DXP Console → **Component Service** → **Components & Layouts**.
+
+### Component Services
+
+Component Services are server-rendered, self-contained components deployed as edge functions in Squiz DXP. The system currently ships the **Header** component service.
+
+**Available components:**
+
+- **`header`** — Site-wide header with NT Government branding, navigation, and optional search. See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for configuration and styling details.
+
+**Develop locally:**
+
+```bash
+# Copy component source to dist/ and inline styles
+npm run cmp-prepare
+
+# Open the Squiz DXP dev-ui (http://localhost:3000 by default)
+npm run cmp-dev
+
+# Or use the dev runner with live reload
+npm run cmp-dev:runner
+```
+
+The `cmp-dev` and `cmp-deploy` commands automatically run `cmp-prepare` before executing.
+
+**Deploy to DXP:**
+
+```bash
+# Validate before deploying
+npm run cmp-deploy:dry-run
+
+# Deploy to your logged-in tenant
+npm run cmp-deploy
 ```
 
 Verify deployment in the DXP Console → **Component Service** → **Components & Layouts**.

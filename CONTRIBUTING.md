@@ -686,6 +686,56 @@ npm run layouts:deploy            # Push to DXP
 
 **Commit scope:** `dxp(layouts)` or `dxp(layout-name)`
 
+### Component Services
+
+Component Services are server-rendered, self-contained components deployed as edge functions. They are defined in `src/components/<ComponentName>/dxp/` with a `manifest.json` (config) and `main.js` (renderer).
+
+**Current component services:**
+
+- **Header** (`src/components/Header/dxp/`) — Site-wide header with NT branding, navigation, and search
+
+**Editing a component service:**
+
+1. Edit `src/components/Header/Header.tsx` or `src/components/Header/Header.css` as normal
+2. Update `src/components/Header/dxp/main.js` if the rendered output shape changes
+3. Test locally via `preview.html` or Storybook
+
+**Styling considerations:**
+
+- The Header component uses only HTML semantics and Bootstrap 5 classes (`.navbar`, `.container`, `.input-group`, `.form-control`, `.btn`, etc.)
+- Local preview (`preview.html`) has self-contained styles via `scripts/inline-header-css.js`
+- When editing Header CSS, regenerate the inlined styles:
+
+  ```bash
+  node scripts/inline-header-css.js
+  ```
+
+**Test locally in Squiz DXP:**
+
+```bash
+npm run cmp-prepare          # Copy source to dist/ and inline styles
+npm run cmp-dev             # Open dev-ui (http://localhost:3000)
+```
+
+The `cmp-dev`, `cmp-dev:runner`, `cmp-deploy`, and `cmp-deploy:dry-run` commands auto-run `cmp-prepare`.
+
+**Deploy to DXP:**
+
+```bash
+npm run cmp-deploy:dry-run    # Validate first
+npm run cmp-deploy            # Push to DXP
+
+# Verify in DXP Console → Component Service → Components & Layouts
+```
+
+If you get a "version already exists" error, increment `version` in `manifest.json` using semantic versioning (e.g., `1.0.0` → `1.0.1`), then rerun `cmp-prepare` and `cmp-deploy`.
+
+**Branch naming:** `feature/header` or `feature/dxp-component-*`
+
+**Commit scope:** `dxp(header)` or `dxp(components)`
+
+See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for detailed Header configuration and styling.
+
 ### Squiz Matrix Integration
 
 Squiz Matrix nester files live in `src/squiz/nesters/`. These are design templates loaded via Git File Bridge. See [SQUIZ_DXP_DEPLOYMENT.md](SQUIZ_DXP_DEPLOYMENT.md) for integration details.

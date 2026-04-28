@@ -1090,166 +1090,80 @@ function SiteHeader() {
 />
 ```
 
-## Squiz Matrix CMS Integration
+## Squiz DXP Component Service
 
-The Header component is used in the Squiz Matrix design nester `src/squiz/nesters/header_content.html`. The nester renders static HTML that mirrors the React component's output, using Squiz Matrix keywords for dynamic content.
+The Header is packaged for Squiz DXP as a Component Service component at
+[`src/components/Header/dxp/`](./dxp/). It uses the **hydration pattern**: the
+edge `main.js` returns a minimal SSR container with the component's props
+serialised as JSON, and the client-side runtime in
+[`dist/hydrate.min.js`](../../../dist/hydrate.min.js) mounts the React Header
+from `window.NTGDesignSystem` into that container on `DOMContentLoaded`.
 
-### Nester Markup
+### Package layout
+
+```
+src/components/Header/dxp/
+├── manifest.json       # Squiz DXP v1 manifest + input JSON Schema
+├── main.js             # Edge renderer (returns the hydration container)
+├── example.data.json   # Sample inputs per variant (used by `cmp-dev`)
+├── preview.html        # Local SSR + hydration preview
+└── README.md           # Per-component documentation
+```
+
+The build copies the package (minus `preview.html`) to
+`dist/components/header/` for deployment.
+
+### Server output
+
+`main.js` returns markup of the form:
 
 ```html
-<header class="header d-print-none" id="header">
-  <nav class="navbar header__navbar">
-    <div class="header__container">
-      <!-- Logo Section with Hamburger -->
-      <div class="header__logo-section">
-        <button
-          class="header__hamburger"
-          type="button"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-        >
-          <span class="header__hamburger-line"></span>
-          <span class="header__hamburger-line"></span>
-          <span class="header__hamburger-line"></span>
-        </button>
-        <div class="header__logo">
-          <div class="header__logo-group header__logo-group--agency-internet">
-            <a href="https://nt.gov.au" class="header__logo-link">
-              <img
-                src="%globals_asset_url_with_hash:1607588:dist/ntgbase/images/logo-ntg-mono.svg%"
-                alt="NT Government logo"
-                class="header__logo-image"
-              />
-            </a>
-            <a href="%globals_site_url%" class="header__agency-link">
-              <span class="header__agency-title">%globals_site_name%</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Desktop Navigation -->
-      <div class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-item">
-            <a href="/services" class="header__nav-link">
-              <i
-                class="fa-light fa-search header__nav-icon"
-                aria-hidden="true"
-              ></i>
-              <span class="header__nav-text">Find online services</span>
-            </a>
-          </li>
-          <li class="header__nav-item">
-            <a href="https://nt.gov.au/contacts" class="header__nav-link">
-              <span class="header__nav-text">Contacts</span>
-            </a>
-          </li>
-        </ul>
-
-        <!-- Search — expanded on desktop -->
-        <div class="header__search" data-variant="expanded">
-          <div class="header__search-expanded">
-            <form
-              action="https://nt.gov.au/search"
-              class="search-bar"
-              role="search"
-              data-variant="primary"
-            >
-              <div class="input-group search-bar__group">
-                <input
-                  class="form-control search-bar__control"
-                  type="search"
-                  name="query"
-                  placeholder="Search"
-                  aria-label="Search"
-                  autocomplete="off"
-                />
-                <button
-                  class="btn search-bar__button"
-                  type="submit"
-                  aria-label="Run search"
-                >
-                  <span class="search-bar__icon" aria-hidden="true">
-                    <i class="fa-light fa-search search-bar__icon-glyph"></i>
-                  </span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div class="header__mobile-menu">
-    <ul class="header__mobile-nav-list">
-      ...
-    </ul>
-    <div class="header__mobile-search">
-      <form
-        action="https://nt.gov.au/search"
-        class="search-bar"
-        role="search"
-        data-variant="primary"
-      >
-        <!-- Same search markup as desktop -->
-      </form>
-    </div>
-  </div>
-</header>
+<div
+  class="ntg-header-hydration"
+  data-hydration-component="header"
+  data-hydration-props='{"variant":"agency-internet","agencyName":"…",…}'
+  data-instance-id="hdr-abc123xyz"
+>
+  <noscript>
+    <div class="header header--noscript"><a href="…">…</a></div>
+  </noscript>
+</div>
 ```
 
-### CMS Keywords
+`hydrate.min.js` scans for `[data-hydration-component]` containers, parses the
+props, and calls `ReactDOM.createRoot(container).render(<Header {...props}/>)`.
 
-| Keyword                                                                                 | Purpose                        | Maps to                                                           |
-| --------------------------------------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------------- |
-| `https://nt.gov.au`                                                                     | NT.GOV.AU base URL             | `.header__logo-link` href (NT mono logo link target)              |
-| `%globals_site_url%`                                                                    | Agency/site home URL           | `.header__agency-link` href                                       |
-| `%globals_site_name%`                                                                   | Agency/site display name       | `.header__agency-title` text content                              |
-| `%globals_asset_url_with_hash:1607588:dist/ntgbase/images/logo-ntg-mono.svg%`          | NT Government mono logo        | `.header__logo-image` src (agency-internet variant)               |
+### Inputs
 
-### Key Differences from React Component
+See [`dxp/README.md`](./dxp/README.md#inputs) for the full input table. The
+schema mirrors the `HeaderProps` interface above; `onSearch` is omitted (not
+serialisable) and replaced by `searchAction` (form GET to that URL with the
+field name `query`).
 
-| Aspect                | React Component      | CMS Nester                                                     |
-| --------------------- | -------------------- | -------------------------------------------------------------- |
-| Search action         | `onSearch` callback  | `<form action="https://nt.gov.au/search">` with `name="query"` |
-| Mobile menu toggle    | React `useState`     | Inline vanilla JS toggling `aria-expanded` + `display`         |
-| Dismiss (GlobalAlert) | `onDismiss` callback | Inline JS hiding `.global-alert`                               |
-| Icons                 | `<Icon>` component   | Font Awesome `<i>` tags directly                               |
-| Logo / site name      | Props                | Squiz Matrix keywords                                          |
+### Mounting
 
-### Hamburger Toggle Script
+In Squiz DXP, drop the **NT Gov Header** component into the **header** zone of
+the `full-width-section` Page Layout. CSS ships site-wide via the existing
+`head.html` nester (`dist/theme-ntg.min.css` or `dist/theme-central.min.css`).
 
-The nester includes inline JavaScript for the mobile menu toggle:
+### Local development
 
-```js
-var hamburger = document.querySelector(".header__hamburger");
-var mobileMenu = document.querySelector(".header__mobile-menu");
-if (hamburger && mobileMenu) {
-  hamburger.addEventListener("click", function () {
-    var isOpen = hamburger.getAttribute("aria-expanded") === "true";
-    hamburger.setAttribute("aria-expanded", String(!isOpen));
-    mobileMenu.style.display = isOpen ? "" : "flex";
-  });
-}
+```bash
+npm run build                # produces dist/components.min.js, dist/hydrate.min.js, themes
+npm run cmp-dev              # NTG theme via Squiz DXP CLI
+npm run cmp-dev:central      # Central theme
+npm run cmp-deploy:dry-run   # validate manifest only
+npm run cmp-deploy           # push to the connected DXP tenant
 ```
 
-### File Location
+Or open [`dxp/preview.html`](./dxp/preview.html) via the Vite dev server
+(`npm run dev`) to verify SSR + hydration locally without the DXP CLI.
 
-Source: `src/squiz/nesters/header_content.html`
-Build output: `dist/nesters/header_content.html` (copied by `scripts/build-dist.js`)
+### Runtime dependencies (loaded via `footer_js.html`)
 
-The nester is included in the Squiz Matrix design parse file (`src/squiz/design-parse.html`) via:
-
-```html
-<script runat="server">
-  print(
-    `%globals_asset_contents_raw:1607588:dist/nesters/header_content.html%`,
-  );
-</script>
-```
+1. React 18 + ReactDOM 18 UMD globals
+2. `dist/components.min.js` (`window.NTGDesignSystem.Header`)
+3. `dist/hydrate.min.js` (mounts the component)
 
 ## Print Styles
 
