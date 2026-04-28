@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quick Exit - DXP Component Preview</title>
+
+    <link rel="stylesheet" href="https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/theme-ntg.min.css" />
+
+    <!-- Font Awesome (matches production loading) -->
+    <script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        .preview-section {
+            margin: 0 0 3rem;
+            padding: 0;
+            background: #fff;
+        }
+
+        .preview-section>h2 {
+            font-family: inherit;
+            margin: 0;
+            padding: 1rem 1.5rem;
+            background: #1f1f5f;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .preview-section>h3 {
+            margin: 0;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.85rem;
+            color: #555;
+            background: #fafafa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .preview-host {
+            padding: 0;
+        }
+
+        .note {
+            margin: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="note">
+        Local preview of the Quick Exit DXP component. <strong>main.js</strong>
+        renders the full HTML server-side and embeds a small inline script that
+        wires the click → new-tab + redirect behaviour. Run
+        <code>npm run build</code> first to generate
+        <code>dist/theme-ntg.min.css</code>. <strong>Heads-up:</strong> clicking
+        a preview banner here will actually open the exit URL and replace this
+        tab — that's the whole point of the component.
+    </div>
+
+    <div class="preview-section">
+        <h2>1. Default</h2>
+        <h3>Standard Quick Exit banner</h3>
+        <div id="preview-default" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>2. Domestic violence support</h2>
+        <h3>1800 RESPECT helpline copy</h3>
+        <div id="preview-domestic-violence" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>3. Child safety</h2>
+        <h3>Child safety helpline copy</h3>
+        <div id="preview-child-safety" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>4. Whistleblower portal</h2>
+        <h3>Confidential reporting copy + alternate exit URL</h3>
+        <div id="preview-whistleblower" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>5. Mental health crisis</h2>
+        <h3>Lifeline helpline copy</h3>
+        <div id="preview-mental-health" class="preview-host"></div>
+    </div>
+
+    <!-- Server-side render via main.js -->
+    <script type="module">
+        import component from "./main.js";
+
+        const response = await fetch("./example.data.json");
+        const data = await response.json();
+
+        function mount(targetId, html) {
+            const host = document.getElementById(targetId);
+            host.innerHTML = html;
+            // Re-run any inline <script> tags injected via innerHTML (browsers
+            // skip them otherwise) so the click handler binds in the preview.
+            host.querySelectorAll("script").forEach((old) => {
+                const s = document.createElement("script");
+                s.text = old.textContent;
+                old.replaceWith(s);
+            });
+        }
+
+        mount("preview-default", await component.main(data.default));
+        mount("preview-domestic-violence", await component.main(data["domestic-violence"]));
+        mount("preview-child-safety", await component.main(data["child-safety"]));
+        mount("preview-whistleblower", await component.main(data.whistleblower));
+        mount("preview-mental-health", await component.main(data["mental-health"]));
+    </script>
+</body>
+
+</html>

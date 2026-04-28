@@ -490,10 +490,10 @@ In addition to deploying assets to Squiz Matrix via GFB, this repository package
 
 ### Deployed Components
 
-| Component | Namespace | Version | DXP URL |
-| --- | --- | --- | --- |
-| **Header** | `ntg-web-design-system` | `1.0.4` | `…/ntg-web-design-system/header` |
-| **Footer** | `ntg-web-design-system` | `0.1.2` | `…/ntg-web-design-system/footer` |
+| Component        | Namespace               | Version | DXP URL                                |
+| ---------------- | ----------------------- | ------- | -------------------------------------- |
+| **Header**       | `ntg-web-design-system` | `1.0.4` | `…/ntg-web-design-system/header`       |
+| **Footer**       | `ntg-web-design-system` | `0.1.2` | `…/ntg-web-design-system/footer`       |
 | **Global Alert** | `ntg-web-design-system` | `0.1.0` | `…/ntg-web-design-system/global-alert` |
 
 All three components emit plain HTML styled by the site-wide theme CSS (loaded via the `head.html` nester). No React, no inline scripts (except where noted in per-component READMEs).

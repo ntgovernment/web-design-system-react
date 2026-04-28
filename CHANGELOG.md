@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **QuickExit DXP Component Service** (`src/components/QuickExit/dxp/`) — new edge-rendered safety banner for Squiz DXP, deployed as `ntg-web-design-system/quick-exit` v0.1.0
+  - `manifest.json` — Squiz DXP v1 manifest; icon `exit_to_app` (red); inputs: `heading`, `content`, `exitUrl`, `redirectUrl`, `ariaLabel`; 5 named previews (default, domestic-violence, child-safety, whistleblower, mental-health)
+  - `main.js` — pure ESM edge renderer mirroring `QuickExit.tsx` BEM markup (`quick-exit`, `__container`, `__header`, `__icon`, `__heading`, `__content`); all values HTML-escaped; embeds a self-contained inline `<script>` IIFE that reads `data-exit-url` / `data-redirect-url` from the element and wires click + Enter/Space activation — intentionally self-contained so the safety feature works without the GFB theme bundle
+  - `example.data.json` — 5 keyed sample inputs (default, domestic-violence, child-safety, whistleblower, mental-health)
+  - `preview.html` — local SSR harness for all 5 variants
+  - `previews/wrapper.html` + 5 per-variant `*.data.json` files
+  - `README.md` — component dev/deploy guide
+- **`scripts/prepare-quickexit-dxp.js`** — stages `src/components/QuickExit/dxp/` → `dist/components/quick-exit/` and inlines `theme-ntg.min.css` into `previews/wrapper.html` between `<!-- INLINE_THEME_CSS_START/END -->` markers
+- **npm scripts for QuickExit DXP**: `cmp-quickexit-prepare`, `cmp-quickexit-dev`, `cmp-quickexit-dev:runner`, `cmp-quickexit-deploy`, `cmp-quickexit-deploy:dry-run` (each with a `pre*` hook auto-running the prepare step)
+
 - **GlobalAlert DXP Component Service** (`src/components/GlobalAlert/dxp/`) — new edge-rendered component for Squiz DXP, deployed as `ntg-web-design-system/global-alert` v0.1.0
   - `manifest.json` — Squiz DXP v1 manifest with full input JSON Schema; defaults: `variant: "info"`, `title: "Important update"`, `description: "<p>Service updates and important information for all users.</p>"`, `dismissible: false`, `dismissLabel: "Dismiss alert"`; supports `ctaText` / `ctaHref` for an optional call-to-action button
   - `main.js` — pure ESM edge renderer mirroring `GlobalAlert.tsx` BEM markup (`global-alert`, `global-alert--{variant}`, `__container`, `__content`, `__text`, `__title`, `__description`, `__actions`, `__cta`, `__dismiss`); `description` rendered as raw `FormattedText` HTML; all other values HTML-escaped; invalid variant values fall back to `info`
