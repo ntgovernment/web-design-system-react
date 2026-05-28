@@ -1,0 +1,30 @@
+{
+  "cards": [
+    {
+      "variant": "full",
+      "title": "Featured services",
+      "description": "Cards can be styled on a grey background to separate them from page content.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/featured"
+    },
+    {
+      "variant": "full",
+      "title": "Support resources",
+      "description": "Consistent typography and spacing remain across theming variants.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/support"
+    }
+  ],
+  "columns": 2,
+  "backgroundColor": "grey",
+  "showImage": false,
+  "showMetadata": false,
+  "showDescription": true,
+  "showButton": true,
+  "buttonText": "Learn more",
+  "sectionTitle": "Featured services"
+}

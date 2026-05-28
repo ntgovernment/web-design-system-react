@@ -1,0 +1,41 @@
+{
+  "cards": [
+    {
+      "variant": "full",
+      "title": "Preliminary exploration",
+      "description": "Getting access to land and notice to landowners, exploration on existing title areas, disputes over access.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/exploration"
+    },
+    {
+      "variant": "full",
+      "title": "Mineral titles",
+      "description": "Types of mineral title, summary of title types and conditions.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/mineral-titles"
+    },
+    {
+      "variant": "full",
+      "title": "Environmental impact assessment",
+      "description": "Formal assessment and matters of national environmental significance.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/environmental-impact"
+    }
+  ],
+  "columns": 3,
+  "backgroundColor": "white",
+  "showImage": false,
+  "showMetadata": false,
+  "showDescription": true,
+  "showButton": true,
+  "buttonText": "Read more",
+  "sectionTitle": "Mining applications and processes",
+  "sectionSubtitle": "A concise overview of the services we provide.",
+  "selectionMode": "manual"
+}

@@ -14,6 +14,9 @@ export type { HeaderProps, HeaderNavItem } from "./components/Header";
 export { Card } from "./components/Card";
 export type { CardProps } from "./components/Card";
 
+export { DisplayCards } from "./components/DisplayCards";
+export type { DisplayCardsProps } from "./components/DisplayCards";
+
 export { Callout } from "./components/Callout";
 export type { CalloutProps } from "./components/Callout";
 

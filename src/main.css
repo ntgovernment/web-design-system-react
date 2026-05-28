@@ -92,6 +92,11 @@
 @import "./components/Card/Card.css";
 @import "./components/Card/Card-ntg.css";
 
+/* Import DisplayCards component styles */
+@import "./components/DisplayCards/DisplayCards.css";
+@import "./components/DisplayCards/DisplayCards-ntg.css";
+@import "./components/DisplayCards/DisplayCards-central.css";
+
 /* Import Callout component styles */
 @import "./components/Callout/Callout.css";
 @import "./components/Callout/Callout-ntg.css";

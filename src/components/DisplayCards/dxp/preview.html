@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Display Cards - DXP Component Preview</title>
+
+  <link rel="stylesheet" href="https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/theme-ntg.min.css" />
+  <script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    .preview-section {
+      margin: 0 0 3rem;
+      padding: 0;
+      background: #fff;
+    }
+
+    .preview-section > h2 {
+      font-family: inherit;
+      margin: 0;
+      padding: 1rem 1.5rem;
+      background: #1f1f5f;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .preview-section > h3 {
+      margin: 0;
+      padding: 0.5rem 1.5rem;
+      font-size: 0.85rem;
+      color: #555;
+      background: #fafafa;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .preview-host {
+      padding: 1.5rem;
+    }
+
+    .note {
+      margin: 1rem 1.5rem;
+      padding: 0.75rem 1rem;
+      background: #fffbe6;
+      border: 1px solid #ffe58f;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="note">
+    Local preview of the Display Cards DXP component. <strong>main.js</strong> renders the
+    component HTML server-side. Run <code>npm run build</code> first if you need the latest theme bundle.
+  </div>
+
+  <div class="preview-section">
+    <h2>Manual cards</h2>
+    <h3>Default 3-column layout with buttons and descriptions</h3>
+    <div id="preview-manual" class="preview-host"></div>
+  </div>
+
+  <div class="preview-section">
+    <h2>Parent asset selection</h2>
+    <h3>Exposes selection metadata for DXP conversion</h3>
+    <div id="preview-parent-selection" class="preview-host"></div>
+  </div>
+
+  <div class="preview-section">
+    <h2>Grey background</h2>
+    <h3>Section styling with grey background and manual cards</h3>
+    <div id="preview-grey-background" class="preview-host"></div>
+  </div>
+
+  <script type="module">
+    import component from "./main.js";
+
+    const response = await fetch("./example.data.json");
+    const data = await response.json();
+
+    function mount(targetId, html) {
+      const host = document.getElementById(targetId);
+      host.innerHTML = html;
+    }
+
+    mount("preview-manual", await component.main(data.manual));
+    mount("preview-parent-selection", await component.main(data.parentSelection));
+    mount("preview-grey-background", await component.main(data.greyBackground));
+  </script>
+</body>
+
+</html>

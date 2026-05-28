@@ -1,0 +1,46 @@
+{
+  "cards": [
+    {
+      "variant": "full",
+      "title": "Explore services",
+      "description": "Selected items are supplied by the DXP parent asset selection metadata.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/explore"
+    },
+    {
+      "variant": "full",
+      "title": "Manage applications",
+      "description": "A parent asset can surface a related group of card links automatically.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/manage"
+    },
+    {
+      "variant": "full",
+      "title": "Submit a request",
+      "description": "Important actions are surfaced with a consistent card layout.",
+      "showImage": false,
+      "actionText": "Read more",
+      "actionIcon": "fa-light fa-arrow-right",
+      "href": "/services/request"
+    }
+  ],
+  "columns": 3,
+  "backgroundColor": "white",
+  "showImage": false,
+  "showMetadata": false,
+  "showDescription": true,
+  "showButton": true,
+  "buttonText": "Read more",
+  "sectionTitle": "Parent asset selection",
+  "selectionMode": "parent",
+  "parentAssetId": "matrix-asset://api-identifier/12345",
+  "selectedCardAssetIds": [
+    "matrix-asset://api-identifier/12345",
+    "matrix-asset://api-identifier/12346",
+    "matrix-asset://api-identifier/12347"
+  ]
+}
