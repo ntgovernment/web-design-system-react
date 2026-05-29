@@ -47,6 +47,8 @@ After building (`npm run build`), the `dist/` folder contains:
 | `nesters/footer_js.html`                        | Squiz Matrix design nester — bottom-of-body scripts     |
 | `layouts/full-width-section/manifest.json`      | Squiz DXP page layout config — single column, 3 zones   |
 | `layouts/full-width-section/markup.hbs`         | Squiz DXP page layout template — Handlebars             |
+| `layouts/content-container/manifest.json`       | Squiz DXP page layout config — container-xl, 1 zone     |
+| `layouts/content-container/markup.hbs`          | Squiz DXP page layout template — Handlebars             |
 | `favicons/apple-touch-icon-180x180.png`         | Apple touch icon (180×180)                              |
 | `favicons/favicon-16x16.png`                    | 16×16 favicon                                           |
 | `favicons/favicon-32x32.png`                    | 32×32 favicon                                           |
@@ -71,6 +73,7 @@ Page Layouts define the structural templates available in the DXP's Page Builder
 **Available layouts:**
 
 - **`full-width-section`** — single-column, full-width layout with three stacked zones (header, main, footer) for building flexible page structures.
+- **`content-container`** — single-zone layout that constrains text-only editorial content to the Bootstrap `container-xl` width, with 16px horizontal padding on viewports narrower than 1200px.
 
 **Develop locally:**
 
@@ -79,8 +82,10 @@ Page Layouts define the structural templates available in the DXP's Page Builder
 npm run build
 
 # Run the layout dev server (opens http://localhost:4040)
-npm run layouts:dev          # with NTG theme
-npm run layouts:dev:central  # with Central theme
+npm run layouts:dev                            # full-width-section, NTG theme
+npm run layouts:dev:central                    # full-width-section, Central theme
+npm run layouts:dev:content-container          # content-container, NTG theme
+npm run layouts:dev:content-container:central  # content-container, Central theme
 ```
 
 The dev server auto-reloads when `manifest.json`, `markup.hbs`, or `mock/*.html` files change. See [src/squiz/layouts/README.md](src/squiz/layouts/README.md) for details.
@@ -91,10 +96,12 @@ You must be authenticated with `dxp-next auth login --tenant=<TENANT-ID>` first.
 
 ```bash
 # Validate before deploying
-npm run layouts:deploy:dry-run
+npm run layouts:deploy:dry-run                    # full-width-section
+npm run layouts:deploy:content-container:dry-run  # content-container
 
 # Deploy to your logged-in tenant
-npm run layouts:deploy
+npm run layouts:deploy                            # full-width-section
+npm run layouts:deploy:content-container          # content-container
 ```
 
 Verify deployment in the DXP Console → **Component Service** → **Components & Layouts**.

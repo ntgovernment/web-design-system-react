@@ -20,9 +20,10 @@ src/squiz/layouts/
 
 ## Available layouts
 
-| Layout               | Zones                      | Description                                                                 |
-| -------------------- | -------------------------- | --------------------------------------------------------------------------- |
-| `full-width-section` | `header`, `main`, `footer` | Single-column, full-width section with stacked header / main / footer rows. |
+| Layout               | Zones                      | Description                                                                                                                                                                              |
+| -------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `full-width-section` | `header`, `main`, `footer` | Single-column, full-width section with stacked header / main / footer rows.                                                                                                              |
+| `content-container`  | `content`                  | Single-zone, width-constrained section for **text-only** editorial content. Wraps the zone in Bootstrap `.container-xl` with 16px horizontal padding on viewports narrower than 1200px.  |
 
 ## Build & deployment
 
@@ -56,13 +57,23 @@ This produces `dist/theme-ntg.min.css` and `dist/theme-central.min.css`.
 From the repo root:
 
 ```bash
-npm run layouts:dev          # full-width-section with the NTG theme (default)
-npm run layouts:dev:central  # full-width-section with the Central theme
+npm run layouts:dev                            # full-width-section with the NTG theme (default)
+npm run layouts:dev:central                    # full-width-section with the Central theme
+npm run layouts:dev:content-container          # content-container with the NTG theme
+npm run layouts:dev:content-container:central  # content-container with the Central theme
 ```
 
-Both scripts invoke `npx --package=@squiz/dxp-cli-next@latest dxp-next page layouts dev` from inside
-`src/squiz/layouts/full-width-section/`, mapping each zone to the matching file
-under `mock/` and loading the chosen theme stylesheet from `dist/`.
+Each script invokes `npx --package=@squiz/dxp-cli-next@latest dxp-next page layouts dev` from inside
+the layout's folder, mapping each zone to the matching file under `mock/` and
+loading the chosen theme stylesheet from `dist/`.
+
+> **Note on Bootstrap**: layouts that depend on Bootstrap classes (e.g.
+> `content-container` uses `.container-xl`) only render with the correct
+> max-width when a host page also loads Bootstrap. The local dev server does
+> not bundle Bootstrap, so the container max-width will not apply in the
+> preview — only the 16px sub-xl padding shipped by the theme bundle will be
+> visible. Deployed pages on the NT Government site template load Bootstrap
+> and render correctly.
 
 The dev server opens a browser at <http://localhost:4040> and auto-reloads when
 the `manifest.json`, `markup.hbs`, or any `mock/*.html` file changes.
@@ -90,8 +101,10 @@ a browser window for SSO / username + password.
 Run the dry-run first to validate the manifest before pushing:
 
 ```bash
-npm run layouts:deploy:dry-run   # validate only — no changes to DXP
-npm run layouts:deploy           # deploy full-width-section to the logged-in tenant
+npm run layouts:deploy:dry-run                     # validate full-width-section only
+npm run layouts:deploy                             # deploy full-width-section to the logged-in tenant
+npm run layouts:deploy:content-container:dry-run   # validate content-container only
+npm run layouts:deploy:content-container           # deploy content-container to the logged-in tenant
 ```
 
 The deploy script uses the tenant from your active login — if you have access
