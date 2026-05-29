@@ -21,26 +21,26 @@ The **MiniCards** component displays a responsive grid of mini cards (icon + tit
 ### Manual Selection (Static Cards)
 
 ```tsx
-import { MiniCards } from '@ntgovernment/web-design-system';
+import { MiniCards } from "@ntgovernment/web-design-system";
 
 const cards = [
   {
-    id: '1',
-    title: 'Grant applicants',
-    href: 'https://cyber.nt.gov.au/grants',
-    icon: 'fa-light fa-briefcase',
+    id: "1",
+    title: "Grant applicants",
+    href: "https://cyber.nt.gov.au/grants",
+    icon: "fa-light fa-briefcase",
   },
   {
-    id: '2',
-    title: 'Service providers',
-    href: 'https://cyber.nt.gov.au/services',
-    icon: 'fa-light fa-globe',
+    id: "2",
+    title: "Service providers",
+    href: "https://cyber.nt.gov.au/services",
+    icon: "fa-light fa-globe",
   },
   {
-    id: '3',
-    title: 'Get in touch',
-    href: 'https://cyber.nt.gov.au/contact',
-    icon: 'fa-light fa-circle-info',
+    id: "3",
+    title: "Get in touch",
+    href: "https://cyber.nt.gov.au/contact",
+    icon: "fa-light fa-circle-info",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function App() {
   title="Services"
   cardSelectionMode="auto"
   apiEndpoint="/api/services"
-  apiParams={{ category: 'business' }}
+  apiParams={{ category: "business" }}
   layout="3-col"
   backgroundColor="white"
 />
@@ -73,71 +73,88 @@ export default function App() {
 ## Props
 
 ### `title?: string`
+
 Optional section heading displayed above the card grid.
+
 - Default: undefined
 - Example: `"Find out more"`
 
 ### `cards?: MiniCardItem[]`
+
 Array of card objects (required for manual mode). Each card must have:
+
 - `id: string` — Unique identifier
 - `title: string` — Card title/text
 - `href: string` — Card link URL
 - `icon: string` — FontAwesome icon class (e.g., `'fa-light fa-briefcase'`)
 
 Example:
+
 ```tsx
-[
-  { id: '1', title: 'Grants', href: '#', icon: 'fa-light fa-briefcase' }
-]
+[{ id: "1", title: "Grants", href: "#", icon: "fa-light fa-briefcase" }];
 ```
 
 ### `layout?: '3-col' | '4-col'`
+
 Desktop layout: number of cards per row on desktop view.
+
 - Default: `'3-col'`
 - Mobile: Always 1 column
 - Tablet (576px+): Always 2 columns
 - Desktop (768px+): 3 or 4 columns
 
 ### `backgroundColor?: 'white' | 'grey'`
+
 Background color variant for the component container.
+
 - Default: `'white'`
 - `'white'`: Uses `--clr-bg-default` (primary background)
 - `'grey'`: Uses `--clr-bg-shade` (secondary/shade background)
 
 ### `cardSelectionMode?: 'manual' | 'auto'`
+
 How cards are sourced.
+
 - Default: `'manual'`
 - `'manual'`: Render `cards` prop as-is
 - `'auto'`: Fetch from `apiEndpoint`, transform response
 
 ### `apiEndpoint?: string`
+
 Squiz API endpoint URL for auto-select mode (required if `cardSelectionMode='auto'`).
+
 - Example: `'/api/cards'`
 - Full URL or relative path
 
 ### `apiParams?: Record<string, any>`
+
 Optional query parameters for API request (auto mode only).
+
 - Example: `{ category: 'business', limit: 6 }`
 
 ### `loading?: boolean`
+
 Show loading spinner and "Loading cards..." message.
+
 - Default: `false`
 - Typically managed internally when using auto mode
 
 ### `error?: string`
+
 Error message to display in an alert box. If set, no cards are shown.
+
 - Example: `'Failed to load cards. Please try again later.'`
 
 ## Responsive Behavior
 
 The MiniCards component is mobile-first and adapts to screen sizes:
 
-| Breakpoint | Width | Layout |
-|-----------|-------|--------|
-| Mobile | < 576px | 1 column |
-| Tablet | 576px - 768px | 2 columns |
-| Desktop (3-col) | ≥ 768px | 3 columns |
-| Desktop (4-col) | ≥ 768px | 4 columns |
+| Breakpoint      | Width         | Layout    |
+| --------------- | ------------- | --------- |
+| Mobile          | < 576px       | 1 column  |
+| Tablet          | 576px - 768px | 2 columns |
+| Desktop (3-col) | ≥ 768px       | 3 columns |
+| Desktop (4-col) | ≥ 768px       | 4 columns |
 
 Resize your browser to see the grid adapt in real-time. Cards stack vertically on mobile and expand horizontally as screen width increases.
 
@@ -152,6 +169,7 @@ The component uses three CSS files for consistent theming:
 - **MiniCards-central.css** — Central theme colors and focus states
 
 All spacing and colors use design tokens for consistency:
+
 - Colors: `--clr-bg-default`, `--clr-bg-shade`, `--clr-text-default`, etc.
 - Spacing: `--sp-xs` (4px) to `--sp-xxxl` (48px)
 - Typography: `--type-heading-h2-*`, `--type-body-default-*`
@@ -173,19 +191,19 @@ All spacing and colors use design tokens for consistency:
 ## States
 
 ### Loading State
+
 When `cardSelectionMode='auto'` and data is being fetched:
+
 ```tsx
-<MiniCards
-  cardSelectionMode="auto"
-  apiEndpoint="/api/cards"
-  loading={true}
-/>
+<MiniCards cardSelectionMode="auto" apiEndpoint="/api/cards" loading={true} />
 ```
 
 Displays an animated spinner with "Loading cards..." message.
 
 ### Error State
+
 When API fetch fails or error message is provided:
+
 ```tsx
 <MiniCards
   cardSelectionMode="auto"
@@ -197,12 +215,11 @@ When API fetch fails or error message is provided:
 Displays error message in a styled alert box.
 
 ### Empty State
+
 When no cards are available:
+
 ```tsx
-<MiniCards
-  cards={[]}
-  cardSelectionMode="manual"
-/>
+<MiniCards cards={[]} cardSelectionMode="manual" />
 ```
 
 Displays "No cards to display." message.
@@ -222,6 +239,7 @@ Displays "No cards to display." message.
 For auto-select mode, the API should return one of these formats:
 
 **Format 1: Direct array**
+
 ```json
 [
   { "id": "1", "title": "Title 1", "href": "#", "icon": "fa-light fa-icon" },
@@ -230,6 +248,7 @@ For auto-select mode, the API should return one of these formats:
 ```
 
 **Format 2: Wrapped in cards property**
+
 ```json
 {
   "cards": [
@@ -241,6 +260,7 @@ For auto-select mode, the API should return one of these formats:
 ### Future DXP Service Integration
 
 This component is designed for Squiz DXP deployment. A JSON schema will be created for DXP component input/output configuration, allowing administrators to:
+
 - Define the API endpoint in the CMS
 - Configure layout and background via UI
 - Select cards manually or auto-fetch from the API
@@ -249,6 +269,7 @@ This component is designed for Squiz DXP deployment. A JSON schema will be creat
 ## Design References
 
 This component is inspired by the [Cyber Invest Business Program](https://cyber.nt.gov.au/cyber-invest-business-program/about/) "Find out more" section and uses:
+
 - Icon + title layout for quick recognition
 - 3-column grid on desktop for balanced content distribution
 - Uniform card sizing for visual consistency
@@ -257,17 +278,19 @@ This component is inspired by the [Cyber Invest Business Program](https://cyber.
 ## Examples
 
 ### Basic Example
+
 ```tsx
 <MiniCards
   title="Find out more"
   cards={[
-    { id: '1', title: 'Grants', href: '#', icon: 'fa-light fa-briefcase' },
-    { id: '2', title: 'Support', href: '#', icon: 'fa-light fa-headset' },
+    { id: "1", title: "Grants", href: "#", icon: "fa-light fa-briefcase" },
+    { id: "2", title: "Support", href: "#", icon: "fa-light fa-headset" },
   ]}
 />
 ```
 
 ### 4-Column Layout
+
 ```tsx
 <MiniCards
   title="All options"
@@ -278,15 +301,13 @@ This component is inspired by the [Cyber Invest Business Program](https://cyber.
 ```
 
 ### Grey Background
+
 ```tsx
-<MiniCards
-  title="Resources"
-  cards={cards}
-  backgroundColor="grey"
-/>
+<MiniCards title="Resources" cards={cards} backgroundColor="grey" />
 ```
 
 ### With Custom HTML Attributes
+
 ```tsx
 <MiniCards
   title="Services"

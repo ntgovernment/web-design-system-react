@@ -1,119 +1,138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>MiniCards Component Preview</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- INLINE_THEME_CSS_START -->
-  <style>
-    /* Theme CSS will be inlined here during build */
-  </style>
-  <!-- INLINE_THEME_CSS_END -->
-  <style>
-    body {
-      background: #f5f5f5;
-      padding: 20px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-    .preview-wrapper {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin-bottom: 40px;
-      overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .preview-header {
-      background: #f9f9f9;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .preview-header h3 {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 600;
-      color: #333;
-    }
-    .preview-header code {
-      background: #f0f0f0;
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-size: 12px;
-      color: #666;
-    }
-    .preview-content {
-      padding: 0;
-    }
-  </style>
-</head>
-<body>
-  <div class="container-fluid" style="max-width: 1400px; margin: 0 auto;">
-    <h1 style="margin-bottom: 40px; color: #333;">MiniCards Component Previews</h1>
-
-    <!-- 3-Column White Preview -->
-    <div class="preview-wrapper">
-      <div class="preview-header">
-        <h3>3-Column Layout (White Background)</h3>
-      </div>
-      <div class="preview-content" id="preview-3-col-white"></div>
-    </div>
-
-    <!-- 3-Column Grey Preview -->
-    <div class="preview-wrapper">
-      <div class="preview-header">
-        <h3>3-Column Layout (Grey Background)</h3>
-      </div>
-      <div class="preview-content" id="preview-3-col-grey"></div>
-    </div>
-
-    <!-- 4-Column White Preview -->
-    <div class="preview-wrapper">
-      <div class="preview-header">
-        <h3>4-Column Layout (White Background)</h3>
-      </div>
-      <div class="preview-content" id="preview-4-col-white"></div>
-    </div>
-
-    <!-- 4-Column Grey Preview -->
-    <div class="preview-wrapper">
-      <div class="preview-header">
-        <h3>4-Column Layout (Grey Background)</h3>
-      </div>
-      <div class="preview-content" id="preview-4-col-grey"></div>
-    </div>
-  </div>
-
-  <script>
-    // Import the main component function and render previews
-    import main from "./main.js";
-
-    const previews = [
-      { id: "preview-3-col-white", file: "./previews/3-column-white.data.json" },
-      { id: "preview-3-col-grey", file: "./previews/3-column-grey.data.json" },
-      { id: "preview-4-col-white", file: "./previews/4-column-white.data.json" },
-      { id: "preview-4-col-grey", file: "./previews/4-column-grey.data.json" },
-    ];
-
-    (async () => {
-      for (const preview of previews) {
-        try {
-          const response = await fetch(preview.file);
-          const data = await response.json();
-          const container = document.getElementById(preview.id);
-          const html = await main.main(data);
-          container.innerHTML = html;
-        } catch (error) {
-          console.error(`Error loading preview ${preview.id}:`, error);
-          const container = document.getElementById(preview.id);
-          container.innerHTML = `<p style="color: red; padding: 20px;">Error loading preview</p>`;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>MiniCards Component Preview</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- INLINE_THEME_CSS_START -->
+    <style>
+      /* Theme CSS will be inlined here during build */
+    </style>
+    <!-- INLINE_THEME_CSS_END -->
+    <style>
+      body {
+        background: #f5f5f5;
+        padding: 20px;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
       }
-    })();
-  </script>
-</body>
+      .preview-wrapper {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 40px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .preview-header {
+        background: #f9f9f9;
+        border-bottom: 1px solid #ddd;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .preview-header h3 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+      }
+      .preview-header code {
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 12px;
+        color: #666;
+      }
+      .preview-content {
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid" style="max-width: 1400px; margin: 0 auto">
+      <h1 style="margin-bottom: 40px; color: #333">
+        MiniCards Component Previews
+      </h1>
+
+      <!-- 3-Column White Preview -->
+      <div class="preview-wrapper">
+        <div class="preview-header">
+          <h3>3-Column Layout (White Background)</h3>
+        </div>
+        <div class="preview-content" id="preview-3-col-white"></div>
+      </div>
+
+      <!-- 3-Column Grey Preview -->
+      <div class="preview-wrapper">
+        <div class="preview-header">
+          <h3>3-Column Layout (Grey Background)</h3>
+        </div>
+        <div class="preview-content" id="preview-3-col-grey"></div>
+      </div>
+
+      <!-- 4-Column White Preview -->
+      <div class="preview-wrapper">
+        <div class="preview-header">
+          <h3>4-Column Layout (White Background)</h3>
+        </div>
+        <div class="preview-content" id="preview-4-col-white"></div>
+      </div>
+
+      <!-- 4-Column Grey Preview -->
+      <div class="preview-wrapper">
+        <div class="preview-header">
+          <h3>4-Column Layout (Grey Background)</h3>
+        </div>
+        <div class="preview-content" id="preview-4-col-grey"></div>
+      </div>
+    </div>
+
+    <script>
+      // Import the main component function and render previews
+      import main from "./main.js";
+
+      const previews = [
+        {
+          id: "preview-3-col-white",
+          file: "./previews/3-column-white.data.json",
+        },
+        {
+          id: "preview-3-col-grey",
+          file: "./previews/3-column-grey.data.json",
+        },
+        {
+          id: "preview-4-col-white",
+          file: "./previews/4-column-white.data.json",
+        },
+        {
+          id: "preview-4-col-grey",
+          file: "./previews/4-column-grey.data.json",
+        },
+      ];
+
+      (async () => {
+        for (const preview of previews) {
+          try {
+            const response = await fetch(preview.file);
+            const data = await response.json();
+            const container = document.getElementById(preview.id);
+            const html = await main.main(data);
+            container.innerHTML = html;
+          } catch (error) {
+            console.error(`Error loading preview ${preview.id}:`, error);
+            const container = document.getElementById(preview.id);
+            container.innerHTML = `<p style="color: red; padding: 20px;">Error loading preview</p>`;
+          }
+        }
+      })();
+    </script>
+  </body>
 </html>

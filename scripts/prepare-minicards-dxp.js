@@ -46,7 +46,11 @@ function copyRecursive(srcDir, destDir) {
     } else {
       if (SKIP_FILES.has(entry.name)) continue;
       copyFileSync(join(srcDir, entry.name), join(destDir, entry.name));
-      console.log(`  ✓ ${join(destDir, entry.name).replace(root + "/", "").replace(root + "\\", "")}`);
+      console.log(
+        `  ✓ ${join(destDir, entry.name)
+          .replace(root + "/", "")
+          .replace(root + "\\", "")}`,
+      );
     }
   }
 }
@@ -90,4 +94,6 @@ if (existsSync(wrapperPath)) {
 
 console.log("\n✅ dist/components/minicards/ is ready.");
 console.log("   Run:  npm run cmp-minicards-dev   — to open the dev-ui");
-console.log("         npm run cmp-minicards-deploy:dry-run  — to validate before deploy");
+console.log(
+  "         npm run cmp-minicards-deploy:dry-run  — to validate before deploy",
+);

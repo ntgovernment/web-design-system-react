@@ -105,7 +105,11 @@
       "label": "3-Column Layout (White)",
       "functionData": {
         "main": {
-          "$ref": "previews/3-column-white.data.json"
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/3-column-white.data.json"
+          }
         }
       }
     },
@@ -113,7 +117,11 @@
       "label": "3-Column Layout (Grey)",
       "functionData": {
         "main": {
-          "$ref": "previews/3-column-grey.data.json"
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/3-column-grey.data.json"
+          }
         }
       }
     },
@@ -121,7 +129,11 @@
       "label": "4-Column Layout (White)",
       "functionData": {
         "main": {
-          "$ref": "previews/4-column-white.data.json"
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/4-column-white.data.json"
+          }
         }
       }
     },
@@ -129,7 +141,11 @@
       "label": "4-Column Layout (Grey)",
       "functionData": {
         "main": {
-          "$ref": "previews/4-column-grey.data.json"
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/4-column-grey.data.json"
+          }
         }
       }
     }

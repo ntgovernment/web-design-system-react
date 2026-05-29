@@ -100,9 +100,7 @@ export const MiniCards = ({
   useEffect(() => {
     if (cardSelectionMode === "auto") {
       if (!apiEndpoint) {
-        setErrorMsg(
-          "apiEndpoint is required when cardSelectionMode is 'auto'"
-        );
+        setErrorMsg("apiEndpoint is required when cardSelectionMode is 'auto'");
         return;
       }
 
@@ -129,7 +127,7 @@ export const MiniCards = ({
           setApiCards(cardData);
         } catch (err) {
           setErrorMsg(
-            err instanceof Error ? err.message : "Failed to fetch cards"
+            err instanceof Error ? err.message : "Failed to fetch cards",
           );
           setApiCards([]);
         } finally {
@@ -145,11 +143,7 @@ export const MiniCards = ({
   }, [cardSelectionMode, apiEndpoint, apiParams, loading, error]);
 
   const displayCards =
-    cardSelectionMode === "auto"
-      ? apiCards
-      : cards.length > 0
-        ? cards
-        : [];
+    cardSelectionMode === "auto" ? apiCards : cards.length > 0 ? cards : [];
 
   const classes = [
     "mini-cards",
@@ -161,7 +155,12 @@ export const MiniCards = ({
     .join(" ");
 
   return (
-    <div className={classes} data-layout={layout} data-background={backgroundColor} {...props}>
+    <div
+      className={classes}
+      data-layout={layout}
+      data-background={backgroundColor}
+      {...props}
+    >
       {title && <h2 className="mini-cards__title">{title}</h2>}
 
       {errorMsg && (

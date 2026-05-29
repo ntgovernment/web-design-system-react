@@ -120,6 +120,10 @@
 @import "./components/Image/Image.css";
 @import "./components/Image/Image-ntg.css";
 
+/* Import MiniCards component styles */
+@import "./components/MiniCards/MiniCards.css";
+@import "./components/MiniCards/MiniCards-ntg.css";
+
 /* Import Radio component styles */
 @import "./components/Radio/Radio.css";
 @import "./components/Radio/Radio-ntg.css";
