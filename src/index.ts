@@ -44,6 +44,9 @@ export type { DocumentProps, DocumentFileType } from "./components/Document";
 export { Image } from "./components/Image";
 export type { ImageProps } from "./components/Image";
 
+export { MiniCards } from "./components/MiniCards";
+export type { MiniCardsProps, MiniCardItem } from "./components/MiniCards";
+
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 

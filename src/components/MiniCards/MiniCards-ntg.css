@@ -1,0 +1,45 @@
+/**
+ * MiniCards Component - NTG Theme Overrides
+ * NT.GOV.AU theme-specific styling for MiniCards component
+ */
+
+.mini-cards {
+  --clr-bg-default: #ffffff;
+  --clr-bg-shade: #f5f5f5;
+  --clr-text-default: #333333;
+  --clr-text-muted: #666666;
+  --clr-action-primary: #0066cc;
+  --clr-border-subtle: #d9d9d9;
+  --clr-bg-error-subtle: #fff3cd;
+  --clr-border-error: #ffc107;
+  --clr-text-error: #856404;
+  --clr-bg-subtle: #fafafa;
+}
+
+.mini-cards--bg-white {
+  background-color: #ffffff;
+}
+
+.mini-cards--bg-grey {
+  background-color: #f5f5f5;
+}
+
+.mini-cards__title {
+  color: #333333;
+}
+
+.mini-cards__spinner {
+  border-color: #d9d9d9;
+  border-top-color: #0066cc;
+}
+
+.mini-cards__error {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.mini-cards__empty {
+  background-color: #fafafa;
+  color: #666666;
+}

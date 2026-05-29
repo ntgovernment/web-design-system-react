@@ -1,0 +1,114 @@
+{
+  "3-column-white": {
+    "title": "Find out more",
+    "cards": [
+      {
+        "id": "1",
+        "title": "Grant applicants",
+        "href": "https://cyber.nt.gov.au/cyber-invest-business-program/grant-applicants",
+        "icon": "fa-light fa-briefcase"
+      },
+      {
+        "id": "2",
+        "title": "Service providers",
+        "href": "https://cyber.nt.gov.au/cyber-invest-business-program/service-providers",
+        "icon": "fa-light fa-globe"
+      },
+      {
+        "id": "3",
+        "title": "Get in touch",
+        "href": "https://cyber.nt.gov.au/cyber-invest-business-program/get-in-touch",
+        "icon": "fa-light fa-circle-info"
+      }
+    ],
+    "layout": "3-col",
+    "backgroundColor": "white"
+  },
+  "3-column-grey": {
+    "title": "Available resources",
+    "cards": [
+      {
+        "id": "1",
+        "title": "Documentation",
+        "href": "#",
+        "icon": "fa-light fa-file-lines"
+      },
+      {
+        "id": "2",
+        "title": "Support",
+        "href": "#",
+        "icon": "fa-light fa-headset"
+      },
+      {
+        "id": "3",
+        "title": "Community",
+        "href": "#",
+        "icon": "fa-light fa-users"
+      }
+    ],
+    "layout": "3-col",
+    "backgroundColor": "grey"
+  },
+  "4-column-white": {
+    "title": "Explore our services",
+    "cards": [
+      {
+        "id": "1",
+        "title": "Grant applicants",
+        "href": "#",
+        "icon": "fa-light fa-briefcase"
+      },
+      {
+        "id": "2",
+        "title": "Service providers",
+        "href": "#",
+        "icon": "fa-light fa-globe"
+      },
+      {
+        "id": "3",
+        "title": "Get in touch",
+        "href": "#",
+        "icon": "fa-light fa-circle-info"
+      },
+      {
+        "id": "4",
+        "title": "Resources",
+        "href": "#",
+        "icon": "fa-light fa-book"
+      }
+    ],
+    "layout": "4-col",
+    "backgroundColor": "white"
+  },
+  "4-column-grey": {
+    "title": "Quick access",
+    "cards": [
+      {
+        "id": "1",
+        "title": "Overview",
+        "href": "#",
+        "icon": "fa-light fa-eye"
+      },
+      {
+        "id": "2",
+        "title": "FAQ",
+        "href": "#",
+        "icon": "fa-light fa-circle-question"
+      },
+      {
+        "id": "3",
+        "title": "Download",
+        "href": "#",
+        "icon": "fa-light fa-download"
+      },
+      {
+        "id": "4",
+        "title": "Contact",
+        "href": "#",
+        "icon": "fa-light fa-envelope"
+      }
+    ],
+    "layout": "4-col",
+    "backgroundColor": "grey"
+  }
+}

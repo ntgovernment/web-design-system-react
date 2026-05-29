@@ -1,0 +1,137 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "namespace": "ntg-web-design-system",
+  "name": "minicards",
+  "displayName": "Mini Cards",
+  "description": "Responsive grid of mini cards (icon + title + link) with configurable layout and background color. Supports manual card selection or dynamic API-based loading.",
+  "icon": {
+    "id": "dashboard",
+    "color": {
+      "type": "enum",
+      "value": "blue"
+    }
+  },
+  "type": "edge",
+  "version": "0.1.0",
+  "mainFunction": "main",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Section title",
+            "description": "Optional heading displayed above the card grid.",
+            "default": ""
+          },
+          "cards": {
+            "type": "array",
+            "title": "Cards",
+            "description": "Array of card objects. Each card contains id, title, href, and icon.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "title": "Card ID",
+                  "description": "Unique identifier for the card"
+                },
+                "title": {
+                  "type": "string",
+                  "title": "Card title",
+                  "description": "Card display title/text"
+                },
+                "href": {
+                  "type": "string",
+                  "title": "Card link URL",
+                  "description": "URL the card links to when clicked"
+                },
+                "icon": {
+                  "type": "string",
+                  "title": "Icon",
+                  "description": "Font Awesome icon class (e.g., 'fa-light fa-briefcase')"
+                }
+              },
+              "required": ["id", "title", "href", "icon"]
+            },
+            "default": [
+              {
+                "id": "1",
+                "title": "Grant applicants",
+                "href": "#",
+                "icon": "fa-light fa-briefcase"
+              },
+              {
+                "id": "2",
+                "title": "Service providers",
+                "href": "#",
+                "icon": "fa-light fa-globe"
+              },
+              {
+                "id": "3",
+                "title": "Get in touch",
+                "href": "#",
+                "icon": "fa-light fa-circle-info"
+              }
+            ]
+          },
+          "layout": {
+            "type": "string",
+            "title": "Desktop layout",
+            "description": "Number of cards per row on desktop view. Mobile: 1 column, Tablet: 2 columns, Desktop: 3 or 4 columns.",
+            "enum": ["3-col", "4-col"],
+            "default": "3-col"
+          },
+          "backgroundColor": {
+            "type": "string",
+            "title": "Background color",
+            "description": "Background color variant for the component container.",
+            "enum": ["white", "grey"],
+            "default": "white"
+          }
+        },
+        "required": ["cards"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "3-column-white": {
+      "label": "3-Column Layout (White)",
+      "functionData": {
+        "main": {
+          "$ref": "previews/3-column-white.data.json"
+        }
+      }
+    },
+    "3-column-grey": {
+      "label": "3-Column Layout (Grey)",
+      "functionData": {
+        "main": {
+          "$ref": "previews/3-column-grey.data.json"
+        }
+      }
+    },
+    "4-column-white": {
+      "label": "4-Column Layout (White)",
+      "functionData": {
+        "main": {
+          "$ref": "previews/4-column-white.data.json"
+        }
+      }
+    },
+    "4-column-grey": {
+      "label": "4-Column Layout (Grey)",
+      "functionData": {
+        "main": {
+          "$ref": "previews/4-column-grey.data.json"
+        }
+      }
+    }
+  }
+}

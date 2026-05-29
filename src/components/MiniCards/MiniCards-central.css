@@ -1,0 +1,45 @@
+/**
+ * MiniCards Component - Central Theme Overrides
+ * NTG Central theme-specific styling for MiniCards component
+ */
+
+.mini-cards {
+  --clr-bg-default: #ffffff;
+  --clr-bg-shade: #f8f8f8;
+  --clr-text-default: #222222;
+  --clr-text-muted: #555555;
+  --clr-action-primary: #6ab06a;
+  --clr-border-subtle: #e0e0e0;
+  --clr-bg-error-subtle: #ffe6e6;
+  --clr-border-error: #ff9999;
+  --clr-text-error: #cc0000;
+  --clr-bg-subtle: #fcfcfc;
+}
+
+.mini-cards--bg-white {
+  background-color: #ffffff;
+}
+
+.mini-cards--bg-grey {
+  background-color: #f8f8f8;
+}
+
+.mini-cards__title {
+  color: #222222;
+}
+
+.mini-cards__spinner {
+  border-color: #e0e0e0;
+  border-top-color: #6ab06a;
+}
+
+.mini-cards__error {
+  background-color: #ffe6e6;
+  border-color: #ff9999;
+  color: #cc0000;
+}
+
+.mini-cards__empty {
+  background-color: #fcfcfc;
+  color: #555555;
+}
