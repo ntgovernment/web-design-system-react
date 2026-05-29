@@ -20,10 +20,10 @@ src/squiz/layouts/
 
 ## Available layouts
 
-| Layout               | Zones                      | Description                                                                                                                                                                              |
-| -------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `full-width-section` | `header`, `main`, `footer` | Single-column, full-width section with stacked header / main / footer rows.                                                                                                              |
-| `content-container`  | `content`                  | Single-zone, width-constrained section for **text-only** editorial content. Wraps the zone in Bootstrap `.container-xl` with 16px horizontal padding on viewports narrower than 1200px.  |
+| Layout               | Zones                      | Description                                                                                                                                                                             |
+| -------------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `full-width-section` | `header`, `main`, `footer` | Single-column, full-width section with stacked header / main / footer rows.                                                                                                             |
+| `content-container`  | `content`                  | Single-zone, width-constrained section for **text-only** editorial content. Wraps the zone in Bootstrap `.container-xl` with 16px horizontal padding on viewports narrower than 1200px. |
 
 ## Build & deployment
 
