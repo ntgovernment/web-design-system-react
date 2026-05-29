@@ -233,6 +233,10 @@ function copyLayoutsRecursive(src, dest) {
       if (entry.name === "mock") continue;
       copyLayoutsRecursive(srcPath, destPath);
     } else {
+      // Skip per-layout CSS — layout styles are bundled into the theme
+      // stylesheets by build-theme-bundles.js, not deployed alongside the
+      // layout manifest/markup.
+      if (entry.name.endsWith(".css")) continue;
       copyFileSync(srcPath, destPath);
       console.log(`  ✓ Copied ${destPath.replace(distDir, "dist")}`);
     }

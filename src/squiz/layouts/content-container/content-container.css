@@ -1,0 +1,11 @@
+/* Content container layout
+ * Width is provided by Bootstrap's .container-xl on the host page.
+ * Below the xl breakpoint (1200px), apply a 16px horizontal padding so
+ * content does not touch the viewport edges on smaller screens.
+ */
+@media (max-width: 1199.98px) {
+  .layout-content-container > .container-xl {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
