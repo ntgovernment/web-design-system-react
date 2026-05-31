@@ -1,0 +1,16 @@
+{
+  "variant": "primary",
+  "title": "Business and Industry",
+  "description": "Start a business, apply for licenses and permits, and access business support services.",
+  "ctaText": "Register your business",
+  "ctaHref": "#",
+  "linksHeading": "Related",
+  "links": [
+    { "label": "Business grants", "href": "#" },
+    { "label": "Trade licenses", "href": "#" },
+    { "label": "Industry regulations", "href": "#" },
+    { "label": "Export assistance", "href": "#" }
+  ],
+  "label": "Home",
+  "href": "/"
+}

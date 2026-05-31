@@ -105,15 +105,15 @@ export type {
   TopicListingVariant,
 } from "./components/TopicListing";
 
-export { DisplayCard, DisplayCardSection } from "./components/DisplayCard";
-export type {
-  DisplayCardProps,
-  DisplayCardData,
-  DisplayCardSectionProps,
-  DisplayCardBackground,
-  DisplayCardColumns,
-  DisplayCardDataSource,
-} from "./components/DisplayCard";
+// export { DisplayCard, DisplayCardSection } from "./components/DisplayCard";
+// export type {
+//   DisplayCardProps,
+//   DisplayCardData,
+//   DisplayCardSectionProps,
+//   DisplayCardBackground,
+//   DisplayCardColumns,
+//   DisplayCardDataSource,
+// } from "./components/DisplayCard";
 
 // Content components
 export { BreadcrumbsContent } from "./components/Breadcrumbs/Breadcrumbs";
