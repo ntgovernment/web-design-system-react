@@ -665,8 +665,10 @@ Page Layouts are structural templates for the Squiz DXP Page Builder. They are d
 ```bash
 npm run build                          # Build themes first
 
-npm run layouts:dev                    # NTG theme (http://localhost:4040)
-npm run layouts:dev:central            # Central theme
+npm run layouts:dev                            # full-width-section, NTG theme (http://localhost:4040)
+npm run layouts:dev:central                    # full-width-section, Central theme
+npm run layouts:dev:content-container          # content-container, NTG theme
+npm run layouts:dev:content-container:central  # content-container, Central theme
 ```
 
 Auto-reload watches `manifest.json`, `markup.hbs`, and `mock/*.html`.
@@ -676,8 +678,10 @@ Auto-reload watches `manifest.json`, `markup.hbs`, and `mock/*.html`.
 ```bash
 dxp-next auth login --tenant=<TENANT-ID>  # One-time login
 
-npm run layouts:deploy:dry-run    # Validate first
-npm run layouts:deploy            # Push to DXP
+npm run layouts:deploy:dry-run                    # Validate full-width-section
+npm run layouts:deploy                            # Deploy full-width-section
+npm run layouts:deploy:content-container:dry-run  # Validate content-container
+npm run layouts:deploy:content-container          # Deploy content-container
 
 # Verify in DXP Console → Component Service → Components & Layouts
 ```
