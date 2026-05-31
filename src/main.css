@@ -140,6 +140,10 @@
 @import "./components/Textarea/Textarea.css";
 @import "./components/Textarea/Textarea-ntg.css";
 
+/* Import FeaturedCard component styles */
+@import "./components/FeaturedCard/FeaturedCard.css";
+@import "./components/FeaturedCard/FeaturedCard-ntg.css";
+
 /* Additional global styles can be added here */
 body {
   margin: 0;
