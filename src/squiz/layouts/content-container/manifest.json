@@ -1,0 +1,13 @@
+{
+  "name": "content-container",
+  "displayName": "Content container",
+  "description": "Single-zone, width-constrained section intended for text-only editorial content (paragraphs, headings, lists, links). Wraps the zone in a Bootstrap container-xl so content matches the standard NT Government page width, with 16px horizontal padding applied on viewports narrower than the container-xl breakpoint (1200px). Editors should restrict this zone to text content; do not insert components, media, or layout blocks.",
+  "entry": "markup.hbs",
+  "zones": [
+    {
+      "key": "content",
+      "displayName": "Content",
+      "description": "Primary text content area. Intended for text-only editorial content (paragraphs, headings, lists, inline links). Do not insert components, media embeds, or nested layouts."
+    }
+  ]
+}

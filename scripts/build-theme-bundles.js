@@ -110,6 +110,33 @@ function discoverComponentCSS() {
 
 const { baseFiles: componentCSS, themeFiles } = discoverComponentCSS();
 
+// Auto-discover all Squiz DXP page-layout CSS files from src/squiz/layouts/
+// Each layout folder may include a `<layout-name>.css` containing styles for
+// that layout's wrapper. The file is bundled into every theme stylesheet so
+// host pages get the layout styles for free with the theme CSS.
+const layoutsDir = join(rootDir, "src", "squiz", "layouts");
+
+function discoverLayoutCSS() {
+  if (!existsSync(layoutsDir)) {
+    return [];
+  }
+  const files = [];
+  const layoutDirs = readdirSync(layoutsDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .sort();
+
+  for (const dir of layoutDirs) {
+    const cssPath = join(layoutsDir, dir, `${dir}.css`);
+    if (existsSync(cssPath)) {
+      files.push({ path: cssPath, name: `${dir}.css` });
+    }
+  }
+  return files;
+}
+
+const layoutCSS = discoverLayoutCSS();
+
 // Theme configurations
 const themes = [
   {
@@ -160,6 +187,14 @@ themes.forEach((theme) => {
     const content = readCSSFile(path);
     if (content) {
       cssBundle += `/* ${name} */\n${content}\n\n`;
+    }
+  });
+
+  // Add Squiz DXP page-layout CSS (theme-agnostic — same rules in both bundles)
+  layoutCSS.forEach(({ path, name }) => {
+    const content = readCSSFile(path);
+    if (content) {
+      cssBundle += `/* layouts/${name} */\n${content}\n\n`;
     }
   });
 
