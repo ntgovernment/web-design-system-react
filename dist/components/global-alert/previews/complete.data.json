@@ -1,9 +1,0 @@
-{
-  "variant": "warning",
-  "title": "Planned outage tonight",
-  "description": "<p>Online payments will be unavailable from 11pm to 1am tonight while we upgrade the payment gateway.</p>",
-  "dismissible": true,
-  "dismissLabel": "Dismiss outage notice",
-  "ctaText": "View timetable",
-  "ctaHref": "#"
-}

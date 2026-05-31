@@ -1,7 +1,0 @@
-{
-  "variant": "warning",
-  "title": "Service disruption expected",
-  "description": "<p>Some online forms may be intermittently unavailable today. We're working to restore full service.</p>",
-  "ctaText": "View status",
-  "ctaHref": "#"
-}

@@ -1,0 +1,182 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "namespace": "ntg-web-design-system",
+  "name": "featured-card",
+  "displayName": "Featured Card",
+  "description": "A two-column featured content card with optional image, WYSIWYG body, primary and secondary CTA buttons, and a photo credit / author avatar block. Migrated from the Squiz 'NTGDS - Featured content (landing page only)' Content Container Template.",
+  "icon": {
+    "id": "featured_play_list",
+    "color": {
+      "type": "enum",
+      "value": "blue"
+    }
+  },
+  "type": "edge",
+  "version": "0.1.0",
+  "mainFunction": "main",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "FormattedText",
+            "title": "Body content",
+            "description": "Rich text / WYSIWYG content rendered inside the featured card.",
+            "default": "<p>Enter your featured content here.</p>"
+          },
+          "imagePosition": {
+            "type": "string",
+            "title": "Image position",
+            "description": "Side the image column appears on. Defaults to right.",
+            "enum": ["left", "right"],
+            "default": "right"
+          },
+          "background": {
+            "type": "string",
+            "title": "Background colour",
+            "description": "Background colour variant. 'white' also applies a box shadow.",
+            "enum": ["white", "grey", "blue", "dark"],
+            "default": "white"
+          },
+          "border": {
+            "type": "string",
+            "title": "Border",
+            "description": "Whether to draw a border around the card.",
+            "enum": ["none", "default"],
+            "default": "none"
+          },
+          "imageSrc": {
+            "type": "string",
+            "title": "Image URL",
+            "description": "Fully-qualified URL of the image to display in the right/left column.",
+            "default": ""
+          },
+          "imageAlt": {
+            "type": "string",
+            "title": "Image alt text",
+            "description": "Accessible description of the image. Required when imageSrc is set.",
+            "default": ""
+          },
+          "imageCaption": {
+            "type": "string",
+            "title": "Image caption / photo credit",
+            "description": "Optional caption rendered beneath the card. Takes priority over authorName.",
+            "default": ""
+          },
+          "authorName": {
+            "type": "string",
+            "title": "Author name",
+            "description": "Fallback avatar name shown beneath the card when no caption is set.",
+            "default": ""
+          },
+          "authorAgency": {
+            "type": "string",
+            "title": "Author agency",
+            "description": "Agency or organisation displayed below the author name.",
+            "default": ""
+          },
+          "primaryActionText": {
+            "type": "string",
+            "title": "Primary button text",
+            "description": "Label for the primary CTA button. Leave blank to hide.",
+            "default": "Read more"
+          },
+          "primaryActionHref": {
+            "type": "string",
+            "title": "Primary button URL",
+            "description": "URL the primary CTA links to.",
+            "default": ""
+          },
+          "primaryActionExternal": {
+            "type": "boolean",
+            "title": "Primary button opens in new tab",
+            "description": "When true, opens the primary CTA in a new tab with rel=\"noopener noreferrer\".",
+            "default": false
+          },
+          "secondaryActionText": {
+            "type": "string",
+            "title": "Secondary button text",
+            "description": "Label for the secondary CTA button. Leave blank to hide.",
+            "default": ""
+          },
+          "secondaryActionHref": {
+            "type": "string",
+            "title": "Secondary button URL",
+            "description": "URL the secondary CTA links to.",
+            "default": ""
+          },
+          "secondaryActionExternal": {
+            "type": "boolean",
+            "title": "Secondary button opens in new tab",
+            "description": "When true, opens the secondary CTA in a new tab with rel=\"noopener noreferrer\".",
+            "default": false
+          }
+        },
+        "required": ["body"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/default.data.json"
+          }
+        }
+      }
+    },
+    "image-left": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/image-left.data.json"
+          }
+        }
+      }
+    },
+    "with-secondary-action": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/with-secondary-action.data.json"
+          }
+        }
+      }
+    },
+    "grey-background": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/grey-background.data.json"
+          }
+        }
+      }
+    },
+    "no-image": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/no-image.data.json"
+          }
+        }
+      }
+    }
+  }
+}
