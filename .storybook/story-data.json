@@ -853,6 +853,61 @@
       },
       "file": "src/components/Dropdown/Dropdown.stories.tsx"
     },
+    "FeaturedCard": {
+      "stories": {
+        "Default": {
+          "args": {
+            "imagePosition": "right",
+            "background": "white",
+            "border": "none",
+            "text": "Read more",
+            "href": "#"
+          }
+        },
+        "ImageLeft": {
+          "args": {
+            "imagePosition": "left"
+          }
+        },
+        "WithSecondaryAction": {
+          "args": {
+            "text": "Learn more",
+            "href": "#learn"
+          }
+        },
+        "GreyBackground": {
+          "args": {
+            "background": "grey"
+          }
+        },
+        "BlueBackground": {
+          "args": {
+            "background": "blue"
+          }
+        },
+        "DarkBackground": {
+          "args": {
+            "background": "dark"
+          }
+        },
+        "NoImage": {
+          "args": {
+            "imagePosition": "right",
+            "background": "white",
+            "border": "none",
+            "text": "Read more",
+            "href": "#"
+          }
+        },
+        "WithBorder": {
+          "args": {
+            "border": "default",
+            "background": "white"
+          }
+        }
+      },
+      "file": "src/components/FeaturedCard/FeaturedCard.stories.tsx"
+    },
     "FileUpload": {
       "stories": {
         "Default": {
@@ -2363,5 +2418,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-04-28T16:52:46.178Z"
+  "generated": "2026-05-31T13:34:45.359Z"
 }

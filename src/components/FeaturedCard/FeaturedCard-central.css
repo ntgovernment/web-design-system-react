@@ -1,0 +1,8 @@
+/**
+ * FeaturedCard – Central theme overrides
+ */
+
+/* Central uses a different primary brand colour */
+.featured-card--background-blue {
+  background-color: var(--clr-brand-primary, #2f5597);
+}

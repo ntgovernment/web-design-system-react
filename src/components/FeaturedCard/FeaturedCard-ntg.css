@@ -1,0 +1,8 @@
+/**
+ * FeaturedCard – NT Government theme overrides
+ */
+
+/* Ensure the featured-card blue variant uses the NT brand teal */
+.featured-card--background-blue {
+  background-color: var(--clr-ntg-brand, #006dae);
+}
