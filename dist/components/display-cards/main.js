@@ -1,9 +1,6 @@
 /**
- * DisplayCards DXP Component Service — Server-Side Renderer
- *
- * Renders the same structural markup as `src/components/DisplayCards/DisplayCards.tsx`
- * on the Squiz Edge runtime. Theme CSS is loaded by the DXP preview wrapper
- * or site theme. This component does not require React hydration.
+ * DisplayCards — MANUAL MODE ONLY (NO IMAGE SUPPORT)
+ * Editor selects multiple assets → fetch metadata → render cards
  */
 
 function esc(value) {
@@ -15,192 +12,147 @@ function esc(value) {
     .replace(/'/g, "&#039;");
 }
 
-function resolveAssetUrl(value) {
-  if (!value) return "";
-  if (typeof value === "string") return value;
-  if (typeof value !== "object") return "";
-  if (typeof value.url === "string") return value.url;
-  if (typeof value.href === "string") return value.href;
-  if (typeof value.value === "string") return value.value;
-  if (value.asset && typeof value.asset.url === "string") return value.asset.url;
-  return "";
+// Extract assetId from SquizLink or matrix-asset-uri
+function getAssetId(link, API_IDENTIFIER) {
+  if (!link) return null;
+
+  // SquizLink object
+  if (typeof link === "object" && link.assetId) {
+    return link.assetId;
+  }
+
+  // matrix-asset://api_identifier/12345
+  if (typeof link === "string" && link.startsWith("matrix-asset://")) {
+    return link.replace(`matrix-asset://${API_IDENTIFIER}/`, "");
+  }
+
+  return null;
 }
 
-function renderIcon(icon, extraClass = "") {
-  if (!icon) return "";
-  const cls = `${icon}${extraClass ? ` ${extraClass}` : ""}`;
-  return `<i class="${esc(cls)}" aria-hidden="true"></i>`;
-}
-
-function renderMedia(imageURL, showImage) {
-  if (!showImage) return "";
-  const url = resolveAssetUrl(imageURL);
-  if (!url) return "";
-  return `
-    <div class="card__media card__media--16:9">
-      <img src="${esc(url)}" alt="Card image" />
-    </div>`;
-}
-
-function renderHeaderMeta(showMeta, tagLabel, dateLabel) {
-  if (!showMeta) return "";
-  const tags = tagLabel ? esc(tagLabel) : "";
-  const date = dateLabel ? esc(dateLabel) : "";
-  if (!tags && !date) return "";
-
-  return `
-    <div class="card__header-meta">
-      ${tags ? `<div class="card__header-meta-tags">${tags}</div>` : ""}
-      ${date ? `<div class="card__header-meta-date">${date}</div>` : ""}
-    </div>`;
-}
-
-function renderTitle(title, showTitleIcon, icon, isMinicard) {
-  const iconHtml = showTitleIcon && icon ? renderIcon(icon, isMinicard ? "card__minicard-icon" : "me-2") : "";
-  return `
-    <div class="card__body-title-wrapper">
-      <h5 class="card-title">
-        ${iconHtml}${esc(title)}
-      </h5>
-    </div>`;
-}
-
-function renderDescription(description, showDescription, isMinicard) {
-  if (!showDescription || isMinicard || !description) return "";
-  return `<div class="card-text">${esc(description)}</div>`;
-}
-
-function renderFooter(isFull, showButton, actionText, actionIcon) {
-  if (!isFull) return "";
-  const buttonHtml = showButton && actionText
-    ? `<span class="btn btn-tertiary" aria-hidden="true">${esc(actionText)}${actionIcon ? ` ${renderIcon(actionIcon, "ms-2")}` : ""}</span>`
-    : "";
-
-  return `
-    <div class="card-footer">
-      <div class="card__footer-actions">${buttonHtml}</div>
-    </div>`;
+// Fetch metadata from Matrix proxy API
+async function fetchMetadata(idsCSV, BASE_DOMAIN, BASE_PATH) {
+  try {
+    const url = `${BASE_DOMAIN}${BASE_PATH}cards?ids=${idsCSV}`;
+    const response = await fetch(url);
+    const text = await response.text();
+    return JSON.parse(text);
+  } catch (err) {
+    console.error("Matrix metadata fetch failed:", err);
+    return undefined;
+  }
 }
 
 function renderCard(card, settings) {
   const {
-    variant = "full",
     title = "",
     description = "",
-    showImage = true,
-    imageURL,
-    showMeta = true,
-    tagLabel = "",
-    dateLabel = "",
-    showTitleIcon = false,
-    icon = "",
-    showButton = true,
-    actionText = "",
-    actionIcon = "",
-    href,
-    ariaLabel = "",
+    href = "#",
+    actionText = settings.buttonText,
   } = card || {};
-
-  const isMinicard = variant === "minicard";
-  const isCompact = variant === "compact";
-  const isFull = !isMinicard && !isCompact;
-
-  const cardClasses = [
-    "card",
-    isMinicard ? "card--minicard" : "",
-    isCompact ? "card--compact" : "",
-    isFull ? "card--full" : "",
-    settings.showImage !== undefined && !settings.showImage ? "" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  const wrapperAttrs = href
-    ? `href="${esc(href)}" aria-label="${esc(ariaLabel || title)}"`
-    : "";
-
-  const mediaHtml = renderMedia(imageURL, isFull && showImage && settings.showImage);
-  const headerMetaHtml = renderHeaderMeta(isFull && showMeta && settings.showMetadata, tagLabel, dateLabel);
-  const titleHtml = title ? renderTitle(title, showTitleIcon, icon, isMinicard) : "";
-  const descriptionHtml = renderDescription(description, settings.showDescription, isMinicard);
-  const actionTextFinal = settings.showButton
-    ? settings.buttonText || actionText
-    : "";
-  const footerHtml = renderFooter(isFull, settings.showButton && showButton, actionTextFinal, actionIcon);
 
   return `
     <div class="display-cards__card-wrapper">
-      <${href ? "a" : "div"} class="${esc(cardClasses)}" ${wrapperAttrs}>
-        ${mediaHtml}
-        ${headerMetaHtml}
+      <div class="card card--full">
         <div class="card-body">
-          <div class="card__body-content">
-            ${titleHtml}
-            ${descriptionHtml}
-          </div>
+          <h5 class="card-title">${esc(title)}</h5>
+          ${settings.showDescription && description
+            ? `<p class="card-text">${esc(description)}</p>`
+            : ""}
         </div>
-        ${footerHtml}
-      </${href ? "a" : "div"}>
-    </div>`;
+
+        ${
+          settings.showButton
+            ? `<div class="card-footer">
+                 <span class="btn btn-tertiary">
+  ${esc(actionText)} <i class="fa-light fa-arrow-right"></i>
+</span>
+               </div>`
+            : ""
+        }
+      </div>
+    </div>
+  `;
 }
 
 export default {
-  async main(input) {
+  async main(input, info) {
     const {
-      cards = [],
+      selectedCardAssetIds = [],
       columns = 3,
       backgroundColor = "white",
-      showImage = false,
-      showMetadata = false,
       showDescription = true,
       showButton = true,
       buttonText = "Read more",
       sectionTitle = "",
       sectionSubtitle = "",
-      selectionMode = "manual",
-      parentAssetId,
-      selectedCardAssetIds,
     } = input || {};
 
+    // Environment variables for Matrix metadata API
+    const { API_IDENTIFIER, BASE_DOMAIN, BASE_PATH } =
+      info.env || (info.set && info.set.environment) || {};
+
+    // Extract asset IDs
+    const ids = selectedCardAssetIds
+      .map((link) => getAssetId(link, API_IDENTIFIER))
+      .filter(Boolean);
+
+    let metadata;
+
+    // Fetch real metadata if env vars exist
+    if (API_IDENTIFIER && BASE_DOMAIN && BASE_PATH) {
+      const idsCSV = ids.join(",");
+      metadata = await fetchMetadata(idsCSV, BASE_DOMAIN, BASE_PATH);
+    } else {
+      // Preview mode → use mock data
+      console.warn("Environment vars missing → using mock preview data");
+      const { mockDataWrapper } = await import("./previews/mockDataWrapper.js");
+      metadata = mockDataWrapper.cards;
+    }
+
+    // Map metadata → card fields (NO IMAGE)
+    const cardsToRender = (metadata || []).map((item) => ({
+      title: item.name || item.heading,                     // asset name
+      description: item.description || item.supportingText, // asset description
+      href: item.link,                                      // asset link
+      actionText: buttonText,
+    }));
+
+    // Rendering
     const safeColumns = [2, 3, 4].includes(columns) ? columns : 3;
     const columnClass = `display-cards--${safeColumns}col`;
-    const bgClass = backgroundColor === "grey" ? "display-cards--bg-grey" : "display-cards--bg-white";
+    const bgClass =
+      backgroundColor === "grey"
+        ? "display-cards--bg-grey"
+        : "display-cards--bg-white";
 
     const headerHtml = sectionTitle
       ? `<div class="display-cards__header">
           <h2 class="display-cards__title">${esc(sectionTitle)}</h2>
-          ${sectionSubtitle ? `<p class="display-cards__subtitle">${esc(sectionSubtitle)}</p>` : ""}
+          ${
+            sectionSubtitle
+              ? `<p class="display-cards__subtitle">${esc(sectionSubtitle)}</p>`
+              : ""
+          }
         </div>`
       : "";
 
-    const cardsHtml = cards
-      .map((card) => renderCard(card, {
-        showImage,
-        showMetadata,
-        showDescription,
-        showButton,
-        buttonText,
-      }))
+    const cardsHtml = cardsToRender
+      .map((card) =>
+        renderCard(card, {
+          showDescription,
+          showButton,
+          buttonText,
+        })
+      )
       .join("");
 
-    const parentMetaHtml =
-      selectionMode === "parent" && parentAssetId
-        ? `<div style="display:none" data-selection-mode="parent" data-parent-asset-id="${esc(parentAssetId)}"></div>`
-        : "";
-
-    const manualMetaHtml =
-      selectionMode === "manual" && Array.isArray(selectedCardAssetIds)
-        ? `<div style="display:none" data-selection-mode="manual" data-selected-card-asset-ids='${esc(JSON.stringify(selectedCardAssetIds))}'></div>`
-        : "";
-
     return `
-      <section class="display-cards ${esc(columnClass)} ${esc(bgClass)}" data-component-status="16">
+      <section class="display-cards ${esc(columnClass)} ${esc(bgClass)}">
         ${headerHtml}
         <div class="display-cards__grid">
           ${cardsHtml}
         </div>
-        ${parentMetaHtml}
-        ${manualMetaHtml}
-      </section>`;
+      </section>
+    `;
   },
 };

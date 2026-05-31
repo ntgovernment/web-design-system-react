@@ -7,6 +7,7 @@
   <title>Display Cards - DXP Component Preview</title>
 
   <link rel="stylesheet" href="https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/theme-ntg.min.css" />
+  
   <script src="https://kit.fontawesome.com/9bf658a5c7.js" crossorigin="anonymous"></script>
 
   <style>
@@ -23,7 +24,6 @@
     }
 
     .preview-section > h2 {
-      font-family: inherit;
       margin: 0;
       padding: 1rem 1.5rem;
       background: #1f1f5f;
@@ -63,26 +63,14 @@
 
   <div class="preview-section">
     <h2>Manual cards</h2>
-    <h3>Default 3-column layout with buttons and descriptions</h3>
+    <h3>Metadata-driven cards using selected asset IDs</h3>
     <div id="preview-manual" class="preview-host"></div>
-  </div>
-
-  <div class="preview-section">
-    <h2>Parent asset selection</h2>
-    <h3>Exposes selection metadata for DXP conversion</h3>
-    <div id="preview-parent-selection" class="preview-host"></div>
-  </div>
-
-  <div class="preview-section">
-    <h2>Grey background</h2>
-    <h3>Section styling with grey background and manual cards</h3>
-    <div id="preview-grey-background" class="preview-host"></div>
   </div>
 
   <script type="module">
     import component from "./main.js";
 
-    const response = await fetch("./example.data.json");
+    const response = await fetch("./manual-mode.data.json");
     const data = await response.json();
 
     function mount(targetId, html) {
@@ -90,9 +78,7 @@
       host.innerHTML = html;
     }
 
-    mount("preview-manual", await component.main(data.manual));
-    mount("preview-parent-selection", await component.main(data.parentSelection));
-    mount("preview-grey-background", await component.main(data.greyBackground));
+    mount("preview-manual", await component.main(data));
   </script>
 </body>
 

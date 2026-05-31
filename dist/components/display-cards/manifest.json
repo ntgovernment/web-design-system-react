@@ -3,7 +3,7 @@
   "namespace": "ntg-web-design-system",
   "name": "display-cards",
   "displayName": "Display Cards",
-  "description": "Responsive grid of card items for NT Government content sections. Supports manual cards and DXP parent asset selection metadata.",
+  "description": "Responsive grid of card items for NT Government content sections. Metadata-driven manual asset selection.",
   "icon": {
     "id": "view_module",
     "color": {
@@ -12,212 +12,94 @@
     }
   },
   "type": "edge",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "mainFunction": "main",
+
   "functions": [
     {
       "name": "main",
       "entry": "main.js",
+
       "input": {
         "type": "object",
         "properties": {
-          "cards": {
+          "selectedCardAssetIds": {
             "type": "array",
-            "title": "Cards",
-            "description": "Card items displayed in the grid.",
+            "title": "Select card assets",
+            "description": "Matrix assets to display as cards.",
             "items": {
-              "type": "object",
-              "properties": {
-                "variant": {
-                  "type": "string",
-                  "title": "Card variant",
-                  "description": "Card layout variant.",
-                  "enum": ["full", "minicard", "compact"],
-                  "default": "full"
-                },
-                "title": {
-                  "type": "string",
-                  "title": "Title"
-                },
-                "description": {
-                  "type": "string",
-                  "title": "Description"
-                },
-                "showImage": {
-                  "type": "boolean",
-                  "title": "Show image",
-                  "default": true
-                },
-                "imageURL": {
-                  "type": "SquizImage",
-                  "title": "Image URL"
-                },
-                "showMeta": {
-                  "type": "boolean",
-                  "title": "Show metadata",
-                  "default": true
-                },
-                "tagLabel": {
-                  "type": "string",
-                  "title": "Tag label",
-                  "description": "Comma-separated tags, e.g. 'News:blue, Event:success'."
-                },
-                "dateLabel": {
-                  "type": "string",
-                  "title": "Date label"
-                },
-                "showTitleIcon": {
-                  "type": "boolean",
-                  "title": "Show title icon",
-                  "default": false
-                },
-                "icon": {
-                  "type": "string",
-                  "title": "Icon",
-                  "description": "Optional Font Awesome icon class, e.g. 'fa-light fa-circle-info'."
-                },
-                "showButton": {
-                  "type": "boolean",
-                  "title": "Show button",
-                  "default": true
-                },
-                "actionText": {
-                  "type": "string",
-                  "title": "Button text"
-                },
-                "actionIcon": {
-                  "type": "string",
-                  "title": "Button icon",
-                  "description": "Optional Font Awesome icon class for the button."
-                },
-                "href": {
-                  "type": "string",
-                  "title": "Card link URL"
-                },
-                "ariaLabel": {
-                  "type": "string",
-                  "title": "Card aria-label"
-                }
-              },
-              "required": ["title"]
-            },
-            "default": [
-              {
-                "variant": "full",
-                "title": "Card title",
-                "description": "Descriptive card content.",
-                "showImage": false,
-                "showMeta": false,
-                "showButton": true,
-                "actionText": "Read more"
-              }
-            ]
+              "type": "string",
+              "format": "matrix-asset-uri",
+              "title": "Card asset"
+            }
           },
+
           "columns": {
             "type": "number",
             "title": "Columns",
-            "description": "Number of columns for the grid layout on desktop.",
             "enum": [2, 3, 4],
             "default": 3
           },
+
           "backgroundColor": {
             "type": "string",
             "title": "Background color",
             "enum": ["white", "grey"],
             "default": "white"
           },
-          "showImage": {
-            "type": "boolean",
-            "title": "Show images",
-            "description": "Whether to display card images.",
-            "default": false
-          },
-          "showMetadata": {
-            "type": "boolean",
-            "title": "Show metadata",
-            "description": "Whether to display card tags and dates.",
-            "default": false
-          },
+
           "showDescription": {
             "type": "boolean",
             "title": "Show descriptions",
             "default": true
           },
+
           "showButton": {
             "type": "boolean",
             "title": "Show buttons",
             "default": true
           },
+
           "buttonText": {
             "type": "string",
             "title": "Button text",
             "default": "Read more"
           },
+
           "sectionTitle": {
             "type": "string",
             "title": "Section title"
           },
+
           "sectionSubtitle": {
             "type": "string",
             "title": "Section subtitle"
-          },
-          "selectionMode": {
-            "type": "string",
-            "title": "Selection mode",
-            "enum": ["manual", "parent"],
-            "default": "manual"
-          },
-          "parentAssetId": {
-            "type": "SquizLink",
-            "title": "Parent asset",
-            "description": "Parent asset used when selection mode is parent. DXP will provide an asset picker for selection."
-          },
-          "selectedCardAssetIds": {
-            "type": "array",
-            "title": "Selected card assets",
-            "description": "Card assets to display. DXP will provide an asset picker for multi-selection.",
-            "items": {
-              "type": "SquizLink"
-            }
           }
         },
-        "required": ["cards"]
+
+        "required": ["selectedCardAssetIds"]
       },
+
       "output": {
         "responseType": "html"
       }
     }
   ],
+
+  "environment": [
+    { "name": "API_IDENTIFIER", "required": false },
+    { "name": "BASE_DOMAIN", "required": false },
+    { "name": "BASE_PATH", "required": false }
+  ],
+
   "previews": {
-    "manual": {
+    "default": {
       "functionData": {
         "main": {
           "wrapper": { "path": "previews/wrapper.html" },
           "inputData": {
             "type": "file",
-            "path": "previews/manual.data.json"
-          }
-        }
-      }
-    },
-    "parent-selection": {
-      "functionData": {
-        "main": {
-          "wrapper": { "path": "previews/wrapper.html" },
-          "inputData": {
-            "type": "file",
-            "path": "previews/parent-selection.data.json"
-          }
-        }
-      }
-    },
-    "grey-background": {
-      "functionData": {
-        "main": {
-          "wrapper": { "path": "previews/wrapper.html" },
-          "inputData": {
-            "type": "file",
-            "path": "previews/grey-background.data.json"
+            "path": "previews/manual-mode.data.json"
           }
         }
       }

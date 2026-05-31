@@ -716,22 +716,10 @@
     },
     "DisplayCards": {
       "stories": {
-        "Manual3Columns": {
+        "ManualMode": {
           "args": {
             "backgroundColor": "white",
             "sectionTitle": "Mining applications and processes"
-          }
-        },
-        "Manual2Columns": {
-          "args": {
-            "backgroundColor": "white",
-            "sectionTitle": "Industry Applications"
-          }
-        },
-        "Manual4Columns": {
-          "args": {
-            "backgroundColor": "white",
-            "sectionTitle": "All Available Services"
           }
         },
         "GreyBackground": {
@@ -740,64 +728,17 @@
             "sectionTitle": "Featured Services"
           }
         },
-        "NoDescriptions": {
-          "args": {
-            "backgroundColor": "white",
-            "sectionTitle": "Quick Links"
-          }
-        },
-        "NoButtons": {
-          "args": {
-            "backgroundColor": "white",
-            "sectionTitle": "Information Cards"
-          }
-        },
-        "CustomButtonText": {
-          "args": {
-            "backgroundColor": "white",
-            "buttonText": "Apply Now",
-            "sectionTitle": "Permit Applications"
-          }
-        },
         "WithHeaders": {
           "args": {
             "backgroundColor": "white",
             "sectionTitle": "Our Services",
-            "sectionSubtitle": "Discover the range of services available to support your business"
-          }
-        },
-        "MixedControls": {
-          "args": {
-            "backgroundColor": "white",
-            "buttonText": "Explore",
-            "sectionTitle": "Featured Options",
-            "sectionSubtitle": "Choose your preferred service below"
-          }
-        },
-        "ParentAssetSelection": {
-          "args": {
-            "backgroundColor": "white",
-            "selectionMode": "parent",
-            "parentAssetId": "matrix-asset://api-identifier/12345",
-            "sectionTitle": "Parent Asset Selection"
-          }
-        },
-        "NothingVisible": {
-          "args": {
-            "backgroundColor": "white"
+            "sectionSubtitle": "Discover the range of services available"
           }
         },
         "SingleCard": {
           "args": {
             "backgroundColor": "white",
             "sectionTitle": "Featured Service"
-          }
-        },
-        "ManyCards": {
-          "args": {
-            "backgroundColor": "white",
-            "sectionTitle": "All Services & Resources",
-            "sectionSubtitle": "A comprehensive list of available services"
           }
         }
       },
@@ -2452,5 +2393,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-05-27T03:59:41.577Z"
+  "generated": "2026-05-31T07:00:06.374Z"
 }

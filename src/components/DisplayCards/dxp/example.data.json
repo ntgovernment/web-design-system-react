@@ -1,119 +1,17 @@
 {
-  "manual": {
-    "cards": [
-      {
-        "variant": "full",
-        "title": "Preliminary exploration",
-        "description": "Getting access to land and notice to landowners, exploration on existing title areas, disputes over access.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/exploration"
-      },
-      {
-        "variant": "full",
-        "title": "Mineral titles",
-        "description": "Types of mineral title, summary of title types and conditions.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/mineral-titles"
-      },
-      {
-        "variant": "full",
-        "title": "Environmental impact assessment",
-        "description": "Formal assessment and matters of national environmental significance.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/environmental-impact"
-      }
-    ],
-    "columns": 3,
-    "backgroundColor": "white",
-    "showImage": false,
-    "showMetadata": false,
-    "showDescription": true,
-    "showButton": true,
-    "buttonText": "Read more",
-    "sectionTitle": "Mining applications and processes",
-    "sectionSubtitle": "A concise overview of the services we provide.",
-    "selectionMode": "manual"
-  },
-  "parentSelection": {
-    "cards": [
-      {
-        "variant": "full",
-        "title": "Explore services",
-        "description": "Selected items are supplied by the DXP parent asset selection metadata.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/explore"
-      },
-      {
-        "variant": "full",
-        "title": "Manage applications",
-        "description": "A parent asset can surface a related group of card links automatically.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/manage"
-      },
-      {
-        "variant": "full",
-        "title": "Submit a request",
-        "description": "Important actions are surfaced with a consistent card layout.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/request"
-      }
-    ],
-    "columns": 3,
-    "backgroundColor": "white",
-    "showImage": false,
-    "showMetadata": false,
-    "showDescription": true,
-    "showButton": true,
-    "buttonText": "Read more",
-    "sectionTitle": "Parent asset selection",
-    "selectionMode": "parent",
-    "parentAssetId": "matrix-asset://api-identifier/12345",
-    "selectedCardAssetIds": [
-      "matrix-asset://api-identifier/12345",
-      "matrix-asset://api-identifier/12346",
-      "matrix-asset://api-identifier/12347"
-    ]
-  },
-  "greyBackground": {
-    "cards": [
-      {
-        "variant": "full",
-        "title": "Featured services",
-        "description": "Cards can be styled on a grey background to separate them from page content.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/featured"
-      },
-      {
-        "variant": "full",
-        "title": "Support resources",
-        "description": "Consistent typography and spacing remain across theming variants.",
-        "showImage": false,
-        "actionText": "Read more",
-        "actionIcon": "fa-light fa-arrow-right",
-        "href": "/services/support"
-      }
-    ],
-    "columns": 2,
-    "backgroundColor": "grey",
-    "showImage": false,
-    "showMetadata": false,
-    "showDescription": true,
-    "showButton": true,
-    "buttonText": "Learn more",
-    "sectionTitle": "Featured services"
-  }
+  "selectedCardAssetIds": [
+    "matrix-asset://api-identifier/79607",
+    "matrix-asset://api-identifier/79605",
+    "matrix-asset://api-identifier/79603"
+  ],
+
+  "columns": 3,
+  "backgroundColor": "white",
+
+  "showDescription": true,
+  "showButton": true,
+  "buttonText": "Read more",
+
+  "sectionTitle": "Example Manual Cards",
+  "sectionSubtitle": "Metadata-driven preview"
 }
