@@ -1,5 +1,5 @@
 /**
- * DisplayCards — MANUAL MODE ONLY (NO IMAGE SUPPORT)
+ * DisplayCards — MANUAL MODE ONLY
  * Editor selects multiple assets → fetch metadata → render cards
  */
 

@@ -1,7 +1,8 @@
 import React from "react";
-import "./DisplayCards.css";
+import "./DisplayCardsAuto.css";
 import "./../Card/Card.css";
 import { assetMap } from "./assetMap";
+import { assetChildrenMap } from "./assetChildrenMap";
 
 export interface InternalCardProps {
   title: string;
@@ -49,8 +50,8 @@ const InternalCard: React.FC<InternalCardProps> = ({
   );
 };
 
-export interface DisplayCardsProps {
-  assetIds: string[];
+export interface DisplayCardsAutoProps {
+  parentAssetId: string;
   columns?: 2 | 3 | 4;
   backgroundColor?: "white" | "grey";
   sectionTitle?: string;
@@ -62,8 +63,8 @@ export interface DisplayCardsProps {
   className?: string;
 }
 
-export const DisplayCards: React.FC<DisplayCardsProps> = ({
-  assetIds = [],
+export const DisplayCardsAuto: React.FC<DisplayCardsAutoProps> = ({
+  parentAssetId,
   columns = 3,
   backgroundColor = "white",
   sectionTitle,
@@ -80,9 +81,9 @@ export const DisplayCards: React.FC<DisplayCardsProps> = ({
       ? "display-cards--bg-grey"
       : "display-cards--bg-white";
 
-  const cards = assetIds
-    .map((id) => assetMap[id])
-    .filter(Boolean);
+  // Auto Mode: parent → children → metadata
+  const childIds = assetChildrenMap[parentAssetId] || [];
+  const cards = childIds.map((id) => assetMap[id]).filter(Boolean);
 
   return (
     <section
@@ -115,4 +116,4 @@ export const DisplayCards: React.FC<DisplayCardsProps> = ({
   );
 };
 
-export default DisplayCards;
+export default DisplayCardsAuto;

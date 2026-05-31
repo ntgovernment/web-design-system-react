@@ -1,0 +1,10 @@
+{
+  "parentAssetId": "matrix-asset://api-identifier/2000",
+  "columns": 3,
+  "backgroundColor": "white",
+  "showDescription": true,
+  "showButton": true,
+  "buttonText": "Read more",
+  "sectionTitle": "Auto Mode Preview",
+  "sectionSubtitle": "Cards generated from children"
+}

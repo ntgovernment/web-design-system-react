@@ -1,0 +1,106 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "namespace": "ntg-web-design-system",
+  "name": "display-cards-auto",
+  "displayName": "Display Cards Auto",
+  "description": "Responsive grid of card items automatically sourced from the children of a selected parent asset.",
+
+  "icon": {
+    "id": "view_module",
+    "color": {
+      "type": "enum",
+      "value": "blue"
+    }
+  },
+
+  "type": "edge",
+  "version": "0.3.0",
+  "mainFunction": "main",
+
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+
+      "input": {
+        "type": "object",
+        "properties": {
+          "parentAssetId": {
+            "type": "string",
+            "title": "Parent asset",
+            "format": "matrix-asset-uri",
+            "description": "Select a parent asset. Its children will be displayed as cards."
+          },
+
+          "columns": {
+            "type": "number",
+            "title": "Columns",
+            "enum": [2, 3, 4],
+            "default": 3
+          },
+
+          "backgroundColor": {
+            "type": "string",
+            "title": "Background color",
+            "enum": ["white", "grey"],
+            "default": "white"
+          },
+
+          "showDescription": {
+            "type": "boolean",
+            "title": "Show descriptions",
+            "default": true
+          },
+
+          "showButton": {
+            "type": "boolean",
+            "title": "Show buttons",
+            "default": true
+          },
+
+          "buttonText": {
+            "type": "string",
+            "title": "Button text",
+            "default": "Read more"
+          },
+
+          "sectionTitle": {
+            "type": "string",
+            "title": "Section title"
+          },
+
+          "sectionSubtitle": {
+            "type": "string",
+            "title": "Section subtitle"
+          }
+        },
+
+        "required": ["parentAssetId"]
+      },
+
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+
+  "environment": [
+    { "name": "API_IDENTIFIER", "required": false },
+    { "name": "BASE_DOMAIN", "required": false },
+    { "name": "BASE_PATH", "required": false }
+  ],
+
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/auto-mode.data.json"
+          }
+        }
+      }
+    }
+  }
+}

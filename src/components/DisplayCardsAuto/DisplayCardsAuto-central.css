@@ -1,0 +1,34 @@
+/* Display Cards Component - Central Theme Overrides */
+
+.display-cards {
+  --bs-card-bg: var(--clr-bg-default);
+  --bs-card-border-color: var(--clr-border-subtle);
+}
+
+.display-cards--bg-grey {
+  --bs-card-bg: var(--clr-bg-subtle);
+}
+
+.display-cards__title {
+  color: var(--clr-text-default);
+}
+
+.display-cards__subtitle {
+  color: var(--clr-text-secondary);
+}
+
+/* Card Focus State - Green for Central theme */
+.display-cards .card:focus-within {
+  box-shadow: inset 0 0 0 3px var(--shadow-focus-central);
+}
+
+.display-cards .card:hover {
+  border-color: var(--clr-border-default);
+}
+
+/* Button Focus State */
+.display-cards .btn-tertiary:focus,
+.display-cards .btn-tertiary:focus-visible {
+  box-shadow: 0 0 0 3px var(--shadow-focus-central);
+  outline: none;
+}

@@ -1,0 +1,10 @@
+{
+  "parentAssetId": "2000",
+  "columns": 3,
+  "backgroundColor": "white",
+  "buttonText": "Read more",
+  "sectionTitle": "Auto Mode Preview",
+  "sectionSubtitle": "Cards generated from mock children",
+  "showDescription": true,
+  "showButton": true
+}
