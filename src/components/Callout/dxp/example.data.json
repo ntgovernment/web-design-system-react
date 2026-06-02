@@ -1,0 +1,17 @@
+{
+  "withHeading": {
+    "heading": "Quick Tip",
+    "content": "Remember to save your work regularly to avoid losing progress."
+  },
+  "longContent": {
+    "heading": "Privacy Notice",
+    "content": "This callout demonstrates how the component gracefully handles longer content while maintaining excellent readability and visual structure. The text automatically wraps within the container, preserving proper spacing and typography across all viewport sizes. Use callouts to highlight important information, tips, or notices that users should pay attention to without being as urgent as notifications."
+  },
+  "withoutHeading": {
+    "content": "This callout has no heading, just content. Useful for simple informational messages."
+  },
+  "systemUpdate": {
+    "heading": "System Update",
+    "content": "The system will undergo maintenance tonight from 11 PM to 2 AM."
+  }
+}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Callout - DXP Component Preview</title>
+
+    <link rel="stylesheet" href="https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/theme-ntg.min.css" />
+
+    <style>
+        body {
+            font-family:
+                -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        .preview-section {
+            margin: 0 0 3rem;
+            padding: 0;
+            background: #fff;
+        }
+
+        .preview-section>h2 {
+            font-family: inherit;
+            margin: 0;
+            padding: 1rem 1.5rem;
+            background: #1f1f5f;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .preview-section>h3 {
+            margin: 0;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.85rem;
+            color: #555;
+            background: #fafafa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .preview-host {
+            padding: 1.5rem;
+        }
+
+        .note {
+            margin: 1rem 1.5rem;
+            padding: 0.75rem 1rem;
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="note">
+        Local preview of the Callout DXP component. <strong>main.js</strong>
+        renders the full HTML server-side. Run
+        <code>npm run build</code> first to generate the theme CSS.
+    </div>
+
+    <div class="preview-section">
+        <h2>1. Callout with Heading</h2>
+        <h3>Displays a heading above the content</h3>
+        <div id="preview-with-heading" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>2. Callout without Heading</h2>
+        <h3>Content only, no heading</h3>
+        <div id="preview-without-heading" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>3. Long Content Example</h2>
+        <h3>Demonstrates text wrapping and layout</h3>
+        <div id="preview-long-content" class="preview-host"></div>
+    </div>
+
+    <div class="preview-section">
+        <h2>4. System Update</h2>
+        <h3>Another example variant</h3>
+        <div id="preview-system-update" class="preview-host"></div>
+    </div>
+
+    <!-- Server-side render via main.js -->
+    <script type="module">
+        import component from "./main.js";
+
+        const response = await fetch("./example.data.json");
+        const data = await response.json();
+
+        // Mount HTML and re-inject any scripts (innerHTML doesn't execute scripts)
+        function mount(targetId, html) {
+            const host = document.getElementById(targetId);
+            host.innerHTML = html;
+            host.querySelectorAll("script").forEach((oldScript) => {
+                const s = document.createElement("script");
+                s.text = oldScript.textContent;
+                oldScript.replaceWith(s);
+            });
+        }
+
+        mount("preview-with-heading", await component.main(data.withHeading));
+        mount("preview-without-heading", await component.main(data.withoutHeading));
+        mount("preview-long-content", await component.main(data.longContent));
+        mount("preview-system-update", await component.main(data.systemUpdate));
+    </script>
+</body>
+
+</html>
