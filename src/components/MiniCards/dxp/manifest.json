@@ -30,15 +30,10 @@
           "cards": {
             "type": "array",
             "title": "Cards",
-            "description": "Array of card objects. Each card contains id, title, href, and icon.",
+            "description": "Array of card objects. Each card contains title, href, and icon. Card IDs are auto-generated.",
             "items": {
               "type": "object",
               "properties": {
-                "id": {
-                  "type": "string",
-                  "title": "Card ID",
-                  "description": "Unique identifier for the card"
-                },
                 "title": {
                   "type": "string",
                   "title": "Card title",
@@ -55,23 +50,20 @@
                   "description": "Font Awesome icon class (e.g., 'fa-light fa-briefcase')"
                 }
               },
-              "required": ["id", "title", "href", "icon"]
+              "required": ["title", "href", "icon"]
             },
             "default": [
               {
-                "id": "1",
                 "title": "Grant applicants",
                 "href": "#",
                 "icon": "fa-light fa-briefcase"
               },
               {
-                "id": "2",
                 "title": "Service providers",
                 "href": "#",
                 "icon": "fa-light fa-globe"
               },
               {
-                "id": "3",
                 "title": "Get in touch",
                 "href": "#",
                 "icon": "fa-light fa-circle-info"

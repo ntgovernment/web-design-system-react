@@ -304,19 +304,30 @@
 /* Minicard variant */
 
 .card--minicard {
-  padding: var(--sp-xl) !important;
+  padding: var(--sp-xl);
   border: 1px solid var(--clr-border-subtle);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .card--minicard .card-body {
   padding: 0 !important;
   gap: var(--sp-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card--minicard .card__body-title-wrapper {
   gap: var(--sp-xs);
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  display: flex;
+  width: 100%;
 }
 
 .card--minicard .card-title {
@@ -334,7 +345,7 @@
   align-items: center;
   justify-content: center;
   color: var(--clr-text-emphasis) !important;
-  margin: 0 var(--sp-xs) 0 0;
+  margin: 0;
 }
 
 /* Compact variant */

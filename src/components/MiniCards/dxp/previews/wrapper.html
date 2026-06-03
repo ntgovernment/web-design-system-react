@@ -28,8 +28,8 @@
     <!-- For local preview -->
     <style>
       /* ============================================
-         CSS Variables Fallbacks
-         ============================================ */
+		         CSS Variables Fallbacks
+		         ============================================ */
       :root {
         --sp-xs: 8px;
         --sp-sm: 12px;
@@ -50,11 +50,9 @@
         --clr-border-subtle: #d9d9d9;
         --shadow-focus-ntg: rgba(255, 111, 0, 0.5);
       }
-
       /* ============================================
-         MiniCards Component Styling
-         ============================================ */
-
+		         MiniCards Component Styling
+		         ============================================ */
       /* Root container */
       .mini-cards {
         display: block;
@@ -63,15 +61,12 @@
         background-color: var(--clr-bg-default);
         border-radius: 0;
       }
-
       .mini-cards--bg-white {
         background-color: var(--clr-bg-default);
       }
-
       .mini-cards--bg-grey {
         background-color: var(--clr-bg-shade);
       }
-
       /* Title */
       .mini-cards__title {
         font-size: var(--type-heading-h2-size);
@@ -82,7 +77,6 @@
         margin-bottom: var(--sp-lg);
         padding: 0;
       }
-
       /* Grid container */
       .mini-cards__grid {
         display: grid;
@@ -90,22 +84,18 @@
         gap: var(--sp-md);
         width: 100%;
       }
-
       .mini-cards--layout-3-col .mini-cards__grid {
         grid-template-columns: 1fr;
       }
-
       .mini-cards--layout-4-col .mini-cards__grid {
         grid-template-columns: 1fr;
       }
-
       @media (min-width: 576px) {
         .mini-cards--layout-3-col .mini-cards__grid,
         .mini-cards--layout-4-col .mini-cards__grid {
           grid-template-columns: repeat(2, 1fr);
         }
       }
-
       @media (min-width: 768px) {
         .mini-cards--layout-3-col .mini-cards__grid {
           grid-template-columns: repeat(3, 1fr);
@@ -114,18 +104,15 @@
           grid-template-columns: repeat(4, 1fr);
         }
       }
-
       /* Card item wrapper */
       .mini-cards__item {
         display: flex;
         flex-direction: column;
         width: 100%;
       }
-
       /* ============================================
-         Card Component Styling (Minicard Variant)
-         ============================================ */
-
+		         Card Component Styling (Minicard Variant)
+		         ============================================ */
       .card {
         display: flex;
         flex-direction: column;
@@ -139,21 +126,17 @@
           box-shadow 0.2s ease,
           background-color 0.2s ease;
       }
-
       .card:hover {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
-
       .card:hover .card-title,
       .card:hover .card__minicard-icon {
         color: #c33826 !important;
       }
-
       .card:focus {
         outline: none;
         box-shadow: 0 0 0 4px var(--shadow-focus-ntg);
       }
-
       /* MiniCard variant */
       .card--minicard {
         padding: var(--sp-xl);
@@ -165,7 +148,6 @@
         align-items: center;
         text-align: center;
       }
-
       .card--minicard .card-body {
         padding: 0 !important;
         gap: var(--sp-sm);
@@ -173,7 +155,6 @@
         flex-direction: column;
         align-items: center;
       }
-
       .card--minicard .card__body-title-wrapper {
         gap: var(--sp-xs);
         flex-direction: column;
@@ -181,7 +162,6 @@
         display: flex;
         width: 100%;
       }
-
       .card--minicard .card-title {
         font-size: var(--type-heading-h4-size);
         line-height: var(--type-heading-h4-lh);
@@ -189,7 +169,6 @@
         margin-bottom: 0;
         color: var(--clr-text-default);
       }
-
       .card--minicard .card__minicard-icon {
         width: var(--sp-2xl);
         height: var(--sp-2xl);

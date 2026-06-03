@@ -3,19 +3,16 @@
     "title": "Find out more",
     "cards": [
       {
-        "id": "1",
         "title": "Grant applicants",
         "href": "https://cyber.nt.gov.au/cyber-invest-business-program/grant-applicants",
         "icon": "fa-light fa-briefcase"
       },
       {
-        "id": "2",
         "title": "Service providers",
         "href": "https://cyber.nt.gov.au/cyber-invest-business-program/service-providers",
         "icon": "fa-light fa-globe"
       },
       {
-        "id": "3",
         "title": "Get in touch",
         "href": "https://cyber.nt.gov.au/cyber-invest-business-program/get-in-touch",
         "icon": "fa-light fa-circle-info"
@@ -28,19 +25,16 @@
     "title": "Available resources",
     "cards": [
       {
-        "id": "1",
         "title": "Documentation",
         "href": "#",
         "icon": "fa-light fa-file-lines"
       },
       {
-        "id": "2",
         "title": "Support",
         "href": "#",
         "icon": "fa-light fa-headset"
       },
       {
-        "id": "3",
         "title": "Community",
         "href": "#",
         "icon": "fa-light fa-users"

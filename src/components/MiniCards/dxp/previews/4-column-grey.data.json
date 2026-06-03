@@ -2,25 +2,21 @@
   "title": "Quick access",
   "cards": [
     {
-      "id": "1",
       "title": "Overview",
       "href": "#",
       "icon": "fa-light fa-eye"
     },
     {
-      "id": "2",
       "title": "FAQ",
       "href": "#",
       "icon": "fa-light fa-circle-question"
     },
     {
-      "id": "3",
       "title": "Download",
       "href": "#",
       "icon": "fa-light fa-download"
     },
     {
-      "id": "4",
       "title": "Contact",
       "href": "#",
       "icon": "fa-light fa-envelope"

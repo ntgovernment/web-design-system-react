@@ -32,11 +32,14 @@ function renderIcon(icon, extraClass = "") {
 /**
  * Renders a single mini card (icon + title + link).
  * Mirrors the Card component with variant="minicard".
+ * Auto-generates card ID if not provided.
  */
-function renderCard(card) {
-  if (!card || !card.id || !card.title || !card.href) {
+function renderCard(card, index) {
+  if (!card || !card.title || !card.href) {
     return "";
   }
+
+  const cardId = card.id || `card-${index}`;
 
   return `
     <div class="mini-cards__item">
@@ -88,7 +91,7 @@ export default {
       : "white";
 
     // Render all cards
-    const cardsHtml = cards.map((card) => renderCard(card)).join("");
+    const cardsHtml = cards.map((card, index) => renderCard(card, index)).join("");
 
     // Render title if provided
     const titleHtml = title

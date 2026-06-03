@@ -2,19 +2,16 @@
   "title": "Available resources",
   "cards": [
     {
-      "id": "1",
       "title": "Documentation",
       "href": "#",
       "icon": "fa-light fa-file-lines"
     },
     {
-      "id": "2",
       "title": "Support",
       "href": "#",
       "icon": "fa-light fa-headset"
     },
     {
-      "id": "3",
       "title": "Community",
       "href": "#",
       "icon": "fa-light fa-users"
