@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actions>
+<action>
+   <action_id>create_Content_Container_Template_1236709</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Content_Container_Template</type_code>
+   <link_type>1</link_type>
+   <parentid>1</parentid>
+   <value></value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Metadata_Schema_1236710</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Metadata_Schema</type_code>
+   <link_type>1</link_type>
+   <parentid>[[output://create_Content_Container_Template_1236709.assetid]]</parentid>
+   <value></value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Metadata_Section_1236711</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Metadata_Section</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Metadata_Schema_1236710.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>add_Metadata_Section_1236711_path</action_id>
+   <action_type>add_web_path</action_type>
+   <asset>[[output://create_Metadata_Section_1236711.assetid]]</asset>
+   <parent_asset>[[output://create_Metadata_Schema_1236710.assetid]]</parent_asset>
+   <path>alert-type</path>
+</action>
+
+<action>
+   <action_id>create_Metadata_Field_Text_1236729</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Metadata_Field_Text</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Metadata_Section_1236711.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Metadata_Field_Select_1236712</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Metadata_Field_Select</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Metadata_Section_1236711.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Layout_1236713</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Layout</type_code>
+   <link_type>1</link_type>
+   <parentid>[[output://create_Content_Container_Template_1236709.assetid]]</parentid>
+   <value></value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Bodycopy_Div_1236714</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Bodycopy_Div</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Layout_1236713.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Content_Type_Raw_HTML_1236715</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Content_Type_Raw_HTML</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Bodycopy_Div_1236714.assetid]]</parentid>
+   <value>div_contents</value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>1</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Bodycopy_Div_1236716</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Bodycopy_Div</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Layout_1236713.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Content_Type_Raw_HTML_1236717</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Content_Type_Raw_HTML</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Bodycopy_Div_1236716.assetid]]</parentid>
+   <value>div_contents</value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>1</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Paint_Layout_Page_1236718</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Paint_Layout_Page</type_code>
+   <link_type>1</link_type>
+   <parentid>[[output://create_Content_Container_Template_1236709.assetid]]</parentid>
+   <value></value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>add_Paint_Layout_Page_1236718_path</action_id>
+   <action_type>add_web_path</action_type>
+   <asset>[[output://create_Paint_Layout_Page_1236718.assetid]]</asset>
+   <parent_asset>[[output://create_Content_Container_Template_1236709.assetid]]</parent_asset>
+   <path>paint-layout</path>
+</action>
+
+<action>
+   <action_id>create_Bodycopy_1236719</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Bodycopy</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Paint_Layout_Page_1236718.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>1</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Bodycopy_Div_1236720</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Bodycopy_Div</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Bodycopy_1236719.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Content_Type_Raw_HTML_1236721</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Content_Type_Raw_HTML</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Bodycopy_Div_1236720.assetid]]</parentid>
+   <value>div_contents</value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>1</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Folder_1236722</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Folder</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Paint_Layout_Page_1236718.assetid]]</parentid>
+   <value>type_formats</value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>1</is_exclusive>
+</action>
+
+<action>
+   <action_id>add_Folder_1236722_path</action_id>
+   <action_type>add_web_path</action_type>
+   <asset>[[output://create_Folder_1236722.assetid]]</asset>
+   <parent_asset>[[output://create_Paint_Layout_Page_1236718.assetid]]</parent_asset>
+   <path>type-formats</path>
+</action>
+
+<action>
+   <action_id>create_Paint_Layout_Bodycopy_1236723</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Paint_Layout_Bodycopy</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Folder_1236722.assetid]]</parentid>
+   <value>default_format</value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>1</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Bodycopy_Div_1236724</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Bodycopy_Div</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Paint_Layout_Bodycopy_1236723.assetid]]</parentid>
+   <value></value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>create_Content_Type_Raw_HTML_1236725</action_id>
+   <action_type>create_asset</action_type>
+   <type_code>Content_Type_Raw_HTML</type_code>
+   <link_type>2</link_type>
+   <parentid>[[output://create_Bodycopy_Div_1236724.assetid]]</parentid>
+   <value>div_contents</value>
+   <is_dependant>1</is_dependant>
+   <is_exclusive>1</is_exclusive>
+</action>
+
+<action>
+   <action_id>set_Content_Container_Template_1236709_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Container_Template_1236709.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[NTGDS - Quick exit]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Container_Template_1236709_edit_interface_in_admin</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Container_Template_1236709.assetid]]</asset>
+   <attribute>edit_interface_in_admin</attribute>
+   <value><![CDATA[1]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Container_Template_1236709_condition_settings</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Container_Template_1236709.assetid]]</asset>
+   <attribute>condition_settings</attribute>
+   <value><![CDATA[array (
+  'enabled' => '0',
+  'condition_logic' => 'all_match',
+);]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Schema_1236710_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Schema_1236710.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Quick exit]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Schema_1236710_frontend</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Schema_1236710.assetid]]</asset>
+   <attribute>frontend</attribute>
+   <value><![CDATA[0]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Section_1236711_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Section_1236711.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Details]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Section_1236711_frontend</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Section_1236711.assetid]]</asset>
+   <attribute>frontend</attribute>
+   <value><![CDATA[0]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Text_1236729_friendly_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Text_1236729.assetid]]</asset>
+   <attribute>friendly_name</attribute>
+   <value><![CDATA[Button text]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Text_1236729_required</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Text_1236729.assetid]]</asset>
+   <attribute>required</attribute>
+   <value><![CDATA[1]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Text_1236729_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Text_1236729.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[quickExit-text]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Text_1236729_default</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Text_1236729.assetid]]</asset>
+   <attribute>default</attribute>
+   <value><![CDATA[Quick exit]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Select_1236712_required</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <attribute>required</attribute>
+   <value><![CDATA[1]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Select_1236712_friendly_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <attribute>friendly_name</attribute>
+   <value><![CDATA[Button colour]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Select_1236712_edit_params</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <attribute>edit_params</attribute>
+   <value><![CDATA[array (
+  'style' => 'list',
+  'type' => 'table',
+  'height' => '',
+  'columns' => '1',
+  'empty_text' => '',
+  'extras' => '',
+);]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Select_1236712_allow_empty</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <attribute>allow_empty</attribute>
+   <value><![CDATA[0]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Select_1236712_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[quickExit-background]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Select_1236712_default</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <attribute>default</attribute>
+   <value><![CDATA[text-bg-ntg-sky-blue]]></value>
+</action>
+
+<action>
+   <action_id>set_Metadata_Field_Select_1236712_select_options</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <attribute>select_options</attribute>
+   <value><![CDATA[array (
+  'text-bg-ntg-sky-blue' => 'Sky blue',
+  'text-bg-ntg-arafura-blue' => 'Arafura blue',
+  'text-bg-ntg-charcoal-grey' => 'Grey',
+  'text-bg-ntg-rubine-red' => 'Rubine red',
+);]]></value>
+</action>
+
+<action>
+   <action_id>set_Layout_1236713_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Layout_1236713.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Edit layout]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236714_attributes</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236714.assetid]]</asset>
+   <attribute>attributes</attribute>
+   <value><![CDATA[array (
+  'identifier' => '',
+  'layout_type' => 'none',
+  'css_class' => '',
+  'content_type' => 'content_type_raw_html',
+  'template' => '--',
+  'use_custom_id' => '',
+  'container_id' => 'content_container_[[output://create_Bodycopy_Div_1236714.assetid]]',
+);]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236714_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236714.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Content Container]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236715_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236715.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Container Content]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236715_html</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236715.assetid]]</asset>
+   <attribute>html</attribute>
+   <value><![CDATA[<div class="bct-wrapper" id="bct-wrapper-%asset_assetid%" data-asset-id="%asset_assetid%">
+    
+    <div class="bct-metadata" style="display: none;">
+        <div id="ees_editMetadata">
+            <h3>%globals_asset_name:[[output://create_Metadata_Schema_1236710.assetid]]%</h3>
+        </div>
+        %metadata-F_section_[[output://create_Metadata_Section_1236711.assetid]]_values% <!--@@ Details @@-->
+    </div>
+
+    <div style="width:100%;">
+       <p class="text-muted mb-3"><strong>Editor note:</strong> This quick exit will appear at the bottom of the screen.</p>
+       
+       <div data-mid="%globals_asset_assetid:[[output://create_Metadata_Field_Select_1236712.assetid]]%" data-type="class" class="%asset_metadata_quickExit-background%">
+           <div class="text-center text-white py-3">
+                <strong>%asset_metadata_quickExit-text%</strong>
+            </div>
+        </div>
+
+    </div>
+
+    
+</div><!--.bct-wrapper-->]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236716_attributes</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236716.assetid]]</asset>
+   <attribute>attributes</attribute>
+   <value><![CDATA[array (
+  'identifier' => '',
+  'layout_type' => 'none',
+  'css_class' => '',
+  'content_type' => 'content_type_raw_html',
+  'template' => '--',
+  'use_custom_id' => '',
+  'container_id' => 'content_container_[[output://create_Bodycopy_Div_1236716.assetid]]',
+);]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236716_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236716.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Content Container]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236717_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236717.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Container Content]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236717_html</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236717.assetid]]</asset>
+   <attribute>html</attribute>
+   <value><![CDATA[%globals_asset_contents_raw:1185360% <!-- CT includes -->]]></value>
+</action>
+
+<action>
+   <action_id>set_Paint_Layout_Page_1236718_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Paint_Layout_Page_1236718.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Paint layout]]></value>
+</action>
+
+<action>
+   <action_id>set_Paint_Layout_Page_1236718_short_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Paint_Layout_Page_1236718.assetid]]</asset>
+   <attribute>short_name</attribute>
+   <value><![CDATA[Paint layout]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_1236719_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_1236719.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Page Contents]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236720_attributes</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236720.assetid]]</asset>
+   <attribute>attributes</attribute>
+   <value><![CDATA[array (
+  'content_type' => 'content_type_raw_html',
+  'layout_type' => 'none',
+  'container_id' => 'content_container_[[output://create_Bodycopy_Div_1236720.assetid]]',
+);]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236720_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236720.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Content Container]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236721_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236721.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Container Content]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236721_html</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236721.assetid]]</asset>
+   <attribute>html</attribute>
+   <value><![CDATA[%paint_layout%]]></value>
+</action>
+
+<action>
+   <action_id>set_Folder_1236722_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Folder_1236722.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Type Formats]]></value>
+</action>
+
+<action>
+   <action_id>set_Paint_Layout_Bodycopy_1236723_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Paint_Layout_Bodycopy_1236723.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Default Format]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236724_attributes</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236724.assetid]]</asset>
+   <attribute>attributes</attribute>
+   <value><![CDATA[array (
+  'content_type' => 'content_type_raw_html',
+  'layout_type' => 'none',
+  'container_id' => 'content_container_[[output://create_Bodycopy_Div_1236724.assetid]]',
+);]]></value>
+</action>
+
+<action>
+   <action_id>set_Bodycopy_Div_1236724_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Bodycopy_Div_1236724.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Content Container]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236725_name</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236725.assetid]]</asset>
+   <attribute>name</attribute>
+   <value><![CDATA[Container Content]]></value>
+</action>
+
+<action>
+   <action_id>set_Content_Type_Raw_HTML_1236725_html</action_id>
+   <action_type>set_attribute_value</action_type>
+   <asset>[[output://create_Content_Type_Raw_HTML_1236725.assetid]]</asset>
+   <attribute>html</attribute>
+   <value><![CDATA[<div class="quick-exit position-fixed w-100 bottom-0 start-0 d-print-none" id="quickexit">
+   <div class="text-center %asset_metadata_quickExit-background% position-relative py-3">
+        <strong>%asset_metadata_quickExit-text%</strong>
+    </div>
+</div>
+
+<!--@@ jQuery must be fully loaded before quickexit.js @@-->
+<!--@@ use quickexit.js @@-->]]></value>
+</action>
+
+<action>
+   <action_id>link_notice_1236709_to_1236718</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Paint_Layout_Page_1236718.assetid]]</asset>
+   <assetid>[[output://create_Content_Container_Template_1236709.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>container_template_paint_layout</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_1236709_to_1236713</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Layout_1236713.assetid]]</asset>
+   <assetid>[[output://create_Content_Container_Template_1236709.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>container_template_edit_layout</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_1236709_to_1236710</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Metadata_Schema_1236710.assetid]]</asset>
+   <assetid>[[output://create_Content_Container_Template_1236709.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>container_template_metadata</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_[[output://create_Bodycopy_Div_1236714.assetid]]_to_1236710</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Metadata_Schema_1236710.assetid]]</asset>
+   <assetid>[[output://create_Bodycopy_Div_1236714.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>globals_keyword</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_[[output://create_Content_Container_Template_1236709.assetid]]_to_1236710</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Metadata_Schema_1236710.assetid]]</asset>
+   <assetid>[[output://create_Content_Container_Template_1236709.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>container_template_metadata</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_[[output://create_Bodycopy_Div_1236714.assetid]]_to_1236712</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <assetid>[[output://create_Bodycopy_Div_1236714.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>globals_keyword</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_[[output://create_Content_Container_Template_1236709.assetid]]_to_1236713</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Layout_1236713.assetid]]</asset>
+   <assetid>[[output://create_Content_Container_Template_1236709.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>container_template_edit_layout</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_1236714_to_1236710</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Metadata_Schema_1236710.assetid]]</asset>
+   <assetid>[[output://create_Bodycopy_Div_1236714.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>globals_keyword</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_1236714_to_1236712</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+   <assetid>[[output://create_Bodycopy_Div_1236714.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>globals_keyword</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+   <action_id>link_notice_[[output://create_Content_Container_Template_1236709.assetid]]_to_1236718</action_id>
+   <action_type>create_link</action_type>
+   <asset>[[output://create_Paint_Layout_Page_1236718.assetid]]</asset>
+   <assetid>[[output://create_Content_Container_Template_1236709.assetid]]</assetid>
+   <is_major>0</is_major>
+   <link_type>8</link_type>
+   <value>container_template_paint_layout</value>
+   <is_dependant>0</is_dependant>
+   <is_exclusive>0</is_exclusive>
+</action>
+
+<action>
+    <action_id>set_permission_1236709_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Content_Container_Template_1236709.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236710_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Metadata_Schema_1236710.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236711_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Metadata_Section_1236711.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236729_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Metadata_Field_Text_1236729.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236712_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Metadata_Field_Select_1236712.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236713_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Layout_1236713.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236714_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Bodycopy_Div_1236714.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236715_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Content_Type_Raw_HTML_1236715.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236716_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Bodycopy_Div_1236716.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236717_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Content_Type_Raw_HTML_1236717.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236718_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Paint_Layout_Page_1236718.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236719_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Bodycopy_1236719.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236720_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Bodycopy_Div_1236720.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236721_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Content_Type_Raw_HTML_1236721.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236722_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Folder_1236722.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236723_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Paint_Layout_Bodycopy_1236723.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236724_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Bodycopy_Div_1236724.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+<action>
+    <action_id>set_permission_1236725_read_7</action_id>
+    <action_type>set_permission</action_type>
+    <asset>[[output://create_Content_Type_Raw_HTML_1236725.assetid]]</asset>
+    <permission>1</permission>
+    <granted>1</granted>
+    <userid>[[system://public_user]]</userid>
+</action>
+</actions>
+

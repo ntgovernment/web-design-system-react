@@ -1,0 +1,100 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "namespace": "ntg-web-design-system",
+  "name": "floating-button",
+  "displayName": "Floating Button",
+  "description": "A persistent bottom-of-screen CTA banner with optional hide-on-scroll behavior when a target element enters the viewport.",
+  "icon": {
+    "id": "touch_app",
+    "color": {
+      "type": "enum",
+      "value": "blue"
+    }
+  },
+  "type": "edge",
+  "version": "0.1.0",
+  "mainFunction": "main",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "title": "Button label",
+            "description": "Text displayed inside the floating action button.",
+            "default": "Continue"
+          },
+          "href": {
+            "type": "string",
+            "title": "Button URL",
+            "description": "Link destination opened when the floating button is clicked.",
+            "default": "https://www.nt.gov.au/"
+          },
+          "external": {
+            "type": "boolean",
+            "title": "Open in new tab",
+            "description": "When true, the button opens the link in a new browser tab with safe rel attributes.",
+            "default": false
+          },
+          "variant": {
+            "type": "string",
+            "title": "Button variant",
+            "description": "Visual style of the button.",
+            "enum": ["primary", "secondary"],
+            "default": "primary"
+          },
+          "iconLeft": {
+            "type": "string",
+            "title": "Icon on the left",
+            "description": "FontAwesome icon class applied before the button label.",
+            "default": ""
+          },
+          "iconRight": {
+            "type": "string",
+            "title": "Icon on the right",
+            "description": "FontAwesome icon class applied after the button label.",
+            "default": "fa-light fa-arrow-right"
+          },
+          "autoHide": {
+            "type": "boolean",
+            "title": "Enable auto-hide",
+            "description": "When true, the floating button hides automatically when the target element becomes visible.",
+            "default": true
+          },
+          "targetButtonId": {
+            "type": "string",
+            "title": "Target element selector",
+            "description": "ID or CSS selector of the page element that hides the floating button when it enters view.",
+            "default": "#demo-target"
+          },
+          "ariaLabel": {
+            "type": "string",
+            "title": "ARIA label",
+            "description": "Accessible label for the floating action button.",
+            "default": "Continue to next step"
+          }
+        },
+        "required": ["label"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/default.data.json"
+          }
+        }
+      }
+    }
+  }
+}
