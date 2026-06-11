@@ -570,6 +570,7 @@ Before deploying, increment the `"version"` field in `manifest.json` following s
 - **Header** — [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md)
 - **Footer** — [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md)
 - **Global Alert** — [src/components/GlobalAlert/dxp/README.md](src/components/GlobalAlert/dxp/README.md)
+- **Floating Button** — [src/components/FloatingButton/dxp/README.md](src/components/FloatingButton/dxp/README.md)
 
 ---
 

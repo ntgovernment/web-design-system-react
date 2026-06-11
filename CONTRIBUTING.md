@@ -697,6 +697,7 @@ Component Services are server-rendered, self-contained components deployed as ed
 **Current component services:**
 
 - **Header** ✅ **DEPLOYED** — `src/components/Header/dxp/` — Site-wide header with NT branding, navigation, and search (v1.0.1 live on DXP cloud)
+- **Floating Button** 🧪 **PREVIEW** — `src/components/FloatingButton/dxp/` — Persistent bottom CTA banner with optional auto-hide behavior; discovered automatically by `cmp-prepare`.
 
 **Editing a component service:**
 

@@ -108,12 +108,13 @@ Verify deployment in the DXP Console → **Component Service** → **Components 
 
 ### Component Services
 
-Component Services are server-rendered, self-contained components deployed as edge functions in Squiz DXP. The system currently ships the **Header** component service.
+Component Services are server-rendered, self-contained components deployed as edge functions in Squiz DXP. The system currently ships the **Header** component service and includes a preview Floating Button component service in `src/components/FloatingButton/dxp/`.
 
 **Available components:**
 
 - **`header`** ✅ **DEPLOYED** — Site-wide header with NT Government branding, navigation, and optional search. Version 1.0.1 is live on DXP cloud. See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for configuration and styling details.
 - **`footer`** 🧪 **PREVIEW** — Site-wide footer with link sections, social media, branding, acknowledgement and copyright. Version 0.1.0. See [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md) for configuration and styling details.
+- **`floating-button`** 🧪 **PREVIEW** — Persistent bottom CTA banner with optional auto-hide behavior when a page target element becomes visible. Version 0.1.0. See [src/components/FloatingButton/dxp/README.md](src/components/FloatingButton/dxp/README.md) for configuration and styling details.
 
 Npm scripts are namespaced per component: `cmp-header-*` for the Header service and `cmp-footer-*` for the Footer service.
 

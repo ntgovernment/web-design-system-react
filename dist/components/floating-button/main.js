@@ -66,9 +66,7 @@ export default {
       variant = "primary",
       iconLeft = "",
       iconRight = "",
-      autoHide = false,
-      targetButtonId = "",
-      ariaLabel = "",
+  autoHide = true,
     } = input || {};
 
     const safeVariant = VALID_VARIANTS.has(variant) ? variant : "primary";

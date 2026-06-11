@@ -1,0 +1,11 @@
+{
+  "label": "Continue",
+  "href": "https://www.nt.gov.au/",
+  "external": false,
+  "variant": "primary",
+  "iconLeft": "",
+  "iconRight": "fa-light fa-arrow-right",
+  "autoHide": true,
+  "targetButtonId": "#demo-target",
+  "ariaLabel": "Continue"
+}

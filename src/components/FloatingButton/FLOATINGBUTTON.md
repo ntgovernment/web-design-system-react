@@ -318,7 +318,17 @@ function LicenseApplicationPage() {
     </div>
   );
 }
-```
+
+## Squiz DXP Component Service
+
+The Floating Button is also packaged for Squiz DXP under `src/components/FloatingButton/dxp/`.
+
+- `manifest.json` defines the Squiz DXP component metadata and input schema.
+- `main.js` renders server-side HTML for the Floating Button.
+- `preview.html` and `example.data.json` provide a local preview harness.
+- `README.md` documents DXP usage, local preview, and deployment.
+
+For the full DXP guide, see [`src/components/FloatingButton/dxp/README.md`](./dxp/README.md).
 
 ### Download Form Example
 
@@ -406,6 +416,17 @@ The FloatingButton component uses the IntersectionObserver API, which is support
 - Firefox (≥55)
 - Safari (≥12.1)
 - Mobile browsers (iOS Safari ≥12.2, Chrome Mobile)
+
+## Squiz DXP Component Service
+
+The Floating Button is also packaged for Squiz DXP under `src/components/FloatingButton/dxp/`.
+
+- `manifest.json` defines the Squiz DXP component metadata and input schema.
+- `main.js` renders server-side HTML for the Floating Button.
+- `preview.html` and `example.data.json` provide a local preview harness.
+- `README.md` documents DXP usage, local preview, and deployment.
+
+For the full DXP guide, see [`src/components/FloatingButton/dxp/README.md`](./dxp/README.md).
 
 For older browsers, consider using a polyfill:
 

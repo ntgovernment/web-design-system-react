@@ -26,6 +26,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `preview.html` — local SSR harness for all 7 variants
   - `previews/wrapper.html` + 7 per-variant `*.data.json` files (info, info-alt, warning, critical, dismissible, with-cta, complete)
   - `README.md` — component dev/deploy guide
+- **FloatingButton DXP Component Service** (`src/components/FloatingButton/dxp/`) — new bottom-of-screen CTA preview component for Squiz DXP
+  - `manifest.json` — Squiz DXP v1 manifest with inputs: `label`, `href`, `external`, `variant`, `iconLeft`, `iconRight`, `autoHide`, `targetButtonId`, `ariaLabel`
+  - `main.js` — pure ESM edge renderer; renders a floating button container and emits a self-contained inline script that observes the target element and toggles `.floating-button--hidden`
+  - `example.data.json` — sample preview inputs
+  - `preview.html` — local SSR harness for manual testing
+  - `previews/wrapper.html` + `previews/default.data.json`
+  - `README.md` — component dev/deploy guide
 - **`scripts/prepare-globalalert-dxp.js`** — stages `src/components/GlobalAlert/dxp/` → `dist/components/global-alert/` and inlines `theme-ntg.min.css` into `previews/wrapper.html` between `<!-- INLINE_THEME_CSS_START/END -->` markers
 - **`scripts/prepare-all-dxp.js`** — aggregate prepare script that auto-discovers every `src/components/*/dxp/manifest.json` and stages all DXP components into `dist/components/<name>/`; new DXP components are picked up automatically without script changes
 - **npm scripts for GlobalAlert DXP**: `cmp-globalalert-prepare`, `cmp-globalalert-dev`, `cmp-globalalert-dev:runner`, `cmp-globalalert-deploy`, `cmp-globalalert-deploy:dry-run` (each with a `pre*` hook auto-running the prepare step)
