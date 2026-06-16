@@ -14,7 +14,7 @@ The Callout component is used to display informational messages with a prominent
 ## Usage
 
 ```tsx
-import { Callout } from "@ntgov/web-design-system";
+import { Callout } from "@ntgovernment/web-design-system";
 
 function MyComponent() {
   return (
