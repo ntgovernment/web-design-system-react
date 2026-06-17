@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NT Gov Header — Preview</title>
+    <title>NT Gov Featured Card — Preview</title>
 
     <!-- Bootstrap 5.3 (CDN) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
@@ -14,9 +14,9 @@
 
     <!--
       NT Government theme bundle. Squiz dev-ui only resolves fully qualified
-      URLs from preview wrappers, so `npm run build` inlines the contents of
-      dist/theme-ntg.min.css below by replacing the placeholder marker.
-      DO NOT edit the placeholder line manually.
+      URLs from preview wrappers, so `npm run cmp-featuredcard-prepare`
+      inlines the contents of dist/theme-ntg.min.css below by replacing the
+      placeholder marker. DO NOT edit the placeholder line manually.
     -->
     <!-- INLINE_THEME_CSS_START -->
     <style>
@@ -30,22 +30,18 @@
             font-family: var(--font-family-base, system-ui, sans-serif);
         }
 
-        .preview-banner {
-            background: #f5f5f5;
-            border-bottom: 1px solid #ddd;
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-            color: #555;
-        }
-
-        .preview-page {
-            padding: 2rem 1rem;
+        .preview-wrapper {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
     </style>
 </head>
 
 <body>
-    [component://output]
+    <div class="preview-wrapper">
+        {{STORY_CONTENT}}
+    </div>
 </body>
 
 </html>

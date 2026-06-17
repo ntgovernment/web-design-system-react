@@ -105,6 +105,16 @@ export type {
   TopicListingVariant,
 } from "./components/TopicListing";
 
+// export { DisplayCard, DisplayCardSection } from "./components/DisplayCard";
+// export type {
+//   DisplayCardProps,
+//   DisplayCardData,
+//   DisplayCardSectionProps,
+//   DisplayCardBackground,
+//   DisplayCardColumns,
+//   DisplayCardDataSource,
+// } from "./components/DisplayCard";
+
 // Content components
 export { BreadcrumbsContent } from "./components/Breadcrumbs/Breadcrumbs";
 export type {
@@ -117,6 +127,14 @@ export type {
   OnThisPageNavigationProps,
   OnThisPageNavigationItem,
 } from "./components/OnThisPageNavigation/OnThisPageNavigation";
+
+export { FeaturedCard } from "./components/FeaturedCard";
+export type {
+  FeaturedCardProps,
+  FeaturedCardAction,
+  FeaturedCardImage,
+  FeaturedCardAuthor,
+} from "./components/FeaturedCard";
 
 export { PaginationContent } from "./components/Pagination/Pagination";
 export type { PaginationContentProps } from "./components/Pagination/Pagination";

@@ -1,0 +1,12 @@
+{
+  "body": "<h2>Discover world-class experiences</h2><p>Discover world-class national parks, vibrant Indigenous art, and some of the best barramundi fishing in Australia.</p>",
+  "imagePosition": "right",
+  "background": "white",
+  "border": "none",
+  "imageSrc": "https://picsum.photos/seed/featured/800/600",
+  "imageAlt": "Aerial view of the Northern Territory landscape",
+  "primaryActionText": "Learn more",
+  "primaryActionHref": "#",
+  "secondaryActionText": "Contact us",
+  "secondaryActionHref": "#contact"
+}

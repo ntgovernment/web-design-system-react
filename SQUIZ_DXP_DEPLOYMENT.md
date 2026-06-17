@@ -104,7 +104,8 @@ src/squiz/
 │   ├── footer_content.html        (Empty placeholder — provided by Footer component in a layout zone)
 │   └── footer_js.html             Footer scripts (Bootstrap, React CDN, components, Funnelback)
 └── layouts/                       Squiz DXP Page Layouts (manifest.json + markup.hbs per layout)
-    └── full-width-section/        Single column, 3 zones: header / main / footer
+    ├── full-width-section/        Single column, 3 zones: header / main / footer
+    └── content-container/         Single zone: container-xl width, text-only editorial content
 ```
 
 ### 2. Build Storybook (Optional)
