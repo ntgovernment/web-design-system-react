@@ -1,0 +1,83 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "namespace": "ntg-web-design-system",
+  "name": "video-embed",
+  "displayName": "Video Embed",
+  "description": "Embeds a YouTube or Vimeo video in a 16:9 responsive ratio with configurable controls.",
+  "icon": {
+    "id": "ondemand_video",
+    "color": {
+      "type": "enum",
+      "value": "gray"
+    }
+  },
+  "type": "edge",
+  "version": "1.0.0",
+  "mainFunction": "main",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "videoUrl": {
+            "type": "string",
+            "title": "Video URL",
+            "description": "Enter a YouTube or Vimeo URL.",
+            "default": ""
+          },
+          "includeText": {
+            "type": "boolean",
+            "title": "Include supporting text",
+            "description": "When enabled, the supporting text field will be rendered alongside the video.",
+            "default": false
+          },
+          "text": {
+            "type": "string",
+            "title": "Supporting text",
+            "description": "Optional text to display alongside the video. Only shown if Include supporting text is enabled.",
+            "translatable": true,
+            "default": ""
+          },
+          "textPosition": {
+            "type": "string",
+            "title": "Text position",
+            "description": "Position of the text relative to the video.",
+            "enum": ["left", "right", "top", "bottom"],
+            "default": "bottom"
+          },
+          "showControls": {
+            "type": "boolean",
+            "title": "Show controls",
+            "description": "Display native player controls.",
+            "default": false
+          },
+          "showSuggestedVideos": {
+            "type": "boolean",
+            "title": "Show suggested videos",
+            "description": "Show suggested videos after playback ends (YouTube only).",
+            "default": false
+          }
+        },
+        "required": ["videoUrl"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/default.data.json"
+          }
+        }
+      }
+    }
+  }
+}

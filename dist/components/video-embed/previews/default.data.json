@@ -1,0 +1,8 @@
+{
+  "videoUrl": "https://www.youtube.com/watch?v=oKqLPS7LyZY",
+  "includeText": true,
+  "text": "This is an example of supporting text displayed alongside the video.",
+  "textPosition": "right",
+  "showControls": false,
+  "showSuggestedVideos": false
+}

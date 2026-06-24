@@ -2416,7 +2416,26 @@
         }
       },
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
+    },
+    "VideoEmbed": {
+      "stories": {
+        "Default": {
+          "args": {
+            "videoUrl": "https://www.youtube.com/watch?v=oKqLPS7LyZY",
+            "text": "Use this video example to preview how the embed renders with supporting content.",
+            "textPosition": "bottom"
+          }
+        },
+        "Vimeo": {
+          "args": {
+            "videoUrl": "https://vimeo.com/76979871",
+            "text": "This Vimeo example uses the same existing props and layout controls.",
+            "textPosition": "right"
+          }
+        }
+      },
+      "file": "src/components/VideoEmbed/VideoEmbed.stories.tsx"
     }
   },
-  "generated": "2026-06-11T05:04:20.887Z"
+  "generated": "2026-06-24T00:50:46.958Z"
 }
