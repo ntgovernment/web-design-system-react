@@ -1,0 +1,7 @@
+{
+  "sourceType": "folder",
+  "sectionTitle": "Gallery from selected folder",
+  "backgroundColour": "default",
+  "showCaptions": true,
+  "folderSelection": "matrix-asset://api-identifier/9998"
+}

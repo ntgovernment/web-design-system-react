@@ -1,0 +1,37 @@
+{
+  "single-images": {
+    "sourceType": "singleImages",
+    "sectionTitle": "Featured images",
+    "backgroundColour": "default",
+    "showCaptions": true,
+    "singleFileSelection": [
+      "matrix-asset://api-identifier/101",
+      "matrix-asset://api-identifier/102",
+      "matrix-asset://api-identifier/103"
+    ]
+  },
+  "folder-source": {
+    "sourceType": "folder",
+    "sectionTitle": "Gallery from selected folder",
+    "backgroundColour": "shade",
+    "showCaptions": true,
+    "folderSelection": "matrix-asset://api-identifier/9999"
+  },
+  "empty-folder": {
+    "sourceType": "folder",
+    "sectionTitle": "Gallery from selected folder",
+    "backgroundColour": "default",
+    "showCaptions": true,
+    "folderSelection": "matrix-asset://api-identifier/9998"
+  },
+  "grey-background": {
+    "sourceType": "singleImages",
+    "sectionTitle": "Featured images",
+    "backgroundColour": "shade-alt",
+    "showCaptions": false,
+    "singleFileSelection": [
+      "matrix-asset://api-identifier/301",
+      "matrix-asset://api-identifier/302"
+    ]
+  }
+}

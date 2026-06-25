@@ -1628,6 +1628,39 @@
       },
       "file": "src/components/Image/Image.stories.tsx"
     },
+    "ImageGallery": {
+      "stories": {
+        "SingleImageSelection": {
+          "args": {
+            "sourceType": "singleImages",
+            "sectionTitle": "Featured images",
+            "backgroundColour": "default"
+          }
+        },
+        "FolderBasedGallery": {
+          "args": {
+            "sourceType": "folder",
+            "sectionTitle": "Gallery from selected folder",
+            "backgroundColour": "shade"
+          }
+        },
+        "EmptySingleImages": {
+          "args": {
+            "sourceType": "singleImages",
+            "sectionTitle": "Featured images",
+            "backgroundColour": "shade-alt"
+          }
+        },
+        "EmptyFolder": {
+          "args": {
+            "sourceType": "folder",
+            "sectionTitle": "Gallery from selected folder",
+            "backgroundColour": "default"
+          }
+        }
+      },
+      "file": "src/components/ImageGallery/ImageGallery.stories.tsx"
+    },
     "Input": {
       "stories": {
         "Default": {
@@ -2418,5 +2451,5 @@
       "file": "src/components/TopicListing/TopicListing.stories.tsx"
     }
   },
-  "generated": "2026-05-31T13:49:28.852Z"
+  "generated": "2026-06-24T05:02:09.997Z"
 }

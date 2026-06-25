@@ -44,6 +44,14 @@ export type { DocumentProps, DocumentFileType } from "./components/Document";
 export { Image } from "./components/Image";
 export type { ImageProps } from "./components/Image";
 
+export { ImageGallery } from "./components/ImageGallery";
+export type {
+  ImageAsset,
+  ImageGalleryProps,
+  ImageGallerySourceType,
+  ImageGalleryBackgroundColour,
+} from "./components/ImageGallery";
+
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 

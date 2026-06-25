@@ -120,6 +120,10 @@
 @import "./components/Image/Image.css";
 @import "./components/Image/Image-ntg.css";
 
+/* Import ImageGallery component styles */
+@import "./components/ImageGallery/ImageGallery.css";
+@import "./components/ImageGallery/ImageGallery-ntg.css";
+
 /* Import Radio component styles */
 @import "./components/Radio/Radio.css";
 @import "./components/Radio/Radio-ntg.css";

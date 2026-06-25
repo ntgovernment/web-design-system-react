@@ -1,0 +1,10 @@
+{
+  "sourceType": "singleImages",
+  "sectionTitle": "Featured images",
+  "backgroundColour": "shade-alt",
+  "showCaptions": false,
+  "singleFileSelection": [
+    "matrix-asset://api-identifier/301",
+    "matrix-asset://api-identifier/302"
+  ]
+}

@@ -1,0 +1,66 @@
+/**
+ * ImageGallery Component - Common Styles
+ *
+ * Uses Image component conventions for semantic figure markup and
+ * design token spacing, while providing a responsive gallery grid.
+ */
+
+.image-gallery {
+  padding: var(--sp-xl) var(--sp-md);
+}
+
+.image-gallery--background-default {
+  background-color: var(--clr-bg-default);
+}
+
+.image-gallery--background-shade {
+  background-color: var(--clr-bg-shade);
+}
+
+.image-gallery--background-shade-alt {
+  background-color: var(--clr-bg-shade-alt);
+}
+
+.image-gallery__title {
+  margin: 0 0 var(--sp-lg);
+  color: var(--clr-text-default);
+  font-size: var(--type-heading-h3-size);
+  font-weight: var(--type-heading-h3-weight);
+  line-height: var(--type-heading-h3-lh);
+}
+
+.image-gallery__grid {
+  margin: 0;
+}
+
+.image-gallery__figure {
+  display: block;
+  height: 100%;
+  margin: 0;
+}
+
+.image-gallery__image {
+  width: 100%;
+  border-radius: var(--radii-sm);
+  margin-bottom: var(--sp-xs);
+}
+
+.image-gallery__caption {
+  margin-top: 0;
+  color: var(--clr-text-muted);
+  font-size: var(--type-caption-default-size);
+}
+
+.image-gallery__empty {
+  margin: 0;
+  color: var(--clr-text-muted);
+  font-size: var(--type-body-default-size);
+  line-height: var(--type-body-default-lh);
+  padding: var(--sp-md) 0;
+}
+
+@media (min-width: 768px) {
+  .image-gallery {
+    padding: var(--sp-2xl) var(--sp-lg);
+  }
+}

@@ -1,0 +1,161 @@
+{
+	"$schema": "http://localhost:3000/schemas/v1.json#",
+	"namespace": "ntg-web-design-system",
+	"name": "image-gallery",
+	"displayName": "Image Gallery",
+	"description": "Responsive image gallery with optional title and background variants. Supports image data from either manually selected assets (singleImages) or a folder source.",
+	"icon": {
+		"id": "photo_library",
+		"color": {
+			"type": "enum",
+			"value": "blue"
+		}
+	},
+	"type": "edge",
+	"version": "0.1.0",
+	"mainFunction": "main",
+	"functions": [
+		{
+			"name": "main",
+			"entry": "main.js",
+			"input": {
+				"type": "object",
+				"properties": {
+					"sourceType": {
+						"type": "string",
+						"title": "Source type",
+						"description": "Choose how images are sourced.",
+						"enum": ["singleImages", "folder"],
+						"default": "singleImages"
+					},
+					"sectionTitle": {
+						"type": "string",
+						"title": "Section title",
+						"description": "Optional heading displayed above the gallery.",
+						"default": ""
+					},
+					"backgroundColour": {
+						"type": "string",
+						"title": "Background colour",
+						"description": "Background style variant.",
+						"enum": ["default", "shade", "shade-alt"],
+						"default": "default"
+					},
+					"singleFileSelection": {
+						"type": "array",
+						"title": "Image selection",
+						"description": "Used when Source type is 'singleImages'. Select one or more image assets.",
+						"items": {
+							"type": "string",
+							"format": "matrix-asset-uri"
+						},
+						"default": []
+					},
+					"folderSelection": {
+						"type": "string",
+						"title": "Folder selection",
+						"description": "Used when Source type is 'folder'. Select a folder asset.",
+						"format": "matrix-asset-uri",
+						"default": ""
+					},
+					"showCaptions": {
+						"type": "boolean",
+						"title": "Show captions",
+						"description": "Display figcaptions when image captions are available.",
+						"default": true
+					},
+					"singleImagesEmptyMessage": {
+						"type": "string",
+						"title": "singleImages empty message",
+						"description": "Displayed when no single images are available.",
+						"default": "No images selected."
+					},
+					"folderEmptyMessage": {
+						"type": "string",
+						"title": "folder empty message",
+						"description": "Displayed when the selected folder has no image children.",
+						"default": "No images found in the selected folder."
+					}
+				},
+				"required": ["sourceType"],
+				"allOf": [
+					{
+						"if": {
+							"required": ["sourceType"],
+							"properties": {
+								"sourceType": {
+									"const": "singleImages"
+								}
+							}
+						},
+						"then": {
+							"required": ["singleFileSelection"]
+						}
+					},
+					{
+						"if": {
+							"required": ["sourceType"],
+							"properties": {
+								"sourceType": {
+									"const": "folder"
+								}
+							}
+						},
+						"then": {
+							"required": ["folderSelection"]
+						}
+					}
+				]
+			},
+			"output": {
+				"responseType": "html"
+			}
+		}
+	],
+	"previews": {
+		"single-images": {
+			"functionData": {
+				"main": {
+					"wrapper": { "path": "previews/wrapper.html" },
+					"inputData": {
+						"type": "file",
+						"path": "previews/single-images.data.json"
+					}
+				}
+			}
+		},
+		"folder-source": {
+			"functionData": {
+				"main": {
+					"wrapper": { "path": "previews/wrapper.html" },
+					"inputData": {
+						"type": "file",
+						"path": "previews/folder-source.data.json"
+					}
+				}
+			}
+		},
+		"empty-folder": {
+			"functionData": {
+				"main": {
+					"wrapper": { "path": "previews/wrapper.html" },
+					"inputData": {
+						"type": "file",
+						"path": "previews/empty-folder.data.json"
+					}
+				}
+			}
+		},
+		"grey-background": {
+			"functionData": {
+				"main": {
+					"wrapper": { "path": "previews/wrapper.html" },
+					"inputData": {
+						"type": "file",
+						"path": "previews/grey-background.data.json"
+					}
+				}
+			}
+		}
+	}
+}

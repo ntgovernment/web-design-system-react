@@ -1,0 +1,7 @@
+/**
+ * ImageGallery Component - NTG Theme Styles
+ */
+
+.image-gallery__image {
+  border-radius: var(--radii-sm);
+}
