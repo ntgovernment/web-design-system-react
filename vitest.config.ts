@@ -11,17 +11,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: "browser",
-    browser: {
-      provider: "playwright",
-      enabled: false, // Set to true to run browser tests
-      headless: true,
-      instances: [
-        {
-          browser: "chromium",
-        },
-      ],
-    },
+    environment: "node",
     setupFiles: ["./.storybook/vitest.setup.ts"],
     coverage: {
       provider: "v8",

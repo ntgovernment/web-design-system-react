@@ -1,0 +1,37 @@
+{
+  "default": {
+    "heading": "Quick exit",
+    "content": "Click anywhere on this banner to exit this page. Call 000 if you're in immediate danger.",
+    "exitUrl": "https://www.bom.gov.au/",
+    "redirectUrl": "https://www.google.com/",
+    "ariaLabel": "Quick exit - click to leave this page immediately"
+  },
+  "domestic-violence": {
+    "heading": "Quick exit",
+    "content": "Click anywhere on this banner to leave this page immediately. If you're in danger, call 000 for emergency assistance or 1800 RESPECT (1800 737 732) for confidential support.",
+    "exitUrl": "https://www.bom.gov.au/",
+    "redirectUrl": "https://www.google.com/",
+    "ariaLabel": "Quick exit - click to leave this page immediately"
+  },
+  "child-safety": {
+    "heading": "Leave quickly",
+    "content": "Click this banner to exit immediately. For child safety concerns, call 1800 700 250. In an emergency, call 000.",
+    "exitUrl": "https://www.bom.gov.au/",
+    "redirectUrl": "https://www.google.com/",
+    "ariaLabel": "Leave this page quickly"
+  },
+  "whistleblower": {
+    "heading": "Exit securely",
+    "content": "Click to exit this page securely. Your report is confidential. This action will not delete any saved drafts.",
+    "exitUrl": "https://www.abc.net.au/news/",
+    "redirectUrl": "https://www.google.com/",
+    "ariaLabel": "Exit this page securely"
+  },
+  "mental-health": {
+    "heading": "Quick exit",
+    "content": "Exit this page quickly if you need to. For immediate mental health support, call Lifeline 13 11 14 or 000 in an emergency.",
+    "exitUrl": "https://www.bom.gov.au/",
+    "redirectUrl": "https://www.google.com/",
+    "ariaLabel": "Quick exit - leave this mental health support page"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "heading": "Quick exit",
+  "content": "Click anywhere on this banner to exit this page. Call 000 if you're in immediate danger.",
+  "exitUrl": "https://www.bom.gov.au/",
+  "redirectUrl": "https://www.google.com/",
+  "ariaLabel": "Quick exit - click to leave this page immediately"
+}

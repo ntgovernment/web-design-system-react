@@ -1,0 +1,54 @@
+{
+  "default": {
+    "variant": "info",
+    "title": "Important update",
+    "description": "<p>Service updates and important information for all users.</p>"
+  },
+  "info": {
+    "variant": "info",
+    "title": "System maintenance scheduled",
+    "description": "<p>Online services will be unavailable on Sunday 4 May from 10pm to 2am for scheduled maintenance. <a href=\"#\">Read more</a>.</p>"
+  },
+  "info-alt": {
+    "variant": "info-alt",
+    "title": "New service features available",
+    "description": "<p>We've improved navigation and search across the site. <a href=\"#\">See what's changed</a>.</p>"
+  },
+  "warning": {
+    "variant": "warning",
+    "title": "Service disruption expected",
+    "description": "<p>Some online forms may be intermittently unavailable today. We're working to restore full service.</p>",
+    "ctaText": "View status",
+    "ctaHref": "#"
+  },
+  "critical": {
+    "variant": "critical",
+    "title": "Severe weather warning in effect",
+    "description": "<p>A severe weather warning has been issued for the Top End. Follow official advice and check current warnings.</p>",
+    "ctaText": "View warnings",
+    "ctaHref": "#"
+  },
+  "dismissible": {
+    "variant": "info",
+    "title": "Annual customer survey now open",
+    "description": "<p>Help us improve our services by completing a short survey.</p>",
+    "dismissible": true,
+    "dismissLabel": "Dismiss survey notice"
+  },
+  "with-cta": {
+    "variant": "info",
+    "title": "Update your contact details",
+    "description": "<p>Make sure we can reach you about important changes to your services.</p>",
+    "ctaText": "Update details",
+    "ctaHref": "#"
+  },
+  "complete": {
+    "variant": "warning",
+    "title": "Planned outage tonight",
+    "description": "<p>Online payments will be unavailable from 11pm to 1am tonight while we upgrade the payment gateway.</p>",
+    "dismissible": true,
+    "dismissLabel": "Dismiss outage notice",
+    "ctaText": "View timetable",
+    "ctaHref": "#"
+  }
+}

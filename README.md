@@ -32,16 +32,121 @@ This will also install `@ntgovernment/web-design-tokens` (a direct dependency) w
 
 After building (`npm run build`), the `dist/` folder contains:
 
-| File                    | Description                                         | Size (approx.) |
-| ----------------------- | --------------------------------------------------- | -------------- |
-| `components.min.js`     | UMD bundle of all React components (React external) | ~75 KB         |
-| `theme-ntg.min.css`     | Complete NT.GOV.AU theme — tokens + component CSS   | ~71 KB         |
-| `theme-central.min.css` | Complete NTG Central theme — tokens + component CSS | ~72 KB         |
-| `index.html`            | Interactive demo page with theme switching          | ~1 KB          |
-| `index.js`              | Demo application bundle                             | ~168 KB        |
-| `index.css`             | Demo application styles                             | ~120 KB        |
+| File                                            | Description                                             |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| `components.min.js`                             | UMD bundle of all React components (React externalized) |
+| `theme-ntg.min.css`                             | Complete NT.GOV.AU theme — tokens + component CSS       |
+| `theme-central.min.css`                         | Complete NTG Central theme — tokens + component CSS     |
+| `index.html`                                    | Interactive demo page with theme switching              |
+| `index.js`                                      | Demo application bundle                                 |
+| `index.css`                                     | Demo application styles                                 |
+| `nesters/head.html`                             | Squiz Matrix design nester — `<head>` content           |
+| `nesters/skip_links.html`                       | Squiz Matrix design nester — skip navigation links      |
+| `nesters/header_content.html`                   | Squiz Matrix design nester — site header                |
+| `nesters/footer_content.html`                   | Squiz Matrix design nester — site footer                |
+| `nesters/footer_js.html`                        | Squiz Matrix design nester — bottom-of-body scripts     |
+| `layouts/full-width-section/manifest.json`      | Squiz DXP page layout config — single column, 3 zones   |
+| `layouts/full-width-section/markup.hbs`         | Squiz DXP page layout template — Handlebars             |
+| `layouts/content-container/manifest.json`       | Squiz DXP page layout config — container-xl, 1 zone     |
+| `layouts/content-container/markup.hbs`          | Squiz DXP page layout template — Handlebars             |
+| `favicons/apple-touch-icon-180x180.png`         | Apple touch icon (180×180)                              |
+| `favicons/favicon-16x16.png`                    | 16×16 favicon                                           |
+| `favicons/favicon-32x32.png`                    | 32×32 favicon                                           |
+| `images/ntg-logo.png`                           | NT Government logo                                      |
+| `globals/js/bootstrap.bundle.min.js`            | Bootstrap 5.3 JS bundle (vendor)                        |
+| `globals/js/typeahead.bundle.min.js`            | Typeahead JS for search autocomplete (vendor)           |
+| `globals/js/handlebars.min.js`                  | Handlebars templating for Funnelback (vendor)           |
+| `globals/js/funnelback.autocompletion-2.6.0.js` | Funnelback search autocompletion (vendor)               |
+| `ntgbase/images/ntg-desert-rose-reverse.svg`    | NTG desert rose logo reversed (vendor)                  |
+| `ntgbase/images/logo-ntg-mono.svg`              | NTG monochrome logo for footer (vendor)                 |
 
 The theme bundles (`theme-ntg.min.css`, `theme-central.min.css`) are fully self-contained — they include the design token CSS variables, typography, grid, and all component styles. You only need to load Bootstrap from CDN and one theme bundle.
+
+## Squiz DXP Integration
+
+The system is optimized for deployment to Squiz DXP as both Component Services (individual React components) and Page Layouts (structural templates for Page Builder).
+
+### Page Layouts
+
+Page Layouts define the structural templates available in the DXP's Page Builder. They consist of a manifest (metadata + zones) and a Handlebars template for rendering.
+
+**Available layouts:**
+
+- **`full-width-section`** — single-column, full-width layout with three stacked zones (header, main, footer) for building flexible page structures.
+- **`content-container`** — single-zone layout that constrains text-only editorial content to the Bootstrap `container-xl` width, with 16px horizontal padding on viewports narrower than 1200px.
+
+**Develop locally:**
+
+```bash
+# Build the themes first (required for stylesheets)
+npm run build
+
+# Run the layout dev server (opens http://localhost:4040)
+npm run layouts:dev                            # full-width-section, NTG theme
+npm run layouts:dev:central                    # full-width-section, Central theme
+npm run layouts:dev:content-container          # content-container, NTG theme
+npm run layouts:dev:content-container:central  # content-container, Central theme
+```
+
+The dev server auto-reloads when `manifest.json`, `markup.hbs`, or `mock/*.html` files change. See [src/squiz/layouts/README.md](src/squiz/layouts/README.md) for details.
+
+**Deploy to DXP:**
+
+You must be authenticated with `dxp-next auth login --tenant=<TENANT-ID>` first.
+
+```bash
+# Validate before deploying
+npm run layouts:deploy:dry-run                    # full-width-section
+npm run layouts:deploy:content-container:dry-run  # content-container
+
+# Deploy to your logged-in tenant
+npm run layouts:deploy                            # full-width-section
+npm run layouts:deploy:content-container          # content-container
+```
+
+Verify deployment in the DXP Console → **Component Service** → **Components & Layouts**.
+
+### Component Services
+
+Component Services are server-rendered, self-contained components deployed as edge functions in Squiz DXP. The system currently ships the **Header** component service.
+
+**Available components:**
+
+- **`header`** ✅ **DEPLOYED** — Site-wide header with NT Government branding, navigation, and optional search. Version 1.0.1 is live on DXP cloud. See [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md) for configuration and styling details.
+- **`footer`** 🧪 **PREVIEW** — Site-wide footer with link sections, social media, branding, acknowledgement and copyright. Version 0.1.0. See [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md) for configuration and styling details.
+
+Npm scripts are namespaced per component: `cmp-header-*` for the Header service and `cmp-footer-*` for the Footer service.
+
+**Develop locally:**
+
+```bash
+# Copy component source to dist/ and inline styles
+npm run cmp-header-prepare      # or: npm run cmp-footer-prepare
+
+# Open the Squiz DXP dev-ui (http://localhost:3000 by default)
+npm run cmp-header-dev          # or: npm run cmp-footer-dev
+
+# Or use the dev runner with live reload
+npm run cmp-header-dev:runner   # or: npm run cmp-footer-dev:runner
+```
+
+The `cmp-*-dev` and `cmp-*-deploy` commands automatically run the matching `cmp-*-prepare` before executing.
+
+**Deploy to DXP:**
+
+```bash
+# Validate before deploying
+npm run cmp-header-deploy:dry-run    # or: npm run cmp-footer-deploy:dry-run
+
+# Deploy to your logged-in tenant
+npm run cmp-header-deploy            # or: npm run cmp-footer-deploy
+```
+
+Verify deployment in the DXP Console → **Component Service** → **Components & Layouts**.
+
+### Squiz Matrix Nesters
+
+The `src/squiz/nesters/` folder contains design nester files for Squiz Matrix. These are loaded into the design template via the Git File Bridge (asset `1607588`). See [SQUIZ_DXP_DEPLOYMENT.md](SQUIZ_DXP_DEPLOYMENT.md) for details.
 
 ## Usage
 
@@ -55,7 +160,6 @@ import {
   Icon,
   Image,
 } from "@ntgovernment/web-design-system";
-import "@ntgovernment/web-design-system/components.min.css";
 import "@ntgovernment/web-design-system/theme-ntg.min.css"; // or theme-central.min.css
 
 function App() {
@@ -414,6 +518,31 @@ Individual layers are still available if needed:
 
 To update tokens, raise a PR in the `web-design-tokens` repository and bump the version in this repo's `package.json`.
 
+### Architecture
+
+```
+@ntgovernment/web-design-tokens (npm)   ← CSS custom-property tokens
+        │
+        ▼
+scripts/build-theme-bundles.js          ← reads token CSS from node_modules/
+        │
+        ▼
+theme-{ntg|central}.min.css            ← bundled tokens + component CSS
+        │
+src/components/*/Component.css          ← base component styles (token vars)
+src/components/*/Component-ntg.css      ← NTG theme overrides
+src/components/*/Component-central.css  ← Central theme overrides
+        │
+        ▼
+scripts/build-dist.js                   ← orchestrates: Vite lib build → demo build → theme bundles → dist/
+```
+
+**Token dependency** — `@ntgovernment/web-design-tokens` supplies all CSS custom properties (colours, spacing, typography, grid). No tokens are generated locally.
+
+**Component CSS** — Each component has a base `.css` file using semantic token variables plus optional per-theme override files (`-ntg.css`, `-central.css`).
+
+**Theme bundles** — `build-theme-bundles.js` concatenates the self-contained bundled token CSS with all component CSS and theme overrides, then minifies. The result is a single CSS file per theme.
+
 ## Deployment to Squiz DXP Component Services
 
 This library is designed to be deployed as Component Services in Squiz DXP.
@@ -717,10 +846,9 @@ Components are tested in:
 If you encounter issues not covered here:
 
 1. **Check Documentation**:
-   - [design-tokens/DESIGN-TOKENS.md](design-tokens/DESIGN-TOKENS.md)
    - [src/themes/THEMES.md](src/themes/THEMES.md)
-   - [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)
-   - Component-specific README files
+   - [SQUIZ_DXP_DEPLOYMENT.md](SQUIZ_DXP_DEPLOYMENT.md)
+   - Component-specific docs at `src/components/<Name>/<NAME>.md`
 
 2. **Search Issues**: Check if the issue is already reported in the repository
 

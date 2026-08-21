@@ -1,0 +1,7 @@
+{
+  "variant": "info",
+  "title": "Annual customer survey now open",
+  "description": "<p>Help us improve our services by completing a short survey.</p>",
+  "dismissible": true,
+  "dismissLabel": "Dismiss survey notice"
+}

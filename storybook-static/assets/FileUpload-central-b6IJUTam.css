@@ -1,0 +1,1 @@
+:root{--clr-text-subtle: var(--central-neutrals-06);--file-upload-border-radius: var(--radii-none);--file-upload-button-radius: var(--radii-none);--file-upload-item-radius: var(--radii-none)}.file-upload__button:focus:not(:hover),.file-upload__button:focus-visible:not(:hover){background:var(--clr-action-secondary);color:var(--clr-link-default)}

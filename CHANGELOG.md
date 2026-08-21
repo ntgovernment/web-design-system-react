@@ -7,8 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **QuickExit DXP Component Service** (`src/components/QuickExit/dxp/`) — new edge-rendered safety banner for Squiz DXP, deployed as `ntg-web-design-system/quick-exit` v0.1.0
+  - `manifest.json` — Squiz DXP v1 manifest; icon `exit_to_app` (red); inputs: `heading`, `content`, `exitUrl`, `redirectUrl`, `ariaLabel`; 5 named previews (default, domestic-violence, child-safety, whistleblower, mental-health)
+  - `main.js` — pure ESM edge renderer mirroring `QuickExit.tsx` BEM markup (`quick-exit`, `__container`, `__header`, `__icon`, `__heading`, `__content`); all values HTML-escaped; embeds a self-contained inline `<script>` IIFE that reads `data-exit-url` / `data-redirect-url` from the element and wires click + Enter/Space activation — intentionally self-contained so the safety feature works without the GFB theme bundle
+  - `example.data.json` — 5 keyed sample inputs (default, domestic-violence, child-safety, whistleblower, mental-health)
+  - `preview.html` — local SSR harness for all 5 variants
+  - `previews/wrapper.html` + 5 per-variant `*.data.json` files
+  - `README.md` — component dev/deploy guide
+- **`scripts/prepare-quickexit-dxp.js`** — stages `src/components/QuickExit/dxp/` → `dist/components/quick-exit/` and inlines `theme-ntg.min.css` into `previews/wrapper.html` between `<!-- INLINE_THEME_CSS_START/END -->` markers
+- **npm scripts for QuickExit DXP**: `cmp-quickexit-prepare`, `cmp-quickexit-dev`, `cmp-quickexit-dev:runner`, `cmp-quickexit-deploy`, `cmp-quickexit-deploy:dry-run` (each with a `pre*` hook auto-running the prepare step)
+
+- **GlobalAlert DXP Component Service** (`src/components/GlobalAlert/dxp/`) — new edge-rendered component for Squiz DXP, deployed as `ntg-web-design-system/global-alert` v0.1.0
+  - `manifest.json` — Squiz DXP v1 manifest with full input JSON Schema; defaults: `variant: "info"`, `title: "Important update"`, `description: "<p>Service updates and important information for all users.</p>"`, `dismissible: false`, `dismissLabel: "Dismiss alert"`; supports `ctaText` / `ctaHref` for an optional call-to-action button
+  - `main.js` — pure ESM edge renderer mirroring `GlobalAlert.tsx` BEM markup (`global-alert`, `global-alert--{variant}`, `__container`, `__content`, `__text`, `__title`, `__description`, `__actions`, `__cta`, `__dismiss`); `description` rendered as raw `FormattedText` HTML; all other values HTML-escaped; invalid variant values fall back to `info`
+  - `example.data.json` — 8 keyed sample inputs (default, info, info-alt, warning, critical, dismissible, with-cta, complete)
+  - `preview.html` — local SSR harness for all 7 variants
+  - `previews/wrapper.html` + 7 per-variant `*.data.json` files (info, info-alt, warning, critical, dismissible, with-cta, complete)
+  - `README.md` — component dev/deploy guide
+- **`scripts/prepare-globalalert-dxp.js`** — stages `src/components/GlobalAlert/dxp/` → `dist/components/global-alert/` and inlines `theme-ntg.min.css` into `previews/wrapper.html` between `<!-- INLINE_THEME_CSS_START/END -->` markers
+- **`scripts/prepare-all-dxp.js`** — aggregate prepare script that auto-discovers every `src/components/*/dxp/manifest.json` and stages all DXP components into `dist/components/<name>/`; new DXP components are picked up automatically without script changes
+- **npm scripts for GlobalAlert DXP**: `cmp-globalalert-prepare`, `cmp-globalalert-dev`, `cmp-globalalert-dev:runner`, `cmp-globalalert-deploy`, `cmp-globalalert-deploy:dry-run` (each with a `pre*` hook auto-running the prepare step)
+- **Unified DXP npm scripts**: `cmp-prepare` (runs `prepare-all-dxp.js`), `cmp-dev` / `cmp-dev:runner` (stages all components then opens DXP dev-ui at `dist/components/` to preview all components in one UI)
+
 ### Changed
 
+- **Header DXP manifest** (`src/components/Header/dxp/manifest.json`) v1.0.3 → v1.0.4
+  - Icon updated from `web` to `web_asset` (Material Icons browser-window icon, more semantically precise for a site header)
+  - Default `variant` changed from `"nt-gov-au"` to `"agency-internet"`
+  - Added default for `agencyName`: `"Department of Example"`
+  - Updated default `logoAlt` from `"NT.GOV.AU"` to `"NT Government"` (matches agency-internet preview data)
+  - Added default `navItems`: About us, Programs, Publications, Contact
+- **Footer DXP manifest** (`src/components/Footer/dxp/manifest.json`) v0.1.1 → v0.1.2
+  - Icon updated from `web` to `call_to_action` (Material Icons bottom-strip panel, semantically correct for a site footer)
+
+### Changed
+
+- **Header Component Variant API**: Replaced logo-based props with flexible variant pattern for different header layouts
+  - Removed: `logoSrc`, `logoHref` props
+  - Added: `variant` prop (`'nt-gov-au' | 'agency-internet' | 'other-site'`) to determine layout
+  - Added: `agencyName` and `agencyHref` props for agency-internet and other-site variants
+  - `nt-gov-au` variant: NT Government desert-rose logo only, links to https://nt.gov.au
+  - `agency-internet` variant: NT Government mono logo + agency title (separated by divider), each with independent links
+  - `other-site` variant: same layout as agency-internet but with distinct CSS class for theme customization
+  - Updated: 6 Header stories to use variant controls (NTGovAu, AgencyInternet, OtherSite, etc.)
+  - Updated: HEADER.md documentation with all variant-based usage examples
+  - Maintained backward compatibility through `logoAlt` prop for all variants
 - **Storybook CSS deduplication**: Eliminated redundant CSS loading that caused stylesheets to be processed 2–3 times per component
   - Removed 45 static CSS imports from `.storybook/preview.tsx` (components now self-import their base CSS)
   - Added `import './Component.css'` to 6 components that were missing it: Button, Notification, Tag, Pill, Image, Footer
@@ -43,6 +88,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Component CSS imports now use package export specifiers (e.g. `@ntgovernment/web-design-tokens/css/common`)
   - Storybook preview imports updated to use package specifiers
   - Dev-mode theme switching (`index.html`, `App.tsx`) updated to serve files from `node_modules/@ntgovernment/web-design-tokens`
+- **Squiz Matrix Design Nesters**: Added `src/squiz/` with a design parse template and 5 HTML nesters for Squiz DXP deployment
+  - `design-parse.html` — Matrix design file that maps nesters to page regions via `print()` calls
+  - `nesters/head.html` — `<head>` content (meta, favicons, Bootstrap/FontAwesome CDNs, jQuery CDN) using Squiz Matrix keywords (`%frontend_asset_%`, `%globals_%`)
+  - `nesters/skip_links.html` — skip navigation link
+  - `nesters/header_content.html` — global alert banner, site header, mobile search with Squiz Matrix keywords
+  - `nesters/footer_content.html` — site footer using `%globals_site_metadata_site-*%` keywords for all footer sections (footerInfo, footerSocial, welcomeToCountry, careTakerMessage)
+  - `nesters/footer_js.html` — Bootstrap JS, React 18 CDN, `process.env` shim, components bundle, Funnelback search
+  - Vite plugin `squizPreviewPlugin` serves `/squiz-preview.html` during `npm run dev` for local preview
+  - Build outputs nesters and static assets (favicons, logo) to `dist/`
+- **Vendor Files Consolidation**: Consolidated 6 vendor files from ntgbase GFB (1484642) into `src/squiz/vendor/` for deployment via this repo's GFB (1607588)
+  - `globals/js/bootstrap.bundle.min.js` — Bootstrap 5.3 JS bundle
+  - `globals/js/typeahead.bundle.min.js` — Typeahead for search autocomplete
+  - `globals/js/handlebars.min.js` — Handlebars templating for Funnelback
+  - `globals/js/funnelback.autocompletion-2.6.0.js` — Funnelback search autocompletion
+  - `ntgbase/images/ntg-desert-rose-reverse.svg` — NTG desert rose logo reversed
+  - `ntgbase/images/logo-ntg-mono.svg` — NTG monochrome logo for footer
+  - Build Step 7 in `build-dist.js` recursively copies vendor files to `dist/`
 
 ### Removed
 
@@ -142,7 +204,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - NTG theme (NT.GOV.AU) with Lato font
   - Central theme (NTG Central) with Roboto font
 - Automated design token system:
-  - 849 tokens in `design-tokens/tokens.json`
+  - 849 design tokens (now in `@ntgovernment/web-design-tokens`)
   - Style Dictionary integration for CSS generation
   - Layered CSS architecture (common, grid, typography, themes)
   - 28-30% reduction in theme file sizes through optimization
@@ -191,8 +253,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `npm run dev` - Start Vite development server
 - `npm run build` - Build library for production
-- `npm run tokens:validate` - Validate design token structure
-- `npm run tokens:build` - Generate CSS from design tokens
 - `npm run storybook` - Start Storybook development server
 - `npm run build-storybook` - Build static Storybook site
 - `npm run generate-story-data` - Generate Storybook data for HTML API

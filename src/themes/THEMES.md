@@ -11,7 +11,7 @@ This directory contains theme-related documentation and demo assets. Theme CSS i
 | `dist/theme-ntg.min.css`     | NT.GOV.AU   |
 | `dist/theme-central.min.css` | NTG Central |
 
-Each bundle includes base variables, common tokens, grid, typography, theme palette, and component styles — **no separate imports required** beyond Bootstrap CDN.
+Each bundle includes base variables, common tokens, grid, typography, theme palette, and component styles (Button, Tag, Input, SearchBar, GlobalAlert, Header) — **no separate imports required** beyond Bootstrap CDN.
 
 ## Token Source
 
@@ -63,6 +63,32 @@ Components use **unprefixed semantic variables** that automatically resolve for 
 - `--type-font-default` — body typeface (NTG: Lato; Central: Roboto)
 - `--type-desktop-h1-size` through `--type-desktop-h6-size`
 - `--type-body-default-lh`, `--type-body-sm-size`
+
+## Squiz Matrix CMS Loading
+
+Bootstrap CSS is loaded from CDN first, followed by the theme bundle (which overrides Bootstrap defaults with design tokens). Both are in the `<head>` nester (`src/squiz/nesters/head.html`):
+
+```html
+<!--@@ Bootstrap 5.3.3 CSS (loaded before theme to allow design-token overrides) @@-->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous">
+<!--@@ Main CSS @@-->
+<link type="text/css" rel="stylesheet"
+      href="%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%">
+```
+
+| Theme       | GFB reference                                                      | Bundle                       |
+| ----------- | ------------------------------------------------------------------ | ---------------------------- |
+| NT.GOV.AU   | `%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%`     | `dist/theme-ntg.min.css`     |
+| NTG Central | `%globals_asset_url_with_hash:1607588:dist/theme-central.min.css%` | `dist/theme-central.min.css` |
+
+The `_with_hash` keyword suffix ensures cache-busted URLs — the file hash changes whenever the bundle is rebuilt and the GFB is synced.
+
+Bootstrap CSS is loaded via CDN before the theme bundle so that design-token overrides take precedence. Font Awesome 6 is loaded separately in `head.html` and Bootstrap JS in `footer_js.html`.
+
+For deployment details, see [SQUIZ_DXP_DEPLOYMENT.md](../../SQUIZ_DXP_DEPLOYMENT.md).
 
 ## Theme Switching
 

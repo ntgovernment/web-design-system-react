@@ -1,0 +1,7 @@
+{
+  "heading": "Leave quickly",
+  "content": "Click this banner to exit immediately. For child safety concerns, call 1800 700 250. In an emergency, call 000.",
+  "exitUrl": "https://www.bom.gov.au/",
+  "redirectUrl": "https://www.google.com/",
+  "ariaLabel": "Leave this page quickly"
+}

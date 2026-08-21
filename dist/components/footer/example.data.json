@@ -1,0 +1,62 @@
+{
+  "default": {
+    "sections": [
+      {
+        "title": "Information and services",
+        "columns": 2,
+        "links": [
+          { "label": "Art, sport and leisure", "href": "#" },
+          { "label": "Business and industry", "href": "#" },
+          { "label": "Education and learning", "href": "#" },
+          { "label": "Health and wellbeing", "href": "#" }
+        ]
+      },
+      {
+        "title": "Find out more",
+        "links": [
+          { "label": "About government", "href": "#" },
+          { "label": "Public consultations", "href": "#" }
+        ]
+      }
+    ],
+    "socialLinks": [
+      {
+        "platform": "Facebook",
+        "href": "https://facebook.com/ntgovernment",
+        "icon": "fa-brands fa-facebook"
+      },
+      {
+        "platform": "LinkedIn",
+        "href": "https://linkedin.com/company/nt-government",
+        "icon": "fa-brands fa-linkedin"
+      }
+    ],
+    "bottomLinks": [
+      { "label": "Privacy", "href": "#" },
+      { "label": "Accessibility", "href": "#" },
+      { "label": "Contact", "href": "#" }
+    ],
+    "acknowledgement": "The Northern Territory Government acknowledges the Traditional Owners of the Northern Territory.",
+    "copyrightText": "© 2025 Northern Territory Government of Australia"
+  },
+  "minimal": {
+    "bottomLinks": [
+      { "label": "Privacy", "href": "#" },
+      { "label": "Accessibility", "href": "#" },
+      { "label": "Contact", "href": "#" }
+    ],
+    "copyrightText": "© 2025 Northern Territory Government"
+  },
+  "withLogo": {
+    "logo": {
+      "url": "https://nt.gov.au/__data/assets/git_bridge/0008/1607588/dist/ntgbase/images/logo-ntg-mono.svg"
+    },
+    "logoAlt": "NT Government",
+    "logoHref": "https://nt.gov.au",
+    "bottomLinks": [
+      { "label": "Privacy", "href": "#" },
+      { "label": "Accessibility", "href": "#" }
+    ],
+    "copyrightText": "© 2025 Northern Territory Government of Australia"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "variant": "primary",
+  "title": "Clean Banner Design",
+  "description": "This banner demonstrates the component without decorative background elements.",
+  "ctaText": "Learn more",
+  "ctaHref": "#",
+  "showDecorative": false,
+  "linksHeading": "Popular",
+  "links": [
+    { "label": "Service 1", "href": "#" },
+    { "label": "Service 2", "href": "#" },
+    { "label": "Service 3", "href": "#" }
+  ]
+}

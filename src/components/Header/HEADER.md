@@ -17,30 +17,58 @@ A comprehensive header component for site-wide navigation with logo, navigation 
 
 ## Usage
 
-### Basic Header
+### NT.GOV.AU Variant (Default)
+
+The primary NT Government header with the NT Government mono logo linking to https://nt.gov.au. No site title.
 
 ```tsx
 import { Header } from "@ntgovernment/web-design-system";
 
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
-  logoHref="/"
   navItems={[
-    { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
+    {
+      label: "Find online services",
+      href: "/services",
+      icon: "fa-light fa-search",
+    },
     { label: "Contact", href: "/contact" },
   ]}
 />;
 ```
 
-### With Logo Image
+### Agency Internet Variant
+
+For NT Government agency websites. Shows the NT Government desert-rose logo (linking to nt.gov.au) with the agency name as a title link.
 
 ```tsx
 <Header
-  logoSrc="/images/logo.svg"
-  logoAlt="NT.GOV.AU"
-  logoHref="/"
-  navItems={[{ label: "Home", href: "/" }]}
+  variant="agency-internet"
+  logoAlt="Northern Territory Government"
+  agencyName="Department of Health"
+  agencyHref="https://health.nt.gov.au"
+  navItems={[
+    { label: "Programs", href: "/programs" },
+    { label: "Contacts", href: "/contact" },
+  ]}
+/>
+```
+
+### Other Site Variant
+
+Similar to agency-internet (uses the desert-rose logo) but with a different CSS class name for distinct styling. Use this for NT Government partner websites or other branded sites.
+
+```tsx
+<Header
+  variant="other-site"
+  logoAlt="Northern Territory Government"
+  agencyName="My NT Services"
+  agencyHref="/"
+  navItems={[
+    { label: "Dashboard", href: "/dashboard", icon: "fa-light fa-home" },
+    { label: "Account", href: "/account", icon: "fa-light fa-user" },
+  ]}
 />
 ```
 
@@ -48,6 +76,7 @@ import { Header } from "@ntgovernment/web-design-system";
 
 ```tsx
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[
     {
@@ -67,6 +96,7 @@ import { Header } from "@ntgovernment/web-design-system";
 
 ```tsx
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[
     { label: "Home", href: "/", active: false },
@@ -85,22 +115,7 @@ const handleSearch = (query: string) => {
 };
 
 <Header
-  logoAlt="NT.GOV.AU"
-  navItems={[{ label: "Home", href: "/" }]}
-  searchPlaceholder="Search for services"
-  onSearch={handleSearch}
-/>;
-```
-
-### With Search Handler
-
-```tsx
-const handleSearch = (query: string) => {
-  console.log("Searching for:", query);
-  // Implement your search logic
-};
-
-<Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[{ label: "Home", href: "/" }]}
   searchPlaceholder="Search for services"
@@ -114,6 +129,7 @@ Shows a search icon that expands to a full search bar when clicked. Ideal for re
 
 ```tsx
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[
     {
@@ -157,19 +173,20 @@ const CustomLogo = () => (
 
 ### HeaderProps
 
-| Prop                | Type                                | Default       | Description                                                           |
-| ------------------- | ----------------------------------- | ------------- | --------------------------------------------------------------------- |
-| `logoSrc`           | `string`                            | `undefined`   | URL to the logo image                                                 |
-| `logoAlt`           | `string`                            | `"NT.GOV.AU"` | Alt text for the logo (also used as text fallback)                    |
-| `logoHref`          | `string`                            | `"/"`         | Destination URL for logo link                                         |
-| `navItems`          | `HeaderNavItem[]`                   | `[]`          | Array of navigation items                                             |
-| `showSearch`        | `boolean`                           | `true`        | Whether to display the search bar                                     |
-| `searchVariant`     | `'expanded' \| 'icon'`              | `'expanded'`  | Search display variant: 'expanded' for full bar, 'icon' for icon-only |
-| `searchPlaceholder` | `string`                            | `"Search"`    | Placeholder text for search input                                     |
-| `onSearch`          | `(value: string) => void`           | `undefined`   | Callback function when search is performed                            |
-| `className`         | `string`                            | `undefined`   | Additional CSS class for the header element                           |
-| `customLogo`        | `React.ReactNode`                   | `undefined`   | Custom content to replace the default logo                            |
-| ...props            | `React.HTMLAttributes<HTMLElement>` | -             | All standard HTML header element attributes                           |
+| Prop                | Type                                               | Default       | Description                                                                    |
+| ------------------- | -------------------------------------------------- | ------------- | ------------------------------------------------------------------------------ |
+| `variant`           | `'nt-gov-au' \| 'agency-internet' \| 'other-site'` | `'nt-gov-au'` | Header layout variant (determines logo and title structure)                    |
+| `agencyName`        | `string`                                           | `undefined`   | Agency or site name (shown in agency-internet and other-site variants)         |
+| `agencyHref`        | `string`                                           | `"/"`         | URL the agency name links to (used by agency-internet and other-site variants) |
+| `logoAlt`           | `string`                                           | `"NT.GOV.AU"` | Alt text for the logo image                                                    |
+| `navItems`          | `HeaderNavItem[]`                                  | `[]`          | Array of navigation items                                                      |
+| `showSearch`        | `boolean`                                          | `true`        | Whether to display the search bar                                              |
+| `searchVariant`     | `'expanded' \| 'icon'`                             | `'expanded'`  | Search display variant: 'expanded' for full bar, 'icon' for icon-only          |
+| `searchPlaceholder` | `string`                                           | `"Search"`    | Placeholder text for search input                                              |
+| `onSearch`          | `(value: string) => void`                          | `undefined`   | Callback function when search is performed                                     |
+| `className`         | `string`                                           | `undefined`   | Additional CSS class for the header element                                    |
+| `customLogo`        | `React.ReactNode`                                  | `undefined`   | Custom content to replace the default logo (overrides variant)                 |
+| ...props            | `React.HTMLAttributes<HTMLElement>`                | -             | All standard HTML header element attributes                                    |
 
 ### HeaderNavItem
 
@@ -186,6 +203,7 @@ On mobile devices (max-width: 767px), the header displays a hamburger menu icon 
 
 ```tsx
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[
     {
@@ -198,6 +216,10 @@ On mobile devices (max-width: 767px), the header displays a hamburger menu icon 
   searchVariant="icon"
 />
 ```
+
+/>
+
+````
 
 On mobile, this shows:
 
@@ -218,12 +240,13 @@ The search bar is always visible and takes up horizontal space. Best for:
 
 ```tsx
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[...]}
   searchVariant="expanded"  // Always shows full search bar
   searchPlaceholder="Search"
 />
-```
+````
 
 ### Icon Search (Medium/Responsive)
 
@@ -236,6 +259,7 @@ Shows only a search icon until clicked, then expands to a full search bar. Best 
 
 ```tsx
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[
     { label: "Services", href: "/services" },
@@ -298,17 +322,31 @@ Focus outlines are visible and have sufficient contrast against backgrounds.
 
 ### Logo Accessibility
 
-When using an image logo:
+The Header component provides appropriate semantic structure for all variants:
+
+**NT.GOV.AU Variant:**
+
+```tsx
+<Header variant="nt-gov-au" logoAlt="NT.GOV.AU" />
+```
+
+The `logoAlt` prop provides alternative text for the desert-rose logo.
+
+**Agency Internet Variant:**
 
 ```tsx
 <Header
-  logoSrc="/logo.svg"
+  variant="agency-internet"
   logoAlt="Northern Territory Government"
-  logoHref="/"
+  agencyName="Department of Health"
+  agencyHref="https://health.nt.gov.au"
 />
 ```
 
-The `logoAlt` prop provides alternative text for screen readers.
+The header structure includes:
+
+- NT Government mono logo link (to nt.gov.au) with `logoAlt` providing accessible text
+- Agency name as a separate clickable link with semantic heading styling
 
 ### Hamburger Menu Accessibility
 
@@ -346,19 +384,22 @@ This communicates to screen reader users:
 
 The Header component uses Bootstrap 5.3 navbar and theme-specific CSS files:
 
-- **Common styles**: `Header.css` - Shared styles for all themes
+- **Common styles**: `Header.css` - Shared styles for all themes (container max-width 1320 px, logo gap, search bar height overrides)
 - **NTG theme**: `Header-ntg.css` - NT.GOV.AU theme overrides
 - **Central theme**: `Header-central.css` - NTG Central theme overrides
 
 ### Theme Differences
 
-| Feature       | NTG Theme           | Central Theme         |
-| ------------- | ------------------- | --------------------- |
-| Background    | Dark Blue (#1F1F5F) | Dark Blue (#102040)   |
-| Font Family   | Lato                | Roboto                |
-| Border Radius | Sharp corners (0px) | Rounded (from tokens) |
-| Focus Color   | Orange (#EC8C58)    | Green (#6AB06A)       |
-| Border Bottom | None                | Subtle white border   |
+| Feature             | NTG Theme           | Central Theme         |
+| ------------------- | ------------------- | --------------------- |
+| Background          | Dark Blue (#1F1F5F) | Dark Blue (#102040)   |
+| Font Family         | Lato                | Roboto                |
+| Border Radius       | Sharp corners (0px) | Rounded (from tokens) |
+| Focus Color         | Orange (#EC8C58)    | Green (#6AB06A)       |
+| Border Bottom       | None                | Subtle white border   |
+| Container max-width | 1320 px             | 1320 px               |
+| Search bar height   | 24 px (in header)   | 24 px (in header)     |
+| Logo layout         | Image + text        | Image + text          |
 
 ### Using CSS Variables
 
@@ -440,14 +481,16 @@ The Header component uses semantic design tokens that automatically adapt to the
 
 #### Spacing Tokens
 
-| Variable    | Value | Usage                            |
-| ----------- | ----- | -------------------------------- |
-| `--sp-xs`   | 4px   | Small gaps, focus outline offset |
-| `--sp-sm`   | 8px   | Small padding (mobile)           |
-| `--sp-md`   | 16px  | Medium padding, gaps             |
-| `--sp-lg`   | 24px  | Large padding, icon size         |
-| `--sp-xl`   | 32px  | Extra large padding              |
-| `--sp-xxxl` | 48px  | Minimum touch target size        |
+| Variable   | Value | Usage                                                    |
+| ---------- | ----- | -------------------------------------------------------- |
+| `--sp-xs`  | 8px   | Small gaps, focus outline offset                         |
+| `--sp-xxs` | 4px   | Extra-small gaps                                         |
+| `--sp-sm`  | 12px  | Small padding                                            |
+| `--sp-md`  | 16px  | Medium padding, gaps (also logo image ↔ text gap)        |
+| `--sp-lg`  | 20px  | Large padding                                            |
+| `--sp-xl`  | 24px  | Search bar height in header; icon size                   |
+| `--sp-2xl` | 32px  | Extra-large padding                                      |
+| `--sp-3xl` | 48px  | Default search bar height (overridden to 24px in header) |
 
 #### Border & Radius Tokens
 
@@ -479,6 +522,23 @@ The Header component uses CSS classes to manage different search variants:
 | `.header__search-icon-button`              | Search icon button for icon variant    | searchVariant="icon"              |
 | `.header__search-expanded`                 | Container showing full search bar      | Icon variant when expanded        |
 | `.header__search-close`                    | Close button in icon variant           | searchVariant="icon" AND expanded |
+
+#### Header Search Bar Height
+
+The search bar inside the header is scoped to **24 px** (overriding the SearchBar component default of 48 px). This keeps the header compact without affecting SearchBar instances used elsewhere.
+
+```css
+.header__search .search-bar__control.form-control {
+  min-height: var(--sp-xl); /* 24px */
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.header__search .search-bar__button.btn {
+  --bs-btn-padding-y: 0;
+  min-height: var(--sp-xl); /* 24px */
+}
+```
 
 #### Search Variant Selection
 
@@ -797,7 +857,7 @@ See [Theme Switching Guide](../../themes/THEME_SWITCHING.md) for more details.
 
 ```tsx
 <Header
-  logoSrc="/logo.svg"
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
   navItems={[
     { label: "Services", href: "/services", icon: "fa-light fa-search" },
@@ -846,7 +906,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Header
-        logoSrc="/logo.svg"
+        variant="nt-gov-au"
         logoAlt="NT.GOV.AU"
         navItems={navItems}
         onSearch={(query) => router.push(`/search?q=${query}`)}
@@ -886,7 +946,7 @@ function App() {
 
   return (
     <Header
-      logoSrc="/logo.svg"
+      variant="nt-gov-au"
       logoAlt="NT.GOV.AU"
       navItems={navItems}
       onSearch={handleSearch}
@@ -900,9 +960,8 @@ function App() {
 ```tsx
 // For server-rendered applications
 <Header
-  logoSrc="/images/logo.svg"
+  variant="nt-gov-au"
   logoAlt="Northern Territory Government"
-  logoHref="/"
   navItems={[
     {
       label: "Find online services",
@@ -972,9 +1031,8 @@ function SiteHeader() {
 
   return (
     <Header
-      logoSrc="/images/nt-gov-logo.svg"
+      variant="nt-gov-au"
       logoAlt="Northern Territory Government"
-      logoHref="/"
       navItems={[
         {
           label: "Find online services",
@@ -999,8 +1057,8 @@ function SiteHeader() {
 
 ```tsx
 <Header
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
-  logoHref="/"
   navItems={[
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
@@ -1013,8 +1071,10 @@ function SiteHeader() {
 
 ```tsx
 <Header
-  logoSrc="/logo.svg"
-  logoAlt="Department of Health"
+  variant="agency-internet"
+  agencyName="Department of Health"
+  agencyHref="/"
+  logoAlt="NT Government"
   navItems={[
     { label: "Programs", href: "/programs", icon: "fa-light fa-briefcase" },
     { label: "Resources", href: "/resources", icon: "fa-light fa-book" },
@@ -1029,6 +1089,81 @@ function SiteHeader() {
   }
 />
 ```
+
+## Squiz DXP Component Service
+
+The Header is packaged for Squiz DXP as a Component Service component at
+[`src/components/Header/dxp/`](./dxp/). It uses the **hydration pattern**: the
+edge `main.js` returns a minimal SSR container with the component's props
+serialised as JSON, and the client-side runtime in
+[`dist/hydrate.min.js`](../../../dist/hydrate.min.js) mounts the React Header
+from `window.NTGDesignSystem` into that container on `DOMContentLoaded`.
+
+### Package layout
+
+```
+src/components/Header/dxp/
+├── manifest.json       # Squiz DXP v1 manifest + input JSON Schema
+├── main.js             # Edge renderer (returns the hydration container)
+├── example.data.json   # Sample inputs per variant (used by `cmp-dev`)
+├── preview.html        # Local SSR + hydration preview
+└── README.md           # Per-component documentation
+```
+
+The build copies the package (minus `preview.html`) to
+`dist/components/header/` for deployment.
+
+### Server output
+
+`main.js` returns markup of the form:
+
+```html
+<div
+  class="ntg-header-hydration"
+  data-hydration-component="header"
+  data-hydration-props='{"variant":"agency-internet","agencyName":"…",…}'
+  data-instance-id="hdr-abc123xyz"
+>
+  <noscript>
+    <div class="header header--noscript"><a href="…">…</a></div>
+  </noscript>
+</div>
+```
+
+`hydrate.min.js` scans for `[data-hydration-component]` containers, parses the
+props, and calls `ReactDOM.createRoot(container).render(<Header {...props}/>)`.
+
+### Inputs
+
+See [`dxp/README.md`](./dxp/README.md#inputs) for the full input table. The
+schema mirrors the `HeaderProps` interface above; `onSearch` is omitted (not
+serialisable) and replaced by `searchAction` (form GET to that URL with the
+field name `query`).
+
+### Mounting
+
+In Squiz DXP, drop the **NT Gov Header** component into the **header** zone of
+the `full-width-section` Page Layout. CSS ships site-wide via the existing
+`head.html` nester (`dist/theme-ntg.min.css` or `dist/theme-central.min.css`).
+
+### Local development
+
+```bash
+npm run build                # produces dist/components.min.js, dist/hydrate.min.js, themes
+npm run cmp-dev              # NTG theme via Squiz DXP CLI
+npm run cmp-dev:central      # Central theme
+npm run cmp-deploy:dry-run   # validate manifest only
+npm run cmp-deploy           # push to the connected DXP tenant
+```
+
+Or open [`dxp/preview.html`](./dxp/preview.html) via the Vite dev server
+(`npm run dev`) to verify SSR + hydration locally without the DXP CLI.
+
+### Runtime dependencies (loaded via `footer_js.html`)
+
+1. React 18 + ReactDOM 18 UMD globals
+2. `dist/components.min.js` (`window.NTGDesignSystem.Header`)
+3. `dist/hydrate.min.js` (mounts the component)
 
 ## Print Styles
 
@@ -1076,7 +1211,7 @@ const navItems: HeaderNavItem[] = [
 
 // Type-safe props
 const headerProps: HeaderProps = {
-  logoSrc: "/logo.svg",
+  variant: "nt-gov-au",
   logoAlt: "NT.GOV.AU",
   navItems,
   onSearch: (query: string) => console.log(query),
@@ -1109,8 +1244,10 @@ The Header component supports all modern browsers:
 
 ```tsx
 <Header
-  logoSrc="/dept-logo.svg"
-  logoAlt="Department of Infrastructure"
+  variant="agency-internet"
+  agencyName="Department of Infrastructure"
+  agencyHref="/infrastructure"
+  logoAlt="NT Government"
   navItems={[
     { label: "Projects", href: "/projects" },
     { label: "Publications", href: "/publications" },
@@ -1121,88 +1258,50 @@ The Header component supports all modern browsers:
 
 ### Service Portal Header
 
-````tsx
+```tsx
 <Header
-  logoSrc="/portal-logo.svg"
-  logoAlt="My NT Services"
+  variant="other-site"
+  agencyName="My NT Services"
+  agencyHref="/services"
+  logoAlt="NT Government"
   navItems={[
     {
       label: "Dashboard",
       href: "/dashboard",
-    Medium Layout with Icon Search
-
-The medium layout uses the icon search variant for responsive space-saving:
-
-```tsx
-<Header
-  logoSrc="/nt-gov-logo.svg"
-  logoAlt="NT.GOV.AU"
-  logoHref="/"
-  navItems={[
-    {
-      label: "Find online services",
-      href: "/services",
-      icon: "fa-light fa-search"
-    },
-    {
-      label: "Contacts",
-      href: "/contact"
-    }
-  ]}
-  searchVariant="icon"  // Space-saving search icon
-  searchPlaceholder="Search"
-  onSearch={(query) => {
-    window.location.href = `/search?q=${encodeURIComponent(query)}`;
-  }}
-/>
-````
-
-In this configuration:
-
-- Max-width is 959px (medium layout)
-- Search shows as icon until clicked
-- Click to expand into full search bar
-- Close button (X) to collapse
-- Ideal for tablets and medium viewports
-
-### icon: "fa-light fa-home",
-
-      active: true
+      icon: "fa-light fa-home",
+      active: true,
     },
     {
       label: "Applications",
       href: "/applications",
-      icon: "fa-light fa-file"
+      icon: "fa-light fa-file",
     },
     {
       label: "Account",
       href: "/account",
-      icon: "fa-light fa-user"
-    }
-
-]}
-searchPlaceholder="Search services"
+      icon: "fa-light fa-user",
+    },
+  ]}
+  searchPlaceholder="Search services"
 />
-
-````
+```
 
 ### Public Website Header
 
 ```tsx
 <Header
-  logoSrc="/nt-gov-logo.svg"
+  variant="nt-gov-au"
   logoAlt="NT.GOV.AU"
-  logoHref="/"
   navItems={[
     {
       label: "Find online services",
       href: "/services",
-      icon: "fa-light fa-search"
+      icon: "fa-light fa-search",
     },
     {
       label: "Contacts",
-      href: "/contact"
-    }
+      href: "/contact",
+    },
   ]}
   searchPlaceholder="Search"
   onSearch={(query) => {
@@ -1210,4 +1309,4 @@ searchPlaceholder="Search services"
     window.location.href = `/search?q=${encodeURIComponent(query)}`;
   }}
 />
-````
+```

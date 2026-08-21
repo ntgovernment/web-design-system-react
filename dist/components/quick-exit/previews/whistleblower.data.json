@@ -1,0 +1,7 @@
+{
+  "heading": "Exit securely",
+  "content": "Click to exit this page securely. Your report is confidential. This action will not delete any saved drafts.",
+  "exitUrl": "https://www.abc.net.au/news/",
+  "redirectUrl": "https://www.google.com/",
+  "ariaLabel": "Exit this page securely"
+}

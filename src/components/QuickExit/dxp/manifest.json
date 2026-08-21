@@ -1,0 +1,121 @@
+{
+  "$schema": "http://localhost:3000/schemas/v1.json#",
+  "namespace": "ntg-web-design-system",
+  "name": "quick-exit",
+  "displayName": "Quick Exit",
+  "description": "Safety banner for sensitive pages (e.g. domestic violence, child safety, whistleblower portals). Clicking the banner opens a benign decoy site in a new tab and replaces the current tab with another safe URL — disabling the back button so the previously viewed sensitive content cannot be re-opened.",
+  "icon": {
+    "id": "exit_to_app",
+    "color": {
+      "type": "enum",
+      "value": "red"
+    }
+  },
+  "type": "edge",
+  "version": "0.1.0",
+  "mainFunction": "main",
+  "functions": [
+    {
+      "name": "main",
+      "entry": "main.js",
+      "input": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Heading",
+            "description": "Main heading shown in the banner.",
+            "default": "Quick exit"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "Descriptive text below the heading. Keep it short, scannable, and include emergency contact info where relevant.",
+            "default": "Click anywhere on this banner to exit this page. Call 000 if you're in immediate danger."
+          },
+          "exitUrl": {
+            "type": "string",
+            "title": "Exit URL",
+            "description": "Benign URL opened in a new tab when the banner is clicked. Should be a high-trust, innocuous site (e.g. weather, news).",
+            "default": "https://www.bom.gov.au/",
+            "format": "uri"
+          },
+          "redirectUrl": {
+            "type": "string",
+            "title": "Redirect URL",
+            "description": "URL the current tab is replaced with after the new tab opens. Disables the back button so the sensitive page cannot be reopened.",
+            "default": "https://www.google.com/",
+            "format": "uri"
+          },
+          "ariaLabel": {
+            "type": "string",
+            "title": "ARIA label",
+            "description": "Accessible label announced by screen readers.",
+            "default": "Quick exit - click to leave this page immediately"
+          }
+        },
+        "required": ["heading", "content", "exitUrl", "redirectUrl"]
+      },
+      "output": {
+        "responseType": "html"
+      }
+    }
+  ],
+  "previews": {
+    "default": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/default.data.json"
+          }
+        }
+      }
+    },
+    "domestic-violence": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/domestic-violence.data.json"
+          }
+        }
+      }
+    },
+    "child-safety": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/child-safety.data.json"
+          }
+        }
+      }
+    },
+    "whistleblower": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/whistleblower.data.json"
+          }
+        }
+      }
+    },
+    "mental-health": {
+      "functionData": {
+        "main": {
+          "wrapper": { "path": "previews/wrapper.html" },
+          "inputData": {
+            "type": "file",
+            "path": "previews/mental-health.data.json"
+          }
+        }
+      }
+    }
+  }
+}

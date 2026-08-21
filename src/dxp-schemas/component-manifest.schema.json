@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:3000/schemas/v1.json",
+  "title": "Squiz DXP Component Manifest Schema v1",
+  "description": "Main component manifest schema defining the structure of DXP component manifest.json files. Referenced via '$schema': 'http://localhost:3000/schemas/v1.json#' in each manifest.",
+  "type": "object",
+  "required": [
+    "namespace",
+    "name",
+    "displayName",
+    "description",
+    "icon",
+    "type",
+    "version",
+    "mainFunction",
+    "functions"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference. Use 'http://localhost:3000/schemas/v1.json#' for DXP dev-ui validation."
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Component namespace — lowercase with hyphens (e.g. 'ntg-web-design-system'). Must be unique per DXP environment.",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Component name — lowercase with hyphens (e.g. 'header', 'footer'). Unique within the namespace.",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable component name shown in the DXP UI (e.g. 'Header', 'Footer')."
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the component's purpose shown in the DXP UI."
+    },
+    "icon": {
+      "$ref": "component-icons.schema.json",
+      "description": "Component icon shown in the DXP component library. See component-icons.schema.json."
+    },
+    "type": {
+      "type": "string",
+      "description": "Component runtime type. 'edge' for server-side rendering via Cloudflare Workers. 'server' for traditional server-side rendering.",
+      "enum": ["edge", "server"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of this component (e.g. '1.0.0'). Increment on any manifest or main.js change.",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "mainFunction": {
+      "type": "string",
+      "description": "Name of the primary function exported from main.js that renders the component HTML."
+    },
+    "functions": {
+      "type": "array",
+      "description": "Array of component function definitions. Each function maps to an export in main.js.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/componentFunction"
+      }
+    },
+    "previews": {
+      "type": "object",
+      "description": "Map of preview variant names to preview configurations. Each variant has a wrapper HTML file and a data JSON file.",
+      "additionalProperties": {
+        "$ref": "#/definitions/preview"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "componentFunction": {
+      "type": "object",
+      "required": ["name", "entry", "input", "output"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Function name — must match an export in the entry file."
+        },
+        "entry": {
+          "type": "string",
+          "description": "Path to the entry file relative to the component directory (e.g. 'main.js')."
+        },
+        "input": {
+          "$ref": "component-input.schema.json",
+          "description": "JSON Schema for the function's input data. See component-input.schema.json."
+        },
+        "output": {
+          "$ref": "#/definitions/functionOutput"
+        }
+      },
+      "additionalProperties": false
+    },
+    "functionOutput": {
+      "type": "object",
+      "required": ["responseType"],
+      "properties": {
+        "responseType": {
+          "type": "string",
+          "description": "Output format of the function.",
+          "enum": ["html", "json", "text"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "preview": {
+      "type": "object",
+      "description": "A single preview variant definition.",
+      "required": ["functionData"],
+      "properties": {
+        "functionData": {
+          "type": "object",
+          "description": "Map of function name to preview configuration for that function.",
+          "additionalProperties": {
+            "$ref": "#/definitions/functionPreviewData"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "functionPreviewData": {
+      "type": "object",
+      "description": "Preview configuration for a single function.",
+      "required": ["wrapper", "data"],
+      "properties": {
+        "wrapper": {
+          "type": "string",
+          "description": "Path to the wrapper HTML file relative to the component directory (e.g. 'previews/wrapper.html')."
+        },
+        "data": {
+          "type": "string",
+          "description": "Path to the preview data JSON file relative to the component directory (e.g. 'previews/default.data.json')."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

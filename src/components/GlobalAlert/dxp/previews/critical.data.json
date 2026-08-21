@@ -1,0 +1,7 @@
+{
+  "variant": "critical",
+  "title": "Severe weather warning in effect",
+  "description": "<p>A severe weather warning has been issued for the Top End. Follow official advice and check current warnings.</p>",
+  "ctaText": "View warnings",
+  "ctaHref": "#"
+}

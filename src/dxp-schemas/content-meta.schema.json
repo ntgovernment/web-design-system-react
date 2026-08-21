@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "content-meta.schema.json",
+  "title": "Squiz DXP Content Meta Schema",
+  "description": "Core JSON Schema meta-schema with Squiz Matrix extensions. Provides custom types: FormattedText, SquizImage, SquizLink. Custom formats: matrix-asset-uri, multi-line, phone.",
+  "definitions": {
+    "FormattedText": {
+      "type": "string",
+      "title": "Formatted Text",
+      "description": "Rich-text (WYSIWYG) HTML string from Squiz Matrix editor. Value is raw HTML output from the Matrix editor."
+    },
+    "SquizLink": {
+      "title": "Squiz Link",
+      "description": "A Squiz Matrix asset link reference. Can be a plain URL string (for external links) or an asset object from the Matrix link picker.",
+      "oneOf": [
+        {
+          "type": "string",
+          "title": "URL string",
+          "description": "A plain URL string (e.g. 'https://nt.gov.au')."
+        },
+        {
+          "type": "object",
+          "title": "Asset reference",
+          "description": "A Squiz Matrix asset reference with optional display properties.",
+          "required": ["assetId"],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "description": "Squiz Matrix asset ID."
+            },
+            "url": {
+              "type": "string",
+              "description": "Resolved URL of the asset."
+            },
+            "text": {
+              "type": "string",
+              "description": "Link display text."
+            },
+            "title": {
+              "type": "string",
+              "description": "Link title attribute."
+            },
+            "target": {
+              "type": "string",
+              "description": "Link target attribute.",
+              "enum": ["_self", "_blank", "_parent", "_top"]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "SquizImage": {
+      "title": "Squiz Image",
+      "description": "A Squiz Matrix image asset reference with responsive image variations.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Image asset name."
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text for the image."
+        },
+        "caption": {
+          "type": "string",
+          "description": "Image caption text."
+        },
+        "imageVariations": {
+          "type": "object",
+          "description": "Map of image variation name to variation metadata.",
+          "additionalProperties": {
+            "$ref": "#/definitions/SquizImageVariation"
+          }
+        }
+      }
+    },
+    "SquizImageVariation": {
+      "type": "object",
+      "description": "Metadata for a single image variation (e.g. 'original', 'thumbnail').",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL of the image variation."
+        },
+        "width": {
+          "type": "number",
+          "description": "Width in pixels."
+        },
+        "height": {
+          "type": "number",
+          "description": "Height in pixels."
+        },
+        "byteSize": {
+          "type": "number",
+          "description": "File size in bytes."
+        },
+        "mimeType": {
+          "type": "string",
+          "description": "MIME type (e.g. 'image/jpeg')."
+        },
+        "aspectRatio": {
+          "type": "string",
+          "description": "Aspect ratio string (e.g. '16:9')."
+        },
+        "sha1Hash": {
+          "type": "string",
+          "description": "SHA-1 hash of the image file."
+        }
+      }
+    },
+    "matrixAssetTypes": {
+      "type": "string",
+      "description": "Enumeration of valid Squiz Matrix asset type codes.",
+      "enum": [
+        "type_1",
+        "type_2",
+        "type_asset",
+        "type_page",
+        "type_page_standard",
+        "type_page_redirect",
+        "type_page_calendar",
+        "type_page_search",
+        "type_folder",
+        "type_file",
+        "type_file_css",
+        "type_file_js",
+        "type_image",
+        "type_audio",
+        "type_video",
+        "type_link",
+        "type_user",
+        "type_user_group",
+        "type_role",
+        "type_workflow",
+        "type_metadata_schema",
+        "type_design",
+        "type_design_area",
+        "type_paint_layout"
+      ]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "typeEnum": {
+      "description": "Valid DXP input property types including standard JSON Schema types and Squiz custom types.",
+      "enum": [
+        "string",
+        "boolean",
+        "number",
+        "integer",
+        "null",
+        "array",
+        "object",
+        "FormattedText",
+        "SquizImage",
+        "SquizLink"
+      ]
+    }
+  }
+}

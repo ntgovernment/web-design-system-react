@@ -1,0 +1,52 @@
+{
+  "default": {
+    "body": "<h2>Explore the Northern Territory</h2><p>The Northern Territory is one of Australia's most unique destinations, offering ancient landscapes, rich Indigenous culture, and extraordinary wildlife.</p>",
+    "imagePosition": "right",
+    "background": "white",
+    "border": "none",
+    "imageSrc": "https://picsum.photos/seed/featured/800/600",
+    "imageAlt": "Aerial view of the Northern Territory landscape",
+    "primaryActionText": "Read more",
+    "primaryActionHref": "#"
+  },
+  "image-left": {
+    "body": "<h2>Explore the Northern Territory</h2><p>The Northern Territory is one of Australia's most unique destinations, offering ancient landscapes, rich Indigenous culture, and extraordinary wildlife.</p>",
+    "imagePosition": "left",
+    "background": "white",
+    "border": "none",
+    "imageSrc": "https://picsum.photos/seed/featured/800/600",
+    "imageAlt": "Aerial view of the Northern Territory landscape",
+    "primaryActionText": "Read more",
+    "primaryActionHref": "#"
+  },
+  "with-secondary-action": {
+    "body": "<h2>Explore the Northern Territory</h2><p>Discover world-class national parks, vibrant Indigenous art, and some of the best barramundi fishing in Australia.</p>",
+    "imagePosition": "right",
+    "background": "white",
+    "border": "none",
+    "imageSrc": "https://picsum.photos/seed/featured/800/600",
+    "imageAlt": "Aerial view of the Northern Territory landscape",
+    "primaryActionText": "Learn more",
+    "primaryActionHref": "#",
+    "secondaryActionText": "Contact us",
+    "secondaryActionHref": "#contact"
+  },
+  "grey-background": {
+    "body": "<h2>Explore the Northern Territory</h2><p>The Northern Territory is one of Australia's most unique destinations.</p>",
+    "imagePosition": "right",
+    "background": "grey",
+    "border": "none",
+    "imageSrc": "https://picsum.photos/seed/featured/800/600",
+    "imageAlt": "Aerial view of the Northern Territory landscape",
+    "primaryActionText": "Read more",
+    "primaryActionHref": "#"
+  },
+  "no-image": {
+    "body": "<h2>Explore the Northern Territory</h2><p>The Northern Territory is one of Australia's most unique destinations, offering ancient landscapes, rich Indigenous culture, and extraordinary wildlife.</p>",
+    "imagePosition": "right",
+    "background": "white",
+    "border": "none",
+    "primaryActionText": "Read more",
+    "primaryActionHref": "#"
+  }
+}

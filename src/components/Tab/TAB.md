@@ -823,6 +823,5 @@ When contributing improvements to the Tab component:
 
 - [Bootstrap 5.3 Navs & Tabs Documentation](https://getbootstrap.com/docs/5.3/components/navs-tabs/)
 - [WAI-ARIA Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
-- [Design System Color Standards](../../../DESIGN_TOKENS_IMPLEMENTATION.md)
 - [Content Standards & Best Practices](../../../CONTENT_STANDARDS.md)
 - [Theme Switching Documentation](../../themes/THEME_SWITCHING.md)

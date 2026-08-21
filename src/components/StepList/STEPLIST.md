@@ -921,8 +921,6 @@ const steps: StepListItem[] = [{ stepNumber: 1, title: "Test" }];
 For a complete list of available design tokens, see:
 
 - `@ntgovernment/web-design-tokens` - Token definitions
-- `design-tokens/DESIGN-TOKENS.md` - Token documentation
-- `DESIGN_TOKENS_IMPLEMENTATION.md` - Implementation guide
 
 ### Key Token Categories
 
@@ -947,7 +945,6 @@ For a complete list of available design tokens, see:
 - **Storybook**: [Local Storybook](http://localhost:6006) when running `npm run storybook`
 - **Content Standards**: See CONTENT_STANDARDS.md
 - **Contributing**: See CONTRIBUTING.md
-- **Design Tokens**: See DESIGN_TOKENS_IMPLEMENTATION.md
 
 ---
 

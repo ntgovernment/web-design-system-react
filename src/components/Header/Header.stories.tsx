@@ -15,9 +15,14 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    logoSrc: { control: "text" },
+    variant: {
+      control: "select",
+      options: ["nt-gov-au", "agency-internet", "other-site"],
+      description: "Header variant (logo + title layout)",
+    },
+    agencyName: { control: "text" },
+    agencyHref: { control: "text" },
     logoAlt: { control: "text" },
-    logoHref: { control: "text" },
     showSearch: { control: "boolean" },
     searchPlaceholder: { control: "text" },
     navItems: { control: "object" },
@@ -27,10 +32,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const NTGovAu: Story = {
   args: {
+    variant: "nt-gov-au",
     logoAlt: "NT.GOV.AU",
-    logoHref: "/",
     navItems: [
       {
         label: "Find online services",
@@ -47,22 +52,49 @@ export const Default: Story = {
   },
 };
 
-export const WithLogoImage: Story = {
+export const Default = NTGovAu;
+
+export const AgencyInternet: Story = {
   args: {
-    logoSrc: "https://via.placeholder.com/122x39/1F1F5F/FFFFFF?text=NT.GOV.AU",
+    variant: "agency-internet",
     logoAlt: "Northern Territory Government",
-    logoHref: "/",
+    agencyName: "Department of Health",
+    agencyHref: "https://health.nt.gov.au",
     navItems: [
       {
-        label: "Find online services",
-        href: "/services",
-        icon: "fa-light fa-search",
+        label: "Programs",
+        href: "/programs",
+        icon: "fa-light fa-briefcase",
       },
       {
         label: "Contacts",
         href: "/contact",
       },
     ],
+    showSearch: true,
+    searchPlaceholder: "Search",
+  },
+};
+
+export const OtherSite: Story = {
+  args: {
+    variant: "other-site",
+    logoAlt: "Northern Territory Government",
+    agencyName: "My NT Services",
+    agencyHref: "/",
+    navItems: [
+      {
+        label: "Dashboard",
+        href: "/dashboard",
+        icon: "fa-light fa-home",
+      },
+      {
+        label: "Contacts",
+        href: "/contact",
+      },
+    ],
+    showSearch: true,
+    searchPlaceholder: "Search",
   },
 };
 
@@ -241,7 +273,10 @@ export const MinimalHeader: Story = {
 
 export const DepartmentHeader: Story = {
   args: {
-    logoAlt: "Department of Health",
+    variant: "agency-internet",
+    agencyName: "Department of Health",
+    agencyHref: "/",
+    logoAlt: "Northern Territory Government",
     navItems: [
       {
         label: "Programs",
@@ -269,7 +304,10 @@ export const DepartmentHeader: Story = {
 
 export const ServicePortalHeader: Story = {
   args: {
-    logoAlt: "My NT Services",
+    variant: "other-site",
+    agencyName: "My NT Services",
+    agencyHref: "/",
+    logoAlt: "Northern Territory Government",
     navItems: [
       {
         label: "Dashboard",
@@ -614,8 +652,8 @@ export const ResponsiveDemo: Story = {
 
 export const Playground: Story = {
   args: {
+    variant: "nt-gov-au",
     logoAlt: "NT.GOV.AU",
-    logoHref: "/",
     navItems: [
       {
         label: "Find online services",

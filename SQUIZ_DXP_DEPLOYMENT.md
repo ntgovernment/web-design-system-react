@@ -37,7 +37,7 @@ The following sections describe deploying individual components as Matrix Compon
 ## Prerequisites
 
 - Access to Squiz Matrix admin interface
-- Node.js 18+ installed locally for building
+- Node.js 22+ installed locally for building
 - Understanding of Matrix Asset structure
 
 ## Build Process
@@ -52,13 +52,61 @@ npm install
 npm run build
 ```
 
-This creates the following files in the `dist/` directory:
+This creates the following files in the `dist/` directory.
 
-- `web-design-system.es.js` - ES Module format (recommended)
-- `web-design-system.umd.js` - UMD format (for broader compatibility)
-- `style.css` - Compiled CSS with theme variables
-- `index.d.ts` - TypeScript type definitions
-- Additional chunk files as needed
+During build, nester files are copied from `src/squiz/nesters/` and any legacy GFB asset references (`1484642`) are automatically replaced with the current GFB asset ID (`1607588`). See `scripts/build-dist.js` Step 6.
+
+```
+dist/
+├── components.min.js          UMD component bundle (React external)
+├── hydrate.min.js             DXP component hydration runtime (mounts [data-hydration-component] containers)
+├── theme-ntg.min.css          Complete NT.GOV.AU theme bundle (tokens + component CSS incl. GlobalAlert, Header)
+├── theme-central.min.css      Complete NTG Central theme bundle (tokens + component CSS incl. GlobalAlert, Header)
+├── index.html                 Interactive demo page
+├── index.js                   Demo application bundle
+├── index.css                  Demo application styles
+├── nesters/                   Squiz Matrix nest_content HTML files
+│   ├── head.html              <head> content (metadata, OG tags, favicons, Bootstrap CDN, theme CSS)
+│   ├── skip_links.html        Skip navigation links
+│   ├── header_content.html    Site header (alert banner, logo, navigation)
+│   ├── footer_content.html    Site footer (links, logos, utility nav)
+│   └── footer_js.html         Footer scripts (Bootstrap JS, React CDN, components, hydrate, Funnelback)
+├── globals/
+│   └── js/                    Third-party vendor scripts (copied from src/squiz/vendor/globals/js/)
+│       ├── bootstrap.bundle.min.js
+│       ├── jquery.min.js
+│       ├── typeahead.bundle.min.js
+│       ├── handlebars.min.js
+│       └── funnelback.autocompletion-2.6.0.js
+├── ntgbase/
+│   └── images/                NTG logo assets (copied from src/squiz/vendor/ntgbase/images/)
+│       ├── logo-ntg-mono.svg
+│       └── ntg-desert-rose-reverse.svg
+├── favicons/                  Favicon image assets
+│   ├── apple-touch-icon-180x180.png
+│   ├── favicon-32x32.png
+│   └── favicon-16x16.png
+└── images/                    Site image assets
+    └── ntg-logo.png           NTG mono logo (print only)
+```
+
+### Source Files
+
+The design parse template and nester source files are maintained at:
+
+```
+src/squiz/
+├── design-parse.html              Matrix design parse template (server-side print())
+├── nesters/
+│   ├── head.html                  <head> content (meta, CSS, analytics, jQuery)
+│   ├── skip_links.html            Skip navigation links
+│   ├── header_content.html        (Empty placeholder — provided by Header component in a layout zone)
+│   ├── footer_content.html        (Empty placeholder — provided by Footer component in a layout zone)
+│   └── footer_js.html             Footer scripts (Bootstrap, React CDN, components, Funnelback)
+└── layouts/                       Squiz DXP Page Layouts (manifest.json + markup.hbs per layout)
+    ├── full-width-section/        Single column, 3 zones: header / main / footer
+    └── content-container/         Single zone: container-xl width, text-only editorial content
+```
 
 ### 2. Build Storybook (Optional)
 
@@ -72,65 +120,164 @@ This creates a static Storybook site in `storybook-static/` that can be hosted s
 
 ## Deployment to Squiz Matrix
 
-### Step 1: Create File Assets
+### Git File Bridge (GFB)
 
-1. **Login to Matrix** with admin privileges
-2. **Navigate** to the appropriate site structure
-3. **Create a new folder** (e.g., "NT Gov Design System v0.1.0")
+The repository is connected to Squiz Matrix via a **Git File Bridge** asset.
 
-### Step 2: Upload Library Files
+| Setting          | Value                            |
+| ---------------- | -------------------------------- |
+| **GFB Asset ID** | `1607588`                        |
+| **Branch**       | `dev`                            |
+| **Repository**   | `ntgovernment/web-design-system` |
 
-Create the following **File Assets** in Matrix:
+All `dist/` files are served through the GFB. Use these keywords to reference them:
 
-#### JavaScript Files
+- **File contents** (inline HTML into nest_content): `%globals_asset_file_contents:1607588:dist/nesters/<file>.html%`
+- **File URL** (for `src`/`href` attributes): `%globals_asset_url_with_hash:1607588:dist/<file>%`
 
-1. **Create File Asset**: `web-design-system.es.js`
-   - Upload: `dist/web-design-system.es.js`
-   - Asset Type: JS File
-   - Note the Asset ID
+### Step 1: Load Nesters into Design Areas
 
-2. **Create File Asset**: `web-design-system.umd.js` (optional, for UMD support)
-   - Upload: `dist/web-design-system.umd.js`
-   - Asset Type: JS File
-   - Note the Asset ID
+Each `MySource_AREA` nest_content area is populated using `globals_asset_file_contents`:
 
-#### CSS Files
-
-3. **Create File Asset**: `style.css`
-   - Upload: `dist/style.css`
-   - Asset Type: CSS File
-   - Note the Asset ID
-
-#### TypeScript Definitions (optional)
-
-4. **Create File Asset**: `index.d.ts`
-   - Upload: `dist/index.d.ts`
-   - Asset Type: Text File
-
-### Step 3: Configure CDN Dependencies
-
-The library depends on Bootstrap 5.3 and FontAwesome. Ensure both are loaded in your pages:
-
-**Option A: Add to Design Template**
-
-```html
-<!-- Bootstrap 5.3 -->
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-  crossorigin="anonymous"
-/>
-
-<!-- FontAwesome Kit -->
-<script
-  src="https://kit.fontawesome.com/9bf658a5c7.js"
-  crossorigin="anonymous"
-></script>
+```
+head:           %globals_asset_file_contents:1607588:dist/nesters/head.html%
+skip_links:     %globals_asset_file_contents:1607588:dist/nesters/skip_links.html%
+header_content: %globals_asset_file_contents:1607588:dist/nesters/header_content.html%
+footer_content: %globals_asset_file_contents:1607588:dist/nesters/footer_content.html%
+footer_js:      %globals_asset_file_contents:1607588:dist/nesters/footer_js.html%
 ```
 
-**Option B: Add via Paint Layout**
-In your Paint Layout, add both the Bootstrap CDN link and FontAwesome Kit script in the `<head>` section.
+Within the nester HTML files, all references to `dist/` assets use `%globals_asset_url_with_hash:1607588:dist/...%` for cache-busted URLs.
+
+### Step 2: Sync the GFB
+
+After pushing changes to the `dev` branch:
+
+1. Open the GFB asset (`1607588`) in Matrix admin
+2. Click **Sync Now** (or wait for the scheduled sync)
+3. Verify the nesters render correctly in Preview mode
+
+### Standard Design File
+
+The Squiz Matrix design parse file is maintained at `src/squiz/design-parse.html`. It uses server-side `print()` to inline each nester from the Git File Bridge:
+
+```html
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <script runat="server">
+      print(`%globals_asset_contents_raw:1607588:dist/nesters/head.html%`);
+    </script>
+  </head>
+
+  <body>
+    <div id="top"></div>
+
+    <script runat="server">
+      print(
+        `%globals_asset_contents_raw:1607588:dist/nesters/skip_links.html%`,
+      );
+    </script>
+    <script runat="server">
+      print(
+        `%globals_asset_contents_raw:1607588:dist/nesters/header_content.html%`,
+      );
+    </script>
+
+    <div class="ntg-body">
+      <MySource_AREA id_name="body" design_area="body" />
+    </div>
+
+    <script runat="server">
+      print(
+        `%globals_asset_contents_raw:1607588:dist/nesters/footer_content.html%`,
+      );
+    </script>
+    <script runat="server">
+      print(`%globals_asset_contents_raw:1607588:dist/nesters/footer_js.html%`);
+    </script>
+  </body>
+</html>
+```
+
+### Local Preview
+
+The design template can be previewed locally during development:
+
+```bash
+npm run dev
+# Open http://localhost:5173/squiz-preview.html
+```
+
+The Vite dev server assembles the design-parse template by inlining the nester HTML files from `src/squiz/nesters/` on each request. Edits to any nester file are reflected immediately on reload.
+
+> **Note**: The local preview disables analytics (Google Analytics, Monsido/heatmaps) and loads React/jQuery from CDN since those dependencies are provided differently in production Matrix.
+
+Each `MySource_AREA` nest_content area corresponds to a file in `dist/nesters/`. Asset references within each nester use `%globals_asset_url_with_hash:1607588:dist/...%` for cache-busted URLs served via GFB.
+
+| Design Area      | Nester File                   | Description                                                                                                                      |
+| ---------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `head`           | `nesters/head.html`           | Page title, metadata, Dublin Core, Open Graph, no-JS script, FontAwesome CSS, favicons, theme CSS, jQuery CDN                    |
+| `skip_links`     | `nesters/skip_links.html`     | Skip-to-content and skip-to-footer links                                                                                         |
+| `header_content` | `nesters/header_content.html` | Top page alert, NTG logo (print), site header with navigation and search                                                         |
+| `footer_content` | `nesters/footer_content.html` | Footer links, social media, logos, utility links, acknowledgement                                                                |
+| `footer_js`      | `nesters/footer_js.html`      | Bootstrap 5.3 bundle JS, FontAwesome fallback, lightbox plugins, React 18 CDN, components.min.js, Funnelback search autocomplete |
+
+### Nester Reference
+
+#### `head.html`
+
+The `<head>` nester loads all page-level metadata, stylesheets, and pre-body scripts. Contents in order:
+
+| Section          | What it loads                                                    | Asset reference                                                       |
+| ---------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Page title       | `%frontend_asset_name%` with `%globals_site_name%` fallback      | Squiz keywords                                                        |
+| Metadata         | Description, robots, Dublin Core (`dcterms.*`), language         | `%frontend_asset_metadata_*%`                                         |
+| Open Graph       | Title, type, URL, image, description, site name, dates, keywords | `%frontend_asset_*%`                                                  |
+| No-JS script     | Swaps `no-js` → `js` class on `<html>`                           | Inline                                                                |
+| Font Awesome 6   | Kit CSS from `kit.fontawesome.com/f73a36f593.css`                | External CDN                                                          |
+| Favicons         | apple-touch-icon (180×180), favicon (32×32, 16×16)               | Matrix asset IDs (`./?a=1185686` etc.)                                |
+| Theme CSS        | `dist/theme-ntg.min.css` — complete NTG theme bundle             | `%globals_asset_url_with_hash:1607588:dist/theme-ntg.min.css%`        |
+| Print CSS        | Separate print stylesheet                                        | Matrix asset ID (`./?a=1300941`)                                      |
+| jQuery           | `dist/globals/js/jquery.min.js`                                  | `%globals_asset_url_with_hash:1607588:dist/globals/js/jquery.min.js%` |
+| SSJS console     | Server-side `ssconsole.log` stub                                 | Inline + `%globals_asset_contents_raw:1248208%`                       |
+| Google Analytics | gtag.js with site-specific GA ID                                 | Conditional: `%begin_globals_site_metadata_site-googleAnalytics%`     |
+| Monsido          | Accessibility monitoring and heatmaps                            | Conditional: `%begin_globals_site_metadata_site-monsido%`             |
+
+> **Note:** All nesters now reference GFB asset `1607588` for both CSS/JS bundles and nester file contents.
+
+#### `header_content.html`
+
+The header nester renders the GlobalAlert and Header design system components as static HTML with Squiz Matrix keywords. See component-level docs for full markup:
+
+- [GlobalAlert — CMS Integration](src/components/GlobalAlert/GLOBALALERT.md#squiz-matrix-cms-integration)
+- [Header — CMS Integration](src/components/Header/HEADER.md#squiz-matrix-cms-integration)
+
+| Section      | Component                                 | Key CMS keywords                                                                                                                 |
+| ------------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Global alert | `GlobalAlert` (`global-alert--{variant}`) | `%globals_site_metadata_site-alertType%`, `site-alertTitle`, `site-alertMessage`                                                 |
+| Print logo   | —                                         | `%globals_asset_url_with_hash:1607588:dist/images/ntg-logo.png%`                                                                 |
+| Site header  | `Header` (`header__navbar`)               | `https://nt.gov.au` (logo link), `%globals_site_url%` (agency link), `%globals_site_name%`, `logo-ntg-mono.svg` (agency variant) |
+| Mobile menu  | `Header` (`header__mobile-menu`)          | Same nav items as desktop                                                                                                        |
+| Inline JS    | —                                         | GlobalAlert dismiss + hamburger toggle                                                                                           |
+
+#### `footer_js.html`
+
+The footer JS nester loads all page-level scripts after the closing `</body>` content. Contents in order:
+
+| Section               | What it loads                                                                                            | Asset reference                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Bootstrap JS          | `dist/globals/js/bootstrap.bundle.min.js`                                                                | `%globals_asset_url_with_hash:1607588:dist/globals/js/bootstrap.bundle.min.js%` |
+| Font Awesome fallback | jQuery check for FA6 Pro font-family, with commented fallback link                                       | Inline                                                                          |
+| Lightbox              | Conditional load of lightbox CSS + `ntg-base-plugins.min.js` (only if `[data-plugin="lightbox"]` exists) | `%globals_asset_url_with_hash:1607588:dist/ntgbase/ntg-base-plugins.min.js%`    |
+| React 18              | `react.production.min.js` + `react-dom.production.min.js` (required by UMD component bundle)             | unpkg.com CDN                                                                   |
+| process.env shim      | `window.process = { env: { NODE_ENV: 'production' } }`                                                   | Inline                                                                          |
+| Components JS         | `dist/components.min.js` — UMD component bundle                                                          | `%globals_asset_url_with_hash:1607588:dist/components.min.js%`                  |
+| Hydration runtime     | `dist/hydrate.min.js` — mounts DXP-rendered components into `[data-hydration-component]` containers      | `%globals_asset_url_with_hash:1607588:dist/hydrate.min.js%`                     |
+| Anchor scroll         | Scrolls to hash target on page load                                                                      | Inline                                                                          |
+| Alt JS                | Optional per-site additional JS                                                                          | Conditional: `%begin_globals_site_metadata_site-altJs%`                         |
+| DataTables            | jQuery DataTables init for `.datatable` / `.data-table` elements                                         | Inline                                                                          |
+| Funnelback            | Typeahead, Handlebars, and Funnelback autocompletion for search                                          | `%globals_asset_url_with_hash:1607588:dist/globals/js/*.js%`                    |
 
 ### Step 4: Create Component Service Templates
 
@@ -143,10 +290,13 @@ Create a **Standard Page** asset for each component you want to expose:
 **Content (HTML):**
 
 ```html
+<!-- Load the theme CSS -->
+<link rel="stylesheet" href="%globals_asset_url:YOUR_THEME_CSS_ASSET_ID%" />
+
 <div id="ntg-button-%asset_assetid%"></div>
 
 <script type="module">
-  import { Button } from '%globals_asset_url:YOUR_ES_MODULE_ASSET_ID%';
+  import { Button } from '%globals_asset_url:YOUR_COMPONENTS_JS_ASSET_ID%';
   import { createRoot } from 'https://esm.sh/react-dom@18/client';
   import { createElement } from 'https://esm.sh/react@18';
 
@@ -204,8 +354,11 @@ For developers with more control, you can import the library directly in Paint L
       crossorigin="anonymous"
     ></script>
 
-    <!-- Design System Styles -->
-    <link rel="stylesheet" href="%globals_asset_url:YOUR_STYLE_CSS_ASSET_ID%" />
+    <!-- Design System Theme (pick one) -->
+    <link
+      rel="stylesheet"
+      href="%globals_asset_url:YOUR_THEME_NTG_CSS_ASSET_ID%"
+    />
   </head>
   <body>
     <div id="app"></div>
@@ -214,8 +367,8 @@ For developers with more control, you can import the library directly in Paint L
       import {
         Button,
         Card,
-        Alert,
-      } from "%globals_asset_url:YOUR_ES_MODULE_ASSET_ID%";
+        Notification,
+      } from "%globals_asset_url:YOUR_COMPONENTS_JS_ASSET_ID%";
       import { createRoot } from "https://esm.sh/react-dom@18/client";
       import { createElement as h } from "https://esm.sh/react@18";
 
@@ -232,11 +385,11 @@ For developers with more control, you can import the library directly in Paint L
             { title: "Info", icon: "fa-solid fa-info-circle" },
             "This is a card",
           ),
-          h(
-            Alert,
-            { variant: "success", icon: "fa-solid fa-circle-check" },
-            "Success!",
-          ),
+          h(Notification, {
+            variant: "success",
+            title: "Success",
+            message: "Operation completed.",
+          }),
         ),
       );
     </script>
@@ -288,7 +441,7 @@ Matrix automatically handles cache busting through Asset IDs, but you can also:
 
 ### 3. Performance
 
-- Use ES Module format (`web-design-system.es.js`) for modern browsers
+- The theme CSS bundles (`theme-ntg.min.css`, `theme-central.min.css`) are self-contained — they include tokens, typography, and all component styles
 - Lazy load components when possible
 - Bootstrap is loaded from CDN for better caching
 
@@ -332,20 +485,107 @@ For issues or questions:
 2. Review Storybook documentation at https://cmsexternal.nt.gov.au/webds/storybook
 3. Contact the development team
 
+## DXP Edge Component Services
+
+In addition to deploying assets to Squiz Matrix via GFB, this repository packages three components as **Squiz DXP Edge Component Services** — server-side HTML renderers that run on Cloudflare Workers inside DXP. These are distinct from the Matrix nester deployment described above.
+
+### Deployed Components
+
+| Component        | Namespace               | Version | DXP URL                                |
+| ---------------- | ----------------------- | ------- | -------------------------------------- |
+| **Header**       | `ntg-web-design-system` | `1.0.4` | `…/ntg-web-design-system/header`       |
+| **Footer**       | `ntg-web-design-system` | `0.1.2` | `…/ntg-web-design-system/footer`       |
+| **Global Alert** | `ntg-web-design-system` | `0.1.0` | `…/ntg-web-design-system/global-alert` |
+
+All three components emit plain HTML styled by the site-wide theme CSS (loaded via the `head.html` nester). No React, no inline scripts (except where noted in per-component READMEs).
+
+### Source Structure
+
+Each DXP component lives under `src/components/<Name>/dxp/`:
+
+```
+src/components/<Name>/dxp/
+├── manifest.json            # Squiz DXP v1 manifest (metadata + input JSON Schema + preview map)
+├── main.js                  # Edge renderer — pure ESM, exports { async main(input) }
+├── example.data.json        # Sample inputs for the local preview.html harness
+├── preview.html             # Local SSR harness (opens in Vite dev server)
+├── README.md                # Component dev/deploy guide
+└── previews/
+    ├── wrapper.html         # Dev-ui wrapper with <!-- INLINE_THEME_CSS_START/END --> markers
+    └── *.data.json          # One file per preview variant
+```
+
+Staged output (produced by prepare scripts) goes to `dist/components/<name>/`. The `dist/` copy has theme CSS inlined into `previews/wrapper.html` — required by the Squiz DXP CLI.
+
+### Local Development
+
+#### Preview a single component
+
+```bash
+# Prepare + open dev-ui for one component
+npm run cmp-globalalert-dev   # Global Alert
+npm run cmp-header-dev        # Header
+npm run cmp-footer-dev        # Footer
+```
+
+#### Preview all components together
+
+```bash
+# Prepares all DXP components, then opens dev-ui at dist/components/
+npm run cmp-dev
+```
+
+`cmp-prepare` (run automatically by `precmp-dev`) discovers every `src/components/*/dxp/manifest.json` and stages each into `dist/components/<name>/`, so new DXP components are picked up without any script changes.
+
+#### Local preview harness
+
+While Vite dev server is running (`npm run dev`), open:
+
+```
+http://localhost:5173/src/components/GlobalAlert/dxp/preview.html
+http://localhost:5173/src/components/Header/dxp/preview.html
+http://localhost:5173/src/components/Footer/dxp/preview.html
+```
+
+### Deployment
+
+Each component has individual deploy scripts with automatic `pre*` prepare hooks:
+
+```bash
+# Validate (no upload)
+npm run cmp-globalalert-deploy:dry-run
+npm run cmp-header-deploy:dry-run
+npm run cmp-footer-deploy:dry-run
+
+# Deploy to live DXP tenant
+npm run cmp-globalalert-deploy
+npm run cmp-header-deploy
+npm run cmp-footer-deploy
+```
+
+Before deploying, increment the `"version"` field in `manifest.json` following semantic versioning. The DXP CLI will reject a re-deploy of the same version.
+
+### Per-Component Documentation
+
+- **Header** — [src/components/Header/dxp/README.md](src/components/Header/dxp/README.md)
+- **Footer** — [src/components/Footer/dxp/README.md](src/components/Footer/dxp/README.md)
+- **Global Alert** — [src/components/GlobalAlert/dxp/README.md](src/components/GlobalAlert/dxp/README.md)
+
+---
+
 ## Related Documentation
 
 - **[STORYBOOK_GFB_DEPLOYMENT.md](STORYBOOK_GFB_DEPLOYMENT.md)** - Deploy Storybook documentation site to Squiz Matrix
 - [README.md](README.md) - Main project documentation
-- [FEATURES.md](FEATURES.md) - Component features and capabilities
 - [THEME_SWITCHING.md](src/themes/THEME_SWITCHING.md) - Theme switching implementation
 
 ## Updates
 
 When updating the library:
 
-1. Build new version locally
-2. Create new versioned folder in Matrix
-3. Upload new dist files
-4. Test thoroughly
-5. Update component services to use new version
+1. Build new version locally (`npm run build`)
+2. Commit `dist/` changes and push to `dev` branch
+3. Sync GFB asset `1607588` in Matrix
+4. Verify nesters render correctly in Preview mode
+5. Test thoroughly across browsers
 6. Communicate changes to content editors

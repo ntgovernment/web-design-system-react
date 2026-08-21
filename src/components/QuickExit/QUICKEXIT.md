@@ -27,7 +27,7 @@ The Quick Exit component provides a critical safety feature for pages containing
 ### Basic Usage
 
 ```tsx
-import { QuickExit } from "@ntgov/web-design-system";
+import { QuickExit } from "@ntgovernment/web-design-system";
 
 function SensitiveContentPage() {
   return (

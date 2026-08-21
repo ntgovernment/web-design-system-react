@@ -539,8 +539,8 @@ Access via: `GET /api/html?storyId=components-back-to-top--default`
 ## References
 
 - [Bootstrap 5.3 Buttons Documentation](https://getbootstrap.com/docs/5.3/components/buttons/#variables)
-- [Design Tokens Documentation](https://github.com/ntgovernment/web-design-system/blob/main/design-tokens/DESIGN-TOKENS.md)
-- [Theme Customization Guide](src/themes/THEMES.md)
+- [Design Tokens (`@ntgovernment/web-design-tokens`)](https://github.com/orgs/ntgovernment/packages/npm/package/web-design-tokens)
+- [Theme Customization Guide](../../themes/THEMES.md)
 - [Content Standards](https://github.com/ntgovernment/web-design-system/blob/main/CONTENT_STANDARDS.md)
 - [WCAG 2.1 Focus Visible](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html)
 

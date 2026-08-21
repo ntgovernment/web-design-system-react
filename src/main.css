@@ -80,6 +80,70 @@
 @import "./components/Table/Table.css";
 @import "./components/Table/Table-ntg.css";
 
+/* Import Accordion component styles */
+@import "./components/Accordion/Accordion.css";
+@import "./components/Accordion/Accordion-ntg.css";
+
+/* Import Banner component styles */
+@import "./components/Banner/Banner.css";
+@import "./components/Banner/Banner-ntg.css";
+
+/* Import Card component styles */
+@import "./components/Card/Card.css";
+@import "./components/Card/Card-ntg.css";
+
+/* Import Callout component styles */
+@import "./components/Callout/Callout.css";
+@import "./components/Callout/Callout-ntg.css";
+
+/* Import DateInput component styles */
+@import "./components/DateInput/DateInput.css";
+@import "./components/DateInput/DateInput-ntg.css";
+
+/* Import DatePicker component styles */
+@import "./components/DatePicker/DatePicker.css";
+@import "./components/DatePicker/DatePicker-ntg.css";
+
+/* Import Dropdown component styles */
+@import "./components/Dropdown/Dropdown.css";
+@import "./components/Dropdown/Dropdown-ntg.css";
+
+/* Import FileUpload component styles */
+@import "./components/FileUpload/FileUpload.css";
+@import "./components/FileUpload/FileUpload-ntg.css";
+
+/* Import Header component styles */
+@import "./components/Header/Header.css";
+@import "./components/Header/Header-ntg.css";
+
+/* Import Image component styles */
+@import "./components/Image/Image.css";
+@import "./components/Image/Image-ntg.css";
+
+/* Import Radio component styles */
+@import "./components/Radio/Radio.css";
+@import "./components/Radio/Radio-ntg.css";
+
+/* Import SideNavigation component styles */
+@import "./components/SideNavigation/SideNavigation.css";
+@import "./components/SideNavigation/SideNavigation-ntg.css";
+
+/* Import StepList component styles */
+@import "./components/StepList/StepList.css";
+@import "./components/StepList/StepList-ntg.css";
+
+/* Import Tab component styles */
+@import "./components/Tab/Tab.css";
+@import "./components/Tab/Tab-ntg.css";
+
+/* Import Textarea component styles */
+@import "./components/Textarea/Textarea.css";
+@import "./components/Textarea/Textarea-ntg.css";
+
+/* Import FeaturedCard component styles */
+@import "./components/FeaturedCard/FeaturedCard.css";
+@import "./components/FeaturedCard/FeaturedCard-ntg.css";
+
 /* Additional global styles can be added here */
 body {
   margin: 0;
