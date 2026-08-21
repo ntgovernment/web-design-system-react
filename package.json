@@ -24,7 +24,7 @@
     "prebuild-storybook": "npm run generate-story-data",
     "build-storybook": "storybook build",
     "build-storybook:squiz": "npm run build-storybook",
-    "build-storybook:gh-pages": "cross-env STORYBOOK_BASE_PATH=/web-design-system/ npm run build-storybook",
+    "build-storybook:gh-pages": "cross-env STORYBOOK_BASE_PATH=/web-design-system-react/ npm run build-storybook",
     "prepare-storybook-gfb": "npm run build-storybook:squiz && node scripts/prepare-gfb-deploy.js",
     "test": "vitest",
     "test:ui": "vitest --ui",
