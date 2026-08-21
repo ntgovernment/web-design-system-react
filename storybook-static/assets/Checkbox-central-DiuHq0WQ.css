@@ -1,0 +1,1 @@
+.form-check-input:focus,.form-check-input:focus-visible,.form-check-input:checked:focus,.form-check-input:checked:focus-visible{box-shadow:var(--shadow-focus-central)}[data-theme=central] .form-check-input{border-radius:var(--central-radii-sm, 4px)}

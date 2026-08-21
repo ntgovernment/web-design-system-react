@@ -1,0 +1,1 @@
+.textarea-field textarea.form-control:focus,.textarea-field textarea.form-control:focus-visible{box-shadow:var(--shadow-focus-central)}.textarea-field textarea.form-control[readonly],.textarea-field textarea.form-control[data-readonly=true]{background:var(--central-neutrals-02)}

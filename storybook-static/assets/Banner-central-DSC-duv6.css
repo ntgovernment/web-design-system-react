@@ -1,0 +1,1 @@
+[data-theme=central] .banner__breadcrumbs .content-breadcrumbs__link:focus,[data-theme=central] .banner__breadcrumbs .content-breadcrumbs__link:focus-visible{box-shadow:var(--shadow-focus-central)}[data-theme=central] .banner .btn{--bs-btn-border-radius: var(--central-radii-button)}[data-theme=central] .banner__pill{border-radius:var(--central-radii-sm)}

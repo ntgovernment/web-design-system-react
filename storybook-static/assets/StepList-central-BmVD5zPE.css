@@ -1,0 +1,1 @@
+:root{--step-list-circle-border-radius: 100px;--step-list-info-box-border-radius: 4px}.step-list__step-circle:focus,.step-list__step-circle:focus-visible{box-shadow:var(--shadow-focus-central);outline:none}
