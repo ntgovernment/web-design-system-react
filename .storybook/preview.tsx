@@ -12,7 +12,7 @@ if (typeof globalThis !== "undefined") {
 
 // Base path for design token CSS static assets.
 // import.meta.env.BASE_URL is "/" in dev and the configured Vite base in production
-// (e.g. "/web-design-system/" on GitHub Pages). The design-tokens-css/ directory is
+// (e.g. "/web-design-system-react/" on GitHub Pages). The design-tokens-css/ directory is
 // served from node_modules via staticDirs in main.ts.
 const tokensCssBase = `${import.meta.env.BASE_URL}design-tokens-css`;
 
