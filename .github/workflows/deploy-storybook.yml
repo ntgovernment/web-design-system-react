@@ -10,7 +10,6 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  packages: read
   pages: write
   id-token: write
 
@@ -25,24 +24,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: "22"
-          cache: "npm"
-          registry-url: "https://npm.pkg.github.com"
-
-      - name: Install dependencies
-        run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ github.token }}
-
-      - name: Build component library
-        run: npm run build
-
-      - name: Build Storybook
-        run: npm run build-storybook:gh-pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
